@@ -176,7 +176,7 @@ $(document).ready(function () {
       "#container"
     ).replaceWith(`<div id="container" class="container h-100 d-flex " style="justify-content: center; align-items: center;">    
     <div class="row d-flex" style=" justify-content: center; align-items: center; "> <div class="col col-12">
-    <img src="../infograph/CancerDisease.jpg" alt="" style="height: 550px; width: 1200px;">
+    <img src="/infograph/CancerDisease.jpg" alt="" style="height: 550px; width: 1200px;">
     </div>`);
   });
   $(".DinuTuximab").on("click", function () {
