@@ -14,15 +14,14 @@
 
 
   <!-- bootstrap CSS -->
-  <link href="../CSS/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
 
 
-  <!-- bootstrap JS -->
-  <script defer src="../JS/bootstrap.bundle.min.js"></script>
+
 
 
   <!-- Custom styles for this template -->
-  <link href="../CSS/sign-in.css" rel="stylesheet">
+  <link href="/css/sign-in.css" rel="stylesheet">
 </head>
 
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
@@ -122,12 +121,12 @@
         console.log(data.validationerrors)
         data.validationerrors.forEach(item => {
           if (item.path == "email") {
-             emailwrong.classList.remove("d-none")
+            emailwrong.classList.remove("d-none")
           } else {
             emailwrong.classList.add("d-none")
           }
           if (item.path == "password") {
-             wrongpassword.classList.remove("d-none")
+            wrongpassword.classList.remove("d-none")
           } else {
             wrongpassword.classList.add("d-none")
           }
@@ -136,30 +135,30 @@
 
       if (data.emailexist) {
         console.log(data.emailexist)
-         document.getElementById('emailexist').classList.remove("d-none");
+        document.getElementById('emailexist').classList.remove("d-none");
       } else {
         document.getElementById('emailexist').classList.add("d-none");
       }
 
       if (data.codeexist) {
         console.log(data.codeexist)
-         document.getElementById('codeexist').classList.remove("d-none");
+        document.getElementById('codeexist').classList.remove("d-none");
       } else {
         document.getElementById('codeexist').classList.add("d-none");
       }
 
       if (data.id) {
-      location.assign("/login")  
-        
+        location.assign("/login")
+
       }
-    
-      
+
+
 
 
     });
   </script>
 
-
+  <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
