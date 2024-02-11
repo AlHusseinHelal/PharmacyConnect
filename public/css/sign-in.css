@@ -111,3 +111,18 @@ body {
 .bd-mode-toggle .dropdown-menu .active .bi {
   display: block !important;
 }
+
+
+.redframe {
+  /* color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: #86b7fe;
+  outline: 0; */
+  box-shadow: 0 0 0 0.25rem rgba(134, 18, 18, 0.25);
+}
+/* .codeinput:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(246, 0, 25, 0.25);} */

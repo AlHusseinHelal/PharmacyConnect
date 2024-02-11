@@ -83,7 +83,7 @@
         <label for="password">Password</label>
       </div>
 
-      <div id="wrongpassword" class=" d-flex flex-row align-items-center mt-2 d-none"
+      <div id="wrongpassword" class=" d-flex flex-row align-items-center my-2 d-none"
         style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
         <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
         <p class="my-1 ms-1">Password must be at least 8 characters with 1 upper case letter and 1 number</p>
@@ -122,13 +122,18 @@
         data.validationerrors.forEach(item => {
           if (item.path == "email") {
             emailwrong.classList.remove("d-none")
+            email.classList.add("redframe")
           } else {
             emailwrong.classList.add("d-none")
+            email.classList.remove("redframe")
           }
           if (item.path == "password") {
             wrongpassword.classList.remove("d-none")
+            password.classList.add("redframe")
           } else {
             wrongpassword.classList.add("d-none")
+            password.classList.remove("redframe")
+
           }
         });
       }
@@ -136,15 +141,21 @@
       if (data.emailexist) {
         console.log(data.emailexist)
         document.getElementById('emailexist').classList.remove("d-none");
+        email.classList.add("redframe");
       } else {
         document.getElementById('emailexist').classList.add("d-none");
+        email.classList.remove("redframe");
+
       }
 
       if (data.codeexist) {
         console.log(data.codeexist)
         document.getElementById('codeexist').classList.remove("d-none");
+        code.classList.add("redframe");
       } else {
         document.getElementById('codeexist').classList.add("d-none");
+        code.classList.remove("redframe");
+
       }
 
       if (data.id) {

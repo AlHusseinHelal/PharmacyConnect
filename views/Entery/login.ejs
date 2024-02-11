@@ -32,16 +32,29 @@
     <img class="mb-4 d-flex mx-auto" src="svg/PharmacyLogo.svg" alt="" height="150">
     <h1 class="h3 mb-3 fw-normal text-center"
       style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"> Sign in</h1>
-  
-    <form action="/checklogin" method="POST">
+
+    <form id="checklogin" >
       <div class="form-floating">
-        <input type="text" class="form-control" name="code" placeholder="code" required>
+        <input type="text" class="form-control" id="code" name="code" placeholder="code" required>
         <label for="code">Code</label>
       </div>
+
+      <div id="codenot" class=" d-flex flex-row align-items-center my-2 d-none"
+        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+        <img class="ms-1 " src="/svg/alertsign-02.svg" height="20vh" alt="">
+        <p class="my-1 ms-1">You Are Not Registered</p>
+      </div>
+
       <div class="form-floating">
-        <input type="password" class="form-control" name="password" placeholder="password" required>
+        <input type="password" class="form-control rounded mt-2" id="password" name="password" placeholder="password" required>
         <label for="password">Password</label>
       </div>
+
+      <div id="wrongpassword" class=" d-flex flex-row align-items-center mt-2 d-none"
+      style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+      <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+      <p class="my-1 ms-1">Wrong Password</p>
+    </div>
 
       <div class="form-check text-start my-3">
         <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
@@ -56,14 +69,44 @@
     <button class="btn btn-primary w-100 py-2 my-2" type="submit"><a href="/register"
         style="color: white; text-decoration: none;">Registration</a></button>
 
-        <button class="btn btn-primary w-100 py-2 my-2" type="submit"><a href="/medication"
-          style="color: white; text-decoration: none;">Visit Booking</a></button>
-        <div>
-          
-        </div>
+    <button class="btn btn-primary w-100 py-2 my-2" type="submit"><a href="/medication"
+        style="color: white; text-decoration: none;">Visit Booking</a></button>
+    <div>
+
+    </div>
     <!-- <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p> -->
   </main>
+  <script>
+    checklogin.addEventListener('submit', async (event) => {
+      event.preventDefault()
+      const res = await fetch("/checklogin", {
+        method: "POST",
+        body: JSON.stringify({ code: code.value, password: password.value }),
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await res.json();
+      if (data.codenotfound) {
+        codenot.classList.remove('d-none');
+        code.classList.add('redframe');
+      } else {
+        codenot.classList.add('d-none');
+        code.classList.remove('redframe');
+      }
 
+      if (data.wrongpassword) {
+        wrongpassword.classList.remove('d-none');
+        password.classList.add('redframe');
+      } else {
+        wrongpassword.classList.add('d-none');
+        wrongpassword.classList.remove('redframe');
+      }
+
+      if (data.loginuser) {
+        location.assign("/welcome")
+      }
+    });
+
+  </script>
 
 
 

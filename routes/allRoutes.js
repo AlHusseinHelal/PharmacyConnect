@@ -15,6 +15,8 @@ var jwt = require("jsonwebtoken");
 //GET REQUEST
 // ----------------------------------
 
+
+
 //SIGNOUT
 router.get("/signout", (req, res) => {
   res.cookie("jwt", "", { httpOnly: true, maxAge: 1 });
@@ -44,6 +46,11 @@ router.get("/interface", checkIfUser, requireAuth, (req, res) => {
 //ONCOTIPS
 router.get("/oncotips", checkIfUser, requireAuth, (req, res) => {
   res.render("oncotips.ejs");
+});
+
+//welcomw
+router.get("/welcome", checkIfUser, requireAuth, (req, res) => {
+  res.render("Entery/welcome.ejs");
 });
 
 //STRUCTURE
@@ -733,6 +740,30 @@ router.get("/editout/:id", checkIfUser, requireAuth, (req, res) => {
 //POST REQUEST
 // ----------------------------------
 
+//LOGIN CHECK
+router.post("/checklogin", async (req, res) => {
+  try {
+    const loginuser = await Registration.findOne({ code: req.body.code });
+    if (loginuser == null) {
+      return res.json({ codenotfound: "You Are Not Registered" });
+    }
+    const match = await bcrypt.compare(req.body.password, loginuser.password);
+    if (!match) {
+      return res.json({ wrongpassword: "Wrong Password" });
+    }
+    if (match) {
+      var token = jwt.sign({ id: loginuser._id }, "secretkey");
+      res.cookie("jwt", token, { httpOnly: true, maxAge: 86400000 });
+      
+      // res.json({ id: loginuser._id });  
+      console.log(loginuser)
+      res.json({ loginuser: loginuser });  
+    }
+  } catch (e) {
+    console.log(e);
+  }
+});
+
 // INPATIENT POST REQUEST
 router.post("/inpt2", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.create(req.body)
@@ -854,25 +885,26 @@ router.post(
   }
 );
 
-//LOGIN CHECK
-router.post("/checklogin", async (req, res) => {
-  const loginuser = await Registration.findOne({ code: req.body.code });
-  if (loginuser == null) {
-    console.log("User Not Found");
-  } else {
-    const match = await bcrypt.compare(req.body.password, loginuser.password);
-    if (match) {
-      var token = jwt.sign({ id: loginuser._id }, "secretkey");
-      res.cookie("jwt", token, { httpOnly: true, maxAge: 86400000 });
-      res.render("Entery/welcome", {
-        welcomefirstname: loginuser.firstname,
-        welcomelastname: loginuser.lastname,
-      });
-    } else {
-      console.log("incorrect");
-    }
-  }
-});
+
+
+// router.post("/checklogin", async (req, res) => {
+//   const loginuser = await Registration.findOne({ code: req.body.code });
+//   if (loginuser == null) {
+//     res.json({ codenotfound : "You Are Not Registered" });
+//   } else {
+//     const match = await bcrypt.compare(req.body.password, loginuser.password);
+//     if (match) {
+//       var token = jwt.sign({ id: loginuser._id }, "secretkey");
+//       res.cookie("jwt", token, { httpOnly: true, maxAge: 86400000 });
+//       res.render("Entery/welcome", {
+//         welcomefirstname: loginuser.firstname,
+//         welcomelastname: loginuser.lastname,
+//       });
+//     } else {
+//       console.log("incorrect");
+//     }
+//   }
+// });
 
 // ---------------------------------
 //DELETE REQUEST
