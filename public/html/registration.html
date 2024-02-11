@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.118.2">
+  <title>PharmacyConnect</title>
+  <link rel="shortcut icon" href="../SVG/ConnectLogo.svg" type="image/x-icon">
+  
+
+  <!-- bootstrap CSS -->
+  <link href="../CSS/bootstrap.min.css" rel="stylesheet">
+
+
+  <!-- bootstrap JS -->
+  <script defer src="../JS/bootstrap.bundle.min.js"></script>
+
+
+  <!-- Custom styles for this template -->
+  <link href="../CSS/sign-in.css" rel="stylesheet">
+</head>
+
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
+
+
+    <main class="form-signin w-100 m-auto">
+      
+      <h1 class="h3 mb-3 fw-normal text-center" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"> Registration</h1>
+
+    <form action="/register" method="post">
+
+      <div class="form-floating mb-2">
+        <input type="text" class="form-control rounded-0 rounded-top-1 " name="firstname" placeholder="firstname" required>
+        <label for="firstname">First Name</label>
+      </div>
+
+      <div class="form-floating">
+        <input type="text" class="form-control rounded-1" name="lastname" placeholder="lastname" required>
+        <label for="lastname">Last Name</label>
+      </div>
+
+      <div class="form-floating mt-2 ">
+        <input type="email" class="form-control rounded-1" id="email" placeholder="lastname" required>
+        <label for="email">Email</label>
+      </div>
+
+
+      <div class="form-floating mt-2">
+        <input type="password" class="form-control rounded-1" name="password" placeholder="password" required>
+        <label for="password">Password</label>
+      </div>
+
+      <div class="form-floating">
+        <input type="password" class="form-control" name="cpassword" placeholder="cpassword" required>
+        <label for="lastname">Confirm Password</label>
+      </div>
+
+      
+      
+      
+      <button class="btn btn-primary w-100 py-2 mt-2" type="submit"><a href="/signup" style="color: white; text-decoration: none;">Sign up</a></button>
+      
+    </form>
+    <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
+  </main>
+
+
+
+
+</body>
+
+</html>

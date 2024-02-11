@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 819.83 498.38">
+  <defs>
+    <clipPath id="clippath">
+      <rect x="-43.32" y="25.26" width="792" height="612" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect x="33.48" y="141.66" width="135" height="56.4" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect x="222.48" y="319.86" width="81.3" height="62.7" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-5">
+      <rect x="222.48" y="409.86" width="80.7" height="62.7" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-7">
+      <rect x="-43.32" y="25.26" width="792" height="612" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-8">
+      <rect x="402.48" y="142.26" width="80.7" height="62.7" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-12">
+      <rect x="-43.32" y="25.26" width="792" height="612" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-13">
+      <rect x="209.28" y="142.26" width="107.7" height="55.5" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-26">
+      <rect x="-43.32" y="25.26" width="792" height="612" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-27">
+      <rect x="209.28" y="227.46" width="107.7" height="56.1" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-29">
+      <rect x="-43.32" y="25.26" width="792" height="612" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-30">
+      <rect x="-43.32" y="25.26" width="792" height="612" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-31">
+      <rect x="402.48" y="227.45" width="80.7" height="62.7" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-33">
+      <rect x="-43.32" y="25.26" width="792" height="612" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-36">
+      <rect x="-43.32" y="25.26" width="792" height="612" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-37">
+      <rect x="402.48" y="319.86" width="80.7" height="62.7" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-38">
+      <rect x="-43.32" y="25.26" width="792" height="612" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-39">
+      <rect x="-43.32" y="25.26" width="792" height="612" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-40">
+      <rect x="402.48" y="409.86" width="80.7" height="62.7" fill="none"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="227.51" y1="58.65" x2="609.19" y2="58.65" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#feffff"/>
+      <stop offset=".23" stop-color="#feffff"/>
+      <stop offset=".38" stop-color="#f5f7fb"/>
+      <stop offset=".5" stop-color="#eaeff7"/>
+      <stop offset=".62" stop-color="#f5f7fb"/>
+      <stop offset=".77" stop-color="#feffff"/>
+      <stop offset="1" stop-color="#feffff"/>
+    </linearGradient>
+    <image id="image" width="135" height="105" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIcAAABpCAYAAAAQqTD4AAAACXBIWXMAABJ0AAASdAHeZh94AAACWUlEQVR4nO3XW07jMBiGYad0Tlvhmj2xJvbENXthesgoIxuZkC8wNyNhnkeKVBqClPrld1oA/tm0d8Htw+PueT63p/u7ee8G3ix+F8TUnRfJOFoQc3udInm16DWM5Th0xySOobQort0xbwVy3LjrJYibUsr3ev5GHENpYZxLKad6XLuJ8mIdR5sa30opP0opP+vvHLrzfE79drKE8Vx//hvGsmusp8dLHKst5Vjj+FVDMT3G0KbGqd5Nmx6ba7u1rUw1hmM3QQ7iGMal3siprvMh3dhWHGXjodTkGEPbNg4f+YdPk6N/PfnGMpwPrWccKWJgLw6+OHEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA4icRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA4icRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA4icRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiIBIHkTiIxEG0F8fsY/vajht3P69ez0IZRlvHD63pVhzt4ms9LvW96at/soO4dGu7G0maHMsfOJdSftf3bsQxhPZPf6rre9kL5CWOp/u7+fbhsV28XPhcT527ZxOBfF79ltLW91zXe9N6cvRllVqWqTGWfo1PbXosw2F9l6/iqNOjldQKm8QxlHn1THl9d1vpzN1DS4tCHON4841la2qU9xb99uFRFANLUQAA/DellD9GHYERtNbK9QAAAABJRU5ErkJggg=="/>
+  </defs>
+  <g clip-path="url(#clippath)" fill="none">
+    <g clip-path="url(#clippath-1)" fill="none">
+      <image width="225" height="94" transform="translate(33.48 141.66) scale(.6)" xlink:href="data:image/png;base64,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"/>
+    </g>
+  </g>
+  <path d="m61.3,191.76h78.76c13.04,0,23.62-10.58,23.62-23.63s-10.58-23.62-23.62-23.62H61.3c-13.04,0-23.62,10.58-23.62,23.62s10.58,23.63,23.62,23.63Z" fill="#5b9bd5" fill-rule="evenodd"/>
+  <path d="m61.3,191.76h78.76c13.04,0,23.62-10.58,23.62-23.63s-10.58-23.62-23.62-23.62H61.3c-13.04,0-23.62,10.58-23.62,23.62s10.58,23.63,23.62,23.63Z" fill="none" stroke="#41719c" stroke-linecap="square" stroke-miterlimit="10" stroke-width=".75"/>
+  <g clip-path="url(#clippath-3)" fill="none">
+    <image width="136" height="105" transform="translate(222.48 319.86) scale(.6)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIgAAABpCAYAAADhomt1AAAACXBIWXMAABJ0AAASdAHeZh94AAAFH0lEQVR4nO2dC47TMBCG3dfuFq7DnTgTd+I6UMq2DUo1lqaDGyeNH/P6JBPBPiQ8f+dz3CQNjuM4zlp+/fi5GYdP5COmJwQFAs/DMP7x9fu3+9E6ZgMC4RjHFo5xLm4QkvFoPijmAoK6xhiMHRpbCMYVjXtYLIfEVEBI1xhDcQghvMGIAfkMIfyF4wXCYjYkZgKCwjEGYw+heA8hfMBxBx1jDMYfGDEoV6vKUR+QhFJi1xiDcYTjG3xtQAE5wfEMQTGpHNUBSSgFd40jjDfoKHgN8peEJHYTc8pRG5AnSvlIdI4DOpMZYFwgEGcIycmqctQFZIZSjtBFcOeg+yAxJHHBerKqHFUBWaCUA4RjQ/ZAQtwog+LfUEhMKkdNQF5QyhZ+9NkcxE5ys6wc8QFZoZQ5//fBunJEB6SQUnKYVo7YgFRQSg6TyhEXkMpKyWFOOaIC0kgpOUwpR0xAOiglhwnlsA9IZ6XkUK8c1gFhopQcqpXDNiAMlZJDpXLYBYS5UnKoUw6rgAhRSg5VymEzsQKVkkOFcrpPrnCl5BCvnK6TrEQpOUQrp9tEK1RKDpHKaT7ZypWSQ5xymk66EaXkEKWcZhNvUCk5RCin+uQbV0oO9sqpWgRXyixYK6daIVwpi2GpnOLFcKWsgp1yihbFlVIEVsopVhhXSnFYKGd1cVwpVemunFVFcqU0oatyXi6UK6U5XZSzuFiulK40V86iorlSWNBUObML50phRxPlZIvnSmFNdeVMFtGVIoKqynlaSFeKOKooJ1lMCIcrRR7FlfNfUUk4olKOrhQx5JRzIsqZDMke/4WsOQ7QNb4kwuFK4Qs+qcD1xCN+D+44SfaJf9wgtbyjdcc7fP/Ou4YIcFBonW+gmLhofco28QWauviJCNvwmD6HPxtST/rpFtn1YyogeDWMU3ZFXgtTbclhw5A4u7mgmt5eUcwAP/wJK17qrAMK1+AdhSWx4AN6kdO9kXgmM/lCf+ggsJId0Op3/EW/x/UrjBOE5oJ+uXcSXuCzGBwMWkd8qvuU3D7INrEP8oE2yfCiNXg36Q5dHsTNMnyKiz8sKbtZNmcndYt2UvGeCN5J3flpb1emlEK18onXki/tpEZQSDYQkthNcEjirurOd1W7gJVyfbIxdp67MUZZ+m6uK4cXS5UyFH03F+PKYUU1pVBevaLMldOPqkqhrL0m1ZXTlupKoZS4qt2VU59mSqGUui/GlVOPpkqhlL6zzpVTluZKodS4N9eVs55uSqEULY4rpwhdlUIpXhhXziq6K4VSrSCunEWwUQqlajFcObNgpRRK9UK4ciZhpxRKswK4ch5gqxRK08l35dxhrRRK84k3rhz2SqF0m3BjyhGjFErXyTaiHFFKoXSfaOXKEacUCpsJVqYcsUqhsJpcJcoRrRQKu1efcOWIVwqFrcOFKUeNUiisF3lClKNKKRT2p4vMlaNOKRQx+wnMlKNWKRRRu5JMlKNaKRRx29adlaNeKRSxb341Vo4ZpVBEvzvaSDmmlEIRf51FZeWYUwpFzYU4hZVjVikUVZfzFVKOaaVQ1F3vuVI5wbpSKGqvGn9BOZvEpyWYUwpF9W0FC5QTnz8/JJ4pakopFPU3KM1UTlyTxOfDnq0qhWLmDrYJ5aQCgj9XxZRSKKbug00oZ0/WIXj9gR82a6prYMzdKJ1QDv70g7jvEYc5pVAs3kl/h3QT/Mz6eCZzD4XlcATrz+NA3SSgufBgOI7jOI7jOA5bQgj/AEi1FRxgasvlAAAAAElFTkSuQmCC"/>
+  </g>
+  <polygon points="226.68 349.26 262.68 322.26 298.68 349.26 262.68 376.26 226.68 349.26" fill="#5b9bd5" fill-rule="evenodd"/>
+  <polygon points="226.68 349.26 262.68 322.26 298.68 349.26 262.68 376.26 226.68 349.26" fill="none" stroke="#41719c" stroke-linecap="square" stroke-miterlimit="10" stroke-width=".75"/>
+  <line x1="262.68" y1="376.26" x2="262.68" y2="406.1" fill="none" stroke="#5b9bd5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="266.2 405.22 262.68 412.26 259.16 405.22 266.2 405.22" fill="#5b9bd5" fill-rule="evenodd"/>
+  <g clip-path="url(#clippath-5)" fill="none">
+    <image width="135" height="105" transform="translate(222.48 409.86) scale(.6)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIcAAABpCAYAAAAQqTD4AAAACXBIWXMAABJ0AAASdAHeZh94AAACWUlEQVR4nO3Xa07jMBiGUad0bmI77Ik1sSe2ww+ml4wyspEJeQPzZyTMOVKk0hCk1A+f0wLwz6a9C54eHnfP87nd3t/NezfwZvG7IKbuvEjG0YKY2+sUyatFr2Esx6E7JnEMpUVx7Y55K5Djxl0vQdyUUr7X8zfiGEoL41xKOdXj2k2UF+s42tT4Vkr5UUr5WX/n0J3nc+q3kyWM5/rz3zCWXWM9PV7iWG0pxxrHrxqK6TGGNjVO9W7a9Nhc261tZaoxHLsJchDHMC71Rk51nQ/pxrbiKBsPpSbHGNq2cfjIP3yaHP3ryTeW4XxoPeNIEQN7cfDFiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA4icRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA4icRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA4icRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDqK9OGYf29d23Lj7efV6Fsow2jp+aE234mgXX+txqe9NX/2THcSlW9vdSNLkWP7AuZTyu753I44htH/6U13fy14gL3Hc3t/NTw+P7eLlwud66tw9mwjk8+q3lLa+57rem9aToy+r1LJMjbH0a3xq02MZDuu7fBVHnR6tpFbYJI6hzKtnyuu720pn7h5aWhTiGMebbyxbU6O8t+hPD4+iGFiKAgDgvyml/AFX7oBGYTkmGgAAAABJRU5ErkJggg=="/>
+  </g>
+  <rect x="226.68" y="412.26" width="72" height="54" fill="#5b9bd5"/>
+  <rect x="226.68" y="412.26" width="72" height="54" fill="none" stroke="#c8c8c8" stroke-linecap="square" stroke-miterlimit="2" stroke-width=".6"/>
+  <g clip-path="url(#clippath-7)" fill="none">
+    <g clip-path="url(#clippath-8)" fill="none">
+      <image width="135" height="105" transform="translate(402.48 142.26) scale(.6)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIcAAABpCAYAAAAQqTD4AAAACXBIWXMAABJ0AAASdAHeZh94AAACVklEQVR4nO3XbW7aQBSG0WsgraosNGvKQiPlA3BlaZxOHb8kldofds+RRiRgRzH3YYACgL9nSH/p6XHsH4vHsTlj/w/fPwxjuoAPQ29RLBf7MvYrBfLb4LswDlV1bGvojhPKts0RXNu6tLUayGnlUqcw7rq1DITtBzIF8dZWzYEsD3wfeLdrTMF8r6of7fauBVMC2byx7Rjnqnqpque2pt+vy91juXPMbynT/d9aIP3uwbbNccw7xrnNe3W2a28rfSBzJMfuMbZp3hXmt5BTm/MhXc1aHNV9xjh0SxjbNwdy+MrnyLRz1MrXWXHsx5fmGbcUEAeROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA4icRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA4icRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA4icRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiILoVx+hp27VP53tauW9c/Nyv4X9/Rjdsnuv41Rf+WhyTa1Vd2jqXMPZiXMz2eiuUZRz9yVMUr+2+Y3tcINs2z/etrcutneQ9jvuHYXx6HId28hTGSzvp1D6bCGMfrt0L/9wF8kHaOaaTntvtURi70s/4bX5rmTaH5UV+GHrbPQ7dGsSxK2MXyPhHcdSvQIZbx7Bp/TeXWgvj08G3SNihFAQA/AtV9RNDT4IT1rsv+QAAAABJRU5ErkJggg=="/>
+    </g>
+  </g>
+  <rect x="406.68" y="144.51" width="72" height="54" fill="#5b9bd5"/>
+  <rect x="406.68" y="144.51" width="72" height="54" fill="none" stroke="#c8c8c8" stroke-linecap="square" stroke-miterlimit="2" stroke-width=".6"/>
+  <polyline points="298.68 439.26 352.68 439.26 352.68 171.51 400.52 171.51" fill="none" stroke="#5b9bd5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="399.64 167.99 406.68 171.51 399.64 175.03 399.64 167.99" fill="#5b9bd5" fill-rule="evenodd"/>
+  <g clip-path="url(#clippath-12)" fill="none">
+    <g clip-path="url(#clippath-13)" fill="none">
+      <image width="180" height="93" transform="translate(209.28 142.26) scale(.6)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAABdCAYAAAAMhkx4AAAACXBIWXMAABJ0AAASdAHeZh94AAACWElEQVR4nO3YYWrbQBRG0ZHstF2LN5Y1ZWNZS0lsTYkZwUSWnBZaq3ycA4MVyZby4zI8VAAA/r1h7Qmnl9qfX/0OPFCdH/X6PNR7j72JtcW8XLCnOeI6r62wP8XaYh5LKYe2xu47wubR+pCnti7tczXq43zQ7cwfIT+1dWx/i5m9zLvyuZTyXkp5687dOC5OzLvzt1LKj/Z57MYPeKQ52kuL+We3U69G3Qe93KG/t6ifBM2O5jFj7MI+t+Mbyx26tHDHdm0ePcbuGjxKP25M3bRw9TEmL+foZdD9241xscTMHqauw+Xbt7sjR69/szEYOdhJXWnvbofjvYuwsz/eRAVNFEETRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETZSvgq4bx/AIa83d7fC48YN+Te388NXN4C+bO5zamvurWy0ug+5vcG5rMJqwo9o6vLQ13ftX+qD7mN9LKW8t5rOg2VFtIb91YV+jfn0ebnbptR360oIe2vGhHcMe+olhjnpz5PgU6umljm03PnRrFDQ7qt1G26/6uzv01N1gHjUEzZ6WLylWYy5boZ5e6iBi/kPXiLdiBgB4hFLKL/9pidDdrrMmAAAAAElFTkSuQmCC"/>
+    </g>
+  </g>
+  <rect x="213.18" y="144.51" width="99" height="47.25" fill="#5b9bd5"/>
+  <rect x="213.18" y="144.51" width="99" height="47.25" fill="none" stroke="#c8c8c8" stroke-linecap="square" stroke-miterlimit="2" stroke-width=".6"/>
+  <line x1="163.68" y1="168.13" x2="207.02" y2="168.13" fill="none" stroke="#5b9bd5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="206.14 164.61 213.18 168.13 206.14 171.66 206.14 164.61" fill="#5b9bd5" fill-rule="evenodd"/>
+  <g clip-path="url(#clippath-26)" fill="none">
+    <g clip-path="url(#clippath-27)" fill="none">
+      <image width="180" height="94" transform="translate(209.28 227.46) scale(.6)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAABdCAYAAAAMhkx4AAAACXBIWXMAABJ0AAASdAHeZh94AAACUklEQVR4nO3YDU7bQBRG0TFJf9bCxlgTG2MthZC4SjVTTYztFFTF0adzpJFNwGCUq9GLCyQZ1v6Xx+dx9ftwSy9Pw3jtz30Itot4uBY83FCLeVwL+yLYGvN5PdQ1CJs7MNZ1amsp6r+hdjHvSin7unZd2LCFFvOxlPJe13Ep6v1M4OeIv5VSftbjXtBsqO3Mh1LKa72NU23yn4P+XoP+UaM2drCFfnd+q+fvdWo4zd1PH3Q/P7ddugX94O1kIy3isRuD/2yu5zF5OnbM7dD9h8JdN0cXuzQ3NnZrN/Og4urI0QwLC7Yw7XGRUYJ79ulNVNBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE0UQRNFEETRdBEETRRBE0UQRNF0EQRNFEETRRBE0XQRBE092z87L3tF14fu+P4lV8M/8m0v9UWp0H3AZ+6BVtpLR7rcXWT7YNuP9AuPpRSdvXr82gyeEu5sRZu67GPurw8DR+intuh28W/6sX7LmZRc0st2Nbkaz1fHDumQbfd+bWeH+zO3IF+ajj0u/TURaiPz+NQX3uo40Z7CiJotjT9THeaGzfKXKhd1MWowZ24eOq2FHNZC7WGDXdjLWQAAOALSim/Aeuug9mlcDbBAAAAAElFTkSuQmCC"/>
+    </g>
+  </g>
+  <rect x="213.18" y="230.01" width="99" height="47.25" fill="#5b9bd5"/>
+  <rect x="213.18" y="230.01" width="99" height="47.25" fill="none" stroke="#c8c8c8" stroke-linecap="square" stroke-miterlimit="2" stroke-width=".6"/>
+  <line x1="262.68" y1="191.76" x2="262.68" y2="223.85" fill="none" stroke="#5b9bd5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="266.2 222.97 262.68 230.01 259.16 222.97 266.2 222.97" fill="#5b9bd5" fill-rule="evenodd"/>
+  <polyline points="312.18 253.63 330.18 253.63 330.18 349.26 304.84 349.26" fill="none" stroke="#5b9bd5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="305.72 352.78 298.68 349.26 305.72 345.74 305.72 352.78" fill="#5b9bd5" fill-rule="evenodd"/>
+  <rect x="317.63" y="303.4" width="25.1" height="9.6" fill="#fff"/>
+  <g clip-path="url(#clippath-29)" fill="none">
+    <text transform="translate(317.91 310.88)" fill="#4f88bb" font-family="Calibri, Calibri" font-size="7.8"><tspan x="0" y="0" letter-spacing=".03em">A</tspan><tspan x="4.79" y="0" letter-spacing="0em">CC</tspan><tspan x="13.15" y="0" letter-spacing="-.03em">E</tspan><tspan x="16.76" y="0" letter-spacing=".02em">P</tspan><tspan x="20.94" y="0">T</tspan></text>
+  </g>
+  <g clip-path="url(#clippath-30)" fill="none">
+    <g clip-path="url(#clippath-31)" fill="none">
+      <image width="135" height="105" transform="translate(402.48 227.45) scale(.6)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIcAAABoCAYAAADb9eNdAAAACXBIWXMAABJ0AAASdAHeZh94AAACWElEQVR4nO3XbW7aQBiF0THQpN0KG8ua2Fj2kg9wRTVDJ8bX9FdVu+dII0PAUcj7ZOwUSIal38zxNC6+znq9vgzjox9+dvg1imHpPaxaC+PXMYVyN/gaxq5bg0A2Zazr0h/nAjn0T7owDt3ai2NTWhCfpZSP+sHOcx/wMHnex/G9lPJUSvlm99iUS43hrc70erwcT+Pd5eUWR3fzuatBPJdSftTHdo9taLvGR53nue4g5+4+5CbtHC2Qp7rEsQ0tjhbGfumqMI2jaYHsy+/7jiKQVWs7Q4uizTjOdC6OYfJ4cM+xCUMN5I9nuVt4TQzb9nC+S3HwnxMHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA4icRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA4icRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iASB5E4iMRBJA4icRCJg0gcROIgEgeROIjEQSQOInEQiYNIHETiIBIHkTiIxEEkDiJxEImDSBxE4iA6zLwwdsd+sX7T2S6ai6M/+VLXUL8+PPqG/LNaDOc604eBpJ3jevJnXdcg9sLYhOls2x//rFscry/DeDyN/cnvNYjP7t5EIOvWz/etC2R2B5nuHO3kjxrCuds1hLF+42TG7y2O6+Yw/XRzl5VW1thdVtxzbEMLoF1OznXN7hx3wz6exqELwo6xTV/+E53bNcrS4GskD9/H6nwJIYUBAPBXlFJ+Ap0LgnSyGkDiAAAAAElFTkSuQmCC"/>
+    </g>
+  </g>
+  <rect x="406.68" y="230.01" width="72" height="54" fill="#5b9bd5"/>
+  <rect x="406.68" y="230.01" width="72" height="54" fill="none" stroke="#c8c8c8" stroke-linecap="square" stroke-miterlimit="2" stroke-width=".6"/>
+  <line x1="442.68" y1="198.51" x2="442.68" y2="223.85" fill="none" stroke="#5b9bd5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="446.2 222.97 442.68 230.01 439.16 222.97 446.2 222.97" fill="#5b9bd5" fill-rule="evenodd"/>
+  <rect x="431.55" y="209.46" width="22.26" height="9.6" fill="#fff"/>
+  <g clip-path="url(#clippath-33)" fill="none">
+    <text transform="translate(431.9 216.86)" fill="#4f88bb" font-family="Calibri, Calibri" font-size="7.8"><tspan x="0" y="0" letter-spacing=".04em">A</tspan><tspan x="4.79" y="0" letter-spacing="-.04em">c</tspan><tspan x="7.8" y="0" letter-spacing=".04em">c</tspan><tspan x="11.39" y="0" letter-spacing=".04em">e</tspan><tspan x="15.58" y="0" letter-spacing=".01em">p</tspan><tspan x="19.76" y="0">t</tspan></text>
+  </g>
+  <polyline points="213.18 253.63 100.68 253.63 100.68 197.92" fill="none" stroke="#5b9bd5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="97.16 198.8 100.68 191.76 104.2 198.8 97.16 198.8" fill="#5b9bd5" fill-rule="evenodd"/>
+  <rect x="115.85" y="248.84" width="20.28" height="9.6" fill="#fff"/>
+  <g clip-path="url(#clippath-36)" fill="none">
+    <text transform="translate(115.98 256.26)" fill="#4f88bb" font-family="Calibri, Calibri" font-size="7.82"><tspan x="0" y="0" letter-spacing="0em">R</tspan><tspan x="4.21" y="0" letter-spacing=".04em">e</tspan><tspan x="8.4" y="0" letter-spacing="0em">j</tspan><tspan x="10.2" y="0" letter-spacing=".04em">e</tspan><tspan x="14.39" y="0" letter-spacing="-.04em">c</tspan><tspan x="17.4" y="0">t</tspan></text>
+  </g>
+  <g clip-path="url(#clippath-37)" fill="none">
+    <use transform="translate(402.48 319.86) scale(.6)" xlink:href="#image"/>
+  </g>
+  <rect x="406.68" y="322.26" width="72" height="54" fill="#5b9bd5"/>
+  <rect x="406.68" y="322.26" width="72" height="54" fill="none" stroke="#c8c8c8" stroke-linecap="square" stroke-miterlimit="2" stroke-width=".6"/>
+  <g clip-path="url(#clippath-38)" fill="none">
+    <text transform="translate(756.08 307.91)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="11"><tspan x="0" y="0">Checking</tspan></text>
+  </g>
+  <line x1="442.68" y1="284.01" x2="442.68" y2="316.1" fill="none" stroke="#5b9bd5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="446.2 315.22 442.68 322.26 439.16 315.22 446.2 315.22" fill="#5b9bd5" fill-rule="evenodd"/>
+  <polyline points="442.68 144.51 442.68 135.51 100.68 135.51 100.68 138.35" fill="none" stroke="#5b9bd5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="104.2 137.47 100.68 144.51 97.16 137.47 104.2 137.47" fill="#5b9bd5" fill-rule="evenodd"/>
+  <rect x="261.54" y="130.71" width="20.28" height="9.6" fill="#fff"/>
+  <g clip-path="url(#clippath-39)" fill="none">
+    <text transform="translate(261.78 138.03)" fill="#4f88bb" font-family="Calibri, Calibri" font-size="7.8"><tspan x="0" y="0" letter-spacing="0em">R</tspan><tspan x="4.2" y="0" letter-spacing=".04em">e</tspan><tspan x="8.39" y="0" letter-spacing="0em">j</tspan><tspan x="10.19" y="0" letter-spacing=".04em">e</tspan><tspan x="14.38" y="0" letter-spacing="-.04em">c</tspan><tspan x="17.39" y="0">t</tspan></text>
+  </g>
+  <g clip-path="url(#clippath-40)" fill="none">
+    <use transform="translate(402.48 409.86) scale(.6)" xlink:href="#image"/>
+  </g>
+  <rect x="406.68" y="412.26" width="72" height="54" fill="#5b9bd5"/>
+  <rect x="500.13" y="412.26" width="72" height="54" fill="#5b9bd5"/>
+  <rect x="406.68" y="412.26" width="72" height="54" fill="none" stroke="#c8c8c8" stroke-linecap="square" stroke-miterlimit="2" stroke-width=".6"/>
+  <polyline points="571.51 439.26 589.51 439.26 589.51 171.51 619.35 171.51" fill="none" stroke="#5b9bd5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="619.35 167.99 626.39 171.51 619.35 175.03 619.35 167.99" fill="#5b9bd5" fill-rule="evenodd"/>
+  <g>
+    <line x1="442.68" y1="376.26" x2="442.68" y2="406.1" fill="none" stroke="#5b9bd5" stroke-linecap="round" stroke-linejoin="round"/>
+    <polygon points="446.2 405.22 442.68 412.26 439.16 405.22 446.2 405.22" fill="#5b9bd5" fill-rule="evenodd"/>
+  </g>
+  <line x1="478.68" y1="437.59" x2="494.14" y2="437.59" fill="none" stroke="#5b9bd5" stroke-linecap="round" stroke-linejoin="round" stroke-width=".99"/>
+  <polygon points="493.28 434.07 500.13 437.59 493.28 441.11 493.28 434.07" fill="#5b9bd5" fill-rule="evenodd"/>
+  <rect x="-43.32" y="25.26" width="792" height="612" fill="none"/>
+  <g>
+    <rect x="619.35" y="303.4" width="150.44" height="29.12" rx="7.48" ry="7.48" fill="#fff" stroke="#c8c8c8" stroke-linecap="square" stroke-miterlimit="2" stroke-width=".79"/>
+    <rect x="619.35" y="336.46" width="150.44" height="29.12" rx="7.48" ry="7.48" fill="#5b9bd5"/>
+    <rect x="619.35" y="369.52" width="150.44" height="29.12" rx="7.48" ry="7.48" fill="#ff0"/>
+    <rect x="619.35" y="402.58" width="150.44" height="29.12" rx="7.48" ry="7.48" fill="#92d050"/>
+    <rect x="619.35" y="435.64" width="150.44" height="29.12" rx="7.48" ry="7.48" fill="#fec000"/>
+  </g>
+  <text transform="translate(674.58 322.77)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="11.09"><tspan x="0" y="0">General</tspan></text>
+  <text transform="translate(665.6 355.7)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="11.09"><tspan x="0" y="0">Pharmacist</tspan></text>
+  <text transform="translate(671.01 388.03)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="11.09"><tspan x="0" y="0">Assistant</tspan></text>
+  <text transform="translate(669.85 421.05)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="11.09"><tspan x="0" y="0">Secretary</tspan></text>
+  <text transform="translate(675.69 455.31)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="11.09"><tspan x="0" y="0">Porters</tspan></text>
+  <text transform="translate(37.68 110)" font-family="Impact, Impact" font-size="16" text-decoration="underline"><tspan x="0" y="0">WARD PHARMACIST</tspan></text>
+  <text transform="translate(226.68 110)" font-family="Impact, Impact" font-size="16"><tspan x="0" y="0">DISPENSE</tspan></text>
+  <text transform="translate(438.85 109.72)" font-family="Impact, Impact" font-size="15"><tspan x="0" y="0">EXTEMPRENOUS</tspan></text>
+  <text transform="translate(630.35 109.72)" font-family="Impact, Impact" font-size="15"><tspan x="0" y="0">WORD PHARMACY</tspan></text>
+  <rect x="227.51" y="42.31" width="381.68" height="32.68" fill="url(#linear-gradient)" stroke="#4f88bb" stroke-miterlimit="10" stroke-width=".75"/>
+  <text transform="translate(330.58 62.18)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="15"><tspan x="0" y="0">Extemprenous UnitDose</tspan></text>
+  <rect x="20.43" y="15.32" width="777.96" height="466.72" rx="43.95" ry="43.95" fill="none" stroke="#000" stroke-dasharray="0 0 0 0 0 0 13.41 6.71 13.41 6.71 13.41 6.71" stroke-linecap="round" stroke-miterlimit="10" stroke-width="4.47"/>
+  <g>
+    <circle cx="57.76" cy="58.65" r="20.08" fill="#fff"/>
+    <g>
+      <rect x="44.12" y="50.31" width="27.28" height="3.14" rx="1.57" ry="1.57" fill="#a6a8ab"/>
+      <rect x="44.12" y="57.09" width="27.28" height="3.14" rx="1.57" ry="1.57" fill="#a6a8ab"/>
+      <rect x="44.12" y="63.87" width="27.28" height="3.14" rx="1.57" ry="1.57" fill="#a6a8ab"/>
+    </g>
+  </g>
+  <text transform="translate(40.27 171.66)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="12"><tspan x="0" y="0">CPOE Clinical Review</tspan></text>
+  <text transform="translate(217.62 163.73)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="13"><tspan x="0" y="0">Check Monitor</tspan><tspan x="11.41" y="15.6">And Access</tspan></text>
+  <text transform="translate(220.23 251.68)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="10"><tspan x="0" y="0">Revise Medication</tspan><tspan x="28.15" y="12">Order</tspan></text>
+  <text transform="translate(242.1 346.74)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="11"><tspan x="0" y="0">Product</tspan><tspan x="3.3" y="13.2">Assign</tspan></text>
+  <text transform="translate(233.45 436.59)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="15"><tspan x="0" y="0">Printing</tspan><tspan x="10.47" y="18">Label</tspan></text>
+  <text transform="translate(424.66 160.89)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="11"><tspan x="0" y="0">Second</tspan><tspan x="-12.1" y="13.2">Verifcation</tspan><tspan x="-7.07" y="26.4">For Order</tspan></text>
+  <text transform="translate(422.79 252.45)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="11"><tspan x="0" y="0">Prepare</tspan><tspan x="-1.51" y="13.2">Formula</tspan></text>
+  <text transform="translate(416.87 354.7)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="12"><tspan x="0" y="0">Checking</tspan></text>
+  <text transform="translate(410.58 437.59)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="9"><tspan x="0" y="0">Documentation</tspan><tspan x="20.03" y="10.8">(Q.A)</tspan></text>
+  <rect x="626.39" y="144.51" width="118.47" height="53.41" rx="24.57" ry="24.57" fill="#ffc000"/>
+  <text transform="translate(643.47 174.03)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="12"><tspan x="0" y="0">Transportation</tspan></text>
+  <text transform="translate(509.96 435.64)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="12"><tspan x="0" y="0">Unit Dose</tspan><tspan x="-5.65" y="14.4">Preparation</tspan></text>
+  <text transform="translate(93.95 303.84)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="12"><tspan x="0" y="0">Amlodipine</tspan></text>
+  <text transform="translate(98.22 322.39)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="12"><tspan x="0" y="0">Nifdipine</tspan></text>
+  <text transform="translate(99.96 340.94)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="12"><tspan x="0" y="0">Sildenafl</tspan></text>
+  <text transform="translate(85.05 359.5)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="12"><tspan x="0" y="0">Valgancyclovir</tspan></text>
+  <text transform="translate(89.67 378.05)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="12"><tspan x="0" y="0">Hydroxyurea</tspan></text>
+  <text transform="translate(75.38 396.6)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="12"><tspan x="0" y="0">6</tspan><tspan x="7.25" y="0">-Mercaptopurine</tspan></text>
+  <text transform="translate(84.07 415.16)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="12"><tspan x="0" y="0">Spironolactone</tspan></text>
+  <text transform="translate(91.73 433.71)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="12"><tspan x="0" y="0">Tacrolimous</tspan></text>
+  <text transform="translate(60.12 452.26)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="12"><tspan x="0" y="0">Mycophenolate Mofetill</tspan></text>
+  <text transform="translate(85.84 470.82)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="12"><tspan x="0" y="0">Acetazolamide</tspan></text>
+  <text transform="translate(68.36 283.42)" font-family="AndadaPro-Regular, &apos;Andada Pro&apos;" font-size="12"><tspan x="0" y="0">Prepared Medication</tspan></text>
+  <rect x="61.53" y="271.66" width="127.15" height="16.09" rx="5.36" ry="5.36" fill="none" stroke="#000" stroke-miterlimit="10"/>
+</svg>

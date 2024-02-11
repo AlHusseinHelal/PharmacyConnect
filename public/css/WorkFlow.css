@@ -1,0 +1,508 @@
+
+a:visited{
+  fill: rgb(253, 253, 253);
+  
+}
+
+body{
+  background-color: #37517e;
+}
+
+a{
+  text-decoration: none;
+}
+
+/* DISPENSE */
+#DisT2 {
+  opacity: 0;
+  transition: all 1.5s;
+}
+#Dis:hover {
+  cursor: pointer;
+}
+#Layer_2 > g:nth-child(7) > g:nth-child(2) {
+  opacity: 0;
+  transition: all 1.5s;
+}
+#DisTL {
+  transform: translateY(20px);
+  transition: all 1.5s;
+}
+#Layer_2 > g:nth-child(7):hover #DisP {
+  opacity: 1;
+  transform: translateY(-50px);
+}
+#Layer_2 > g:nth-child(7):hover #DisTL {
+  transform: translateY(0px);
+  opacity: 0;
+}
+#Layer_2 > g:nth-child(7):hover #DisT2 {
+  opacity: 1;
+}
+#Path5 , #tree7{
+  transition: all 1s;
+}
+#Dis:hover #Path5{
+  filter: drop-shadow( 0px 0px 3px);
+  fill: red;
+}
+#Dis:hover #tree7{
+  filter: drop-shadow( 0px 0px 3px);
+  fill: red;
+}
+/* DISPENSE LINE */
+#rect1{
+  transition: all 1s;
+}
+#rect1:hover{
+  transform: translateX(20px);
+  
+  cursor: pointer;
+}
+#line1{
+  transition: all 1s;
+}
+#rect1:hover #line1{
+  filter: drop-shadow( 0px 0px 5px red);
+}
+#rect2{
+  transition: all 1s;
+}
+#rect2:hover{
+  transform: translateX(20px);
+  
+  cursor: pointer;
+}
+#line2{
+  transition: all 1s;
+}
+#rect2:hover #line2 {
+  filter: drop-shadow( 0px 0px 5px red);
+}
+#rect3{
+  transition: all 1s;
+}
+#rect3:hover{
+  transform: translateX(20px);
+  cursor: pointer;
+}
+#line3{
+  transition: all 1s;
+}
+#rect3:hover #line3 {
+  filter: drop-shadow( 0px 0px 5px red );
+}
+#rect4{
+  transition: all 1s;
+}
+#rect4:hover{
+  transform: translateX(20px);
+  
+  cursor: pointer;
+}
+#line4{
+  transition: all 1s;
+}
+#rect4:hover #line4 {
+  filter: drop-shadow( 0px 0px 5px red);
+}
+#rect5{
+  transition: all 1s;
+}
+#rect5:hover{
+  transform: translateX(20px);
+  
+  cursor: pointer;
+}
+#line5{
+  transition: all 1s;
+}
+#rect5:hover #line5 {
+  filter: drop-shadow( 0px 0px 5px red);
+}
+
+
+
+
+
+/* EXTEMPRENOUS */
+#Ext {
+  cursor: pointer;
+}
+#ExtLT {
+  transform: translateY(18px);
+  transition: all 1.5s;
+}
+#ExtP {
+  opacity: 0;
+  transition: all 1.5s;
+}
+#Ext:hover #ExtLT {
+  transform: translateY(0px);
+  opacity: 0;
+}
+#Ext:hover #ExtP {
+  opacity: 1;
+  transform: translateY(-40px);
+}
+#ExtT2 {
+  opacity: 0;
+  transition: all 1.5s;
+}
+#Ext:hover #ExtT2 {
+  opacity: 1;
+}
+#Path2{
+  transition: all 1s;
+}
+#tree2{
+  transition: all 1s;
+}
+#Ext:hover #Path2{
+  filter: drop-shadow( 0px 0px 3px);
+  fill: red;
+}
+#Ext:hover #tree2{
+  filter: drop-shadow( 0px 0px 3px);
+  fill: red;
+}
+/* EXTEMPRENOUS NOTE */
+#rect11 , #rect16 , #rect17 , #rect18{
+  transition: all 1s;
+}
+#rect11:hover , #rect16:hover , #rect17:hover {
+  transform: translateX(-20px);
+  cursor: pointer;
+}
+#line11 , #line16 , #line17 , #line18 {
+  transition: all 1s;
+}
+#rect11:hover #line11 {
+  filter: drop-shadow( 0px 0px 5px red);
+}
+#rect16:hover #line16 {
+  filter: drop-shadow( 0px 0px 5px red);
+}
+#rect17:hover #line17 {
+  filter: drop-shadow( 0px 0px 5px red);
+}
+#rect18:hover #line18 {
+  filter: drop-shadow( 0px 0px 5px red);
+}
+
+#position{
+  position: fixed;
+  top: 0;
+
+  transform: translate(220px, 365px);
+}
+
+#rect18:hover{
+  cursor: pointer;
+  transform: translateX(-20px);
+}
+
+
+
+
+
+
+
+
+
+
+
+/* prep/check */
+#Pre > g:nth-child(3) {
+  transform: translateY(20px);
+  transition: all 1.5s;
+}
+#Pre:hover g:nth-child(3) {
+  transform: translateY(0px);
+  opacity: 0;
+}
+#Pre:hover {
+  cursor: pointer;
+}
+#PreT2 {
+  opacity: 0;
+  transition: all 1.5s;
+}
+#PreP {
+  opacity: 0;
+}
+#Pre:hover #PreT2 {
+  opacity: 1;
+}
+#PreP {
+  transition: all 1.5s;
+}
+#Pre:hover #PreP {
+  opacity: 1;
+  transform: translateY(-50px);
+}
+#Path1 , #tree1{
+  transition: all 1s;
+}
+#Pre:hover #Path1 {
+  filter: drop-shadow( 0px 0px 3px);
+  fill: red;
+}
+#Pre:hover #tree1 {
+  filter: drop-shadow( 0px 0px 3px);
+  fill: red;
+}
+
+/* prep/check LINE */
+#rect12{
+  transition: all 1s;
+}
+#rect12:hover{
+  transform: translateX(-20px);
+  cursor: pointer;
+}
+#line12{
+  transition: all 1s;
+}
+#rect12:hover #line12 {
+  filter: drop-shadow( 0px 0px 5px red);
+}
+#rect13{
+  transition: all 1s;
+}
+#rect13:hover{
+  transform: translateX(-20px);
+  cursor: pointer;
+}
+#line13{
+  transition: all 1s;
+}
+#rect13:hover #line13 {
+  filter: drop-shadow( 0px 0px 5px red);
+}
+#rect14{
+  transition: all 1s;
+}
+#rect14:hover{
+  transform: translateX(-20px);
+  cursor: pointer;
+}
+#line14{
+  transition: all 1s;
+}
+#rect14:hover #line14 {
+  filter: drop-shadow( 0px 0px 5px red);
+}
+#rect15{
+  transition: all 1s;
+}
+#rect15:hover{
+  transform: translateX(-20px);
+  cursor: pointer;
+}
+#line15{
+  transition: all 1s;
+}
+#rect15:hover #line15 {
+  filter: drop-shadow( 0px 0px 5px red);
+}
+
+
+
+
+
+
+
+
+
+
+/* IV ADMIXTURE */
+#IVP {
+  opacity: 0;
+  transition: all 1.5s;
+}
+#IV:hover #IVP {
+  opacity: 1;
+  transform: translateY(-30px);
+}
+#IVLT {
+  transform: translateY(20px);
+  transition: all 1.5s;
+}
+#IV:hover #IVLT {
+  opacity: 0;
+  transform: translateY(0px);
+}
+#IVT2 {
+  opacity: 0;
+  transition: all 1.5s;
+}
+#IV:hover #IVT2 {
+  opacity: 1;
+}
+#Path4 , #tree6{
+  transition: all 1s;
+}
+#IV:hover #Path4{
+  filter: drop-shadow( 0px 0px 3px);
+  fill: red;
+}
+#IV:hover #tree6{
+  filter: drop-shadow( 0px 0px 3px);
+  fill: red;
+}
+/* IV ADMIXTURE NOTE */
+#rect6{
+  transition: all 1s;
+}
+#rect6:hover{
+  transform: translateX(20px);
+  
+  cursor: pointer;
+}
+#line6{
+  transition: all 1s;
+}
+#rect6:hover #line6 {
+  filter: drop-shadow( 0px 0px 5px red );
+}
+#rect7{
+  transition: all 1s;
+}
+#rect7:hover{
+  transform: translateX(20px);
+  
+  cursor: pointer;
+}
+#line7{
+  transition: all 1s;
+}
+#rect7:hover #line7 {
+  filter: drop-shadow( 0px 0px 5px red );
+}
+
+
+
+
+
+
+
+/* INVENTORY */
+#IMP {
+  opacity: 0;
+  transition: all 1.5s;
+}
+
+#IM:hover #IMP {
+  opacity: 1;
+  transform: translateY(-20px);
+}
+
+#IMLT {
+  transform: translateY(20px);
+  transition: all 1.5s;
+}
+
+#IM:hover #IMLT {
+  opacity: 0;
+  transform: translateY(0px);
+}
+
+#IMT2 {
+  opacity: 0;
+  transition: all 1.5s;
+}
+
+#IM:hover #IMT2 {
+  opacity: 1;
+}
+#Path3 , #tree3 , #tree4 , #tree5{
+  transition: all 1s;
+}
+#IM:hover #Path3{
+  filter: drop-shadow( 0px 0px 3px);
+  fill: red;
+}
+#IM:hover #tree3{
+  filter: drop-shadow( 0px 0px 3px);
+  fill: red;
+}
+#IM:hover #tree4{
+  filter: drop-shadow( 0px 0px 3px);
+  fill: red;
+}
+#IM:hover #tree5{
+  filter: drop-shadow( 0px 0px 3px);
+  fill: red;
+}
+/* INVENTORY NOTE */
+#rect8{
+  transition: all 1s;
+}
+#rect8:hover{
+  /* transform: translateY(20px); */
+  cursor: pointer;
+}
+#line8{
+  transition: all 1s;
+}
+#rect8:hover #line8 {
+  filter: drop-shadow( 0px 0px 5px red);
+}
+#rect9{
+  transition: all 1s;
+}
+#rect9:hover{
+  /* transform: translateY(20px); */
+  cursor: pointer;
+}
+#line9{
+  transition: all 1s;
+}
+#rect9:hover #line9 {
+  filter: drop-shadow( 0px 0px 5px red);
+}
+#rect10{
+  transition: all 1s;
+}
+#rect10:hover{
+  /* transform: translateY(20px); */
+  cursor: pointer;
+}
+#line10{
+  transition: all 1s;
+}
+#rect10:hover #line10 {
+  filter: drop-shadow( 0px 0px 5px red);
+}
+
+
+#svg{
+/* border: 1px solid black; */
+background: rgba( 255, 255, 255, );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 2px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+/* body{
+  background-image: url(WelcomePharmacyConnect-01.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
+
+
+#circle{
+  transition: all 1s;
+}
+#btn:hover #circle{
+  filter: drop-shadow(1px 1px 5px);
+  cursor: pointer;
+}
+
+
+
+
+

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="" />
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
+  <meta name="generator" content="Hugo 0.112.5" />
+  <title>Connect</title>
+
+  <!-- LINK FAVICON -->
+  <link rel="shortcut icon" href="/svg/ConnectLogo.svg" type="image/x-icon" />
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- BOOTSTRAP ICON -->
+  <link href="/css/bootstrap-icons.css" rel="stylesheet" />
+  <!-- BOOTSTRAP CSS -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- HEADER CSS -->
+  <link rel="stylesheet" href="/css/style.css" />
+  <!-- Custom styles for this template -->
+  <link href="/css/inpatient3.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- /*--------------------------------------------------------------
+  # header
+  --------------------------------------------------------------*/ -->
+  <%- include("../partials/header.ejs") %>
+
+    <!-- /*--------------------------------------------------------------
+  # light icon
+  --------------------------------------------------------------*/ -->
+    <%- include("../partials/lighticon.ejs") %>
+
+      <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+        <symbol id="home" viewBox="0 0 16 16">
+          <path
+            d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
+        </symbol>
+        <symbol id="table" viewBox="0 0 16 16">
+          <path
+            d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
+        </symbol>
+        <symbol id="people-circle" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+          <path fill-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+        </symbol>
+      </svg>
+
+      <main class="d-flex flex-nowrap">
+        <!-- /*--------------------------------------------------------------
+    # Arrow Sidebar
+    --------------------------------------------------------------*/ -->
+        <%- include("../partials/arrow sidebar.ejs") %>
+
+          <!-- /*--------------------------------------------------------------
+    # SIDE LIST
+    --------------------------------------------------------------*/ -->
+          <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidelist">
+            <img id="connectlogo" src="/svg/PharmacyConnectLogooutpatient-01.svg" height="139vh" alt="" />
+
+            <hr />
+            <ul class="nav navul nav-pills flex-column mb-auto mainul">
+              <li>
+                <div class="d-inline-flex align-items-center">
+                  <a href="/outpatient2" style="color: black"
+                    class="nav-link d-inline-flex align-items-center width side-bg">
+                    <svg class="margin side-svg" style="width: 30px; height: 30px">
+                      <use xlink:href="#people-circle" />
+                    </svg>
+                    <span class="side-text">Add Patient</span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div class="d-inline-flex align-items-center" style="width: 164.56px">
+                  <a href="/outpatient3" class="nav-link active d-inline-flex align-items-center width side-bg">
+                    <svg class="margin side-svg" style="width: 30px; height: 30px; fill: white">
+                      <use xlink:href="#table" />
+                    </svg>
+                    <span class="side-text">OverView</span>
+                  </a>
+                </div>
+              </li>
+            </ul>
+            <hr />
+            <div class="dropdown">
+              <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2" />
+                <strong>mdo</strong>
+              </a>
+              <ul class="dropdown-menu text-small shadow">
+                <li><a class="dropdown-item" href="#">New project...</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li><a class="dropdown-item" href="#">Sign out</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- /*--------------------------------------------------------------
+    # DEVIDER
+    --------------------------------------------------------------*/ -->
+
+          <div style="position: relative; height: 90vh" class="w-100">
+            <!-- /*--------------------------------------------------------------
+      # NAVBAR
+      --------------------------------------------------------------*/ -->
+            <div>
+              <nav class="navbar navbar-expand-lg bg-body-tertiary mx-1 mt-1 mb-5">
+                <div class="container-fluid py-2 rounded-2 bg-info">
+                  <div class="d-flex flex-row align-items-center">
+                    <img src="/svg/ConnectLogo.svg" height="35vh" alt="" />
+                  </div>
+
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <form class="d-flex" role="search" action="/outpatientsearch" method="post">
+                      <input name="searchText" class="form-control me-2" type="search" placeholder="Search"
+                        aria-label="Search" />
+                      <button class="btn btn-outline-success" type="submit">
+                        Search
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </nav>
+            </div>
+
+            <!-- /*--------------------------------------------------------------
+      # MAIN CONTENT
+      --------------------------------------------------------------*/ -->
+            <div id="maincontent">
+              <h2 class="text-center" style="color: red;">YOU ARE IN A SEARCH MODE</h2>
+              <% if (array.length===0) { %>
+                <div class="text-center">
+                  <h1>No Data Available</h1>
+                </div>
+
+                <% } %>
+                  <% if (array.length>= 1) { %>
+                    <table style="width: 99%" class="mx-auto table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th class="text-center" scope="col">#</th>
+                          <th class="text-center" scope="col">Patient Name</th>
+                          <th class="text-center" scope="col">MRN</th>
+                          <th class="text-center" scope="col">Patient Floor</th>
+                          <th class="text-center" scope="col">Request Type</th>
+                          <th class="text-center" scope="col">Oral/IV</th>
+                          <th class="text-center" scope="col">Round Comment</th>
+                          <th class="text-center" scope="col">Round Time</th>
+                          <th class="text-center" scope="col">Prep Comment</th>
+                          <th class="text-center" scope="col">Prep Time</th>
+                          <th class="text-center" scope="col">Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tbody">
+                        <% array.forEach((item,index)=> { %>
+                          <tr id="tr">
+                            <td class="text-center">
+                              <%= index+1 %>
+                            </td>
+                            <td class="text-center">
+                              <%= item.patientname%>
+                            </td>
+                            <td class="text-center">
+                              <%= item.mrn%>
+                            </td>
+                            <td class="text-center">
+                              <%= item.ptfloor%>
+                            </td>
+                            <td class="text-center">
+                              <%= item.requestype%>
+                            </td>
+                            <td class="text-center">
+                              <%= item.oraliv%>
+                            </td>
+                            <td class="text-center">
+                              <%= item.roundcomment%>
+                            </td>
+                            <td class="text-center">
+                              <%= moment(item.createdAt).format('LT')%>
+                            </td>
+                            <td class="text-center">
+                              <%= item.prepcomment%>
+                            </td>
+                            <td class="text-center">
+                              <%= moment(item.updatedAt).format('LT')%>
+                            </td>
+                            <td class="text-center">
+
+                              <a style="background-color: red;" class="border rounded-2 d-inline-flex p-1"
+                                href="/outview/<%=item._id%>">
+
+                                <svg style="fill: aliceblue;" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                  class="bi bi-trash" viewBox="0 0 16 16">
+                                  <path
+                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                  <path
+                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                                </svg>
+
+                              </a>
+
+
+
+                            </td>
+                          </tr>
+                          <% }) %>
+                      </tbody>
+                    </table>
+                    <% } %>
+
+
+
+            </div>
+          </div>
+      </main>
+
+      <!-- LINK TO jQuary -->
+      <script src="/js/jquery-3.7.1.min.js"></script>
+
+      <!-- LINK TO BOOTSTRAP.JS -->
+      <script src="/js/aos.js"></script>
+      <script src="/js/bootstrap.bundle.min.js"></script>
+      <script src="/js/glightbox.min.js"></script>
+      <script src="/js/isotope.pkgd.min.js"></script>
+      <script src="/js/swiper-bundle.min.js"></script>
+      <script src="/js/noframework.waypoints.js"></script>
+      <script src="/js/validate.js"></script>
+
+      <script src="../js/main.js"></script>
+
+      <script src="/js/inpatient3.js"></script>
+</body>
+
+</html>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>

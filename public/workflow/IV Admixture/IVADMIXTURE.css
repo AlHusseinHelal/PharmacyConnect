@@ -1,0 +1,26 @@
+#circle{
+  transition: all 1s;
+}
+#btn:hover #circle{
+  filter: drop-shadow(1px 1px 5px);
+  cursor: pointer;
+}
+
+#Layer_1 {
+  /* border: 1px solid black; */
+  background: rgba(255, 255, 255, );
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  position: relative;
+  top: 20px;
+}
+
+body {
+  background-image: url(WelcomePharmacyConnect-01.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}

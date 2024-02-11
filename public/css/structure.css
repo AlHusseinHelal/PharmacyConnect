@@ -1,0 +1,51 @@
+
+
+
+.hussein{
+  transition: all 1s;
+}
+.path{
+  transition: all 1s;
+}
+.hussein:hover{
+  cursor: pointer;
+}
+.hussein:hover .path{
+  filter: drop-shadow(0px 0px 3px rgb(4, 4, 4));
+  
+}
+.hussein:hover{
+  transform: translate(10px);
+}
+
+.husseinline{
+  transition: all 1s;
+}
+.cycle3{
+  transition: all 1s;
+}
+.hussein:hover  .cycle3{
+  filter: drop-shadow(0px 0px 3px rgb(4, 4, 4));
+  fill: blue;
+}
+
+
+.husseinline{
+  transition: all 1s;
+}
+
+.hussein:hover  .husseinline{
+  filter: drop-shadow(0px 0px 3px rgb(4, 4, 4));
+  
+  stroke: blue;
+}
+
+.line{
+  transition: all 1s;  
+}
+
+.hussein:hover  .line{
+  filter: drop-shadow(0px 0px 3px rgb(4, 4, 4));
+  
+  stroke: blue;
+}

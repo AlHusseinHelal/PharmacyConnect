@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PharmacyConnect</title>
+
+  <link rel="shortcut icon" href="svg/ConnectLogo.svg" type="image/x-icon">
+
+
+  <!-- bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+
+  <!-- bootstrap JS -->
+  <script defer src="js/bootstrap.bundle.min.js"></script>
+
+
+  <!-- Custom styles for this template -->
+  <link href="css/Avatar.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="d-flex flex-column align-items-center mt-5">
+    <h1>Please Select You Avater</h1>
+    <form action="/avatarselection" method="post">
+      <div id="carouselExample" class="carousel slide w-25 border border-3 " style="border-radius: 50%;">
+        <div class="carousel-inner ">
+          
+          <div class="carousel-item active ">
+            <input hidden type="text">  <img src="/img/Avatar/Untitled-1-01.png" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <input hidden type="text">  <img src="/img/Avatar/Untitled-1-02.png" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <input hidden type="text">  <img src="/img/Avatar/Untitled-1-03.png" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <input hidden type="text">  <img src="/img/Avatar/Untitled-1-04.png" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <button class="btn btn-outline-primary mt-3 px-2 py-1" type="submit">OK</button>
+    </form>
+    
+  </div>
+
+
+
+  <script src="../js/main.js"></script>
+
+  <script src="/js/inpatient.js"></script>
+</body>
+
+</html>
