@@ -752,11 +752,8 @@ router.post("/checklogin", async (req, res) => {
       return res.json({ wrongpassword: "Wrong Password" });
     }
     if (match) {
-      var token = jwt.sign({ id: loginuser._id }, "secretkey");
+      var token = jwt.sign({ id: loginuser._id }, process.env.JWTSECRET_KEY);
       res.cookie("jwt", token, { httpOnly: true, maxAge: 86400000 });
-      
-      // res.json({ id: loginuser._id });  
-      console.log(loginuser)
       res.json({ loginuser: loginuser });  
     }
   } catch (e) {
@@ -871,40 +868,13 @@ router.post(
       }
 
       const newUser = await Registration.create(req.body);
-      // var token = jwt.sign({ id: newUser._id }, "secretkey");
-      // res.cookie("jwt", token, { httpOnly: true, maxAge: 86400000 });
       res.json({ id: newUser._id });
-      // res.render("Entery/welcome", {
-      //   welcomefirstname: loginuser.firstname,
-      //   welcomelastname: loginuser.lastname,
-      // });
-      // res.render("login");
     } catch (error) {
       console.log(err);
     }
   }
 );
 
-
-
-// router.post("/checklogin", async (req, res) => {
-//   const loginuser = await Registration.findOne({ code: req.body.code });
-//   if (loginuser == null) {
-//     res.json({ codenotfound : "You Are Not Registered" });
-//   } else {
-//     const match = await bcrypt.compare(req.body.password, loginuser.password);
-//     if (match) {
-//       var token = jwt.sign({ id: loginuser._id }, "secretkey");
-//       res.cookie("jwt", token, { httpOnly: true, maxAge: 86400000 });
-//       res.render("Entery/welcome", {
-//         welcomefirstname: loginuser.firstname,
-//         welcomelastname: loginuser.lastname,
-//       });
-//     } else {
-//       console.log("incorrect");
-//     }
-//   }
-// });
 
 // ---------------------------------
 //DELETE REQUEST

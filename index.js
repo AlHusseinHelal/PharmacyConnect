@@ -5,6 +5,7 @@ const port = process.env.PORT || 3000;
 var jwt = require('jsonwebtoken');
 var methodOverride = require("method-override");
 var cookieParser = require('cookie-parser')
+require('dotenv').config()
 
 
 
@@ -23,7 +24,7 @@ app.use(express.json())
 
 mongoose
   .connect(
-    "mongodb+srv://HusseinHelal:0175710908@cluster0.fpacgj9.mongodb.net/all-Data?retryWrites=true&w=majority"
+    process.env.MDB
   )
   .then(() => {
     app.listen(port, () => {
