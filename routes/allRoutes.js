@@ -11,11 +11,12 @@ const multer = require("multer");
 const upload = multer({ storage: multer.diskStorage({}) });
 const cloudinary = require("cloudinary").v2;
 router.use(express.static("public"));
+require('dotenv').config()
 
 cloudinary.config({
-  cloud_name: "dw2lzbgmt",
-  api_key: "594878572393349",
-  api_secret: "KZVTWvN1LcrpVm-COLVX-3VgHzU",
+  cloud_name: process.env.CLOUDINARY_ClOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 const moment = require("moment");
@@ -812,7 +813,7 @@ router.post("/checklogin", async (req, res) => {
   }
 });
 
-// UPDATE IMAGE POST REQUEST
+// CHANGE IMAGE POST REQUEST
 router.post("/update-avatar", upload.single("update-profile"), checkIfUser, requireAuth, (req, res) => {
   console.log(req.file)
   cloudinary.uploader.upload( req.file.path, async (error, result)=>{
@@ -824,7 +825,7 @@ router.post("/update-avatar", upload.single("update-profile"), checkIfUser, requ
   });  
 });
 
-
+// CHOOSE IMAGE POST REQUEST
 router.post("/avatarselection", checkIfUser, requireAuth, (req, res) => {
   cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-01.png", async (error, result)=>{
     if (result) {
@@ -1090,16 +1091,6 @@ router.post("/avatarselection24", checkIfUser, requireAuth, (req, res) => {
   });   
 });
 
-// router.post("/update-avatar", requireAuth, async (req, res) => {
-//   var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-//   const url = req.file
-//   console.log(url)
-
-//   await Registration.updateOne(
-//     { _id: decoded.id },
-//     { $push: { profileimage: req.body.files } }
-//   );
-// });
 
 // INPATIENT POST REQUEST
 router.post("/inpt2", checkIfUser, requireAuth, (req, res) => {
