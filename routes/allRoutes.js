@@ -7,6 +7,16 @@ const Outpatient = require("../models/outpatientSchema");
 const { requireAuth } = require("../middleware/middleware");
 const { checkIfUser } = require("../middleware/middleware");
 const { check, validationResult } = require("express-validator");
+const multer = require("multer");
+const upload = multer({ storage: multer.diskStorage({}) });
+const cloudinary = require("cloudinary").v2;
+router.use(express.static("public"));
+
+cloudinary.config({
+  cloud_name: "dw2lzbgmt",
+  api_key: "594878572393349",
+  api_secret: "KZVTWvN1LcrpVm-COLVX-3VgHzU",
+});
 
 const moment = require("moment");
 var jwt = require("jsonwebtoken");
@@ -14,8 +24,6 @@ var jwt = require("jsonwebtoken");
 // ---------------------------------
 //GET REQUEST
 // ----------------------------------
-
-
 
 //SIGNOUT
 router.get("/signout", (req, res) => {
@@ -36,6 +44,11 @@ router.get("/login", (req, res) => {
 //REGISTRATION PAGE
 router.get("/register", (req, res) => {
   res.render("Entery/registration.ejs");
+});
+
+//AVATAR PAGE
+router.get("/Avatar", (req, res) => {
+  res.render("Entery/Avatar.ejs");
 });
 
 //INTERFACE
@@ -740,6 +753,44 @@ router.get("/editout/:id", checkIfUser, requireAuth, (req, res) => {
 //POST REQUEST
 // ----------------------------------
 
+// Register USER
+router.post(
+  "/adduser",
+  [
+    check("email", "Please provide a valid email").isEmail(),
+    check(
+      "password",
+      "Password must be at least 8 characters with 1 upper case letter and 1 number"
+    ).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/),
+  ],
+  async (req, res) => {
+    try {
+      const usercode = await Registration.findOne({ code: req.body.code });
+      if (usercode) {
+        return res.json({ codeexist: "The Code Is Already Existing" });
+      }
+
+      const useremail = await Registration.findOne({ email: req.body.email });
+      if (useremail) {
+        return res.json({ emailexist: "The Email Is Already Existing" });
+      }
+
+      const objError = validationResult(req);
+      console.log(objError.errors);
+      if (objError.errors.length > 0) {
+        return res.json({ validationerrors: objError.errors });
+      }
+
+      const newUser = await Registration.create(req.body);
+      var token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
+      res.cookie("jwt", token, { httpOnly: true, maxAge: 86400000 });
+      res.json({ id: newUser._id });
+    } catch (error) {
+      console.log(err);
+    }
+  }
+);
+
 //LOGIN CHECK
 router.post("/checklogin", async (req, res) => {
   try {
@@ -754,12 +805,301 @@ router.post("/checklogin", async (req, res) => {
     if (match) {
       var token = jwt.sign({ id: loginuser._id }, process.env.JWTSECRET_KEY);
       res.cookie("jwt", token, { httpOnly: true, maxAge: 86400000 });
-      res.json({ loginuser: loginuser });  
+      res.json({ loginuser: loginuser });
     }
   } catch (e) {
     console.log(e);
   }
 });
+
+// UPDATE IMAGE POST REQUEST
+router.post("/update-avatar", upload.single("update-profile"), checkIfUser, requireAuth, (req, res) => {
+  console.log(req.file)
+  cloudinary.uploader.upload( req.file.path, async (error, result)=>{
+    if (result) {
+      var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/interface")
+    }
+  });  
+});
+
+
+router.post("/avatarselection", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-01.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection2", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-02.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection3", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-03.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection4", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-04.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection5", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-06.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection6", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-07.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection7", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-08.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection8", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-09.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection9", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-10.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection10", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-11.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection11", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-12.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection12", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-13.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection13", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-14.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection14", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-15.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection15", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-16.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection16", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-17.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection17", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-18.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection18", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-19.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection19", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-20.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection20", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-21.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection21", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-22.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection22", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-23.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection23", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-24.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+router.post("/avatarselection24", checkIfUser, requireAuth, (req, res) => {
+  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-25.png", async (error, result)=>{
+    if (result) {
+            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
+      res.redirect("/login")
+    } else {
+      console.log(error)
+    }
+  });   
+});
+
+// router.post("/update-avatar", requireAuth, async (req, res) => {
+//   var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+//   const url = req.file
+//   console.log(url)
+
+//   await Registration.updateOne(
+//     { _id: decoded.id },
+//     { $push: { profileimage: req.body.files } }
+//   );
+// });
 
 // INPATIENT POST REQUEST
 router.post("/inpt2", checkIfUser, requireAuth, (req, res) => {
@@ -838,43 +1178,6 @@ router.post("/outpatientprepsearch", checkIfUser, requireAuth, (req, res) => {
       console.log(err);
     });
 });
-
-// Register USER
-router.post(
-  "/adduser",
-  [
-    check("email", "Please provide a valid email").isEmail(),
-    check(
-      "password",
-      "Password must be at least 8 characters with 1 upper case letter and 1 number"
-    ).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/),
-  ],
-  async (req, res) => {
-    try {
-      const usercode = await Registration.findOne({ code: req.body.code });
-      if (usercode) {
-        return res.json({ codeexist: "The Code Is Already Existing" });
-      }
-
-      const useremail = await Registration.findOne({ email: req.body.email });
-      if (useremail) {
-        return res.json({ emailexist: "The Email Is Already Existing" });
-      }
-
-      const objError = validationResult(req);
-      console.log(objError.errors);
-      if (objError.errors.length > 0) {
-        return res.json({ validationerrors: objError.errors });
-      }
-
-      const newUser = await Registration.create(req.body);
-      res.json({ id: newUser._id });
-    } catch (error) {
-      console.log(err);
-    }
-  }
-);
-
 
 // ---------------------------------
 //DELETE REQUEST

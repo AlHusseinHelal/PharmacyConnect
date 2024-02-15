@@ -21,31 +21,28 @@ $(document).ready(function () {
   /*--------------------------------------------------------------
 # ARROW CONTROL
 --------------------------------------------------------------*/
-if (localStorage.getItem("sidebarlarge") === "yes") {
-  
-  
-  $(".sidelist").removeClass("small-sidebar");
-  $("#arrowmove2").css("display", "none");
-  $("#arrowmove1").css("display", "block");
-
-} else {
-  $(".sidelist").addClass("small-sidebar");
-  $("#arrowmove1").css("display", "none");
-  $("#arrowmove2").css("display", "block");
-}
+  if (localStorage.getItem("sidebarlarge") === "yes") {
+    $(".sidelist").removeClass("small-sidebar");
+    $("#arrowmove2").css("display", "none");
+    $("#arrowmove1").css("display", "block");
+  } else {
+    $(".sidelist").addClass("small-sidebar");
+    $("#arrowmove1").css("display", "none");
+    $("#arrowmove2").css("display", "block");
+  }
 
   $("#arrowmove1").on("click", function () {
     $(".sidelist").addClass("small-sidebar");
     $(this).css("display", "none");
     $("#arrowmove2").css("display", "block");
-    localStorage.setItem("sidebarlarge", "no")
+    localStorage.setItem("sidebarlarge", "no");
   });
 
   $("#arrowmove2").on("click", function () {
     $(".sidelist").removeClass("small-sidebar");
     $(this).css("display", "none");
     $("#arrowmove1").css("display", "block");
-    localStorage.setItem("sidebarlarge", "yes")
+    localStorage.setItem("sidebarlarge", "yes");
   });
 
   /*--------------------------------------------------------------
@@ -98,3 +95,19 @@ if (localStorage.getItem("sidebarlarge") === "yes") {
     }
   });
 }); // END OF jQuary
+
+// INPUTFILE.addEventListener("change", (eo) => {
+//   // IMGELEMENT.src = URL.createObjectURL(eo.target.files[0])
+//   console.log(URL.createObjectURL(eo.target.files[0]))
+//  })
+
+const attach = document.querySelector("#attach");
+const imgsrc = document.querySelector("#imgsrc");
+
+attach.addEventListener("change", (eo) => {
+  const choosedfile = eo.target.files[0];
+  const choosefileurl = URL.createObjectURL(choosedfile)
+  console.log(choosefileurl)
+  imgsrc.src = choosefileurl
+});
+

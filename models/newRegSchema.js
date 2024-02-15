@@ -9,6 +9,7 @@ const register = new Schema({
   email: String,
   password: String,
   code: Number,
+  profileimage: String,
 });
 
 register.pre("save", async function (next) {

@@ -1,38 +1,76 @@
 <header id="header">
   <div class="container d-flex align-items-center justify-content-around">
 
-    
-      <img src="/svg/PharmacyConnectLogo2.svg" height="50rem" alt="">
-      
-      
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="/interface">Home</a></li>
-          <li><a class="nav-link scrollto" href="/STRUCTURE">About</a></li>
-          <li><a class="nav-link   scrollto" href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
-          
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          
-          <li><a class="getstarted scrollto" href="#services">Get Started</a></li>
-        </ul>
-      
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-    
+
+    <img src="/svg/PharmacyConnectLogo2.svg" height="50rem" alt="">
+
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto active" href="/interface">Home</a></li>
+        <li><a class="nav-link scrollto" href="/STRUCTURE">About</a></li>
+        <li><a class="nav-link   scrollto" href="#portfolio">Portfolio</a></li>
+        <li><a class="nav-link scrollto" href="#team">Team</a></li>
+
+        <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+
+        <li><a class="getstarted scrollto" href="#services">Get Started</a></li>
+      </ul>
+
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
     <div class="dropdown">
       <a href="" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
         data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="/img/Avatar/Untitled-1-01.png" alt="" width="32" height="32" class="rounded-circle me-2" />
-        <strong><%= user.firstname %></strong>
+        <img src="<%= user.profileimage? user.profileimage : "/img/Avatar/Untitled-0-05.png" %>" alt="" width="32" height="32" class="rounded-circle me-2" />
+        <strong>
+          <%= user.firstname %>
+        </strong>
       </a>
       <ul class="dropdown-menu text-small shadow">
-        
-        <!-- <li>
+
+        <li><a data-bs-toggle="modal" data-bs-target="#exampleModa2" class="dropdown-item" href="/signout">Profile</a>
+        </li>
+        <li>
           <hr class="dropdown-divider" />
-        </li> -->
+        </li>
         <li><a class="dropdown-item" href="/signout">Sign out</a></li>
       </ul>
     </div>
+    <!-- Modal -->
+    <form action="/update-avatar"  method="post" enctype="multipart/form-data">
+    <div class="modal fade" id="exampleModa2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Attach File</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="d-flex modal-body align-items-center justify-content-around">
+            <label class="btn btn-primary" for="headerattach">Choose File...</label>
+            <input id="headerattach" type="file" name="update-profile" id="" style="display: none;">
+            <img id="headerimgsrc" src="<%= user.profileimage %>" width="150px" alt="">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
   </div>
+  <script>
+    const headerattach = document.querySelector("#headerattach");
+    const headerimgsrc = document.querySelector("#headerimgsrc");
+
+    headerattach.addEventListener("change", (eo) => {
+      const choosedfile = eo.target.files[0];
+      const choosefileurl = URL.createObjectURL(choosedfile)
+      console.log(choosefileurl)
+      headerimgsrc.src = choosefileurl
+    });
+  </script>
+
 </header><!-- End Header -->

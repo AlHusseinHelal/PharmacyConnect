@@ -2,64 +2,284 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PharmacyConnect</title>
 
-  <link rel="shortcut icon" href="svg/ConnectLogo.svg" type="image/x-icon">
-
+  <link rel="shortcut icon" href="svg/ConnectLogo.svg" type="image/x-icon" />
 
   <!-- bootstrap CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
 
   <!-- bootstrap JS -->
   <script defer src="js/bootstrap.bundle.min.js"></script>
 
-
   <!-- Custom styles for this template -->
-  <link href="css/Avatar.css" rel="stylesheet">
+  <link href="css/Avatar.css" rel="stylesheet" />
 </head>
 
 <body>
   <div class="d-flex flex-column align-items-center mt-5">
-    <h1>Please Select You Avater</h1>
-    <form action="/avatarselection" method="post">
-      <div id="carouselExample" class="carousel slide w-25 border border-3 " style="border-radius: 50%;">
-        <div class="carousel-inner ">
-          
-          <div class="carousel-item active ">
-            <input hidden type="text">  <img src="/img/Avatar/Untitled-1-01.png" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <input hidden type="text">  <img src="/img/Avatar/Untitled-1-02.png" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <input hidden type="text">  <img src="/img/Avatar/Untitled-1-03.png" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <input hidden type="text">  <img src="/img/Avatar/Untitled-1-04.png" class="d-block w-100" alt="...">
-          </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-      <button class="btn btn-outline-primary mt-3 px-2 py-1" type="submit">OK</button>
-    </form>
+    <h1 class="mb-3">Select You Avater</h1>
+
     
+    <div id="carouselExample" class="carousel slide text-center mt-5" style="width: 150px; height: 150px">
+      <div class="carousel-inner">
+
+        <form  action="/avatarselection" method="post" enctype="multipart/form-data">
+          <div class="carousel-item active" style="position: relative">
+            <input name="inputprofile" id="in1" type="file" />
+            <img src="/img/Avatar/Untitled-1-01.png" class="d-block" alt="..." />
+            <label class="mt-3" for="in1"><button type="submit" class="btn1 btn btn-outline-primary">
+                Select
+              </button></label>
+          </div>
+        </form>
+
+        <form  action="/avatarselection2" method="post" enctype="multipart/form-data">
+        <div class="carousel-item">
+          <input name="inputprofile" id="in2" type="file" />
+          <img src="/img/Avatar/Untitled-1-02.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in2"><button class="btn2 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection3" method="post" enctype="multipart/form-data">
+        <div  class="carousel-item">
+          <input id="in3" name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-03.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in3"><button class="btn3 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection4" method="post" enctype="multipart/form-data">
+        <div  class="carousel-item">
+          <input id="in4" name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-04.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in4"><button class="btn4 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection5" method="post" enctype="multipart/form-data">
+        <div  class="carousel-item">
+          <input id="in5" name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-06.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in5"><button class="btn5 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection6" method="post" enctype="multipart/form-data">
+        <div id="in6" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-07.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in6"><button class="btn6 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection7" method="post" enctype="multipart/form-data">
+        <div id="in7" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-08.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in7"><button class="btn7 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection8" method="post" enctype="multipart/form-data">
+        <div id="in8" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-09.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in8"><button class="btn8 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection9" method="post" enctype="multipart/form-data">
+        <div id="in9" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-10.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in9"><button class="btn9 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection10" method="post" enctype="multipart/form-data">
+        <div id="in4" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-11.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in4"><button class="btn10 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection11" method="post" enctype="multipart/form-data">
+        <div id="in4" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-12.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in4"><button class="btn11 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection12" method="post" enctype="multipart/form-data">
+        <div id="in4" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-13.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in4"><button class="btn12 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection13" method="post" enctype="multipart/form-data">
+        <div id="in4" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-14.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in4"><button class="btn13 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection14" method="post" enctype="multipart/form-data">
+        <div id="in4" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-15.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in4"><button class="btn14 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection15" method="post" enctype="multipart/form-data">
+        <div id="in4" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-16.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in4"><button class="btn15 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection16" method="post" enctype="multipart/form-data">
+        <div id="in4" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-17.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in4"><button class="btn16 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection17" method="post" enctype="multipart/form-data">
+        <div id="in4" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-18.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in4"><button class="btn17 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection18" method="post" enctype="multipart/form-data">
+        <div id="in4" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-19.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in4"><button class="btn18 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection19" method="post" enctype="multipart/form-data">
+        <div id="in4" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-20.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in4"><button class="btn19 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection20" method="post" enctype="multipart/form-data">
+        <div id="in4" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-21.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in4"><button class="btn20 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection21" method="post" enctype="multipart/form-data">
+        <div id="in4" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-22.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in4"><button class="btn21 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection22" method="post" enctype="multipart/form-data">
+        <div id="in4" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-23.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in4"><button class="btn22 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection23" method="post" enctype="multipart/form-data">
+        <div id="in4" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-24.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in4"><button class="btn23 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      <form  action="/avatarselection24" method="post" enctype="multipart/form-data">
+        <div id="in4" class="carousel-item">
+          <input name="inputprofile" type="file" />
+          <img src="/img/Avatar/Untitled-1-25.png" class="d-block" alt="..." />
+          <label class="mt-3" type="submit" for="in4"><button class="btn24 btn btn-outline-primary">
+              Select
+            </button></label>
+        </div>
+      </form>
+
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
   </div>
 
-
-
-  <script src="../js/main.js"></script>
-
-  <script src="/js/inpatient.js"></script>
+  <script src="/js/Avatar.js"></script>
 </body>
 
 </html>

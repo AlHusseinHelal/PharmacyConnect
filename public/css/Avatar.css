@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background-color: aquamarine;
+
+}
+
+h1 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+  font-size: 30px;
+}
+
+.carousel-inner {
+  height: 250px;
+  width: 250px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid gray;
+}
+
+img {
+  height: 250px;
+  width: 250px;
+}
+
+input {
+  display: none;
+}
+
+.btn1,
+.btn2,
+.btn3,
+.btn4,
+.btn5,
+.btn6,
+.btn7,
+.btn8,
+.btn9,
+.btn10,
+.btn11,
+.btn12,
+.btn13,
+.btn14,
+.btn15,
+.btn16,
+.btn17,
+.btn18,
+.btn19,
+.btn20,
+.btn21,
+.btn22,
+.btn23,
+.btn24 {
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  background: black;
+  color: wheat;
+  line-height: 30px;
+  font-family: sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  /* display: none; */
+  transition: all 1s;
+  opacity: 0;
+
+}
+
+
+.carousel-control-next {
+  right: -25px;
+}
+
+.carousel-control-prev {
+  left: -25px;
+}
