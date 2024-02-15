@@ -19,6 +19,14 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+
+          
+// cloudinary.config({ 
+//   cloud_name: 'dw2lzbgmt', 
+//   api_key: '594878572393349', 
+//   api_secret: 'KZVTWvN1LcrpVm-COLVX-3VgHzU' 
+// });
+
 const moment = require("moment");
 var jwt = require("jsonwebtoken");
 
