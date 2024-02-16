@@ -13,19 +13,18 @@ const cloudinary = require("cloudinary").v2;
 router.use(express.static("public"));
 require('dotenv').config()
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_ClOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
+// cloudinary.config({
+//   cloud_name: process.env.CLOUDINARY_ClOUD_NAME,
+//   api_key: process.env.CLOUDINARY_API_KEY,
+//   api_secret: process.env.CLOUDINARY_API_SECRET,
+// });
+          
+cloudinary.config({ 
+  cloud_name: 'dw2lzbgmt', 
+  api_key: '594878572393349', 
+  api_secret: 'KZVTWvN1LcrpVm-COLVX-3VgHzU' 
 });
 
-
-          
-// cloudinary.config({ 
-//   cloud_name: 'dw2lzbgmt', 
-//   api_key: '594878572393349', 
-//   api_secret: 'KZVTWvN1LcrpVm-COLVX-3VgHzU' 
-// });
 
 const moment = require("moment");
 var jwt = require("jsonwebtoken");
