@@ -4,6 +4,7 @@ const router = express.Router();
 const Inpatientschema = require("../models/inpatientSchema");
 const Registration = require("../models/newRegSchema");
 const Outpatient = require("../models/outpatientSchema");
+const Dispenseschema = require("../models/dispenseSchema");
 const { requireAuth } = require("../middleware/middleware");
 const { checkIfUser } = require("../middleware/middleware");
 const { check, validationResult } = require("express-validator");
@@ -11,20 +12,19 @@ const multer = require("multer");
 const upload = multer({ storage: multer.diskStorage({}) });
 const cloudinary = require("cloudinary").v2;
 router.use(express.static("public"));
-require('dotenv').config()
+require("dotenv").config();
 
 // cloudinary.config({
 //   cloud_name: process.env.CLOUDINARY_ClOUD_NAME,
 //   api_key: process.env.CLOUDINARY_API_KEY,
 //   api_secret: process.env.CLOUDINARY_API_SECRET,
 // });
-          
-cloudinary.config({ 
-  cloud_name: 'dw2lzbgmt', 
-  api_key: '594878572393349', 
-  api_secret: 'KZVTWvN1LcrpVm-COLVX-3VgHzU' 
-});
 
+cloudinary.config({
+  cloud_name: "dw2lzbgmt",
+  api_key: "594878572393349",
+  api_secret: "KZVTWvN1LcrpVm-COLVX-3VgHzU",
+});
 
 const moment = require("moment");
 var jwt = require("jsonwebtoken");
@@ -633,10 +633,6 @@ router.get("/inpatient", checkIfUser, requireAuth, (req, res) => {
   res.render("Inpatient/inpatient");
 });
 
-// INPATIENT ADD PATIENT
-router.get("/inpatient2", checkIfUser, requireAuth, (req, res) => {
-  res.render("Inpatient/inpatient2");
-});
 
 // INPATIENT OVERVIEW
 router.get("/inpatient3", checkIfUser, requireAuth, (req, res) => {
@@ -668,10 +664,6 @@ router.get("/outpatient", checkIfUser, requireAuth, (req, res) => {
   res.render("Outpatient/outpatient");
 });
 
-// OUPATIENT ADD PATIENT
-router.get("/outpatient2", checkIfUser, requireAuth, (req, res) => {
-  res.render("Outpatient/outpatient2");
-});
 
 // OUPATIENT OVERVIEW
 router.get("/outpatient3", checkIfUser, requireAuth, (req, res) => {
@@ -705,7 +697,7 @@ router.get("/ivprep", checkIfUser, requireAuth, (req, res) => {
 
 //IVPREP INPATIENT
 router.get("/prepin", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.find()
+  Inpatientschema.find({ oraliv: "IV" })
     .then((result) => {
       res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
     })
@@ -716,9 +708,20 @@ router.get("/prepin", checkIfUser, requireAuth, (req, res) => {
 
 //IVPREP OUTPATIENT
 router.get("/prepout", checkIfUser, requireAuth, (req, res) => {
-  Outpatient.find()
+  Outpatient.find({ oraliv: "IV" })
     .then((result) => {
       res.render("IvPrep/ivprepout", { outarray: result, moment: moment });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//IVPREP DISPENSE
+router.get("/prepdis", checkIfUser, requireAuth, (req, res) => {
+  Dispenseschema.find({ oraliv: "IV" })
+    .then((result) => {
+      res.render("IvPrep/ivprepdis", { outarray: result, moment: moment });
     })
     .catch((err) => {
       console.log(err);
@@ -730,10 +733,6 @@ router.get("/lab", checkIfUser, requireAuth, (req, res) => {
   res.render("lab");
 });
 
-// BOOKING AVISIT
-// router.get("/medication", checkIfUser, requireAuth, (req, res) => {
-//   res.render("login");
-// });
 
 //IVPREP EDIT INPATIENT
 router.get("/edit/:id", checkIfUser, requireAuth, (req, res) => {
@@ -746,6 +745,15 @@ router.get("/edit/:id", checkIfUser, requireAuth, (req, res) => {
     });
 });
 
+//ATTACH EDIT INPATIENT
+// router.get("/exampleModal/:id", checkIfUser, requireAuth, async (req, res) => {
+//   await Inpatientschema.findById(req.params.id).then((result) => {
+//     Inpatientschema.find().then((result) => {
+//       res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
+//     });
+//   });
+// });
+
 //IVPREP EDIT OUTPATIENT
 router.get("/editout/:id", checkIfUser, requireAuth, (req, res) => {
   Outpatient.findById(req.params.id)
@@ -756,6 +764,51 @@ router.get("/editout/:id", checkIfUser, requireAuth, (req, res) => {
       console.log(err);
     });
 });
+
+
+// DISPENSE
+router.get("/dispense", checkIfUser, requireAuth, (req, res) => {
+  res.render("Dispense/dispense");
+});
+
+// DISPENSE OVERVIEW
+router.get("/dispense3", checkIfUser, requireAuth, (req, res) => {
+  Dispenseschema.find().then((result) => {
+    res.render( "Dispense/dispense3" ,{ dispensearray : result, moment:moment } );
+  
+})  
+});
+
+// DISPENSE INPATIENT
+router.get("/dispin", checkIfUser, requireAuth, (req, res) => {
+  Inpatientschema.find({ oraliv : "Oral" }).then((result) => {
+    res.render( "Dispense/dispense3in" ,{ dispensearray : result, moment:moment } );
+  
+})  
+});
+
+// DISPENSE OUTPATIENT
+router.get("/dispout", checkIfUser, requireAuth, (req, res) => {
+  Outpatient.find({oraliv : "Oral"}).then((result) => {
+    res.render( "Dispense/dispense3out" ,{ dispensearray : result, moment:moment } );
+  
+})  
+});
+
+
+//DISPENSE VIEW DELETE
+router.get("/viewdis/:id", checkIfUser, requireAuth, (req, res) => {
+  Dispenseschema.findById(req.params.id)
+    .then((result) => {
+      res.render("Dispense/dispense4", { obj: result, moment: moment });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+
+
 
 // ---------------------------------
 //POST REQUEST
@@ -821,293 +874,528 @@ router.post("/checklogin", async (req, res) => {
 });
 
 // CHANGE IMAGE POST REQUEST
-router.post("/update-avatar", upload.single("update-profile"), checkIfUser, requireAuth, (req, res) => {
-  console.log(req.file)
-  cloudinary.uploader.upload( req.file.path, async (error, result)=>{
-    if (result) {
-      var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/interface")
-    }
-  });  
-});
+router.post(
+  "/update-avatar",
+  upload.single("update-profile"),
+  checkIfUser,
+  requireAuth,
+  (req, res) => {
+    console.log(req.file);
+    cloudinary.uploader.upload(
+      req.file.path,
+      { folder: "PharmacyConnect/Profile-Image" },
+      async (error, result) => {
+        if (result) {
+          var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+          await Registration.updateOne(
+            { _id: decoded.id },
+            { profileimage: result.secure_url }
+          );
+          res.redirect("/interface");
+        }
+      }
+    );
+  }
+);
 
 // CHOOSE IMAGE POST REQUEST
 router.post("/avatarselection", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-01.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-01.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection2", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-02.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-02.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection3", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-03.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-03.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection4", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-04.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-04.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection5", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-06.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-06.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection6", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-07.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-07.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection7", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-08.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-08.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection8", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-09.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-09.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection9", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-10.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-10.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection10", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-11.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-11.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection11", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-12.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-12.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection12", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-13.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-13.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection13", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-14.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-14.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection14", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-15.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-15.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection15", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-16.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-16.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection16", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-17.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-17.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection17", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-18.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-18.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection18", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-19.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-19.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection19", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-20.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-20.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection20", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-21.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-21.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection21", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-22.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-22.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection22", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-23.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-23.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection23", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-24.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-24.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 router.post("/avatarselection24", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload( "./public/img/Avatar/Untitled-1-25.png", async (error, result)=>{
-    if (result) {
-            var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      await Registration.updateOne( {_id: decoded.id},  {profileimage : result.secure_url})
-      res.redirect("/login")
-    } else {
-      console.log(error)
+  cloudinary.uploader.upload(
+    "./public/img/Avatar/Untitled-1-25.png",
+    { folder: "PharmacyConnect/AVATAR" },
+    async (error, result) => {
+      if (result) {
+        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Registration.updateOne(
+          { _id: decoded.id },
+          { profileimage: result.secure_url }
+        );
+        res.redirect("/login");
+      } else {
+        console.log(error);
+      }
     }
-  });   
+  );
 });
 
+//ATTACH FILE
+router.post(
+  "/attach",
+  upload.single("attach-file"),
+  checkIfUser,
+  requireAuth,
+  (req, res) => {
+    console.log(req.file);
+    cloudinary.uploader.upload(
+      req.file.path,
+      { folder: "PharmacyConnect/Attach-Files" },
+      async (error, result) => {
+        if (result) {
+          // var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+          await Inpatientschema.updateOne(req.params.id, {
+            attachfile: result.secure_url,
+          });
+          res.redirect("inpatient3");
+        } else {
+          console.log(error);
+        }
+      }
+    );
+  }
+);
 
-// INPATIENT POST REQUEST
-router.post("/inpt2", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.create(req.body)
-    .then(() => {
-      res.redirect("/inpatient2");
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+// router.put("/editform/:id", checkIfUser, requireAuth, (req, res) => {
+//   console.log(req.body);
+//   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+//     .then(() => {
+//       Inpatientschema.find().then((result) => {
+//         res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
+//       });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// });
+
+// router.put("/editformout/:id", checkIfUser, requireAuth, (req, res) => {
+//   console.log(req.body);
+//   Outpatient.findByIdAndUpdate(req.params.id, req.body)
+//     .then(() => {
+//       Outpatient.find().then((result) => {
+//         res.render("IvPrep/ivprepout", { outarray: result, moment: moment });
+//       });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// });
+
+// INPATIENT ADD PATIENT
+router.post("/add_patient_in", checkIfUser, requireAuth, async (req, res) => {
+try {
+  if (req.body.oraliv === "Choose....") {
+    return res.json({ oraliv: "You Must Enter This Field" });
+  } else {
+    inpatient_add_patient = await Inpatientschema.create(req.body);
+    res.json({inpatient_add_patient: inpatient_add_patient})
+  }
+} catch (error) {
+  
+}
 });
 
 // INPATIENT POST SEARCH
@@ -1149,6 +1437,24 @@ router.post("/outpt2", checkIfUser, requireAuth, (req, res) => {
     });
 });
 
+//OUTPATIENT ADD PATIENT
+router.post("/add_patient_out", checkIfUser, requireAuth, async (req, res) => {
+  try {
+    
+    if (req.body.oraliv === "Choose....") {
+      return res.json({ iv_oral: "You Must Enter This Field" });
+    }else {
+      const newoutpatientpatient = await Outpatient.create(req.body);
+      res.json({ newoutpatientpatient: newoutpatientpatient });
+      
+    }
+     
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+
 // OUTPATIENT POST SEARCH
 router.post("/outpatientsearch", checkIfUser, requireAuth, (req, res) => {
   const searchText = req.body.searchText.trim();
@@ -1177,6 +1483,33 @@ router.post("/outpatientprepsearch", checkIfUser, requireAuth, (req, res) => {
     });
 });
 
+// DISPENSE ADD PATIENT
+router.post("/add_patient_dis", checkIfUser, requireAuth, async (req, res) => {
+  try {
+    if (req.body.oraliv === "Choose....") {
+      return res.json({ oraliv: "You Must Enter This Field" });
+    } else {
+      dispense_add_patient = await Dispenseschema.create(req.body);
+      res.json({dispense_add_patient: dispense_add_patient})
+    }
+  } catch (error) {
+    
+  }
+  });
+
+  // router.post("/add_patient_in", checkIfUser, requireAuth, async (req, res) => {
+  //   try {
+  //     if (req.body.oraliv === "Choose....") {
+  //       return res.json({ oraliv: "You Must Enter This Field" });
+  //     } else {
+  //       inpatient_add_patient = await Inpatientschema.create(req.body);
+  //       res.json({inpatient_add_patient: inpatient_add_patient})
+  //     }
+  //   } catch (error) {
+      
+  //   }
+  //   });
+
 // ---------------------------------
 //DELETE REQUEST
 // ----------------------------------
@@ -1197,6 +1530,17 @@ router.delete("/deleteout/:id", checkIfUser, requireAuth, (req, res) => {
   Outpatient.findByIdAndDelete(req.params.id)
     .then((result) => {
       res.redirect("/outpatient3");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//DISPENSE DELETE PATIENT
+router.delete("/deletedis/:id", checkIfUser, requireAuth, (req, res) => {
+  Dispenseschema.findByIdAndDelete(req.params.id)
+    .then((result) => {
+      res.redirect("/dispense3");
     })
     .catch((err) => {
       console.log(err);

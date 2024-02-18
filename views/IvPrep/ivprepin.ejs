@@ -89,24 +89,19 @@
                   </a>
                 </div>
               </li>
+              <li>
+                <div class="d-inline-flex align-items-center" style="width: 164.56px">
+                  <a href="/prepdis" class="nav-link  d-inline-flex align-items-center width side-bg " style="color: black;">
+                    <svg class="margin side-svg" style="width: 30px; height: 30px;">
+                      <use xlink:href="#table" />
+                    </svg>
+                    <span class="side-text">Dispense</span>
+                  </a>
+                </div>
+              </li>
             </ul>
             <hr />
-            <div class="dropdown">
-              <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2" />
-                <strong>mdo</strong>
-              </a>
-              <ul class="dropdown-menu text-small shadow">
-                <li><a class="dropdown-item" href="#">New project...</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
-              </ul>
-            </div>
+            
           </div>
 
           <!-- /*--------------------------------------------------------------
@@ -166,6 +161,7 @@
                           <th class="text-center" scope="col">Round Time</th>
                           <th class="text-center" scope="col">Prep Comment</th>
                           <th class="text-center" scope="col">Prep Time</th>
+                          <th class="text-center" scope="col">Attach</th>
                           <th class="text-center" scope="col">Action</th>
                         </tr>
                       </thead>
@@ -201,6 +197,16 @@
                             </td>
                             <td class="text-center">
                               <%= moment(item.updatedAt).format('LT')%>
+                            </td>
+
+                            <td class="text-center">
+                              <a href="<%= item.attachfile%>"><i class="bi bi-envelope"></i></a>
+                              <% if (item.attachfile) { %>
+                               console.log(item.attachfile)
+                               
+                              <% } %>
+                              
+
                             </td>
 
                             <td class="text-center">

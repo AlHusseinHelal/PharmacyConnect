@@ -108,10 +108,10 @@ $(document).ready(function () {
 //   imgsrc.src = choosefileurl
 // });
 
-const add_patient_inpatient = document.getElementById("add_patient_inpatient")
-add_patient_inpatient.addEventListener("submit", async (e) => {
+const add_patient_dispense = document.getElementById("add_patient_dispense")
+add_patient_dispense.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const res = await fetch("/add_patient_in", {
+  const res = await fetch("/add_patient_dis", {
     method: "POST",
     body: JSON.stringify({ patientname: patientname.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value }),
     headers: { "Content-Type": "application/json" },
@@ -126,8 +126,8 @@ add_patient_inpatient.addEventListener("submit", async (e) => {
     document.getElementById('iv_oralnot').classList.add("d-none");
     document.getElementById('oraliv').classList.remove("redframe");  
   } 
-  if (data.inpatient_add_patient) {
-    location.assign("/inpatient3")  
+  if (data.dispense_add_patient) {
+    location.assign("/dispense3")  
   }
   
 });

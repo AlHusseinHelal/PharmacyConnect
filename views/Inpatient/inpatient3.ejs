@@ -66,18 +66,7 @@
             <img id="connectlogo" src="/svg/PharmacyConnectLogoinpatient-01.svg" height="139vh" alt="" />
 
             <hr />
-            <ul class="nav navul nav-pills flex-column mb-auto mainul">
-              <li>
-                <div class="d-inline-flex align-items-center">
-                  <a href="/inpatient2" style="color: black"
-                    class="nav-link d-inline-flex align-items-center width side-bg">
-                    <svg class="margin side-svg" style="width: 30px; height: 30px">
-                      <use xlink:href="#people-circle" />
-                    </svg>
-                    <span class="side-text">Add Patient</span>
-                  </a>
-                </div>
-              </li>
+            <ul class="nav navul nav-pills flex-column mb-0 mainul">
               <li>
                 <div class="d-inline-flex align-items-center" style="width: 164.56px">
                   <a href="/inpatient3" class="nav-link active d-inline-flex align-items-center width side-bg">
@@ -90,22 +79,7 @@
               </li>
             </ul>
             <hr />
-            <div class="dropdown">
-              <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2" />
-                <strong>mdo</strong>
-              </a>
-              <ul class="dropdown-menu text-small shadow">
-                <li><a class="dropdown-item" href="#">New project...</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
-              </ul>
-            </div>
+
           </div>
 
           <!-- /*--------------------------------------------------------------
@@ -171,44 +145,91 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <form>
+                    <form id="add_patient_inpatient">
+
                       <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Patient Name</label>
-                        <input name="patientname" type="text" class="form-control" id="recipient-name" />
+                        <label for="patientname" class="col-form-label">Patient Name</label>
+                        <input name="patientname" type="text" class="form-control" id="patientname" />
                       </div>
+
                       <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">MRN</label>
-                        <input name="mrn" type="text" class="form-control" id="recipient-name" />
+                        <label for="mrn" class="col-form-label">MRN</label>
+                        <input name="mrn" type="text" class="form-control" id="mrn" />
                       </div>
+
                       <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Patient Floor</label>
-                        <input name="ptfloor" type="text" class="form-control" id="recipient-name" />
+                        <label for="ptfloor" class="form-label">Patient Floor</label>
+                        <select id="ptfloor" name="ptfloor" class="form-select">
+                          <option disabled hidden selected>Choose...</option>
+                          <option>2nd</option>
+                          <option>3rd O</option>
+                          <option>3rd N</option>
+                          <option>4th</option>
+                          <option>5th</option>
+                          <option>6th</option>
+                          <option>MCU</option>
+                          <option>SCU</option>
+                          <option>ER</option>
+                          <option>ICC</option>
+                          <option>OR</option>
+                          <option>SICU</option>
+                          <option>DayCare</option>
+                          <option>Dispense</option>
+                          <option>OutPatient</option>
+                          <option>ICU</option>
+                        </select>
                       </div>
+
                       <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Request Type</label>
-                        <input name="requestype" type="text" class="form-control" id="recipient-name" />
+                        <label for="requestype" class="form-label">Request Type</label>
+                        <select class="form-select" name="requestype" id="requestype">
+                          <option selected hidden disabled>Choose....</option>
+                          <option>Chemotherapy</option>
+                          <option>Zofran</option>
+                          <option>Hydration</option>
+                          <option>TPN</option>
+                          <option>Modification</option>
+                          <option>ExtraDose</option>
+                          <option>Refill</option>
+                          <option>DisCharge Medication</option>
+                        </select>
                       </div>
+
                       <div class="mb-3">
-                        <label for="recipient-name" class="col-form-label">Oral/IV</label>
-                        <input name="oraliv" type="text" class="form-control" id="recipient-name" />
+                        <label for="oraliv" class="form-label">Oral/IV</label>
+                        <select required class="form-select" id="oraliv" name="oraliv">
+                          <option selected hidden disabled>Choose....</option>
+                          <option>Oral</option>
+                          <option>IV</option>
+                          <option>Pyxis</option>
+                        </select>
                       </div>
+
+                      <div id="iv_oralnot" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">You Must Enter This Field</p>
+                      </div>
+
                       <div class="mb-3">
-                        <label for="message-text" class="col-form-label">Round Comment</label>
-                        <textarea name="roundcomment" class="form-control" id="message-text"></textarea>
+                        <label for="roundcomment" class="col-form-label">Round Comment</label>
+                        <textarea name="roundcomment" class="form-control" id="roundcomment"></textarea>
                       </div>
+
                       <div class="mb-3 d-none">
-                        <label for="recipient-name" class="col-form-label"></label>
-                        <input name="prepcomment" type="text" class="form-control" id="recipient-name" />
+                        <label for="prepcomment" class="col-form-label"></label>
+                        <input name="prepcomment" type="text" class="form-control" id="prepcomment" />
                       </div>
-                    </form>
+
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                       Close
                     </button>
-                    <button type="button" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary">
                       Send message
                     </button>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -240,6 +261,7 @@
                           <th class="text-center" scope="col">Prep Comment</th>
                           <th class="text-center" scope="col">Prep Time</th>
                           <th class="text-center" scope="col">Delete</th>
+                          <th class="text-center" scope="col">Attach</th>
                         </tr>
                       </thead>
                       <tbody id="tbody">
@@ -288,9 +310,9 @@
                               </a>
                             </td>
                             <td class="text-center">
-                              <a data-bs-toggle="modal" data-bs-target="#exampleModal"
+                              <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal<%= item._id %>"
                                 style="background-color: rgb(229, 220, 220)" class="border rounded-2 d-inline-flex p-1"
-                                href="">
+                                >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                   class="bi bi-paperclip" viewBox="0 0 16 16">
                                   <path
@@ -298,40 +320,44 @@
                                   </path>
                                 </svg>
                               </a>
-                            </td>
-                          
-
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                              aria-hidden="true">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Attach File</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                      aria-label="Close"></button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <label for="attach">Choose File...</label>
-                                    <input  id="attach" type="file" name="" id="" style="display: none;">
-                                    <img id="imgsrc" src="/img/Avatar/Untitled-1-01.png" width="150px" alt="">
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                      data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                              <div class="modal fade" id="exampleModal<%= item._id %>" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel<%= item._id %>">Attach File</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                    </div>
+                                    <!-- <form action="/attach_file" method="post" enctype="multipart/form-data"> -->
+                                    <form action="/attach" method="post" enctype="multipart/form-data">
+                                      <div class="modal-body">
+                                        <label for="attach">Choose File...</label>
+                                        <input id="attach" type="file" name="attach-file" id="" style="display: none;">
+                                        <embed hidden id="imgsrc" src="" type="">
+                                        <!-- <img id="imgsrc" src="/img/Avatar/Untitled-1-01.png" width="150px" alt=""> -->
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                          data-bs-dismiss="modal">Close</button>
+                                          <button id="saveattach<%= item._id %>" type="submit" class="btn btn-primary">Save
+                                            changes</button>
+                                        
+                                      </div>
+                                    </form>
                                   </div>
                                 </div>
                               </div>
-                            </div>
+                            </td>
+                            <!-- Modal -->
+
                           </tr>
                           <% }) %>
                       </tbody>
                     </table>
                     <% } %>
 
-                      <!-- Modal -->
+
             </div>
           </div>
       </main>
@@ -352,12 +378,7 @@
 
       <script src="/js/inpatient3.js"></script>
 
-    
+
 </body>
 
 </html>
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>

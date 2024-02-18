@@ -63,13 +63,13 @@
     # SIDE LIST
     --------------------------------------------------------------*/ -->
           <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidelist">
-            <img id="connectlogo" src="/svg/PharmacyConnectLogooutpatient-01.svg" height="139vh" alt="" />
+            <img id="connectlogo" src="/svg/PharmacyConnectLogodispense-01.svg" height="139vh" alt="" />
 
             <hr />
             <ul class="nav navul nav-pills flex-column mb-auto mainul">
               <li>
                 <div class="d-inline-flex align-items-center" style="width: 164.56px">
-                  <a href="/outpatient3" class="nav-link active d-inline-flex align-items-center width side-bg">
+                  <a href="/inpatient3" class="nav-link active d-inline-flex align-items-center width side-bg">
                     <svg class="margin side-svg" style="width: 30px; height: 30px; fill: white">
                       <use xlink:href="#table" />
                     </svg>
@@ -79,6 +79,7 @@
               </li>
             </ul>
             <hr />
+            
           </div>
 
           <!-- /*--------------------------------------------------------------
@@ -198,7 +199,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <form action="/deleteout/<%= obj._id%>?_method=DELETE" method="post">
+                        <form action="/deletedis/<%= obj._id%>?_method=DELETE" method="post">
                         <button type="submit" class="btn btn-danger">Delete</button>
                       </form>
                       </div>

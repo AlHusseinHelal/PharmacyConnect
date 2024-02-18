@@ -23,7 +23,7 @@
   <!-- HEADER CSS -->
   <link rel="stylesheet" href="/css/style.css" />
   <!-- Custom styles for this template -->
-  <link href="/css/inpatient2.css" rel="stylesheet" />
+  <link href="/css/inpatient3.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -62,34 +62,18 @@
           <!-- /*--------------------------------------------------------------
     # SIDE LIST
     --------------------------------------------------------------*/ -->
-          <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidelist  ">
-            <img id="connectlogo" src="/svg/PharmacyConnectLogoinpatient-01.svg" height="139vh" alt="" />
+          <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidelist">
+            <img id="connectlogo" src="/svg/PharmacyConnectLogodispense-01.svg" height="139vh" alt="" />
 
             <hr />
             <ul class="nav navul nav-pills flex-column mb-auto mainul">
-              <li  >
-                <div class="d-inline-flex align-items-center" >
-                  
-                  <a  href="/inpatient2" style="color: rgb(255, 255, 255);" 
-                    class="nav-link active d-inline-flex align-items-center width side-bg ">
-                    <svg class="margin side-svg" style="width: 30px; height:30px; fill:white"  >
-                      <use  xlink:href="#people-circle" />
-                    </svg>
-                    <span class="side-text">Add Patient</span>
-                    
-                  </a>
-                </div>
-              </li>
-              <li  >
-                <div class="d-inline-flex align-items-center" style="width: 164.56px;" >
-                  
-                  <a  href="/inpatient3" 
-                    class="  nav-link  d-inline-flex align-items-center width side-bg " style="color: black;" >
-                    <svg class="margin side-svg" style="width: 30px; height:30px; fill:rgb(0, 0, 0)" >
+              <li>
+                <div class="d-inline-flex align-items-center" style="width: 164.56px">
+                  <a href="/inpatient3" class="nav-link active d-inline-flex align-items-center width side-bg">
+                    <svg class="margin side-svg" style="width: 30px; height: 30px; fill: white">
                       <use xlink:href="#table" />
                     </svg>
                     <span class="side-text">OverView</span>
-                    
                   </a>
                 </div>
               </li>
@@ -113,6 +97,9 @@
             </div>
           </div>
 
+          <!-- /*--------------------------------------------------------------
+    # DEVIDER
+    --------------------------------------------------------------*/ -->
 
           <div style="position: relative; height: 90vh" class="w-100">
             <!-- /*--------------------------------------------------------------
@@ -131,112 +118,110 @@
                     <span class="navbar-toggler-icon"></span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  
+                    <form class="d-flex" role="search" action="/searchinpatient" method="post">
+                      <input name="searchText" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                      <button class="btn btn-outline-success" type="submit">
+                        Search
+                      </button>
+                    </form>
                   </div>
                 </div>
               </nav>
             </div>
 
-        
-
             <!-- /*--------------------------------------------------------------
       # MAIN CONTENT
       --------------------------------------------------------------*/ -->
-            <div class="" style="width: 95%; margin-left: auto; margin-right: auto;">
-              <form method="post" action="/inpt2"  class="row g-3">
+            <div id="maincontent">
 
-
-                <div class="col-md-6">
-                  <label for="patientname" class="form-label">Patient Name</label>
-                  <input name="patientname" type="text" class="form-control" id="patientname">
+              <h2 style="color: red;" class="text-center">YOU ARE IN A SEARCH MODE</h2>
+              <% if (array.length===0) { %>
+                <div class="text-center">
+                  <h1>No Data Available</h1>
                 </div>
 
+                <% } %>
 
-                <div class="col-md-6">
-                  <label for="mrn" class="form-label">Patient MRN</label>
-                  <input name="mrn" type="number" class="form-control" id="mrn">
-                </div>
+                  <% if (array.length>= 1) { %>
+                    <table style="width: 99%" class="mx-auto table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th class="text-center" scope="col">#</th>
+                          <th class="text-center" scope="col">Patient Name</th>
+                          <th class="text-center" scope="col">MRN</th>
+                          <th class="text-center" scope="col">Patient Floor</th>
+                          <th class="text-center" scope="col">Request Type</th>
+                          <th class="text-center" scope="col">Oral/IV</th>
+                          <th class="text-center" scope="col">Round Comment</th>
+                          <th class="text-center" scope="col">Round Time</th>
+                          <th class="text-center" scope="col">Prep Comment</th>
+                          <th class="text-center" scope="col">Prep Time</th>
+                          <th class="text-center" scope="col">Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody id="tbody">
+                        <% array.forEach((item,index)=> { %>
+                          <tr id="tr">
+                            <td class="text-center">
+                              <%= index+1 %>
+                            </td>
+                            <td class="text-center">
+                              <%= item.patientname%>
+                            </td>
+                            <td class="text-center">
+                              <%= item.mrn%>
+                            </td>
+                            <td class="text-center">
+                              <%= item.ptfloor%>
+                            </td>
+                            <td class="text-center">
+                              <%= item.requestype%>
+                            </td>
+                            <td class="text-center">
+                              <%= item.oraliv%>
+                            </td>
+                            <td class="text-center">
+                              <%= item.roundcomment%>
+                            </td>
+                            <td class="text-center">
+                              <%= moment(item.createdAt).format('LT')%>
+                            </td>
+                            <td class="text-center">
+                              <%= item.prepcomment%>
+                            </td>
+                            <td class="text-center">
+                              <%= moment(item.updatedAt).format('LT')%>
+                            </td>
+                            <td class="text-center">
+                              <a style="background-color: red;" class="border rounded-2 d-inline-flex p-1"
+                                href="/view/<%= item._id%>">
 
-                <div class="col-md-6">
-                  <label for="ptfloor" class="form-label">Patient Floor</label>
-                  <select id="ptfloor" name="ptfloor" class="form-select">
-                    <option disabled hidden selected>Choose...</option>
-                    <option>2nd</option>
-                    <option>3rd O</option>
-                    <option>3rd N</option>
-                    <option>4th</option>
-                    <option>5th</option>
-                    <option>6th</option>
-                    <option>MCU</option>
-                    <option>SCU</option>
-                    <option>ER</option>
-                    <option>ICC</option>
-                    <option>OR</option>
-                    <option>SICU</option>
-                    <option>DayCare</option>
-                    <option>Dispense</option>
-                    <option>OutPatient</option>
-                    <option>ICU</option>
-                  </select>
-                </div>
+                                <svg style="fill: aliceblue;" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                  class="bi bi-trash" viewBox="0 0 16 16">
+                                  <path
+                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                  <path
+                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                                </svg>
 
-
-                <div class="col-md-6">
-                  <label for="requestype" class="form-label">Request Type</label>
-                  <select class="form-select" name="requestype" id="requestype">
-                    <option selected hidden disabled >Choose....</option>
-                    <option >Chemotherapy</option>
-                    <option >Zofran</option>
-                    <option >Hydration</option>
-                    <option >TPN</option>
-                    <option >Modification</option>
-                    <option >ExtraDose</option>
-                    <option >Refill</option>
-                    <option >DisCharge Medication</option>
-                  </select>
-                  
-                </div>
-                <div class="col-md-6">
-                  <label for="oraliv" class="form-label">Oral/IV</label>
-                  <select class="form-select" id="oraliv" name="oraliv">
-                    <option selected hidden disabled >Choose....</option>
-                    <option >Oral</option>
-                    <option >IV</option>
-                    <option >Pyxis</option>
-                  </select>
-                </div>
-
-
-                <div class="col-md-6">
-                  <label for="roundcomment" class="form-label">Round Comment</label>
-                  <input type="text" class="form-control" id="roundcomment" name="roundcomment" placeholder="">
-                </div>
-
-                <div  class="col-md-6 d-none">
-                  <label for="prepcomment" class="form-label">Prep Comment</label>
-                  <input type="text" class="form-control" id="prepcomment" name="prepcomment" placeholder="">
-                </div>
-
-                
+                              </a>
 
 
-                
-                
-              
-                
-                <div class="col-12">
-                  <button type="submit" class="btn btn-danger">SAVE</button>
-                </div>
-              </form>
-              
+
+
+                            </td>
+                          </tr>
+                          <% }) %>
+                      </tbody>
+                    </table>
+                    <% } %>
+
+
+                      <!-- Modal -->
+
             </div>
           </div>
       </main>
-
-
-
-
-
 
       <!-- LINK TO jQuary -->
       <script src="/js/jquery-3.7.1.min.js"></script>
@@ -252,8 +237,13 @@
 
       <script src="../js/main.js"></script>
 
-      <script src="/js/inpatient2.js"></script>
+      <script src="/js/inpatient3.js"></script>
 </body>
 
 </html>
 
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>

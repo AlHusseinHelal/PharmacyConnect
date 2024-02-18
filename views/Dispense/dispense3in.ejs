@@ -23,7 +23,7 @@
   <!-- HEADER CSS -->
   <link rel="stylesheet" href="/css/style.css" />
   <!-- Custom styles for this template -->
-  <link href="/css/outpatient3.css" rel="stylesheet" />
+  <link href="/css/dispense3.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -63,23 +63,44 @@
     # SIDE LIST
     --------------------------------------------------------------*/ -->
           <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidelist">
-            <img id="connectlogo" src="/svg/PharmacyConnectLogooutpatient-01.svg" height="139vh" alt="" />
+            <img id="connectlogo" src="/svg/PharmacyConnectLogodispense-01.svg" height="139vh" alt="" />
 
             <hr />
             <ul class="nav navul nav-pills flex-column mb-0 mainul">
               <li>
                 <div class="d-inline-flex align-items-center" style="width: 164.56px">
-                  <a href="/outpatient3" class="nav-link active d-inline-flex align-items-center width side-bg">
-                    <svg class="margin side-svg" style="width: 30px; height: 30px; fill: white">
+                  <a href="/dispense3" class="nav-link  d-inline-flex align-items-center width side-bg">
+                    <svg class="margin side-svg" style="width: 30px; height: 30px; fill: rgb(0, 0, 0)">
                       <use xlink:href="#table" />
                     </svg>
-                    <span class="side-text">OverView</span>
+                    <span style="color: black;" class="side-text">OverView</span>
+                  </a>
+                </div>
+              </li>
+              <li  >
+                <div class="d-inline-flex align-items-center" style="width: 164.56px;" >                  
+                  <a  href="/dispin "  
+                    class="  nav-link active  d-inline-flex align-items-center width side-bg " style="color: black;" >
+                    <svg class="margin side-svg" style="width: 30px; height:30px; fill:rgb(255, 255, 255)" >
+                      <use xlink:href="#table" />
+                    </svg>
+                    <span style="color: white;" class="side-text">InPatient</span>                    
+                  </a>
+                </div>
+              </li>
+              <li  >
+                <div class="d-inline-flex align-items-center" style="width: 164.56px;" >
+                  <a  href="/dispout "  
+                    class="  nav-link  d-inline-flex align-items-center width side-bg " style="color: black;" >
+                    <svg class="margin side-svg" style="width: 30px; height:30px; fill:rgb(0, 0, 0)" >
+                      <use xlink:href="#table" />
+                    </svg>
+                    <span class="side-text">OutPatient</span>                    
                   </a>
                 </div>
               </li>
             </ul>
             <hr />
-
           </div>
 
           <!-- /*--------------------------------------------------------------
@@ -103,7 +124,7 @@
                     <span class="navbar-toggler-icon"></span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <form class="d-flex" role="search" action="/outpatientsearch" method="post">
+                    <form class="d-flex" role="search" action="/inpatientsearch" method="post">
                       <input name="searchText" class="form-control me-2" type="search" placeholder="Search"
                         aria-label="Search" />
                       <button class="btn btn-outline-success" type="submit">
@@ -120,12 +141,12 @@
       --------------------------------------------------------------*/ -->
 
             <a style="
-      position: absolute;
-      top: 70px;
-      right: 10px;
-      background-color: rgb(0, 42, 255);
-    " href="" id="editicon" class="border rounded-2 d-inline-flex p-1" data-bs-toggle="modal" data-bs-placement="top"
-              data-bs-title="Edit" data-bs-target="#exampleModal2">
+            position: absolute;
+            top: 70px;
+            right: 10px;
+            background-color: rgb(0, 42, 255);
+          " href="" id="editicon" class="border rounded-2 d-inline-flex p-1" data-bs-toggle="modal"
+              data-bs-placement="top" data-bs-title="Edit" data-bs-target="#exampleModal2">
               <svg style="fill: aliceblue" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                 class="bi bi-pencil" viewBox="0 0 16 16">
                 <path
@@ -145,7 +166,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    <form id="add_patient" >
+                    <form id="add_patient_dispense">
 
                       <div class="mb-3">
                         <label for="patientname" class="col-form-label">Patient Name</label>
@@ -199,7 +220,6 @@
                         <label for="oraliv" class="form-label">Oral/IV</label>
                         <select required class="form-select" id="oraliv" name="oraliv">
                           <option selected hidden disabled>Choose....</option>
-                          <option>Oral</option>
                           <option>IV</option>
                           <option>Pyxis</option>
                         </select>
@@ -226,7 +246,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                       Close
                     </button>
-                    <button  type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary">
                       Send message
                     </button>
                     </form>
@@ -238,15 +258,15 @@
             <!-- /*--------------------------------------------------------------
       # MAIN CONTENT
       --------------------------------------------------------------*/ -->
+
             <div id="maincontent">
-              <% if (outpatientarray.length===0) { %>
+              <% if (dispensearray.length===0) { %>
                 <div class="text-center">
                   <h1>No Data Available</h1>
                 </div>
 
                 <% } %>
-
-                  <% if (outpatientarray.length>= 1) { %>
+                  <% if (dispensearray.length>= 1) { %>
                     <table style="width: 99%" class="mx-auto table table-striped table-bordered">
                       <thead>
                         <tr>
@@ -261,10 +281,11 @@
                           <th class="text-center" scope="col">Prep Comment</th>
                           <th class="text-center" scope="col">Prep Time</th>
                           <th class="text-center" scope="col">Delete</th>
+                          <th class="text-center" scope="col">Attach</th>
                         </tr>
                       </thead>
                       <tbody id="tbody">
-                        <% outpatientarray.forEach((item,index)=> { %>
+                        <% dispensearray.forEach((item,index)=> { %>
                           <tr id="tr">
                             <td class="text-center">
                               <%= index+1 %>
@@ -297,23 +318,59 @@
                               <%= moment(item.updatedAt).format('LT')%>
                             </td>
                             <td class="text-center">
-
-                              <a style="background-color: red;" class="border rounded-2 d-inline-flex p-1"
-                                href="/outview/<%=item._id%>">
-
-                                <svg style="fill: aliceblue;" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                              <a style="background-color: red" class="border rounded-2 d-inline-flex p-1"
+                                href="/view/<%= item._id%>">
+                                <svg style="fill: aliceblue" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                   class="bi bi-trash" viewBox="0 0 16 16">
                                   <path
                                     d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
                                   <path
                                     d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
                                 </svg>
-
                               </a>
-
-
-
                             </td>
+                            <td class="text-center">
+                              <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal<%= item._id %>"
+                                style="background-color: rgb(229, 220, 220)" class="border rounded-2 d-inline-flex p-1"
+                                >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                  class="bi bi-paperclip" viewBox="0 0 16 16">
+                                  <path
+                                    d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0z">
+                                  </path>
+                                </svg>
+                              </a>
+                              <div class="modal fade" id="exampleModal<%= item._id %>" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel<%= item._id %>">Attach File</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                    </div>
+                                    <!-- <form action="/attach_file" method="post" enctype="multipart/form-data"> -->
+                                    <form action="/attach" method="post" enctype="multipart/form-data">
+                                      <div class="modal-body">
+                                        <label for="attach">Choose File...</label>
+                                        <input id="attach" type="file" name="attach-file" id="" style="display: none;">
+                                        <embed hidden id="imgsrc" src="" type="">
+                                        <!-- <img id="imgsrc" src="/img/Avatar/Untitled-1-01.png" width="150px" alt=""> -->
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                          data-bs-dismiss="modal">Close</button>
+                                          <button id="saveattach<%= item._id %>" type="submit" class="btn btn-primary">Save
+                                            changes</button>
+                                        
+                                      </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <!-- Modal -->
+
                           </tr>
                           <% }) %>
                       </tbody>
@@ -321,11 +378,10 @@
                     <% } %>
 
 
-
             </div>
           </div>
       </main>
-      
+
       <!-- LINK TO jQuary -->
       <script src="/js/jquery-3.7.1.min.js"></script>
 
@@ -340,7 +396,9 @@
 
       <script src="../js/main.js"></script>
 
-      <script src="/js/outpatient3.js"></script>
+      <script src="/js/dispense3.js"></script>
+
+
 </body>
 
 </html>
