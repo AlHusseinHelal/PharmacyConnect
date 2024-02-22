@@ -98,22 +98,22 @@ $(document).ready(function () {
 
 
 
-// const attach = document.querySelector("#attach");
-// const imgsrc = document.querySelector("#imgsrc");
+const attach = document.querySelector("#attach");
+const imgsrc = document.querySelector("#imgsrc");
 
-// attach.addEventListener("change", (eo) => {
-//   const choosedfile = eo.target.files[0];
-//   const choosefileurl = URL.createObjectURL(choosedfile)
-//   console.log(choosefileurl)
-//   imgsrc.src = choosefileurl
-// });
+attach.addEventListener("change", (eo) => {
+  const choosedfile = eo.target.files[0];
+  const choosefileurl = URL.createObjectURL(choosedfile)
+  console.log(choosefileurl)
+  imgsrc.src = choosefileurl
+});
 
 const add_patient_inpatient = document.getElementById("add_patient_inpatient")
 add_patient_inpatient.addEventListener("submit", async (e) => {
   e.preventDefault();
   const res = await fetch("/add_patient_in", {
     method: "POST",
-    body: JSON.stringify({ patientname: patientname.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value }),
+    body: JSON.stringify({ patientname: patientname.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value, createdAt: new Date() }),
     headers: { "Content-Type": "application/json" },
   });
 

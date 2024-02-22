@@ -13,6 +13,10 @@ const upload = multer({ storage: multer.diskStorage({}) });
 const cloudinary = require("cloudinary").v2;
 router.use(express.static("public"));
 require("dotenv").config();
+const React = require("react");
+// import React from 'react';
+const ReactDOM = require("react-dom/client");
+// import ReactDOM from 'react-dom/client';
 
 // cloudinary.config({
 //   cloud_name: process.env.CLOUDINARY_ClOUD_NAME,
@@ -633,7 +637,6 @@ router.get("/inpatient", checkIfUser, requireAuth, (req, res) => {
   res.render("Inpatient/inpatient");
 });
 
-
 // INPATIENT OVERVIEW
 router.get("/inpatient3", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.find()
@@ -663,7 +666,6 @@ router.get("/view/:id", checkIfUser, requireAuth, (req, res) => {
 router.get("/outpatient", checkIfUser, requireAuth, (req, res) => {
   res.render("Outpatient/outpatient");
 });
-
 
 // OUPATIENT OVERVIEW
 router.get("/outpatient3", checkIfUser, requireAuth, (req, res) => {
@@ -733,7 +735,6 @@ router.get("/lab", checkIfUser, requireAuth, (req, res) => {
   res.render("lab");
 });
 
-
 //IVPREP EDIT INPATIENT
 router.get("/edit/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findById(req.params.id)
@@ -765,7 +766,6 @@ router.get("/editout/:id", checkIfUser, requireAuth, (req, res) => {
     });
 });
 
-
 // DISPENSE
 router.get("/dispense", checkIfUser, requireAuth, (req, res) => {
   res.render("Dispense/dispense");
@@ -774,27 +774,29 @@ router.get("/dispense", checkIfUser, requireAuth, (req, res) => {
 // DISPENSE OVERVIEW
 router.get("/dispense3", checkIfUser, requireAuth, (req, res) => {
   Dispenseschema.find().then((result) => {
-    res.render( "Dispense/dispense3" ,{ dispensearray : result, moment:moment } );
-  
-})  
+    res.render("Dispense/dispense3", { dispensearray: result, moment: moment });
+  });
 });
 
 // DISPENSE INPATIENT
 router.get("/dispin", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.find({ oraliv : "Oral" }).then((result) => {
-    res.render( "Dispense/dispense3in" ,{ dispensearray : result, moment:moment } );
-  
-})  
+  Inpatientschema.find({ oraliv: "Oral" }).then((result) => {
+    res.render("Dispense/dispense3in", {
+      dispensearray: result,
+      moment: moment,
+    });
+  });
 });
 
 // DISPENSE OUTPATIENT
 router.get("/dispout", checkIfUser, requireAuth, (req, res) => {
-  Outpatient.find({oraliv : "Oral"}).then((result) => {
-    res.render( "Dispense/dispense3out" ,{ dispensearray : result, moment:moment } );
-  
-})  
+  Outpatient.find({ oraliv: "Oral" }).then((result) => {
+    res.render("Dispense/dispense3out", {
+      dispensearray: result,
+      moment: moment,
+    });
+  });
 });
-
 
 //DISPENSE VIEW DELETE
 router.get("/viewdis/:id", checkIfUser, requireAuth, (req, res) => {
@@ -806,9 +808,6 @@ router.get("/viewdis/:id", checkIfUser, requireAuth, (req, res) => {
       console.log(err);
     });
 });
-
-
-
 
 // ---------------------------------
 //POST REQUEST
@@ -1332,31 +1331,7 @@ router.post("/avatarselection24", checkIfUser, requireAuth, (req, res) => {
   );
 });
 
-//ATTACH FILE
-router.post(
-  "/attach",
-  upload.single("attach-file"),
-  checkIfUser,
-  requireAuth,
-  (req, res) => {
-    console.log(req.file);
-    cloudinary.uploader.upload(
-      req.file.path,
-      { folder: "PharmacyConnect/Attach-Files" },
-      async (error, result) => {
-        if (result) {
-          // var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-          await Inpatientschema.updateOne(req.params.id, {
-            attachfile: result.secure_url,
-          });
-          res.redirect("inpatient3");
-        } else {
-          console.log(error);
-        }
-      }
-    );
-  }
-);
+
 
 // router.put("/editform/:id", checkIfUser, requireAuth, (req, res) => {
 //   console.log(req.body);
@@ -1386,16 +1361,14 @@ router.post(
 
 // INPATIENT ADD PATIENT
 router.post("/add_patient_in", checkIfUser, requireAuth, async (req, res) => {
-try {
-  if (req.body.oraliv === "Choose....") {
-    return res.json({ oraliv: "You Must Enter This Field" });
-  } else {
-    inpatient_add_patient = await Inpatientschema.create(req.body);
-    res.json({inpatient_add_patient: inpatient_add_patient})
-  }
-} catch (error) {
-  
-}
+  try {
+    if (req.body.oraliv === "Choose....") {
+      return res.json({ oraliv: "You Must Enter This Field" });
+    } else {
+      inpatient_add_patient = await Inpatientschema.create(req.body);
+      res.json({ inpatient_add_patient: inpatient_add_patient });
+    }
+  } catch (error) {}
 });
 
 // INPATIENT POST SEARCH
@@ -1440,20 +1413,16 @@ router.post("/outpt2", checkIfUser, requireAuth, (req, res) => {
 //OUTPATIENT ADD PATIENT
 router.post("/add_patient_out", checkIfUser, requireAuth, async (req, res) => {
   try {
-    
     if (req.body.oraliv === "Choose....") {
       return res.json({ iv_oral: "You Must Enter This Field" });
-    }else {
+    } else {
       const newoutpatientpatient = await Outpatient.create(req.body);
       res.json({ newoutpatientpatient: newoutpatientpatient });
-      
     }
-     
   } catch (error) {
     console.log(error);
   }
 });
-
 
 // OUTPATIENT POST SEARCH
 router.post("/outpatientsearch", checkIfUser, requireAuth, (req, res) => {
@@ -1490,25 +1459,40 @@ router.post("/add_patient_dis", checkIfUser, requireAuth, async (req, res) => {
       return res.json({ oraliv: "You Must Enter This Field" });
     } else {
       dispense_add_patient = await Dispenseschema.create(req.body);
-      res.json({dispense_add_patient: dispense_add_patient})
+      res.json({ dispense_add_patient: dispense_add_patient });
     }
-  } catch (error) {
-    
-  }
-  });
+  } catch (error) {}
+});
 
-  // router.post("/add_patient_in", checkIfUser, requireAuth, async (req, res) => {
-  //   try {
-  //     if (req.body.oraliv === "Choose....") {
-  //       return res.json({ oraliv: "You Must Enter This Field" });
-  //     } else {
-  //       inpatient_add_patient = await Inpatientschema.create(req.body);
-  //       res.json({inpatient_add_patient: inpatient_add_patient})
-  //     }
-  //   } catch (error) {
-      
-  //   }
-  //   });
+//ATTACH FILE
+router.post("/attach", upload.single("attachfile"), checkIfUser, requireAuth,(req, res) => {
+  console.log(req.file.path)
+  cloudinary.uploader.upload(req.file.path, { folder: "PharmacyConnect/Attach-Files" }, async (error, result) => {
+    console.log(req.file)
+      if (result) {
+        // var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await Inpatientschema.updateOne(req.params.id, {attachfile: result.secure_url});
+        res.redirect("inpatient3");
+      } else {
+        console.log(error);
+      }
+    }
+  );
+}
+);
+
+// router.post("/add_patient_in", checkIfUser, requireAuth, async (req, res) => {
+//   try {
+//     if (req.body.oraliv === "Choose....") {
+//       return res.json({ oraliv: "You Must Enter This Field" });
+//     } else {
+//       inpatient_add_patient = await Inpatientschema.create(req.body);
+//       res.json({inpatient_add_patient: inpatient_add_patient})
+//     }
+//   } catch (error) {
+
+//   }
+//   });
 
 // ---------------------------------
 //DELETE REQUEST
@@ -1551,11 +1535,53 @@ router.delete("/deletedis/:id", checkIfUser, requireAuth, (req, res) => {
 //PUT REQUEST
 // ----------------------------------
 
-//IVPREP EIDIT OUTPATIENT
-router.put("/editformout/:id", checkIfUser, requireAuth, (req, res) => {
-  console.log(req.body);
+// //IVPREP EIDIT OUTPATIENT
+// router.put("/editformout/:id", checkIfUser, requireAuth, (req, res) => {
+//   console.log(req.body);
+//   Outpatient.findByIdAndUpdate(req.params.id, req.body)
+//     .then(() => {
+//       Outpatient.find().then((result) => {
+//         res.render("IvPrep/ivprepout", { outarray: result, moment: moment });
+//       });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// });
+
+// //IVPREP EIDIT INPATIENT
+// router.put("/editform/:id", checkIfUser, requireAuth, (req, res) => {
+//   console.log(req.body);
+//   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+//     .then(() => {
+//       Inpatientschema.find().then((result) => {
+//         res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
+//       });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// });
+
+// IVPREP INPATIENT / DONE
+router.put("/done/:id", checkIfUser, requireAuth, (req, res) => {
+  Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => {
+      console.log(req.body);
+      Inpatientschema.find().then((result) => {
+        res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// IVPREP OUTPATIENT / DONE
+router.put("/doneout/:id", checkIfUser, requireAuth, (req, res) => {
   Outpatient.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
+      console.log(req.body);
       Outpatient.find().then((result) => {
         res.render("IvPrep/ivprepout", { outarray: result, moment: moment });
       });
@@ -1565,11 +1591,11 @@ router.put("/editformout/:id", checkIfUser, requireAuth, (req, res) => {
     });
 });
 
-//IVPREP EIDIT INPATIENT
-router.put("/editform/:id", checkIfUser, requireAuth, (req, res) => {
-  console.log(req.body);
+// IVPREP INPATIENT / EDIT
+router.put("/inedit/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
+      console.log(req.body);
       Inpatientschema.find().then((result) => {
         res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
       });
@@ -1578,5 +1604,21 @@ router.put("/editform/:id", checkIfUser, requireAuth, (req, res) => {
       console.log(err);
     });
 });
+
+// IVPREP OUTPATIENT / EDIT
+router.put("/outedit/:id", checkIfUser, requireAuth, (req, res) => {
+  Outpatient.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => {
+      console.log(req.body);
+      Outpatient.find().then((result) => {
+        res.render("IvPrep/ivprepout", { outarray: result, moment: moment });
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+
 
 module.exports = router;

@@ -98,3 +98,10 @@ if (localStorage.getItem("sidebarlarge") === "yes") {
     }
   });
 }); // END OF jQuary
+
+
+
+const maincontent = document.getElementById('maincontent');
+window.addEventListener("change", (event) => {
+  console.log("ok")
+});

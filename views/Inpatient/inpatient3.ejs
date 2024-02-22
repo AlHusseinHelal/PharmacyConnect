@@ -264,8 +264,8 @@
                           <th class="text-center" scope="col">Attach</th>
                         </tr>
                       </thead>
-                      <tbody id="tbody">
-                        <% inpatientarray.forEach((item,index)=> { %>
+                      <% inpatientarray.forEach((item,index)=> { %>
+                      <tbody id="tbody">                        
                           <tr id="tr">
                             <td class="text-center">
                               <%= index+1 %>
@@ -309,8 +309,8 @@
                                 </svg>
                               </a>
                             </td>
-                            <td class="text-center">
-                              <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal<%= item._id %>"
+                            <td class="text-center">                          
+                              <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<%= item._id%>"
                                 style="background-color: rgb(229, 220, 220)" class="border rounded-2 d-inline-flex p-1"
                                 >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -319,41 +319,39 @@
                                     d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0z">
                                   </path>
                                 </svg>
-                              </a>
-                              <div class="modal fade" id="exampleModal<%= item._id %>" tabindex="-1"
+                              </button>
+                              <div class="modal fade" id="exampleModal<%= item._id%>" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
+                                <form action="/attach" method="post" enctype="multipart/form-data" class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h1 class="modal-title fs-5" id="exampleModalLabel<%= item._id %>">Attach File</h1>
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Attach File</h1>
                                       <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                     </div>
-                                    <!-- <form action="/attach_file" method="post" enctype="multipart/form-data"> -->
-                                    <form action="/attach" method="post" enctype="multipart/form-data">
+                                  
                                       <div class="modal-body">
                                         <label for="attach">Choose File...</label>
-                                        <input id="attach" type="file" name="attach-file" id="" style="display: none;">
+                                        <input id="attach" type="file" name="attachfile" style="display: none;">
                                         <embed hidden id="imgsrc" src="" type="">
                                         <!-- <img id="imgsrc" src="/img/Avatar/Untitled-1-01.png" width="150px" alt=""> -->
                                       </div>
                                       <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                           data-bs-dismiss="modal">Close</button>
-                                          <button id="saveattach<%= item._id %>" type="submit" class="btn btn-primary">Save
-                                            changes</button>
-                                        
-                                      </div>
-                                    </form>
+                                          <button type="submit" class="btn btn-primary">Save
+                                            changes</button>                                        
+                                      </div>                                  
                                   </div>
-                                </div>
+                                </form>
                               </div>
                             </td>
                             <!-- Modal -->
 
                           </tr>
-                          <% }) %>
+                          
                       </tbody>
+                      <% }) %>
                     </table>
                     <% } %>
 
