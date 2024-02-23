@@ -9,6 +9,17 @@ const { requireAuth } = require("../middleware/middleware");
 const { checkIfUser } = require("../middleware/middleware");
 const { check, validationResult } = require("express-validator");
 const multer = require("multer");
+
+
+const multerStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, diskStorage({}))
+  },
+  filename: function (req, file, cb) {
+    const ext = file.mimetype.split('/')[1];  + '-' + Math.round(Math.random() * 1E9)
+    cb(null, `user-${req.user.id}-${Date.now()}.${ext}`)
+  }
+})
 const upload = multer({ storage: multer.diskStorage({}) });
 const cloudinary = require("cloudinary").v2;
 router.use(express.static("public"));
