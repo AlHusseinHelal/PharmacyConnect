@@ -13,13 +13,24 @@ const multer = require("multer");
 
 const multerStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, diskStorage({}))
+    cb(null, '/public/img/users')
   },
-  filename: function (req, file, cb) {
+  filename:  function (req, file, cb) {
     const ext = file.mimetype.split('/')[1];  + '-' + Math.round(Math.random() * 1E9)
-    cb(null, `user-${req.user.id}-${Date.now()}.${ext}`)
+    cb(null, `user-${req.User.id}-${Date.now()}.${ext}`)
   }
 })
+
+// const multerFilter = (req, file, cb) => {
+//   if (file.mimetype.startsWith('image')) {
+//   cb(null, true)  
+//   }else{
+//     cb(, )
+//   }
+//   }
+
+
+
 const upload = multer({ storage: multer.diskStorage({}) });
 const cloudinary = require("cloudinary").v2;
 router.use(express.static("public"));
