@@ -11,15 +11,15 @@ const { check, validationResult } = require("express-validator");
 const multer = require("multer");
 
 
-const multerStorage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, '/public/img/users')
-  },
-  filename:  function (req, file, cb) {
-    const ext = file.mimetype.split('/')[1];  + '-' + Math.round(Math.random() * 1E9)
-    cb(null, `user-${req.User.id}-${Date.now()}.${ext}`)
-  }
-})
+// const multerStorage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, '/public/img/users')
+//   },
+//   filename:  function (req, file, cb) {
+//     const ext = file.mimetype.split('/')[1];  + '-' + Math.round(Math.random() * 1E9)
+//     cb(null, `user-${req.User.id}-${Date.now()}.${ext}`)
+//   }
+// })
 
 // const multerFilter = (req, file, cb) => {
 //   if (file.mimetype.startsWith('image')) {
@@ -767,15 +767,6 @@ router.get("/edit/:id", checkIfUser, requireAuth, (req, res) => {
       console.log(err);
     });
 });
-
-//ATTACH EDIT INPATIENT
-// router.get("/exampleModal/:id", checkIfUser, requireAuth, async (req, res) => {
-//   await Inpatientschema.findById(req.params.id).then((result) => {
-//     Inpatientschema.find().then((result) => {
-//       res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
-//     });
-//   });
-// });
 
 //IVPREP EDIT OUTPATIENT
 router.get("/editout/:id", checkIfUser, requireAuth, (req, res) => {
