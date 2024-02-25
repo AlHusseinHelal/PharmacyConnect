@@ -699,7 +699,7 @@ router.get("/ivprep", checkIfUser, requireAuth, (req, res) => {
 });
 
 //IVPREP INPATIENT
-router.get("/prepin",modification, checkIfUser, requireAuth, (req, res) => {
+router.get("/prepin", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.find({ oraliv: "IV" })
     .then((result) => {
       res.render("IvPrep/ivprepin", { inarray: result, moment: moment });

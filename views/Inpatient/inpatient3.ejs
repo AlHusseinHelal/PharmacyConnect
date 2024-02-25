@@ -265,7 +265,7 @@
                         </tr>
                       </thead>
                       <% inpatientarray.forEach((item,index)=> { %>
-                      <tbody id="tbody">                        
+                        <tbody id="tbody">
                           <tr id="tr">
                             <td class="text-center">
                               <%= index+1 %>
@@ -309,10 +309,9 @@
                                 </svg>
                               </a>
                             </td>
-                            <td class="text-center">                          
+                            <td class="text-center">
                               <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<%= item._id%>"
-                                style="background-color: rgb(229, 220, 220)" class="border rounded-2 d-inline-flex p-1"
-                                >
+                                style="background-color: rgb(229, 220, 220)" class="border rounded-2 d-inline-flex p-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                   class="bi bi-paperclip" viewBox="0 0 16 16">
                                   <path
@@ -329,19 +328,19 @@
                                       <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                     </div>
-                                  
-                                      <div class="modal-body">
-                                        <label for="attach">Choose File...</label>
-                                        <input id="attach" type="file" name="attachfile" style="display: none;">
-                                        <embed hidden id="imgsrc" src="" type="">
-                                        <!-- <img id="imgsrc" src="/img/Avatar/Untitled-1-01.png" width="150px" alt=""> -->
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                          data-bs-dismiss="modal">Close</button>
-                                          <button type="submit" class="btn btn-primary">Save
-                                            changes</button>                                        
-                                      </div>                                  
+
+                                    <div class="modal-body">
+                                      <label for="attach">Choose File...</label>
+                                      <input id="attach" type="file" name="attachfile" style="display: none;">
+                                      <embed hidden id="imgsrc" src="" type="">
+                                      <!-- <img id="imgsrc" src="/img/Avatar/Untitled-1-01.png" width="150px" alt=""> -->
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                      <button type="submit" class="btn btn-primary">Save
+                                        changes</button>
+                                    </div>
                                   </div>
                                 </form>
                               </div>
@@ -349,9 +348,9 @@
                             <!-- Modal -->
 
                           </tr>
-                          
-                      </tbody>
-                      <% }) %>
+
+                        </tbody>
+                        <% }) %>
                     </table>
                     <% } %>
 

@@ -40,4 +40,4 @@ const modification = (req, res, next) => {
   next();
 };
 
-module.exports = { requireAuth, checkIfUser, modification };
+module.exports = { requireAuth, checkIfUser };
