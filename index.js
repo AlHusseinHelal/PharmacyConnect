@@ -7,13 +7,12 @@ var methodOverride = require("method-override");
 var cookieParser = require('cookie-parser')
 require('dotenv').config()
 
-
-
 //allRoutes
 const allRoutes = require('./routes/allRoutes')
 
-
+//req.body
 app.use(express.urlencoded({ extended: true }));
+
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));

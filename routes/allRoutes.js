@@ -7,30 +7,9 @@ const Outpatient = require("../models/outpatientSchema");
 const Dispenseschema = require("../models/dispenseSchema");
 const { requireAuth } = require("../middleware/middleware");
 const { checkIfUser } = require("../middleware/middleware");
+const { modification } = require("../middleware/middleware");
 const { check, validationResult } = require("express-validator");
 const multer = require("multer");
-
-
-// const multerStorage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, '/public/img/users')
-//   },
-//   filename:  function (req, file, cb) {
-//     const ext = file.mimetype.split('/')[1];  + '-' + Math.round(Math.random() * 1E9)
-//     cb(null, `user-${req.User.id}-${Date.now()}.${ext}`)
-//   }
-// })
-
-// const multerFilter = (req, file, cb) => {
-//   if (file.mimetype.startsWith('image')) {
-//   cb(null, true)  
-//   }else{
-//     cb(, )
-//   }
-//   }
-
-
-
 const upload = multer({ storage: multer.diskStorage({}) });
 const cloudinary = require("cloudinary").v2;
 router.use(express.static("public"));
@@ -720,7 +699,7 @@ router.get("/ivprep", checkIfUser, requireAuth, (req, res) => {
 });
 
 //IVPREP INPATIENT
-router.get("/prepin", checkIfUser, requireAuth, (req, res) => {
+router.get("/prepin",modification, checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.find({ oraliv: "IV" })
     .then((result) => {
       res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
@@ -1344,8 +1323,6 @@ router.post("/avatarselection24", checkIfUser, requireAuth, (req, res) => {
   );
 });
 
-
-
 // router.put("/editform/:id", checkIfUser, requireAuth, (req, res) => {
 //   console.log(req.body);
 //   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
@@ -1478,20 +1455,30 @@ router.post("/add_patient_dis", checkIfUser, requireAuth, async (req, res) => {
 });
 
 //ATTACH FILE
-router.post("/attach", upload.single("attachfile"), checkIfUser, requireAuth,(req, res) => {
-  console.log(req.file.path)
-  cloudinary.uploader.upload(req.file.path, { folder: "PharmacyConnect/Attach-Files" }, async (error, result) => {
-    console.log(req.file)
-      if (result) {
-        // var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Inpatientschema.updateOne(req.params.id, {attachfile: result.secure_url});
-        res.redirect("inpatient3");
-      } else {
-        console.log(error);
+router.post(
+  "/attach",
+  upload.single("attachfile"),
+  checkIfUser,
+  requireAuth,
+  (req, res) => {
+    console.log(req.file.path);
+    cloudinary.uploader.upload(
+      req.file.path,
+      { folder: "PharmacyConnect/Attach-Files" },
+      async (error, result) => {
+        console.log(req.file);
+        if (result) {
+          // var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+          await Inpatientschema.updateOne(req.params.id, {
+            attachfile: result.secure_url,
+          });
+          res.redirect("inpatient3");
+        } else {
+          console.log(error);
+        }
       }
-    }
-  );
-}
+    );
+  }
 );
 
 // router.post("/add_patient_in", checkIfUser, requireAuth, async (req, res) => {
@@ -1548,39 +1535,24 @@ router.delete("/deletedis/:id", checkIfUser, requireAuth, (req, res) => {
 //PUT REQUEST
 // ----------------------------------
 
-// //IVPREP EIDIT OUTPATIENT
-// router.put("/editformout/:id", checkIfUser, requireAuth, (req, res) => {
-//   console.log(req.body);
-//   Outpatient.findByIdAndUpdate(req.params.id, req.body)
-//     .then(() => {
-//       Outpatient.find().then((result) => {
-//         res.render("IvPrep/ivprepout", { outarray: result, moment: moment });
-//       });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
-
-// //IVPREP EIDIT INPATIENT
-// router.put("/editform/:id", checkIfUser, requireAuth, (req, res) => {
-//   console.log(req.body);
-//   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
-//     .then(() => {
-//       Inpatientschema.find().then((result) => {
-//         res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
-//       });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
-
 // IVPREP INPATIENT / DONE
 router.put("/done/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
       console.log(req.body);
+      Inpatientschema.find().then((result) => {
+        res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// IVPREP INPATIENT / EDIT
+router.put("/inedit/:id", checkIfUser, requireAuth, (req, res) => {
+  Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => {
       Inpatientschema.find().then((result) => {
         res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
       });
@@ -1604,20 +1576,6 @@ router.put("/doneout/:id", checkIfUser, requireAuth, (req, res) => {
     });
 });
 
-// IVPREP INPATIENT / EDIT
-router.put("/inedit/:id", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      console.log(req.body);
-      Inpatientschema.find().then((result) => {
-        res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
 // IVPREP OUTPATIENT / EDIT
 router.put("/outedit/:id", checkIfUser, requireAuth, (req, res) => {
   Outpatient.findByIdAndUpdate(req.params.id, req.body)
@@ -1631,7 +1589,5 @@ router.put("/outedit/:id", checkIfUser, requireAuth, (req, res) => {
       console.log(err);
     });
 });
-
-
 
 module.exports = router;
