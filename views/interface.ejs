@@ -36,28 +36,31 @@
   <header id="header">
     <div class="container d-flex align-items-center justify-content-around">
       <img src="/svg/PharmacyConnectLogo2.svg" height="50rem" alt="" />
-  
+
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="/interface">Home</a></li>
           <li><a class="nav-link scrollto" href="/STRUCTURE">About</a></li>
           <li><a class="nav-link scrollto" href="#portfolio">Portfolio</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
-  
+
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-  
+
           <li><a class="getstarted scrollto" href="#services">Get Started</a></li>
         </ul>
-  
+
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
       <!-- .navbar -->
-  
+
       <div class="dropdown">
-        <a href="" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <a href="" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+          data-bs-toggle="dropdown" aria-expanded="false">
           <img src="<%= user.profileimage? user.profileimage :
-          "/img/Avatar/Untitled-0-05.png" %>" alt="" width="32" height="32" class="rounded-circle me-2" />
-          <strong> <%= user.firstname %> </strong>
+          " /img/Avatar/Untitled-0-05.png" %>" alt="" width="32" height="32" class="rounded-circle me-2" />
+          <strong>
+            <%= user.firstname %>
+          </strong>
         </a>
         <ul class="dropdown-menu text-small shadow">
           <li>
@@ -101,7 +104,7 @@
     <script>
       const headerattach = document.querySelector("#headerattach");
       const headerimgsrc = document.querySelector("#headerimgsrc");
-  
+
       headerattach.addEventListener("change", (eo) => {
         const choosedfile = eo.target.files[0];
         const choosefileurl = URL.createObjectURL(choosedfile);
@@ -111,186 +114,196 @@
     </script>
   </header>
 
-    <!-- light icon -->
-    <%- include("partials/lighticon.ejs") %>
+  <!-- light icon -->
+  <%- include("partials/lighticon.ejs") %>
 
-      <!-- ======= Hero Section ======= -->
-      <section id="hero" class="d-flex align-items-center">
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="d-flex align-items-center">
 
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
-              data-aos="fade-up" data-aos-delay="200">
-              <h1>Better Solutions For Your Pharmacy</h1>
-              <h2>We bulid abetter way to connect and know</h2>
-              <div class="d-flex justify-content-center justify-content-lg-start">
-                <a href="#services" class="btn-get-started scrollto">Get Started</a>
-              </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
+            data-aos="fade-up" data-aos-delay="200">
+            <h1>Better Solutions For Your Pharmacy</h1>
+            <h2>We bulid abetter way to connect and know</h2>
+            <div class="d-flex justify-content-center justify-content-lg-start">
+              <a href="#services" class="btn-get-started scrollto">Get Started</a>
             </div>
-            <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-              <img src="/img/Pharmacy.png" class="img-fluid animated" alt="">
-            </div>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+            <img src="/img/Pharmacy.png" class="img-fluid animated" alt="">
           </div>
         </div>
+      </div>
 
-      </section>
-      <!-- End Hero -->
+    </section>
+    <!-- End Hero -->
 
-      <main id="main">
+    <main id="main">
 
-        <!-- ======= Services Section ======= -->
-        <section id="services" class="services section-bg">
-          <div class="container" data-aos="fade-up">
+      <!-- ======= Services Section ======= -->
+      <section id="services" class="services section-bg">
+        <div class="container" data-aos="fade-up">
 
-            <div class="section-title">
-              <h2>Services</h2>
-              <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-                consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat
-                sit in iste officiis commodi quidem hic quas.</p>
+          <div class="section-title">
+            <h2>Services</h2>
+            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
+              consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat
+              sit in iste officiis commodi quidem hic quas.</p>
+          </div>
+
+          <div class="row">
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+              <div class="icon-box">
+                <div class="icon"><img src="/svg/OncoTips.svg" height="140px" alt=""></div>
+                <h4><a href="/oncotips">OncoTips</a></h4>
+                <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              </div>
             </div>
 
-            <div class="row">
-              <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                <div class="icon-box">
-                  <div class="icon"><img src="/svg/OncoTips.svg" height="140px" alt=""></div>
-                  <h4><a href="/oncotips">OncoTips</a></h4>
-                  <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in"
+              data-aos-delay="200">
+              <div class="icon-box">
+                <div class="icon"><img src="/svg/ConnectLogo.svg" height="140px" alt=""></div>
+                <h4><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">Connect</a></h4>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              </div>
+            </div>
+            <!-- MODAL -->
+            <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+              aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">ALERT</h1>
+
+                  </div>
+                  <div class="modal-body">
+                    PLEASE SELECT YOUR PLATEFORM
+                  </div>
+                  <ul>
+                    <li> <a href="/inpatient">InPatient</a> </li>
+                    <li> <a href="/outpatient">OutPatient</a> </li>
+                    <li> <a href="/ivprep">IV Prep</a> </li>
+                    <li> <a href="/dispense">Dispense</a> </li>
+                    <li> <a href="/lap">Lap</a> </li>
+                  </ul>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+
+                  </div>
                 </div>
               </div>
+            </div>
 
-              <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in"
-                data-aos-delay="200">
-                <div class="icon-box">
-                  <div class="icon"><img src="/svg/ConnectLogo.svg" height="140px" alt=""></div>
-                  <h4><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" >Connect</a></h4>
-                  <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-                </div>
+
+
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
+              data-aos-delay="300">
+              <div class="icon-box">
+                <div class="icon"><img src="/svg/WorkFlow.svg" height="140px" alt=""></div>
+                <h4><a href="/index2">WorkFlow</a></h4>
+                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
               </div>
-              <!-- MODAL -->
-              <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">ALERT</h1>
+            </div>
 
-                    </div>
-                    <div class="modal-body">
-                      PLEASE SELECT YOUR PLATEFORM
-                    </div>
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
+              data-aos-delay="100">
+              <div class="icon-box">
+                <div class="icon"><img src="/svg/statistics-01-01-01.svg" height="130px" alt=""></div>
+                <h4><a href="/oncotips">Statistics</a></h4>
+                <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
+              data-aos-delay="100">
+              <div class="icon-box">
+                <div class="icon"><img src="/svg/qms-01.svg" height="140px" alt=""></div>
+                <h4><a href="https://phadispca.hospital57357.com/" target="_blank">QMS</a></h4>
+                <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
+              data-aos-delay="100">
+              <div class="icon-box">
+                <div class="icon"><img src="/svg/store-01.svg" height="140px" alt=""></div>
+                <h4><a href="" data-bs-toggle="modal" data-bs-target="#exampleModalTwo">Store</a></h4>
+                <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalTwo" data-bs-backdrop="static" data-bs-keyboard="false"
+              tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Store Selection</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    Please Select
                     <ul>
-                      <li> <a href="/inpatient">InPatient</a> </li>
-                      <li> <a href="/outpatient">OutPatient</a> </li>
-                      <li> <a href="/ivprep">IV Prep</a> </li>
-                      <li> <a href="/dispense">Dispense</a> </li>
-                      <li> <a href="/lap">Lap</a> </li>
+                      <li><a href="">Pyxis Store (76)</a></li>
+                      <li><a href="">Main Pharmacy Store (528)</a></li>
+                      <li><a href="">Main Hospital Store (10)</a></li>
+                      <li><a href="/perpatient">PerPatient Medication</a></li>
                     </ul>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
 
-                    </div>
                   </div>
                 </div>
               </div>
+            </div>
 
-            
-
-              <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
-                data-aos-delay="300">
-                <div class="icon-box">
-                  <div class="icon"><img src="/svg/WorkFlow.svg" height="140px" alt=""></div>
-                  <h4><a href="/index2">WorkFlow</a></h4>
-                  <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-                </div>
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
+              data-aos-delay="100">
+              <div class="icon-box">
+                <div class="icon"><img src="/svg/qms-01.svg" height="140px" alt=""></div>
+                <h4><a href="https://ebs.hospital57357.com/OA_HTML/AppsLocalLogin.jsp" target="_blank">EBS</a></h4>
+                <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
               </div>
+            </div>
 
-              <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
-                data-aos-delay="100">
-                <div class="icon-box">
-                  <div class="icon"><img src="/svg/statistics-01.svg" height="130px" alt=""></div>
-                  <h4><a href="/oncotips">Statistics</a></h4>
-                  <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-                </div>
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
+              data-aos-delay="100">
+              <div class="icon-box">
+                <div class="icon"><img src="/img/logo-cerner-400x495.jpg" height="140px" alt=""></div>
+                <h4><a href="https://misk.hospital57357.com/Citrix/XenApp/auth/login.aspx" target="_blank">Cerner</a>
+                </h4>
+                <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
               </div>
+            </div>
 
-              <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
-                data-aos-delay="100">
-                <div class="icon-box">
-                  <div class="icon"><img src="/svg/qms-01.svg" height="140px" alt=""></div>
-                  <h4><a href="https://phadispca.hospital57357.com/" target="_blank">QMS</a></h4>
-                  <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-                </div>
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
+              data-aos-delay="100">
+              <div class="icon-box">
+                <div class="icon"><img src="/img/Pyxis.jpg" height="140px" alt=""></div>
+                <h4><a href="https://hq-pyxisappsrv.hospital57357.com/" target="_blank">Pyxis HQ</a></h4>
+                <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
               </div>
+            </div>
 
-              <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
-                data-aos-delay="100">
-                <div class="icon-box">
-                  <div class="icon"><img src="/svg/store-01.svg" height="140px" alt=""></div>
-                  <h4><a href="" data-bs-toggle="modal" data-bs-target="#exampleModalTwo">Store</a></h4>
-                  <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-                </div>
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
+              data-aos-delay="100">
+              <div class="icon-box">
+                <div class="icon"><img src="/svg/play-01-01.svg" height="140px" alt=""></div>
+                <h4><a href="/documentry">Documentry</a></h4>
+                <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
               </div>
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModalTwo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">Store Selection</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      Please Select
-                      <ul>
-                        <li><a href="">Pyxis Store (76)</a></li>
-                        <li><a href="">Main Pharmacy Store (528)</a></li>
-                        <li><a href="">Main Hospital Store (10)</a></li>
-                        <li><a href="/perpatient">PerPatient Medication</a></li>
-                      </ul>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                      
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
-                data-aos-delay="100">
-                <div class="icon-box">
-                  <div class="icon"><img src="/svg/qms-01.svg" height="140px" alt=""></div>
-                  <h4><a href="https://ebs.hospital57357.com/OA_HTML/AppsLocalLogin.jsp" target="_blank">EBS</a></h4>
-                  <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-                </div>
-              </div>
-
-              <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
-                data-aos-delay="100">
-                <div class="icon-box">
-                  <div class="icon"><img src="/img/logo-cerner-400x495.jpg" height="140px" alt=""></div>
-                  <h4><a href="https://misk.hospital57357.com/Citrix/XenApp/auth/login.aspx" target="_blank">Cerner</a></h4>
-                  <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-                </div>
-              </div>
-
-              <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
-                data-aos-delay="100">
-                <div class="icon-box">
-                  <div class="icon"><img src="/img/Pyxis.jpg" height="140px" alt=""></div>
-                  <h4><a href="https://hq-pyxisappsrv.hospital57357.com/" target="_blank">Pyxis HQ</a></h4>
-                  <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-                </div>
-              </div>
-
             </div>
 
           </div>
-        </section>
+
+        </div>
+      </section>
 
 
-        <!-- ======= Team Section ======= -->
-        <!-- <section id="team" class="team section-bg">
+      <!-- ======= Team Section ======= -->
+      <!-- <section id="team" class="team section-bg">
           <div class="container" data-aos="fade-up">
 
             <div class="section-title">
@@ -374,29 +387,14 @@
 
           </div>
         </section> -->
-        <!-- End Team Section -->
+      <!-- End Team Section -->
 
 
-      </main>
-      <!-- End #main -->
+    </main>
+    <!-- End #main -->
 
-      <!-- ======= Footer ======= -->
-      <footer id="footer">
-
-        <!-- <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-6">
-            <h4>Join Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
+    <!-- ======= Footer ======= -->
+    <!-- <footer id="footer">
         <div class="footer-top">
           <div class="container">
             <div class="row">
@@ -449,43 +447,144 @@
             </div>
           </div>
         </div>
-
         <div class="container footer-bottom clearfix">
           <div class="copyright">
             &copy; Copyright <strong><span>PharmacyConnect</span></strong>. All Rights Reserved
           </div>
           <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
             Designed by <a href="https://bootstrapmade.com/">Hussein.Helal</a>
           </div>
         </div>
-      </footer>
-      <!-- End Footer -->
+      </footer> -->
+    <footer class="main-footer center" style="content-visibility: auto;">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+            <div class="connect sal-animate" data-sal-duration="1000" data-sal="slide-up" data-sal-delay="100"
+              data-sal-easing="ease-out-bounce">
+              <div class="main-title">
+                <h3 class="title">Connect With Us</h3>
+              </div>
+              <ul class="social-list">
+                <li class="facebook"><a href="https://www.facebook.com/57357Egypt"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li class="twitter"><a href="https://twitter.com/Hospital57357"><i class="fab fa-twitter"></i></a></li>
+                <li class="linked-in"><a href="https://www.linkedin.com/in/hospital-57357-a0009a34/?locale=en_US"><i
+                      class="fab fa-linkedin"></i></a></li>
+                <li class="youtube"><a href="https://www.youtube.com/channel/UCNhkYdkQYbwYHffTqU2ypCw"><i
+                      class="fab fa-youtube"></i></a></li>
+                <li class="instagram"><a href="https://www.instagram.com/57357hospital"><i
+                      class="fab fa-instagram"></i></a></li>
+              </ul>
+              <div class="app-download"> <a href="https://apps.apple.com/eg/app/57357/id1390357196"
+                  class="btn play lazy"
+                  style="background-image: url(&quot;https://www.57357.org/app/uploads/2019/11/app-store.png&quot;);"
+                  data-bg="url(https://www.57357.org/app/uploads/2019/11/app-store.png)"
+                  title="Download from play store" data-was-processed="true"></a> <a
+                  href="https://play.google.com/store/apps/details?id=com.alterna.hospital57357" class="btn play lazy"
+                  style="background-image: url(&quot;https://www.57357.org/app/uploads/2019/11/play-badge.png&quot;);"
+                  data-bg="url(https://www.57357.org/app/uploads/2019/11/play-badge.png)"
+                  title="Download from play store" data-was-processed="true"></a></div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <div data-sal-duration="1000" data-sal="slide-up" data-sal-delay="200" data-sal-easing="ease-out-bounce"
+              class="sal-animate">
+              <div class="main-title">
+                <h3 class="title">Contact Us</h3>
+              </div>
+              <div class="contact">
+                <ul class="list">
+                  <div class="contact">
+                    <ul class="list">
+                      <li><i class="fas fa-phone-volume"></i><span class="text phone">19057</span></li>
+                      <li><i class="fas fa-envelope"></i><span class="text mail"><a
+                            href="mailto: info@57357.org">info@57357.org</a></span></li>
+                      <li><i class="fas fa-map-marker-alt"></i><span class="text">1 Seket Al-Emam Street – El-Madbah
+                          El-Kadeem Yard – El-Saida Zenab – Cairo</span></li>
+                      <li><i class="fas fa-map-marker-alt"></i><span class="text">Othman Mohamad street adjacent to Al
+                          Helal Hospital – Tanta – Gharbya</span></li>
+                      <li><i class="fas fa-pencil-alt"></i><span class="text"><a
+                            href="https://www.57357.org/en/contact-us/">For Any Inquiry</a></span></li>
+                    </ul>
+                  </div>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-2">
+            <div data-sal-duration="1000" data-sal="slide-up" data-sal-delay="300" data-sal-easing="ease-out-bounce"
+              class="sal-animate">
+              <div class="main-title">
+                <h3 class="title">About 57357</h3>
+              </div>
+              <ul id="menu-footer-en" class="links">
+                <li class="nav-item menu-item menu-overview-history"><a class="nav-link"
+                    href="https://www.57357.org/en/about-57357/overview-history/">Overview &amp; History</a></li>
+                <li class="nav-item menu-item menu-strategy"><a class="nav-link" target="_blank" rel="noopener"
+                    href="https://www.57357.org/app/uploads/2019/11/CCHE-Strategy-Revisit-2020-2025-DRAFT.pdf">Strategy</a>
+                </li>
+                <li class="nav-item menu-item menu-prizes-awards"><a class="nav-link"
+                    href="https://www.57357.org/en/category/honor-and-prizes/">Prizes &amp; Awards</a></li>
+                <li class="nav-item menu-item menu-careers"><a class="nav-link"
+                    href="https://cchf57357.taleo.net/careersection/57357cch_externalcareersection/jobsearch.ftl?lang=en&amp;portal=8105020240">Careers</a>
+                </li>
+                <li class="nav-item menu-item menu-subscribe-to-newsletter"><a class="nav-link"
+                    href="https://www.57357.org/en/subscribe-to-57357-newsletter/">Subscribe to newsletter</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-6 col-lg-3">
+            <div data-sal-duration="1000" data-sal="slide-up" data-sal-delay="400" data-sal-easing="ease-out-bounce"
+              class="sal-animate">
+              <div class="jci-prize"> <img class="logo lazy loaded"
+                  src="https://www.57357.org/app/uploads/2019/11/Jci_logo.png"
+                  data-src="https://www.57357.org/app/uploads/2019/11/Jci_logo.png" alt="" data-was-processed="true">
+                <span class="text">JCI Accredited</span></div>
+              <div class="jciCto text-center mt-2">
+                <p class="mb-2" style="font-size: 10px;">For contacting JCI for any safety concerns ,complaints or
+                  issues You can send an email <a
+                    href="https://www.jointcommissioninternational.org/contact-us/report-a-quality-and-safety-issue/"
+                    class="link text-primary" style="font-size: 12px;">here</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-footer">
+        <div class="container">
+          <div class="row">&nbsp;<div class="col-12 wrapper">
+              <p class="copy sal-animate" data-sal-duration="1000" data-sal="slide-up" data-sal-delay="500"
+                data-sal-easing="ease-out-bounce">© 2007-2024&nbsp;Children’s Cancer Hospital Egypt 57357. All rights
+                reserved.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer -->
 
-      <div id="preloader"></div>
-      <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-          class="bi bi-arrow-up-short"></i></a>
+    <div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
 
-      <!-- Vendor JS Files -->
-      <script src="/js/aos.js"></script>
-      <script src="/js/bootstrap.bundle.min.js"></script>
-      <script src="/js/glightbox.min.js"></script>
-      <script src="/js/isotope.pkgd.min.js"></script>
-      <script src="/js/swiper-bundle.min.js"></script>
-      <script src="/js/noframework.waypoints.js"></script>
-      <script src="/js/validate.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="/js/aos.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/glightbox.min.js"></script>
+    <script src="/js/isotope.pkgd.min.js"></script>
+    <script src="/js/swiper-bundle.min.js"></script>
+    <script src="/js/noframework.waypoints.js"></script>
+    <script src="/js/validate.js"></script>
 
-      <!-- jQuary -->
-      <script src="/js/jquery-3.7.1.min.js"></script>
+    <!-- jQuary -->
+    <script src="/js/jquery-3.7.1.min.js"></script>
 
-      <!-- Template Main JS File -->
-      <script src="/js/main.js"></script>
+    <!-- Template Main JS File -->
+    <script src="/js/main.js"></script>
 
-      <!-- MY SCRIPT -->
-      <script src="/js/interface.js"></script>
+    <!-- MY SCRIPT -->
+    <script src="/js/interface.js"></script>
 
 
 </body>

@@ -69,6 +69,11 @@ router.get("/interface", checkIfUser, requireAuth, (req, res) => {
   res.render("interface.ejs");
 });
 
+//INTERFACE
+router.get("/documentry", checkIfUser, requireAuth, (req, res) => {
+  res.render("Documentry/helloo");
+});
+
 //ONCOTIPS
 router.get("/oncotips", checkIfUser, requireAuth, (req, res) => {
   res.render("oncotips.ejs");
