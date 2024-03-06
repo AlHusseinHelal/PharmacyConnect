@@ -33,6 +33,33 @@ h6 {
   font-family: "Jost", sans-serif;
 }
 
+.carousel-control-prev .carousel-control-prev-icon,
+    .carousel-control-next .carousel-control-next-icon {
+      background-color: #333;
+      width: 42px;
+      height: 42px;
+      display: block;
+      background-size: 40%;
+      border-radius: 100px;
+    }
+
+    @media (max-width: 576px) {
+      .above .container .slider-wrapper .inner-wrapper {
+        max-height: 100%;
+      }
+
+      .above .container {
+        padding-top: 32px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      [data-sal] {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
@@ -269,6 +296,11 @@ h6 {
   .navbar .dropdown .dropdown:hover>ul {
     left: -100%;
   }
+
+  #Documentry{
+    height: 100vh;
+  }
+
 }
 
 /**
@@ -488,6 +520,7 @@ h6 {
   #hero .hero-img img {
     width: 70%;
   }
+
 }
 
 @media (max-width: 575px) {
@@ -1096,104 +1129,6 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Team
---------------------------------------------------------------*/
-.team .member {
-  position: relative;
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  border-radius: 5px;
-  background: #fff;
-  transition: 0.5s;
-  height: 100%;
-}
-
-.team .member .pic {
-  overflow: hidden;
-  width: 180px;
-  border-radius: 50%;
-}
-
-.team .member .pic img {
-  transition: ease-in-out 0.3s;
-}
-
-.team .member:hover {
-  transform: translateY(-10px);
-}
-
-.team .member .member-info {
-  padding-left: 30px;
-}
-
-.team .member h4 {
-  font-weight: 700;
-  margin-bottom: 5px;
-  font-size: 20px;
-  color: #37517e;
-}
-
-.team .member span {
-  display: block;
-  font-size: 15px;
-  padding-bottom: 10px;
-  position: relative;
-  font-weight: 500;
-}
-
-.team .member span::after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 50px;
-  height: 1px;
-  background: #cbd6e9;
-  bottom: 0;
-  left: 0;
-}
-
-.team .member p {
-  margin: 10px 0 0 0;
-  font-size: 14px;
-}
-
-.team .member .social {
-  margin-top: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.team .member .social a {
-  transition: ease-in-out 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50px;
-  width: 32px;
-  height: 32px;
-  background: #eff2f8;
-}
-
-.team .member .social a i {
-  color: #37517e;
-  font-size: 16px;
-  margin: 0 2px;
-}
-
-.team .member .social a:hover {
-  background: #47b2e4;
-}
-
-.team .member .social a:hover i {
-  color: #fff;
-}
-
-.team .member .social a+a {
-  margin-left: 8px;
-}
-
-/*--------------------------------------------------------------
 # Pricing
 --------------------------------------------------------------*/
 .pricing .row {
@@ -1399,6 +1334,9 @@ section {
 @media (max-width: 1200px) {
   .faq .faq-list {
     padding: 0;
+  }
+  #Documentry{
+    height: 130vh;
   }
 }
 
@@ -1922,4 +1860,27 @@ section {
 }
 #gear:hover {
   cursor: pointer;
+}
+
+/* Documentry */
+.dnone{
+  display: none;  
+}
+.videobtn1:hover{
+  cursor: pointer;
+}
+.videobtn2:hover{
+  cursor: pointer;
+}
+.videobtn3:hover{
+  cursor: pointer;
+}
+.cardheight{
+  height: 201px;
+}
+
+@media (max-width: 767px){
+  #Documentry {
+    height: 200vh;
+}
 }

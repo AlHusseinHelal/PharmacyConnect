@@ -95,6 +95,12 @@
         <label for="lastname">Confirm Password</label>
       </div>
 
+      <div id="passnotmatch" class=" d-flex flex-row align-items-center my-2 d-none"
+        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+        <p class="my-1 ms-1">Password not match</p>
+      </div>
+
       <button class="btn btn-primary w-100 py-2 mt-2" type="submit" value="register">Sign Up</button>
 
     </form>
@@ -153,6 +159,14 @@
         document.getElementById('codeexist').classList.add("d-none");
         code.classList.remove("redframe");
 
+      }
+
+      if (data.passnotmatch) {
+        document.getElementById('passnotmatch').classList.remove("d-none");
+        code.classList.add("redframe");
+      } else {
+        document.getElementById('passnotmatch').classList.add("d-none");
+        code.classList.remove("redframe");
       }
 
       if (data.id) {

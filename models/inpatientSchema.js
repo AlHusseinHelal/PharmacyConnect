@@ -7,13 +7,18 @@ const Schema = mongoose.Schema;
 const inpat2 = new Schema(
   {
     patientname: String,
-    mrn: Number,
+    slug: {
+      type: String,
+      lowercase: true,
+    },
+    mrn: String,
     ptfloor: String,
     requestype: String,
     oraliv: String,
     roundcomment: String,
     prepcomment: String,
     attachfile: String,
+    
   },
   { timestamps: true }
 );

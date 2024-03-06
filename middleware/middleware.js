@@ -35,9 +35,17 @@ const checkIfUser = (req, res, next) => {
   }
 };
 
-const modification = (req, res, next) => {
-  const time = new Date().toISOString();
-  next();
-};
+const globalError = (err, req, res, next) => {
+  err.statusCode = err.statusCode || 500;
+  err.status = err.status || "error";
+  res
+    .status(err.statusCode)
+    .json({
+      status: err.status,
+      error: err,
+      message: err.message,
+      stack: err.stack,
+    });
+}
 
-module.exports = { requireAuth, checkIfUser };
+module.exports = { requireAuth, checkIfUser, globalError };

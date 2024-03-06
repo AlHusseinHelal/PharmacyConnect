@@ -1,23 +1,38 @@
 const express = require("express");
+//PASSWORD HACH
 const bcrypt = require("bcrypt");
+//ROUTER
 const router = express.Router();
+//SCHEMA
 const Inpatientschema = require("../models/inpatientSchema");
 const Registration = require("../models/newRegSchema");
 const Outpatient = require("../models/outpatientSchema");
 const Dispenseschema = require("../models/dispenseSchema");
+//MIDDLEWARE
 const { requireAuth } = require("../middleware/middleware");
 const { checkIfUser } = require("../middleware/middleware");
-const { modification } = require("../middleware/middleware");
+//CONTROLLER
+const { signOut } = require("../controllers/userController");
+const { firstWelcome } = require("../controllers/userController");
+const { loginPage } = require("../controllers/userController");
+const { Register } = require("../controllers/userController");
+//ERROR HANDILING TRY_CATCH OR THEN_CATCH
+const asyncHandler = require("express-async-handler");
+//SLUGIFY
+const slugify = require('slugify')
+//MOMMENT TIMESTAMP
+const moment = require("moment");
+//JWT TOKEN
+var jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
 const multer = require("multer");
 const upload = multer({ storage: multer.diskStorage({}) });
 const cloudinary = require("cloudinary").v2;
 router.use(express.static("public"));
+//dotenv
 require("dotenv").config();
-const React = require("react");
-// import React from 'react';
-const ReactDOM = require("react-dom/client");
-// import ReactDOM from 'react-dom/client';
+
+
 
 // cloudinary.config({
 //   cloud_name: process.env.CLOUDINARY_ClOUD_NAME,
@@ -31,33 +46,23 @@ cloudinary.config({
   api_secret: "KZVTWvN1LcrpVm-COLVX-3VgHzU",
 });
 
-const moment = require("moment");
-var jwt = require("jsonwebtoken");
+
 
 // ---------------------------------
 //GET REQUEST
 // ----------------------------------
 
 //SIGNOUT
-router.get("/signout", (req, res) => {
-  res.cookie("jwt", "", { httpOnly: true, maxAge: 1 });
-  res.redirect("/");
-});
+router.get("/signout", signOut);
 
 //firstwelcome
-router.get("/", (req, res) => {
-  res.render("Entery/firstwelcome");
-});
+router.get("/", firstWelcome);
 
 //LOGIN PAGE
-router.get("/login", (req, res) => {
-  res.render("Entery/login.ejs");
-});
+router.get("/login", loginPage);
 
 //REGISTRATION PAGE
-router.get("/register", (req, res) => {
-  res.render("Entery/registration.ejs");
-});
+router.get("/register", Register);
 
 //AVATAR PAGE
 router.get("/Avatar", (req, res) => {
@@ -67,11 +72,6 @@ router.get("/Avatar", (req, res) => {
 //INTERFACE
 router.get("/interface", checkIfUser, requireAuth, (req, res) => {
   res.render("interface.ejs");
-});
-
-//INTERFACE
-router.get("/documentry", checkIfUser, requireAuth, (req, res) => {
-  res.render("Documentry/helloo");
 });
 
 //ONCOTIPS
@@ -657,17 +657,6 @@ router.get("/inpatient3", checkIfUser, requireAuth, (req, res) => {
     });
 });
 
-// INPATIENT VIEW/DELETE
-router.get("/view/:id", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.findById(req.params.id)
-    .then((result) => {
-      res.render("Inpatient/inpatient4", { obj: result, moment: moment });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
 // OUTPATIENT
 router.get("/outpatient", checkIfUser, requireAuth, (req, res) => {
   res.render("Outpatient/outpatient");
@@ -687,16 +676,6 @@ router.get("/outpatient3", checkIfUser, requireAuth, (req, res) => {
     });
 });
 
-// OUTPATIENT VIEW/DELETE
-router.get("/outview/:id", checkIfUser, requireAuth, (req, res) => {
-  Outpatient.findById(req.params.id)
-    .then((result) => {
-      res.render("Outpatient/outpatient4", { obj: result, moment: moment });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
 
 //IVPREP
 router.get("/ivprep", checkIfUser, requireAuth, (req, res) => {
@@ -739,28 +718,6 @@ router.get("/prepdis", checkIfUser, requireAuth, (req, res) => {
 //PHARMACY LAB
 router.get("/lab", checkIfUser, requireAuth, (req, res) => {
   res.render("lab");
-});
-
-//IVPREP EDIT INPATIENT
-router.get("/edit/:id", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.findById(req.params.id)
-    .then((result) => {
-      res.render("IvPrep/ivprepedit", { obj: result });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-//IVPREP EDIT OUTPATIENT
-router.get("/editout/:id", checkIfUser, requireAuth, (req, res) => {
-  Outpatient.findById(req.params.id)
-    .then((result) => {
-      res.render("IvPrep/ivprepeditout", { obj: result });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 });
 
 // DISPENSE
@@ -820,37 +777,38 @@ router.post(
       "Password must be at least 8 characters with 1 upper case letter and 1 number"
     ).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/),
   ],
-  async (req, res) => {
-    try {
-      const usercode = await Registration.findOne({ code: req.body.code });
-      if (usercode) {
-        return res.json({ codeexist: "The Code Is Already Existing" });
-      }
-
-      const useremail = await Registration.findOne({ email: req.body.email });
-      if (useremail) {
-        return res.json({ emailexist: "The Email Is Already Existing" });
-      }
-
-      const objError = validationResult(req);
-      console.log(objError.errors);
-      if (objError.errors.length > 0) {
-        return res.json({ validationerrors: objError.errors });
-      }
-
-      const newUser = await Registration.create(req.body);
-      var token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
-      res.cookie("jwt", token, { httpOnly: true, maxAge: 86400000 });
-      res.json({ id: newUser._id });
-    } catch (error) {
-      console.log(err);
+  asyncHandler(async (req, res) => {
+    const usercode = await Registration.findOne({ code: req.body.code });
+    if (usercode) {
+      return res.json({ codeexist: "The Code Is Already Existing" });
     }
-  }
+
+    const useremail = await Registration.findOne({ email: req.body.email });
+    if (useremail) {
+      return res.json({ emailexist: "The Email Is Already Existing" });
+    }
+
+    const objError = validationResult(req);
+    if (objError.errors.length > 0) {
+      return res.json({ validationerrors: objError.errors });
+    }
+
+    
+    if (req.body.password != req.body.cpassword) {
+      return res.json({ passnotmatch: "Password not match" });
+    }
+
+    const newUser = await Registration.create(req.body);
+    var token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
+    res.cookie("jwt", token, { httpOnly: true, maxAge: 86400000 });
+    res.json({ id: newUser._id });
+  })
 );
 
 //LOGIN CHECK
-router.post("/checklogin", async (req, res) => {
-  try {
+router.post(
+  "/checklogin",
+  asyncHandler(async (req, res) => {
     const loginuser = await Registration.findOne({ code: req.body.code });
     if (loginuser == null) {
       return res.json({ codenotfound: "You Are Not Registered" });
@@ -864,10 +822,8 @@ router.post("/checklogin", async (req, res) => {
       res.cookie("jwt", token, { httpOnly: true, maxAge: 86400000 });
       res.json({ loginuser: loginuser });
     }
-  } catch (e) {
-    console.log(e);
-  }
-});
+  })
+);
 
 // CHANGE IMAGE POST REQUEST
 router.post(
@@ -1328,59 +1284,31 @@ router.post("/avatarselection24", checkIfUser, requireAuth, (req, res) => {
   );
 });
 
-// router.put("/editform/:id", checkIfUser, requireAuth, (req, res) => {
-//   console.log(req.body);
-//   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
-//     .then(() => {
-//       Inpatientschema.find().then((result) => {
-//         res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
-//       });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
-
-// router.put("/editformout/:id", checkIfUser, requireAuth, (req, res) => {
-//   console.log(req.body);
-//   Outpatient.findByIdAndUpdate(req.params.id, req.body)
-//     .then(() => {
-//       Outpatient.find().then((result) => {
-//         res.render("IvPrep/ivprepout", { outarray: result, moment: moment });
-//       });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
-
 // INPATIENT ADD PATIENT
-router.post("/add_patient_in", checkIfUser, requireAuth, async (req, res) => {
-  try {
+router.post(
+  "/add_patient_in",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
     if (req.body.oraliv === "Choose....") {
       return res.json({ oraliv: "You Must Enter This Field" });
     } else {
-      inpatient_add_patient = await Inpatientschema.create(req.body);
+      const body = req.body
+      const name = req.body.patientname
+      inpatient_add_patient = await Inpatientschema.create(body);
+      console.log(inpatient_add_patient);
       res.json({ inpatient_add_patient: inpatient_add_patient });
     }
-  } catch (error) {}
-});
+  })
+);
 
 // INPATIENT POST SEARCH
-router.post("/inpatientsearch", checkIfUser, requireAuth, (req, res) => {
-  console.log(req.body.searchText);
-  const searchText = req.body.searchText.trim();
-  Inpatientschema.find({ mrn: searchText })
-    .then((result) => {
-      res.render("Inpatient/inpatientsearch", {
-        array: result,
-        moment: moment,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.post("/inpatientsearch",checkIfUser,requireAuth,asyncHandler(async (req, res) => {
+    const searchText = req.body.searchText.trim();
+    const result = await Inpatientschema.find({ mrn: searchText });
+    res.render("Inpatient/inpatientsearch", { array: result, moment: moment });  
+  })
+);
 
 // INPATIENT/PREP POST SEARCH
 router.post("/inpatientprepsearch", checkIfUser, requireAuth, (req, res) => {
@@ -1485,19 +1413,6 @@ router.post(
     );
   }
 );
-
-// router.post("/add_patient_in", checkIfUser, requireAuth, async (req, res) => {
-//   try {
-//     if (req.body.oraliv === "Choose....") {
-//       return res.json({ oraliv: "You Must Enter This Field" });
-//     } else {
-//       inpatient_add_patient = await Inpatientschema.create(req.body);
-//       res.json({inpatient_add_patient: inpatient_add_patient})
-//     }
-//   } catch (error) {
-
-//   }
-//   });
 
 // ---------------------------------
 //DELETE REQUEST

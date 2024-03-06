@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const outpatient = new Schema(
   {
     patientname: String,
-    mrn: Number,
+    mrn: String,
     ptfloor: String,
     requestype: String,
     oraliv: String,
