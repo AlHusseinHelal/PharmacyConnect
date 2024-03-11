@@ -300,6 +300,9 @@ h6 {
   #Documentry{
     height: 100vh;
   }
+  .cardheight{
+    height: 250px;
+  }
 
 }
 
@@ -1338,6 +1341,9 @@ section {
   #Documentry{
     height: 130vh;
   }
+  .cardheight{
+    height: 250px;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -1876,7 +1882,7 @@ section {
   cursor: pointer;
 }
 .cardheight{
-  height: 201px;
+  height: 250px;
 }
 
 @media (max-width: 767px){

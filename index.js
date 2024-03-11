@@ -1,10 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
+
 const app = express();
 const port = process.env.PORT || 3000;
-var jwt = require("jsonwebtoken");
-var methodOverride = require("method-override");
-var cookieParser = require("cookie-parser");
+const methodOverride = require("method-override");
+const cookieParser = require("cookie-parser");
 //.env
 require("dotenv").config();
 //ERROR APIERROR
@@ -28,7 +28,7 @@ app.use(express.json());
 mongoose
   .connect(process.env.MDB)
   .then(() => {
-    app.listen(port, () => {
+    const server = app.listen(port, () => {
       console.log(`Listening on port ${port}`);
     });
   })
@@ -42,6 +42,9 @@ app.all("*", (req, res, next) => {
 app.use(globalError);
 //ERROE HANDLING OUTSIDE EXPRESS
 process.on("unhandledRejection", (err) => {
-  console.error(`UnhandledRejection Errors : ${err} `);
-  process.exit(1);
+  console.error(`UnhandledRejection Errors : ${err.name} | ${err.message} `);
+  server.close(() => {
+    process.exit(1);
+  })
+  
 })

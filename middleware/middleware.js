@@ -1,5 +1,6 @@
+const { validationResult } = require("express-validator");
+const jwt = require("jsonwebtoken");
 const Registration = require("../models/newRegSchema");
-var jwt = require("jsonwebtoken");
 
 const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
@@ -48,4 +49,12 @@ const globalError = (err, req, res, next) => {
     });
 }
 
-module.exports = { requireAuth, checkIfUser, globalError };
+const validatorMiddleware = (req, res, next) => {
+  const errors = validationResult(req)
+  if(!errors.isEmpty()) {
+    return res.status(400).json({ errors : errors.array()})
+}
+next()
+};
+
+module.exports = { requireAuth, checkIfUser, globalError, validatorMiddleware };

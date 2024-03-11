@@ -90,8 +90,7 @@
       </div>
 
       <div class="form-floating">
-        <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Confirm Password"
-          required>
+        <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Confirm Password">
         <label for="lastname">Confirm Password</label>
       </div>
 
@@ -99,6 +98,12 @@
         style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
         <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
         <p class="my-1 ms-1">Password not match</p>
+      </div>
+
+      <div id="passnotfound" class=" d-flex flex-row align-items-center my-2 d-none"
+        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+        <p class="my-1 ms-1">Confirm Password Required</p>
       </div>
 
       <button class="btn btn-primary w-100 py-2 mt-2" type="submit" value="register">Sign Up</button>
@@ -115,7 +120,7 @@
 
       const res = await fetch("/adduser", {
         method: "POST",
-        body: JSON.stringify({ email: email.value, password: password.value, code: code.value, firstname: firstname.value, lastname: lastname.value }),
+        body: JSON.stringify({ email: email.value, password: password.value, code: code.value, firstname: firstname.value, lastname: lastname.value, cpassword: cpassword.value }),
         headers: { "Content-Type": "application/json" },
       });
 
@@ -136,7 +141,13 @@
           } else {
             wrongpassword.classList.add("d-none")
             password.classList.remove("redframe")
-
+          }
+          if (item.path == "cpassword") {
+            passnotfound.classList.remove("d-none")
+            passnotfound.classList.add("redframe")
+          } else {
+            passnotfound.classList.add("d-none")
+            passnotfound.classList.remove("redframe")
           }
         });
       }
@@ -161,22 +172,17 @@
 
       }
 
-      if (data.passnotmatch) {
-        document.getElementById('passnotmatch').classList.remove("d-none");
-        code.classList.add("redframe");
+      if (data.passwordnotmatch) {
+        passnotmatch.classList.remove("d-none")
+        passnotmatch.classList.add("redframe")
       } else {
-        document.getElementById('passnotmatch').classList.add("d-none");
-        code.classList.remove("redframe");
+        passnotmatch.classList.add("d-none")
+        passnotmatch.classList.remove("redframe")
       }
 
-      if (data.id) {
+      if (data.user) {
         location.assign("/Avatar")
-
       }
-
-
-
-
     });
   </script>
 

@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
+
 const Schema = mongoose.Schema;
 
 // DISPENSE SCHEMA
 const dispense = new Schema(
   {
     patientname: String,
+    slug: String,
     mrn: String,
     ptfloor: String,
     requestype: String,

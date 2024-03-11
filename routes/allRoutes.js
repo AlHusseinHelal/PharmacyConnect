@@ -3,36 +3,44 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 //ROUTER
 const router = express.Router();
+//ERROR HANDILING TRY_CATCH OR THEN_CATCH
+const asyncHandler = require("express-async-handler");
+//SLUGIFY
+const slugify = require("slugify");
+//MOMMENT TIMESTAMP
+const moment = require("moment");
+//JWT TOKEN
+const jwt = require("jsonwebtoken");
+//VALIDATION RULE
+const { check, validationResult } = require("express-validator");
+//MULTER
+const multer = require("multer");
+//MULTER UPLOAD
+const upload = multer({ storage: multer.diskStorage({}) });
+//Cloudinary
+const cloudinary = require("cloudinary").v2;
 //SCHEMA
 const Inpatientschema = require("../models/inpatientSchema");
-const Registration = require("../models/newRegSchema");
+const User = require("../models/newRegSchema");
 const Outpatient = require("../models/outpatientSchema");
 const Dispenseschema = require("../models/dispenseSchema");
 //MIDDLEWARE
 const { requireAuth } = require("../middleware/middleware");
 const { checkIfUser } = require("../middleware/middleware");
+const { validatorMiddleware } = require("../middleware/middleware");
 //CONTROLLER
 const { signOut } = require("../controllers/userController");
 const { firstWelcome } = require("../controllers/userController");
 const { loginPage } = require("../controllers/userController");
 const { Register } = require("../controllers/userController");
-//ERROR HANDILING TRY_CATCH OR THEN_CATCH
-const asyncHandler = require("express-async-handler");
-//SLUGIFY
-const slugify = require('slugify')
-//MOMMENT TIMESTAMP
-const moment = require("moment");
-//JWT TOKEN
-var jwt = require("jsonwebtoken");
-const { check, validationResult } = require("express-validator");
-const multer = require("multer");
-const upload = multer({ storage: multer.diskStorage({}) });
-const cloudinary = require("cloudinary").v2;
+const { Avatar } = require("../controllers/userController");
+const { interface } = require("../controllers/userController");
+const { OncoTips } = require("../controllers/userController");
+const { welcome } = require("../controllers/userController");
+
 router.use(express.static("public"));
 //dotenv
 require("dotenv").config();
-
-
 
 // cloudinary.config({
 //   cloud_name: process.env.CLOUDINARY_ClOUD_NAME,
@@ -45,8 +53,6 @@ cloudinary.config({
   api_key: "594878572393349",
   api_secret: "KZVTWvN1LcrpVm-COLVX-3VgHzU",
 });
-
-
 
 // ---------------------------------
 //GET REQUEST
@@ -61,28 +67,20 @@ router.get("/", firstWelcome);
 //LOGIN PAGE
 router.get("/login", loginPage);
 
-//REGISTRATION PAGE
+//User PAGE
 router.get("/register", Register);
 
 //AVATAR PAGE
-router.get("/Avatar", (req, res) => {
-  res.render("Entery/Avatar.ejs");
-});
+router.get("/Avatar", Avatar);
 
 //INTERFACE
-router.get("/interface", checkIfUser, requireAuth, (req, res) => {
-  res.render("interface.ejs");
-});
+router.get("/interface", checkIfUser, requireAuth, interface);
 
 //ONCOTIPS
-router.get("/oncotips", checkIfUser, requireAuth, (req, res) => {
-  res.render("oncotips.ejs");
-});
+router.get("/oncotips", checkIfUser, requireAuth, OncoTips);
 
 //welcomw
-router.get("/welcome", checkIfUser, requireAuth, (req, res) => {
-  res.render("Entery/welcome.ejs");
-});
+router.get("/welcome", checkIfUser, requireAuth, welcome);
 
 //STRUCTURE
 router.get("/STRUCTURE", checkIfUser, requireAuth, (req, res) => {
@@ -676,7 +674,6 @@ router.get("/outpatient3", checkIfUser, requireAuth, (req, res) => {
     });
 });
 
-
 //IVPREP
 router.get("/ivprep", checkIfUser, requireAuth, (req, res) => {
   res.render("IvPrep/ivprep");
@@ -776,32 +773,37 @@ router.post(
       "password",
       "Password must be at least 8 characters with 1 upper case letter and 1 number"
     ).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/),
+    check("cpassword").notEmpty().withMessage("Confirm Password Required"),
   ],
   asyncHandler(async (req, res) => {
-    const usercode = await Registration.findOne({ code: req.body.code });
+    const usercode = await User.findOne({ code: req.body.code });
     if (usercode) {
       return res.json({ codeexist: "The Code Is Already Existing" });
     }
 
-    const useremail = await Registration.findOne({ email: req.body.email });
+    const useremail = await User.findOne({ email: req.body.email });
     if (useremail) {
       return res.json({ emailexist: "The Email Is Already Existing" });
     }
 
+  
     const objError = validationResult(req);
-    if (objError.errors.length > 0) {
+    if (!objError.isEmpty()) {
       return res.json({ validationerrors: objError.errors });
     }
 
-    
-    if (req.body.password != req.body.cpassword) {
-      return res.json({ passnotmatch: "Password not match" });
+    const confirmPassword = req.body.cpassword;
+    console.log(confirmPassword)
+    const password = req.body.password;
+    console.log(password)
+    if (password !== confirmPassword) {
+      return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    const newUser = await Registration.create(req.body);
-    var token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
+    const newUser = await User.create(req.body);
+    const token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
     res.cookie("jwt", token, { httpOnly: true, maxAge: 86400000 });
-    res.json({ id: newUser._id });
+    res.status(201).json({ user: newUser });
   })
 );
 
@@ -809,7 +811,7 @@ router.post(
 router.post(
   "/checklogin",
   asyncHandler(async (req, res) => {
-    const loginuser = await Registration.findOne({ code: req.body.code });
+    const loginuser = await User.findOne({ code: req.body.code });
     if (loginuser == null) {
       return res.json({ codenotfound: "You Are Not Registered" });
     }
@@ -818,7 +820,7 @@ router.post(
       return res.json({ wrongpassword: "Wrong Password" });
     }
     if (match) {
-      var token = jwt.sign({ id: loginuser._id }, process.env.JWTSECRET_KEY);
+      const token = jwt.sign({ id: loginuser._id }, process.env.JWTSECRET_KEY);
       res.cookie("jwt", token, { httpOnly: true, maxAge: 86400000 });
       res.json({ loginuser: loginuser });
     }
@@ -838,8 +840,11 @@ router.post(
       { folder: "PharmacyConnect/Profile-Image" },
       async (error, result) => {
         if (result) {
-          var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-          await Registration.updateOne(
+          const decoded = jwt.verify(
+            req.cookies.jwt,
+            process.env.JWTSECRET_KEY
+          );
+          await User.updateOne(
             { _id: decoded.id },
             { profileimage: result.secure_url }
           );
@@ -857,8 +862,8 @@ router.post("/avatarselection", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -875,8 +880,8 @@ router.post("/avatarselection2", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -893,8 +898,8 @@ router.post("/avatarselection3", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -911,8 +916,8 @@ router.post("/avatarselection4", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -929,8 +934,8 @@ router.post("/avatarselection5", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -947,8 +952,8 @@ router.post("/avatarselection6", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -965,8 +970,8 @@ router.post("/avatarselection7", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -983,8 +988,8 @@ router.post("/avatarselection8", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -1001,8 +1006,8 @@ router.post("/avatarselection9", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -1019,8 +1024,8 @@ router.post("/avatarselection10", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -1037,8 +1042,8 @@ router.post("/avatarselection11", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -1055,8 +1060,8 @@ router.post("/avatarselection12", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -1073,8 +1078,8 @@ router.post("/avatarselection13", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -1091,8 +1096,8 @@ router.post("/avatarselection14", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -1109,8 +1114,8 @@ router.post("/avatarselection15", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -1127,8 +1132,8 @@ router.post("/avatarselection16", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -1145,8 +1150,8 @@ router.post("/avatarselection17", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -1163,8 +1168,8 @@ router.post("/avatarselection18", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -1181,8 +1186,8 @@ router.post("/avatarselection19", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -1199,8 +1204,8 @@ router.post("/avatarselection20", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -1217,8 +1222,8 @@ router.post("/avatarselection21", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -1235,8 +1240,8 @@ router.post("/avatarselection22", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -1253,8 +1258,8 @@ router.post("/avatarselection23", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -1271,8 +1276,8 @@ router.post("/avatarselection24", checkIfUser, requireAuth, (req, res) => {
     { folder: "PharmacyConnect/AVATAR" },
     async (error, result) => {
       if (result) {
-        var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await Registration.updateOne(
+        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+        await User.updateOne(
           { _id: decoded.id },
           { profileimage: result.secure_url }
         );
@@ -1292,21 +1297,23 @@ router.post(
   asyncHandler(async (req, res) => {
     if (req.body.oraliv === "Choose....") {
       return res.json({ oraliv: "You Must Enter This Field" });
-    } else {
-      const body = req.body
-      const name = req.body.patientname
-      inpatient_add_patient = await Inpatientschema.create(body);
-      console.log(inpatient_add_patient);
-      res.json({ inpatient_add_patient: inpatient_add_patient });
     }
+    const body = req.body;
+    const name = req.body.patientname;
+    const inpatientAddpatient = await Inpatientschema.create(body);
+    res.json({ inpatient_add_patient: inpatientAddpatient });
   })
 );
 
 // INPATIENT POST SEARCH
-router.post("/inpatientsearch",checkIfUser,requireAuth,asyncHandler(async (req, res) => {
+router.post(
+  "/inpatientsearch",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
     const searchText = req.body.searchText.trim();
     const result = await Inpatientschema.find({ mrn: searchText });
-    res.render("Inpatient/inpatientsearch", { array: result, moment: moment });  
+    res.render("Inpatient/inpatientsearch", { array: result, moment: moment });
   })
 );
 
@@ -1338,10 +1345,9 @@ router.post("/add_patient_out", checkIfUser, requireAuth, async (req, res) => {
   try {
     if (req.body.oraliv === "Choose....") {
       return res.json({ iv_oral: "You Must Enter This Field" });
-    } else {
-      const newoutpatientpatient = await Outpatient.create(req.body);
-      res.json({ newoutpatientpatient: newoutpatientpatient });
     }
+    const newoutpatientpatient = await Outpatient.create(req.body);
+    res.json({ newoutpatientpatient: newoutpatientpatient });
   } catch (error) {
     console.log(error);
   }
@@ -1380,11 +1386,12 @@ router.post("/add_patient_dis", checkIfUser, requireAuth, async (req, res) => {
   try {
     if (req.body.oraliv === "Choose....") {
       return res.json({ oraliv: "You Must Enter This Field" });
-    } else {
-      dispense_add_patient = await Dispenseschema.create(req.body);
-      res.json({ dispense_add_patient: dispense_add_patient });
     }
-  } catch (error) {}
+    const dispenseAddpatient = await Dispenseschema.create(req.body);
+    res.json({ dispense_add_patient: dispenseAddpatient });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 //ATTACH FILE
@@ -1401,7 +1408,6 @@ router.post(
       async (error, result) => {
         console.log(req.file);
         if (result) {
-          // var decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
           await Inpatientschema.updateOne(req.params.id, {
             attachfile: result.secure_url,
           });

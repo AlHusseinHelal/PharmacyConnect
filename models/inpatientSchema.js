@@ -1,10 +1,8 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-
 
 
 // INPATIENT SCHEMA
-const inpat2 = new Schema(
+const inpat2 = new mongoose.Schema(
   {
     patientname: String,
     slug: {
