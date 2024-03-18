@@ -5,104 +5,203 @@
         <img width="150" height="51" src="https://www.57357.org/app/uploads/2019/12/logo-2.png">
         <img src="/svg/PharmacyConnectLogo2.svg" height="50rem" alt="" />
       </div>
-    
 
-    <nav id="navbar" class="navbar">
-      <ul>
-        <li><a class="nav-link scrollto active" href="/interface">Home</a></li>
-        <li class="dropdown"><a href="#"><span>Service</span> <i class="bi bi-chevron-down"></i></a>
-          <ul>
-            <li><a href="/oncotips">OncoTips</a></li>
-            <li class="dropdown"><a href="#"><span>Connect</span> <i class="bi bi-chevron-right"></i></a>
-              <ul>
-                <li><a href="/inpatient">InPatient</a></li>
-                <li><a href="/outpatient">OutPatient</a></li>
-                <li><a href="/ivprep">IV-PREP</a></li>
-                <li><a href="/dispense">Dispense</a></li>
-                <li><a href="/lap">Lab</a></li>
-              </ul>
-            </li>
-            <li><a href="/index2">WorkFlow</a></li>
-            <li><a href="#">Quality</a></li>
-            <li><a href="https://phadispca.hospital57357.com/" target="_blank" >QMS</a></li>
-            <li class="dropdown"><a href="#"><span>Store</span> <i class="bi bi-chevron-right"></i></a>
-              <ul>
-                <li><a href="">Pyxis Store (76)</a></li>
-                <li><a href="">Main Pharmacy Store (528)</a></li>
-                <li><a href="/perpatient">PerPatient Medication</a></li>
-                <li><a href="">Main Hospital Store (10)</a></li>
-              </ul>
-            </li>
-            <li><a href="https://misk.hospital57357.com/Citrix/XenApp/auth/login.aspx" target="_blank">Cerner</a></li>
-            <li><a href="https://hq-pyxisappsrv.hospital57357.com/" target="_blank">Pyxis HQ</a></li>
-            <li><a href="https://ebs.hospital57357.com/OA_HTML/AppsLocalLogin.jsp" target="_blank">EBS</a></li>
-          </ul>
-        </li>
-        <li><a class="nav-link scrollto" href="/STRUCTURE">About</a></li>
-        <li><a class="nav-link scrollto" href="#portfolio">Portfolio</a></li>
-        <li><a class="nav-link scrollto" href="#team">Team</a></li>
-        <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-      </ul>
 
-      <i class="bi bi-list mobile-nav-toggle"></i>
-    </nav>
-    <!-- .navbar -->
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="/interface">Home</a></li>
+          <li class="dropdown"><a href="#"><span>Service</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/oncotips">OncoTips</a></li>
+              <li class="dropdown"><a href="#"><span>Connect</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="/inpatient">InPatient</a></li>
+                  <li><a href="/outpatient">OutPatient</a></li>
+                  <li><a href="/ivprep">IV-PREP</a></li>
+                  <li><a href="/dispense">Dispense</a></li>
+                  <li><a href="/lap">Lab</a></li>
+                </ul>
+              </li>
+              <li><a href="/index2">WorkFlow</a></li>
+              <li><a href="#">Quality</a></li>
+              <li><a href="https://phadispca.hospital57357.com/" target="_blank">QMS</a></li>
+              <li class="dropdown"><a href="#"><span>Store</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="">Pyxis Store (76)</a></li>
+                  <li><a href="">Main Pharmacy Store (528)</a></li>
+                  <li><a href="/perpatient">PerPatient Medication</a></li>
+                  <li><a href="">Main Hospital Store (10)</a></li>
+                </ul>
+              </li>
+              <li><a href="https://misk.hospital57357.com/Citrix/XenApp/auth/login.aspx" target="_blank">Cerner</a></li>
+              <li><a href="https://hq-pyxisappsrv.hospital57357.com/" target="_blank">Pyxis HQ</a></li>
+              <li><a href="https://ebs.hospital57357.com/OA_HTML/AppsLocalLogin.jsp" target="_blank">EBS</a></li>
+            </ul>
+          </li>
+          <li><a class="nav-link scrollto" href="/STRUCTURE">About</a></li>
+          <li><a class="nav-link scrollto" href="#portfolio">Portfolio</a></li>
+          <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        </ul>
 
-    <div class="dropdown">
-      <a href="" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="<%= user.profileimage? user.profileimage :
-        "/img/Avatar/Untitled-0-05.png" %>" alt="" width="32" height="32" class="rounded-circle me-2" />
-        <strong> <%= user.firstname %> </strong>
-      </a>
-      <ul class="dropdown-menu text-small shadow">
-        <li>
-          <a data-bs-toggle="modal" data-bs-target="#exampleModa2" class="dropdown-item" href="/signout">Profile</a>
-        </li>
-        <li>
-          <hr class="dropdown-divider" />
-        </li>
-        <li><a class="dropdown-item" href="/signout">Sign out</a></li>
-      </ul>
-    </div>
-    <!-- Modal -->
-    <form action="/update-avatar" method="post" enctype="multipart/form-data">
-      <div class="modal fade" id="exampleModa2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+      <!-- .navbar -->
+
+      <div class="dropdown">
+        <a href="" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="<%= user.profileimage? user.profileimage :
+        " /img/Avatar/Untitled-0-05.png" %>" alt="" width="32" height="32" class="rounded-circle me-2" />
+          <strong>
+            <%= user.firstname %>
+          </strong>
+        </a>
+        <ul class="dropdown-menu text-small shadow">
+          <li>
+            <a data-bs-toggle="modal" data-bs-target="#exampleModa2" class="dropdown-item" href="/signout">Profile
+              Image</a>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <a data-bs-toggle="modal" data-bs-target="#exampleModa3" class="dropdown-item" href="">Change Password</a>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li><a class="dropdown-item" href="/signout">Sign out</a></li>
+        </ul>
+      </div>
+      <!-- Modal Change Profile Image -->
+      <form action="/update-avatar" method="post" enctype="multipart/form-data">
+        <div class="modal fade" id="exampleModa2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Attach File
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="d-flex modal-body align-items-center justify-content-around">
+                <label class="btn btn-primary" for="headerattach">Choose File...</label>
+                <input id="headerattach" type="file" name="update-profile" id="" style="display: none" />
+                <img id="headerimgsrc" src="<%= user.profileimage %>" width="150px" alt="" />
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">
+                  Save changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!-- Modal Change Password -->
+
+      <div class="modal fade" id="exampleModa3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="exampleModalLabel">
-                Attach File
+                Enter New Password
               </h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="d-flex modal-body align-items-center justify-content-around">
-              <label class="btn btn-primary" for="headerattach">Choose File...</label>
-              <input id="headerattach" type="file" name="update-profile" id="" style="display: none" />
-              <img id="headerimgsrc" src="<%= user.profileimage %>" width="150px" alt="" />
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                Close
-              </button>
-              <button type="submit" class="btn btn-primary">
-                Save changes
-              </button>
+
+
+
+            <div class="p-2">
+
+
+              <div class="form-floating mt-2">
+                <input type="password" class="form-control rounded-1" id="password" name="password"
+                  placeholder="Password" required>
+                <label for="password">Password</label>
+              </div>
+
+              <div id="wrongpassword" class=" d-flex flex-row align-items-center my-2 d-none"
+                style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+                <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                <p class="my-1 ms-1">Password must be at least 8 characters with 1 upper case letter and 1 number</p>
+              </div>
+
+              <div class="form-floating mt-2">
+                <input type="password" class="form-control" id="cpassword" name="cpassword"
+                  placeholder="Confirm Password">
+                <label for="lastname">Confirm Password</label>
+              </div>
+
+              <div id="passnotmatch" class=" d-flex flex-row align-items-center my-2 d-none"
+                style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+                <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                <p class="my-1 ms-1">Password Not Match</p>
+              </div>
+
+              <form id="updatepassword">
+                <button class="btn btn-primary mt-2" type="submit"> UPDATE</button>
+              </form>
+
+
             </div>
           </div>
         </div>
       </div>
-    </form>
-  </div>
-  <script>
-    const headerattach = document.querySelector("#headerattach");
-    const headerimgsrc = document.querySelector("#headerimgsrc");
 
-    headerattach.addEventListener("change", (eo) => {
-      const choosedfile = eo.target.files[0];
-      const choosefileurl = URL.createObjectURL(choosedfile);
-      console.log(choosefileurl);
-      headerimgsrc.src = choosefileurl;
-    });
-  </script>
+    </div>
+    <script>
+      const headerattach = document.querySelector("#headerattach");
+      const headerimgsrc = document.querySelector("#headerimgsrc");
+      headerattach.addEventListener("change", (eo) => {
+        const choosedfile = eo.target.files[0];
+        const choosefileurl = URL.createObjectURL(choosedfile);
+        console.log(choosefileurl);
+        headerimgsrc.src = choosefileurl;
+      });
+    </script>
+
+    <script>
+      updatepassword.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        const res = await fetch("/updatepassword", {
+          method: "PUT",
+          body: JSON.stringify({ password: password.value, cpassword: cpassword.value }),
+          headers: { "Content-Type": "application/json" },
+        });
+        const data = await res.json();
+        if (data.nocpass) {
+          passnotmatch.classList.remove('d-none');
+          cpassword.classList.add('redframe');
+        } else {
+          passnotmatch.classList.add('d-none');
+          cpassword.classList.remove('redframe');
+        }
+
+        if (data.validationerrors) {
+          data.validationerrors.forEach(item => {
+            if (item.path = "password") {
+              wrongpassword.classList.remove('d-none');
+              password.classList.add('redframe');
+            } else {
+              wrongpassword.classList.add('d-none');
+              password.classList.remove('redframe');
+            }
+          });
+        }
+
+        if (data.message) {
+          location.assign("/")
+        }
+      })
+    </script>
+
+
 </header>
 <!-- End Header -->

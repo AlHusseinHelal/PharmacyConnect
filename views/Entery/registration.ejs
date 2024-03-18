@@ -97,14 +97,10 @@
       <div id="passnotmatch" class=" d-flex flex-row align-items-center my-2 d-none"
         style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
         <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
-        <p class="my-1 ms-1">Password not match</p>
+        <p class="my-1 ms-1">Password Not Match</p>
       </div>
 
-      <div id="passnotfound" class=" d-flex flex-row align-items-center my-2 d-none"
-        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
-        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
-        <p class="my-1 ms-1">Confirm Password Required</p>
-      </div>
+      
 
       <button class="btn btn-primary w-100 py-2 mt-2" type="submit" value="register">Sign Up</button>
 
@@ -142,13 +138,7 @@
             wrongpassword.classList.add("d-none")
             password.classList.remove("redframe")
           }
-          if (item.path == "cpassword") {
-            passnotfound.classList.remove("d-none")
-            passnotfound.classList.add("redframe")
-          } else {
-            passnotfound.classList.add("d-none")
-            passnotfound.classList.remove("redframe")
-          }
+          
         });
       }
 
@@ -174,10 +164,10 @@
 
       if (data.passwordnotmatch) {
         passnotmatch.classList.remove("d-none")
-        passnotmatch.classList.add("redframe")
+        cpassword.classList.add("redframe")
       } else {
         passnotmatch.classList.add("d-none")
-        passnotmatch.classList.remove("redframe")
+        cpassword.classList.remove("redframe")
       }
 
       if (data.user) {

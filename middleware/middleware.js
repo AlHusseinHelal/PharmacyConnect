@@ -1,11 +1,13 @@
 const { validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
-const Registration = require("../models/newRegSchema");
+const User = require("../models/newRegSchema");
+//dotenv
+require("dotenv").config();
 
 const requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {
-    jwt.verify(token, "secretkey", (err) => {
+    jwt.verify(token, process.env.JWTSECRET_KEY, (err) => {
       if (err) {
         res.redirect("/login");
       } else {
@@ -20,12 +22,12 @@ const requireAuth = (req, res, next) => {
 const checkIfUser = (req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {
-    jwt.verify(token, "secretkey", async (err, decoded) => {
+    jwt.verify(token, process.env.JWTSECRET_KEY, async (err, decoded) => {
       if (err) {
         res.locals.user = null;
         next();
       } else {
-        const currentUser = await Registration.findById(decoded.id);
+        const currentUser = await User.findById(decoded.id);
         res.locals.user = currentUser;
         next();
       }
@@ -35,6 +37,8 @@ const checkIfUser = (req, res, next) => {
     next();
   }
 };
+
+
 
 const globalError = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;

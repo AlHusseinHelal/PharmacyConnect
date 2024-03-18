@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forgot Password</title>
+  <!-- FONT LINK -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Libre+Baskerville&family=Poppins:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="shortcut icon" href="svg/ConnectLogo.svg" type="image/x-icon">
+  <!-- bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- My STYLE CSS -->
+  <link rel="stylesheet" href="css/changepass.css">
+</head>
+
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
+
+
+  <main class="form-signin w-100 m-auto">
+    <img class="mb-4 d-flex mx-auto" src="svg/PharmacyLogo.svg" alt="" height="150">
+    <h1 class="mb-3 text-center"> Please Enter A New Password</h1>
+
+    <div class="form-floating mt-2 ">
+      <input type="text" class="form-control rounded-1" id="email" name="email" placeholder="Email" required>
+      <label for="email">Email</label>
+    </div>
+
+    <div id="wrongemail" class=" d-flex flex-row align-items-center mt-2 d-none"
+        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+        <p class="my-1 ms-1">Email Not Found</p>
+      </div>
+
+      <div id="wrongresetcode" class=" d-flex flex-row align-items-center mt-2 d-none"
+        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+        <p class="my-1 ms-1">ResetCode Not Verified</p>
+      </div>
+
+
+    <div class="form-floating mt-2">
+      <input type="password" class="form-control rounded-1 mb-2" id="password" name="password" placeholder="Password"
+        required>
+      <label for="password">Password</label>
+    </div>
+
+    <div class="form-floating">
+      <input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="Confirm Password">
+      <label for="lastname">Confirm Password</label>
+    </div>
+
+      <div id="cpass" class=" d-flex flex-row align-items-center my-2 d-none"
+        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+        <img class="ms-1 " src="/svg/alertsign-02.svg" height="20vh" alt="">
+        <p class="my-1 ms-1">Password Did't Match</p>
+      </div>
+
+
+      <div id="passerror" class=" d-flex flex-row align-items-center mt-2 d-none"
+        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+        <p class="my-1 ms-1">Password must be at least 8 characters with 1 upper case letter and 1 number</p>
+      </div>
+
+<form id="changepassword">
+  <button class="btn btn-primary w-50 py-2 my-3 " type="submit" value="login">Submit</button>
+</form>
+      
+  
+  </main>
+
+<script>
+changepassword.addEventListener('click', async (event) => {
+  event.preventDefault()
+  const res = await fetch("/changepassword", {
+        method: "PUT",
+        body: JSON.stringify({ email : email.value, password: password.value, cpassword: cpassword.value }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const data = await res.json();
+      if (data.noemail) {
+        wrongemail.classList.remove('d-none');
+        email.classList.add('redframe');
+      } else {
+        wrongemail.classList.add('d-none');
+        email.classList.remove('redframe');
+      }
+
+      if (data.noverify) {
+        wrongresetcode.classList.remove('d-none');
+        email.classList.add('redframe');
+      } else {
+        wrongresetcode.classList.add('d-none');
+        email.classList.remove('redframe');
+      }
+
+      if (data.nocpass) {
+        cpass.classList.remove('d-none');
+        cpassword.classList.add('redframe');
+      } else {
+        cpass.classList.add('d-none');
+        cpassword.classList.remove('redframe');
+      }
+
+      if (data.validationerrors) {
+        data.validationerrors.forEach(item => {
+          if (item.path == "password") {
+            passerror.classList.remove('d-none');
+        password.classList.add('redframe');
+      } else {
+        passerror.classList.add('d-none');
+        password.classList.remove('redframe');
+          }
+        });
+      }
+
+
+      if (data.message) {
+        location.assign("/login")
+      }
+});
+
+</script>
+
+
+
+
+</body>
+
+</html>

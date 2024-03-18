@@ -40,4 +40,13 @@ exports.welcome = (req, res) => {
   res.render("Entery/welcome.ejs");
 };
 
-//STRUCTURE
+//FORGETPASSWORD
+exports.forgetpassword = (req, res) => {
+  res.render("Entery/forgetpage.ejs");
+};
+
+//CHANGE PASSWORD
+exports.changepassword = (req, res) => {
+  res.render("Entery/changepasspage.ejs");
+};
+

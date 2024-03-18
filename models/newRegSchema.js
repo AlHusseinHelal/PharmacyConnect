@@ -29,6 +29,10 @@ const user = new mongoose.Schema(
       hide: true,
       required: [true, "Password is required"],
     },
+    passwordResetCode: String,
+    passwordResetExpire: Date,
+    passwordResetVerified: Boolean,
+
   
     code: Number,
     role: {

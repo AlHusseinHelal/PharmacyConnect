@@ -1,3 +1,5 @@
+const crypto = require("crypto");
+
 const express = require("express");
 //PASSWORD HACH
 const bcrypt = require("bcrypt");
@@ -37,10 +39,16 @@ const { Avatar } = require("../controllers/userController");
 const { interface } = require("../controllers/userController");
 const { OncoTips } = require("../controllers/userController");
 const { welcome } = require("../controllers/userController");
+const { forgetpassword } = require("../controllers/userController");
+const { changepassword } = require("../controllers/userController");
 
 router.use(express.static("public"));
 //dotenv
 require("dotenv").config();
+//SEND EMAIL
+const sendEmail = require(`../utils/sendEmail`);
+//ERROR HANDILING
+const ApiError = require("../utils/apierror");
 
 // cloudinary.config({
 //   cloud_name: process.env.CLOUDINARY_ClOUD_NAME,
@@ -81,6 +89,12 @@ router.get("/oncotips", checkIfUser, requireAuth, OncoTips);
 
 //welcomw
 router.get("/welcome", checkIfUser, requireAuth, welcome);
+
+//FORGETPASSWORD
+router.get("/forgetpassword", forgetpassword);
+
+//FORGETPASSWORD
+router.get("/changepasswordpage", changepassword);
 
 //STRUCTURE
 router.get("/STRUCTURE", checkIfUser, requireAuth, (req, res) => {
@@ -773,7 +787,6 @@ router.post(
       "password",
       "Password must be at least 8 characters with 1 upper case letter and 1 number"
     ).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/),
-    check("cpassword").notEmpty().withMessage("Confirm Password Required"),
   ],
   asyncHandler(async (req, res) => {
     const usercode = await User.findOne({ code: req.body.code });
@@ -786,16 +799,15 @@ router.post(
       return res.json({ emailexist: "The Email Is Already Existing" });
     }
 
-  
     const objError = validationResult(req);
     if (!objError.isEmpty()) {
       return res.json({ validationerrors: objError.errors });
     }
 
     const confirmPassword = req.body.cpassword;
-    console.log(confirmPassword)
-    const password = req.body.password;
-    console.log(password)
+    console.log(confirmPassword);
+    const { password } = req.body;
+    console.log(password);
     if (password !== confirmPassword) {
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
@@ -810,11 +822,21 @@ router.post(
 //LOGIN CHECK
 router.post(
   "/checklogin",
+  [check("code").isNumeric()],
   asyncHandler(async (req, res) => {
     const loginuser = await User.findOne({ code: req.body.code });
-    if (loginuser == null) {
+
+    
+
+    if (!loginuser) {
       return res.json({ codenotfound: "You Are Not Registered" });
     }
+
+    const objError = validationResult(req);
+    if (!objError.isEmpty()) {
+      return res.json({ validationerrors: objError.errors });
+    }
+
     const match = await bcrypt.compare(req.body.password, loginuser.password);
     if (!match) {
       return res.json({ wrongpassword: "Wrong Password" });
@@ -826,6 +848,70 @@ router.post(
     }
   })
 );
+
+//Forget Password
+router.post(
+  "/forgetpassword",
+  asyncHandler(async (req, res, next) => {
+    const loginuser = await User.findOne({ code: req.body.code });
+    if (!loginuser) {
+      return res.json({ status: "User Not Found" });
+    }
+    if (loginuser) {
+      const resstCode = Math.floor(Math.random() * 900000).toString();
+      const hashedResetCode = crypto
+        .createHash("sha256")
+        .update(resstCode)
+        .digest("hex");
+      loginuser.passwordResetCode = hashedResetCode;
+      loginuser.passwordResetExpire = Date.now() + 10 * 60 * 1000;
+      loginuser.passwordResetVerified = false;
+      await loginuser.save({ validateBeforeSave: false });
+      const message = `HI ${loginuser.firstname},\n We received a request to reset the password on your PharmacyConnct Account. \n ${resstCode} \n Enter this code to complete the reset. \n THANKS \n PharmacyConnect Support Team`;
+      try {
+        await sendEmail({
+          email: loginuser.email,
+          subject: "Your password Reset Code Valid For 10min",
+          message,
+        });
+      } catch (error) {
+        loginuser.passwordResetCode = undefined;
+        loginuser.passwordResetExpire = undefined;
+        loginuser.passwordResetVerified = undefined;
+        await loginuser.save({ validateBeforeSave: false });
+        return next(new ApiError("Ther is an error ending email", 500));
+      }
+      return res.json({ loginuser });
+    }
+  })
+);
+
+//VERIFIY RESET CODE
+router.post(
+  "/verifiyresetcode",
+  asyncHandler(async (req, res, next) => {
+    const hashedResetCode = crypto
+      .createHash("sha256")
+      .update(req.body.resetcode)
+      .digest("hex");
+    const user = await User.findOne({
+      passwordResetCode: hashedResetCode,
+      passwordResetExpire: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.json({ message: "ResetCode Didn't Match Or Expired" });
+    }
+
+    if (user) {
+      user.passwordResetVerified = true;
+      await user.save();
+      res.json({ verified: "verified", user });
+    }
+  })
+);
+
+
 
 // CHANGE IMAGE POST REQUEST
 router.post(
@@ -1515,5 +1601,110 @@ router.put("/outedit/:id", checkIfUser, requireAuth, (req, res) => {
       console.log(err);
     });
 });
+
+//CHANGE PASSWORD
+router.put(
+  "/changepassword",
+  [
+    check(
+      "password",
+      "Password must be at least 8 characters with 1 upper case letter and 1 number"
+    ).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/),
+  ],
+  asyncHandler(async (req, res, next) => {
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      return res.json({ noemail: "Email Not Found" });
+    }
+    if (!user.passwordResetVerified) {
+      return res.json({ noverify: "ResetCode Not Verified" });
+    }
+
+    if (req.body.cpassword !== req.body.password) {
+      return res.json({ nocpass: "Password Did't Match" });
+    }
+
+    const objError = validationResult(req);
+    if (!objError.isEmpty()) {
+      return res.json({ validationerrors: objError.errors });
+    }
+
+    user.password = req.body.password;
+    user.passwordResetCode = undefined;
+    user.passwordResetExpire = undefined;
+    user.passwordResetVerified = false;
+    await user.save();
+
+    res.json({ message: "Password Changed Successfully" });
+  })
+);
+
+//UPDATE PASSWORD
+router.put(
+  "/updatepassword",
+  [
+    check(
+      "password",
+      "Password must be at least 8 characters with 1 upper case letter and 1 number"
+    ).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/),
+  ],
+  asyncHandler(async (req, res, next) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
+    req.params.id = decoded.id;
+    const user = await User.findById(req.params.id);
+    console.log(user);
+    if (user) {
+      if (req.body.cpassword !== req.body.password) {
+        return res.json({ nocpass: "Password Did't Match" });
+      }
+      const objError = validationResult(req);
+      if (!objError.isEmpty()) {
+        return res.json({ validationerrors: objError.errors });
+      }
+
+      user.password = req.body.password;
+      user.passwordResetCode = undefined;
+      user.passwordResetExpire = undefined;
+      user.passwordResetVerified = false;
+      await user.save();
+      
+      res.cookie("jwt", "", { httpOnly: true, maxAge: 1 });
+      res.json({ message: "Password Changed Successfully" });
+    }
+  })
+);
+
+//UPDATE PASSWORD
+router.put(
+  "/updateprofile",
+  [
+    check("firstname").notEmpty().trim(),
+    check("lastname").notEmpty().trim(),
+  ],
+  asyncHandler(async (req, res, next) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
+    req.params.id = decoded.id;
+    const user = await User.findById(req.params.id);
+    console.log(user);
+    if (user) {
+      if (req.body.cpassword !== req.body.password) {
+        return res.json({ nocpass: "Password Did't Match" });
+      }
+      const objError = validationResult(req);
+      if (!objError.isEmpty()) {
+        return res.json({ validationerrors: objError.errors });
+      }
+
+      user.password = req.body.password;
+      user.passwordResetCode = undefined;
+      user.passwordResetExpire = undefined;
+      user.passwordResetVerified = false;
+      await user.save();
+      
+      res.cookie("jwt", "", { httpOnly: true, maxAge: 1 });
+      res.json({ message: "Password Changed Successfully" });
+    }
+  })
+);
 
 module.exports = router;
