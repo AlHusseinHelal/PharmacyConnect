@@ -1552,7 +1552,7 @@ router.put("/done/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
       console.log(req.body);
-      Inpatientschema.find().then((result) => {
+      Inpatientschema.find({oraliv : "IV"}).then((result) => {
         res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
       });
     })
@@ -1565,7 +1565,7 @@ router.put("/done/:id", checkIfUser, requireAuth, (req, res) => {
 router.put("/inedit/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
-      Inpatientschema.find().then((result) => {
+      Inpatientschema.find({oraliv : "IV"}).then((result) => {
         res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
       });
     })
@@ -1573,6 +1573,7 @@ router.put("/inedit/:id", checkIfUser, requireAuth, (req, res) => {
       console.log(err);
     });
 });
+
 
 // IVPREP OUTPATIENT / DONE
 router.put("/doneout/:id", checkIfUser, requireAuth, (req, res) => {
@@ -1593,8 +1594,64 @@ router.put("/outedit/:id", checkIfUser, requireAuth, (req, res) => {
   Outpatient.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
       console.log(req.body);
-      Outpatient.find().then((result) => {
+      Outpatient.find({oraliv : "IV"}).then((result) => {
         res.render("IvPrep/ivprepout", { outarray: result, moment: moment });
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// Dispense INPATIENT / EDIT
+router.put("/dispinedit/:id", checkIfUser, requireAuth, (req, res) => {
+  Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => {
+      Inpatientschema.find({oraliv : "Oral"}).then((result) => {
+        res.render("Dispense/dispense3in", { dispensearray: result, moment: moment });
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// Dispense OUTPATIENT / EDIT
+router.put("/dispoutedit/:id", checkIfUser, requireAuth, (req, res) => {
+  Outpatient.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => {
+      Outpatient.find({oraliv : "Oral"}).then((result) => {
+        res.render("Dispense/dispense3out", { dispensearray: result, moment: moment });
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// DISPENSE INPATIENT / DONE
+router.put("/donedisin/:id", checkIfUser, requireAuth, (req, res) => {
+  Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => {
+      console.log(req.body);
+      Inpatientschema.find({oraliv : "Oral"}).then((result) => {
+        res.render("Dispense/dispense3in", { dispensearray: result, moment: moment });
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+
+
+// DISPENSE OUTPATIENT / DONE
+router.put("/donedisout/:id", checkIfUser, requireAuth, (req, res) => {
+  Outpatient.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => {
+      console.log(req.body);
+      Outpatient.find({oraliv : "Oral"}).then((result) => {
+        res.render("Dispense/dispense3out", { dispensearray: result, moment: moment });
       });
     })
     .catch((err) => {
@@ -1674,7 +1731,7 @@ router.put(
   })
 );
 
-//UPDATE PASSWORD
+//UPDATE PROFILE
 router.put(
   "/updateprofile",
   [
