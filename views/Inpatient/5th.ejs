@@ -23,7 +23,7 @@
   <!-- HEADER CSS -->
   <link rel="stylesheet" href="/css/style.css" />
   <!-- Custom styles for this template -->
-  <link href="/css/inpatient3.css" rel="stylesheet" />
+  <link href="/css/inpatient/icu/icu.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -118,44 +118,37 @@
             <!-- /*--------------------------------------------------------------
       # EDIT ICON
       --------------------------------------------------------------*/ -->
+            
 
+      <div class="d-flex align-items-center mx-2 mb-1 justify-content-between" >
+        <div class="btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
+          <button type="button" class="btn btn-outline-danger "><a style="border: unset; color: unset;" href="/ICU">ICU</a></button>
+          <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;" href="/ICC">ICC</a></button>
+          <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;" href="/3rdO">3rd O</a></button>
+          <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;" href="/3rdN">3rd N</a></button>
+          <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;" href="/4th">4th</a></button>
+          <button type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;" href="/5th">5th</a></button>
+          <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;" href="/6th">6th</a></button>
+        </div>
 
-            <div class="d-flex align-items-center mx-2 mb-1 justify-content-between">
-              <div class="btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
-                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
-                    href="/ICU">ICU</a></button>
-                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
-                    href="/ICC">ICC</a></button>
-                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
-                    href="/3rdO">3rd O</a></button>
-                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
-                    href="/3rdN">3rd N</a></button>
-                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
-                    href="/4th">4th</a></button>
-                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
-                    href="/5th">5th</a></button>
-                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
-                    href="/6th">6th</a></button>
-              </div>
+        <div>
+          <a style="background-color: rgb(0, 42, 255);" href=""
+            id="editicon" class="border rounded-2 d-inline-flex p-1" data-bs-toggle="modal"
+            data-bs-placement="top" data-bs-title="Edit" data-bs-target="#exampleModal2">
+            <svg style="fill: aliceblue" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+              fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+              <path
+                d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+            </svg>
+          </a>
+        </div>
+      </div>
 
-              <div>
-                <a style="background-color: rgb(0, 42, 255);" href="" id="editicon"
-                  class="border rounded-2 d-inline-flex p-1" data-bs-toggle="modal" data-bs-placement="top"
-                  data-bs-title="Edit" data-bs-target="#exampleModal2">
-                  <svg style="fill: aliceblue" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                    fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                    <path
-                      d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                  </svg>
-                </a>
-              </div>
-            </div>
+              
+                
+              
 
-
-
-
-
-
+            
             <!-- EIDIT MODAL -->
             <div class="modal fade" id="exampleModal2" data-bs-backdrop="static" tabindex="-1"
               aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -181,25 +174,9 @@
                       </div>
 
                       <div class="mb-3">
-                        <label for="ptfloor" class="form-label">Patient Floor</label>
-                        <select id="ptfloor" name="ptfloor" class="form-select">
-                          <option disabled hidden selected>Choose...</option>
-                          <option>2nd</option>
-                          <option>3rd O</option>
-                          <option>3rd N</option>
-                          <option>4th</option>
-                          <option>5th</option>
-                          <option>6th</option>
-                          <option>MCU</option>
-                          <option>SCU</option>
-                          <option>ER</option>
-                          <option>ICC</option>
-                          <option>OR</option>
-                          <option>SICU</option>
-                          <option>DayCare</option>
-                          <option>Dispense</option>
-                          <option>OutPatient</option>
-                          <option>ICU</option>
+                        <label for="ptfloor" class="form-label" hidden>Patient Floor</label>
+                        <select id="ptfloor" name="ptfloor" class="form-select" hidden>
+                          <option disabled hidden selected><%= floor %></option>
                         </select>
                       </div>
 
@@ -420,7 +397,8 @@
 
       <script src="../js/main.js"></script>
 
-      <script src="/js/inpatient/inpatient3.js"></script>
+      <script src="/js/inpatient3.js"></script>
+
       <script>
         add_patient_inpatient.addEventListener("submit", async (e) => {
           e.preventDefault();
@@ -440,12 +418,11 @@
             document.getElementById('oraliv').classList.remove("redframe");
           }
           if (data.inpatient_add_patient) {
-            location.assign("/inpatient3")
+            location.assign("/5th")
           }
 
         });
       </script>
-
 </body>
 
 </html>

@@ -23,7 +23,7 @@
   <!-- HEADER CSS -->
   <link rel="stylesheet" href="/css/style.css" />
   <!-- Custom styles for this template -->
-  <link href="/css/inpatient3.css" rel="stylesheet" />
+  <link href="/css/inpatient/icu/icu.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -122,7 +122,7 @@
 
             <div class="d-flex align-items-center mx-2 mb-1 justify-content-between">
               <div class="btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
-                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
+                <button type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;"
                     href="/ICU">ICU</a></button>
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                     href="/ICC">ICC</a></button>
@@ -181,25 +181,11 @@
                       </div>
 
                       <div class="mb-3">
-                        <label for="ptfloor" class="form-label">Patient Floor</label>
-                        <select id="ptfloor" name="ptfloor" class="form-select">
-                          <option disabled hidden selected>Choose...</option>
-                          <option>2nd</option>
-                          <option>3rd O</option>
-                          <option>3rd N</option>
-                          <option>4th</option>
-                          <option>5th</option>
-                          <option>6th</option>
-                          <option>MCU</option>
-                          <option>SCU</option>
-                          <option>ER</option>
-                          <option>ICC</option>
-                          <option>OR</option>
-                          <option>SICU</option>
-                          <option>DayCare</option>
-                          <option>Dispense</option>
-                          <option>OutPatient</option>
-                          <option>ICU</option>
+                        <label for="ptfloor" class="form-label" hidden>Patient Floor</label>
+                        <select id="ptfloor" name="ptfloor" class="form-select" hidden>
+                          <option disabled hidden selected>
+                            <%= floor %>
+                          </option>
                         </select>
                       </div>
 
@@ -420,7 +406,9 @@
 
       <script src="../js/main.js"></script>
 
-      <script src="/js/inpatient/inpatient3.js"></script>
+      <script src="/js/inpatient3.js"></script>
+
+
       <script>
         add_patient_inpatient.addEventListener("submit", async (e) => {
           e.preventDefault();
@@ -440,7 +428,7 @@
             document.getElementById('oraliv').classList.remove("redframe");
           }
           if (data.inpatient_add_patient) {
-            location.assign("/inpatient3")
+            location.assign("/icu")
           }
 
         });

@@ -97,15 +97,7 @@
                     <svg class="margin side-svg" style="width: 30px; height: 30px;">
                       <use xlink:href="#table" />
                     </svg>
-                    <span class="side-text">Dispense
-
-                      <% if (inarray.length> 0) { %>
-                        <% let numNot=inarray.length %>
-                          <span class="badge text-bg-secondary">
-                            <%= numNot %>
-                          </span>
-                          <% } %>
-                    </span>
+                    <span class="side-text">Dispense</span>
                   </a>
                 </div>
               </li>
@@ -123,7 +115,7 @@
       # NAVBAR
       --------------------------------------------------------------*/ -->
             <div>
-              <nav class="navbar navbar-expand-lg bg-body-tertiary mx-1 mt-1 mb-5">
+              <nav class="navbar navbar-expand-lg bg-body-tertiary mx-1 mt-1 mb-1">
                 <div class="container-fluid py-2 rounded-2 bg-info">
                   <div class="d-flex flex-row align-items-center">
                     <img src="/svg/ConnectLogo.svg" height="35vh" alt="" />
@@ -145,6 +137,15 @@
                   </div>
                 </div>
               </nav>
+            </div>
+
+
+            <div class="d-flex align-items-center mx-2 mb-1 justify-content-between" >
+              <div class="btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
+                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;" href="/ed">ExtraDose</a></button>
+                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;" href="/doneview">DONE</a></button>
+              </div>
+      
             </div>
 
             <!-- /*--------------------------------------------------------------
@@ -307,7 +308,7 @@
 
       <script src="../js/main.js"></script>
 
-      <script src="/js/ivprep.js"></script>
+      <script src="/js/ivprep/ivprep.js"></script>
 </body>
 
 </html>

@@ -140,7 +140,7 @@
             <div class="d-flex align-items-center mx-2 mb-1 justify-content-between" >
               <div class="btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;" href="/edindispense">ExtraDose</a></button>
-                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;" href="/dischargeindispense">Discharge</a></button>
+                <button type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;" href="/dischargeindispense">Discharge</a></button>
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;" href="/doneviewindispense">DONE</a></button>
               </div>
       
@@ -238,7 +238,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                       aria-label="Close"></button>
                                   </div>
-                                  <form action="/dispinedit/<%= item._id%>?_method=PUT" method="post">
+                                  <form action="/dispineditdischarge/<%= item._id%>?_method=PUT" method="post">
                                   <div class="modal-body">
                                     Please Write Comment
                                     <label for="prepcomment" class="form-label"></label>
@@ -256,7 +256,7 @@
                             </td>
 
                             <td class="text-center">
-                              <form action="/donedisin/<%= item._id %>?_method=PUT" method="post">
+                              <form action="/donedisindischarge/<%= item._id %>?_method=PUT" method="post">
                                 <button type="submit" class="d-inline-flex p-1 text-center"
                                   style="outline-style: unset; border: none; background-color: transparent;">
                                   <label hidden for="prepcomment" class="form-label" style="display: none;">Prep

@@ -23,7 +23,7 @@
   <!-- HEADER CSS -->
   <link rel="stylesheet" href="/css/style.css" />
   <!-- Custom styles for this template -->
-  <link href="/css/dispense3.css" rel="stylesheet" />
+  <link href="/css/ivprep-in.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -63,44 +63,47 @@
     # SIDE LIST
     --------------------------------------------------------------*/ -->
           <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidelist">
-            <img id="connectlogo" src="/svg/PharmacyConnectLogodispense-01.svg" height="139vh" alt="" />
+            <img id="connectlogo" src="/svg/PharmacyConnectLogoprep-01.svg" height="139vh" alt="" />
 
             <hr />
-            <ul class="nav navul nav-pills flex-column mb-0 mainul">
+            <ul class="nav navul nav-pills flex-column mb-auto mainul">
+
               <li>
                 <div class="d-inline-flex align-items-center" style="width: 164.56px">
-                  <a href="/dispense3" class="nav-link  d-inline-flex align-items-center width side-bg">
-                    <svg class="margin side-svg" style="width: 30px; height: 30px; fill: rgb(0, 0, 0)">
+                  <a href="/prepin" class="nav-link active d-inline-flex align-items-center width side-bg">
+                    <svg class="margin side-svg" style="width: 30px; height: 30px; fill: white">
                       <use xlink:href="#table" />
                     </svg>
-                    <span style="color: black;" class="side-text">OverView</span>
+                    <span class="side-text">InPatient</span>
                   </a>
                 </div>
               </li>
-              <li  >
-                <div class="d-inline-flex align-items-center" style="width: 164.56px;" >                  
-                  <a  href="/dispin "  
-                    class="  nav-link active  d-inline-flex align-items-center width side-bg " style="color: black;" >
-                    <svg class="margin side-svg" style="width: 30px; height:30px; fill:rgb(255, 255, 255)" >
+              <li>
+                <div class="d-inline-flex align-items-center" style="width: 164.56px">
+                  <a href="/prepout" class="nav-link  d-inline-flex align-items-center width side-bg"
+                    style="color: black;">
+                    <svg class="margin side-svg" style="width: 30px; height: 30px;">
                       <use xlink:href="#table" />
                     </svg>
-                    <span style="color: white;" class="side-text">InPatient</span>                    
+                    <span class="side-text">OutPatient<span id="outnot" class="badge text-bg-secondary"></span></span>
+
                   </a>
                 </div>
               </li>
-              <li  >
-                <div class="d-inline-flex align-items-center" style="width: 164.56px;" >
-                  <a  href="/dispout "  
-                    class="  nav-link  d-inline-flex align-items-center width side-bg " style="color: black;" >
-                    <svg class="margin side-svg" style="width: 30px; height:30px; fill:rgb(0, 0, 0)" >
+              <li>
+                <div class="d-inline-flex align-items-center" style="width: 164.56px">
+                  <a href="/prepdis" class="nav-link  d-inline-flex align-items-center width side-bg "
+                    style="color: black;">
+                    <svg class="margin side-svg" style="width: 30px; height: 30px;">
                       <use xlink:href="#table" />
                     </svg>
-                    <span class="side-text">OutPatient</span>                    
+                    <span class="side-text">Dispense</span>
                   </a>
                 </div>
               </li>
             </ul>
             <hr />
+
           </div>
 
           <!-- /*--------------------------------------------------------------
@@ -124,7 +127,7 @@
                     <span class="navbar-toggler-icon"></span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <form class="d-flex" role="search" action="/inpatientsearch" method="post">
+                    <form class="d-flex" role="search" action="/inpatientprepsearch" method="post">
                       <input name="searchText" class="form-control me-2" type="search" placeholder="Search"
                         aria-label="Search" />
                       <button class="btn btn-outline-success" type="submit">
@@ -139,9 +142,9 @@
 
             <div class="d-flex align-items-center mx-2 mb-1 justify-content-between" >
               <div class="btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
-                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;" href="/edindispense">ExtraDose</a></button>
-                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;" href="/dischargeindispense">Discharge</a></button>
-                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;" href="/doneviewindispense">DONE</a></button>
+                <button type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;" href="/ed">ExtraDose</a></button>
+                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;" href="/doneview">DONE</a></button>
+                
               </div>
       
             </div>
@@ -149,15 +152,15 @@
             <!-- /*--------------------------------------------------------------
       # MAIN CONTENT
       --------------------------------------------------------------*/ -->
-
             <div id="maincontent">
-              <% if (dispensearray.length===0) { %>
+              <% if (inarray.length===0) { %>
                 <div class="text-center">
                   <h1>No Data Available</h1>
                 </div>
 
                 <% } %>
-                  <% if (dispensearray.length>= 1) { %>
+
+                  <% if (inarray.length>= 1) { %>
                     <table style="width: 99%" class="mx-auto table table-striped table-bordered">
                       <thead>
                         <tr>
@@ -176,8 +179,9 @@
                           <th class="text-center" scope="col">Done</th>
                         </tr>
                       </thead>
+                      <% inarray.forEach((item,index)=> { %>
                       <tbody id="tbody">
-                        <% dispensearray.forEach((item,index)=> { %>
+                        
                           <tr id="tr">
                             <td class="text-center">
                               <%= index+1 %>
@@ -209,11 +213,13 @@
                             <td class="text-center">
                               <%= moment(item.updatedAt).format('LT')%>
                             </td>
+
                             <td class="text-center">
                               <a href="<%= item.attachfile%>"><i class="bi bi-envelope"></i></a>
                               <% if (item.attachfile) { %>
                                 <% } %>
                             </td>
+
                             <td class="text-center">
                             
                               <!-- <a href="/edit/"> -->
@@ -238,7 +244,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                       aria-label="Close"></button>
                                   </div>
-                                  <form action="/dispinedit/<%= item._id%>?_method=PUT" method="post">
+                                  <form action="/inedited/<%= item._id%>?_method=PUT" method="post">
                                   <div class="modal-body">
                                     Please Write Comment
                                     <label for="prepcomment" class="form-label"></label>
@@ -256,7 +262,7 @@
                             </td>
 
                             <td class="text-center">
-                              <form action="/donedisin/<%= item._id %>?_method=PUT" method="post">
+                              <form action="/doneed/<%= item._id %>?_method=PUT" method="post">
                                 <button type="submit" class="d-inline-flex p-1 text-center"
                                   style="outline-style: unset; border: none; background-color: transparent;">
                                   <label hidden for="prepcomment" class="form-label" style="display: none;">Prep
@@ -276,13 +282,16 @@
                             </td>
 
                           </tr>
-                          <% }) %>
+                          
                       </tbody>
+                      <% }) %>
                     </table>
                     <% } %>
 
 
+
             </div>
+
           </div>
       </main>
 
@@ -300,9 +309,7 @@
 
       <script src="../js/main.js"></script>
 
-      <script src="/js/dispense3.js"></script>
-
-
+      <script src="/js/ivprep/ivprep.js"></script>
 </body>
 
 </html>
