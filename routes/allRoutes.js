@@ -26,6 +26,7 @@ const Inpatientschema = require("../models/inpatientSchema");
 const User = require("../models/newRegSchema");
 const Outpatient = require("../models/outpatientSchema");
 const Dispenseschema = require("../models/dispenseSchema");
+const Newpatient = require("../models/newPatientSchema");
 //MIDDLEWARE
 const { requireAuth } = require("../middleware/middleware");
 const { checkIfUser } = require("../middleware/middleware");
@@ -674,13 +675,13 @@ router.get(
   "/ICU",
   checkIfUser,
   requireAuth,
-  asyncHandler( async (req, res) => {
-    await Inpatientschema.find({ptfloor : "ICU"})
+  asyncHandler(async (req, res) => {
+    await Inpatientschema.find({ ptfloor: "ICU" })
       .then((results) => {
         res.render("Inpatient/icu", {
           inpatientarray: results,
           moment: moment,
-          floor: "ICU"
+          floor: "ICU",
         });
       })
       .catch((err) => {
@@ -694,13 +695,13 @@ router.get(
   "/ICC",
   checkIfUser,
   requireAuth,
-  asyncHandler( async (req, res) => {
-    await Inpatientschema.find({ptfloor : "ICC"})
+  asyncHandler(async (req, res) => {
+    await Inpatientschema.find({ ptfloor: "ICC" })
       .then((results) => {
         res.render("Inpatient/icc", {
           inpatientarray: results,
           moment: moment,
-          floor: "ICC"
+          floor: "ICC",
         });
       })
       .catch((err) => {
@@ -714,13 +715,13 @@ router.get(
   "/3rdO",
   checkIfUser,
   requireAuth,
-  asyncHandler( async (req, res) => {
-    await Inpatientschema.find({ptfloor : "3rd O"})
+  asyncHandler(async (req, res) => {
+    await Inpatientschema.find({ ptfloor: "3rd O" })
       .then((results) => {
         res.render("Inpatient/3rdo", {
           inpatientarray: results,
           moment: moment,
-          floor: "3rd O"
+          floor: "3rd O",
         });
       })
       .catch((err) => {
@@ -734,13 +735,13 @@ router.get(
   "/3rdN",
   checkIfUser,
   requireAuth,
-  asyncHandler( async (req, res) => {
-    await Inpatientschema.find({ptfloor : "3rd N"})
+  asyncHandler(async (req, res) => {
+    await Inpatientschema.find({ ptfloor: "3rd N" })
       .then((results) => {
         res.render("Inpatient/3rdn", {
           inpatientarray: results,
           moment: moment,
-          floor: "3rd N"
+          floor: "3rd N",
         });
       })
       .catch((err) => {
@@ -754,13 +755,13 @@ router.get(
   "/4th",
   checkIfUser,
   requireAuth,
-  asyncHandler( async (req, res) => {
-    await Inpatientschema.find({ptfloor : "4th"})
+  asyncHandler(async (req, res) => {
+    await Inpatientschema.find({ ptfloor: "4th" })
       .then((results) => {
         res.render("Inpatient/4th", {
           inpatientarray: results,
           moment: moment,
-          floor: "4th"
+          floor: "4th",
         });
       })
       .catch((err) => {
@@ -774,13 +775,13 @@ router.get(
   "/5th",
   checkIfUser,
   requireAuth,
-  asyncHandler( async (req, res) => {
-    await Inpatientschema.find({ptfloor : "5th"})
+  asyncHandler(async (req, res) => {
+    await Inpatientschema.find({ ptfloor: "5th" })
       .then((results) => {
         res.render("Inpatient/5th", {
           inpatientarray: results,
           moment: moment,
-          floor: "5th"
+          floor: "5th",
         });
       })
       .catch((err) => {
@@ -794,13 +795,13 @@ router.get(
   "/6th",
   checkIfUser,
   requireAuth,
-  asyncHandler( async (req, res) => {
-    await Inpatientschema.find({ptfloor : "6th"})
+  asyncHandler(async (req, res) => {
+    await Inpatientschema.find({ ptfloor: "6th" })
       .then((results) => {
         res.render("Inpatient/6th", {
           inpatientarray: results,
           moment: moment,
-          floor: "6th"
+          floor: "6th",
         });
       })
       .catch((err) => {
@@ -808,7 +809,6 @@ router.get(
       });
   })
 );
-
 
 // OUTPATIENT
 router.get("/outpatient", checkIfUser, requireAuth, (req, res) => {
@@ -847,9 +847,16 @@ router.get("/prepin", checkIfUser, requireAuth, (req, res) => {
 
 //IVPREP INPATIENT EXTRADOSE
 router.get("/ed", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.find({ oraliv: "IV", requestype: "ExtraDose", prepcomment: "" })
+  Inpatientschema.find({
+    oraliv: "IV",
+    requestype: "ExtraDose",
+    prepcomment: "",
+  })
     .then((result) => {
-      res.render("IvPrep/ivprepinextradose", { inarray: result, moment: moment });
+      res.render("IvPrep/ivprepinextradose", {
+        inarray: result,
+        moment: moment,
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -858,9 +865,80 @@ router.get("/ed", checkIfUser, requireAuth, (req, res) => {
 
 //IVPREP INPATIENT DONE VIEW
 router.get("/doneview", checkIfUser, requireAuth, (req, res) => {
-Inpatientschema.find({ oraliv: "IV", prepcomment: { $in: [ /^a/, /^b/, /^c/, /^d/, /^e/, /^f/, /^g/, /^h/, /^i/, /^j/, /^k/, /^l/, /^m/, /^n/, /^o/, /^p/, /^q/, /^r/, /^s/, /^t/, /^u/, /^v/, /^w/, /^x/, /^y/, /^z/, /^0/, /^1/, /^2/, /^3/, /^4/, /^5/, /^6/, /^7/, /^8/, /^9/,/^A/, /^B/, /^C/, /^D/, /^E/, /^F/, /^G/, /^H/, /^I/, /^J/, /^K/, /^L/, /^M/, /^N/, /^O/, /^P/, /^Q/, /^R/, /^S/, /^T/, /^U/, /^V/, /^W/, /^X/, /^Y/, /^Z/ ] } })
+  Inpatientschema.find({
+    oraliv: "IV",
+    prepcomment: {
+      $in: [
+        /^a/,
+        /^b/,
+        /^c/,
+        /^d/,
+        /^e/,
+        /^f/,
+        /^g/,
+        /^h/,
+        /^i/,
+        /^j/,
+        /^k/,
+        /^l/,
+        /^m/,
+        /^n/,
+        /^o/,
+        /^p/,
+        /^q/,
+        /^r/,
+        /^s/,
+        /^t/,
+        /^u/,
+        /^v/,
+        /^w/,
+        /^x/,
+        /^y/,
+        /^z/,
+        /^0/,
+        /^1/,
+        /^2/,
+        /^3/,
+        /^4/,
+        /^5/,
+        /^6/,
+        /^7/,
+        /^8/,
+        /^9/,
+        /^A/,
+        /^B/,
+        /^C/,
+        /^D/,
+        /^E/,
+        /^F/,
+        /^G/,
+        /^H/,
+        /^I/,
+        /^J/,
+        /^K/,
+        /^L/,
+        /^M/,
+        /^N/,
+        /^O/,
+        /^P/,
+        /^Q/,
+        /^R/,
+        /^S/,
+        /^T/,
+        /^U/,
+        /^V/,
+        /^W/,
+        /^X/,
+        /^Y/,
+        /^Z/,
+      ],
+    },
+  })
     .then((result) => {
-      res.render("IvPrep/ivprepindoneview", { inarray: result, moment: moment });
+      res.render("IvPrep/ivprepindoneview", {
+        inarray: result,
+        moment: moment,
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -918,9 +996,16 @@ router.get("/dispin", checkIfUser, requireAuth, (req, res) => {
 
 //DISPENSE INPATIENT EXTRADOSE
 router.get("/edindispense", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.find({ oraliv: "Oral", requestype: "ExtraDose", prepcomment: "" })
+  Inpatientschema.find({
+    oraliv: "Oral",
+    requestype: "ExtraDose",
+    prepcomment: "",
+  })
     .then((result) => {
-      res.render("Dispense/edindispense", { dispensearray: result, moment: moment });
+      res.render("Dispense/edindispense", {
+        dispensearray: result,
+        moment: moment,
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -929,9 +1014,16 @@ router.get("/edindispense", checkIfUser, requireAuth, (req, res) => {
 
 //DISPENSE INPATIENT DISCHARGE
 router.get("/dischargeindispense", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.find({ oraliv: "Oral", requestype: "DisCharge Medication", prepcomment: "" })
+  Inpatientschema.find({
+    oraliv: "Oral",
+    requestype: "DisCharge Medication",
+    prepcomment: "",
+  })
     .then((result) => {
-      res.render("Dispense/dischargeindispense", { dispensearray: result, moment: moment });
+      res.render("Dispense/dischargeindispense", {
+        dispensearray: result,
+        moment: moment,
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -940,9 +1032,80 @@ router.get("/dischargeindispense", checkIfUser, requireAuth, (req, res) => {
 
 //DISPENSE INPATIENT DONE VIEW
 router.get("/doneviewindispense", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.find({ oraliv: "Oral", prepcomment: { $in: [ /^a/, /^b/, /^c/, /^d/, /^e/, /^f/, /^g/, /^h/, /^i/, /^j/, /^k/, /^l/, /^m/, /^n/, /^o/, /^p/, /^q/, /^r/, /^s/, /^t/, /^u/, /^v/, /^w/, /^x/, /^y/, /^z/, /^0/, /^1/, /^2/, /^3/, /^4/, /^5/, /^6/, /^7/, /^8/, /^9/,/^A/, /^B/, /^C/, /^D/, /^E/, /^F/, /^G/, /^H/, /^I/, /^J/, /^K/, /^L/, /^M/, /^N/, /^O/, /^P/, /^Q/, /^R/, /^S/, /^T/, /^U/, /^V/, /^W/, /^X/, /^Y/, /^Z/ ] } })
+  Inpatientschema.find({
+    oraliv: "Oral",
+    prepcomment: {
+      $in: [
+        /^a/,
+        /^b/,
+        /^c/,
+        /^d/,
+        /^e/,
+        /^f/,
+        /^g/,
+        /^h/,
+        /^i/,
+        /^j/,
+        /^k/,
+        /^l/,
+        /^m/,
+        /^n/,
+        /^o/,
+        /^p/,
+        /^q/,
+        /^r/,
+        /^s/,
+        /^t/,
+        /^u/,
+        /^v/,
+        /^w/,
+        /^x/,
+        /^y/,
+        /^z/,
+        /^0/,
+        /^1/,
+        /^2/,
+        /^3/,
+        /^4/,
+        /^5/,
+        /^6/,
+        /^7/,
+        /^8/,
+        /^9/,
+        /^A/,
+        /^B/,
+        /^C/,
+        /^D/,
+        /^E/,
+        /^F/,
+        /^G/,
+        /^H/,
+        /^I/,
+        /^J/,
+        /^K/,
+        /^L/,
+        /^M/,
+        /^N/,
+        /^O/,
+        /^P/,
+        /^Q/,
+        /^R/,
+        /^S/,
+        /^T/,
+        /^U/,
+        /^V/,
+        /^W/,
+        /^X/,
+        /^Y/,
+        /^Z/,
+      ],
+    },
+  })
     .then((result) => {
-      res.render("Dispense/doneviewindispense", { dispensearray: result, moment: moment });
+      res.render("Dispense/doneviewindispense", {
+        dispensearray: result,
+        moment: moment,
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -1020,16 +1183,19 @@ router.post(
   "/checklogin",
   [check("code").isNumeric()],
   asyncHandler(async (req, res) => {
+
+    const objError = validationResult(req);
+    if (!objError.isEmpty()) {
+      return res.json({ validationerrors: objError.errors });
+    }
+    
     const loginuser = await User.findOne({ code: req.body.code });
 
     if (!loginuser) {
       return res.json({ codenotfound: "You Are Not Registered" });
     }
 
-    const objError = validationResult(req);
-    if (!objError.isEmpty()) {
-      return res.json({ validationerrors: objError.errors });
-    }
+    
 
     const match = await bcrypt.compare(req.body.password, loginuser.password);
     if (!match) {
@@ -1573,13 +1739,51 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    const patient = await Newpatient.findOne({ addpatientmrn: req.body.mrn });
+
+    if (patient == null) {
+      return res.json({ nopatient: "This Patient Not Found" });
+    }
+
+    if (patient) {
+      req.body.patientname = patient.addpatientname;
+    }
+
+    if (req.body.ptfloor === "Choose...") {
+      return res.json({ noptfloor: "You Must Enter This Field" });
+    }
+
     if (req.body.oraliv === "Choose....") {
       return res.json({ oraliv: "You Must Enter This Field" });
     }
-    const body = req.body;
-    const name = req.body.patientname;
-    const inpatientAddpatient = await Inpatientschema.create(body);
+
+    const inpatientAddpatient = await Inpatientschema.create(req.body);
     res.json({ inpatient_add_patient: inpatientAddpatient });
+  })
+);
+
+// INPATIENT ADD NEW PATIENT
+router.post(
+  "/addnewpatient",
+  [check("addpatientname").notEmpty()],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const patient = await Newpatient.findOne({
+      addpatientmrn: req.body.addpatientmrn,
+    });
+  
+    if (patient) {
+      return res.json({ patientexist: "This Patient Is Already Exist" });
+    }
+    const error = validationResult(req)
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+    if (!patient) {
+      await Newpatient.create(req.body);
+      res.json({ done: "Patient Added" });
+    }
   })
 );
 
@@ -1660,17 +1864,54 @@ router.post("/outpatientprepsearch", checkIfUser, requireAuth, (req, res) => {
 });
 
 // DISPENSE ADD PATIENT
-router.post("/add_patient_dis", checkIfUser, requireAuth, async (req, res) => {
-  try {
+router.post(
+  "/add_patient_dis",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const patient = await Newpatient.findOne({ addpatientmrn: req.body.mrn });
+
+    if (patient == null) {
+      return res.json({ nopatient: "This Patient Not Found" });
+    }
+
+    if (patient) {
+      req.body.patientname = patient.addpatientname;
+    }
+
     if (req.body.oraliv === "Choose....") {
       return res.json({ oraliv: "You Must Enter This Field" });
     }
+
     const dispenseAddpatient = await Dispenseschema.create(req.body);
     res.json({ dispense_add_patient: dispenseAddpatient });
-  } catch (error) {
-    console.log(error);
-  }
-});
+  })
+);
+
+// DISPENSE ADD NEW PATIENT
+router.post(
+  "/addnewpatientdispense",
+  [check("addpatientname").notEmpty()],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const patient = await Newpatient.findOne({
+      addpatientmrn: req.body.addpatientmrn,
+    });
+    if (patient) {
+      return res.json({ patientexist: "This Patient Is Already Exist" });
+    }
+    const error = validationResult(req)
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+
+    if (!patient) {
+      await Newpatient.create(req.body);
+      res.json({ done: "Patient Added" });
+    }
+  })
+);
 
 //ATTACH FILE
 router.post(
@@ -1707,6 +1948,83 @@ router.delete("/delete/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndDelete(req.params.id)
     .then((result) => {
       res.redirect("/inpatient3");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//ICU DELETE PATIENT
+router.delete("/deleteicu/:id", checkIfUser, requireAuth, (req, res) => {
+  Inpatientschema.findByIdAndDelete(req.params.id)
+    .then((result) => {
+      res.redirect("/icu");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//ICC DELETE PATIENT
+router.delete("/deleteicc/:id", checkIfUser, requireAuth, (req, res) => {
+  Inpatientschema.findByIdAndDelete(req.params.id)
+    .then((result) => {
+      res.redirect("/icc");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//6TH DELETE PATIENT
+router.delete("/delete6th/:id", checkIfUser, requireAuth, (req, res) => {
+  Inpatientschema.findByIdAndDelete(req.params.id)
+    .then((result) => {
+      res.redirect("/6th");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//5TH DELETE PATIENT
+router.delete("/delete5th/:id", checkIfUser, requireAuth, (req, res) => {
+  Inpatientschema.findByIdAndDelete(req.params.id)
+    .then((result) => {
+      res.redirect("/5th");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//4TH DELETE PATIENT
+router.delete("/delete4th/:id", checkIfUser, requireAuth, (req, res) => {
+  Inpatientschema.findByIdAndDelete(req.params.id)
+    .then((result) => {
+      res.redirect("/4th");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//3RDO DELETE PATIENT
+router.delete("/delete3rdo/:id", checkIfUser, requireAuth, (req, res) => {
+  Inpatientschema.findByIdAndDelete(req.params.id)
+    .then((result) => {
+      res.redirect("/3rdo");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//3RDN DELETE PATIENT
+router.delete("/delete3rdn/:id", checkIfUser, requireAuth, (req, res) => {
+  Inpatientschema.findByIdAndDelete(req.params.id)
+    .then((result) => {
+      res.redirect("/3rdn");
     })
     .catch((err) => {
       console.log(err);
@@ -1758,8 +2076,15 @@ router.put("/doneed/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
       console.log(req.body);
-      Inpatientschema.find({ oraliv: "IV", requestype: "ExtraDose", prepcomment: "" }).then((result) => {
-        res.render("IvPrep/ivprepinextradose", { inarray: result, moment: moment });
+      Inpatientschema.find({
+        oraliv: "IV",
+        requestype: "ExtraDose",
+        prepcomment: "",
+      }).then((result) => {
+        res.render("IvPrep/ivprepinextradose", {
+          inarray: result,
+          moment: moment,
+        });
       });
     })
     .catch((err) => {
@@ -1784,8 +2109,15 @@ router.put("/inedit/:id", checkIfUser, requireAuth, (req, res) => {
 router.put("/inedited/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
-      Inpatientschema.find({ oraliv: "IV", requestype: "ExtraDose", prepcomment : "" }).then((result) => {
-        res.render("IvPrep/ivprepinextradose", { inarray: result, moment: moment });
+      Inpatientschema.find({
+        oraliv: "IV",
+        requestype: "ExtraDose",
+        prepcomment: "",
+      }).then((result) => {
+        res.render("IvPrep/ivprepinextradose", {
+          inarray: result,
+          moment: moment,
+        });
       });
     })
     .catch((err) => {
@@ -1797,8 +2129,79 @@ router.put("/inedited/:id", checkIfUser, requireAuth, (req, res) => {
 router.put("/ineditdoneview/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
-      Inpatientschema.find({ oraliv: "IV", prepcomment: { $in: [ /^a/, /^b/, /^c/, /^d/, /^e/, /^f/, /^g/, /^h/, /^i/, /^j/, /^k/, /^l/, /^m/, /^n/, /^o/, /^p/, /^q/, /^r/, /^s/, /^t/, /^u/, /^v/, /^w/, /^x/, /^y/, /^z/, /^0/, /^1/, /^2/, /^3/, /^4/, /^5/, /^6/, /^7/, /^8/, /^9/,/^A/, /^B/, /^C/, /^D/, /^E/, /^F/, /^G/, /^H/, /^I/, /^J/, /^K/, /^L/, /^M/, /^N/, /^O/, /^P/, /^Q/, /^R/, /^S/, /^T/, /^U/, /^V/, /^W/, /^X/, /^Y/, /^Z/ ] } }).then((result) => {
-        res.render("IvPrep/ivprepindoneview", { inarray: result, moment: moment });
+      Inpatientschema.find({
+        oraliv: "IV",
+        prepcomment: {
+          $in: [
+            /^a/,
+            /^b/,
+            /^c/,
+            /^d/,
+            /^e/,
+            /^f/,
+            /^g/,
+            /^h/,
+            /^i/,
+            /^j/,
+            /^k/,
+            /^l/,
+            /^m/,
+            /^n/,
+            /^o/,
+            /^p/,
+            /^q/,
+            /^r/,
+            /^s/,
+            /^t/,
+            /^u/,
+            /^v/,
+            /^w/,
+            /^x/,
+            /^y/,
+            /^z/,
+            /^0/,
+            /^1/,
+            /^2/,
+            /^3/,
+            /^4/,
+            /^5/,
+            /^6/,
+            /^7/,
+            /^8/,
+            /^9/,
+            /^A/,
+            /^B/,
+            /^C/,
+            /^D/,
+            /^E/,
+            /^F/,
+            /^G/,
+            /^H/,
+            /^I/,
+            /^J/,
+            /^K/,
+            /^L/,
+            /^M/,
+            /^N/,
+            /^O/,
+            /^P/,
+            /^Q/,
+            /^R/,
+            /^S/,
+            /^T/,
+            /^U/,
+            /^V/,
+            /^W/,
+            /^X/,
+            /^Y/,
+            /^Z/,
+          ],
+        },
+      }).then((result) => {
+        res.render("IvPrep/ivprepindoneview", {
+          inarray: result,
+          moment: moment,
+        });
       });
     })
     .catch((err) => {
@@ -1850,12 +2253,15 @@ router.put("/dispinedit/:id", checkIfUser, requireAuth, (req, res) => {
     });
 });
 
-
 // DISPENSE INPATIENT EXTRADOSE / EDIT
 router.put("/dispinedited/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
-      Inpatientschema.find({ oraliv: "Oral", requestype: "ExtraDose", prepcomment: "" }).then((result) => {
+      Inpatientschema.find({
+        oraliv: "Oral",
+        requestype: "ExtraDose",
+        prepcomment: "",
+      }).then((result) => {
         res.render("Dispense/edindispense", {
           dispensearray: result,
           moment: moment,
@@ -1871,7 +2277,11 @@ router.put("/dispinedited/:id", checkIfUser, requireAuth, (req, res) => {
 router.put("/dispineditdischarge/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
-      Inpatientschema.find({ oraliv: "Oral", requestype: "DisCharge Medication" , prepcomment: "" }).then((result) => {
+      Inpatientschema.find({
+        oraliv: "Oral",
+        requestype: "DisCharge Medication",
+        prepcomment: "",
+      }).then((result) => {
         res.render("Dispense/dischargeindispense", {
           dispensearray: result,
           moment: moment,
@@ -1883,12 +2293,79 @@ router.put("/dispineditdischarge/:id", checkIfUser, requireAuth, (req, res) => {
     });
 });
 
-
 // Dispense INPATIENT DONE VIEW / EDIT
 router.put("/dispineditdoneview/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
-      Inpatientschema.find({ oraliv: "Oral", prepcomment: { $in: [ /^a/, /^b/, /^c/, /^d/, /^e/, /^f/, /^g/, /^h/, /^i/, /^j/, /^k/, /^l/, /^m/, /^n/, /^o/, /^p/, /^q/, /^r/, /^s/, /^t/, /^u/, /^v/, /^w/, /^x/, /^y/, /^z/, /^0/, /^1/, /^2/, /^3/, /^4/, /^5/, /^6/, /^7/, /^8/, /^9/,/^A/, /^B/, /^C/, /^D/, /^E/, /^F/, /^G/, /^H/, /^I/, /^J/, /^K/, /^L/, /^M/, /^N/, /^O/, /^P/, /^Q/, /^R/, /^S/, /^T/, /^U/, /^V/, /^W/, /^X/, /^Y/, /^Z/ ] } }).then((result) => {
+      Inpatientschema.find({
+        oraliv: "Oral",
+        prepcomment: {
+          $in: [
+            /^a/,
+            /^b/,
+            /^c/,
+            /^d/,
+            /^e/,
+            /^f/,
+            /^g/,
+            /^h/,
+            /^i/,
+            /^j/,
+            /^k/,
+            /^l/,
+            /^m/,
+            /^n/,
+            /^o/,
+            /^p/,
+            /^q/,
+            /^r/,
+            /^s/,
+            /^t/,
+            /^u/,
+            /^v/,
+            /^w/,
+            /^x/,
+            /^y/,
+            /^z/,
+            /^0/,
+            /^1/,
+            /^2/,
+            /^3/,
+            /^4/,
+            /^5/,
+            /^6/,
+            /^7/,
+            /^8/,
+            /^9/,
+            /^A/,
+            /^B/,
+            /^C/,
+            /^D/,
+            /^E/,
+            /^F/,
+            /^G/,
+            /^H/,
+            /^I/,
+            /^J/,
+            /^K/,
+            /^L/,
+            /^M/,
+            /^N/,
+            /^O/,
+            /^P/,
+            /^Q/,
+            /^R/,
+            /^S/,
+            /^T/,
+            /^U/,
+            /^V/,
+            /^W/,
+            /^X/,
+            /^Y/,
+            /^Z/,
+          ],
+        },
+      }).then((result) => {
         res.render("Dispense/doneviewindispense", {
           dispensearray: result,
           moment: moment,
@@ -1938,7 +2415,75 @@ router.put("/doneviewdisin/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
       console.log(req.body);
-      Inpatientschema.find({ oraliv: "Oral", prepcomment: { $in: [ /^a/, /^b/, /^c/, /^d/, /^e/, /^f/, /^g/, /^h/, /^i/, /^j/, /^k/, /^l/, /^m/, /^n/, /^o/, /^p/, /^q/, /^r/, /^s/, /^t/, /^u/, /^v/, /^w/, /^x/, /^y/, /^z/, /^0/, /^1/, /^2/, /^3/, /^4/, /^5/, /^6/, /^7/, /^8/, /^9/,/^A/, /^B/, /^C/, /^D/, /^E/, /^F/, /^G/, /^H/, /^I/, /^J/, /^K/, /^L/, /^M/, /^N/, /^O/, /^P/, /^Q/, /^R/, /^S/, /^T/, /^U/, /^V/, /^W/, /^X/, /^Y/, /^Z/ ] } }).then((result) => {
+      Inpatientschema.find({
+        oraliv: "Oral",
+        prepcomment: {
+          $in: [
+            /^a/,
+            /^b/,
+            /^c/,
+            /^d/,
+            /^e/,
+            /^f/,
+            /^g/,
+            /^h/,
+            /^i/,
+            /^j/,
+            /^k/,
+            /^l/,
+            /^m/,
+            /^n/,
+            /^o/,
+            /^p/,
+            /^q/,
+            /^r/,
+            /^s/,
+            /^t/,
+            /^u/,
+            /^v/,
+            /^w/,
+            /^x/,
+            /^y/,
+            /^z/,
+            /^0/,
+            /^1/,
+            /^2/,
+            /^3/,
+            /^4/,
+            /^5/,
+            /^6/,
+            /^7/,
+            /^8/,
+            /^9/,
+            /^A/,
+            /^B/,
+            /^C/,
+            /^D/,
+            /^E/,
+            /^F/,
+            /^G/,
+            /^H/,
+            /^I/,
+            /^J/,
+            /^K/,
+            /^L/,
+            /^M/,
+            /^N/,
+            /^O/,
+            /^P/,
+            /^Q/,
+            /^R/,
+            /^S/,
+            /^T/,
+            /^U/,
+            /^V/,
+            /^W/,
+            /^X/,
+            /^Y/,
+            /^Z/,
+          ],
+        },
+      }).then((result) => {
         res.render("Dispense/doneviewindispense", {
           dispensearray: result,
           moment: moment,
@@ -1955,7 +2500,11 @@ router.put("/donedisined/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
       console.log(req.body);
-      Inpatientschema.find({ oraliv: "Oral", requestype : "ExtraDose", prepcomment: "" }).then((result) => {
+      Inpatientschema.find({
+        oraliv: "Oral",
+        requestype: "ExtraDose",
+        prepcomment: "",
+      }).then((result) => {
         res.render("Dispense/edindispense", {
           dispensearray: result,
           moment: moment,
@@ -1972,7 +2521,11 @@ router.put("/donedisindischarge/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
       console.log(req.body);
-      Inpatientschema.find({ oraliv: "Oral", requestype: "DisCharge Medication", prepcomment: "" }).then((result) => {
+      Inpatientschema.find({
+        oraliv: "Oral",
+        requestype: "DisCharge Medication",
+        prepcomment: "",
+      }).then((result) => {
         res.render("Dispense/dischargeindispense", {
           dispensearray: result,
           moment: moment,

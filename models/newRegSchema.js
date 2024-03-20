@@ -34,7 +34,11 @@ const user = new mongoose.Schema(
     passwordResetVerified: Boolean,
 
   
-    code: Number,
+    code: {
+      type : Number,
+      trim : true,
+      isNumeric : true,
+    },
     role: {
       type: "string",
       enum: ["User", "Admin"],

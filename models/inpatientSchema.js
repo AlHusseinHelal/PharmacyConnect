@@ -5,10 +5,6 @@ const mongoose = require("mongoose");
 const inpat2 = new mongoose.Schema(
   {
     patientname: String,
-    slug: {
-      type: String,
-      lowercase: true,
-    },
     mrn: String,
     ptfloor: String,
     requestype: String,

@@ -108,27 +108,5 @@ $(document).ready(function () {
 //   imgsrc.src = choosefileurl
 // });
 
-const add_patient_dispense = document.getElementById("add_patient_dispense")
-add_patient_dispense.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const res = await fetch("/add_patient_dis", {
-    method: "POST",
-    body: JSON.stringify({ patientname: patientname.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value }),
-    headers: { "Content-Type": "application/json" },
-  });
 
-  const data = await res.json();
-
-  if (data.oraliv) {
-    document.getElementById('iv_oralnot').classList.remove("d-none");
-    document.getElementById('oraliv').classList.add("redframe");  
-  } else {
-    document.getElementById('iv_oralnot').classList.add("d-none");
-    document.getElementById('oraliv').classList.remove("redframe");  
-  } 
-  if (data.dispense_add_patient) {
-    location.assign("/dispense3")  
-  }
-  
-});
 
