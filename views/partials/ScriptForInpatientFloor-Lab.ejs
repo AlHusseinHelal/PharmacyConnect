@@ -1,0 +1,59 @@
+<script>
+  add_lab_inpatient.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const res = await fetch("/add_lab_in", {
+      method: "POST",
+      body: JSON.stringify({ labpatientname: labpatientname.value, mrnlab: mrnlab.value, labptfloor: labptfloor.value, labrequestype: labrequestype.value, medstartdate: medstartdate.value, medstarttime: medstarttime.value, samplewddate: samplewddate.value, samplewdtime: samplewdtime.value, levelrequestreason: levelrequestreason.value, labcomment : labcomment.value, createdAt: new Date() }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await res.json();
+    if (data.errors) {
+      data.errors.forEach(item => {
+        if (item.path == "mrnlab") {
+          mrnempty.classList.remove("d-none");
+          mrnlab.classList.add("redframe");
+        } else {
+          mrnempty.classList.add("d-none");
+          mrnlab.classList.remove("redframe");
+        }
+      });
+    }
+
+    if (data.nopatient) {
+      labnopatient.classList.remove("d-none");
+      mrnlab.classList.add("redframe");
+    } else {
+      labnopatient.classList.add("d-none");
+      mrnlab.classList.remove("redframe");
+    }
+
+    if (data.nolabptfloor) {
+      ptfloorempty.classList.remove("d-none");
+      labptfloor.classList.add("redframe");
+    } else {
+      ptfloorempty.classList.add("d-none");
+      labptfloor.classList.remove("redframe");
+    }
+
+    if (data.nolabrequestype) {
+      requestypempty.classList.remove("d-none");
+      labrequestype.classList.add("redframe");
+    } else {
+      requestypempty.classList.add("d-none");
+      labrequestype.classList.remove("redframe");
+    }
+
+    if (data.levelrequestreasonempty) {
+      levelrequestreasonempty.classList.remove("d-none");
+      levelrequestreason.classList.add("redframe");
+    } else {
+      levelrequestreasonempty.classList.add("d-none");
+      levelrequestreason.classList.remove("redframe");
+    }
+
+    if (data.lab_add_patient) {
+      location.assign("icu")
+    }
+  });
+
+</script>

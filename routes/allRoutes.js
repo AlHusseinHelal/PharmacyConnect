@@ -27,6 +27,7 @@ const User = require("../models/newRegSchema");
 const Outpatient = require("../models/outpatientSchema");
 const Dispenseschema = require("../models/dispenseSchema");
 const Newpatient = require("../models/newPatientSchema");
+const Labschema = require("../models/labSchema");
 //MIDDLEWARE
 const { requireAuth } = require("../middleware/middleware");
 const { checkIfUser } = require("../middleware/middleware");
@@ -658,11 +659,23 @@ router.get("/inpatient", checkIfUser, requireAuth, (req, res) => {
 
 // INPATIENT OVERVIEW
 router.get("/inpatient3", checkIfUser, requireAuth, (req, res) => {
+  const page = req.query.page * 1 || 1;
+  const limit = req.query.limit * 1 || 9;
+  const skip = (page - 1) * limit;
+
   Inpatientschema.find()
+    .skip(skip)
+    .limit(limit)
     .then((results) => {
+      console.log(results);
+      console.log(page);
+      console.log(limit);
+      console.log(skip);
       res.render("Inpatient/inpatient3", {
         inpatientarray: results,
         moment: moment,
+        page,
+        limit,skip,
       });
     })
     .catch((err) => {
@@ -836,39 +849,11 @@ router.get("/ivprep", checkIfUser, requireAuth, (req, res) => {
 
 //IVPREP INPATIENT
 router.get("/prepin", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.find({ oraliv: "IV", prepcomment: "" })
-    .then((result) => {
-      res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-//IVPREP INPATIENT EXTRADOSE
-router.get("/ed", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.find({
-    oraliv: "IV",
-    requestype: "ExtraDose",
-    prepcomment: "",
-  })
-    .then((result) => {
-      res.render("IvPrep/ivprepinextradose", {
-        inarray: result,
-        moment: moment,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-//IVPREP INPATIENT DONE VIEW
-router.get("/doneview", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.find({
     oraliv: "IV",
     prepcomment: {
       $in: [
+        "",
         /^a/,
         /^b/,
         /^c/,
@@ -908,7 +893,6 @@ router.get("/doneview", checkIfUser, requireAuth, (req, res) => {
         /^A/,
         /^B/,
         /^C/,
-        /^D/,
         /^E/,
         /^F/,
         /^G/,
@@ -933,6 +917,38 @@ router.get("/doneview", checkIfUser, requireAuth, (req, res) => {
         /^Z/,
       ],
     },
+  })
+    .then((result) => {
+      res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//IVPREP INPATIENT EXTRADOSE
+router.get("/ed", checkIfUser, requireAuth, (req, res) => {
+  Inpatientschema.find({
+    oraliv: "IV",
+    requestype: "ExtraDose",
+    prepcomment: "",
+  })
+    .then((result) => {
+      res.render("IvPrep/ivprepinextradose", {
+        inarray: result,
+        moment: moment,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//IVPREP INPATIENT DONE VIEW
+router.get("/doneview", checkIfUser, requireAuth, (req, res) => {
+  Inpatientschema.find({
+    oraliv: "IV",
+    prepcomment: "DONE",
   })
     .then((result) => {
       res.render("IvPrep/ivprepindoneview", {
@@ -968,8 +984,36 @@ router.get("/prepdis", checkIfUser, requireAuth, (req, res) => {
 });
 
 //PHARMACY LAB
-router.get("/lab", checkIfUser, requireAuth, (req, res) => {
-  res.render("lab");
+router.get(
+  "/lab",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    await Labschema.find({ labcomment: "" })
+      .then((results) => {
+        res.render("Lab/lab.ejs", {
+          labarray: results,
+          moment: moment,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+//PHARMACY LAB RECEIVED VIEW
+router.get("/labreceivedview", checkIfUser, requireAuth, (req, res) => {
+  Labschema.find({ labcomment: "RECEIVED" })
+    .then((result) => {
+      res.render("Lab/labreceivedview.ejs", {
+        labarray: result,
+        moment: moment,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 // DISPENSE
@@ -1183,19 +1227,16 @@ router.post(
   "/checklogin",
   [check("code").isNumeric()],
   asyncHandler(async (req, res) => {
-
     const objError = validationResult(req);
     if (!objError.isEmpty()) {
       return res.json({ validationerrors: objError.errors });
     }
-    
+
     const loginuser = await User.findOne({ code: req.body.code });
 
     if (!loginuser) {
       return res.json({ codenotfound: "You Are Not Registered" });
     }
-
-    
 
     const match = await bcrypt.compare(req.body.password, loginuser.password);
     if (!match) {
@@ -1736,9 +1777,14 @@ router.post("/avatarselection24", checkIfUser, requireAuth, (req, res) => {
 // INPATIENT ADD PATIENT
 router.post(
   "/add_patient_in",
+  [check("mrn").isNumeric(), check("requestype").notEmpty()],
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
     const patient = await Newpatient.findOne({ addpatientmrn: req.body.mrn });
 
     if (patient == null) {
@@ -1751,6 +1797,10 @@ router.post(
 
     if (req.body.ptfloor === "Choose...") {
       return res.json({ noptfloor: "You Must Enter This Field" });
+    }
+
+    if (req.body.requestype === "Choose....") {
+      return res.json({ norequestype: "You Must Enter This Field" });
     }
 
     if (req.body.oraliv === "Choose....") {
@@ -1772,11 +1822,11 @@ router.post(
     const patient = await Newpatient.findOne({
       addpatientmrn: req.body.addpatientmrn,
     });
-  
+
     if (patient) {
       return res.json({ patientexist: "This Patient Is Already Exist" });
     }
-    const error = validationResult(req)
+    const error = validationResult(req);
     if (!error.isEmpty()) {
       return res.json({ errors: error.errors });
     }
@@ -1784,6 +1834,86 @@ router.post(
       await Newpatient.create(req.body);
       res.json({ done: "Patient Added" });
     }
+  })
+);
+
+// INPATIENT ADD LAB PATIENT
+router.post(
+  "/add_lab_in",
+  [check("mrnlab").isNumeric()],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const validationerrors = validationResult(req);
+    console.log(validationerrors);
+    if (!validationerrors.isEmpty()) {
+      return res.json({ errors: validationerrors.errors });
+    }
+
+    const patient = await Newpatient.findOne({
+      addpatientmrn: req.body.mrnlab,
+    });
+
+    if (patient == null) {
+      return res.json({ nopatient: "This Patient Not Found" });
+    }
+
+    if (patient) {
+      req.body.labpatientname = patient.addpatientname;
+    }
+
+    if (req.body.labptfloor === "Choose...") {
+      return res.json({ nolabptfloor: "You Must Enter This Field" });
+    }
+
+    if (req.body.labrequestype === "Choose...") {
+      return res.json({ nolabrequestype: "You Must Enter This Field" });
+    }
+
+    if (req.body.levelrequestreason === "") {
+      return res.json({ levelrequestreasonempty: "You Must Enter This Field" });
+    }
+
+    const labAddpatient = await Labschema.create(req.body);
+    res.json({ lab_add_patient: labAddpatient });
+  })
+);
+
+// floor ADD LAB PATIENT
+router.post(
+  "/add_lab_floor",
+  [check("mrnlab").isNumeric()],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const validationerrors = validationResult(req);
+    console.log(validationerrors);
+    if (!validationerrors.isEmpty()) {
+      return res.json({ errors: validationerrors.errors });
+    }
+
+    const patient = await Newpatient.findOne({
+      addpatientmrn: req.body.mrnlab,
+    });
+
+    if (patient == null) {
+      return res.json({ nopatient: "This Patient Not Found" });
+    }
+
+    if (patient) {
+      req.body.labpatientname = patient.addpatientname;
+    }
+
+    if (req.body.labrequestype === "Choose...") {
+      return res.json({ nolabrequestype: "You Must Enter This Field" });
+    }
+
+    if (req.body.levelrequestreason === "") {
+      return res.json({ levelrequestreasonempty: "You Must Enter This Field" });
+    }
+
+    const labAddpatient = await Labschema.create(req.body);
+    res.json({ lab_add_patient: labAddpatient });
   })
 );
 
@@ -1901,7 +2031,7 @@ router.post(
     if (patient) {
       return res.json({ patientexist: "This Patient Is Already Exist" });
     }
-    const error = validationResult(req)
+    const error = validationResult(req);
     if (!error.isEmpty()) {
       return res.json({ errors: error.errors });
     }
@@ -2547,6 +2677,20 @@ router.put("/donedisout/:id", checkIfUser, requireAuth, (req, res) => {
           dispensearray: result,
           moment: moment,
         });
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+// LAB INPATIENT / DONE
+router.put("/donelab/:id", checkIfUser, requireAuth, (req, res) => {
+  Labschema.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => {
+      console.log(req.body);
+      Labschema.find({ labcomment: "" }).then((result) => {
+        res.render("Lab/lab.ejs", { labarray: result, moment: moment });
       });
     })
     .catch((err) => {

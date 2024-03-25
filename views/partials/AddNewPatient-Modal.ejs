@@ -1,0 +1,52 @@
+<!-- ADD NEW PATIENT MODAL -->
+<div class="connectmodal modal fade" id="exampleModal3" data-bs-backdrop="static" tabindex="-1"
+aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="glass modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="exampleModalLabel">
+        Add New Patient
+      </h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+
+
+      <div class="mb-3">
+        <label for="addpatientname" class="col-form-label">Patient Name</label>
+        <input name="addpatientname" type="text" class="form-control" id="addpatientname" />
+      </div>
+
+      <div id="nopatientname" class=" d-flex flex-row align-items-center my-2 d-none"
+        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+        <p class="my-1 ms-1">You Must Enter This Field</p>
+      </div>
+
+      <div class="mb-3">
+        <label for="addpatientmrn" class="col-form-label">MRN</label>
+        <input name="addpatientmrn" type="text" class="form-control" id="addpatientmrn" />
+      </div>
+
+      <div id="patientexist" class=" d-flex flex-row align-items-center my-2 d-none"
+        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+        <p class="my-1 ms-1">This Patient Is Already Exist</p>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        Close
+      </button>
+      <form id="addnewpatient">
+        <button type="submit" class="btn btn-primary">
+          ADD
+        </button>
+      </form>
+
+
+    </div>
+  </div>
+</div>
+</div>

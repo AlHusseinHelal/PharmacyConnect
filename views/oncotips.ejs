@@ -30,7 +30,7 @@
   <!-- HEADER CSS -->
   <link rel="stylesheet" href="../css/style.css">
   <!-- Custom styles for this template -->
-  <link href="../css/sidebars.css" rel="stylesheet">
+  <link href="../css/oncotips/sidebars.css" rel="stylesheet">
 
 
 
@@ -43,7 +43,6 @@
   <!-- /*--------------------------------------------------------------
 # BACK TO TOP
 --------------------------------------------------------------*/ -->
-
   <div class="opacity" id="uparrow">
     <svg id="svgarrow" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
       class="bi bi-arrow-up-short" viewBox="0 0 16 16">
@@ -52,27 +51,21 @@
     </svg>
   </div>
 
-
-
   <!-- /*--------------------------------------------------------------
 # header
 --------------------------------------------------------------*/ -->
   <%- include("partials/header.ejs") %>
 
-
     <!-- /*--------------------------------------------------------------
 # light icon
 --------------------------------------------------------------*/ -->
-
     <%- include("partials/lighticon.ejs") %>
-
-
 
       <!-- /*--------------------------------------------------------------
 # body and sidebar
 --------------------------------------------------------------*/ -->
 
-      <main class="d-flex flex-nowrap" style="height: 90vh;">
+      <main class="d-flex flex-nowrap" style="height: 89vh;">
 
 
         <!-- ARROW SIDEBAR -->
@@ -126,6 +119,18 @@
                   </li>
                   <li><a href="#" class="d-inline-flex text-decoration-none rounded btnsubheadfont Targeted">Targeted
                       Therapy</a></li>
+                  <li><a href="#"
+                      class="d-inline-flex text-decoration-none rounded btnsubheadfont Vasopressors">Vasopressors &
+                      INOTROPES</a></li>
+                  <li><a href="#" class="d-inline-flex text-decoration-none rounded btnsubheadfont HL">Pediatric Hodgkin
+                      Lymphoma & Euronet Protocol</a></li>
+                  <li><a href="#" class="d-inline-flex text-decoration-none rounded btnsubheadfont SHOCK">SHOCK</a></li>
+                  <li><a href="#" class="d-inline-flex text-decoration-none rounded btnsubheadfont Fluid">Fluid &
+                      Electrolytes</a></li>
+                  <li><a href="#" class="d-inline-flex text-decoration-none rounded btnsubheadfont COPD">COPD In BPS
+                      Pharmacotherapy</a></li>
+                  <li><a href="#" class="d-inline-flex text-decoration-none rounded btnsubheadfont Tyrosine">Tyrosine
+                      Kinase Inhibitor</a></li>
                 </ul>
               </div>
             </li>
@@ -152,13 +157,11 @@
                   <li><a href="#"
                       class=" d-inline-flex text-decoration-none rounded btnsubheadfont DinuTuximab">Dinutuximab</a>
                   </li>
-                  <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Monthly</a></li>
-                  <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Annually</a>
-                  </li>
                 </ul>
               </div>
 
             </li>
+
             <!-- MEDICATION -->
             <li class="mb-1">
               <div class="d-inline-flex divsvgpres">
@@ -186,26 +189,10 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
                         <li class="my-1 list-group-item list-group-item-action Ifosfamide">Ifosfamide</li>
                         <li class="mb-1 list-group-item list-group-item-action Cyclophpsphamide">Cyclophpsphamide</li>
-                        <li class="mb-1 list-group-item list-group-item-action px-2 Spironolactone">Spironolactone 25mg
-                        </li>
-                        <li class="mb-1 list-group-item list-group-item-action px-2 Lasilactone">(Furosemide 20mg
-                          Spironolactone 50mg)
-                        </li>
-                        <li class="mb-1 list-group-item list-group-item-action Carvid">Carvedilol 6.25mg</li>
-                        <li class="mb-1 list-group-item list-group-item-action Coradarone">Amiodarone 200mg</li>
-                        <li class="mb-1 list-group-item list-group-item-action Propranolol">Propranolol 10mg</li>
-                        <li class="mb-1 list-group-item list-group-item-action Atenolol">Atenolol 100mg</li>
-                        <li class="mb-1 list-group-item list-group-item-action Apresoline">Hydralazine chloride tablet
-                          25mg
-                          IV: 20mg/ml</li>
-                        <li class="mb-1 list-group-item list-group-item-action Nifedipine">Nifedipine</li>
-                        <li class="mb-1 list-group-item list-group-item-action Minipress">Prazocin HCL 1 & 2 mg</li>
-                        <li class="mb-1 list-group-item list-group-item-action Doxazosin">Doxazosin 2mg</li>
-                        <li class="mb-1 list-group-item list-group-item-action Capozide">Captopril 50mg + HCT 25mg</li>
-                        <li class="mb-1 list-group-item list-group-item-action Valsartan">Valsartan 40, 80, 160 mg</li>
-                        <li class="mb-1 list-group-item list-group-item-action Sotalol">Sotalol 40 & 80 mg</li>
-                        <li class="mb-1 list-group-item list-group-item-action Ivabradine">Ivabradine 5 mg</li>
-                        <li class="mb-1 list-group-item list-group-item-action">Captopril 50mg + HCT 25mg</li>
+                        <li class="mb-1 list-group-item list-group-item-action Basiliximab">Basiliximab</li>
+                        <li class="mb-1 list-group-item list-group-item-action Rituximab">Rituximab</li>
+
+
 
 
 
@@ -261,18 +248,13 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
                         <li class="my-1 list-group-item list-group-item-action Captopril">Captopril 25mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Furosemide">Furosemide 40mg</li>
-                        <li class="mb-1 list-group-item list-group-item-action px-2 Spironolactone">Spironolactone 25mg
-                        </li>
-                        <li class="mb-1 list-group-item list-group-item-action px-2 Lasilactone">(Furosemide 20mg
-                          Spironolactone 50mg)
-                        </li>
+                        <li class="mb-1 list-group-item list-group-item-action px-2 Spironolactone">Spironolactone 25mg</li>
+                        <li class="mb-1 list-group-item list-group-item-action px-2 Lasilactone">Furosemide 20mg Spironolactone 50mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Carvid">Carvedilol 6.25mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Coradarone">Amiodarone 200mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Propranolol">Propranolol 10mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Atenolol">Atenolol 100mg</li>
-                        <li class="mb-1 list-group-item list-group-item-action Apresoline">Hydralazine chloride tablet
-                          25mg
-                          IV: 20mg/ml</li>
+                        <li class="mb-1 list-group-item list-group-item-action Apresoline">Hydralazine chloride tablet 25mg IV: 20mg/ml</li>
                         <li class="mb-1 list-group-item list-group-item-action Nifedipine">Nifedipine</li>
                         <li class="mb-1 list-group-item list-group-item-action Minipress">Prazocin HCL 1 & 2 mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Doxazosin">Doxazosin 2mg</li>
@@ -280,7 +262,10 @@
                         <li class="mb-1 list-group-item list-group-item-action Valsartan">Valsartan 40, 80, 160 mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Sotalol">Sotalol 40 & 80 mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Ivabradine">Ivabradine 5 mg</li>
-                        <li class="mb-1 list-group-item list-group-item-action">Captopril 50mg + HCT 25mg</li>
+                        <li class="mb-1 list-group-item list-group-item-action SacubitrilandValsartan">Sacubitril and Valsartan</li>
+                        <li class="mb-1 list-group-item list-group-item-action Dapagliflozin">Dapagliflozin 10 mg</li>
+                        <li class="mb-1 list-group-item list-group-item-action Sildenafil">Sildenafil 100 mg</li>
+                        <li class="mb-1 list-group-item list-group-item-action Amlodipine">Amlodipine 5mg</li>
 
 
 
@@ -310,7 +295,7 @@
                   <rect class="cls" x="7.17" y="13.61" width="5.75" height=".55" />
                 </svg>
 
-                <a  id="btn8"
+                <a id="btn8"
                   class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed btnheadfont p-0 dicbtn"
                   data-bs-toggle="collapse" data-bs-target="#DICcollapse" aria-expanded="false">
                   DIC Communication
@@ -319,15 +304,39 @@
               </div>
               <div class="collapse " id="DICcollapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li>
-                    <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont">DIGOXIN</a>
-                  </li>
+
                   <li>
                     <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont NonChemoTherapy">Non-ChemoTherapy
                       IV</a>
                   </li>
+
                   <li>
-                    <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont">ChemoTherapy IV</a>
+                    <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont ChemoTherapy">ChemoTherapy
+                      IV</a>
+                  </li>
+                  <li>
+                    <a
+                      class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont Sorafenib-Guidelines">Sorafenib-Guidelines</a>
+                  </li>
+                  <li>
+                    <a
+                      class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont FN-Guidelines">FN-Guidelines</a>
+                  </li>
+                  <li>
+                    <a
+                      class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont DasatinibGuidelines">Dasatinib-Administration-Guidelines</a>
+                  </li>
+                  <li>
+                    <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont Algorithm">Algorithm
+                      for Child Status Epilepticus emergency</a>
+                  </li>
+                  <li>
+                    <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont Psycho-Oncolgy">Psycho-Oncolgy
+                      Guidlines</a>
+                  </li>
+                  <li>
+                    <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont Neuro-Oncology">Neuro-Oncology
+                      Guidlines</a>
                   </li>
                 </ul>
               </div>
@@ -338,10 +347,10 @@
             <!-- SCIENTIFIC PAPER -->
             <li class="mb-1">
               <div class="d-inline-flex divsvgpres">
-                <svg class="Layer me-1"  data-name="Layer 1" viewBox="-3 1 25 27"
-                  data-bs-toggle="collapse" data-bs-target="#papercollapse" aria-expanded="false">
+                <svg class="Layer me-1" data-name="Layer 1" viewBox="-3 1 25 27" data-bs-toggle="collapse"
+                  data-bs-target="#papercollapse" aria-expanded="false">
 
-                  <path 
+                  <path
                     d="m4.68,4.49v1.06h13.54v-1.06H4.68Zm0,2.49h0v.96h13.54v-.96H4.68Zm0,2.4h0v.96h13.54v-.96H4.68Zm0,2.4h0v1.06h11.43v-1.06H4.68Zm0,2.4h0v1.06h7.59v-1.06h-7.59Zm8.54,7.67h0v1.05h6.24v-1.05h-6.24Zm9.42-8.35h0l-5.38,5.37,1.44,1.35,5.28-5.37-1.34-1.35Zm-6.14,7.48h0l1.06-.29.96-.38-.68-.67-.67-.67-.29.96-.38,1.06ZM1.61,1.32h20.26v12.66l-1.15,1.05V2.38H2.18v22.16h18.54v-6.14l1.15-1.05v8.34H1.02V1.32h.58Z" />
                 </svg>
 
@@ -354,16 +363,11 @@
               </div>
               <div class="collapse " id="papercollapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+
                   <li>
-                    <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont">DIGOXIN</a>
+                    <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont NonChemoTherapy"></a>
                   </li>
-                  <li>
-                    <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont NonChemoTherapy">Non-ChemoTherapy
-                      IV</a>
-                  </li>
-                  <li>
-                    <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont">ChemoTherapy IV</a>
-                  </li>
+
                 </ul>
               </div>
 
@@ -381,10 +385,117 @@
           </ul>
         </div>
 
-
-        <div class="container" id="container">
+        <!-- 1250 580 -->
+        <div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
         </div>
 
+        <!-- <div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+          <div class="row">
+            <div class="col col-12">
+              <div class="one mt-3">
+                <h1 class="flex-shrink-0">Amlodipine 5 mg<p style="color: red; margin-bottom: 0;">Norvasc<sup>®</sup>
+                  </p>
+                  <span class="mt-1">Medication Monograph</span>
+                </h1>
+              </div>
+              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
+
+                <div class="accordion-item ">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
+                      DOSE
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+
+                      <ul>
+                        <li><strong><u>Hypertension:</u></strong>
+                          <p><strong>&lt;6 years:</strong> Limited data available: Initial: 0.1 mg/kg/dose once daily; titrate based on clinical response; maximum daily dose: 0.6 mg/kg/day or 5 mg/day.</p>
+                          <p><strong>&#8805;6 years</strong> and Adolescents:Initial: 2.5 mg once daily; titrate based on clinical response; maximum daily dose: 10 mg/day</p>
+                        </li>
+                      </ul>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item ">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                      <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
+                      ADMINISTRATION
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p>Administer without regard to meals</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                      <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
+                      SIDE EFFECT
+                    </button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <ul>
+                        <li><strong>Cardiovascular:</strong>Flushing &#8804;3%, dose related, , palpitations &#8804;5%, dose related</li>
+                        <li><strong>Gastrointestinal:</strong>Abdominal pain (2%), nausea (3%)</li>
+                        <li><strong>Nervous system:</strong>dizziness (doses ≥5 mg/day: 3%), fatigue (5%)</li>
+                        <li><strong>Neuromuscular & skeletal:</strong>Muscle cramps (≤2%)</li>
+                        <li><strong>Dermatologic:</strong>Pruritus (≤2%), skin rash (≤2%)</li>
+                        <li><strong>Respiratory:</strong>Dyspnea (≤2%)</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                      <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
+                      MONITORING PARAMETER
+                    </button>
+                  </h2>
+                  <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <ul>
+                        <li>Heart rate</li>
+                          <li>Blood Pressure</li>
+                          <li>Peripheral edema</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+
+      </main>
+      <!-- <div id="container" class="container"
+            style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+            <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+              <div class="col col-12 text-center">
+                <object class="my-2 rounded-2" data="../presentation/Tyrosine.pdf" type="application/pdf"
+                  style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+              </div>
+            </div>
+          </div>
+        </div> -->
 
 
 
@@ -394,7 +505,9 @@
 
 
 
-        <!-- <div class="container" id="container">
+
+
+      <!-- <div class="container" id="container">
           <div class="row">
             
             <div class="col col-12">
@@ -623,8 +736,8 @@
 
 
 
-        <!-- Presentation -->
-        <!-- <div >
+      <!-- Presentation -->
+      <!-- <div >
       <div class="" id="uparrow2">
         <svg id="svgarrow" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-up-short" viewBox="0 0 16 16">
           <path  d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"/>
@@ -654,8 +767,8 @@
 
 
 
-        <!-- INFOGRAPH -->
-        <!-- <div id="container" class="container h-100  " style="justify-content: center; align-items: center;">
+      <!-- INFOGRAPH -->
+      <!-- <div id="container" class="container h-100  " style="justify-content: center; align-items: center;">
         
       <div class="row" style=" justify-content: center; align-items: center; ">
         <div class="col col-12">
@@ -673,7 +786,7 @@
 
 
 
-        <!-- <div class="one mt-5  ">
+      <!-- <div class="one mt-5  ">
             <h1 class="flex-shrink-0">LevETIRAcetam
               <span class="mt-1">Medication Monograph</span>
             </h1>
@@ -834,7 +947,7 @@
 
 
 
-      </main>
+
 
 
 

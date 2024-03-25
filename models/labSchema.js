@@ -1,0 +1,29 @@
+const mongoose = require("mongoose");
+
+// INPATIENT SCHEMA
+const lab = new mongoose.Schema(
+  {
+    labpatientname: String,
+    mrnlab: {
+      type: Number,
+      trim: true,
+      isNumeric: true,
+    },
+    labptfloor: String,
+    labrequestype: String,
+    medstartdate: {
+      type: String,
+    },
+    medstarttime: String,
+    samplewddate: String,
+    samplewdtime: String,
+    levelrequestreason: String,
+    comment: String,
+    labcomment: String,
+  },
+  { timestamps: true }
+);
+
+const Labschema = mongoose.model("labSchema", lab);
+
+module.exports = Labschema;

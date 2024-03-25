@@ -1,0 +1,165 @@
+<!-- ADD LAB PATIENT MODAL -->
+<div class="connectmodal modal fade" id="exampleModal4" data-bs-backdrop="static" tabindex="-1"
+aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="glass modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="exampleModalLabel">
+        Add Lab Patient
+      </h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <form id="add_lab_inpatient">
+
+        <div class="mb-3">
+          <label for="mrnlab" class="col-form-label">MRN</label>
+          <input name="mrnlab" type="text" class="form-control" id="mrnlab" />
+        </div>
+
+        <div id="mrnempty" class=" d-flex flex-row align-items-center my-2 d-none"
+          style="border: 1px solid #dee2e6; border-left: 4px solid red; border-radius: 5px;">
+          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+          <p class="my-1 ms-1">You Must Enter This Field With A Valid MRN</p>
+        </div>
+
+        <div id="labnopatient" class=" d-flex flex-row align-items-center my-2 d-none"
+          style="border: 1px solid #dee2e6; border-left: 4px solid red; border-radius: 5px;">
+          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+          <p class="my-1 ms-1">This Patient Not Found</p>
+        </div>
+
+        <div class="mb-3">
+          <label hidden for="labpatientname" class="col-form-label">Patient Name</label>
+          <input hidden name="labpatientname" type="text" class="form-control" id="labpatientname" />
+        </div>
+
+
+        <div class="mb-3">
+          <label for="labptfloor" class="form-label">Patient Floor</label>
+          <select id="labptfloor" name="labptfloor" class="form-select">
+            <option disabled hidden selected>Choose...</option>
+            <option>2nd</option>
+            <option>3rd O</option>
+            <option>3rd N</option>
+            <option>4th</option>
+            <option>5th</option>
+            <option>6th</option>
+            <option>ICC</option>
+            <option>ICU</option>
+          </select>
+        </div>
+
+        <div id="ptfloorempty" class=" d-flex flex-row align-items-center my-2 d-none"
+          style="border: 1px solid #dee2e6; border-left: 4px solid red; border-radius: 5px;">
+          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+          <p class="my-1 ms-1">You Must Enter This Field</p>
+        </div>
+
+        <div class="mb-3">
+          <label for="labrequestype" class="form-label">Request Type</label>
+          <select class="form-select" name="labrequestype" id="labrequestype">
+            <option selected hidden disabled>Choose...</option>
+            <option>Methotrxate_SR/HR</option>
+            <option>Methotrxate_LR/VLR</option>
+            <option>Methotrxate_NHL</option>
+            <option>Methotrxate_OS</option>
+            <option>Methotrxate_R</option>
+            <option>Amikin_T</option>
+            <option>Amikin_P</option>
+            <option>Vancomycin</option>
+            <option>Digoxin</option>
+            <option>Valproic</option>
+            <option>Phenytoin</option>
+            <option>Voriconazole</option>
+            <option>Posaconazole</option>
+          </select>
+        </div>
+
+        <div id="requestypempty" class=" d-flex flex-row align-items-center my-2 d-none"
+          style="border: 1px solid #dee2e6; border-left: 4px solid red; border-radius: 5px;">
+          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+          <p class="my-1 ms-1">You Must Enter This Field</p>
+        </div>
+
+        <div class="d-flex flex-row justify-content-between">
+          <div class="mb-3">
+            <label for="medstartdate" class="form-label">MED. Start Date : </label>
+            <input style="border: unset;" class="rounded-2 p-1" type="date" value="2024-01-01"
+              min="2018-01-01" max="2044-12-31" id="medstartdate" name="medstartdate">
+          </div>
+
+          <div id="medstartdatempty" class=" d-flex flex-row align-items-center my-2 d-none"
+            style="border: 1px solid #dee2e6; border-left: 4px solid red; border-radius: 5px;">
+            <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+            <p class="my-1 ms-1">You Must Enter This Field</p>
+          </div>
+
+          <div class="mb-3">
+            <label for="medstarttime" class="form-label">MED. Start Time : </label>
+            <input style="border: unset;" class="rounded-2 p-1" type="time" id="medstarttime"
+              name="medstarttime">
+          </div>
+
+          <div id="medstartimempty" class=" d-flex flex-row align-items-center my-2 d-none"
+            style="border: 1px solid #dee2e6; border-left: 4px solid red; border-radius: 5px;">
+            <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+            <p class="my-1 ms-1">You Must Enter This Field</p>
+          </div>
+        </div>
+
+        <div class="d-flex">
+          <div class="mb-3">
+            <label for="samplewddate" class="form-label">Sample WD Date : </label>
+            <input required style="border: unset;" class="rounded-2 p-1" type="date" value="2024-01-01"
+              min="2018-01-01" max="2044-12-31" id="samplewddate" name="samplewddate">
+          </div>
+
+          <div id="samplewddatempty" class=" d-flex flex-row align-items-center my-2 d-none"
+            style="border: 1px solid #dee2e6; border-left: 4px solid red; border-radius: 5px;">
+            <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+            <p class="my-1 ms-1">You Must Enter This Field</p>
+          </div>
+
+          <div class="mb-3">
+            <label for="samplewdtime" class="form-label">Sample WD Time : </label>
+            <input style="border: unset;" class="rounded-2 p-1" type="time" id="samplewdtime"
+              name="samplewdtime">
+          </div>
+
+          <div id="samplewdtimempty" class=" d-flex flex-row align-items-center my-2 d-none"
+            style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+            <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+            <p class="my-1 ms-1">You Must Enter This Field</p>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="levelrequestreason" class="col-form-label">Level Request Reason</label>
+          <input name="levelrequestreason" type="text" class="form-control" id="levelrequestreason" />
+        </div>
+
+        <div id="levelrequestreasonempty" class=" d-flex flex-row align-items-center my-2 d-none"
+          style="border: 1px solid #dee2e6; border-left: 4px solid red; border-radius: 5px;">
+          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+          <p class="my-1 ms-1">You Must Enter This Field</p>
+        </div>
+
+        <div class="mb-3">
+          <label hidden for="labcomment" class="col-form-label">Level Request Reason</label>
+          <input hidden name="labcomment" type="text" class="form-control" id="labcomment" value="" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        Close
+      </button>
+      <button type="submit" class="btn btn-primary">
+        Send message
+      </button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
