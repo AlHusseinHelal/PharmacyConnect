@@ -95,40 +95,38 @@
             </div>
 
 
-          <!-- NAVBAR_ICON -->
+            <!-- NAVBAR_ICON -->
           <div class="d-flex align-items-center mx-2 mb-1 justify-content-between">
-            <div class="btn d-inline-flex justify-content-between">
-              <button type="button" class="btn btn-outline-primary active position-relative"><a href="/prepin"
+            <div class="btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
+              <button type="button" class="btn btn-outline-primary active"><a href="/prepin"
                   style="border: unset; color: unset;">
-                  <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    0
-                    <span class="visually-hidden">unread messages</span>
-                  </span> -->
+                  <svg class="" style="width: 30px; height: 30px;">
+                    <use xlink:href="#table" />
+                  </svg>
                   <span class="side-text">InPatient</span>
                 </a></button>
-              <button type="button" class="btn btn-outline-primary mx-3 position-relative"><a href="/prepout"
+              <button type="button" class="btn btn-outline-primary "><a href="/prepout"
                   style="border: unset; color: unset;">
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    <%= outpatient.length %>
-                    <span class="visually-hidden">unread messages</span>
-                  </span>
+                  <svg style="width: 30px; height: 30px;">
+                    <use xlink:href="#table" />
+                  </svg>
                   <span class="side-text">OutPatient</span>
+
                 </a></button>
-              <button type="button" class="btn btn-outline-primary position-relative"><a href="/prepdis"
+              <button type="button" class="btn btn-outline-primary"><a href="/prepdis"
                   style="border: unset; color: unset;">
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    <%= dispense.length %>
-                    <span class="visually-hidden">unread messages</span>
-                  </span>
+                  <svg class="" style="width: 30px; height: 30px;">
+                    <use xlink:href="#table" />
+                  </svg>
                   <span class="side-text">Dispense</span>
                 </a></button>
             </div>
             <div class="btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
-              <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
+              <button type="button" class="btn btn-outline-danger "><a style="border: unset; color: unset;"
                   href="/ed">ExtraDose</a></button>
               <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                   href="/doneview">DONE</a></button>
-                  <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
+                  <button type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;"
                     href="/bmtview">BMT</a></button>
 
             </div>
@@ -166,8 +164,8 @@
                         </tr>
                       </thead>
                       <% inarray.forEach((item,index)=> { %>
-                        <tbody id="tbody">
-
+                      <tbody id="tbody">
+                        
                           <tr id="tr">
                             <td class="text-center">
                               <%= index+1 %>
@@ -207,7 +205,7 @@
                             </td>
 
                             <td class="text-center">
-
+                            
                               <!-- <a href="/edit/"> -->
                               <button type="button" style="background-color: rgb(0, 42, 255);"
                                 class="border rounded-2 d-inline-flex p-1 " data-bs-toggle="modal"
@@ -219,28 +217,28 @@
                                 </svg>
                               </button>
 
-
-                              <!-- MODAL -->
-                              <div class="connectmodal modal fade" id="exampleModal<%= item._id%>" tabindex="-1"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="glass modal-dialog">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h1 class="modal-title fs-5" id="exampleModalLabel">EDITING</h1>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                    </div>
-                                    <form action="/inedit/<%= item._id%>?_method=PUT" method="post">
-                                      <div class="modal-body">
-                                        Please Write Comment
-                                        <label for="prepcomment" class="form-label"></label>
-                                        <input class="form-control" type="text" name="prepcomment">
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                          data-bs-dismiss="modal">Close</button>
-
-                                        <button type="submit" class="btn btn-primary">ADD</button>
+                            
+                               <!-- MODAL -->
+                              <div class=" connectmodal modal fade" id="exampleModal<%= item._id%>" tabindex="-1"
+                              aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="glass modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">EDITING</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                      aria-label="Close"></button>
+                                  </div>
+                                  <form action="/inedited/<%= item._id%>?_method=PUT" method="post">
+                                  <div class="modal-body">
+                                    Please Write Comment
+                                    <label for="prepcomment" class="form-label"></label>
+                                    <input class="form-control" type="text" name="prepcomment">
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                      data-bs-dismiss="modal">Close</button>
+                                    
+                                      <button type="submit" class="btn btn-primary">ADD</button>
                                     </form>
                                   </div>
                                 </div>
@@ -248,7 +246,7 @@
                             </td>
 
                             <td class="text-center">
-                              <form action="/done/<%= item._id %>?_method=PUT" method="post">
+                              <form action="/doneed/<%= item._id %>?_method=PUT" method="post">
                                 <button type="submit" class="d-inline-flex p-1 text-center"
                                   style="outline-style: unset; border: none; background-color: transparent;">
                                   <label hidden for="prepcomment" class="form-label" style="display: none;">Prep
@@ -268,9 +266,9 @@
                             </td>
 
                           </tr>
-
-                        </tbody>
-                        <% }) %>
+                          
+                      </tbody>
+                      <% }) %>
                     </table>
                     <% } %>
 

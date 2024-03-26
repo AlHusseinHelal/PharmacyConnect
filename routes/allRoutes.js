@@ -689,17 +689,22 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    await Inpatientschema.find({ ptfloor: "ICU" })
-      .then((results) => {
-        res.render("Inpatient/icu", {
-          inpatientarray: results,
-          moment: moment,
-          floor: "ICU",
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 9;
+    const skip = (page - 1) * limit;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const firstname = user.firstname;
+    const lastname = user.lastname;
+    const results = await Inpatientschema.find({ ptfloor: "ICU" }).skip(skip).limit(limit)
+    if (results) {
+      res.render("Inpatient/icu", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "ICU", firstname, lastname,
       });
+    }
+      
   })
 );
 
@@ -803,18 +808,18 @@ router.get(
   })
 );
 
-// INPATIENT 6th
+// INPATIENT BMT
 router.get(
-  "/6th",
+  "/BMT",
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    await Inpatientschema.find({ ptfloor: "6th" })
+    await Inpatientschema.find({ ptfloor: "BMT" })
       .then((results) => {
-        res.render("Inpatient/6th", {
+        res.render("Inpatient/bmt", {
           inpatientarray: results,
           moment: moment,
-          floor: "6th",
+          floor: "BMT",
         });
       })
       .catch((err) => {
@@ -853,32 +858,58 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const outpatient = await Outpatient.find();
-    const dispense = await Dispenseschema.find();
-    const results = await Inpatientschema.find({ oraliv: "IV", prepcomment: { $not: { $regex: "DONE" } } })
+    const outpatient = await Outpatient.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+    });
+    const dispense = await Dispenseschema.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+    });
+    const results = await Inpatientschema.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+    });
     if (results) {
-      res.render("IvPrep/ivprepin", { inarray: results, moment: moment, outpatient , dispense });
-    }  
+      res.render("IvPrep/ivprepin", {
+        inarray: results,
+        moment: moment,
+        outpatient,
+        dispense,
+      });
+    }
   })
 );
 
 //IVPREP INPATIENT EXTRADOSE
-router.get("/ed", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.find({
+router.get("/ed", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  const results = await Inpatientschema.find({
     oraliv: "IV",
     requestype: "ExtraDose",
     prepcomment: "",
   })
-    .then((result) => {
-      res.render("IvPrep/ivprepinextradose", {
-        inarray: result,
-        moment: moment,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+  if (results) {
+    res.render("IvPrep/ivprepinextradose", {
+      inarray: results,
+      moment: moment,
+    });  
+  }
+}) );
+
+//IVPREP INPATIENT BMT
+router.get("/bmtview", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  const results = await Inpatientschema.find({
+    oraliv: "IV",
+    ptfloor: "BMT",
+    prepcomment: "",
+  })
+  if (results) {
+    res.render("IvPrep/ivprepinbmt", {
+      inarray: results,
+      moment: moment,
+    });  
+  }
+}) );
 
 //IVPREP INPATIENT DONE VIEW
 router.get("/doneview", checkIfUser, requireAuth, (req, res) => {
@@ -898,26 +929,44 @@ router.get("/doneview", checkIfUser, requireAuth, (req, res) => {
 });
 
 //IVPREP OUTPATIENT
-router.get("/prepout", checkIfUser, requireAuth, (req, res) => {
-  Outpatient.find({ oraliv: "IV" })
-    .then((result) => {
-      res.render("IvPrep/ivprepout", { outarray: result, moment: moment });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.get(
+  "/prepout",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const dispense = await Dispenseschema.find({ oraliv: "IV" });
+    const inarray = await Inpatientschema.find({ oraliv: "IV" });
+    const results = await Outpatient.find({ oraliv: "IV" });
+    if (results) {
+      res.render("IvPrep/ivprepout", {
+        outarray: results,
+        moment: moment,
+        inarray,
+        dispense,
+      });
+    }
+  })
+);
 
 //IVPREP DISPENSE
-router.get("/prepdis", checkIfUser, requireAuth, (req, res) => {
-  Dispenseschema.find({ oraliv: "IV" })
-    .then((result) => {
-      res.render("IvPrep/ivprepdis", { outarray: result, moment: moment });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.get(
+  "/prepdis",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const inarray = await Inpatientschema.find({ oraliv: "IV" });
+    const outpatient = await Outpatient.find({ oraliv: "IV" });
+    const results = await Dispenseschema.find({ oraliv: "IV" });
+    if (results) {
+      res.render("IvPrep/ivprepdis", {
+        outarray: results,
+        moment: moment,
+        inarray,
+        outpatient,
+      });
+    }
+  })
+);
 
 //PHARMACY LAB
 router.get(
@@ -958,11 +1007,20 @@ router.get("/dispense", checkIfUser, requireAuth, (req, res) => {
 });
 
 // DISPENSE OVERVIEW
-router.get("/dispense3", checkIfUser, requireAuth, (req, res) => {
-  Dispenseschema.find().then((result) => {
-    res.render("Dispense/dispense3", { dispensearray: result, moment: moment });
-  });
-});
+router.get(
+  "/dispense3",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const outpatient = await Outpatient.find();
+    const inpatient = Dispenseschema.find().then((result) => {
+      res.render("Dispense/dispense3", {
+        dispensearray: result,
+        moment: moment,
+      });
+    });
+  })
+);
 
 // DISPENSE INPATIENT
 router.get("/dispin", checkIfUser, requireAuth, (req, res) => {
@@ -2597,7 +2655,7 @@ router.put(
   asyncHandler(async (req, res) => {
     await Labschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/labreceivedview");
+        res.redirect("/lab");
       })
       .catch((err) => {
         console.log(err);

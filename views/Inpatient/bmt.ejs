@@ -54,33 +54,8 @@
       </svg>
 
       <main class="d-flex flex-nowrap">
-        <!-- /*--------------------------------------------------------------
-    # Arrow Sidebar
-    --------------------------------------------------------------*/ -->
-        <%- include("../partials/arrow sidebar.ejs") %>
 
-          <!-- /*--------------------------------------------------------------
-    # SIDE LIST
-    --------------------------------------------------------------*/ -->
-          <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidelist">
-            <img id="connectlogo" src="/svg/PharmacyConnectLogoinpatient-01.svg" height="139vh" alt="" />
 
-            <hr />
-            <ul class="nav navul nav-pills flex-column mb-0 mainul">
-              <li>
-                <div class="d-inline-flex align-items-center" style="width: 164.56px">
-                  <a href="/inpatient3" class="nav-link active d-inline-flex align-items-center width side-bg">
-                    <svg class="margin side-svg" style="width: 30px; height: 30px; fill: white">
-                      <use xlink:href="#table" />
-                    </svg>
-                    <span class="side-text">OverView</span>
-                  </a>
-                </div>
-              </li>
-            </ul>
-            <hr />
-
-          </div>
 
           <!-- /*--------------------------------------------------------------
     # DEVIDER
@@ -137,7 +112,7 @@
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                     href="/5th">5th</a></button>
                 <button type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;"
-                    href="/6th">6th</a></button>
+                    href="/BMT">BMT</a></button>
               </div>
 
               <!-- MODAL ICON -->
@@ -348,7 +323,7 @@
             document.getElementById('oraliv').classList.remove("redframe");
           }
           if (data.inpatient_add_patient) {
-            location.assign("/6th")
+            location.assign("/bmt")
           }
 
         });
@@ -408,7 +383,7 @@
     }
 
     if (data.lab_add_patient) {
-      location.assign("6th")
+      location.assign("/bmt")
     }
   });
 
@@ -442,7 +417,7 @@
             addpatientmrn.classList.remove("redframe");
           }
           if (data.done) {
-            location.assign("/6th")
+            location.assign("/bmt")
           }
         })
       </script>

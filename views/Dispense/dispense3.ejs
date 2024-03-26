@@ -54,54 +54,7 @@
       </svg>
 
       <main class="d-flex flex-nowrap">
-        <!-- /*--------------------------------------------------------------
-    # Arrow Sidebar
-    --------------------------------------------------------------*/ -->
-        <%- include("../partials/arrow sidebar.ejs") %>
 
-          <!-- /*--------------------------------------------------------------
-    # SIDE LIST
-    --------------------------------------------------------------*/ -->
-          <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidelist">
-            <img id="connectlogo" src="/svg/PharmacyConnectLogodispense-01.svg" height="139vh" alt="" />
-
-            <hr />
-            <ul class="nav navul nav-pills flex-column mb-0 mainul">
-              <li>
-                <div class="d-inline-flex align-items-center" style="width: 164.56px">
-                  <a href="/dispense3" class="nav-link active d-inline-flex align-items-center width side-bg">
-                    <svg class="margin side-svg" style="width: 30px; height: 30px; fill: white">
-                      <use xlink:href="#table" />
-                    </svg>
-                    <span class="side-text">OverView</span>
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div class="d-inline-flex align-items-center" style="width: 164.56px;">
-                  <a href="/dispin " class="  nav-link  d-inline-flex align-items-center width side-bg "
-                    style="color: black;">
-                    <svg class="margin side-svg" style="width: 30px; height:30px; fill:rgb(0, 0, 0)">
-                      <use xlink:href="#table" />
-                    </svg>
-                    <span class="side-text">InPatient</span>
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div class="d-inline-flex align-items-center" style="width: 164.56px;">
-                  <a href="/dispout " class="  nav-link  d-inline-flex align-items-center width side-bg "
-                    style="color: black;">
-                    <svg class="margin side-svg" style="width: 30px; height:30px; fill:rgb(0, 0, 0)">
-                      <use xlink:href="#table" />
-                    </svg>
-                    <span class="side-text">OutPatient</span>
-                  </a>
-                </div>
-              </li>
-            </ul>
-            <hr />
-          </div>
 
           <!-- /*--------------------------------------------------------------
     # DEVIDER
@@ -139,34 +92,67 @@
             <!-- /*--------------------------------------------------------------
       # EDIT ICON
       --------------------------------------------------------------*/ -->
+      <div class="d-flex align-items-center mx-2 mb-1 justify-content-between">
+        <div class="btn d-inline-flex justify-content-between">
+          <button type="button" class="btn btn-outline-primary active position-relative"><a href="/dispense3"
+              style="border: unset; color: unset;">
+              <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                0
+                <span class="visually-hidden">unread messages</span>
+              </span> -->
+              <span class="side-text">OverView</span>
+            </a></button>
+          <button type="button" class="btn btn-outline-primary mx-3 position-relative"><a href="/dispout"
+              style="border: unset; color: unset;">
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                0
+                <span class="visually-hidden">unread messages</span>
+              </span>
+              <span class="side-text">OutPatient</span>
+            </a></button>
+          <button type="button" class="btn btn-outline-primary position-relative"><a href="/dispin"
+              style="border: unset; color: unset;">
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                0
+                <span class="visually-hidden">unread messages</span>
+              </span>
+              <span class="side-text">InPatient</span>
+            </a></button>
+        </div>
+        <div class="d-flex justify-content-end me-1 mb-1">
+          <a style="background-color: rgb(0, 42, 255);" href="" id="editicon"
+            class="border rounded-2 d-inline-flex p-1" data-bs-toggle="modal" data-bs-placement="top"
+            data-bs-title="Edit" data-bs-target="#exampleModal2">
+            <svg style="fill: aliceblue" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+              fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+              <path
+                d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+            </svg>
+          </a>
 
-            <div class="d-flex justify-content-end me-1 mb-1">
-              <a style="background-color: rgb(0, 42, 255);" href="" id="editicon"
-                class="border rounded-2 d-inline-flex p-1" data-bs-toggle="modal" data-bs-placement="top"
-                data-bs-title="Edit" data-bs-target="#exampleModal2">
-                <svg style="fill: aliceblue" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                  fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                  <path
-                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                </svg>
-              </a>
+          <a style="background-color: rgb(203, 58, 58);" href="" id="addpatient"
+            class="border rounded-2 d-inline-flex p-1" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+            <svg style="fill: aliceblue" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+              class="bi bi-person-fill-add" viewBox="0 0 16 16">
+              <path
+                d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+              <path
+                d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
+            </svg>
+          </a>
+        </div>
 
-              <a style="background-color: rgb(203, 58, 58);" href="" id="addpatient"
-                class="border rounded-2 d-inline-flex p-1" data-bs-toggle="modal" data-bs-target="#exampleModal3">
-                <svg style="fill: aliceblue" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                  class="bi bi-person-fill-add" viewBox="0 0 16 16">
-                  <path
-                    d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                  <path
-                    d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
-                </svg>
-              </a>
-            </div>
+      </div>
+
+
+
+
+            
 
             <!-- ADD PATIENT -->
-            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="connectmodal modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
-              <div class="modal-dialog">
+              <div class="glass modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">
@@ -243,9 +229,9 @@
             </div>
 
             <!-- ADD NEW PATIENT MODAL -->
-            <div class="modal fade" id="exampleModal3" data-bs-backdrop="static" tabindex="-1"
+            <div class="connectmodal modal fade" id="exampleModal3" data-bs-backdrop="static" tabindex="-1"
               aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
+              <div class="glass modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">
