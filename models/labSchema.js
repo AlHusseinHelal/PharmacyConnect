@@ -14,6 +14,7 @@ const lab = new mongoose.Schema(
     medstartdate: {
       type: String,
     },
+    phaname: String,
     medstarttime: String,
     samplewddate: String,
     samplewdtime: String,

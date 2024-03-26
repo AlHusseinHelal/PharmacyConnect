@@ -658,30 +658,30 @@ router.get("/inpatient", checkIfUser, requireAuth, (req, res) => {
 });
 
 // INPATIENT OVERVIEW
-router.get("/inpatient3", checkIfUser, requireAuth, (req, res) => {
-  const page = req.query.page * 1 || 1;
-  const limit = req.query.limit * 1 || 9;
-  const skip = (page - 1) * limit;
-
-  Inpatientschema.find()
-    .skip(skip)
-    .limit(limit)
-    .then((results) => {
-      console.log(results);
-      console.log(page);
-      console.log(limit);
-      console.log(skip);
-      res.render("Inpatient/inpatient3", {
-        inpatientarray: results,
-        moment: moment,
-        page,
-        limit,skip,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
+router.get(
+  "/inpatient3",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 9;
+    const skip = (page - 1) * limit;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const firstname = user.firstname;
+    const lastname = user.lastname;
+    const results = await Inpatientschema.find().skip(skip).limit(limit);
+    res.render("Inpatient/inpatient3", {
+      inpatientarray: results,
+      moment: moment,
+      page,
+      limit,
+      skip,
+      firstname,
+      lastname,
     });
-});
+  })
+);
 
 // INPATIENT ICU
 router.get(
@@ -848,83 +848,19 @@ router.get("/ivprep", checkIfUser, requireAuth, (req, res) => {
 });
 
 //IVPREP INPATIENT
-router.get("/prepin", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.find({
-    oraliv: "IV",
-    prepcomment: {
-      $in: [
-        "",
-        /^a/,
-        /^b/,
-        /^c/,
-        /^d/,
-        /^e/,
-        /^f/,
-        /^g/,
-        /^h/,
-        /^i/,
-        /^j/,
-        /^k/,
-        /^l/,
-        /^m/,
-        /^n/,
-        /^o/,
-        /^p/,
-        /^q/,
-        /^r/,
-        /^s/,
-        /^t/,
-        /^u/,
-        /^v/,
-        /^w/,
-        /^x/,
-        /^y/,
-        /^z/,
-        /^0/,
-        /^1/,
-        /^2/,
-        /^3/,
-        /^4/,
-        /^5/,
-        /^6/,
-        /^7/,
-        /^8/,
-        /^9/,
-        /^A/,
-        /^B/,
-        /^C/,
-        /^E/,
-        /^F/,
-        /^G/,
-        /^H/,
-        /^I/,
-        /^J/,
-        /^K/,
-        /^L/,
-        /^M/,
-        /^N/,
-        /^O/,
-        /^P/,
-        /^Q/,
-        /^R/,
-        /^S/,
-        /^T/,
-        /^U/,
-        /^V/,
-        /^W/,
-        /^X/,
-        /^Y/,
-        /^Z/,
-      ],
-    },
+router.get(
+  "/prepin",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const outpatient = await Outpatient.find();
+    const dispense = await Dispenseschema.find();
+    const results = await Inpatientschema.find({ oraliv: "IV", prepcomment: { $not: { $regex: "DONE" } } })
+    if (results) {
+      res.render("IvPrep/ivprepin", { inarray: results, moment: moment, outpatient , dispense });
+    }  
   })
-    .then((result) => {
-      res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+);
 
 //IVPREP INPATIENT EXTRADOSE
 router.get("/ed", checkIfUser, requireAuth, (req, res) => {
@@ -989,7 +925,7 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    await Labschema.find({ labcomment: "" })
+    await Labschema.find({ labcomment: { $not: { $regex: "RECEIVED" } } })
       .then((results) => {
         res.render("Lab/lab.ejs", {
           labarray: results,
@@ -2188,18 +2124,20 @@ router.delete("/deletedis/:id", checkIfUser, requireAuth, (req, res) => {
 // ----------------------------------
 
 // IVPREP INPATIENT / DONE
-router.put("/done/:id", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      console.log(req.body);
-      Inpatientschema.find({ oraliv: "IV", prepcomment: "" }).then((result) => {
-        res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
+router.put(
+  "/done/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/prepin");
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+  })
+);
 
 // IVPREP INPATIENT EXTRADOSE / DONE
 router.put("/doneed/:id", checkIfUser, requireAuth, (req, res) => {
@@ -2223,17 +2161,20 @@ router.put("/doneed/:id", checkIfUser, requireAuth, (req, res) => {
 });
 
 // IVPREP INPATIENT / EDIT
-router.put("/inedit/:id", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      Inpatientschema.find({ oraliv: "IV", prepcomment: "" }).then((result) => {
-        res.render("IvPrep/ivprepin", { inarray: result, moment: moment });
+router.put(
+  "/inedit/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/prepin");
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+  })
+);
 
 // IVPREP INPATIENT EXTRADOSE / EDIT
 router.put("/inedited/:id", checkIfUser, requireAuth, (req, res) => {
@@ -2256,88 +2197,20 @@ router.put("/inedited/:id", checkIfUser, requireAuth, (req, res) => {
 });
 
 // IVPREP INPATIENT DONE VIEW / EDIT
-router.put("/ineditdoneview/:id", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      Inpatientschema.find({
-        oraliv: "IV",
-        prepcomment: {
-          $in: [
-            /^a/,
-            /^b/,
-            /^c/,
-            /^d/,
-            /^e/,
-            /^f/,
-            /^g/,
-            /^h/,
-            /^i/,
-            /^j/,
-            /^k/,
-            /^l/,
-            /^m/,
-            /^n/,
-            /^o/,
-            /^p/,
-            /^q/,
-            /^r/,
-            /^s/,
-            /^t/,
-            /^u/,
-            /^v/,
-            /^w/,
-            /^x/,
-            /^y/,
-            /^z/,
-            /^0/,
-            /^1/,
-            /^2/,
-            /^3/,
-            /^4/,
-            /^5/,
-            /^6/,
-            /^7/,
-            /^8/,
-            /^9/,
-            /^A/,
-            /^B/,
-            /^C/,
-            /^D/,
-            /^E/,
-            /^F/,
-            /^G/,
-            /^H/,
-            /^I/,
-            /^J/,
-            /^K/,
-            /^L/,
-            /^M/,
-            /^N/,
-            /^O/,
-            /^P/,
-            /^Q/,
-            /^R/,
-            /^S/,
-            /^T/,
-            /^U/,
-            /^V/,
-            /^W/,
-            /^X/,
-            /^Y/,
-            /^Z/,
-          ],
-        },
-      }).then((result) => {
-        res.render("IvPrep/ivprepindoneview", {
-          inarray: result,
-          moment: moment,
-        });
+router.put(
+  "/ineditdoneview/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/doneview");
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+  })
+);
 
 // IVPREP OUTPATIENT / DONE
 router.put("/doneout/:id", checkIfUser, requireAuth, (req, res) => {
@@ -2366,6 +2239,22 @@ router.put("/outedit/:id", checkIfUser, requireAuth, (req, res) => {
       console.log(err);
     });
 });
+
+// IVPREP DISPENSE / EDIT
+router.put(
+  "/editdisp/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    await Dispenseschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/prepdis");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
 
 // Dispense INPATIENT / EDIT
 router.put("/dispinedit/:id", checkIfUser, requireAuth, (req, res) => {
@@ -2685,18 +2574,36 @@ router.put("/donedisout/:id", checkIfUser, requireAuth, (req, res) => {
 });
 
 // LAB INPATIENT / DONE
-router.put("/donelab/:id", checkIfUser, requireAuth, (req, res) => {
-  Labschema.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      console.log(req.body);
-      Labschema.find({ labcomment: "" }).then((result) => {
-        res.render("Lab/lab.ejs", { labarray: result, moment: moment });
+router.put(
+  "/donelab/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    await Labschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/Lab");
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+  })
+);
+
+// LAB INPATIENT / DONE
+router.put(
+  "/labedit/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    await Labschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/labreceivedview");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
 
 //CHANGE PASSWORD
 router.put(
