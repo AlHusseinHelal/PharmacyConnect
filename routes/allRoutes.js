@@ -103,6 +103,11 @@ router.get("/STRUCTURE", checkIfUser, requireAuth, (req, res) => {
   res.render("STRUCTURE.ejs");
 });
 
+//CHAT
+router.get("/chat", checkIfUser, requireAuth, (req, res) => {
+  res.render("Chat/chat.ejs");
+});
+
 //WORKFLOW
 router.get("/WorkFlow", checkIfUser, requireAuth, (req, res) => {
   res.render("WorkFlow.ejs");
@@ -670,16 +675,20 @@ router.get(
     const user = await User.findOne({ _id: decoded.id });
     const firstname = user.firstname;
     const lastname = user.lastname;
+    const num = await Inpatientschema.find().countDocuments();
     const results = await Inpatientschema.find().skip(skip).limit(limit);
-    res.render("Inpatient/inpatient3", {
-      inpatientarray: results,
-      moment: moment,
-      page,
-      limit,
-      skip,
-      firstname,
-      lastname,
-    });
+    if (results) {
+      res.render("Inpatient/inpatient3", {
+        inpatientarray: results,
+        moment: moment,
+        page,
+        limit,
+        skip,
+        firstname,
+        lastname,
+        num,
+      });
+    }
   })
 );
 
@@ -696,15 +705,20 @@ router.get(
     const user = await User.findOne({ _id: decoded.id });
     const firstname = user.firstname;
     const lastname = user.lastname;
-    const results = await Inpatientschema.find({ ptfloor: "ICU" }).skip(skip).limit(limit)
+    const results = await Inpatientschema.find({ ptfloor: "ICU" })
+      .skip(skip)
+      .limit(limit);
+    const num = await Inpatientschema.find({ ptfloor: "ICU" }).countDocuments();
     if (results) {
       res.render("Inpatient/icu", {
         inpatientarray: results,
         moment: moment,
-        floor: "ICU", firstname, lastname,
+        floor: "ICU",
+        firstname,
+        lastname,
+        num,
       });
     }
-      
   })
 );
 
@@ -714,17 +728,27 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    await Inpatientschema.find({ ptfloor: "ICC" })
-      .then((results) => {
-        res.render("Inpatient/icc", {
-          inpatientarray: results,
-          moment: moment,
-          floor: "ICC",
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 9;
+    const skip = (page - 1) * limit;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const firstname = user.firstname;
+    const lastname = user.lastname;
+    const results = await Inpatientschema.find({ ptfloor: "ICC" })
+      .skip(skip)
+      .limit(limit);
+    const num = await Inpatientschema.find({ ptfloor: "ICC" }).countDocuments();
+    if (results) {
+      res.render("Inpatient/icc", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "ICC",
+        firstname,
+        lastname,
+        num,
       });
+    }
   })
 );
 
@@ -734,17 +758,29 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    await Inpatientschema.find({ ptfloor: "3rd O" })
-      .then((results) => {
-        res.render("Inpatient/3rdo", {
-          inpatientarray: results,
-          moment: moment,
-          floor: "3rd O",
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 9;
+    const skip = (page - 1) * limit;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const firstname = user.firstname;
+    const lastname = user.lastname;
+    const results = await Inpatientschema.find({ ptfloor: "3rd O" })
+      .skip(skip)
+      .limit(limit);
+    const num = await Inpatientschema.find({
+      ptfloor: "3rd O",
+    }).countDocuments();
+    if (results) {
+      res.render("Inpatient/3rdo", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "3rd O",
+        firstname,
+        lastname,
+        num,
       });
+    }
   })
 );
 
@@ -754,17 +790,29 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    await Inpatientschema.find({ ptfloor: "3rd N" })
-      .then((results) => {
-        res.render("Inpatient/3rdn", {
-          inpatientarray: results,
-          moment: moment,
-          floor: "3rd N",
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 9;
+    const skip = (page - 1) * limit;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const firstname = user.firstname;
+    const lastname = user.lastname;
+    const results = await Inpatientschema.find({ ptfloor: "3rd N" })
+      .skip(skip)
+      .limit(limit);
+    const num = await Inpatientschema.find({
+      ptfloor: "3rd N",
+    }).countDocuments();
+    if (results) {
+      res.render("Inpatient/3rdn", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "3rd N",
+        firstname,
+        lastname,
+        num,
       });
+    }
   })
 );
 
@@ -774,17 +822,27 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    await Inpatientschema.find({ ptfloor: "4th" })
-      .then((results) => {
-        res.render("Inpatient/4th", {
-          inpatientarray: results,
-          moment: moment,
-          floor: "4th",
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 9;
+    const skip = (page - 1) * limit;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const firstname = user.firstname;
+    const lastname = user.lastname;
+    const results = await Inpatientschema.find({ ptfloor: "4th" })
+      .skip(skip)
+      .limit(limit);
+    const num = await Inpatientschema.find({ ptfloor: "4th" }).countDocuments();
+    if (results) {
+      res.render("Inpatient/4th", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "4th",
+        firstname,
+        lastname,
+        num,
       });
+    }
   })
 );
 
@@ -794,17 +852,27 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    await Inpatientschema.find({ ptfloor: "5th" })
-      .then((results) => {
-        res.render("Inpatient/5th", {
-          inpatientarray: results,
-          moment: moment,
-          floor: "5th",
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 9;
+    const skip = (page - 1) * limit;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const firstname = user.firstname;
+    const lastname = user.lastname;
+    const results = await Inpatientschema.find({ ptfloor: "5th" })
+      .skip(skip)
+      .limit(limit);
+    const num = await Inpatientschema.find({ ptfloor: "5th" }).countDocuments();
+    if (results) {
+      res.render("Inpatient/5th", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "5th",
+        firstname,
+        lastname,
+        num,
       });
+    }
   })
 );
 
@@ -814,17 +882,27 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    await Inpatientschema.find({ ptfloor: "BMT" })
-      .then((results) => {
-        res.render("Inpatient/bmt", {
-          inpatientarray: results,
-          moment: moment,
-          floor: "BMT",
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 9;
+    const skip = (page - 1) * limit;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const firstname = user.firstname;
+    const lastname = user.lastname;
+    const results = await Inpatientschema.find({ ptfloor: "BMT" })
+      .skip(skip)
+      .limit(limit);
+    const num = await Inpatientschema.find({ ptfloor: "BMT" }).countDocuments();
+    if (results) {
+      res.render("Inpatient/bmt", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "BMT",
+        firstname,
+        lastname,
+        num,
       });
+    }
   })
 );
 
@@ -858,6 +936,9 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 8;
+    const skip = (page - 1) * limit;
     const outpatient = await Outpatient.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -866,67 +947,159 @@ router.get(
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
     });
+    const num = await Inpatientschema.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+    }).countDocuments();
     const results = await Inpatientschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
-    });
+    })
+      .skip(skip)
+      .limit(limit);
     if (results) {
       res.render("IvPrep/ivprepin", {
         inarray: results,
         moment: moment,
         outpatient,
         dispense,
+        num,
       });
     }
   })
 );
 
 //IVPREP INPATIENT EXTRADOSE
-router.get("/ed", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
-  const results = await Inpatientschema.find({
-    oraliv: "IV",
-    requestype: "ExtraDose",
-    prepcomment: "",
+router.get(
+  "/ed",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 8;
+    const skip = (page - 1) * limit;
+    const outpatient = await Outpatient.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+    });
+    const dispense = await Dispenseschema.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+    });
+    const num = await Inpatientschema.find({
+      oraliv: "IV",
+      requestype: "ExtraDose",
+      prepcomment: "",
+    }).countDocuments()
+    const results = await Inpatientschema.find({
+      oraliv: "IV",
+      requestype: "ExtraDose",
+      prepcomment: "",
+    })
+      .skip(skip)
+      .limit(limit);
+    if (results) {
+      res.render("IvPrep/ivprepinextradose", {
+        inarray: results,
+        moment: moment, num, outpatient, dispense
+      });
+    }
   })
-  if (results) {
-    res.render("IvPrep/ivprepinextradose", {
-      inarray: results,
-      moment: moment,
-    });  
-  }
-}) );
+);
 
 //IVPREP INPATIENT BMT
-router.get("/bmtview", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+router.get(
+  "/bmtview",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 8;
+    const skip = (page - 1) * limit;
+    const outpatient = await Outpatient.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+    });
+    const dispense = await Dispenseschema.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+    });
+    const num = await Inpatientschema.find({
+      oraliv: "IV",
+      requestype: "BMT",
+      prepcomment: "",
+    }).countDocuments()
+    const results = await Inpatientschema.find({
+      oraliv: "IV",
+      ptfloor: "BMT",
+      prepcomment: "",
+    }).skip(skip).limit(limit);
+    if (results) {
+      res.render("IvPrep/ivprepinbmt", {
+        inarray: results,
+        moment: moment,outpatient,dispense,num
+      });
+    }
+  })
+);
+
+//IVPREP INPATIENT DONE VIEW
+router.get("/doneview", checkIfUser, requireAuth, asyncHandler(async (req, res) => {
+  const page = req.query.page * 1 || 1;
+  const limit = req.query.limit * 1 || 8;
+  const skip = (page - 1) * limit;
+  const outpatient = await Outpatient.find({
+    oraliv: "IV",
+    prepcomment: { $not: { $regex: "DONE" } },
+  });
+  const dispense = await Dispenseschema.find({
+    oraliv: "IV",
+    prepcomment: { $not: { $regex: "DONE" } },
+  });
+  const num = await Inpatientschema.find({
+    oraliv: "IV",
+    prepcomment: "DONE",
+  }).countDocuments()
   const results = await Inpatientschema.find({
     oraliv: "IV",
-    ptfloor: "BMT",
-    prepcomment: "",
-  })
+    prepcomment: "DONE",
+  }).skip(skip).limit(limit)
   if (results) {
-    res.render("IvPrep/ivprepinbmt", {
+    res.render("IvPrep/ivprepindoneview", {
       inarray: results,
-      moment: moment,
-    });  
+      moment: moment, outpatient , dispense , num
+    });
   }
 }) );
 
-//IVPREP INPATIENT DONE VIEW
-router.get("/doneview", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.find({
+//IVPREP DISPENSE DONE VIEW
+router.get("/ivprepdispensedoneview", checkIfUser, requireAuth, asyncHandler(async (req, res) => {
+  const page = req.query.page * 1 || 1;
+  const limit = req.query.limit * 1 || 8;
+  const skip = (page - 1) * limit;
+  const outpatient = await Outpatient.find({
+    oraliv: "IV",
+    prepcomment: { $not: { $regex: "DONE" } },
+  });
+  const inarray = await Inpatientschema.find({
+    oraliv: "IV",
+    prepcomment: { $not: { $regex: "DONE" } },
+  });
+  const num = await Dispenseschema.find({
     oraliv: "IV",
     prepcomment: "DONE",
-  })
-    .then((result) => {
-      res.render("IvPrep/ivprepindoneview", {
-        inarray: result,
-        moment: moment,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
+  }).countDocuments()
+  const results = await Dispenseschema.find({
+    oraliv: "IV",
+    prepcomment: "DONE",
+  }).skip(skip).limit(limit)
+  if (results) {
+    res.render("IvPrep/ivprepdispensedoneview", {
+      disarray: results,
+      moment: moment, outpatient , inarray , num
     });
-});
+  }
+}) );
 
 //IVPREP OUTPATIENT
 router.get(
@@ -934,9 +1107,9 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const dispense = await Dispenseschema.find({ oraliv: "IV" });
-    const inarray = await Inpatientschema.find({ oraliv: "IV" });
-    const results = await Outpatient.find({ oraliv: "IV" });
+    const dispense = await Dispenseschema.find({ oraliv: "IV", prepcomment: { $not: { $regex: "DONE" } } });
+    const inarray = await Inpatientschema.find({ oraliv: "IV", prepcomment: { $not: { $regex: "DONE" } } });
+    const results = await Outpatient.find({ oraliv: "IV" , prepcomment: { $not: { $regex: "DONE" } } });
     if (results) {
       res.render("IvPrep/ivprepout", {
         outarray: results,
@@ -954,19 +1127,24 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const inarray = await Inpatientschema.find({ oraliv: "IV" });
-    const outpatient = await Outpatient.find({ oraliv: "IV" });
-    const results = await Dispenseschema.find({ oraliv: "IV" });
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 8;
+    const skip = (page - 1) * limit;
+    const inarray = await Inpatientschema.find({ oraliv: "IV", prepcomment: { $not: { $regex: "DONE" } } });
+    const outpatient = await Outpatient.find({ oraliv: "IV", prepcomment: { $not: { $regex: "DONE" } } });
+    const num = await Dispenseschema.find({ oraliv: "IV", prepcomment: { $not: { $regex: "DONE" } } }).countDocuments()
+    const results = await Dispenseschema.find({ oraliv: "IV", prepcomment: { $not: { $regex: "DONE" } } }).skip(skip).limit(limit);
     if (results) {
       res.render("IvPrep/ivprepdis", {
         outarray: results,
         moment: moment,
         inarray,
-        outpatient,
+        outpatient,num
       });
     }
   })
 );
+
 
 //PHARMACY LAB
 router.get(
@@ -974,32 +1152,53 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    await Labschema.find({ labcomment: { $not: { $regex: "RECEIVED" } } })
-      .then((results) => {
-        res.render("Lab/lab.ejs", {
-          labarray: results,
-          moment: moment,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 7;
+    const skip = (page - 1) * limit;
+    const results = await Labschema.find({
+      labcomment: { $not: { $regex: "RECEIVED" } },
+    })
+      .skip(skip)
+      .limit(limit);
+    const num = await Labschema.find({
+      labcomment: { $not: { $regex: "RECEIVED" } },
+    }).countDocuments();
+    if (results) {
+      res.render("Lab/lab.ejs", {
+        labarray: results,
+        moment: moment,
+        num,
+        page,
       });
+    }
   })
 );
 
 //PHARMACY LAB RECEIVED VIEW
-router.get("/labreceivedview", checkIfUser, requireAuth, (req, res) => {
-  Labschema.find({ labcomment: "RECEIVED" })
-    .then((result) => {
+router.get(
+  "/labreceivedview",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 7;
+    const skip = (page - 1) * limit;
+    const num = await Labschema.find({
+      labcomment: "RECEIVED",
+    }).countDocuments();
+    const results = await Labschema.find({ labcomment: "RECEIVED" })
+      .skip(skip)
+      .limit(limit);
+    if (results) {
       res.render("Lab/labreceivedview.ejs", {
-        labarray: result,
+        labarray: results,
         moment: moment,
+        num,
+        page,
       });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+    }
+  })
+);
 
 // DISPENSE
 router.get("/dispense", checkIfUser, requireAuth, (req, res) => {
@@ -2301,6 +2500,22 @@ router.put("/outedit/:id", checkIfUser, requireAuth, (req, res) => {
 // IVPREP DISPENSE / EDIT
 router.put(
   "/editdisp/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    await Dispenseschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/prepdis");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// IVPREP DISPENSE / DONE
+router.put(
+  "/prepdonedispense/:id",
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {

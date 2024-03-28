@@ -123,7 +123,7 @@
               </div>
               <div class="btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
                 
-                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
+                <button type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;"
                     href="/ivprepdispensedoneview">DONE</a></button>
   
               </div>
@@ -134,14 +134,14 @@
       # MAIN CONTENT
       --------------------------------------------------------------*/ -->
             <div id="maincontent">
-              <% if (outarray.length===0) { %>
+              <% if (disarray.length===0) { %>
                 <div class="text-center">
                   <h1>No Data Available</h1>
                 </div>
 
                 <% } %>
 
-                <% if (outarray.length>= 1) { %>
+                <% if (disarray.length>= 1) { %>
                 <table style="width: 99%" class="mx-auto table table-striped table-bordered">
                   <thead>
                     <tr>
@@ -160,7 +160,7 @@
                     </tr>
                   </thead>
                   <tbody id="tbody">
-                    <% outarray.forEach((item,index)=> { %>
+                    <% disarray.forEach((item,index)=> { %>
                       <tr id="tr">
                         <td class="text-center">
                           <%= index+1 %>

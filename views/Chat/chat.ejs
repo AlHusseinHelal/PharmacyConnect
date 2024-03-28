@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.112.5">
+  <title>ChatConnect</title>
+
+  <!-- LINK FAVICON -->
+  <link rel="shortcut icon" href="/svg/ConnectLogo.svg" type="image/x-icon">
+
+  <!-- GOOGLE FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Poppins:wght@400;500&display=swap"
+    rel="stylesheet">
+
+
+  <link href="../css/bootstrap-icons.css" rel="stylesheet" />
+
+
+  <!-- lINK TO BOOTSTRAP CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- HEADER CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- Custom styles for this template -->
+  <link href="../css/Chat/chat.css" rel="stylesheet">
+
+
+
+
+</head>
+
+<body>
+
+
+  <!-- /*--------------------------------------------------------------
+# BACK TO TOP
+--------------------------------------------------------------*/ -->
+  <div class="opacity" id="uparrow">
+    <svg id="svgarrow" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+      class="bi bi-arrow-up-short" viewBox="0 0 16 16">
+      <path
+        d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z" />
+    </svg>
+  </div>
+
+  <!-- /*--------------------------------------------------------------
+# header
+--------------------------------------------------------------*/ -->
+  <%- include("../partials/header.ejs") %>
+
+    <!-- /*--------------------------------------------------------------
+# light icon
+--------------------------------------------------------------*/ -->
+    <%- include("../partials/lighticon.ejs") %>
+
+      <!-- /*--------------------------------------------------------------
+# body and sidebar
+--------------------------------------------------------------*/ -->
+
+      <main class="d-flex flex-nowrap" style="height: 89vh;">
+
+
+        <!-- ARROW SIDEBAR -->
+        <div id="arrowmovediv">
+          <svg id="arrowmove1" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10M.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8" />
+          </svg>
+          <svg class="dnone" id="arrowmove2" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708l2-2zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10M.146 8.354a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L1.707 7.5H5.5a.5.5 0 0 1 0 1H1.707l1.147 1.146a.5.5 0 0 1-.708.708l-2-2zM10 8a.5.5 0 0 1 .5-.5h3.793l-1.147-1.146a.5.5 0 0 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L14.293 8.5H10.5A.5.5 0 0 1 10 8" />
+          </svg>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div id="sidelist" class=" flex-shrink-0 p-3">
+
+          <div class="d-flex flex-column text-center position-relative">
+            <img id="oncotips" src="../svg/chat.svg" alt="">
+          </div>
+
+          <li class=" border-top my-3 notlist" style="list-style: none;"></li>
+          <ul class="list-unstyled ps-0 mainul">
+
+
+
+
+
+
+            <li class=" border-top my-3"></li>
+
+
+          </ul>
+        </div>
+
+        <!-- 1250 580 -->
+
+        <div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 75vh;">
+          <div class="d-flex flex-column">
+
+          </div>
+
+        <!-- <div class="chat-message" >
+            <div class="mb-0"><u><i>message time : 12:45 PM</i></u></div>
+            <p class="mb-0">${message}</p>
+        </div> -->
+        </div>
+
+
+        <div class="container wrapper d-flex text-center align-items-center"
+          style="position: fixed; top: 610px; right:0; width: 82vw; height: 8vh; padding: 0;">
+          <div>
+            <form class="d-flex p-2" id="chatform" action="" style="border: 1px solid; border-radius: 10px;">
+              <label for="chat"></label>
+              <input type="text" class="form-control" name="chat" id="chat">
+              <button type="submit" class="btn btn-primary ms-2 d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
+                </svg>
+                <span class="ms-1">Send</span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- <div class="container" style="position: fixed; top: 660px; right: 0; width: 82vw; ">
+            <form id="chatform" class="p-2"  action="" >
+              <div class="d-flex" >
+                <label for="chat"></label>
+                <input type="text" class="form-control" name="chat" id="chat" >
+                <button type="submit" class="btn btn-primary ms-2">Send</button>
+              </div >
+            </form>
+          </div> -->
+
+
+        <!-- <div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+          <div class="row">
+            <div class="col col-12">
+              <div class="one mt-3">
+                <h1 class="flex-shrink-0">Amlodipine 5 mg<p style="color: red; margin-bottom: 0;">Norvasc<sup>®</sup>
+                  </p>
+                  <span class="mt-1">Medication Monograph</span>
+                </h1>
+              </div>
+              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
+
+                <div class="accordion-item ">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
+                      DOSE
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+
+                      <ul>
+                        <li><strong><u>Hypertension:</u></strong>
+                          <p><strong>&lt;6 years:</strong> Limited data available: Initial: 0.1 mg/kg/dose once daily; titrate based on clinical response; maximum daily dose: 0.6 mg/kg/day or 5 mg/day.</p>
+                          <p><strong>&#8805;6 years</strong> and Adolescents:Initial: 2.5 mg once daily; titrate based on clinical response; maximum daily dose: 10 mg/day</p>
+                        </li>
+                      </ul>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item ">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                      <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
+                      ADMINISTRATION
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <p>Administer without regard to meals</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                      <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
+                      SIDE EFFECT
+                    </button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <ul>
+                        <li><strong>Cardiovascular:</strong>Flushing &#8804;3%, dose related, , palpitations &#8804;5%, dose related</li>
+                        <li><strong>Gastrointestinal:</strong>Abdominal pain (2%), nausea (3%)</li>
+                        <li><strong>Nervous system:</strong>dizziness (doses ≥5 mg/day: 3%), fatigue (5%)</li>
+                        <li><strong>Neuromuscular & skeletal:</strong>Muscle cramps (≤2%)</li>
+                        <li><strong>Dermatologic:</strong>Pruritus (≤2%), skin rash (≤2%)</li>
+                        <li><strong>Respiratory:</strong>Dyspnea (≤2%)</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                      <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
+                      MONITORING PARAMETER
+                    </button>
+                  </h2>
+                  <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <ul>
+                        <li>Heart rate</li>
+                          <li>Blood Pressure</li>
+                          <li>Peripheral edema</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+
+      </main>
+      <!-- <div id="container" class="container"
+            style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+            <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+              <div class="col col-12 text-center">
+                <object class="my-2 rounded-2" data="../presentation/Tyrosine.pdf" type="application/pdf"
+                  style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+
+
+
+
+
+
+
+
+
+
+      <!-- <div class="container" id="container">
+          <div class="row">
+            
+            <div class="col col-12">
+              <div class="one mt-5">
+                <h1 class="flex-shrink-0">Ifosfamide <br>
+                  <p style="color:red;margin-bottom:0">Holoxan 1 g<sup>®</sup></p>
+                  <span class="mt-1">Medication Monograph</span>
+                </h1>
+              </div>
+              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
+
+                <div class="accordion-item ">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapsezero" aria-expanded="true" aria-controls="collapsezero">
+                      <img src="../svg/mop.svg" alt="" height="30px" class="me-2">
+                      MECHANISM OF ACTION
+                    </button>
+                  </h2>
+                  <div id="collapsezero" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      Ifosfamide causes cross-linking of strands of DNA by binding with nucleic acids and other
+                      intracellular structures, resulting in cell death; inhibits protein synthesis and DNA
+                      synthesis
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item ">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
+                      DOSE
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <ul>
+                        <li>
+                          <strong><u>Hodgkin Lymphoma:</u></strong>
+                          <p><strong>IV:</strong> 1.8 mg/kg/dose for Children ≥2 years and Adolescents,
+                            <strong>Maximum Dose: 180 mg/dose</strong>.
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item ">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                      <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
+                      ADMINISTRATION
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <ul>
+                        <li>
+                          <p> <strong>IV:</strong>
+                            Ifosfamide is associated with a moderate emetic potential; antiemetics are
+                            recommended to prevent nausea and vomiting.
+                            <br>
+                            Administer IV over at least 30 minutes (infusion times may vary by protocol;
+                            refer to specific protocol for infusion duration). To prevent bladder toxicity,
+                            ifosfamide should be given with mesna and hydration.
+                          </p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                      <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
+                      TOXICITIES & MANAGEMENT
+                    </button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <ul>
+                        <li><strong>GI Toxicity:</strong> Acute pancreatitis, other serious and fatal GI
+                          complications (including hemorrhage, obstruction, perforation, erosion, ulcer,
+                          enterocolitis, neutropenic colitis, and ileus) have been reported. The risk for GI
+                          complications may be increased in patients with lymphoma with preexisting GI
+                          involvement.</li>
+                        <ul><strong>Management:</strong> Prompt diagnostic evaluation and management should be
+                          performed if new or worsening GI symptoms (including severe abdominal pain) occur.
+                        </ul>
+                        <li><strong>Hyperglycemia:</strong> Hyperglycemia, including new-onset hyperglycemia,
+                          exacerbation of pre-existing diabetes mellitus, and ketoacidosis have been reported,
+                          including grade 3 and 4 events. Hyperglycemia occurred more frequently in patients
+                          with increased body mass or diabetes.</li>
+                        <ul><strong>Management:</strong> As normal hyperglycemia but monitoring is enough.</ul>
+                        <li><strong>Hepatotoxicity:</strong> Serious hepatotoxicity has occurred; cases were
+                          consistent with hepatocellular injury, with elevations of transaminases and/or
+                          bilirubin.</li>
+                        <ul><strong>Management:</strong> Delay, dose adjustments or discontinuation of the drug.
+                        </ul>
+                        <li><strong>Infusion Reactions/Anaphylaxis:</strong> Infusion reactions, including
+                          anaphylaxis have been reported.</li>
+                        <ul><strong>Management:</strong> Paracetamol, an Antihistamine and a Corticosteroid as
+                          pre-medication.</ul>
+                        <li><strong>Peripheral Neuropathy:</strong> Peripheral neuropathy is common and is
+                          generally cumulative; grades 1 to 4 neuropathy have been reported. Neuropathy is
+                          usually sensory, although motor neuropathy has also been observed. Based on an
+                          updated analysis, neuropathy completely resolved in a majority of patients receiving
+                          brentuximab in combination with chemotherapy; although some patients experienced
+                          either partial improvement or no improvement. Symptoms of neuropathy include
+                          hypoesthesia, hyperesthesia, paresthesia, discomfort, burning sensation, neuropathic
+                          pain, or weakness.</li>
+                        <ul><strong>Management:</strong> Delay, dose adjustments or discontinuation of the drug.
+                        </ul>
+                        <li><strong>Pulmonary Toxicity:</strong> Noninfectious pulmonary toxicity (eg,
+                          pneumonitis, interstitial lung disease, acute respiratory distress syndrome), some
+                          fatal.</li>
+                        <ul><strong>Management:</strong> Discontinuing the offending drug and administering
+                          Corticosteroid therapy either orally or intravenously according to severity.</ul>
+                        <li><strong>Progressive Multifocal Leukoencephalopathy (PML):</strong> Cases of
+                          progressive multifocal leukoencephalopathy (PML) and death due to JC virus infection
+                          have been reported. Immunosuppression due to prior chemotherapy treatments or
+                          underlying disease may also contribute to PML development. New-onset signs/symptoms
+                          of CNS abnormalities include changes in mood, memory, cognition, motor
+                          incoordination and/or weakness, speech and/or visual disturbances.</li>
+                        <ul><strong>Management:</strong> If PML is confirmed the drug must be permanently
+                          discontinued.</ul>
+                        <li><strong>Tumor Lysis Syndrome:</strong> TLS may occur; risk of TLS is higher in
+                          patients with a high tumor burden or with rapid tumor proliferation.</li>
+                        <ul><strong>Management:</strong> Administer prophylaxis (anti-hyperuricemic therapy,
+                          aggressive hydration) in patients at high risk. Correct electrolyte abnormalities
+                          and administer supportive care as indicated.</ul>
+                        <li><strong>Renal Impairment:</strong> Due to higher exposure of MMAE (the microtubule
+                          disrupting agent component), the incidence of ≥ grade 3 adverse reactions may be
+                          increased in patients with severe impairment.</li>
+                        <ul><strong>Management:</strong> Dosage Adjustment to 1.2 mg/kg administered as an
+                          intravenous infusion over 30 minutes every 3 weeks with close monitoring.</ul>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                      <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
+                      DRUG INTERACTIONS
+                    </button>
+                  </h2>
+                  <div id="collapseFour" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <ul>
+                        <li><strong>Risk X:(Avoid Combination):</strong>
+                          <br>Natalizumab.
+                        </li>
+                        <li><strong>Risk C:(Monitor Therapy):</strong>
+                          <br>Amphotericin B
+                          <br>Aprepitant
+
+                          <br>Busulfan
+
+                          <br>Fluconazole
+
+                          <br>Imatinib
+                          <br> Itraconazole <br> Phenytoin
+                          <br>Verapamil
+                          <br>Voriconazole
+                          <br>Warfarin
+
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                      <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
+                      MONITORING PARAMETER
+                    </button>
+                  </h2>
+                  <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <ul>
+                        <li>CBC with
+                          differential
+                          (prior to and at
+                          appropriated
+                          intervals after
+                          each cycle, and
+                          as clinically
+                          appropriate).
+                        </li>
+                        <li>Urine output.</li>
+                        <li>Urinalysis (for
+                          erythrocytes
+                          prior to each
+                          dose).
+                        </li>
+                        <li>Liver function,
+                          and renal
+                          function tests
+                          (prior to and
+                          during
+                          treatment).
+                        </li>
+                        <li>Monitor for signs/symptoms of neurotoxicity, pulmonary toxicity, urotoxicity/hemorrhagic
+                          cystitis, and secondary malignancies. </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+
+
+
+      <!-- Presentation -->
+      <!-- <div >
+      <div class="" id="uparrow2">
+        <svg id="svgarrow" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-up-short" viewBox="0 0 16 16">
+          <path  d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"/>
+        </svg>
+      </div>
+      <div id="container" class="container" style="justify-content: center; align-items: center; height: 100vh; position: relative;">
+        
+          <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+            <div class="col col-12">
+              
+              <img src="../Presentation/Targeted Therapy - Large Molecules-01.png" alt="" style="height: fit-content; width: 1200px;">  
+              
+            </div>      
+          </div>
+      </div>
+    </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- INFOGRAPH -->
+      <!-- <div id="container" class="container h-100  " style="justify-content: center; align-items: center;">
+        
+      <div class="row" style=" justify-content: center; align-items: center; ">
+        <div class="col col-12">
+          <img src="../Infograph/Dinutuximab.png" alt="" style=" width: 1200px;">
+    
+        </div>
+        
+      </div>
+      
+
+  </div> -->
+
+
+
+
+
+
+      <!-- <div class="one mt-5  ">
+            <h1 class="flex-shrink-0">LevETIRAcetam
+              <span class="mt-1">Medication Monograph</span>
+            </h1>
+          </div>
+    <div class="accordion mt-5 flex-shrink-0" id="accordionExample">
+
+
+
+          <div class="accordion-item ">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
+                DOSE
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <ul>
+                  <li> <u>1 month to &lt;6 months:</u> <strong>7 mg/kg twice daily;</strong> <u>increase</u> every
+                    <strong>2 weeks</strong> by <strong>7 mg/kg/dose</strong> to a <u>recommended</u> dose of
+                    <strong>21 mg/kg twice daily</strong>
+                  </li>
+                  <li> <u>6 months to &lt;4 years:</u> <strong>10 mg/kg twice daily;</strong> <u>increase</u> every
+                    <strong>2 weeks</strong> by <strong>10 mg/kg/dose</strong> to a <u>recommended</u> dose of
+                    <strong>25 mg/kg twice daily</strong>
+                  </li>
+                  <li> <u>4 to &lt;16 years:</u> <strong>10 mg/kg twice daily;</strong> <u>increase</u> every
+                    <strong>2 weeks</strong> by <strong>10 mg/kg/dose</strong> to a <u>recommended</u> dose of
+                    <strong>30 mg/kg twice daily</strong>
+                  </li>
+                  <li> <u>Adolescents ≥16 years:</u> <strong>500 mg twice daily;</strong> <u>increase</u> every
+                    <strong>2 weeks</strong> by <strong>500 mg/dose</strong>
+                  </li>
+                  <li> <u>Maximum daily dose:</u> <strong>3000 mg/day (1500mg twice daily)</strong>.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item ">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                <img src="./assets/svg/Infution.svg" alt="" height="30px" class="me-2">
+                ADMINISTRATION
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <ul>
+                  <li>Infuse over <span style="color: yellow;">15 minutes</span></li>
+                  <li>A rate of <span style="color: yellow;">2 to 5 mg/kg/minute</span> has been recommended</li>
+                  <li><u>Dilute</u> dose in <span style="color: yellow;">100 mL</span> of <span
+                      style="color: yellow;">NS, LR, or D5W</span></li>
+                  <li>If smaller diluent <span style="color: yellow;">(minimum dilution)</span> volume required,
+                    dilute dose in a compatible diluent to final concentration <span style="color: yellow;">15
+                      mg/mL</span></li>
+                  <li>A <span style="color: yellow;"> <u>1:1 dilution</u></span> of drug from vial with <span
+                      style="color: yellow;">D5W or NS</span> has also been <span style="color: yellow;">safely used
+                      in patient ≥4 years</strong></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                <img src="./assets/svg/Storage.svg" alt="" height="30px" class="me-2">
+                STORAGE
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <ul>
+                  <li>Premixed solution for infusion: Store at <span style="color: yellow;">20°C to 25°C</span></li>
+                  <li>Vials for injection: Store at <span style="color: yellow;">25°C</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                <img src="./assets/svg/Stability.svg" alt="" height="30px" class="me-2">
+                STABILITY
+              </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <ul>
+                  <li>
+                    Admixed solution in <span style="color: yellow;">NS, LR, or D5W</span> is stable for <span
+                      style="color: yellow;">4 hours</span> in <span style="color:blue;">PVC bags</span> kept <u>at
+                      room temperature</u>
+                  </li>
+                </ul>
+                <p>NB</p>
+                <ul>
+                  <li>
+                    <span style="color: red;">refrigerated (2 – 8°C) Levetiracetam in PVC bags and NS 0.9% will be
+                      Stable for 14 days.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                <img src="../svg/Compitability.svg" alt="" height="30px" class="me-2">
+                COMPITABILITY
+              </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <ul>
+                  <li>D5W</li>
+                  <li>LR</li>
+                  <li>NS 0.9%</li>
+                  <li>TNA (3-in-1) Total Nutrient Admixture</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                <img src="../svg/Reference.svg" alt="" height="30px" class="me-2">
+                REFERENCES
+              </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <ol>
+                  <li>Lexicomp (2018) LevETIRAcetam (Lexi-Drugs), Available at:
+                    https://online.lexi.com/lco/action/doc/retrieve/docid/patch_f/7162#f_administration-and-storage-issues
+                    (Accessed: Septemper 1, 2018).</li>
+                  <li>STABILIS (2018) Levetiracetam, Available at:
+                    http://www.stabilis.org/Monographie.php?IdMolecule=1022 (Accessed: Septemper 25, 2018).</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div> -->
+
+
+
+
+
+
+
+
+      <!-- LINK TO jQuary -->
+      <script src="../js/jquery-3.7.1.min.js"></script>
+
+      <!-- LINK TO BOOTSTRAP.JS -->
+      <script src="../js/aos.js"></script>
+      <script src="../js/bootstrap.bundle.min.js"></script>
+      <script src="../js/glightbox.min.js"></script>
+      <script src="../js/isotope.pkgd.min.js"></script>
+      <script src="../js/swiper-bundle.min.js"></script>
+      <script src="../js/noframework.waypoints.js"></script>
+      <script src="../js/validate.js"></script>
+
+
+
+      <script src="../js/main.js"></script>
+
+      <script src="../socket.io/socket.io.js"></script>
+
+      <!-- LINK TO CUSTOM JS -->
+      <script defer src="../js/Chat/chat.js"></script>
+</body>
+
+</html>

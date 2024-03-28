@@ -69,7 +69,7 @@
               <nav class="navbar navbar-expand-lg bg-body-tertiary mx-1 mt-1 mb-1">
                 <div class="container-fluid py-2 rounded-2 bg-info">
                   <div class="d-flex flex-row align-items-center">
-                    <img src="/svg/ConnectLogo.svg" height="35vh" alt="" />
+                    <img src="/svg/inpatient.svg" height="35vh" alt="" />
                   </div>
 
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -271,9 +271,9 @@
                         <% }) %>
                     </table>
                     <% } %>
-
-
             </div>
+              <!-- PAGINATION -->
+              <%- include('../partials/inpatientpagination.ejs') %>
           </div>
       </main>
 
@@ -331,7 +331,7 @@
     e.preventDefault();
     const res = await fetch("/add_lab_in", {
       method: "POST",
-      body: JSON.stringify({ labpatientname: labpatientname.value, mrnlab: mrnlab.value, labptfloor: labptfloor.value, labrequestype: labrequestype.value, medstartdate: medstartdate.value, medstarttime: medstarttime.value, samplewddate: samplewddate.value, samplewdtime: samplewdtime.value, levelrequestreason: levelrequestreason.value, labcomment : labcomment.value, createdAt: new Date() }),
+      body: JSON.stringify({ labpatientname: labpatientname.value, mrnlab: mrnlab.value, labptfloor: labptfloor.value, labrequestype: labrequestype.value, medstartdate: medstartdate.value, medstarttime: medstarttime.value, samplewddate: samplewddate.value, samplewdtime: samplewdtime.value, levelrequestreason: levelrequestreason.value, labcomment : labcomment.value, phaname: phaname.value, createdAt: new Date() }),
       headers: { "Content-Type": "application/json" },
     });
     const data = await res.json();

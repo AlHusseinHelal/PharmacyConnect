@@ -73,7 +73,7 @@
               <nav class="navbar navbar-expand-lg bg-body-tertiary mx-1 mt-1 mb-1">
                 <div class="container-fluid py-2 rounded-2 bg-info">
                   <div class="d-flex flex-row align-items-center">
-                    <img src="/svg/ConnectLogo.svg" height="35vh" alt="" />
+                    <img src="../svg/ivprep-04.svg" height="35vh" alt="" />
                   </div>
 
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -97,27 +97,29 @@
 
             <!-- NAVBAR_ICON -->
             <div class="d-flex align-items-center mx-2 mb-1 justify-content-between">
-              <div class="btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
-                <button type="button" class="btn btn-outline-primary active"><a href="/prepin"
+              <div class="btn d-inline-flex justify-content-between">
+                <button type="button" class="btn btn-outline-primary active position-relative"><a href="/prepin"
                     style="border: unset; color: unset;">
-                    <svg class="" style="width: 30px; height: 30px;">
-                      <use xlink:href="#table" />
-                    </svg>
+                    <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    0
+                    <span class="visually-hidden">unread messages</span>
+                  </span> -->
                     <span class="side-text">InPatient</span>
                   </a></button>
-                <button type="button" class="btn btn-outline-primary "><a href="/prepout"
+                <button type="button" class="btn btn-outline-primary mx-3 position-relative"><a href="/prepout"
                     style="border: unset; color: unset;">
-                    <svg style="width: 30px; height: 30px;">
-                      <use xlink:href="#table" />
-                    </svg>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      <%= outpatient.length %>
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
                     <span class="side-text">OutPatient</span>
-
                   </a></button>
-                <button type="button" class="btn btn-outline-primary"><a href="/prepdis"
+                <button type="button" class="btn btn-outline-primary position-relative"><a href="/prepdis"
                     style="border: unset; color: unset;">
-                    <svg class="" style="width: 30px; height: 30px;">
-                      <use xlink:href="#table" />
-                    </svg>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      <%= dispense.length %>
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
                     <span class="side-text">Dispense</span>
                   </a></button>
               </div>
@@ -126,6 +128,8 @@
                     href="/ed">ExtraDose</a></button>
                 <button type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;"
                     href="/doneview">DONE</a></button>
+                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
+                    href="/bmtview">BMT</a></button>
 
               </div>
 
@@ -269,11 +273,9 @@
                       <% }) %>
                     </table>
                     <% } %>
-
-
-
             </div>
-
+  <!-- PAGINATION -->
+  <%- include('../partials/inpatientpagination.ejs') %>
           </div>
       </main>
 

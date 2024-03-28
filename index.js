@@ -10,10 +10,17 @@ require("dotenv").config();
 //ERROR APIERROR
 const ApiError = require(`./utils/apierror`);
 //MIDDLEWARE
-const {globalError} = require(`./middleware/middleware`);
+const { globalError } = require(`./middleware/middleware`);
+//HTTP
+const http = require("http");
+//SCOCKET.IO
+const socketio = require("socket.io");
+
 //allRoutes
 const allRoutes = require("./routes/allRoutes");
 
+const server = http.createServer(app);
+const io = socketio(server);
 //req.body
 app.use(express.urlencoded({ extended: true }));
 
@@ -23,15 +30,28 @@ app.use(methodOverride("_method"));
 app.use(cookieParser());
 app.use(express.json());
 
+io.on("connection", (socket) => {
+  //WELCOME MESSAGE
+  socket.emit("message", "Welcome To ChatConnect");
+  //WHEN USER CONNECT
+  socket.broadcast.emit("message", "A User Connected");
+  //RECEIVE MESSAGE FROM CLEINT
+  socket.on("chatMessage", msg => {
+    io.emit("message", msg);
+    console.log(msg);
+  });
+  //WHEN USER DISCONNECT
+  socket.on("disconnected", () => {
+    io.emit("message", "User Disconnected");
 
+  });
+});
 
-mongoose
-  .connect(process.env.MDB)
-  .then(() => {
-    const server = app.listen(port, () => {
-      console.log(`Listening on port ${port}`);
-    });
-  })
+mongoose.connect(process.env.MDB).then(() => {
+  server.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+  });
+});
 
 app.use(allRoutes);
 //Error Handling Inside EXPRESS
@@ -45,6 +65,5 @@ process.on("unhandledRejection", (err) => {
   console.error(`UnhandledRejection Errors : ${err.name} | ${err.message} `);
   server.close(() => {
     process.exit(1);
-  })
-  
-})
+  });
+});

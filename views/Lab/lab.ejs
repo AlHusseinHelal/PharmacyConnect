@@ -208,8 +208,8 @@
                                   <form action="/labedit/<%= item._id%>?_method=PUT" method="post">
                                     <div class="modal-body">
                                       Please Write Comment
-                                      <label  for="labcomment" class="col-form-label">Level Request Reason</label>
-                                      <input  name="labcomment" type="text" class="form-control" id="labcomment"/>
+                                      <label for="labcomment" class="col-form-label">Level Request Reason</label>
+                                      <input name="labcomment" type="text" class="form-control" id="labcomment" />
                                     </div>
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary"
@@ -253,7 +253,8 @@
 
           </div>
 
-
+          <!-- PAGINATION -->
+          <%- include('../partials/labpagination.ejs') %>
         </div>
       </main>
       <!-- LINK TO jQuary -->
