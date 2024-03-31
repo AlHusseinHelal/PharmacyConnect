@@ -23,10 +23,15 @@
 
   <link href="../css/bootstrap-icons.css" rel="stylesheet" />
 
-
+  <!-- Vendor CSS Files -->
+  <link href="../css/aos.css" rel="stylesheet" />
+  <link href="../css/boxicons.min.css" rel="stylesheet" />
+  <link href="../css/glightbox.min.css" rel="stylesheet" />
+  <link href="../css/remixicon.css" rel="stylesheet" />
+  <link href="../css/bootstrap-icons.css" rel="stylesheet" />
+  <link href="../css/swiper-bundle.min.css" rel="stylesheet" />
   <!-- lINK TO BOOTSTRAP CSS -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
-
   <!-- HEADER CSS -->
   <link rel="stylesheet" href="../css/style.css">
   <!-- Custom styles for this template -->
@@ -89,27 +94,44 @@
           </div>
 
           <li class=" border-top my-3 notlist" style="list-style: none;"></li>
-          <ul class="list-unstyled ps-0 mainul">
+
+          <% if (array.length >= 1) { %>
+            <ul class="list-unstyled ps-0 mainul">
+              <% array.forEach((item)=> { %>
+                <li class="select">
+                  <div class="d-flex flex-wrap align-items-center border border-secondary-subtle rounded-2 my-2 p-2" >
+                    <img class="ms-2 rounded-circle" width="25vw" height="25vh" src="<%= item.profileimage %>" alt="">
+                    <div class="mx-2" style="border: 1px solid; height: 25px;"></div>
+                    <p class="mb-0">
+                      <%= item.firstname + "." + item.lastname %>
+                    </p>
+                  </div>
+                </li>
+                <% }) %>
+            </ul>
+            <% } %>
 
 
 
 
 
 
-            <li class=" border-top my-3"></li>
 
 
-          </ul>
+
+
+
+              <li class=" border-top my-3 notlist" style="list-style: none;"></li>
         </div>
 
         <!-- 1250 580 -->
 
-        <div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 75vh;">
+        <div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 78vw; height: 75vh;">
           <div class="d-flex flex-column">
 
           </div>
 
-        <!-- <div class="chat-message" >
+          <!-- <div class="chat-message" >
             <div class="mb-0"><u><i>message time : 12:45 PM</i></u></div>
             <p class="mb-0">${message}</p>
         </div> -->
@@ -117,7 +139,7 @@
 
 
         <div class="container wrapper d-flex text-center align-items-center"
-          style="position: fixed; top: 610px; right:0; width: 82vw; height: 8vh; padding: 0;">
+          style="position: fixed; top: 610px; right:0; width: 78vw; height: 8vh; padding: 0;">
           <div>
             <form class="d-flex p-2" id="chatform" action="" style="border: 1px solid; border-radius: 10px;">
               <label for="chat"></label>
@@ -720,11 +742,11 @@
       <script src="../js/noframework.waypoints.js"></script>
       <script src="../js/validate.js"></script>
 
-
-
       <script src="../js/main.js"></script>
 
       <script src="../socket.io/socket.io.js"></script>
+
+      <link href="../css/style.css" rel="stylesheet">
 
       <!-- LINK TO CUSTOM JS -->
       <script defer src="../js/Chat/chat.js"></script>

@@ -1,11 +1,11 @@
 const socket = io();
-const container = document.querySelector('#container');
+const container = document.querySelector("#container");
 //MESSAGE FROM SERVER
 socket.on("message", (message) => {
   outputMessage(message);
   console.log(message);
   //SCROLL DOWN
-  container.scrollTop = container.scrollHeight
+  container.scrollTop = container.scrollHeight;
 });
 
 //MESSAGE SUBMIT
@@ -28,6 +28,15 @@ function outputMessage(message) {
   document.getElementById("container").appendChild(div);
 }
 
+const userselect = document.querySelectorAll(".select");
+console.log(userselect);
+userselect.forEach((item) => {
+
+  item.addEventListener("click", () => {
+    console.log("heloooo");
+  });
+});
+
 $(document).ready(function () {
   /*--------------------------------------------------------------
 # GEAR CONTROL
@@ -41,105 +50,105 @@ $(document).ready(function () {
 # ARROW CONTROL
 --------------------------------------------------------------*/
   // data-toggle="tooltip" data-placement="top" title="Tooltip on top"
-  if (localStorage.getItem("sidebarlarge") === "yes") {
-    $("#sidelist").css("transition", "all 2s");
-    $("#sidelist").css("width", "250px");
-    $("#arrowmove1").removeClass("dnone");
-    $("#arrowmove2").addClass("dnone");
-    $("#oncotips").css("transition", "all 2s");
-    $("#oncotips").css("height", "20vh");
-    $("#connectlogo").css("transition", "all 2s");
-    $("#connectlogo").css("height", "20vh");
-    $("#btn1").css("visibility", "visible");
-    $("#btn2").css("visibility", "visible");
-    $("#btn3").css("visibility", "visible");
-    $("#btn8").css("visibility", "visible");
-    $("#btn9").css("visibility", "visible");
-    $(".Layer").css("transition", "all 2s");
-    $(".Layer").css("width", "25px");
-    $(".Layer").css("margin-left", "0px");
-    $(".btnsubheadfont").css("margin-left", "20px");
-    $(".group").css("transition", "all 2s");
-    $(".group").css("margin-left", "16px");
-    $(".group").css("font-size", "14px");
-    $("#container").css("transition", "all 2s");
-    $("#container").css("width", "82vw");
-  } else {
-    $("#sidelist").css("transition", "all 2s");
-    $("#sidelist").css("width", "8rem");
-    $("#arrowmove1").addClass("dnone");
-    $("#arrowmove2").removeClass("dnone");
-    $("#oncotips").css("transition", "all 2s");
-    $("#oncotips").css("height", "5vh");
-    $("#connectlogo").css("transition", "all 2s");
-    $("#connectlogo").css("height", "5vh");
-    $("#btn1").css("visibility", "hidden");
-    $("#btn2").css("visibility", "hidden");
-    $("#btn3").css("visibility", "hidden");
-    $("#btn8").css("visibility", "hidden");
-    $("#btn9").css("visibility", "hidden");
-    $(".Layer").css("transition", "all 2s");
-    $(".Layer").css("width", "2em");
-    $(".Layer").css("margin-left", "20px");
-    $(".btnsubheadfont").css("margin-left", "0px");
-    $(".group").css("transition", "all 2s");
-    $(".group").css("margin-left", "0px");
-    $(".group").css("font-size", "11px");
-    $("#container").css("transition", "all 2s");
-    $("#container").css("width", "100vw");
-  }
-  $("#arrowmove1").on("click", function () {
-    localStorage.setItem("sidebarlarge", "no");
-    $("#sidelist").css("transition", "all 2s");
-    $("#sidelist").css("width", "8rem");
-    $("#arrowmove1").addClass("dnone");
-    $("#arrowmove2").removeClass("dnone");
-    $("#oncotips").css("transition", "all 2s");
-    $("#oncotips").css("height", "5vh");
-    $("#connectlogo").css("transition", "all 2s");
-    $("#connectlogo").css("height", "5vh");
-    $("#btn1").css("visibility", "hidden");
-    $("#btn2").css("visibility", "hidden");
-    $("#btn3").css("visibility", "hidden");
-    $("#btn8").css("visibility", "hidden");
-    $("#btn9").css("visibility", "hidden");
-    $(".Layer").css("transition", "all 2s");
-    $(".Layer").css("width", "2em");
-    $(".Layer").css("margin-left", "20px");
-    $(".btnsubheadfont").css("margin-left", "0px");
-    $(".group").css("transition", "all 2s");
-    $(".group").css("margin-left", "0px");
-    $(".group").css("font-size", "11px");
-    $("#container").css("transition", "all 2s");
-    $("#container").css("width", "100vw");
-  });
-  $("#arrowmove2").on("click", function () {
-    if (localStorage.getItem("sidebarlarge") === "no") {
-      localStorage.setItem("sidebarlarge", "yes");
-    }
-    $("#sidelist").css("transition", "all 2s");
-    $("#sidelist").css("width", "250px");
-    $("#arrowmove1").removeClass("dnone");
-    $("#arrowmove2").addClass("dnone");
-    $("#oncotips").css("transition", "all 2s");
-    $("#oncotips").css("height", "20vh");
-    $("#connectlogo").css("transition", "all 2s");
-    $("#connectlogo").css("height", "20vh");
-    $("#btn1").css("visibility", "visible");
-    $("#btn2").css("visibility", "visible");
-    $("#btn3").css("visibility", "visible");
-    $("#btn8").css("visibility", "visible");
-    $("#btn9").css("visibility", "visible");
-    $(".Layer").css("transition", "all 2s");
-    $(".Layer").css("width", "25px");
-    $(".Layer").css("margin-left", "0px");
-    $(".btnsubheadfont").css("margin-left", "20px");
-    $(".group").css("transition", "all 2s");
-    $(".group").css("margin-left", "16px");
-    $(".group").css("font-size", "14px");
-    $("#container").css("transition", "all 2s");
-    $("#container").css("width", "82vw");
-  });
+  // if (localStorage.getItem("sidebarlarge") === "yes") {
+  //   $("#sidelist").css("transition", "all 2s");
+  //   $("#sidelist").css("width", "250px");
+  //   $("#arrowmove1").removeClass("dnone");
+  //   $("#arrowmove2").addClass("dnone");
+  //   $("#oncotips").css("transition", "all 2s");
+  //   $("#oncotips").css("height", "20vh");
+  //   $("#connectlogo").css("transition", "all 2s");
+  //   $("#connectlogo").css("height", "20vh");
+  //   $("#btn1").css("visibility", "visible");
+  //   $("#btn2").css("visibility", "visible");
+  //   $("#btn3").css("visibility", "visible");
+  //   $("#btn8").css("visibility", "visible");
+  //   $("#btn9").css("visibility", "visible");
+  //   $(".Layer").css("transition", "all 2s");
+  //   $(".Layer").css("width", "25px");
+  //   $(".Layer").css("margin-left", "0px");
+  //   $(".btnsubheadfont").css("margin-left", "20px");
+  //   $(".group").css("transition", "all 2s");
+  //   $(".group").css("margin-left", "16px");
+  //   $(".group").css("font-size", "14px");
+  //   $("#container").css("transition", "all 2s");
+  //   $("#container").css("width", "82vw");
+  // } else {
+  //   $("#sidelist").css("transition", "all 2s");
+  //   $("#sidelist").css("width", "8rem");
+  //   $("#arrowmove1").addClass("dnone");
+  //   $("#arrowmove2").removeClass("dnone");
+  //   $("#oncotips").css("transition", "all 2s");
+  //   $("#oncotips").css("height", "5vh");
+  //   $("#connectlogo").css("transition", "all 2s");
+  //   $("#connectlogo").css("height", "5vh");
+  //   $("#btn1").css("visibility", "hidden");
+  //   $("#btn2").css("visibility", "hidden");
+  //   $("#btn3").css("visibility", "hidden");
+  //   $("#btn8").css("visibility", "hidden");
+  //   $("#btn9").css("visibility", "hidden");
+  //   $(".Layer").css("transition", "all 2s");
+  //   $(".Layer").css("width", "2em");
+  //   $(".Layer").css("margin-left", "20px");
+  //   $(".btnsubheadfont").css("margin-left", "0px");
+  //   $(".group").css("transition", "all 2s");
+  //   $(".group").css("margin-left", "0px");
+  //   $(".group").css("font-size", "11px");
+  //   $("#container").css("transition", "all 2s");
+  //   $("#container").css("width", "100vw");
+  // }
+  // $("#arrowmove1").on("click", function () {
+  //   localStorage.setItem("sidebarlarge", "no");
+  //   $("#sidelist").css("transition", "all 2s");
+  //   $("#sidelist").css("width", "8rem");
+  //   $("#arrowmove1").addClass("dnone");
+  //   $("#arrowmove2").removeClass("dnone");
+  //   $("#oncotips").css("transition", "all 2s");
+  //   $("#oncotips").css("height", "5vh");
+  //   $("#connectlogo").css("transition", "all 2s");
+  //   $("#connectlogo").css("height", "5vh");
+  //   $("#btn1").css("visibility", "hidden");
+  //   $("#btn2").css("visibility", "hidden");
+  //   $("#btn3").css("visibility", "hidden");
+  //   $("#btn8").css("visibility", "hidden");
+  //   $("#btn9").css("visibility", "hidden");
+  //   $(".Layer").css("transition", "all 2s");
+  //   $(".Layer").css("width", "2em");
+  //   $(".Layer").css("margin-left", "20px");
+  //   $(".btnsubheadfont").css("margin-left", "0px");
+  //   $(".group").css("transition", "all 2s");
+  //   $(".group").css("margin-left", "0px");
+  //   $(".group").css("font-size", "11px");
+  //   $("#container").css("transition", "all 2s");
+  //   $("#container").css("width", "100vw");
+  // });
+  // $("#arrowmove2").on("click", function () {
+  //   if (localStorage.getItem("sidebarlarge") === "no") {
+  //     localStorage.setItem("sidebarlarge", "yes");
+  //   }
+  //   $("#sidelist").css("transition", "all 2s");
+  //   $("#sidelist").css("width", "250px");
+  //   $("#arrowmove1").removeClass("dnone");
+  //   $("#arrowmove2").addClass("dnone");
+  //   $("#oncotips").css("transition", "all 2s");
+  //   $("#oncotips").css("height", "20vh");
+  //   $("#connectlogo").css("transition", "all 2s");
+  //   $("#connectlogo").css("height", "20vh");
+  //   $("#btn1").css("visibility", "visible");
+  //   $("#btn2").css("visibility", "visible");
+  //   $("#btn3").css("visibility", "visible");
+  //   $("#btn8").css("visibility", "visible");
+  //   $("#btn9").css("visibility", "visible");
+  //   $(".Layer").css("transition", "all 2s");
+  //   $(".Layer").css("width", "25px");
+  //   $(".Layer").css("margin-left", "0px");
+  //   $(".btnsubheadfont").css("margin-left", "20px");
+  //   $(".group").css("transition", "all 2s");
+  //   $(".group").css("margin-left", "16px");
+  //   $(".group").css("font-size", "14px");
+  //   $("#container").css("transition", "all 2s");
+  //   $("#container").css("width", "82vw");
+  // });
 
   /*--------------------------------------------------------------
 # ADD PRESENTATION
