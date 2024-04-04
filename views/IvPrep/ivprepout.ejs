@@ -122,9 +122,9 @@
               </div>
               <div class="btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
-                    href="/ed">ExtraDose</a></button>
+                    href="/edout">ExtraDose</a></button>
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
-                    href="/doneview">DONE</a></button>
+                    href="/doneviewout">DONE</a></button>
   
               </div>
   
@@ -153,7 +153,7 @@
                           <th class="text-center" scope="col">Oral/IV</th>
                           <th class="text-center" scope="col">Round Comment</th>
                           <th class="text-center" scope="col">Round Time</th>
-                          <th class="text-center" scope="col">Prep Comment</th>
+                          <th class="text-center" scope="col">Comment</th>
                           <th class="text-center" scope="col">Prep Time</th>
                           <th class="text-center" scope="col">Attach</th>
                           <th class="text-center" scope="col">Add</th>
@@ -187,13 +187,13 @@
                             <%= item.roundcomment%>
                           </td>
                           <td class="text-center">
-                            <%= moment(item.createdAt).format('LT')%>
+                            <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
                           </td>
                           <td class="text-center">
                             <%= item.prepcomment%>
                           </td>
                           <td class="text-center">
-                            <%= moment(item.updatedAt).format('LT')%>
+                            <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
                           </td>
 
                           <td class="text-center">
@@ -217,10 +217,10 @@
 
 
                             <!-- MODAL -->
-                            <div class="modal fade" id="exampleModal<%= item._id%>" tabindex="-1"
+                            <div class="connectmodal modal fade" id="exampleModal<%= item._id%>" tabindex="-1"
                               aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
-                                <div class="modal-content">
+                                <div class="glass modal-content">
                                   <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">EDITING</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -273,11 +273,10 @@
                       <% }) %>
                     </table>
                     <% } %>
-
-
-
             </div>
 
+            <!-- PAGINATION -->
+            <%- include('../partials/inpatientpagination.ejs') %>
           </div>
       </main>
 

@@ -158,7 +158,7 @@
                                 <th class="text-center" scope="col">Oral/IV</th>
                                 <th class="text-center" scope="col">Round Comment</th>
                                 <th class="text-center" scope="col">Round Time</th>
-                                <th class="text-center" scope="col">Prep Comment</th>
+                                <th class="text-center" scope="col">Comment</th>
                                 <th class="text-center" scope="col">Prep Time</th>
                                 <th class="text-center" scope="col">Delete</th>
                                 <th class="text-center" scope="col">Attach</th>
@@ -189,13 +189,13 @@
                                     <%= item.roundcomment%>
                                   </td>
                                   <td class="text-center">
-                                    <%= moment(item.createdAt)%>
+                                      <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
                                   </td>
                                   <td class="text-center">
                                     <%= item.prepcomment%>
                                   </td>
                                   <td class="text-center">
-                                    <%= moment(item.updatedAt)%>
+                                    <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
                                   </td>
                                   <td class="text-center">
                                     <button type="button" class="btn btn-primary border rounded-2 d-inline-flex p-1"
@@ -467,15 +467,7 @@
         })
       </script>
 
-      <!-- NEXT BUTTON PAGINATION -->
-      <script>
-        const next = document.querySelector(".Next")
-        let i = 1
-        next.addEventListener("click", (eo) => {
-          i++;
-          next.setAttribute("href", `?page=${i}`);
-        })
-      </script>
+    
 
 </body>
 

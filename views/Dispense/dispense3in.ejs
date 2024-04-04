@@ -23,7 +23,7 @@
   <!-- HEADER CSS -->
   <link rel="stylesheet" href="/css/style.css" />
   <!-- Custom styles for this template -->
-  <link href="/css/dispense3.css" rel="stylesheet" />
+  <link href="/css/dispense/dispense3.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -68,7 +68,7 @@
             <nav class="navbar navbar-expand-lg bg-body-tertiary mx-1 mt-1 mb-1">
               <div class="container-fluid py-2 rounded-2 bg-info">
                 <div class="d-flex flex-row align-items-center">
-                  <img src="/svg/ConnectLogo.svg" height="35vh" alt="" />
+                  <img src="/svg/dispense.svg" height="35vh" alt="" />
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -77,7 +77,7 @@
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <form class="d-flex" role="search" action="/inpatientsearch" method="post">
+                  <form class="d-flex" role="search" action="/dispensesearch" method="post">
                     <input name="searchText" class="form-control me-2" type="search" placeholder="Search"
                       aria-label="Search" />
                     <button class="btn btn-outline-success" type="submit">
@@ -103,17 +103,17 @@
               <button type="button" class="btn btn-outline-primary mx-3 position-relative"><a href="/dispout"
                   style="border: unset; color: unset;">
                   <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    0
-                    <span class="visually-hidden">unread messages</span>
+                    <%= outpatient.length %>
+                      <span class="visually-hidden">unread messages</span>
                   </span>
                   <span class="side-text">OutPatient</span>
                 </a></button>
               <button type="button" class="btn btn-outline-primary position-relative active"><a href="/dispin"
                   style="border: unset; color: unset;">
-                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     0
                     <span class="visually-hidden">unread messages</span>
-                  </span>
+                  </span> -->
                   <span class="side-text">InPatient</span>
                 </a></button>
             </div>
@@ -124,7 +124,7 @@
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                     href="/dischargeindispense">Discharge</a></button>
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
-                    href="/doneviewindispense">DONE</a></button>
+                    href="/dispensedoneviewin">DONE</a></button>
               </div>
 
             </div>
@@ -155,7 +155,7 @@
                         <th class="text-center" scope="col">Oral/IV</th>
                         <th class="text-center" scope="col">Round Comment</th>
                         <th class="text-center" scope="col">Round Time</th>
-                        <th class="text-center" scope="col">Prep Comment</th>
+                        <th class="text-center" scope="col">Comment</th>
                         <th class="text-center" scope="col">Prep Time</th>
                         <th class="text-center" scope="col">Attach</th>
                         <th class="text-center" scope="col">Add</th>
@@ -187,13 +187,13 @@
                             <%= item.roundcomment%>
                           </td>
                           <td class="text-center">
-                            <%= moment(item.createdAt).format('LT')%>
+                            <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
                           </td>
                           <td class="text-center">
                             <%= item.prepcomment%>
                           </td>
                           <td class="text-center">
-                            <%= moment(item.updatedAt).format('LT')%>
+                            <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
                           </td>
                           <td class="text-center">
                             <a href="<%= item.attachfile%>"><i class="bi bi-envelope"></i></a>
@@ -215,10 +215,10 @@
 
 
                             <!-- MODAL -->
-                            <div class="modal fade" id="exampleModal<%= item._id%>" tabindex="-1"
+                            <div class="connectmodal modal fade" id="exampleModal<%= item._id%>" tabindex="-1"
                               aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
-                                <div class="modal-content">
+                                <div class="glass modal-content">
                                   <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">EDITING</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -266,9 +266,8 @@
                     </tbody>
                   </table>
                   <% } %>
-
-
           </div>
+          <%- include('../partials/inpatientpagination.ejs') %>
         </div>
       </main>
 

@@ -1,0 +1,40 @@
+<!-- ADD NEW PATIENT MODAL -->
+<div class="connectmodal modal fade" id="exampleModal1" data-bs-backdrop="static" tabindex="-1"
+aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="glass modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="exampleModalLabel">
+        Search Date
+      </h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+
+      <form action="/findDateFormdispense" method="post">
+      <div class="mb-3">
+        <label for="sDate" class="col-form-label">Start Date</label>
+        <input name="sDate" type="date" class="form-control" id="sDate" />
+      </div>
+
+      <div class="mb-3">
+        <label for="eDate" class="col-form-label">End Date</label>
+        <input name="eDate" type="date" class="form-control" id="eDate" />
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+        Close
+      </button>
+      
+        <button type="submit" class="btn btn-primary">ADD
+          
+        </button>
+      </form>
+
+
+    </div>
+  </div>
+</div>
+</div>

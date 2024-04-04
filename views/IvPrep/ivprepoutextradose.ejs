@@ -23,7 +23,7 @@
   <!-- HEADER CSS -->
   <link rel="stylesheet" href="/css/style.css" />
   <!-- Custom styles for this template -->
-  <link href="/css/dispense3.css" rel="stylesheet" />
+  <link href="/css/ivprep-in.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -59,49 +59,7 @@
     --------------------------------------------------------------*/ -->
         <%- include("../partials/arrow sidebar.ejs") %>
 
-          <!-- /*--------------------------------------------------------------
-    # SIDE LIST
-    --------------------------------------------------------------*/ -->
-          <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidelist">
-            <img id="connectlogo" src="/svg/PharmacyConnectLogodispense-01.svg" height="139vh" alt="" />
 
-            <hr />
-            <ul class="nav navul nav-pills flex-column mb-0 mainul">
-              <li>
-                <div class="d-inline-flex align-items-center" style="width: 164.56px">
-                  <a href="/dispense3" class="nav-link d-inline-flex align-items-center width side-bg">
-                    <svg class="margin side-svg" style="width: 30px; height: 30px; fill: rgb(6, 0, 0)">
-                      <use xlink:href="#table" />
-                    </svg>
-                    <span style="color: rgb(1, 0, 0);" class="side-text">OverView</span>
-                  </a>
-                </div>
-              </li>
-              <li  >
-                <div class="d-inline-flex align-items-center" style="width: 164.56px;" >                  
-                  <a  href="/dispin "  
-                    class="  nav-link  d-inline-flex align-items-center width side-bg " style="color: black;" >
-                    <svg class="margin side-svg" style="width: 30px; height:30px; fill:rgb(0, 0, 0)" >
-                      <use xlink:href="#table" />
-                    </svg>
-                    <span style="color: rgb(0, 0, 0);" class="side-text">InPatient</span>                    
-                  </a>
-                </div>
-              </li>
-              <li  >
-                <div class="d-inline-flex align-items-center" style="width: 164.56px;" >
-                  <a  href="/dispout "  
-                    class="  nav-link active d-inline-flex align-items-center width side-bg " style="color: black;" >
-                    <svg class="margin side-svg" style="width: 30px; height:30px; fill:rgb(255, 255, 255)" >
-                      <use xlink:href="#table" />
-                    </svg>
-                    <span style="color: white;" class="side-text">OutPatient</span>                    
-                  </a>
-                </div>
-              </li>
-            </ul>
-            <hr />
-          </div>
 
           <!-- /*--------------------------------------------------------------
     # DEVIDER
@@ -112,10 +70,10 @@
       # NAVBAR
       --------------------------------------------------------------*/ -->
             <div>
-              <nav class="navbar navbar-expand-lg bg-body-tertiary mx-1 mt-1 mb-5">
+              <nav class="navbar navbar-expand-lg bg-body-tertiary mx-1 mt-1 mb-1">
                 <div class="container-fluid py-2 rounded-2 bg-info">
                   <div class="d-flex flex-row align-items-center">
-                    <img src="/svg/ConnectLogo.svg" height="35vh" alt="" />
+                    <img src="../svg/ivprep-04.svg" height="35vh" alt="" />
                   </div>
 
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -124,7 +82,7 @@
                     <span class="navbar-toggler-icon"></span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <form class="d-flex" role="search" action="/inpatientsearch" method="post">
+                    <form class="d-flex" role="search" action="/inpatientprepsearch" method="post">
                       <input name="searchText" class="form-control me-2" type="search" placeholder="Search"
                         aria-label="Search" />
                       <button class="btn btn-outline-success" type="submit">
@@ -137,18 +95,57 @@
             </div>
 
 
+            <!-- NAVBAR_ICON -->
+            <div class="d-flex align-items-center mx-2 mb-1 justify-content-between">
+              <div class="btn d-inline-flex justify-content-between">
+                <button type="button" class="btn btn-outline-primary  position-relative"><a href="/prepin"
+                    style="border: unset; color: unset;">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <%= inarray.length %>
+                    <span class="visually-hidden">unread messages</span>
+                  </span>
+                    <span class="side-text">InPatient</span>
+                  </a></button>
+                <button type="button" class="btn btn-outline-primary mx-3 active position-relative"><a href="/prepout"
+                    style="border: unset; color: unset;">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      <%= outpatient.length %>
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                    <span class="side-text">OutPatient</span>
+                  </a></button>
+                <button type="button" class="btn btn-outline-primary position-relative"><a href="/prepdis"
+                    style="border: unset; color: unset;">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      <%= dispense.length %>
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                    <span class="side-text">Dispense</span>
+                  </a></button>
+              </div>
+              <div class="btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
+                <button type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;"
+                    href="/edout">ExtraDose</a></button>
+                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
+                    href="/doneviewout">DONE</a></button>
+                
+
+              </div>
+
+            </div>
+
             <!-- /*--------------------------------------------------------------
       # MAIN CONTENT
       --------------------------------------------------------------*/ -->
-
             <div id="maincontent">
-              <% if (dispensearray.length===0) { %>
+              <% if (outarray.length===0) { %>
                 <div class="text-center">
                   <h1>No Data Available</h1>
                 </div>
 
                 <% } %>
-                  <% if (dispensearray.length>= 1) { %>
+
+                  <% if (outarray.length>= 1) { %>
                     <table style="width: 99%" class="mx-auto table table-striped table-bordered">
                       <thead>
                         <tr>
@@ -163,12 +160,13 @@
                           <th class="text-center" scope="col">Comment</th>
                           <th class="text-center" scope="col">Prep Time</th>
                           <th class="text-center" scope="col">Attach</th>
-                          <th class="text-center" scope="col">Add</th>
+                          <th class="text-center" scope="col">Edit</th>
                           <th class="text-center" scope="col">Done</th>
                         </tr>
                       </thead>
+                      <% outarray.forEach((item,index)=> { %>
                       <tbody id="tbody">
-                        <% dispensearray.forEach((item,index)=> { %>
+                        
                           <tr id="tr">
                             <td class="text-center">
                               <%= index+1 %>
@@ -206,7 +204,7 @@
                               <% if (item.attachfile) { %>
                                 <% } %>
                             </td>
-                            
+
                             <td class="text-center">
                             
                               <!-- <a href="/edit/"> -->
@@ -222,16 +220,16 @@
 
                             
                                <!-- MODAL -->
-                              <div class="modal fade" id="exampleModal<%= item._id%>" tabindex="-1"
+                              <div class=" connectmodal modal fade" id="exampleModal<%= item._id%>" tabindex="-1"
                               aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog">
+                              <div class="glass modal-dialog">
                                 <div class="modal-content">
                                   <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">EDITING</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                       aria-label="Close"></button>
                                   </div>
-                                  <form action="/dispoutedit/<%= item._id%>?_method=PUT" method="post">
+                                  <form action="/inedited/<%= item._id%>?_method=PUT" method="post">
                                   <div class="modal-body">
                                     Please Write Comment
                                     <label for="prepcomment" class="form-label"></label>
@@ -247,9 +245,9 @@
                                 </div>
                               </div>
                             </td>
-                            
+
                             <td class="text-center">
-                              <form action="/donedisout/<%= item._id %>?_method=PUT" method="post">
+                              <form action="/doneed/<%= item._id %>?_method=PUT" method="post">
                                 <button type="submit" class="d-inline-flex p-1 text-center"
                                   style="outline-style: unset; border: none; background-color: transparent;">
                                   <label hidden for="prepcomment" class="form-label" style="display: none;">Prep
@@ -268,15 +266,17 @@
                               </form>
                             </td>
 
-
                           </tr>
-                          <% }) %>
+                          
                       </tbody>
+                      <% }) %>
                     </table>
                     <% } %>
-
-
             </div>
+
+
+              <!-- PAGINATION -->
+              <%- include('../partials/inpatientpagination.ejs') %>
           </div>
       </main>
 
@@ -294,9 +294,7 @@
 
       <script src="../js/main.js"></script>
 
-      <script src="/js/dispense3.js"></script>
-
-
+      <script src="/js/ivprep/ivprep.js"></script>
 </body>
 
 </html>

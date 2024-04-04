@@ -100,10 +100,10 @@
               <div class="btn d-inline-flex justify-content-between">
                 <button type="button" class="btn btn-outline-primary active position-relative"><a href="/prepin"
                     style="border: unset; color: unset;">
-                    <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    0
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <%= inarray.length %>
                     <span class="visually-hidden">unread messages</span>
-                  </span> -->
+                  </span>
                     <span class="side-text">InPatient</span>
                   </a></button>
                 <button type="button" class="btn btn-outline-primary mx-3 position-relative"><a href="/prepout"
@@ -158,7 +158,7 @@
                           <th class="text-center" scope="col">Oral/IV</th>
                           <th class="text-center" scope="col">Round Comment</th>
                           <th class="text-center" scope="col">Round Time</th>
-                          <th class="text-center" scope="col">Prep Comment</th>
+                          <th class="text-center" scope="col">Comment</th>
                           <th class="text-center" scope="col">Prep Time</th>
                           <th class="text-center" scope="col">Attach</th>
                           <th class="text-center" scope="col">Edit</th>
@@ -191,13 +191,13 @@
                               <%= item.roundcomment%>
                             </td>
                             <td class="text-center">
-                              <%= moment(item.createdAt).format('LT')%>
+                              <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
                             </td>
                             <td class="text-center">
                               <%= item.prepcomment%>
                             </td>
                             <td class="text-center">
-                              <%= moment(item.updatedAt).format('LT')%>
+                              <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
                             </td>
 
                             <td class="text-center">

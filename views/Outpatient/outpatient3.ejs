@@ -54,298 +54,175 @@
       </svg>
 
       <main class="d-flex flex-nowrap">
+
+
         <!-- /*--------------------------------------------------------------
-    # Arrow Sidebar
-    --------------------------------------------------------------*/ -->
-        <%- include("../partials/arrow sidebar.ejs") %>
-
-          <!-- /*--------------------------------------------------------------
-    # SIDE LIST
-    --------------------------------------------------------------*/ -->
-          <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidelist">
-            <img id="connectlogo" src="/svg/PharmacyConnectLogooutpatient-01.svg" height="139vh" alt="" />
-
-            <hr />
-            <ul class="nav navul nav-pills flex-column mb-0 mainul">
-              <li>
-                <div class="d-inline-flex align-items-center" style="width: 164.56px">
-                  <a href="/outpatient3" class="nav-link active d-inline-flex align-items-center width side-bg">
-                    <svg class="margin side-svg" style="width: 30px; height: 30px; fill: white">
-                      <use xlink:href="#table" />
-                    </svg>
-                    <span class="side-text">OverView</span>
-                  </a>
-                </div>
-              </li>
-            </ul>
-            <hr />
-
-          </div>
-
-          <!-- /*--------------------------------------------------------------
     # DEVIDER
     --------------------------------------------------------------*/ -->
 
-          <div style="position: relative; height: 90vh" class="w-100">
-            <!-- /*--------------------------------------------------------------
+        <div style="position: relative; height: 90vh" class="w-100">
+          <!-- /*--------------------------------------------------------------
       # NAVBAR
       --------------------------------------------------------------*/ -->
-            <div>
-              <nav class="navbar navbar-expand-lg bg-body-tertiary mx-1 mt-1 mb-5">
-                <div class="container-fluid py-2 rounded-2 bg-info">
-                  <div class="d-flex flex-row align-items-center">
-                    <img src="/svg/ConnectLogo.svg" height="35vh" alt="" />
-                  </div>
-
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <form class="d-flex" role="search" action="/outpatientsearch" method="post">
-                      <input name="searchText" class="form-control me-2" type="search" placeholder="Search"
-                        aria-label="Search" />
-                      <button class="btn btn-outline-success" type="submit">
-                        Search
-                      </button>
-                    </form>
-                  </div>
+          <div>
+            <nav class="navbar navbar-expand-lg bg-body-tertiary mx-1 mt-1 mb-1">
+              <div class="container-fluid py-2 rounded-2 bg-info">
+                <div class="d-flex flex-row align-items-center">
+                  <img src="/svg/outpatient.svg" height="35vh" alt="" />
                 </div>
-              </nav>
-            </div>
 
-            <!-- /*--------------------------------------------------------------
-      # EDIT ICON
-      --------------------------------------------------------------*/ -->
-
-            <a style="
-      position: absolute;
-      top: 70px;
-      right: 10px;
-      background-color: rgb(0, 42, 255);
-    " href="" id="editicon" class="border rounded-2 d-inline-flex p-1" data-bs-toggle="modal" data-bs-placement="top"
-              data-bs-title="Edit" data-bs-target="#exampleModal2">
-              <svg style="fill: aliceblue" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                class="bi bi-pencil" viewBox="0 0 16 16">
-                <path
-                  d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-              </svg>
-            </a>
-
-
-            <div class="modal fade" id="exampleModal2" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">
-                      Add Patient
-                    </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <form id="add_patient">
-
-                      <div class="mb-3">
-                        <label for="patientname" class="col-form-label">Patient Name</label>
-                        <input name="patientname" type="text" class="form-control" id="patientname" />
-                      </div>
-
-                      <div class="mb-3">
-                        <label for="mrn" class="col-form-label">MRN</label>
-                        <input name="mrn" type="text" class="form-control" id="mrn" />
-                      </div>
-
-                      <div class="mb-3">
-                        <label for="ptfloor" class="form-label">Patient Floor</label>
-                        <select id="ptfloor" name="ptfloor" class="form-select">
-                          <option disabled hidden selected>Choose...</option>
-                          <option>2nd</option>
-                          <option>3rd O</option>
-                          <option>3rd N</option>
-                          <option>4th</option>
-                          <option>5th</option>
-                          <option>6th</option>
-                          <option>MCU</option>
-                          <option>SCU</option>
-                          <option>ER</option>
-                          <option>ICC</option>
-                          <option>OR</option>
-                          <option>SICU</option>
-                          <option>DayCare</option>
-                          <option>Dispense</option>
-                          <option>OutPatient</option>
-                          <option>ICU</option>
-                        </select>
-                      </div>
-
-                      <div class="mb-3">
-                        <label for="requestype" class="form-label">Request Type</label>
-                        <select class="form-select" name="requestype" id="requestype">
-                          <option selected hidden disabled>Choose....</option>
-                          <option>Chemotherapy</option>
-                          <option>Zofran</option>
-                          <option>Hydration</option>
-                          <option>TPN</option>
-                          <option>Modification</option>
-                          <option>ExtraDose</option>
-                          <option>Refill</option>
-                          <option>DisCharge Medication</option>
-                        </select>
-                      </div>
-
-                      <div class="mb-3">
-                        <label for="oraliv" class="form-label">Oral/IV</label>
-                        <select required class="form-select" id="oraliv" name="oraliv">
-                          <option selected hidden disabled>Choose....</option>
-                          <option>Oral</option>
-                          <option>IV</option>
-                          <option>Pyxis</option>
-                        </select>
-                      </div>
-
-                      <div id="iv_oralnot" class=" d-flex flex-row align-items-center my-2 d-none"
-                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
-                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
-                        <p class="my-1 ms-1">You Must Enter This Field</p>
-                      </div>
-
-                      <div class="mb-3">
-                        <label for="roundcomment" class="col-form-label">Round Comment</label>
-                        <textarea name="roundcomment" class="form-control" id="roundcomment"></textarea>
-                      </div>
-
-                      <div class="mb-3 d-none">
-                        <label for="prepcomment" class="col-form-label"></label>
-                        <input name="prepcomment" type="text" class="form-control" id="prepcomment" />
-                      </div>
-
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                      Close
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                  aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <form class="d-flex" role="search" action="/outpatientsearch" method="post">
+                    <input name="searchText" class="form-control me-2" type="search" placeholder="Search"
+                      aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit">
+                      Search
                     </button>
-                    <button type="submit" class="btn btn-primary">
-                      Send message
-                    </button>
-                    </form>
-                  </div>
+                  </form>
                 </div>
               </div>
-            </div>
+            </nav>
+          </div>
 
-            <!-- /*--------------------------------------------------------------
+          <!-- /*--------------------------------------------------------------
+      # EDIT ICON
+      --------------------------------------------------------------*/ -->
+          <div class="d-flex align-items-center mx-2 mb-1 justify-content-end">
+            <%- include('../partials/Modal-icon.ejs') %>
+          </div>
+
+          <!-- SEARCH DATE -->
+          <%- include('../partials/DateSearch-Modal.ejs') %>
+
+            <!-- ADD PATIENT MODAL -->
+            <%- include('../partials/AddPatientOut-Modal.ejs') %>
+
+              <!-- ADD NEW PATIENT MODAL -->
+              <%- include('../partials/AddNewPatient-Modal.ejs') %>
+
+                <!-- ADD LAB PATIENT MODAL -->
+                <%- include('../partials/AddLabPatientOut-Modal.ejs') %>
+
+          <!-- /*--------------------------------------------------------------
       # MAIN CONTENT
       --------------------------------------------------------------*/ -->
-            <div id="maincontent">
-              <% if (outpatientarray.length===0) { %>
-                <div class="text-center">
-                  <h1>No Data Available</h1>
-                </div>
+          <div id="maincontent">
+            <% if (outpatientarray.length===0) { %>
+              <div class="text-center">
+                <h1>No Data Available</h1>
+              </div>
 
-                <% } %>
+              <% } %>
 
-                  <% if (outpatientarray.length>= 1) { %>
-                    <table style="width: 99%" class="mx-auto table table-striped table-bordered">
-                      <thead>
-                        <tr>
-                          <th class="text-center" scope="col">#</th>
-                          <th class="text-center" scope="col">Patient Name</th>
-                          <th class="text-center" scope="col">MRN</th>
-                          <th class="text-center" scope="col">Patient Floor</th>
-                          <th class="text-center" scope="col">Request Type</th>
-                          <th class="text-center" scope="col">Oral/IV</th>
-                          <th class="text-center" scope="col">Round Comment</th>
-                          <th class="text-center" scope="col">Round Time</th>
-                          <th class="text-center" scope="col">Prep Comment</th>
-                          <th class="text-center" scope="col">Prep Time</th>
-                          <th class="text-center" scope="col">Delete</th>
-                        </tr>
-                      </thead>
-                      <tbody id="tbody">
-                        <% outpatientarray.forEach((item,index)=> { %>
-                          <tr id="tr">
-                            <td class="text-center">
-                              <%= index+1 %>
-                            </td>
-                            <td class="text-center">
-                              <%= item.patientname%>
-                            </td>
-                            <td class="text-center">
-                              <%= item.mrn%>
-                            </td>
-                            <td class="text-center">
-                              <%= item.ptfloor%>
-                            </td>
-                            <td class="text-center">
-                              <%= item.requestype%>
-                            </td>
-                            <td class="text-center">
-                              <%= item.oraliv%>
-                            </td>
-                            <td class="text-center">
-                              <%= item.roundcomment%>
-                            </td>
-                            <td class="text-center">
-                              <%= moment(item.createdAt).format('LT')%>
-                            </td>
-                            <td class="text-center">
-                              <%= item.prepcomment%>
-                            </td>
-                            <td class="text-center">
-                              <%= moment(item.updatedAt).format('LT')%>
-                            </td>
-                            <td class="text-center">
+                <% if (outpatientarray.length>= 1) { %>
+                  <table style="width: 99%" class="mx-auto table table-striped table-bordered">
+                    <thead>
+                      <tr>
+                        <th class="text-center" scope="col">#</th>
+                        <th class="text-center" scope="col">Patient Name</th>
+                        <th class="text-center" scope="col">MRN</th>
+                        <th class="text-center" scope="col">Patient Floor</th>
+                        <th class="text-center" scope="col">Request Type</th>
+                        <th class="text-center" scope="col">Oral/IV</th>
+                        <th class="text-center" scope="col">Round Comment</th>
+                        <th class="text-center" scope="col">Round Time</th>
+                        <th class="text-center" scope="col">Comment</th>
+                        <th class="text-center" scope="col">Prep Time</th>
+                        <th class="text-center" scope="col">Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbody">
+                      <% outpatientarray.forEach((item,index)=> { %>
+                        <tr id="tr">
+                          <td class="text-center">
+                            <%= index+1 %>
+                          </td>
+                          <td class="text-center">
+                            <%= item.patientname%>
+                          </td>
+                          <td class="text-center">
+                            <%= item.mrn%>
+                          </td>
+                          <td class="text-center">
+                            <%= item.ptfloor%>
+                          </td>
+                          <td class="text-center">
+                            <%= item.requestype%>
+                          </td>
+                          <td class="text-center">
+                            <%= item.oraliv%>
+                          </td>
+                          <td class="text-center">
+                            <%= item.roundcomment%>
+                          </td>
+                          <td class="text-center">
+                            <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
+                          </td>
+                          <td class="text-center">
+                            <%= item.prepcomment%>
+                          </td>
+                          <td class="text-center">
+                            <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
+                          </td>
+                          <td class="text-center">
 
-                              <button type="button" class="btn btn-primary border rounded-2 d-inline-flex p-1" data-bs-toggle="modal" data-bs-target="#exampleModal<%= item.id %>" style="background-color: red">
+                            <button type="button" class="btn btn-primary border rounded-2 d-inline-flex p-1"
+                              data-bs-toggle="modal" data-bs-target="#exampleModal<%= item.id %>"
+                              style="background-color: red">
 
-                                <svg style="fill: aliceblue;" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                  class="bi bi-trash" viewBox="0 0 16 16">
-                                  <path
-                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                                  <path
-                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
-                                </svg>
+                              <svg style="fill: aliceblue;" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                class="bi bi-trash" viewBox="0 0 16 16">
+                                <path
+                                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                <path
+                                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                              </svg>
 
-                              </button>
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal<%= item.id %>" tabindex="-1"
-                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Warning</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                          aria-label="Close"></button>
-                                      </div>
-                                      <div class="modal-body">
-                                        Are you sure you want to delete ?
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                          data-bs-dismiss="modal">Close</button>
-                                        <form action="/deleteout/<%= item.id%>?_method=DELETE" method="post">
-                                          <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>
-                                      </div>
-                                    </div>
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal<%= item.id %>" tabindex="-1"
+                              aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Warning</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                      aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    Are you sure you want to delete ?
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                      data-bs-dismiss="modal">Close</button>
+                                    <form action="/deleteout/<%= item.id%>?_method=DELETE" method="post">
+                                      <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
                                   </div>
                                 </div>
+                              </div>
+                            </div>
 
 
 
-                            </td>
-                          </tr>
-                          <% }) %>
-                      </tbody>
-                    </table>
-                    <% } %>
+                          </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                  </table>
+                  <% } %>
 
 
 
-            </div>
           </div>
+            <!-- PAGINATION -->
+            <%- include('../partials/inpatientpagination.ejs') %>
+        </div>
       </main>
 
       <!-- LINK TO jQuary -->
@@ -363,6 +240,162 @@
       <script src="../js/main.js"></script>
 
       <script src="/js/outpatient3.js"></script>
+
+        <!-- ADD PATIENT OUTPATIENT -->
+        <script>
+          add_patient_outpatient.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const res = await fetch("/add_patient_out", {
+              method: "POST",
+              body: JSON.stringify({ patientname: patientname.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value, createdAt: new Date() }),
+              headers: { "Content-Type": "application/json" },
+            });
+            const data = await res.json();
+            if (data.errors) {
+              data.errors.forEach(item => {
+                if (item.path == "mrn") {
+                  mrnnotnumber.classList.remove("d-none");
+                  mrn.classList.add("redframe");
+                } else {
+                  mrnnotnumber.classList.add("d-none");
+                  mrn.classList.remove("redframe");
+                }
+              })
+            };
+            if (data.nopatient) {
+              nopatient.classList.remove("d-none");
+              mrn.classList.add("redframe");
+            } else {
+              nopatient.classList.add("d-none");
+              mrn.classList.remove("redframe");
+            }
+  
+            if (data.norequestype) {
+              norequestype.classList.remove("d-none");
+              requestype.classList.add("redframe");
+            } else {
+              norequestype.classList.add("d-none");
+              requestype.classList.remove("redframe");
+            }
+  
+            if (data.noptfloor) {
+              noptfloor.classList.remove("d-none");
+              ptfloor.classList.add("redframe");
+            } else {
+              noptfloor.classList.add("d-none");
+              ptfloor.classList.remove("redframe");
+            }
+  
+            if (data.oraliv) {
+              document.getElementById('iv_oralnot').classList.remove("d-none");
+              document.getElementById('oraliv').classList.add("redframe");
+            } else {
+              document.getElementById('iv_oralnot').classList.add("d-none");
+              document.getElementById('oraliv').classList.remove("redframe");
+            }
+  
+  
+            if (data.outpatient_add_patient) {
+              location.assign("/outpatient3")
+            }
+          });
+        </script>
+
+          <!-- ADD LAB OUTPATIENT -->
+      <script>
+        add_lab_outpatient.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const res = await fetch("/add_lab_out", {
+            method: "POST",
+            body: JSON.stringify({ labpatientname: labpatientname.value, mrnlab: mrnlab.value, labptfloor: labptfloor.value, labrequestype: labrequestype.value, medstartdate: medstartdate.value, medstarttime: medstarttime.value, samplewddate: samplewddate.value, samplewdtime: samplewdtime.value, levelrequestreason: levelrequestreason.value, labcomment: labcomment.value, phaname: phaname.value, createdAt: new Date() }),
+            headers: { "Content-Type": "application/json" },
+          });
+          const data = await res.json();
+          if (data.errors) {
+            data.errors.forEach(item => {
+              if (item.path == "mrnlab") {
+                mrnempty.classList.remove("d-none");
+                mrnlab.classList.add("redframe");
+              } else {
+                mrnempty.classList.add("d-none");
+                mrnlab.classList.remove("redframe");
+              }
+            });
+          }
+
+          if (data.nopatient) {
+            labnopatient.classList.remove("d-none");
+            mrnlab.classList.add("redframe");
+          } else {
+            labnopatient.classList.add("d-none");
+            mrnlab.classList.remove("redframe");
+          }
+
+          if (data.nolabptfloor) {
+            ptfloorempty.classList.remove("d-none");
+            labptfloor.classList.add("redframe");
+          } else {
+            ptfloorempty.classList.add("d-none");
+            labptfloor.classList.remove("redframe");
+          }
+
+          if (data.nolabrequestype) {
+            requestypempty.classList.remove("d-none");
+            labrequestype.classList.add("redframe");
+          } else {
+            requestypempty.classList.add("d-none");
+            labrequestype.classList.remove("redframe");
+          }
+
+          if (data.levelrequestreasonempty) {
+            levelrequestreasonempty.classList.remove("d-none");
+            levelrequestreason.classList.add("redframe");
+          } else {
+            levelrequestreasonempty.classList.add("d-none");
+            levelrequestreason.classList.remove("redframe");
+          }
+
+          if (data.lab_add_patient) {
+            location.assign("/outpatient3")
+          }
+
+
+        });
+      </script>
+
+      <!-- addnewpatient -->
+      <script>
+        addnewpatient.addEventListener("click", async (item) => {
+          item.preventDefault()
+          const res = await fetch("/addnewpatient", {
+            method: "POST",
+            body: JSON.stringify({ addpatientmrn: addpatientmrn.value, addpatientname: addpatientname.value, createdAt: new Date() }),
+            headers: { "Content-Type": "application/json" },
+          })
+          const data = await res.json()
+          if (data.errors) {
+            data.errors.forEach(item => {
+              if (item.path = "addpatientname") {
+                nopatientname.classList.remove("d-none");
+                addpatientname.classList.add("redframe");
+              } else {
+                nopatientname.classList.add("d-none");
+                addpatientname.classList.remove("redframe");
+              }
+            });
+          }
+          if (data.patientexist) {
+            patientexist.classList.remove("d-none");
+            addpatientmrn.classList.add("redframe");
+          } else {
+            patientexist.classList.add("d-none");
+            addpatientmrn.classList.remove("redframe");
+          }
+          if (data.done) {
+            location.assign("/outpatient3")
+          }
+        })
+      </script>
 </body>
 
 </html>

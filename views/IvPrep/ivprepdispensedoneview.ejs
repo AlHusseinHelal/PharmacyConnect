@@ -114,10 +114,10 @@
                   </a></button>
                 <button type="button" class="btn btn-outline-primary position-relative active"><a href="/prepdis"
                     style="border: unset; color: unset;">
-                    <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      0
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      <%= dispense.length %>
                       <span class="visually-hidden">unread messages</span>
-                    </span> -->
+                    </span>
                     <span class="side-text">Dispense</span>
                   </a></button>
               </div>
@@ -153,7 +153,7 @@
                       <th class="text-center" scope="col">Oral/IV</th>
                       <th class="text-center" scope="col">Round Comment</th>
                       <th class="text-center" scope="col">Round Time</th>
-                      <th class="text-center" scope="col">Prep Comment</th>
+                      <th class="text-center" scope="col">Comment</th>
                       <th class="text-center" scope="col">Prep Time</th>
                       <th class="text-center" scope="col">Edit</th>
                       <th class="text-center" scope="col">Done</th>
@@ -184,13 +184,13 @@
                           <%= item.roundcomment%>
                         </td>
                         <td class="text-center">
-                          <%= moment(item.createdAt).format('LT')%>
+                          <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
                         </td>
                         <td class="text-center">
                           <%= item.prepcomment%>
                         </td>
                         <td class="text-center">
-                          <%= moment(item.updatedAt).format('LT')%>
+                          <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
                         </td>
   
                         <td class="text-center">

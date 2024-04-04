@@ -28,6 +28,7 @@ const Outpatient = require("../models/outpatientSchema");
 const Dispenseschema = require("../models/dispenseSchema");
 const Newpatient = require("../models/newPatientSchema");
 const Labschema = require("../models/labSchema");
+const Chatmessage = require("../models/chatMessage");
 //MIDDLEWARE
 const { requireAuth } = require("../middleware/middleware");
 const { checkIfUser } = require("../middleware/middleware");
@@ -109,15 +110,20 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    const ChatMessage = await Chatmessage.find();
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const currentUser = await User.findOne({ _id: decoded.id });
     const curentuserid = currentUser.id;
-    console.log(curentuserid);
+    const currentusername = currentUser.firstname;
     const results = await User.find({ _id: { $ne: curentuserid } }).sort({
       firstname: "asc",
     });
     if (results) {
-      res.render("Chat/chat.ejs", { array: results });
+      res.render("Chat/chat.ejs", {
+        array: results,
+        currentusername,
+        ChatMessage,
+      });
     }
   })
 );
@@ -689,18 +695,15 @@ router.get(
     const user = await User.findOne({ _id: decoded.id });
     const firstname = user.firstname;
     const lastname = user.lastname;
-
     const date = moment().format("YYYY-MM-DD");
     const startDate = date + "T00:00:00.000+00:00";
     const endDate = date + "T23:59:59.000+00:00";
-
     const num = await Inpatientschema.find({
-      updatedAt: { $gte: startDate, $lte: endDate },
+      createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-    
     // 2024-03-25T22:05:10.868+00:00
     const results = await Inpatientschema.find({
-      updatedAt: { $gte: startDate, $lte: endDate },
+      createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
@@ -719,8 +722,6 @@ router.get(
   })
 );
 
-
-
 // INPATIENT ICU
 router.get(
   "/ICU",
@@ -734,10 +735,20 @@ router.get(
     const user = await User.findOne({ _id: decoded.id });
     const firstname = user.firstname;
     const lastname = user.lastname;
-    const results = await Inpatientschema.find({ ptfloor: "ICU" })
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+
+    const results = await Inpatientschema.find({
+      ptfloor: "ICU",
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({ ptfloor: "ICU" }).countDocuments();
+    const num = await Inpatientschema.find({
+      ptfloor: "ICU",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     if (results) {
       res.render("Inpatient/icu", {
         inpatientarray: results,
@@ -764,10 +775,20 @@ router.get(
     const user = await User.findOne({ _id: decoded.id });
     const firstname = user.firstname;
     const lastname = user.lastname;
-    const results = await Inpatientschema.find({ ptfloor: "ICC" })
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+
+    const results = await Inpatientschema.find({
+      ptfloor: "ICC",
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({ ptfloor: "ICC" }).countDocuments();
+    const num = await Inpatientschema.find({
+      ptfloor: "ICC",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     if (results) {
       res.render("Inpatient/icc", {
         inpatientarray: results,
@@ -794,11 +815,19 @@ router.get(
     const user = await User.findOne({ _id: decoded.id });
     const firstname = user.firstname;
     const lastname = user.lastname;
-    const results = await Inpatientschema.find({ ptfloor: "3rd O" })
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+
+    const results = await Inpatientschema.find({
+      ptfloor: "3rd O",
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
       .skip(skip)
       .limit(limit);
     const num = await Inpatientschema.find({
       ptfloor: "3rd O",
+      createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     if (results) {
       res.render("Inpatient/3rdo", {
@@ -826,11 +855,19 @@ router.get(
     const user = await User.findOne({ _id: decoded.id });
     const firstname = user.firstname;
     const lastname = user.lastname;
-    const results = await Inpatientschema.find({ ptfloor: "3rd N" })
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+
+    const results = await Inpatientschema.find({
+      ptfloor: "3rd N",
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
       .skip(skip)
       .limit(limit);
     const num = await Inpatientschema.find({
       ptfloor: "3rd N",
+      createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     if (results) {
       res.render("Inpatient/3rdn", {
@@ -858,10 +895,20 @@ router.get(
     const user = await User.findOne({ _id: decoded.id });
     const firstname = user.firstname;
     const lastname = user.lastname;
-    const results = await Inpatientschema.find({ ptfloor: "4th" })
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+
+    const results = await Inpatientschema.find({
+      ptfloor: "4th",
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({ ptfloor: "4th" }).countDocuments();
+    const num = await Inpatientschema.find({
+      ptfloor: "4th",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     if (results) {
       res.render("Inpatient/4th", {
         inpatientarray: results,
@@ -888,10 +935,20 @@ router.get(
     const user = await User.findOne({ _id: decoded.id });
     const firstname = user.firstname;
     const lastname = user.lastname;
-    const results = await Inpatientschema.find({ ptfloor: "5th" })
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+
+    const results = await Inpatientschema.find({
+      ptfloor: "5th",
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({ ptfloor: "5th" }).countDocuments();
+    const num = await Inpatientschema.find({
+      ptfloor: "5th",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     if (results) {
       res.render("Inpatient/5th", {
         inpatientarray: results,
@@ -918,10 +975,20 @@ router.get(
     const user = await User.findOne({ _id: decoded.id });
     const firstname = user.firstname;
     const lastname = user.lastname;
-    const results = await Inpatientschema.find({ ptfloor: "BMT" })
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+
+    const results = await Inpatientschema.find({
+      ptfloor: "BMT",
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({ ptfloor: "BMT" }).countDocuments();
+    const num = await Inpatientschema.find({
+      ptfloor: "BMT",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     if (results) {
       res.render("Inpatient/bmt", {
         inpatientarray: results,
@@ -941,18 +1008,33 @@ router.get("/outpatient", checkIfUser, requireAuth, (req, res) => {
 });
 
 // OUPATIENT OVERVIEW
-router.get("/outpatient3", checkIfUser, requireAuth, (req, res) => {
-  Outpatient.find()
-    .then((result) => {
-      res.render("Outpatient/outpatient3", {
-        outpatientarray: result,
-        moment: moment,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.get(
+  "/outpatient3",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 9;
+    const skip = (page - 1) * limit;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const firstname = user.firstname;
+    const lastname = user.lastname;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+    const num = await Outpatient.find({
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments()
+    const results = await Outpatient.find({
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).skip(skip).limit(limit);
+    if (results) {
+    res.render("Outpatient/outpatient3", {outpatientarray: results, num, firstname, lastname, moment:moment} )  
+    }
+      
+  })
+);
 
 //IVPREP
 router.get("/ivprep", checkIfUser, requireAuth, (req, res) => {
@@ -968,21 +1050,29 @@ router.get(
     const page = req.query.page * 1 || 1;
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+
     const outpatient = await Outpatient.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     });
     const dispense = await Dispenseschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     });
     const num = await Inpatientschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     const results = await Inpatientschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
@@ -1007,23 +1097,30 @@ router.get(
     const page = req.query.page * 1 || 1;
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
     const outpatient = await Outpatient.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     });
     const dispense = await Dispenseschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     });
     const num = await Inpatientschema.find({
       oraliv: "IV",
       requestype: "ExtraDose",
       prepcomment: "",
+      createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     const results = await Inpatientschema.find({
       oraliv: "IV",
       requestype: "ExtraDose",
       prepcomment: "",
+      createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
@@ -1048,23 +1145,30 @@ router.get(
     const page = req.query.page * 1 || 1;
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
     const outpatient = await Outpatient.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     });
     const dispense = await Dispenseschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     });
     const num = await Inpatientschema.find({
       oraliv: "IV",
       requestype: "BMT",
       prepcomment: "",
+      createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     const results = await Inpatientschema.find({
       oraliv: "IV",
       ptfloor: "BMT",
       prepcomment: "",
+      createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
@@ -1089,21 +1193,28 @@ router.get(
     const page = req.query.page * 1 || 1;
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
     const outpatient = await Outpatient.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     });
     const dispense = await Dispenseschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     });
     const num = await Inpatientschema.find({
       oraliv: "IV",
       prepcomment: "DONE",
+      createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     const results = await Inpatientschema.find({
       oraliv: "IV",
       prepcomment: "DONE",
+      createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
@@ -1119,6 +1230,52 @@ router.get(
   })
 );
 
+//IVPREP DISPENSE
+router.get(
+  "/prepdis",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 8;
+    const skip = (page - 1) * limit;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+    const inarray = await Inpatientschema.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const outpatient = await Outpatient.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const num = await Dispenseschema.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const results = await Dispenseschema.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+    if (results) {
+      res.render("IvPrep/ivprepdis", {
+        outarray: results,
+        moment: moment,
+        inarray,
+        outpatient,
+        num,
+      });
+    }
+  })
+);
+
 //IVPREP DISPENSE DONE VIEW
 router.get(
   "/ivprepdispensedoneview",
@@ -1128,21 +1285,33 @@ router.get(
     const page = req.query.page * 1 || 1;
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+    const dispense = await Dispenseschema.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
     const outpatient = await Outpatient.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     });
     const inarray = await Inpatientschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     });
     const num = await Dispenseschema.find({
       oraliv: "IV",
       prepcomment: "DONE",
+      createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     const results = await Dispenseschema.find({
       oraliv: "IV",
       prepcomment: "DONE",
+      createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
@@ -1153,6 +1322,7 @@ router.get(
         outpatient,
         inarray,
         num,
+        dispense,
       });
     }
   })
@@ -1164,63 +1334,147 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 8;
+    const skip = (page - 1) * limit;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
     const dispense = await Dispenseschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     });
     const inarray = await Inpatientschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     });
+    const num = await Outpatient.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     const results = await Outpatient.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
-    });
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
     if (results) {
       res.render("IvPrep/ivprepout", {
         outarray: results,
         moment: moment,
         inarray,
         dispense,
+        num,
       });
     }
   })
 );
 
-//IVPREP DISPENSE
+//IVPREP OUTPATIENT  EXTRADOSE
 router.get(
-  "/prepdis",
+  "/edout",
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
     const page = req.query.page * 1 || 1;
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
     const inarray = await Inpatientschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     });
     const outpatient = await Outpatient.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     });
-    const num = await Dispenseschema.find({
+    const dispense = await Dispenseschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const num = await Outpatient.find({
+      oraliv: "IV",
+      requestype: "ExtraDose",
+      prepcomment: "",
+      createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-    const results = await Dispenseschema.find({
+    const results = await Outpatient.find({
       oraliv: "IV",
-      prepcomment: { $not: { $regex: "DONE" } },
+      requestype: "ExtraDose",
+      prepcomment: "",
+      createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
     if (results) {
-      res.render("IvPrep/ivprepdis", {
+      res.render("IvPrep/ivprepoutextradose", {
+        outarray: results,
+        moment: moment,
+        num,
+        inarray,
+        dispense,
+        outpatient,
+      });
+    }
+  })
+);
+
+//IVPREP INPATIENT DONE VIEW
+router.get(
+  "/doneviewout",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 8;
+    const skip = (page - 1) * limit;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+    const inarray = await Inpatientschema.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const outpatient = await Outpatient.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const dispense = await Dispenseschema.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const num = await Outpatient.find({
+      oraliv: "IV",
+      prepcomment: "DONE",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const results = await Outpatient.find({
+      oraliv: "IV",
+      prepcomment: "DONE",
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+    if (results) {
+      res.render("IvPrep/ivprepoutdoneview", {
         outarray: results,
         moment: moment,
         inarray,
-        outpatient,
+        dispense,
         num,
+        outpatient,
       });
     }
   })
@@ -1291,143 +1545,219 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const outpatient = await Outpatient.find();
-    const inpatient = Dispenseschema.find().then((result) => {
-      res.render("Dispense/dispense3", {
-        dispensearray: result,
-        moment: moment,
-      });
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 8;
+    const skip = (page - 1) * limit;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+    const outpatient = await Outpatient.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     });
+    const inarray = await Inpatientschema.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const num = await Dispenseschema.find({
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const results = await Dispenseschema.find({
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+    if (results) {
+      res.render("Dispense/dispense3", {
+        dispensearray: results,
+        moment: moment,
+        outpatient,
+        inarray,
+        num,
+      });
+    }
   })
 );
 
 // DISPENSE INPATIENT
-router.get("/dispin", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.find({ oraliv: "Oral", prepcomment: "" }).then((result) => {
-    res.render("Dispense/dispense3in", {
-      dispensearray: result,
-      moment: moment,
+router.get(
+  "/dispin",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 8;
+    const skip = (page - 1) * limit;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+    const outpatient = await Outpatient.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     });
-  });
-});
+
+    const num = await Inpatientschema.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const results = await Inpatientschema.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+    if (results) {
+      res.render("Dispense/dispense3in", {
+        dispensearray: results,
+        moment: moment,
+        num,
+        outpatient,
+      });
+    }
+  })
+);
 
 //DISPENSE INPATIENT EXTRADOSE
-router.get("/edindispense", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.find({
-    oraliv: "Oral",
-    requestype: "ExtraDose",
-    prepcomment: "",
-  })
-    .then((result) => {
+router.get(
+  "/edindispense",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 9;
+    const skip = (page - 1) * limit;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+    const inarray = await Inpatientschema.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const outpatient = await Outpatient.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const num = await Inpatientschema.find({
+      oraliv: "Oral",
+      requestype: "ExtraDose",
+      prepcomment: { $not: { $regex: "DONE" } },
+    }).countDocuments();
+    const results = await Inpatientschema.find({
+      oraliv: "Oral",
+      requestype: "ExtraDose",
+      prepcomment: { $not: { $regex: "DONE" } },
+    })
+      .skip(skip)
+      .limit(limit);
+    if (results) {
       res.render("Dispense/edindispense", {
-        dispensearray: result,
+        dispensearray: results,
+        outpatient,
+        inarray,
+        num,
         moment: moment,
       });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+    }
+  })
+);
 
 //DISPENSE INPATIENT DISCHARGE
-router.get("/dischargeindispense", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.find({
-    oraliv: "Oral",
-    requestype: "DisCharge Medication",
-    prepcomment: "",
-  })
-    .then((result) => {
-      res.render("Dispense/dischargeindispense", {
-        dispensearray: result,
-        moment: moment,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
+router.get(
+  "/dischargeindispense",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 9;
+    const skip = (page - 1) * limit;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+    const inarray = await Inpatientschema.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     });
-});
+    const outpatient = await Outpatient.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const num = await Inpatientschema.find({
+      oraliv: "Oral",
+      requestype: "DisCharge Medication",
+      prepcomment: { $not: { $regex: "DONE" } },
+    }).countDocuments();
+    const results = await Inpatientschema.find({
+      oraliv: "Oral",
+      requestype: "DisCharge Medication",
+      prepcomment: { $not: { $regex: "DONE" } },
+    })
+      .skip(skip)
+      .limit(limit);
+    if (results) {
+      res.render("Dispense/dischargeindispense", {
+        dispensearray: results,
+        inarray,
+        outpatient,
+        moment: moment,
+        num,
+      });
+    }
+  })
+);
 
 //DISPENSE INPATIENT DONE VIEW
-router.get("/doneviewindispense", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.find({
-    oraliv: "Oral",
-    prepcomment: {
-      $in: [
-        /^a/,
-        /^b/,
-        /^c/,
-        /^d/,
-        /^e/,
-        /^f/,
-        /^g/,
-        /^h/,
-        /^i/,
-        /^j/,
-        /^k/,
-        /^l/,
-        /^m/,
-        /^n/,
-        /^o/,
-        /^p/,
-        /^q/,
-        /^r/,
-        /^s/,
-        /^t/,
-        /^u/,
-        /^v/,
-        /^w/,
-        /^x/,
-        /^y/,
-        /^z/,
-        /^0/,
-        /^1/,
-        /^2/,
-        /^3/,
-        /^4/,
-        /^5/,
-        /^6/,
-        /^7/,
-        /^8/,
-        /^9/,
-        /^A/,
-        /^B/,
-        /^C/,
-        /^D/,
-        /^E/,
-        /^F/,
-        /^G/,
-        /^H/,
-        /^I/,
-        /^J/,
-        /^K/,
-        /^L/,
-        /^M/,
-        /^N/,
-        /^O/,
-        /^P/,
-        /^Q/,
-        /^R/,
-        /^S/,
-        /^T/,
-        /^U/,
-        /^V/,
-        /^W/,
-        /^X/,
-        /^Y/,
-        /^Z/,
-      ],
-    },
-  })
-    .then((result) => {
-      res.render("Dispense/doneviewindispense", {
-        dispensearray: result,
-        moment: moment,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
+router.get(
+  "/dispensedoneviewin",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 8;
+    const skip = (page - 1) * limit;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+    const outpatient = await Outpatient.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     });
-});
+    const inarray = await Inpatientschema.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const num = await Inpatientschema.find({
+      oraliv: "Oral",
+      prepcomment: "DONE",
+    }).countDocuments();
+    const results = await Inpatientschema.find({
+      oraliv: "Oral",
+      prepcomment: "DONE",
+    })
+      .skip(skip)
+      .limit(limit);
+    if (results) {
+      res.render("Dispense/doneviewindispense", {
+        dispensearray: results,
+        moment: moment,
+        num,
+        outpatient,
+        inarray,
+      });
+    }
+  })
+);
 
 // DISPENSE OUTPATIENT
 router.get("/dispout", checkIfUser, requireAuth, (req, res) => {
@@ -2197,7 +2527,13 @@ router.post(
   requireAuth,
   asyncHandler(async (req, res) => {
     const searchText = req.body.searchText.trim();
-    const result = await Inpatientschema.find({ mrn: searchText });
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+    const result = await Inpatientschema.find({
+      mrn: searchText,
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
     res.render("Inpatient/inpatientsearch", { array: result, moment: moment });
   })
 );
@@ -2210,18 +2546,21 @@ router.post(
   asyncHandler(async (req, res) => {
     const sdate = req.body.sDate;
     const edate = req.body.eDate;
-    console.log(sdate)
-    console.log(edate)
+    console.log(sdate);
+    console.log(edate);
     const startDate = sdate + "T00:00:00.000+00:00";
     const endDate = edate + "T23:59:59.000+00:00";
     const results = await Inpatientschema.find({
-      updatedAt: { $gte: startDate, $lte: endDate },
-    })
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
     if (results) {
-      res.render("Inpatient/inpatientfinddate.ejs", {searcharray: results, moment : moment})
+      res.render("Inpatient/inpatientfinddate.ejs", {
+        searcharray: results,
+        moment: moment,
+      });
     }
-    
-  }))
+  })
+);
 
 // INPATIENT/PREP POST SEARCH
 router.post("/inpatientprepsearch", checkIfUser, requireAuth, (req, res) => {
@@ -2246,18 +2585,85 @@ router.post("/outpt2", checkIfUser, requireAuth, (req, res) => {
     });
 });
 
-//OUTPATIENT ADD PATIENT
-router.post("/add_patient_out", checkIfUser, requireAuth, async (req, res) => {
-  try {
-    if (req.body.oraliv === "Choose....") {
-      return res.json({ iv_oral: "You Must Enter This Field" });
+// OUTPATIENT ADD PATIENT
+router.post(
+  "/add_patient_out",
+  [check("mrn").isNumeric(), check("requestype").notEmpty()],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
     }
-    const newoutpatientpatient = await Outpatient.create(req.body);
-    res.json({ newoutpatientpatient: newoutpatientpatient });
-  } catch (error) {
-    console.log(error);
-  }
-});
+    const patient = await Newpatient.findOne({ addpatientmrn: req.body.mrn });
+
+    if (patient == null) {
+      return res.json({ nopatient: "This Patient Not Found" });
+    }
+
+    if (patient) {
+      req.body.patientname = patient.addpatientname;
+    }
+
+    if (req.body.ptfloor === "Choose...") {
+      return res.json({ noptfloor: "You Must Enter This Field" });
+    }
+
+    if (req.body.requestype === "Choose....") {
+      return res.json({ norequestype: "You Must Enter This Field" });
+    }
+
+    if (req.body.oraliv === "Choose....") {
+      return res.json({ oraliv: "You Must Enter This Field" });
+    }
+
+    const outpatientAddpatient = await Outpatient.create(req.body);
+    res.json({ outpatient_add_patient: outpatientAddpatient });
+  })
+);
+
+// OUTPATIENT ADD LAB PATIENT
+router.post(
+  "/add_lab_out",
+  [check("mrnlab").isNumeric()],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const validationerrors = validationResult(req);
+    console.log(validationerrors);
+    if (!validationerrors.isEmpty()) {
+      return res.json({ errors: validationerrors.errors });
+    }
+
+    const patient = await Newpatient.findOne({
+      addpatientmrn: req.body.mrnlab,
+    });
+
+    if (patient == null) {
+      return res.json({ nopatient: "This Patient Not Found" });
+    }
+
+    if (patient) {
+      req.body.labpatientname = patient.addpatientname;
+    }
+
+    if (req.body.labptfloor === "Choose...") {
+      return res.json({ nolabptfloor: "You Must Enter This Field" });
+    }
+
+    if (req.body.labrequestype === "Choose...") {
+      return res.json({ nolabrequestype: "You Must Enter This Field" });
+    }
+
+    if (req.body.levelrequestreason === "") {
+      return res.json({ levelrequestreasonempty: "You Must Enter This Field" });
+    }
+
+    const labAddpatient = await Labschema.create(req.body);
+    res.json({ lab_add_patient: labAddpatient });
+  })
+);
 
 // OUTPATIENT POST SEARCH
 router.post("/outpatientsearch", checkIfUser, requireAuth, (req, res) => {
@@ -2333,6 +2739,48 @@ router.post(
     if (!patient) {
       await Newpatient.create(req.body);
       res.json({ done: "Patient Added" });
+    }
+  })
+);
+
+// DISPENSE POST SEARCH
+router.post(
+  "/dispensesearch",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const searchText = req.body.searchText.trim();
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+    const result = await Dispenseschema.find({
+      mrn: searchText,
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    res.render("Dispense/dispensesearch", { array: result, moment: moment });
+  })
+);
+
+// DISPENSE SEARCH DATE
+router.post(
+  "/findDateFormdispense",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const sdate = req.body.sDate;
+    const edate = req.body.eDate;
+    console.log(sdate);
+    console.log(edate);
+    const startDate = sdate + "T00:00:00.000+00:00";
+    const endDate = edate + "T23:59:59.000+00:00";
+    const results = await Dispenseschema.find({
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    if (results) {
+      res.render("Dispense/dispensefinddate.ejs", {
+        searcharray: results,
+        moment: moment,
+      });
     }
   })
 );
@@ -2571,32 +3019,30 @@ router.put(
 );
 
 // IVPREP OUTPATIENT / DONE
-router.put("/doneout/:id", checkIfUser, requireAuth, (req, res) => {
-  Outpatient.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      console.log(req.body);
-      Outpatient.find().then((result) => {
-        res.render("IvPrep/ivprepout", { outarray: result, moment: moment });
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.put(
+  "/doneout/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const results = await Outpatient.findByIdAndUpdate(req.params.id, req.body);
+    if (results) {
+      res.redirect("/prepout");
+    }
+  })
+);
 
 // IVPREP OUTPATIENT / EDIT
-router.put("/outedit/:id", checkIfUser, requireAuth, (req, res) => {
-  Outpatient.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      console.log(req.body);
-      Outpatient.find({ oraliv: "IV" }).then((result) => {
-        res.render("IvPrep/ivprepout", { outarray: result, moment: moment });
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.put(
+  "/outedit/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const results = await Outpatient.findByIdAndUpdate(req.params.id, req.body);
+    if (results) {
+      res.redirect("/prepout");
+    }
+  })
+);
 
 // IVPREP DISPENSE / EDIT
 router.put(
@@ -2631,20 +3077,20 @@ router.put(
 );
 
 // Dispense INPATIENT / EDIT
-router.put("/dispinedit/:id", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      Inpatientschema.find({ oraliv: "Oral" }).then((result) => {
-        res.render("Dispense/dispense3in", {
-          dispensearray: result,
-          moment: moment,
-        });
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.put(
+  "/dispinedit/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const results = await Inpatientschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/dispin");
+    }
+  })
+);
 
 // DISPENSE INPATIENT EXTRADOSE / EDIT
 router.put("/dispinedited/:id", checkIfUser, requireAuth, (req, res) => {
@@ -2787,21 +3233,20 @@ router.put("/dispoutedit/:id", checkIfUser, requireAuth, (req, res) => {
 });
 
 // DISPENSE INPATIENT / DONE
-router.put("/donedisin/:id", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      console.log(req.body);
-      Inpatientschema.find({ oraliv: "Oral" }).then((result) => {
-        res.render("Dispense/dispense3in", {
-          dispensearray: result,
-          moment: moment,
-        });
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.put(
+  "/donedisin/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const results = await Inpatientschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/dispin");
+    }
+  })
+);
 
 // DISPENSE INPATIENT DONE VIEW / DONE
 router.put("/doneviewdisin/:id", checkIfUser, requireAuth, (req, res) => {

@@ -23,7 +23,7 @@
   <!-- HEADER CSS -->
   <link rel="stylesheet" href="/css/style.css" />
   <!-- Custom styles for this template -->
-  <link href="/css/inpatient/inpatient/inpatient3.css" rel="stylesheet" />
+  <link href="/css/ivprep-in.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -54,6 +54,12 @@
       </svg>
 
       <main class="d-flex flex-nowrap">
+        <!-- /*--------------------------------------------------------------
+    # Arrow Sidebar
+    --------------------------------------------------------------*/ -->
+        <%- include("../partials/arrow sidebar.ejs") %>
+
+
 
           <!-- /*--------------------------------------------------------------
     # DEVIDER
@@ -64,10 +70,10 @@
       # NAVBAR
       --------------------------------------------------------------*/ -->
             <div>
-              <nav class="navbar navbar-expand-lg bg-body-tertiary mx-1 mt-1 mb-5">
+              <nav class="navbar navbar-expand-lg bg-body-tertiary mx-1 mt-1 mb-1">
                 <div class="container-fluid py-2 rounded-2 bg-info">
                   <div class="d-flex flex-row align-items-center">
-                    <img src="/svg/inpatient.svg" height="35vh" alt="" />
+                    <img src="../svg/ivprep-04.svg" height="35vh" alt="" />
                   </div>
 
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -76,8 +82,9 @@
                     <span class="navbar-toggler-icon"></span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <form class="d-flex" role="search" action="/inpatientsearch" method="post">
-                      <input name="searchText" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    <form class="d-flex" role="search" action="/inpatientprepsearch" method="post">
+                      <input name="searchText" class="form-control me-2" type="search" placeholder="Search"
+                        aria-label="Search" />
                       <button class="btn btn-outline-success" type="submit">
                         Search
                       </button>
@@ -87,20 +94,58 @@
               </nav>
             </div>
 
+
+            <!-- NAVBAR_ICON -->
+            <div class="d-flex align-items-center mx-2 mb-1 justify-content-between">
+              <div class="btn d-inline-flex justify-content-between">
+                <button type="button" class="btn btn-outline-primary  position-relative"><a href="/prepin"
+                    style="border: unset; color: unset;">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      <%= inarray.length %>
+                    <span class="visually-hidden">unread messages</span>
+                  </span>
+                    <span class="side-text">InPatient</span>
+                  </a></button>
+                <button type="button" class="btn btn-outline-primary mx-3 active position-relative"><a href="/prepout"
+                    style="border: unset; color: unset;">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <%= outpatient.length %>
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                    <span class="side-text">OutPatient</span>
+                  </a></button>
+                <button type="button" class="btn btn-outline-primary position-relative"><a href="/prepdis"
+                    style="border: unset; color: unset;">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                      <%= dispense.length %>
+                        <span class="visually-hidden">unread messages</span>
+                    </span>
+                    <span class="side-text">Dispense</span>
+                  </a></button>
+              </div>
+              <div class="btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
+                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
+                    href="/edout">ExtraDose</a></button>
+                <button type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;"
+                    href="/doneviewout">DONE</a></button>
+                
+
+              </div>
+
+            </div>
+
             <!-- /*--------------------------------------------------------------
       # MAIN CONTENT
       --------------------------------------------------------------*/ -->
             <div id="maincontent">
-
-              <h2 style="color: red;" class="text-center">YOU ARE IN A SEARCH MODE</h2>
-              <% if (array.length === 0) { %>
+              <% if (outarray.length===0) { %>
                 <div class="text-center">
                   <h1>No Data Available</h1>
                 </div>
 
                 <% } %>
 
-                  <% if (array.length >= 1) { %>
+                  <% if (outarray.length>= 1) { %>
                     <table style="width: 99%" class="mx-auto table table-striped table-bordered">
                       <thead>
                         <tr>
@@ -114,11 +159,14 @@
                           <th class="text-center" scope="col">Round Time</th>
                           <th class="text-center" scope="col">Comment</th>
                           <th class="text-center" scope="col">Prep Time</th>
-                          <th class="text-center" scope="col">Delete</th>
+                          <th class="text-center" scope="col">Attach</th>
+                          <th class="text-center" scope="col">Edit</th>
+                          <!-- <th class="text-center" scope="col">Done</th> -->
                         </tr>
                       </thead>
+                      <% outarray.forEach((item,index)=> { %>
                       <tbody id="tbody">
-                        <% array.forEach((item,index)=> { %>
+                        
                           <tr id="tr">
                             <td class="text-center">
                               <%= index+1 %>
@@ -150,34 +198,65 @@
                             <td class="text-center">
                               <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
                             </td>
+
                             <td class="text-center">
-                              <a style="background-color: red;" class="border rounded-2 d-inline-flex p-1"
-                                href="/view/<%= item._id%>">
-
-                                <svg style="fill: aliceblue;" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                  class="bi bi-trash" viewBox="0 0 16 16">
-                                  <path
-                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                                  <path
-                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
-                                </svg>
-
-                              </a>
-
-
-
-
+                              <a href="<%= item.attachfile%>"><i class="bi bi-envelope"></i></a>
+                              <% if (item.attachfile) { %>
+                                <% } %>
                             </td>
+
+                            <td class="text-center">
+                            
+                              <!-- <a href="/edit/"> -->
+                              <button type="button" style="background-color: rgb(0, 42, 255);"
+                                class="border rounded-2 d-inline-flex p-1 " data-bs-toggle="modal"
+                                data-bs-target="#exampleModal<%= item._id%>">
+                                <svg style="fill: aliceblue;" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                  fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                  <path
+                                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+                                </svg>
+                              </button>
+
+                            
+                               <!-- MODAL -->
+                              <div class="connectmodal modal fade" id="exampleModal<%= item._id%>" tabindex="-1"
+                              aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="glass modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">EDITING</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                      aria-label="Close"></button>
+                                  </div>
+                                  <form action="/ineditdoneview/<%= item._id%>?_method=PUT" method="post">
+                                  <div class="modal-body">
+                                    Please Write Comment
+                                    <label for="prepcomment" class="form-label"></label>
+                                    <input class="form-control" type="text" name="prepcomment">
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                      data-bs-dismiss="modal">Close</button>
+                                    
+                                      <button type="submit" class="btn btn-primary">ADD</button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+
+                          
+
                           </tr>
-                          <% }) %>
+                          
                       </tbody>
+                      <% }) %>
                     </table>
                     <% } %>
-
-
-                      <!-- Modal -->
-
             </div>
+  <!-- PAGINATION -->
+  <%- include('../partials/inpatientpagination.ejs') %>
           </div>
       </main>
 
@@ -195,13 +274,7 @@
 
       <script src="../js/main.js"></script>
 
-      <script src="/js/inpatient3.js"></script>
+      <script src="/js/ivprep/ivprep.js"></script>
 </body>
 
 </html>
-
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
