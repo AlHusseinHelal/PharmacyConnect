@@ -138,7 +138,7 @@ router.get(
     const currentUser = await User.findOne({ _id: decoded.id });
     const todolist = currentUser.todolist;
     if (todolist) {
-      res.render("Todolist/todolist.ejs", { array : todolist, moment:moment });
+      res.render("todolist/Todolist.ejs", { array : todolist, moment:moment });
     }
   })
 );
