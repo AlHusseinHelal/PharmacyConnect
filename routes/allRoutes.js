@@ -128,6 +128,21 @@ router.get(
   })
 );
 
+//TODOLIST
+router.get(
+  "/todolist",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const currentUser = await User.findOne({ _id: decoded.id });
+    const todolist = currentUser.todolist;
+    if (todolist) {
+      res.render("Todolist/todolist.ejs", { array : todolist, moment:moment });
+    }
+  })
+);
+
 //WORKFLOW
 router.get("/WorkFlow", checkIfUser, requireAuth, (req, res) => {
   res.render("WorkFlow.ejs");
@@ -1025,14 +1040,21 @@ router.get(
     const endDate = date + "T23:59:59.000+00:00";
     const num = await Outpatient.find({
       createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments()
+    }).countDocuments();
     const results = await Outpatient.find({
       createdAt: { $gte: startDate, $lte: endDate },
-    }).skip(skip).limit(limit);
+    })
+      .skip(skip)
+      .limit(limit);
     if (results) {
-    res.render("Outpatient/outpatient3", {outpatientarray: results, num, firstname, lastname, moment:moment} )  
+      res.render("Outpatient/outpatient3", {
+        outpatientarray: results,
+        num,
+        firstname,
+        lastname,
+        moment: moment,
+      });
     }
-      
   })
 );
 
@@ -2811,6 +2833,36 @@ router.post(
   }
 );
 
+//ADD TO DO LIST
+router.post(
+  "/addtodolist",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const add = await User.updateOne(
+      { _id: decoded.id },
+      {
+        $push: {
+          todolist: {
+            title: req.body.title,
+            due: req.body.due,
+            description: req.body.description,
+            completed: req.body.completed,
+            createdAt: moment().format("YYYY-MM-DD"),
+          },
+        }, 
+      }
+    );
+    
+    if (add) {
+      res.redirect("/todolist");
+    }
+  })
+);
+
+
+
 // ---------------------------------
 //DELETE REQUEST
 // ----------------------------------
@@ -2924,6 +2976,15 @@ router.delete("/deletedis/:id", checkIfUser, requireAuth, (req, res) => {
       console.log(err);
     });
 });
+
+//TODOLIST DELETE TASK
+router.delete("/deletetodolist/:id", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
+  const deltodolist = await User.updateOne({_id : decoded.id}, {$pull:{todolist:{_id:req.params.id}}})
+  if (deltodolist) {
+    res.redirect("/todolist")
+  }
+}));
 
 // ---------------------------------
 //PUT REQUEST
@@ -3132,90 +3193,6 @@ router.put("/dispineditdischarge/:id", checkIfUser, requireAuth, (req, res) => {
     });
 });
 
-// Dispense INPATIENT DONE VIEW / EDIT
-router.put("/dispineditdoneview/:id", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      Inpatientschema.find({
-        oraliv: "Oral",
-        prepcomment: {
-          $in: [
-            /^a/,
-            /^b/,
-            /^c/,
-            /^d/,
-            /^e/,
-            /^f/,
-            /^g/,
-            /^h/,
-            /^i/,
-            /^j/,
-            /^k/,
-            /^l/,
-            /^m/,
-            /^n/,
-            /^o/,
-            /^p/,
-            /^q/,
-            /^r/,
-            /^s/,
-            /^t/,
-            /^u/,
-            /^v/,
-            /^w/,
-            /^x/,
-            /^y/,
-            /^z/,
-            /^0/,
-            /^1/,
-            /^2/,
-            /^3/,
-            /^4/,
-            /^5/,
-            /^6/,
-            /^7/,
-            /^8/,
-            /^9/,
-            /^A/,
-            /^B/,
-            /^C/,
-            /^D/,
-            /^E/,
-            /^F/,
-            /^G/,
-            /^H/,
-            /^I/,
-            /^J/,
-            /^K/,
-            /^L/,
-            /^M/,
-            /^N/,
-            /^O/,
-            /^P/,
-            /^Q/,
-            /^R/,
-            /^S/,
-            /^T/,
-            /^U/,
-            /^V/,
-            /^W/,
-            /^X/,
-            /^Y/,
-            /^Z/,
-          ],
-        },
-      }).then((result) => {
-        res.render("Dispense/doneviewindispense", {
-          dispensearray: result,
-          moment: moment,
-        });
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
 // Dispense OUTPATIENT / EDIT
 router.put("/dispoutedit/:id", checkIfUser, requireAuth, (req, res) => {
   Outpatient.findByIdAndUpdate(req.params.id, req.body)
@@ -3247,91 +3224,6 @@ router.put(
     }
   })
 );
-
-// DISPENSE INPATIENT DONE VIEW / DONE
-router.put("/doneviewdisin/:id", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      console.log(req.body);
-      Inpatientschema.find({
-        oraliv: "Oral",
-        prepcomment: {
-          $in: [
-            /^a/,
-            /^b/,
-            /^c/,
-            /^d/,
-            /^e/,
-            /^f/,
-            /^g/,
-            /^h/,
-            /^i/,
-            /^j/,
-            /^k/,
-            /^l/,
-            /^m/,
-            /^n/,
-            /^o/,
-            /^p/,
-            /^q/,
-            /^r/,
-            /^s/,
-            /^t/,
-            /^u/,
-            /^v/,
-            /^w/,
-            /^x/,
-            /^y/,
-            /^z/,
-            /^0/,
-            /^1/,
-            /^2/,
-            /^3/,
-            /^4/,
-            /^5/,
-            /^6/,
-            /^7/,
-            /^8/,
-            /^9/,
-            /^A/,
-            /^B/,
-            /^C/,
-            /^D/,
-            /^E/,
-            /^F/,
-            /^G/,
-            /^H/,
-            /^I/,
-            /^J/,
-            /^K/,
-            /^L/,
-            /^M/,
-            /^N/,
-            /^O/,
-            /^P/,
-            /^Q/,
-            /^R/,
-            /^S/,
-            /^T/,
-            /^U/,
-            /^V/,
-            /^W/,
-            /^X/,
-            /^Y/,
-            /^Z/,
-          ],
-        },
-      }).then((result) => {
-        res.render("Dispense/doneviewindispense", {
-          dispensearray: result,
-          moment: moment,
-        });
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
 
 // DISPENSE INPATIENT EXTRADOSE / DONE
 router.put("/donedisined/:id", checkIfUser, requireAuth, (req, res) => {
@@ -3522,6 +3414,22 @@ router.put(
 
       res.cookie("jwt", "", { httpOnly: true, maxAge: 1 });
       res.json({ message: "Password Changed Successfully" });
+    }
+  })
+);
+
+// TODOLIST / EDIT
+router.put(
+  "/edittodolist/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
+    console.log(req.body);
+    const results = await User.updateOne({"todolist._id" : req.params.id}, {"todolist.$" : req.body})
+    console.log(results);
+    if (results) {
+      res.redirect("/todolist")
     }
   })
 );

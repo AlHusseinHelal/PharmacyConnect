@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "watch": "nodemon --ext *"
   },
   "keywords": [],
@@ -13,7 +13,10 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "cloudinary": "^2.0.1",
+    "connect-livereload": "^0.6.1",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.2",
     "ejs": "^3.1.9",
@@ -21,6 +24,7 @@
     "express-async-handler": "^1.2.0",
     "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.2",
+    "livereload": "^0.9.3",
     "mailgun-js": "^0.22.0",
     "method": "^2.0.0",
     "method-override": "^3.0.0",

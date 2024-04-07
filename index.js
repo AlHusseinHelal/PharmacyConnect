@@ -6,6 +6,17 @@ const socketio = require("socket.io");
 //HTTP
 const http = require("http");
 
+const path = require("path");
+
+const livereload = require("livereload");
+
+const liveReloadServer = livereload.createServer();
+
+const connectLivereload = require("connect-livereload");
+
+liveReloadServer.watch(path.join(__dirname, 'public'));
+
+
 //ERROR HANDILING TRY_CATCH OR THEN_CATCH
 const asyncHandler = require("express-async-handler");
 
@@ -39,6 +50,7 @@ app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
 app.use(cookieParser());
 app.use(express.json());
+app.use(connectLivereload());
 
 io.on("connection", (socket) => {
 console.log('helloo-client')
@@ -48,6 +60,12 @@ mongoose.connect(process.env.MDB).then(() => {
   server.listen(port, () => {
     console.log(`Listening on port ${port}`);
   });
+});
+
+liveReloadServer.server.once("connection", () => {
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 100);
 });
 
 app.use(allRoutes);

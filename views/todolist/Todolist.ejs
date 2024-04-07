@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TO DO</title>
+  <!-- LINK FAVICON -->
+  <link rel="shortcut icon" href="/svg/ConnectLogo.svg" type="image/x-icon" />
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="../fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="../fontawesome/css/brands.css" rel="stylesheet" />
+  <link href="../fontawesome/css/solid.css" rel="stylesheet" />
+  <!-- BOOTSTRAP ICON -->
+  <link href="../css/bootstrap-icons.css" rel="stylesheet" />
+  <!-- BOOTSTRAP CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet" />
+  <!-- HEADER CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <!-- MY STYLE CSS -->
+  <link rel="stylesheet" href="../css/todolist/todolist.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <%- include("../partials/header.ejs") %>
+    <!-- LIGHT ICON -->
+    <%- include("../partials/lighticon.ejs") %>
+      <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+        <symbol id="home" viewBox="0 0 16 16">
+          <path
+            d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
+        </symbol>
+        <symbol id="table" viewBox="0 0 16 16">
+          <path
+            d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
+        </symbol>
+        <symbol id="people-circle" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+          <path fill-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+        </symbol>
+      </svg>
+
+
+
+      <section class="">
+        <div class="container py-5 ">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+              <div class="card mt-5" id="list1" style="border-radius: .75rem; background-color: #eff1f2;">
+                <div class="card-body py-4 px-4 px-md-5 ">
+
+                  <p class="h1 text-center mt-3 mb-4 pb-3 text-primary">
+                    <i class="fas fa-check-square me-1"></i>
+                    <u>ToDo List</u>
+                  </p>
+
+                  <div class="pb-2">
+                    <div class="card">
+                      <div class="card-body">
+                        <form action="/addtodolist" method="post">
+                          <div class="d-flex flex-row align-items-center">
+                            <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1"
+                              placeholder="Add new..." name="title">
+
+                            <a href="#!" data-mdb-toggle="tooltip" title="Set due date">
+                              <span class="datepicker-toggle">
+                                <span class="datepicker-toggle-button"></span>
+                                <input type="date" class="datepicker-input" name="due" id="due">
+                              </span>
+                            </a>
+                            <div>
+                              <button type="submit" class="btn btn-primary">Add</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+                  <hr class="my-4">
+
+                  <div class="d-flex justify-content-end align-items-center mb-4 pt-2 pb-3">
+                    <p class="small mb-0 me-2 text-muted">Filter</p>
+                    <select class="select">
+                      <option value="1">All</option>
+                      <option value="2">Completed</option>
+                      <option value="3">Active</option>
+                      <option value="4">Has due date</option>
+                    </select>
+                    <p class="small mb-0 ms-4 me-2 text-muted">Sort</p>
+                    <select class="select">
+                      <option value="1">Added date</option>
+                      <option value="2">Due date</option>
+                    </select>
+                    <a href="#!" style="color: #23af89;" data-mdb-toggle="tooltip" title="Ascending"><i
+                        class="fas fa-sort-amount-down-alt ms-2"></i></a>
+                  </div>
+
+                  <% if (array.length>= 1) { %>
+                    <ul class="list-group d-flex flex-column rounded-0 bg-transparent">
+                      <% array.forEach(item=> { %>
+                        <li
+                          class="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent">
+                          <div class="input-group ">
+                            <div class="input-group-text">
+                              <input class="form-check-input mt-0" type="checkbox" value=""
+                                aria-label="Checkbox for following text input">
+                            </div>
+                            <div class=" form-control d-flex justify-content-between align-items-center"
+                              aria-label="Text input with checkbox">
+                              <div>
+                                <%= item.title %>
+                              </div>
+                              <div class="d-flex align-items-center">
+                                <div 
+                                  class="<%= item.due !== undefined? "d-block" : "d-none" %>  py-2 px-3 me-2 border border-warning rounded-3 d-flex align-items-center bg-light">
+                                  <p class="small mb-0">
+                                    <a href="#!" data-mdb-toggle="tooltip" title="Due on date">
+                                      <i class="fas fa-hourglass-half me-2 text-warning"></i>
+                                    </a>
+                                    <%= item.due %>
+                                  </p>
+                                </div>
+                                <div class="text-end text-muted me-3">
+                                  <a href="" class="text-muted" data-mdb-toggle="tooltip" title="Created date">
+                                    <p class="small mb-0"><i class="fas fa-info-circle me-2"></i>
+                                      <%= item.createdAt%>
+                                    </p>
+                                  </a>
+                                </div>
+                                
+                                <a href="#!" data-bs-toggle="modal" data-bs-target="#exampleModal<%= item._id %>"
+                                  class="text-info" data-mdb-toggle="tooltip" title="Edit todo"><i
+                                    class="fas fa-pencil-alt me-3"></i></a>
+                                <a href="#!" data-bs-toggle="modal" data-bs-target="#exampleModal2<%= item._id %>"
+                                  class="text-danger" data-mdb-toggle="tooltip" title="Delete todo"><i
+                                    class="fas fa-trash-alt"></i></a>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+
+                        <!-- TODOLIST EDIT MODEL -->
+                        <div class="connectmodal modal fade" id="exampleModal<%= item._id %>" tabindex="-1"
+                          aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="glass modal-content">
+                              <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">EDIT</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                  aria-label="Close"></button>
+                              </div>
+                              <form action="/edittodolist/<%= item._id%>?_method=PUT" method="post">
+                                <div class="modal-body">
+                                  <input type="text" name="title" class="form-control">
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- TODOLIST DELETE MODEL -->
+                        <div class="connectmodal modal fade" id="exampleModal2<%= item._id %>" tabindex="-1"
+                          aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="glass modal-content">
+                              <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">DELETE</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                  aria-label="Close"></button>
+                              </div>
+                              <form action="/deletetodolist/<%= item._id%>?_method=DELETE" method="post">
+                                <div class="modal-body">
+                                  Are You Sure You Want To Delete This Task !!!
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-danger">DELETE</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <% }); %>
+
+                    </ul>
+                    <% } %>
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- LINK TO jQuary -->
+      <script src="../js/jquery-3.7.1.min.js"></script>
+
+      <!-- LINK TO BOOTSTRAP.JS -->
+      <script src="../js/aos.js"></script>
+      <script src="../js/bootstrap.bundle.min.js"></script>
+      <script src="../js/glightbox.min.js"></script>
+      <script src="../js/isotope.pkgd.min.js"></script>
+      <script src="../js/swiper-bundle.min.js"></script>
+      <script src="../js/noframework.waypoints.js"></script>
+      <script src="../js/validate.js"></script>
+
+      <script src="../js/main.js"></script>
+      <script>
+        const due = document.getElementById("due")
+        const date = due.value
+        console.log(due);
+        console.log(date);
+      </script>
+</body>
+
+</html>
+
+
+<!-- <section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card" id="list1" style="border-radius: .75rem; background-color: #eff1f2;">
+          <div class="card-body py-4 px-4 px-md-5">
+
+            <p class="h1 text-center mt-3 mb-4 pb-3 text-primary">
+              <i class="fas fa-check-square me-1"></i>
+              <u>My Todo-s</u>
+            </p>
+
+            <div class="pb-2">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-row align-items-center">
+                    <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1"
+                      placeholder="Add new...">
+                    <a href="#!" data-mdb-toggle="tooltip" title="Set due date"><i
+                        class="fas fa-calendar-alt fa-lg me-3"></i></a>
+                    <div>
+                      <button type="button" class="btn btn-primary">Add</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="d-flex justify-content-end align-items-center mb-4 pt-2 pb-3">
+              <p class="small mb-0 me-2 text-muted">Filter</p>
+              <select class="select">
+                <option value="1">All</option>
+                <option value="2">Completed</option>
+                <option value="3">Active</option>
+                <option value="4">Has due date</option>
+              </select>
+              <p class="small mb-0 ms-4 me-2 text-muted">Sort</p>
+              <select class="select">
+                <option value="1">Added date</option>
+                <option value="2">Due date</option>
+              </select>
+              <a href="#!" style="color: #23af89;" data-mdb-toggle="tooltip" title="Ascending"><i
+                  class="fas fa-sort-amount-down-alt ms-2"></i></a>
+            </div>
+
+            <ul class="list-group list-group-horizontal rounded-0 bg-transparent">
+              <li
+                class="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent">
+                <div class="form-check">
+                  <input class="form-check-input me-0" type="checkbox" value="" id="flexCheckChecked1"
+                    aria-label="..." checked />
+                </div>
+              </li>
+              <li
+                class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
+                <p class="lead fw-normal mb-0">Buy groceries for next week</p>
+              </li>
+              <li class="list-group-item ps-3 pe-0 py-1 rounded-0 border-0 bg-transparent">
+                <div class="d-flex flex-row justify-content-end mb-1">
+                  <a href="#!" class="text-info" data-mdb-toggle="tooltip" title="Edit todo"><i
+                      class="fas fa-pencil-alt me-3"></i></a>
+                  <a href="#!" class="text-danger" data-mdb-toggle="tooltip" title="Delete todo"><i
+                      class="fas fa-trash-alt"></i></a>
+                </div>
+                <div class="text-end text-muted">
+                  <a href="#!" class="text-muted" data-mdb-toggle="tooltip" title="Created date">
+                    <p class="small mb-0"><i class="fas fa-info-circle me-2"></i>28th Jun 2020</p>
+                  </a>
+                </div>
+              </li>
+            </ul>
+            <ul class="list-group list-group-horizontal rounded-0">
+              <li
+                class="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent">
+                <div class="form-check">
+                  <input class="form-check-input me-0" type="checkbox" value="" id="flexCheckChecked2"
+                    aria-label="..." />
+                </div>
+              </li>
+              <li
+                class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
+                <p class="lead fw-normal mb-0">Renew car insurance</p>
+              </li>
+              <li class="list-group-item px-3 py-1 d-flex align-items-center border-0 bg-transparent">
+                <div
+                  class="py-2 px-3 me-2 border border-warning rounded-3 d-flex align-items-center bg-light">
+                  <p class="small mb-0">
+                    <a href="#!" data-mdb-toggle="tooltip" title="Due on date">
+                      <i class="fas fa-hourglass-half me-2 text-warning"></i>
+                    </a>
+                    28th Jun 2020
+                  </p>
+                </div>
+              </li>
+              <li class="list-group-item ps-3 pe-0 py-1 rounded-0 border-0 bg-transparent">
+                <div class="d-flex flex-row justify-content-end mb-1">
+                  <a href="#!" class="text-info" data-mdb-toggle="tooltip" title="Edit todo"><i
+                      class="fas fa-pencil-alt me-3"></i></a>
+                  <a href="#!" class="text-danger" data-mdb-toggle="tooltip" title="Delete todo"><i
+                      class="fas fa-trash-alt"></i></a>
+                </div>
+                <div class="text-end text-muted">
+                  <a href="#!" class="text-muted" data-mdb-toggle="tooltip" title="Created date">
+                    <p class="small mb-0"><i class="fas fa-info-circle me-2"></i>28th Jun 2020</p>
+                  </a>
+                </div>
+              </li>
+            </ul>
+            <ul class="list-group list-group-horizontal rounded-0 mb-2">
+              <li
+                class="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent">
+                <div class="form-check">
+                  <input class="form-check-input me-0" type="checkbox" value="" id="flexCheckChecked3"
+                    aria-label="..." />
+                </div>
+              </li>
+              <li
+                class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
+                <p class="lead fw-normal mb-0 bg-light w-100 ms-n2 ps-2 py-1 rounded">Sign up for online
+                  course</p>
+              </li>
+              <li class="list-group-item ps-3 pe-0 py-1 rounded-0 border-0 bg-transparent">
+                <div class="d-flex flex-row justify-content-end mb-1">
+                  <a href="#!" class="text-danger" data-mdb-toggle="tooltip" title="Delete todo"><i
+                      class="fas fa-trash-alt"></i></a>
+                </div>
+                <div class="text-end text-muted">
+                  <a href="#!" class="text-muted" data-mdb-toggle="tooltip" title="Created date">
+                    <p class="small mb-0"><i class="fas fa-info-circle me-2"></i>28th Jun 2020</p>
+                  </a>
+                </div>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->

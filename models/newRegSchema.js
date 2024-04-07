@@ -2,8 +2,6 @@ const mongoose = require("mongoose");
 
 const bcrypt = require("bcrypt");
 
-
-
 // REGISTRATION SCHEMA
 const user = new mongoose.Schema(
   {
@@ -33,11 +31,10 @@ const user = new mongoose.Schema(
     passwordResetExpire: Date,
     passwordResetVerified: Boolean,
 
-  
     code: {
-      type : Number,
-      trim : true,
-      isNumeric : true,
+      type: Number,
+      trim: true,
+      isNumeric: true,
     },
     role: {
       type: "string",
@@ -49,6 +46,16 @@ const user = new mongoose.Schema(
       default: true,
     },
     profileimage: String,
+    todolist: [
+      {
+        title: String,
+        due: String,
+        description: String,
+        completed: Boolean,
+        createdAt: String,
+        updatedAt: Date,
+      },
+    ],
   },
   {
     timestamps: true,
@@ -59,7 +66,7 @@ user.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt);
-  this.cpassword = undefined
+  this.cpassword = undefined;
   next();
 });
 
