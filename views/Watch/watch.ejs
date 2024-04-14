@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watch List</title>
+  <!-- LINK FAVICON -->
+  <link rel="shortcut icon" href="/svg/ConnectLogo.svg" type="image/x-icon" />
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- FONTAWESOME -->
+  <link href="../fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="../fontawesome/css/brands.css" rel="stylesheet" />
+  <link href="../fontawesome/css/solid.css" rel="stylesheet" />
+  <!-- BOOTSTRAP ICON -->
+  <link href="../css/bootstrap-icons.css" rel="stylesheet" />
+  <!-- BOOTSTRAP CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet" />
+  <!-- HEADER CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <!-- MY STYLE CSS -->
+  <link rel="stylesheet" href="../css/watch/watch.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <%- include("../partials/header.ejs") %>
+    <!-- LIGHT ICON -->
+    <%- include("../partials/lighticon.ejs") %>
+      <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+        <symbol id="home" viewBox="0 0 16 16">
+          <path
+            d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
+        </symbol>
+        <symbol id="table" viewBox="0 0 16 16">
+          <path
+            d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
+        </symbol>
+        <symbol id="people-circle" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+          <path fill-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+        </symbol>
+      </svg>
+
+
+
+      <main class="d-flex flex-nowrap ">
+
+        <div class="b-example-divider b-example-vr"></div>
+
+        <div class="flex-shrink-0 p-3 w-25 overflow-auto " style="height: 85vh;">
+
+
+          <div class="custom_input mb-2 align-items-center">
+            <i class="fa-solid fa-user-secret svg_icon" style="color: #74C0FC;"></i>
+            <select class="input" name="nightpharmacist" id="nightpharmacist">
+              <% if (users.length>= 1) { %>
+                <option selected hidden disabled value="">Night Pharmacist</option>
+                <% users.forEach(item=> { %>
+                  <option>
+                    <%= item.firstname + "." + item.lastname + "/" + item.code %>
+                  </option>
+
+                  <% }) %>
+
+                    <% } %>
+            </select>
+
+          </div>
+
+          <div id="nonightpharmacist" class=" d-flex flex-row align-items-center my-2 d-none"
+            style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+            <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+            <p class="my-1 ms-1">You Must Enter This Field</p>
+          </div>
+
+          <div class="custom_input  mb-2">
+            <i class="fa-solid fa-hospital-user svg_icon" style="color: #FFD43B;"></i>
+            <input class="input" type="text" id="patientmrn" name="patientmrn" value="">
+            <a data-tooltip="New" data-flow="top" style="background-color: rgb(203, 58, 58);" href="" id="addpatient"
+              class="border rounded-2 d-inline-flex p-1 ms-1" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+              <svg style="fill: aliceblue" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                class="bi bi-person-fill-add" viewBox="0 0 16 16">
+                <path
+                  d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                <path
+                  d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
+              </svg>
+            </a>
+          </div>
+
+          <div id="nopatientmrn" class=" d-flex flex-row align-items-center my-2 d-none"
+            style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+            <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+            <p class="my-1 ms-1">This Patient Not Found</p>
+          </div>
+
+          <div id="novalidmrn" class=" d-flex flex-row align-items-center my-2 d-none"
+            style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+            <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+            <p class="my-1 ms-1">Please Enter A Valid MRN</p>
+          </div>
+
+          <input hidden class="input" type="text" id="detector" name="detector" value="">
+          <input hidden class="input" type="text" id="patientname" name="patientname" value="">
+          <input hidden class="input" type="text" id="sendername" name="sendername" value="<%= firstname + " ." +
+            lastname %>">
+
+          <div class="custom_input  mb-2">
+            <i class="fa-solid fa-location-dot svg_icon" style="color: #74C0FC;"></i>
+            <select id="ptfloor" name="ptfloor" class="input">
+              <option disabled hidden selected value="">Floor...</option>
+              <option>2nd</option>
+              <option>3rd O</option>
+              <option>3rd N</option>
+              <option>4th</option>
+              <option>5th</option>
+              <option>6th</option>
+              <option>ICC</option>
+              <option>ICU</option>
+            </select>
+          </div>
+
+          <div id="noptfloor" class=" d-flex flex-row align-items-center my-2 d-none"
+            style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+            <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+            <p class="my-1 ms-1">You Must Enter This Field</p>
+          </div>
+
+          <div class="custom_input  mb-2">
+            <i class="fa-solid fa-street-view svg_icon" style="color: #74C0FC;"></i>
+            <select id="dome" name="dome" class="input">
+              <option disabled hidden selected value="">Dome</option>
+              <option>A</option>
+              <option>B</option>
+              <option>C</option>
+            </select>
+          </div>
+
+          <div id="nodome" class=" d-flex flex-row align-items-center my-2 d-none"
+            style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+            <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+            <p class="my-1 ms-1">You Must Enter This Field</p>
+          </div>
+
+
+          <div class="custom_input mb-2 align-items-center">
+            <textarea class="input" name="message" id="message" cols="30" rows="7"></textarea>
+          </div>
+
+          <div id="nomessage" class=" d-flex flex-row align-items-center my-2 d-none"
+            style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+            <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+            <p class="my-1 ms-1">You Must Enter This Field</p>
+          </div>
+
+          <div class=" p-2 mb-2" style="border: 1px solid #C4D1EB;
+          border-radius: 5px;
+          box-shadow: 3px 3px 2px 0px #E2E2E2;">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="high" name="high">
+              <label class="form-check-label" for="high">
+                High Priority
+              </label>
+            </div>
+          </div>
+
+          <form id="watchformsendmessage">
+            <button class="btn btn-primary py-1" type="submit" style="float: right;"><i
+                class="fa-regular fa-paper-plane me-1"></i>Send</button>
+          </form>
+        </div>
+
+        <div class="b-example-divider b-example-vr"></div>
+
+        <div class="d-flex flex-column w-75 bg-body-tertiary align-items-center overflow-auto" style="height: 85vh;">
+          <div class="mt-3" style="position: relative;">
+            <div class="twelve">
+              <h1>Watch List</h1>
+            </div>
+          </div>
+          <% if (sender.length>=1) { %>
+            <% sender.forEach(item=> { %>
+              <div class="my-3 rounded-3 " id="mesgframe"
+                style="<%= item.high == true? `width: 95%; border:  1px solid red; border-left: 8px solid red; background-color: #E8F0FF;` : `width: 95%; border:  1px solid green; border-left: 8px solid green; background-color: #E8F0FF;` %>">
+                <div class="" aria-current="true">
+                  <div class="d-flex border rounded-3 p-1 align-items-center justify-content-between mb-1 ms-3 mt-2"
+                    style="width: 95%;box-shadow: 0px 0px 4px 0px rgba(128, 128, 128, 0.6); background-color: white;">
+                    <p class="mb-0 bebas-neue-regular">Patient-Name: <%= item.ptname %>
+                    </p>
+                    <p class="mb-0 bebas-neue-regular">MRN: <span style="color: blue;">
+                        <%= item.ptmrn %>
+                      </span>
+                    </p>
+                    <p class="mb-0 bebas-neue-regular">Floor/Dome: <span style="color: red;">
+                        <%= item.floor %>
+                      </span>/<span style="color: red;">
+                        <%= item.dome %>
+                      </span>
+                    </p>
+                    <p class="mb-0 bebas-neue-regular">Date : <%= moment(item.createdAt).format('DD-MM-YYYY') %>
+                    </p>
+                  </div>
+                  <div class="d-flex align-items-center ms-3 justify-content-between mt-2">
+                    <div class="d-flex align-items-center justify-content-between">
+                      <i class="fa-solid fa-angles-right" style="color: #74C0FC;"></i>
+                      <p class="mb-0 ms-2">
+                        <%= item.message %>
+                      </p>
+                    </div>
+                    <div class="me-4 d-flex align-items-center justify-content-between">
+                      <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal2<%= item._id %>"><i
+                          class="fa-solid fa-pen-to-square me-1"></i></a>
+                      <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal<%= item.id %>"><i
+                          class="fa-regular fa-trash-can " style="color: red;"></i></a>
+                    </div>
+                    <!-- DELETE MODAL -->
+                    <div class="connectmodal modal fade" id="exampleModal<%= item.id %>" tabindex="-1"
+                      aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="glass modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            Are You Sure ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <form action="/watchdelete/<%= item.id %>?_method=DELETE" method="post">
+                              <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- EDIT MODAL -->
+                    <div class="connectmodal modal fade" id="exampleModal2<%= item._id %>" tabindex="-1"
+                      aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="glass modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <form action="/watchedit/<%= item._id %>?_method=PUT" method="post">
+                            <div class="modal-body">
+
+                              <div class="custom_input  mb-2">
+                                <i class="fa-solid fa-hospital-user svg_icon" style="color: #FFD43B;"></i>
+                                <input class="input2" type="text" name="patientmrn" id="patientmrn2"
+                                  value="<%= item.ptmrn %>">
+                                <a data-tooltip="New" data-flow="top" style="background-color: rgb(203, 58, 58);"
+                                  href="" class="border rounded-2 d-inline-flex p-1 ms-1" data-bs-toggle="modal"
+                                  data-bs-target="#exampleModal3">
+                                  <svg style="fill: aliceblue" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                    class="bi bi-person-fill-add" viewBox="0 0 16 16">
+                                    <path
+                                      d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                    <path
+                                      d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
+                                  </svg>
+                                </a>
+                              </div>
+
+                              <input hidden class="input" type="text" name="patientname" value="">
+
+                              <div id="nopatientmrn2" class=" d-flex flex-row align-items-center my-2 d-none"
+                                style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+                                <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                                <p class="my-1 ms-1">This Patient Not Found</p>
+                              </div>
+
+                              <div id="novalidmrn2" class=" d-flex flex-row align-items-center my-2 d-none"
+                                style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+                                <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                                <p class="my-1 ms-1">Please Enter A Valid MRN</p>
+                              </div>
+
+                              <div class="custom_input  mb-2">
+                                <i class="fa-solid fa-location-dot svg_icon" style="color: #74C0FC;"></i>
+                                <select name="ptfloor" class="input2" placeholder="">
+                                  <option disabled hidden selected>
+                                    <%= item.floor %>
+                                  </option>
+                                  <option>2nd</option>
+                                  <option>3rd O</option>
+                                  <option>3rd N</option>
+                                  <option>4th</option>
+                                  <option>5th</option>
+                                  <option>6th</option>
+                                  <option>ICC</option>
+                                  <option>ICU</option>
+                                </select>
+                              </div>
+
+                              <div class="custom_input  mb-2">
+                                <i class="fa-solid fa-street-view svg_icon" style="color: #74C0FC;"></i>
+                                <select name="dome" class="input2">
+                                  <option disabled hidden selected>
+                                    <%= item.dome %>
+                                  </option>
+                                  <option>A</option>
+                                  <option>B</option>
+                                  <option>C</option>
+                                </select>
+                              </div>
+
+                              <div class="custom_input mb-2 align-items-center">
+                                <textarea class="input2" name="message" cols="30"
+                                  rows="7"><%= item.message %></textarea>
+                              </div>
+
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Save</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center">
+                <div class="mt-3 border border-primary-subtle border-bottom-2" style="width: 95%;"></div>
+              </div>
+
+              <div class="badge text-wrap d-flex justify-content-between align-items-center" style="color: black;">
+                <div>
+                  <span style="color: red;">Receiver</span>
+                  <span>
+                    <%= item.nightpharmacist %>
+                  </span>
+
+                </div>
+                <div class="d-flex flex-column">
+                  <span style="color: red;">Signature</span>
+                  <span>
+                    <%= user.firstname + "." + user.lastname %>
+                  </span>
+
+                </div>
+              </div>
+        </div>
+        <% }) %>
+          <% } %>
+            </div>
+
+
+
+      </main>
+      <!-- ADD NEW PATIENT MODEL -->
+      <%- include('../partials/AddNewPatient-Modal.ejs') %>
+
+
+        <!-- LINK TO jQuary -->
+        <script src="../js/jquery-3.7.1.min.js"></script>
+
+        <!-- LINK TO BOOTSTRAP.JS -->
+        <script src="../js/aos.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script src="../js/glightbox.min.js"></script>
+        <script src="../js/isotope.pkgd.min.js"></script>
+        <script src="../js/swiper-bundle.min.js"></script>
+        <script src="../js/noframework.waypoints.js"></script>
+        <script src="../js/validate.js"></script>
+
+        <script src="../js/main.js"></script>
+
+        <!-- FORM SCRIPT -->
+        <script>
+          watchformsendmessage.addEventListener('click', async (event) => {
+            event.preventDefault()
+            const res = await fetch("/watchform", {
+              method: "POST",
+              body: JSON.stringify({ nightpharmacist: nightpharmacist.value, detector: detector.value, patientmrn: patientmrn.value, patientname: patientname.value, sendername: sendername.value, ptfloor: ptfloor.value, dome: dome.value, high: high.checked, message: message.value, }),
+              headers: { "Content-Type": "application/json" },
+            })
+            const data = await res.json()
+            if (data.validationerrors) {
+              data.validationerrors.forEach(item => {
+                if (item.path == "nightpharmacist") {
+                  nonightpharmacist.classList.remove("d-none")
+                  nightpharmacist.classList.add("redframe")
+                } else {
+                  nonightpharmacist.classList.add("d-none")
+                  nightpharmacist.classList.remove("redframe")
+                }
+
+                if (item.path == "patientmrn") {
+                  novalidmrn.classList.remove("d-none")
+                  patientmrn.classList.add("redframe")
+                } else {
+                  novalidmrn.classList.add("d-none")
+                  patientmrn.classList.remove("redframe")
+                }
+
+                if (item.path == "ptfloor") {
+                  noptfloor.classList.remove("d-none")
+                  ptfloor.classList.add("redframe")
+                } else {
+                  noptfloor.classList.add("d-none")
+                  ptfloor.classList.remove("redframe")
+                }
+
+                if (item.path == "dome") {
+                  nodome.classList.remove("d-none")
+                  dome.classList.add("redframe")
+                } else {
+                  nodome.classList.add("d-none")
+                  dome.classList.remove("redframe")
+                }
+
+                if (item.path == "message") {
+                  nomessage.classList.remove("d-none")
+                  message.classList.add("redframe")
+                } else {
+                  nomessage.classList.add("d-none")
+                  message.classList.remove("redframe")
+                }
+
+
+
+              });
+            }
+
+            if (data.nopatientmrn) {
+              nopatientmrn.classList.remove("d-none")
+              patientmrn.classList.add("redframe")
+            } else {
+              nopatientmrn.classList.add("d-none")
+              patientmrn.classList.remove("redframe")
+            }
+
+            if (data.created) {
+              location.assign("/watch")
+            }
+
+
+          });
+
+        </script>
+
+
+        <!-- addnewpatient -->
+        <script>
+          addnewpatient.addEventListener("click", async (item) => {
+            item.preventDefault()
+            const res = await fetch("/addnewpatient", {
+              method: "POST",
+              body: JSON.stringify({ addpatientmrn: addpatientmrn.value, addpatientname: addpatientname.value, createdAt: new Date() }),
+              headers: { "Content-Type": "application/json" },
+            })
+            const data = await res.json()
+            if (data.errors) {
+              data.errors.forEach(item => {
+                if (item.path = "addpatientname") {
+                  nopatientname.classList.remove("d-none");
+                  addpatientname.classList.add("redframe");
+                } else {
+                  nopatientname.classList.add("d-none");
+                  addpatientname.classList.remove("redframe");
+                }
+              });
+            }
+            if (data.patientexist) {
+              patientexist.classList.remove("d-none");
+              addpatientmrn.classList.add("redframe");
+            } else {
+              patientexist.classList.add("d-none");
+              addpatientmrn.classList.remove("redframe");
+            }
+            if (data.done) {
+              location.assign("/watch")
+            }
+          })
+        </script>
+</body>
+
+</html>

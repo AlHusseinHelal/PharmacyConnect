@@ -1,4 +1,6 @@
 const crypto = require("crypto");
+//UNIQUE ID
+const { v4: uuidv4 } = require('uuid');
 
 const express = require("express");
 //PASSWORD HACH
@@ -18,7 +20,19 @@ const { check, validationResult } = require("express-validator");
 //MULTER
 const multer = require("multer");
 //MULTER UPLOAD
-const upload = multer({ storage: multer.diskStorage({}) });
+// const upload = multer({ storage: multer.diskStorage({}) });
+
+const multerStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    const ext = req.files.mimetype.split("/")[1]
+    const filename = `user-${uuidv4()}-${Date.now()}.${ext} `
+    cb(null, filename);
+  },
+});
+const upload = multer({ storage : multerStorage})
 //Cloudinary
 const cloudinary = require("cloudinary").v2;
 //SCHEMA
@@ -44,6 +58,7 @@ const { OncoTips } = require("../controllers/userController");
 const { welcome } = require("../controllers/userController");
 const { forgetpassword } = require("../controllers/userController");
 const { changepassword } = require("../controllers/userController");
+const { STRUCTURE } = require("../controllers/userController");
 
 router.use(express.static("public"));
 //dotenv
@@ -100,9 +115,7 @@ router.get("/forgetpassword", forgetpassword);
 router.get("/changepasswordpage", changepassword);
 
 //STRUCTURE
-router.get("/STRUCTURE", checkIfUser, requireAuth, (req, res) => {
-  res.render("STRUCTURE.ejs");
-});
+router.get("/STRUCTURE", checkIfUser, requireAuth, STRUCTURE );
 
 //CHAT
 router.get(
@@ -138,7 +151,61 @@ router.get(
     const currentUser = await User.findOne({ _id: decoded.id });
     const todolist = currentUser.todolist;
     if (todolist) {
-      res.render("todolist/Todolist.ejs", { array : todolist, moment:moment });
+      res.render("todolist/Todolist.ejs", { array: todolist, moment: moment });
+    }
+  })
+);
+
+//WATCH
+router.get(
+  "/watch",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const currentUser = await User.findOne({ _id: decoded.id });
+    const curentuserid = currentUser.id;
+    const firstname = currentUser.firstname;
+    const lastname = currentUser.lastname;
+    const results = await User.find({ _id: { $ne: curentuserid } }).sort({
+      firstname: "asc",
+    });
+    const sender = currentUser.watchsender;
+    if (results) {
+      res.render("Watch/watch.ejs", {
+        users: results,
+        moment: moment,
+        sender: sender,
+        firstname,
+        lastname,
+      });
+    }
+  })
+);
+
+//WATCH RECEIVER
+router.get(
+  "/receiver",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const currentUser = await User.findOne({ _id: decoded.id });
+    const curentuserid = currentUser.id;
+    const firstname = currentUser.firstname;
+    const lastname = currentUser.lastname;
+    const results = await User.find({ _id: { $ne: curentuserid } }).sort({
+      firstname: "asc",
+    });
+    const receiver = currentUser.watchreceiver;
+    if (results) {
+      res.render("Watch/receiver.ejs", {
+        users: results,
+        moment: moment,
+        receiver: receiver,
+        firstname,
+        lastname,
+      });
     }
   })
 );
@@ -1833,9 +1900,9 @@ router.post(
     }
 
     const confirmPassword = req.body.cpassword;
-    console.log(confirmPassword);
+
     const { password } = req.body;
-    console.log(password);
+
     if (password !== confirmPassword) {
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
@@ -1944,7 +2011,6 @@ router.post(
   checkIfUser,
   requireAuth,
   (req, res) => {
-    console.log(req.file);
     cloudinary.uploader.upload(
       req.file.path,
       { folder: "PharmacyConnect/Profile-Image" },
@@ -1963,6 +2029,83 @@ router.post(
       }
     );
   }
+);
+
+//WATCH LIST
+router.post(
+  "/watchform",
+  [
+    check("message").notEmpty(),
+    check("dome").notEmpty(),
+    check("ptfloor").notEmpty(),
+    check("patientmrn").isNumeric().trim(),
+    check("nightpharmacist").notEmpty(),
+  ],
+  asyncHandler(async (req, res) => {
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ validationerrors: error.errors });
+    }
+
+    const patient = await Newpatient.findOne({
+      addpatientmrn: req.body.patientmrn,
+    });
+
+    if (patient == null) {
+      return res.json({ nopatientmrn: "Patient not found" });
+    }
+
+    const patientname = patient.addpatientname;
+    req.body.patientname = patientname;
+
+    const number = Math.random() * 10000;
+    req.body.detector = number;
+    const night = req.body.nightpharmacist;
+    // const pharmacist = night.substring(night.length - 4, night.length);
+    const pharmacist = night.split("/")[1]
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const currentUserid = decoded.id;
+    const currentUser = await User.findOneAndUpdate(
+      { _id: currentUserid },
+      {
+        $push: {
+          watchsender: {
+            nightpharmacist: req.body.nightpharmacist,
+            ptname: req.body.patientname,
+            ptmrn: req.body.patientmrn,
+            message: req.body.message,
+            high: req.body.high,
+            medium: req.body.medium,
+            floor: req.body.ptfloor,
+            dome: req.body.dome,
+            detector: req.body.detector,
+            createdAt: new Date(),
+          },
+        },
+      }
+    );
+    const watch = await User.findOneAndUpdate(
+      { code: pharmacist },
+      {
+        $push: {
+          watchreceiver: {
+            nightpharmacist: req.body.nightpharmacist,
+            ptname: req.body.patientname,
+            ptmrn: req.body.patientmrn,
+            message: req.body.message,
+            high: req.body.high,
+            medium: req.body.medium,
+            floor: req.body.ptfloor,
+            dome: req.body.dome,
+            sendername: req.body.sendername,
+            detector: req.body.detector,
+            createdAt: new Date(),
+          },
+        },
+      }
+    );
+    res.json({ created: watch });
+  })
 );
 
 // CHOOSE IMAGE POST REQUEST
@@ -2470,7 +2613,7 @@ router.post(
   requireAuth,
   asyncHandler(async (req, res) => {
     const validationerrors = validationResult(req);
-    console.log(validationerrors);
+
     if (!validationerrors.isEmpty()) {
       return res.json({ errors: validationerrors.errors });
     }
@@ -2512,7 +2655,7 @@ router.post(
   requireAuth,
   asyncHandler(async (req, res) => {
     const validationerrors = validationResult(req);
-    console.log(validationerrors);
+
     if (!validationerrors.isEmpty()) {
       return res.json({ errors: validationerrors.errors });
     }
@@ -2568,8 +2711,6 @@ router.post(
   asyncHandler(async (req, res) => {
     const sdate = req.body.sDate;
     const edate = req.body.eDate;
-    console.log(sdate);
-    console.log(edate);
     const startDate = sdate + "T00:00:00.000+00:00";
     const endDate = edate + "T23:59:59.000+00:00";
     const results = await Inpatientschema.find({
@@ -2653,7 +2794,7 @@ router.post(
   requireAuth,
   asyncHandler(async (req, res) => {
     const validationerrors = validationResult(req);
-    console.log(validationerrors);
+
     if (!validationerrors.isEmpty()) {
       return res.json({ errors: validationerrors.errors });
     }
@@ -2704,7 +2845,6 @@ router.post("/outpatientsearch", checkIfUser, requireAuth, (req, res) => {
 
 // OUTPATIENT/PREP POST SEARCH
 router.post("/outpatientprepsearch", checkIfUser, requireAuth, (req, res) => {
-  console.log(req.body.searchText);
   const searchText = req.body.searchText.trim();
   Outpatient.find({ mrn: searchText })
     .then((result) => {
@@ -2791,8 +2931,6 @@ router.post(
   asyncHandler(async (req, res) => {
     const sdate = req.body.sDate;
     const edate = req.body.eDate;
-    console.log(sdate);
-    console.log(edate);
     const startDate = sdate + "T00:00:00.000+00:00";
     const endDate = edate + "T23:59:59.000+00:00";
     const results = await Dispenseschema.find({
@@ -2814,22 +2952,7 @@ router.post(
   checkIfUser,
   requireAuth,
   (req, res) => {
-    console.log(req.file.path);
-    cloudinary.uploader.upload(
-      req.file.path,
-      { folder: "PharmacyConnect/Attach-Files" },
-      async (error, result) => {
-        console.log(req.file);
-        if (result) {
-          await Inpatientschema.updateOne(req.params.id, {
-            attachfile: result.secure_url,
-          });
-          res.redirect("inpatient3");
-        } else {
-          console.log(error);
-        }
-      }
-    );
+  console.log(req.file);
   }
 );
 
@@ -2851,17 +2974,15 @@ router.post(
             completed: req.body.completed,
             createdAt: moment().format("YYYY-MM-DD"),
           },
-        }, 
+        },
       }
     );
-    
+
     if (add) {
       res.redirect("/todolist");
     }
   })
 );
-
-
 
 // ---------------------------------
 //DELETE REQUEST
@@ -2978,13 +3099,38 @@ router.delete("/deletedis/:id", checkIfUser, requireAuth, (req, res) => {
 });
 
 //TODOLIST DELETE TASK
-router.delete("/deletetodolist/:id", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
-  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
-  const deltodolist = await User.updateOne({_id : decoded.id}, {$pull:{todolist:{_id:req.params.id}}})
-  if (deltodolist) {
-    res.redirect("/todolist")
-  }
-}));
+router.delete(
+  "/deletetodolist/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const deltodolist = await User.updateOne(
+      { _id: decoded.id },
+      { $pull: { todolist: { _id: req.params.id } } }
+    );
+    if (deltodolist) {
+      res.redirect("/todolist");
+    }
+  })
+);
+
+//WATCH DELETE TASK
+router.delete(
+  "/watchdelete/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const deltodolist = await User.updateOne(
+      { _id: decoded.id },
+      { $pull: { watchsender: { _id: req.params.id } } }
+    );
+    if (deltodolist) {
+      res.redirect("/watch");
+    }
+  })
+);
 
 // ---------------------------------
 //PUT REQUEST
@@ -3010,7 +3156,6 @@ router.put(
 router.put("/doneed/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
-      console.log(req.body);
       Inpatientschema.find({
         oraliv: "IV",
         requestype: "ExtraDose",
@@ -3229,7 +3374,6 @@ router.put(
 router.put("/donedisined/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
-      console.log(req.body);
       Inpatientschema.find({
         oraliv: "Oral",
         requestype: "ExtraDose",
@@ -3250,7 +3394,6 @@ router.put("/donedisined/:id", checkIfUser, requireAuth, (req, res) => {
 router.put("/donedisindischarge/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
-      console.log(req.body);
       Inpatientschema.find({
         oraliv: "Oral",
         requestype: "DisCharge Medication",
@@ -3271,7 +3414,6 @@ router.put("/donedisindischarge/:id", checkIfUser, requireAuth, (req, res) => {
 router.put("/donedisout/:id", checkIfUser, requireAuth, (req, res) => {
   Outpatient.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
-      console.log(req.body);
       Outpatient.find({ oraliv: "Oral" }).then((result) => {
         res.render("Dispense/dispense3out", {
           dispensearray: result,
@@ -3366,7 +3508,7 @@ router.put(
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     req.params.id = decoded.id;
     const user = await User.findById(req.params.id);
-    console.log(user);
+
     if (user) {
       if (req.body.cpassword !== req.body.password) {
         return res.json({ nocpass: "Password Did't Match" });
@@ -3396,7 +3538,7 @@ router.put(
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     req.params.id = decoded.id;
     const user = await User.findById(req.params.id);
-    console.log(user);
+
     if (user) {
       if (req.body.cpassword !== req.body.password) {
         return res.json({ nocpass: "Password Did't Match" });
@@ -3424,12 +3566,68 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
-    console.log(req.body);
-    const results = await User.updateOne({"todolist._id" : req.params.id}, {"todolist.$" : req.body})
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+
+    const results = await User.updateOne(
+      { "todolist._id": req.params.id },
+      { "todolist.$": req.body }
+    );
     console.log(results);
     if (results) {
-      res.redirect("/todolist")
+      res.redirect("/todolist");
+    }
+  })
+);
+
+// WATCH SENDER / EDIT
+router.put(
+  "/watchedit/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const patient = await Newpatient.findOne({
+      addpatientmrn: req.body.patientmrn,
+    });
+
+    if (patient == null) {
+      return res.json({ nopatientmrn: "Patient not found" });
+    }
+
+    const patientname = patient.addpatientname;
+    req.body.patientname = patientname;
+
+    const results = await User.updateOne(
+      { "watchsender._id": req.params.id },
+      {
+        $set: {
+          "watchsender.$.message": req.body.message,
+          "watchsender.$.dome": req.body.dome,
+          "watchsender.$.floor": req.body.ptfloor,
+          "watchsender.$.ptmrn": req.body.patientmrn,
+          "watchsender.$.ptname": req.body.patientname,
+        },
+      }
+    );
+
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const selectedObject = user.watchsender.find((item) => {
+      return item._id == req.params.id;
+    });
+    const selectdetector = selectedObject.detector
+    const detector = await User.updateOne({"watchreceiver.detector" : selectdetector},{
+      $set: {
+        "watchreceiver.$.message": req.body.message,
+        "watchreceiver.$.dome": req.body.dome,
+        "watchreceiver.$.floor": req.body.ptfloor,
+        "watchreceiver.$.ptmrn": req.body.patientmrn,
+        "watchreceiver.$.ptname": req.body.patientname,
+      },
+    })
+    
+
+    if (results) {
+      res.redirect("/watch");
     }
   })
 );

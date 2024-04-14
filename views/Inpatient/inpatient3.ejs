@@ -15,6 +15,10 @@
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- FONTAWESOME -->
+  <link href="../fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="../fontawesome/css/brands.css" rel="stylesheet" />
+  <link href="../fontawesome/css/solid.css" rel="stylesheet" />
 
   <!-- BOOTSTRAP ICON -->
   <link href="/css/bootstrap-icons.css" rel="stylesheet" />
@@ -139,11 +143,19 @@
       # MAIN CONTENT
       --------------------------------------------------------------*/ -->
 
-                  <div id="maincontent">
+                  <div id="maincontent" class="d-flex justify-content-center align-items-center" >
                     <% if (inpatientarray.length===0) { %>
-                      <div class="text-center">
-                        <h1>No Data Available</h1>
-                      </div>
+                      
+                      <div class="alert alert-success new2 p-4 w-50 mt-5 ">
+                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        <span class="alert-body">
+                          <h6 class="alert-header">ATTENTION</h6>
+                          <p class="mb-0">No Data Avaliable</p>
+                        </span>
+                     </div>
+                   </div>
+                      
+                      
 
                       <% } %>
                         <% if (inpatientarray.length>= 1) { %>
@@ -194,8 +206,10 @@
                                   <td class="text-center">
                                     <%= item.prepcomment%>
                                   </td>
-                                  <td class="text-center">
-                                    <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
+                                  <td class="text-center"> 
+                                    <% if (item.prepcomment !== "") { %>
+                                      <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
+                                    <% } %>    
                                   </td>
                                   <td class="text-center">
                                     <button type="button" class="btn btn-primary border rounded-2 d-inline-flex p-1"
@@ -233,7 +247,11 @@
                                       </div>
                                     </div>
                                   </td>
+
+
                                   <td class="text-center">
+
+
                                     <button type="button" data-bs-toggle="modal"
                                       data-bs-target="#exampleModal2<%= item._id%>"
                                       style="background-color: rgb(229, 220, 220)"
@@ -245,11 +263,13 @@
                                         </path>
                                       </svg>
                                     </button>
-                                    <div class="modal fade" id="exampleModal2<%= item._id%>" tabindex="-1"
+
+
+                                    <div class="connectmodal modal fade" id="exampleModal2<%= item._id%>" tabindex="-1"
                                       aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <form action="/attach" method="post" enctype="multipart/form-data"
                                         class="modal-dialog">
-                                        <div class="modal-content">
+                                        <div class="glass modal-content">
                                           <div class="modal-header">
                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Attach File</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"

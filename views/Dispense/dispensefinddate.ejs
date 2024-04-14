@@ -15,7 +15,10 @@
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
+<!-- FONTAWESOME -->
+<link href="../fontawesome/css/fontawesome.css" rel="stylesheet" />
+<link href="../fontawesome/css/brands.css" rel="stylesheet" />
+<link href="../fontawesome/css/solid.css" rel="stylesheet" />
   <!-- BOOTSTRAP ICON -->
   <link href="/css/bootstrap-icons.css" rel="stylesheet" />
   <!-- BOOTSTRAP CSS -->
@@ -91,7 +94,7 @@
             <!-- /*--------------------------------------------------------------
       # MAIN CONTENT
       --------------------------------------------------------------*/ -->
-      <div id="maincontent">
+      <div id="maincontent" class="d-flex justify-content-center align-items-center" >
         <% if (searcharray.length===0) { %>
           <div class="text-center">
             <h1>No Data Available</h1>
@@ -146,9 +149,11 @@
                       <td class="text-center">
                         <%= item.prepcomment%>
                       </td>
-                      <td class="text-center">
-                        <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
-                      </td>
+                      <td class="text-center"> 
+                                    <% if (item.prepcomment !== "") { %>
+                                      <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
+                                    <% } %>    
+                                  </td>
                       <td class="text-center">
                         <button type="button" class="btn btn-primary border rounded-2 d-inline-flex p-1"
                           data-bs-toggle="modal" data-bs-target="#exampleModal<%= item.id %>"

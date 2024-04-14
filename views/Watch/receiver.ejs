@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Watch List</title>
+  <!-- LINK FAVICON -->
+  <link rel="shortcut icon" href="/svg/ConnectLogo.svg" type="image/x-icon" />
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- FONTAWESOME -->
+  <link href="../fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="../fontawesome/css/brands.css" rel="stylesheet" />
+  <link href="../fontawesome/css/solid.css" rel="stylesheet" />
+  <!-- BOOTSTRAP ICON -->
+  <link href="../css/bootstrap-icons.css" rel="stylesheet" />
+  <!-- BOOTSTRAP CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet" />
+  <!-- HEADER CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <!-- MY STYLE CSS -->
+  <link rel="stylesheet" href="../css/watch/watch.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <%- include("../partials/header.ejs") %>
+    <!-- LIGHT ICON -->
+    <%- include("../partials/lighticon.ejs") %>
+      <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+        <symbol id="home" viewBox="0 0 16 16">
+          <path
+            d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
+        </symbol>
+        <symbol id="table" viewBox="0 0 16 16">
+          <path
+            d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
+        </symbol>
+        <symbol id="people-circle" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+          <path fill-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+        </symbol>
+      </svg>
+
+
+
+      <main class="d-flex flex-nowrap justify-content-center ">
+
+        <div class="b-example-divider b-example-vr"></div>
+
+
+
+        <div class="b-example-divider b-example-vr"></div>
+
+        <div class="d-flex flex-column w-75 bg-body-tertiary align-items-center overflow-auto" style="height: 85vh;">
+          <div class="mt-3" style="position: relative;">
+            <div class="twelve">
+              <h1>Watch List</h1>
+            </div>
+          </div>
+          <div class="d-flex flex-column w-75">
+            <% if (receiver.length>=1) { %>
+              <% receiver.forEach(item=> { %>
+
+                <div class="my-3 rounded-3 " id="mesgframe"
+                  style="<%= item.high == true? `width: 95%; border:  1px solid red; border-left: 8px solid red; background-color: #E8F0FF;` : `width: 95%; border:  1px solid green; border-left: 8px solid green; background-color: #E8F0FF;` %>">
+                  <div class="" aria-current="true">
+                    <div class="d-flex border rounded-3 p-1 align-items-center justify-content-between mb-1 ms-3 mt-2"
+                      style="width: 95%;box-shadow: 0px 0px 4px 0px rgba(128, 128, 128, 0.6); background-color: white;">
+                      <p class="mb-0 bebas-neue-regular">Patient-Name: <%= item.ptname %>
+                      </p>
+                      <p class="mb-0 bebas-neue-regular">MRN: <span style="color: blue;">
+                          <%= item.ptmrn %>
+                        </span>
+                      </p>
+                      <p class="mb-0 bebas-neue-regular">Floor/Dome: <span style="color: red;">
+                          <%= item.floor %>
+                        </span>/<span style="color: red;">
+                          <%= item.dome %>
+                        </span>
+                      </p>
+                      <p class="mb-0 bebas-neue-regular">Date : <%= moment(item.createdAt).format('DD-MM-YYYY') %>
+                      </p>
+                    </div>
+                    <div class="d-flex align-items-center ms-3 justify-content-between mt-2">
+                      <div class="d-flex align-items-center justify-content-between">
+                        <i class="fa-solid fa-angles-right" style="color: #74C0FC;"></i>
+                        <p class="mb-0 ms-2">
+                          <%= item.message %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="d-flex justify-content-center">
+                    <div class="mt-3 border border-primary-subtle border-bottom-2" style="width: 95%;"></div>
+                  </div>
+
+                  <div class="badge text-wrap d-flex justify-content-between align-items-center" style="color: black;">
+                    <div>
+                      <span style="color: red;">Receiver</span>
+                      <span>
+                        <%= item.nightpharmacist %>
+                      </span>
+
+                    </div>
+                    <div class="d-flex flex-column">
+                      <span style="color: red;">Signature</span>
+                      <span>
+                        <%= item.sendername %>
+                      </span>
+
+                    </div>
+                  </div>
+
+                </div>
+                <% }) %>
+                  <% } %>
+          </div>
+        </div>
+
+
+
+      </main>
+      <!-- ADD NEW PATIENT MODEL -->
+      <%- include('../partials/AddNewPatient-Modal.ejs') %>
+
+
+        <!-- LINK TO jQuary -->
+        <script src="../js/jquery-3.7.1.min.js"></script>
+
+        <!-- LINK TO BOOTSTRAP.JS -->
+        <script src="../js/aos.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script src="../js/glightbox.min.js"></script>
+        <script src="../js/isotope.pkgd.min.js"></script>
+        <script src="../js/swiper-bundle.min.js"></script>
+        <script src="../js/noframework.waypoints.js"></script>
+        <script src="../js/validate.js"></script>
+
+        <script src="../js/main.js"></script>
+
+</body>
+
+</html>

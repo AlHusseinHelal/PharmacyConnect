@@ -50,3 +50,10 @@ exports.changepassword = (req, res) => {
   res.render("Entery/changepasspage.ejs");
 };
 
+//STRUCTURE
+exports.STRUCTURE = (req, res) => {
+  res.render("STRUCTURE.ejs");
+};
+
+//FIRSTWELCOME
+

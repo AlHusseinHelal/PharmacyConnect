@@ -44,7 +44,24 @@
             <%= user.todolist.length %>
             <span class="visually-hidden">unread messages</span>
           </span></a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <li class="dropdown"><a href="#"><span>Watch</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li>
+                <a href="/watch" class=" d-flex align-items-center"> 
+                  <span>Sender</span>
+                  <img src="/svg/sender-02.svg" width="25px" height="25px" alt="">
+                </a>
+              </li>
+              <li>
+                <a href="/receiver" class=" d-flex align-items-center" style="position: relative;" >
+                  <span>Receiver</span><span class="<%= user.watchreceiver.length>= 1? "d-block" : "d-none" %> position-absolute top-10 start-50 translate-middle badge rounded-pill bg-danger">
+                    <%= user.watchreceiver.length %>
+                  </span>
+                  <img src="/svg/receiver-01.svg" width="25px" height="25px" alt="">
+                </a>
+              </li>
+            </ul>
+          </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
         </ul>
 
