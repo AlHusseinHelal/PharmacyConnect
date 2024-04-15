@@ -1,10 +1,12 @@
+
+const path = require('path');
 const crypto = require("crypto");
 //UNIQUE ID
 const { v4: uuidv4 } = require("uuid");
 
 const express = require("express");
 // IMAGE PROCESSING
-const sharp = require('sharp');
+const sharp = require("sharp");
 //PASSWORD HACH
 const bcrypt = require("bcrypt");
 //ROUTER
@@ -39,11 +41,11 @@ const ApiError = require("../utils/apierror");
 // });
 
 //MULTER MEMORYSTORAGE
-const multerStorage =  multer.memoryStorage();
+const multerStorage = multer.memoryStorage();
 
 //UPLOAD IMAGE ONLY
 const multerFilter = function (req, file, cb) {
-  if (file.mimetype.startsWith('image')) {
+  if (file.mimetype.startsWith("image")) {
     cb(null, true);
   } else {
     cb(
@@ -85,6 +87,8 @@ router.use(express.static("public"));
 require("dotenv").config();
 //SEND EMAIL
 const sendEmail = require(`../utils/sendEmail`);
+// const app = express();
+// app.use(express.static(path.join(__dirname, "")));
 
 // cloudinary.config({
 //   cloud_name: process.env.CLOUDINARY_ClOUD_NAME,
@@ -232,6 +236,7 @@ router.get(
 router.get("/WorkFlow", checkIfUser, requireAuth, (req, res) => {
   res.render("WorkFlow.ejs");
 });
+
 
 //PHARMACY DEPARTMENT
 router.get("/index2", checkIfUser, requireAuth, (req, res) => {
@@ -2963,8 +2968,6 @@ router.post(
   })
 );
 
-
-
 //ADD TO DO LIST
 router.post(
   "/addtodolist",
@@ -3470,11 +3473,15 @@ router.put(
 //ATTACH FILE
 router.put(
   "/attach/:id",
-  upload.single("attachfile"), imageresize,
+  upload.single("attachfile"),
+  imageresize,
   checkIfUser,
   requireAuth,
   async (req, res) => {
-    const results = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+    const results = await Inpatientschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
     if (results) {
       res.redirect("/inpatient3");
     }

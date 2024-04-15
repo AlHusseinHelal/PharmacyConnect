@@ -51,6 +51,7 @@ app.use(methodOverride("_method"));
 app.use(cookieParser());
 app.use(express.json());
 app.use(connectLivereload());
+app.use(express.static(path.join(__dirname, 'uploads')));
 
 io.on("connection", (socket) => {
 console.log('helloo-client')
