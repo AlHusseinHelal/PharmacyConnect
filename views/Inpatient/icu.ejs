@@ -349,7 +349,7 @@
           e.preventDefault();
           const res = await fetch("/add_lab_in", {
             method: "POST",
-            body: JSON.stringify({ labpatientname: labpatientname.value, mrnlab: mrnlab.value, labptfloor: labptfloor.value, labrequestype: labrequestype.value, medstartdate: medstartdate.value, medstarttime: medstarttime.value, samplewddate: samplewddate.value, samplewdtime: samplewdtime.value, levelrequestreason: levelrequestreason.value, labcomment: labcomment.value, phaname: phaname.value, createdAt: new Date() }),
+            body: JSON.stringify({ labpatientname: labpatientname.value, attachfile : attachfile.value, mrnlab: mrnlab.value, labptfloor: labptfloor.value, labrequestype: labrequestype.value, medstartdate: medstartdate.value, medstarttime: medstarttime.value, samplewddate: samplewddate.value, samplewdtime: samplewdtime.value, levelrequestreason: levelrequestreason.value, labcomment: labcomment.value, phaname: phaname.value, createdAt: new Date() }),
             headers: { "Content-Type": "application/json" },
           });
           const data = await res.json();

@@ -1,8 +1,10 @@
 const crypto = require("crypto");
 //UNIQUE ID
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require("uuid");
 
 const express = require("express");
+// IMAGE PROCESSING
+const sharp = require('sharp');
 //PASSWORD HACH
 const bcrypt = require("bcrypt");
 //ROUTER
@@ -19,22 +21,39 @@ const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
 //MULTER
 const multer = require("multer");
-//MULTER UPLOAD
-// const upload = multer({ storage: multer.diskStorage({}) });
-
-const multerStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/");
-  },
-  filename: (req, file, cb) => {
-    const ext = req.files.mimetype.split("/")[1]
-    const filename = `user-${uuidv4()}-${Date.now()}.${ext} `
-    cb(null, filename);
-  },
-});
-const upload = multer({ storage : multerStorage})
 //Cloudinary
 const cloudinary = require("cloudinary").v2;
+//ERROR HANDILING
+const ApiError = require("../utils/apierror");
+
+//MULTER DISKSTORAGE
+// const multerStorage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "uploads/");
+//   },
+//   filename: (req, file, cb) => {
+//     const ext = file.mimetype.split("/")[1];
+//     const filename = `user-${uuidv4()}-${Date.now()}.${ext} `;
+//     cb(null, filename);
+//   },
+// });
+
+//MULTER MEMORYSTORAGE
+const multerStorage =  multer.memoryStorage();
+
+//UPLOAD IMAGE ONLY
+const multerFilter = function (req, file, cb) {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb(
+      new ApiError("Invalid image type! Only JPEG or PNG is supported."),
+      false
+    );
+  }
+};
+const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
+
 //SCHEMA
 const Inpatientschema = require("../models/inpatientSchema");
 const User = require("../models/newRegSchema");
@@ -47,6 +66,7 @@ const Chatmessage = require("../models/chatMessage");
 const { requireAuth } = require("../middleware/middleware");
 const { checkIfUser } = require("../middleware/middleware");
 const { validatorMiddleware } = require("../middleware/middleware");
+const { imageresize } = require("../middleware/middleware");
 //CONTROLLER
 const { signOut } = require("../controllers/userController");
 const { firstWelcome } = require("../controllers/userController");
@@ -65,8 +85,6 @@ router.use(express.static("public"));
 require("dotenv").config();
 //SEND EMAIL
 const sendEmail = require(`../utils/sendEmail`);
-//ERROR HANDILING
-const ApiError = require("../utils/apierror");
 
 // cloudinary.config({
 //   cloud_name: process.env.CLOUDINARY_ClOUD_NAME,
@@ -115,7 +133,7 @@ router.get("/forgetpassword", forgetpassword);
 router.get("/changepasswordpage", changepassword);
 
 //STRUCTURE
-router.get("/STRUCTURE", checkIfUser, requireAuth, STRUCTURE );
+router.get("/STRUCTURE", checkIfUser, requireAuth, STRUCTURE);
 
 //CHAT
 router.get(
@@ -2062,7 +2080,7 @@ router.post(
     req.body.detector = number;
     const night = req.body.nightpharmacist;
     // const pharmacist = night.substring(night.length - 4, night.length);
-    const pharmacist = night.split("/")[1]
+    const pharmacist = night.split("/")[1];
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const currentUserid = decoded.id;
     const currentUser = await User.findOneAndUpdate(
@@ -2945,16 +2963,7 @@ router.post(
   })
 );
 
-//ATTACH FILE
-router.post(
-  "/attach",
-  upload.single("attachfile"),
-  checkIfUser,
-  requireAuth,
-  (req, res) => {
-  console.log(req.file);
-  }
-);
+
 
 //ADD TO DO LIST
 router.post(
@@ -3458,6 +3467,20 @@ router.put(
   })
 );
 
+//ATTACH FILE
+router.put(
+  "/attach/:id",
+  upload.single("attachfile"), imageresize,
+  checkIfUser,
+  requireAuth,
+  async (req, res) => {
+    const results = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+    if (results) {
+      res.redirect("/inpatient3");
+    }
+  }
+);
+
 //CHANGE PASSWORD
 router.put(
   "/changepassword",
@@ -3614,17 +3637,19 @@ router.put(
     const selectedObject = user.watchsender.find((item) => {
       return item._id == req.params.id;
     });
-    const selectdetector = selectedObject.detector
-    const detector = await User.updateOne({"watchreceiver.detector" : selectdetector},{
-      $set: {
-        "watchreceiver.$.message": req.body.message,
-        "watchreceiver.$.dome": req.body.dome,
-        "watchreceiver.$.floor": req.body.ptfloor,
-        "watchreceiver.$.ptmrn": req.body.patientmrn,
-        "watchreceiver.$.ptname": req.body.patientname,
-      },
-    })
-    
+    const selectdetector = selectedObject.detector;
+    const detector = await User.updateOne(
+      { "watchreceiver.detector": selectdetector },
+      {
+        $set: {
+          "watchreceiver.$.message": req.body.message,
+          "watchreceiver.$.dome": req.body.dome,
+          "watchreceiver.$.floor": req.body.ptfloor,
+          "watchreceiver.$.ptmrn": req.body.patientmrn,
+          "watchreceiver.$.ptname": req.body.patientname,
+        },
+      }
+    );
 
     if (results) {
       res.redirect("/watch");

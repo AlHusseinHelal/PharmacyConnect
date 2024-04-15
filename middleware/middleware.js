@@ -1,6 +1,13 @@
 const { validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
+//UNIQUE ID
+const { v4: uuidv4 } = require("uuid");
+//IMAGE PROCESSING
+const sharp = require("sharp");
+//ERROR HANDILING TRY_CATCH OR THEN_CATCH
+const asyncHandler = require("express-async-handler");
 const User = require("../models/newRegSchema");
+
 //dotenv
 require("dotenv").config();
 
@@ -38,14 +45,6 @@ const checkIfUser = (req, res, next) => {
   }
 };
 
-const userid = async (req, res, next) => {
-  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-  const currentUser = await User.findOne({ _id: decoded.id });
-  res.locals.hussein = currentUser.firstname;
-  return next();
-
-};
-
 const globalError = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
@@ -65,10 +64,22 @@ const validatorMiddleware = (req, res, next) => {
   next();
 };
 
+const imageresize = asyncHandler(async (req, res, next) => {
+  const filename = `user-${uuidv4()}-${Date.now()}.jpeg `;
+  await sharp(req.file.buffer)
+    .resize(600, 800)
+    .toFormat("jpeg")
+    .jpeg({ quality: 80 })
+    .toFile(`uploads/${filename}`);
+
+    req.body.attachfile = filename
+  next();
+});
+
 module.exports = {
   requireAuth,
   checkIfUser,
   globalError,
   validatorMiddleware,
-  userid,
+  imageresize,
 };
