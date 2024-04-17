@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema;
+
 
 // OUTPATIENT SCHEMA
-const outpatient = new Schema(
+const outpatient = new mongoose.Schema(
   {
     patientname: String,
     mrn: String,
@@ -12,6 +12,7 @@ const outpatient = new Schema(
     oraliv: String,
     roundcomment: String,
     prepcomment: String,
+    attachfile: String,
   },
   { timestamps: true }
 );

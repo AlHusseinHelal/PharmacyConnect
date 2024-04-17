@@ -240,8 +240,10 @@
                                     </div>
                                   </td>
                                   <td class="text-center">
+
+
                                     <button type="button" data-bs-toggle="modal"
-                                      data-bs-target="#exampleModal<%= item._id%>"
+                                      data-bs-target="#exampleModal2<%= item._id%>"
                                       style="background-color: rgb(229, 220, 220)"
                                       class="border rounded-2 d-inline-flex p-1">
                                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -251,11 +253,13 @@
                                         </path>
                                       </svg>
                                     </button>
-                                    <div class="modal fade" id="exampleModal<%= item._id%>" tabindex="-1"
+
+
+                                    <div class="connectmodal modal fade" id="exampleModal2<%= item._id%>" tabindex="-1"
                                       aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                      <form action="/attach" method="post" enctype="multipart/form-data"
+                                      <form action="/attach/<%= item._id %>?_method=PUT " method="post" enctype="multipart/form-data"
                                         class="modal-dialog">
-                                        <div class="modal-content">
+                                        <div class="glass modal-content">
                                           <div class="modal-header">
                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Attach File</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -263,9 +267,9 @@
                                           </div>
 
                                           <div class="modal-body">
-                                            <label for="attach">Choose File...</label>
-                                            <input id="attach" type="file" name="attachfile" style="display: none;">
-                                            <embed hidden id="imgsrc" src="" type="">
+                                            <label for="attach<%= item._id%>">Choose File...</label>
+                                            <input hidden id="attachBMT<%= item._id%>" type="file" name="attachfile" >
+                                            <!-- <embed hidden id="imgsrc" src="" type=""> -->
                                             <!-- <img id="imgsrc" src="/img/Avatar/Untitled-1-01.png" width="150px" alt=""> -->
                                           </div>
                                           <div class="modal-footer">

@@ -189,6 +189,9 @@ router.get(
     const curentuserid = currentUser.id;
     const firstname = currentUser.firstname;
     const lastname = currentUser.lastname;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
     const results = await User.find({ _id: { $ne: curentuserid } }).sort({
       firstname: "asc",
     });
@@ -216,10 +219,15 @@ router.get(
     const curentuserid = currentUser.id;
     const firstname = currentUser.firstname;
     const lastname = currentUser.lastname;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
     const results = await User.find({ _id: { $ne: curentuserid } }).sort({
       firstname: "asc",
     });
-    const receiver = currentUser.watchreceiver;
+    const receiver = currentUser.watchreceiver
+    console.log(receiver);
+    
     if (results) {
       res.render("Watch/receiver.ejs", {
         users: results,
@@ -1599,15 +1607,20 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 7;
+    const limit = req.query.limit * 1 || 6;
     const skip = (page - 1) * limit;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
     const results = await Labschema.find({
       labcomment: { $not: { $regex: "RECEIVED" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
     const num = await Labschema.find({
       labcomment: { $not: { $regex: "RECEIVED" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     if (results) {
       res.render("Lab/lab.ejs", {
@@ -2968,6 +2981,34 @@ router.post(
   })
 );
 
+// LAB SEARCH DATE
+router.post(
+  "/findDatelab",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 6;
+    const skip = (page - 1) * limit;
+    const sdate = req.body.sDate;
+    const edate = req.body.eDate;
+    const startDate = sdate + "T00:00:00.000+00:00";
+    const endDate = edate + "T23:59:59.000+00:00";
+    const results = await Labschema.find({
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).skip(skip).limit(limit);
+    const num = await Labschema.find({
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments()
+    if (results) {
+      res.render("Lab/labfinddate.ejs", {
+        searcharray: results,
+        moment: moment,num
+      });
+    }
+  })
+);
+
 //ADD TO DO LIST
 router.post(
   "/addtodolist",
@@ -3470,7 +3511,7 @@ router.put(
   })
 );
 
-//ATTACH FILE
+//ATTACH FILE INPATIENT
 router.put(
   "/attach/:id",
   upload.single("attachfile"),
@@ -3488,6 +3529,149 @@ router.put(
   }
 );
 
+//ATTACH FILE ICU
+router.put(
+  "/attachICU/:id",
+  upload.single("attachfile"),
+  imageresize,
+  checkIfUser,
+  requireAuth,
+  async (req, res) => {
+    const results = await Inpatientschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/ICU");
+    }
+  }
+);
+
+//ATTACH FILE ICC
+router.put(
+  "/attachICC/:id",
+  upload.single("attachfile"),
+  imageresize,
+  checkIfUser,
+  requireAuth,
+  async (req, res) => {
+    const results = await Inpatientschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/ICC");
+    }
+  }
+);
+
+//ATTACH FILE BMT
+router.put(
+  "/attachBMT/:id",
+  upload.single("attachfile"),
+  imageresize,
+  checkIfUser,
+  requireAuth,
+  async (req, res) => {
+    const results = await Inpatientschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/BMT");
+    }
+  }
+);
+
+//ATTACH FILE 5TH
+router.put(
+  "/attach5TH/:id",
+  upload.single("attachfile"),
+  imageresize,
+  checkIfUser,
+  requireAuth,
+  async (req, res) => {
+    const results = await Inpatientschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/5th");
+    }
+  }
+);
+
+//ATTACH FILE 4th
+router.put(
+  "/attach4TH/:id",
+  upload.single("attachfile"),
+  imageresize,
+  checkIfUser,
+  requireAuth,
+  async (req, res) => {
+    const results = await Inpatientschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/4th");
+    }
+  }
+);
+
+//ATTACH FILE 3rdO
+router.put(
+  "/attach3rdO/:id",
+  upload.single("attachfile"),
+  imageresize,
+  checkIfUser,
+  requireAuth,
+  async (req, res) => {
+    const results = await Inpatientschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/3rdO");
+    }
+  }
+);
+
+//ATTACH FILE 3rdN
+router.put(
+  "/attach3rdN/:id",
+  upload.single("attachfile"),
+  imageresize,
+  checkIfUser,
+  requireAuth,
+  async (req, res) => {
+    const results = await Inpatientschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/3rdN");
+    }
+  }
+);
+
+//ATTACH FILE outpatient
+router.put(
+  "/attachout/:id",
+  upload.single("attachfile"),
+  imageresize,
+  checkIfUser,
+  requireAuth,
+  async (req, res) => {
+    const results = await Outpatient.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/outpatient3");
+    }
+  }
+);
 //CHANGE PASSWORD
 router.put(
   "/changepassword",

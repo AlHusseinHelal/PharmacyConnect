@@ -142,6 +142,7 @@
                         <th class="text-center" scope="col">Comment</th>
                         <th class="text-center" scope="col">Prep Time</th>
                         <th class="text-center" scope="col">Delete</th>
+                        <th class="text-center" scope="col">Attach</th>
                       </tr>
                     </thead>
                     <tbody id="tbody">
@@ -221,6 +222,50 @@
 
 
                           </td>
+
+                          <td class="text-center">
+
+
+                            <button type="button" data-bs-toggle="modal"
+                              data-bs-target="#exampleModal2<%= item._id%>"
+                              style="background-color: rgb(229, 220, 220)"
+                              class="border rounded-2 d-inline-flex p-1">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-paperclip" viewBox="0 0 16 16">
+                                <path
+                                  d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0z">
+                                </path>
+                              </svg>
+                            </button>
+
+
+                            <div class="connectmodal modal fade" id="exampleModal2<%= item._id%>" tabindex="-1"
+                              aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <form action="/attachout/<%= item._id %>?_method=PUT " method="post" enctype="multipart/form-data"
+                                class="modal-dialog">
+                                <div class="glass modal-content">
+                                  <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Attach File</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                      aria-label="Close"></button>
+                                  </div>
+
+                                  <div class="modal-body">
+                                    <label for="attach<%= item._id%>">Choose File...</label>
+                                    <input hidden id="attach<%= item._id%>" type="file" name="attachfile" >
+                                    <!-- <embed hidden id="imgsrc" src="" type=""> -->
+                                    <!-- <img id="imgsrc" src="/img/Avatar/Untitled-1-01.png" width="150px" alt=""> -->
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                      data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save
+                                      changes</button>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                          </td>
                         </tr>
                         <% }) %>
                     </tbody>
@@ -257,7 +302,7 @@
             e.preventDefault();
             const res = await fetch("/add_patient_out", {
               method: "POST",
-              body: JSON.stringify({ patientname: patientname.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value, createdAt: new Date() }),
+              body: JSON.stringify({ patientname: patientname.value, attachfile : attachfile.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value, createdAt: new Date() }),
               headers: { "Content-Type": "application/json" },
             });
             const data = await res.json();

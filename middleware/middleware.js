@@ -67,7 +67,6 @@ const validatorMiddleware = (req, res, next) => {
 const imageresize = asyncHandler(async (req, res, next) => {
   const filename = `user-${uuidv4()}-${Date.now()}.jpeg `;
   await sharp(req.file.buffer)
-    .resize(600, 800)
     .toFormat("jpeg")
     .jpeg({ quality: 80 })
     .toFile(`uploads/${filename}`);
