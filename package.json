@@ -18,9 +18,11 @@
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.2",
     "ejs": "^3.1.9",
+    "exceljs": "^4.4.0",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
     "express-validator": "^7.0.1",
+    "json2csv": "^6.0.0-alpha.2",
     "jsonwebtoken": "^9.0.2",
     "livereload": "^0.9.3",
     "mailgun-js": "^0.22.0",
@@ -39,7 +41,8 @@
     "sharp": "^0.33.3",
     "slugify": "^1.6.6",
     "socket.io": "^4.7.5",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "eslint": "^8.57.0",

@@ -54,7 +54,7 @@
 
         <div class="flex-shrink-0 p-3 w-25 overflow-auto " style="height: 85vh;">
 
-
+<div><img src="../svg/watch.svg" width="70vw" alt=""></div>
           <div class="custom_input mb-2 align-items-center">
             <i class="fa-solid fa-user-secret svg_icon" style="color: #74C0FC;"></i>
             <select class="input" name="nightpharmacist" id="nightpharmacist">
@@ -185,8 +185,8 @@
           </div>
           <% if (sender.length>=1) { %>
             <% sender.forEach(item=> { %>
-              <div class="my-3 rounded-3 " id="mesgframe"
-                style="<%= item.high == true? `width: 95%; border:  1px solid red; border-left: 8px solid red; background-color: #E8F0FF;` : `width: 95%; border:  1px solid green; border-left: 8px solid green; background-color: #E8F0FF;` %>">
+              <div class="my-3 rounded-3 <%= item.high == true? "high" : "low" %> "  id="mesgframe"
+                >
                 <div class="" aria-current="true">
                   <div class="d-flex border rounded-3 p-1 align-items-center justify-content-between mb-1 ms-3 mt-2"
                     style="width: 95%;box-shadow: 0px 0px 4px 0px rgba(128, 128, 128, 0.6); background-color: white;">

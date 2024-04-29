@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIC Sender</title>
+  <!-- LINK FAVICON -->
+  <link rel="shortcut icon" href="/svg/ConnectLogo.svg" type="image/x-icon" />
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- FONTAWESOME -->
+  <link href="../fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="../fontawesome/css/brands.css" rel="stylesheet" />
+  <link href="../fontawesome/css/solid.css" rel="stylesheet" />
+  <!-- BOOTSTRAP ICON -->
+  <link href="../css/bootstrap-icons.css" rel="stylesheet" />
+  <!-- BOOTSTRAP CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet" />
+  <!-- HEADER CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <!-- MY STYLE CSS -->
+  <link rel="stylesheet" href="../css/dic/dic.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <%- include("../partials/header.ejs") %>
+    <!-- LIGHT ICON -->
+    <%- include("../partials/lighticon.ejs") %>
+      <svg  style="display: none">
+        <symbol id="home" viewBox="0 0 16 16">
+          <path
+            d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
+        </symbol>
+        <symbol id="table" viewBox="0 0 16 16">
+          <path
+            d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
+        </symbol>
+        <symbol id="people-circle" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+          <path fill-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+        </symbol>
+      </svg>
+
+
+
+      <main class="container m-0" style="width: 100%; max-width: unset; height: 90%; ">
+        <div class="d-flex flex-column flex-md-row h-100 p-3 row justify-content-md-around">
+
+          <div class="mh-100 col-md-4 p-2 overflow-y-auto">
+            <div class="text-center">
+              <img src="../img/question.jpg" width="200vw" alt="">
+            </div>
+            <article class="overflow-y-auto">
+              <ul class="accordion ">
+                <li class="accordion__item ">
+                  <a href="#" class="accordion__link d-flex"><img class="me-2" src="../svg/questionicon-13.svg"
+                      width="25" alt="">Please Write Your Question</a>
+                  <ul class="sub-accordion">
+                    <li class="sub-accordion__item ">
+
+
+                      <textarea required placeholder="Write Your Question ..." class="input mb-2" name="question"
+                        id="question" type="text" cols="30" rows="10"></textarea>
+
+                      <div id="noquestion" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">Please Enter A Question</p>
+                      </div>
+
+                      <input hidden type="text" name="detector" id="detector">
+                      <input hidden type="text" name="answer" id="answer">
+                      <input hidden type="text" name="sendername" id="sendername" value="<%= user.firstname + " ." +
+                        user.lastname %>">
+                      <input hidden type="text" name="senderimage" id="senderimage" value="<%= user.profileimage %>">
+
+                      <form id="addquestion">
+                        <button type="submit" style="width:130px;">
+                          Submit
+                          <div class="arrow-wrapper">
+                            <div class="arrow"></div>
+
+                          </div>
+                        </button>
+                      </form>
+                    </li>
+
+                  </ul>
+                </li>
+
+              </ul>
+            </article>
+          </div>
+
+          <div class="mh-100 border col-md-8 rounded-2 p-2 d-flex flex-column align-items-center overflow-y-auto"
+            style="box-shadow: 0px 0px 4px 3px rgba(178, 178, 178, 0.6);">
+            <% if (receive.length>= 1) { %>
+              <% receive.forEach(item=> { %>
+                <div class="card mb-1">
+                  <div class="card-wrapper">
+                    <div class="card-icon d-flex flex-column text-center">
+                      <div class="icon-cart-box">
+                        <div style="position: absolute; top: 1%; left: 2%;">
+                          <img style="border-radius: 50%;" width="60" src="<%= user.profileimage %>" alt="">
+                        </div>
+                      </div>
+                      <div class="mt-1">
+                        <%= user.firstname + "." + user.lastname %>
+                      </div>
+                    </div>
+
+                    <div class="card-content ms-2">
+                      <div class="card-title-wrapper">
+                        <span class="card-title mb-0">Question <span class="ms-1"><i style="font-size: x-small; color: grey;">
+                              <%= moment(item.createdAt).format('DD-MM-YYYY hh:mm a') %>
+                            </i></span> </span>
+                        <span class="card-action">
+                          <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal<%= item.id %>"><i
+                              class="fa-regular fa-trash-can " style="color: red;"></i></a>
+                        </span>
+                      </div>
+                      <div class="card-text">
+                        <%= item.question %>
+                      </div>
+                      <button type="button" class="btn-accept mb-2">Answer<span class="ms-1 <%= item.answer !== ""? "d-block" : "d-none" %>"><i
+                            style="font-size: smaller; color: grey;">
+                            <%= moment(item.updatedAt).format('DD-MM-YYYY hh:mm a') %>
+                          </i></span></button>
+                      <div class="card-text mb-3">
+                        <div style="position: relative;">
+                          <%= item.answer %>
+                          <div class="<%= item.answer === ""? "d-none" : "d-block" %>" style="position: absolute; bottom: 0; right: 0; font-family: 'Dancing Script', cursive; font-weight: 700;">Amr Elkashef</div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- DELETE MODAL -->
+                <div class="connectmodal modal fade" id="exampleModal<%= item.id %>" tabindex="-1"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="glass modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        Are You Sure ?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <form action="/dicdelete/<%= item.id %>?_method=DELETE" method="post">
+                          <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% }) %>
+                  <% } %>
+
+
+
+          </div>
+        </div>
+      </main>
+
+
+
+        <!-- LINK TO jQuary -->
+        <script src="../js/jquery-3.7.1.min.js"></script>
+
+        <!-- LINK TO BOOTSTRAP.JS -->
+        <script src="../js/aos.js"></script>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script src="../js/glightbox.min.js"></script>
+        <script src="../js/isotope.pkgd.min.js"></script>
+        <script src="../js/swiper-bundle.min.js"></script>
+        <script src="../js/noframework.waypoints.js"></script>
+        <script src="../js/validate.js"></script>
+
+        <script src="../js/main.js"></script>
+
+        <!-- FORM SCRIPT -->
+
+        <!-- ACCORDION -->
+        <script>
+          function slide(link) {
+            var down = function (callback, time) {
+              var subMenu = link.nextElementSibling;
+              var height = subMenu.clientHeight;
+              var part = height / 100;
+
+              var paddingTop = parseInt(
+                window.getComputedStyle(subMenu, null).getPropertyValue("padding-top")
+              );
+              var paddingBottom = parseInt(
+                window
+                  .getComputedStyle(subMenu, null)
+                  .getPropertyValue("padding-bottom")
+              );
+              var paddingTopPart = parseInt(paddingTop) / 50;
+              var paddingBottomPart = parseInt(paddingBottom) / 30;
+
+              (function innerFunc(i, t, b) {
+                subMenu.style.height = i + "px";
+
+                i += part;
+
+                if (t < paddingTop) {
+                  t += paddingTopPart;
+                  subMenu.style.paddingTop = t + "px";
+                } else if (b < paddingBottom) {
+                  b += paddingBottomPart;
+                  subMenu.style.paddingBottom = b + "px";
+                }
+
+                if (i < height) {
+                  setTimeout(function () {
+                    innerFunc(i, t, b);
+                  }, time / 100);
+                } else {
+                  subMenu.removeAttribute("style");
+                  callback();
+                }
+              })(0, 0, 0);
+            },
+              up = function (callback, time) {
+                var subMenu = link.nextElementSibling;
+                var height = subMenu.clientHeight;
+                var part = subMenu.clientHeight / 100;
+                var paddingTop = parseInt(window.getComputedStyle(subMenu).paddingTop);
+                var paddingBottom = parseInt(
+                  window.getComputedStyle(subMenu).paddingBottom
+                );
+                var paddingTopPart = parseInt(paddingTop) / 30;
+                var paddingBottomPart = parseInt(paddingBottom) / 50;
+
+                (function innerFunc(i, t, b) {
+                  subMenu.style.height = i + "px";
+
+                  i -= part;
+                  i = i.toFixed(2);
+
+                  if (b > 0) {
+                    b -= paddingBottomPart;
+                    b = b.toFixed(1);
+                    subMenu.style.paddingBottom = b + "px";
+                  } else if (t > 0) {
+                    t -= paddingTopPart;
+                    t = t.toFixed(1);
+                    subMenu.style.paddingTop = t + "px";
+                  }
+
+                  if (i > 0) {
+                    setTimeout(function () {
+                      innerFunc(i, t, b);
+                    }, time / 100);
+                  } else {
+                    subMenu.removeAttribute("style");
+                    callback();
+                  }
+                })(height, paddingTop, paddingBottom);
+              };
+
+            return {
+              down: down,
+              up: up
+            };
+          }
+
+          var accordion = (function () {
+            var menu = document.querySelectorAll(".accordion");
+            var activeClass = "accordion__link_active";
+            var arr = [];
+            var timer = 100;
+
+            for (let i = 0; i < menu.length; i++) {
+              for (let p = 0; p < menu[i].children.length; p++) {
+                var link = menu[i].children[p].firstElementChild;
+
+                if (link.classList.contains(activeClass)) {
+                  arr[i] = link;
+                }
+              }
+            }
+
+            function accordionInner(i) {
+              var clicked = false;
+
+              menu[i].addEventListener("click", function (e) {
+                if (e.target.tagName === "A" && !clicked) {
+                  clicked = true;
+
+                  if (e.target.classList.contains(activeClass)) {
+                    slide(e.target).up(function () {
+                      clicked = false;
+
+                      e.target.classList.remove(activeClass);
+
+                      console.log("slide up of accordion " + i + " is done");
+                    }, timer);
+                  } else {
+                    if (arr.length > 0) {
+                      slide(arr[i - 1]).up(function () {
+                        arr[i - 1].classList.remove(activeClass);
+
+                        arr[i - 1] = e.target;
+
+                        console.log("slide up of accordion " + i + " is done");
+                      }, timer);
+                    }
+
+                    e.target.classList.add(activeClass);
+
+                    slide(e.target).down(function () {
+                      clicked = false;
+
+                      arr[i - 1] = e.target;
+
+                      console.log("slide down of accordion " + i + " is done");
+                    }, timer);
+                  }
+                }
+              });
+
+              i++;
+
+              if (i < menu.length) {
+                accordionInner(i);
+              }
+            }
+            accordionInner(0);
+          })();
+        </script>
+
+        <!-- ADD QUESTION  -->
+        <script>
+          addquestion.addEventListener('click', async (event) => {
+            event.preventDefault()
+            const res = await fetch("/addquestion", {
+              method: "POST",
+              body: JSON.stringify({ question: question.value, detector: detector.value, answer: answer.value, senderimage: senderimage.value, sendername: sendername.value }),
+              headers: { "Content-Type": "application/json" },
+            })
+            const data = await res.json()
+            if (data.errors) {
+              data.errors.forEach(item => {
+                if (item.path === "question") {
+                  noquestion.classList.remove("d-none")
+                  question.classList.add("redframe")
+                } else {
+                  noclassname.classList.add("d-none")
+                  question.classList.remove("redframe")
+                }
+              });
+            }
+
+            if (data.done) {
+              location.assign("/dicsender")
+            }
+
+          });
+
+        </script>
+
+
+        <!-- addnewpatient -->
+        <script>
+          addnewpatient.addEventListener("click", async (item) => {
+            item.preventDefault()
+            const res = await fetch("/addnewpatient", {
+              method: "POST",
+              body: JSON.stringify({ addpatientmrn: addpatientmrn.value, addpatientname: addpatientname.value, createdAt: new Date() }),
+              headers: { "Content-Type": "application/json" },
+            })
+            const data = await res.json()
+            if (data.errors) {
+              data.errors.forEach(item => {
+                if (item.path = "addpatientname") {
+                  nopatientname.classList.remove("d-none");
+                  addpatientname.classList.add("redframe");
+                } else {
+                  nopatientname.classList.add("d-none");
+                  addpatientname.classList.remove("redframe");
+                }
+              });
+            }
+            if (data.patientexist) {
+              patientexist.classList.remove("d-none");
+              addpatientmrn.classList.add("redframe");
+            } else {
+              patientexist.classList.add("d-none");
+              addpatientmrn.classList.remove("redframe");
+            }
+            if (data.done) {
+              location.assign("/watch")
+            }
+          })
+        </script>
+</body>
+
+</html>

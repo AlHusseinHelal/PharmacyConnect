@@ -28,7 +28,7 @@
 
         <form  action="/avatarselection" method="post" enctype="multipart/form-data">
           <div class="carousel-item active" style="position: relative">
-            <input name="inputprofile" id="in1" type="file" />
+            <input name="inputprofile" id="in1" type="file"  />
             <img src="/img/Avatar/Untitled-1-01.png" class="d-block" alt="..." />
             <label class="mt-3" for="in1"><button type="submit" class="btn1 btn btn-outline-primary">
                 Select
@@ -280,6 +280,17 @@
   </div>
 
   <script src="/js/Avatar.js"></script>
+
+  <script>
+    const headerattach = document.querySelector("#headerattach");
+    const headerimgsrc = document.querySelector("#headerimgsrc");
+    headerattach.addEventListener("change", (eo) => {
+      const choosedfile = eo.target.files[0];
+      const choosefileurl = URL.createObjectURL(choosedfile);
+      console.log(choosefileurl);
+      headerimgsrc.src = choosefileurl;
+    });
+  </script>
 </body>
 
 </html>

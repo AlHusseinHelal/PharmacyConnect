@@ -66,3 +66,24 @@ scrollbar-width: none;  /* Firefox */
   padding: 0;
   cursor: pointer;
 }
+
+.linethrough{
+  text-decoration: line-through;
+}
+
+.yellow{
+  background-color: yellow;
+}
+
+.green{
+  background-color: #b0b7b5;
+}
+
+.bebas {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+/* //CLOCK */
+

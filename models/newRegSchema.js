@@ -38,7 +38,7 @@ const user = new mongoose.Schema(
     },
     role: {
       type: "string",
-      enum: ["User", "Admin"],
+      enum: ["User", "Admin", "DIC"],
       default: "User",
     },
     active: {
@@ -48,11 +48,15 @@ const user = new mongoose.Schema(
     profileimage: String,
     todolist: [
       {
-        title: String,
-        due: String,
+        title: {
+          type : "string",
+          trim: true,
+          required: [true, "Name Is Required"],
+        },
+        due: Date,
         description: String,
-        completed: Boolean,
-        createdAt: String,
+        completed: String,
+        createdAt: Date,
         updatedAt: Date,
       },
     ],
@@ -87,6 +91,42 @@ const user = new mongoose.Schema(
         updatedAt: Date,
       },
     ],
+    dicsearch:[
+      {
+        question: String,
+        answer: String,
+        createdAt: Date,
+        updatedAt: Date,
+      },
+    ],
+    dicsender: [
+      {
+        question: {
+          type : "string",
+          trim: true,
+          required: [true, "Name Is Required"],
+        },
+        answer: String,
+        detector: String,
+        createdAt: Date,
+        updatedAt: Date,
+      },
+    ],
+
+    dicreceiver: [
+      {
+        question: {
+          type : "string",
+          trim: true,
+        },
+        answer: String,
+        detector: String,
+        sendername: String,
+        senderimage: String,
+        createdAt: Date,
+        updatedAt: Date,
+      },
+    ],
   },
   {
     timestamps: true,
@@ -100,6 +140,46 @@ user.pre("save", async function (next) {
   this.cpassword = undefined;
   next();
 });
+
+user.post("save", (doc) => {
+  if (doc.profileimage) {
+    const profileimageUrl = `${process.env.BASE_URL}/ProfileImage/${doc.profileimage}`;
+    doc.profileimage = profileimageUrl;
+  }
+});
+
+user.post("init", (doc) => {
+  if (
+    doc.profileimage !== "/img/Avatar/Untitled-1-01.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-02.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-03.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-04.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-06.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-07.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-08.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-09.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-10.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-11.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-12.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-13.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-14.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-15.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-16.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-17.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-18.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-19.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-20.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-21.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-22.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-23.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-24.png"
+  ) {
+    const profileimageUrl = `${process.env.BASE_URL}/ProfileImage/${doc.profileimage}`;
+    doc.profileimage = profileimageUrl;
+  }
+});
+
+
 
 const User = mongoose.model("User", user);
 

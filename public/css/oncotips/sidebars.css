@@ -2,7 +2,7 @@ body,html {
   height: 100%;
 }
 
-main {
+/* main {
   position: relative;
   height: 100vh;
   height: -webkit-fill-available;
@@ -10,7 +10,7 @@ main {
   overflow-x: auto;
   overflow-y: auto;
   background-color: #e5e9ef;
-}
+} */
 
 .dropdown-toggle {
   outline: 0;
@@ -522,6 +522,7 @@ li:hover {
   color: red;
   background-color: #b80000;
 }
+
 
 /* connect icon */
 

@@ -1,12 +1,5 @@
-
-const path = require('path');
 const crypto = require("crypto");
-//UNIQUE ID
-const { v4: uuidv4 } = require("uuid");
-
 const express = require("express");
-// IMAGE PROCESSING
-const sharp = require("sharp");
 //PASSWORD HACH
 const bcrypt = require("bcrypt");
 //ROUTER
@@ -21,12 +14,16 @@ const moment = require("moment");
 const jwt = require("jsonwebtoken");
 //VALIDATION RULE
 const { check, validationResult } = require("express-validator");
-//MULTER
-const multer = require("multer");
 //Cloudinary
 const cloudinary = require("cloudinary").v2;
+//TO CSV FILE
+const CsvParser = require('json2csv').Parser
+//TO EXCELL FILE
+const excelJs = require('exceljs')
+const xlsx = require('xlsx');
 //ERROR HANDILING
 const ApiError = require("../utils/apierror");
+
 
 //MULTER DISKSTORAGE
 // const multerStorage = multer.diskStorage({
@@ -40,22 +37,6 @@ const ApiError = require("../utils/apierror");
 //   },
 // });
 
-//MULTER MEMORYSTORAGE
-const multerStorage = multer.memoryStorage();
-
-//UPLOAD IMAGE ONLY
-const multerFilter = function (req, file, cb) {
-  if (file.mimetype.startsWith("image")) {
-    cb(null, true);
-  } else {
-    cb(
-      new ApiError("Invalid image type! Only JPEG or PNG is supported."),
-      false
-    );
-  }
-};
-const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
-
 //SCHEMA
 const Inpatientschema = require("../models/inpatientSchema");
 const User = require("../models/newRegSchema");
@@ -64,11 +45,16 @@ const Dispenseschema = require("../models/dispenseSchema");
 const Newpatient = require("../models/newPatientSchema");
 const Labschema = require("../models/labSchema");
 const Chatmessage = require("../models/chatMessage");
+const Medication = require("../models/medication");
+const Medicationclass = require("../models/medicationClass");
 //MIDDLEWARE
 const { requireAuth } = require("../middleware/middleware");
 const { checkIfUser } = require("../middleware/middleware");
-const { validatorMiddleware } = require("../middleware/middleware");
-const { imageresize } = require("../middleware/middleware");
+const { uploadSingleImage } = require("../middleware/middleware");
+const { imageresizeforinpatient } = require("../middleware/middleware");
+const { imageresizeforoutpatient } = require("../middleware/middleware");
+const { profileimage } = require("../middleware/middleware");
+const { watchreceiver } = require("../middleware/middleware");
 //CONTROLLER
 const { signOut } = require("../controllers/userController");
 const { firstWelcome } = require("../controllers/userController");
@@ -153,11 +139,20 @@ router.get(
     const results = await User.find({ _id: { $ne: curentuserid } }).sort({
       firstname: "asc",
     });
+    const date = moment().format("YYYY-MM-DD");
+    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
+    const startDate = `${date}T14:00:00.000+00:00`;
+    const endDate = `${tomorrow}T13:59:59.000+00:00`;
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt);
+      return createdAt.isBetween(startDate, endDate);
+    });
     if (results) {
       res.render("Chat/chat.ejs", {
         array: results,
         currentusername,
         ChatMessage,
+        receiver,
       });
     }
   })
@@ -171,9 +166,81 @@ router.get(
   asyncHandler(async (req, res) => {
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const currentUser = await User.findOne({ _id: decoded.id });
-    const todolist = currentUser.todolist;
+    const date = moment().format("YYYY-MM-DD");
+    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
+    const startDate = `${date}T14:00:00.000+00:00`;
+    const endDate = `${tomorrow}T13:59:59.000+00:00`;
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt);
+      return createdAt.isBetween(startDate, endDate);
+    });
+    const { todolist } = currentUser;
     if (todolist) {
-      res.render("todolist/Todolist.ejs", { array: todolist, moment: moment });
+      res.render("todolist/Todolist.ejs", {
+        array: todolist,
+        moment: moment,
+        receiver: receiver,
+      });
+    }
+  })
+);
+
+//TODOLIST
+router.get(
+  "/Added_date",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const currentUser = await User.findOne({ _id: decoded.id }).sort({
+      createdAt: "asc",
+    });
+    const todolist = currentUser.todolist;
+
+    const date = moment().format("YYYY-MM-DD");
+    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
+    const startDate = `${date}T14:00:00.000+00:00`;
+    const endDate = `${tomorrow}T13:59:59.000+00:00`;
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt);
+      return createdAt.isBetween(startDate, endDate);
+    });
+    if (todolist) {
+      res.render("todolist/Todolist.ejs", {
+        array: todolist,
+        moment: moment,
+        receiver,
+      });
+    }
+  })
+);
+
+//TODOLIST
+router.get(
+  "/due_date",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const currentUser = await User.findOne({ _id: decoded.id }).sort({
+      due: "asc",
+    });
+    const todolist = currentUser.todolist;
+
+    const date = moment().format("YYYY-MM-DD");
+    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
+    const startDate = `${date}T14:00:00.000+00:00`;
+    const endDate = `${tomorrow}T13:59:59.000+00:00`;
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt);
+      return createdAt.isBetween(startDate, endDate);
+    });
+    if (todolist) {
+      res.render("todolist/Todolist.ejs", {
+        array: todolist,
+        moment: moment,
+        receiver,
+      });
     }
   })
 );
@@ -187,11 +254,16 @@ router.get(
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const currentUser = await User.findOne({ _id: decoded.id });
     const curentuserid = currentUser.id;
-    const firstname = currentUser.firstname;
-    const lastname = currentUser.lastname;
+    const { firstname } = currentUser;
+    const { lastname } = currentUser;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
+    const startDate = `${date}T14:00:00.000+00:00`;
+    const endDate = `${tomorrow}T13:59:59.000+00:00`;
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt);
+      return createdAt.isBetween(startDate, endDate);
+    });
     const results = await User.find({ _id: { $ne: curentuserid } }).sort({
       firstname: "asc",
     });
@@ -203,6 +275,7 @@ router.get(
         sender: sender,
         firstname,
         lastname,
+        receiver,
       });
     }
   })
@@ -215,22 +288,21 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-    const currentUser = await User.findOne({ _id: decoded.id });
-    const curentuserid = currentUser.id;
-    const firstname = currentUser.firstname;
-    const lastname = currentUser.lastname;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
-    const results = await User.find({ _id: { $ne: curentuserid } }).sort({
-      firstname: "asc",
+    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
+    const startDate = `${date}T14:00:00.000+00:00`;
+    const endDate = `${tomorrow}T13:59:59.000+00:00`;
+    const currentUser = await User.findOne({ _id: decoded.id });
+    const { firstname } = currentUser;
+    const { lastname } = currentUser;
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt);
+      return createdAt.isBetween(startDate, endDate);
     });
-    const receiver = currentUser.watchreceiver
     console.log(receiver);
-    
-    if (results) {
+    // { $gte: startDate, $lte: endDate }
+    if (receiver) {
       res.render("Watch/receiver.ejs", {
-        users: results,
         moment: moment,
         receiver: receiver,
         firstname,
@@ -240,560 +312,704 @@ router.get(
   })
 );
 
-//WORKFLOW
-router.get("/WorkFlow", checkIfUser, requireAuth, (req, res) => {
-  res.render("WorkFlow.ejs");
-});
+//DIC RECEIVER
+router.get(
+  "/dic",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const currentUser = await User.findById({ _id: decoded.id });
+    const medclass = await Medicationclass.find().sort({ classname: "asc" });
+    const med = await Medication.find().sort("asc");
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+    const search = currentUser.dicsearch
+    const dic = currentUser.dicreceiver.filter( (item) => {
+      const createdAt = moment(item.createdAt);
+      return createdAt.isBetween(startDate, endDate);
+    })
 
+
+    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
+    const startDate2 = `${date}T14:00:00.000+00:00`;
+    const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt);
+      return createdAt.isBetween(startDate2, endDate2);
+    });
+    if (medclass) {
+      res.render("Dic/dic.ejs", {
+        medclass,
+        med,
+        dic,
+        moment: moment,
+        receiver, search
+      });
+    }
+  })
+);
+
+//DIC SENDER
+router.get(
+  "/dicsender",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.findOne({ _id: decoded.id });
+    const receive = results.dicsender;
+    const date = moment().format("YYYY-MM-DD");
+    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
+    const startDate = `${date}T14:00:00.000+00:00`;
+    const endDate = `${tomorrow}T13:59:59.000+00:00`;
+    const currentUser = await User.findOne({ _id: decoded.id });
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt);
+      return createdAt.isBetween(startDate, endDate);
+    });
+    if (receive) {
+      res.render("Dic/dicsender.ejs", { receive, moment: moment, receiver });
+    }
+  })
+);
+
+router.get("/excel",
+ checkIfUser,
+ requireAuth, asyncHandler( async (req, res) => {
+  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+  const find = await User.findOne({_id : decoded.id});
+  const results = find.dicsearch
+  if (results.length > 0) {
+    const response = JSON.parse(JSON.stringify(results));
+    //CREATE NEW WORKBOOK
+    const workbook = xlsx.utils.book_new();
+    //CONVERT JSON ARRAY TO WORKSHEET
+    const worksheet = xlsx.utils.json_to_sheet(response);
+    //ADD WORKSHEET TO WORKBOOK
+    xlsx.utils.book_append_sheet(workbook, worksheet, "Users");
+    //DOWNLOAD EXCEL FILE
+    xlsx.writeFile(workbook, "C:\\Download\\Users.xlsx");
+    res.redirect('/dic')
+    res.send(new ApiError(201, "success", response));
+    
+  } else {
+    res.send(new ApiError(404, "No Data Avaliable")) 
+  }
+  
+ })
+  )
+
+//WORKFLOW
+router.get(
+  "/WorkFlow",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const date = moment().format("YYYY-MM-DD");
+    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
+    const startDate = `${date}T14:00:00.000+00:00`;
+    const endDate = `${tomorrow}T13:59:59.000+00:00`;
+    const currentUser = await User.findOne({ _id: decoded.id });
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt);
+      return createdAt.isBetween(startDate, endDate);
+    });
+
+    res.render("WorkFlow.ejs", { receiver });
+  })
+);
 
 //PHARMACY DEPARTMENT
-router.get("/index2", checkIfUser, requireAuth, (req, res) => {
-  res.render("index2");
-});
+router.get(
+  "/index2",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const date = moment().format("YYYY-MM-DD");
+    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
+    const startDate = `${date}T14:00:00.000+00:00`;
+    const endDate = `${tomorrow}T13:59:59.000+00:00`;
+    const currentUser = await User.findOne({ _id: decoded.id });
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt);
+      return createdAt.isBetween(startDate, endDate);
+    });
+    res.render("index2", { receiver });
+  })
+);
 
 //PERPATIENT STORE
-router.get("/perpatient", checkIfUser, requireAuth, (req, res) => {
-  const array = [
-    {
-      OrgCode: 10,
-      ItemNumber: "MED101010012",
-      ItemDescription: "Bleocip 15mg",
-      UOM: "amp",
-      ItemCategory: "Bleomycin Injection 15mg",
-      MedicationsStock: 3,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED101010013",
-      ItemDescription: "Velcade 3.5mg",
-      UOM: "vial(s)",
-      ItemCategory: "Bortezomib Injection 3.5mg",
-      MedicationsStock: 44,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED101010095",
-      ItemDescription: "Jakavi 5mg 14 Tab",
-      UOM: "STRIP 14TAB",
-      ItemCategory: "Ruxolitinib Oral Solid 5mg",
-      MedicationsStock: 20,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED101010096",
-      ItemDescription: "Adcetris 50mg",
-      UOM: "vial(s)",
-      ItemCategory: "Brentuximab Injection 50mg",
-      MedicationsStock: 5,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED101010164",
-      ItemDescription: "Busulfan 2mg 25 Tab",
-      UOM: "BOX 25TAB",
-      ItemCategory: "Busulfan Oral Solid 2mg",
-      MedicationsStock: 82,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED101040039",
-      ItemDescription:
-        "Cyclosporine Capsules USP Modified (Soft Gelatin Capsule) 100mg",
-      UOM: "STRIP 10CAP",
-      ItemCategory: "Cyclosporin Oral Solid 100mg (Modified)",
-      MedicationsStock: 12,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED102010162",
-      ItemDescription: "Unictam 1500mg Powder Vial",
-      UOM: "vial(s)",
-      ItemCategory: "Ampicillin and Sulbactam Injection 1500mg",
-      MedicationsStock: 126,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED102030012",
-      ItemDescription: "Tami Flu 75mg 10 Cap",
-      UOM: "STRIP 10CAP",
-      ItemCategory: "Oseltamivir Phosphate Oral Solid 75mg",
-      MedicationsStock: 2,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED104010007",
-      ItemDescription: "Atomax 25mg 10 Tab",
-      UOM: "STRIP 10 TAB",
-      ItemCategory: "Atomoxetine Oral Solid 25mg",
-      MedicationsStock: 102,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED104010038",
-      ItemDescription: "Mirtimash 30mg 10 tab",
-      UOM: "strip(s)",
-      ItemCategory: "Mirtazapine Oral Solid 30mg",
-      MedicationsStock: 72,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED104010062",
-      ItemDescription: "Prozac 20mg 14 Cap",
-      UOM: "Strip 14Cap",
-      ItemCategory: "Fluoxetine Oral Solid 20mg",
-      MedicationsStock: 4,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED104010063",
-      ItemDescription: "Atomafutix 25mg 10Cap",
-      UOM: "STRIP 10CAP",
-      ItemCategory: "Atomoxetine Oral Solid 25mg",
-      MedicationsStock: 1020,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED104020004",
-      ItemDescription: "Tegretol 200mg 10 Tab",
-      UOM: "STRIP 10 TAB",
-      ItemCategory: "Carbamazepime Oral Solid 200mg",
-      MedicationsStock: 531,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED104020082",
-      ItemDescription: "Cerebroforte 20% 120ML Syrup",
-      UOM: "bottle(s)",
-      ItemCategory: "Piracetam Oral Liquid 1gm",
-      MedicationsStock: 65,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED106010050",
-      ItemDescription: "Rivarospire 10mg 10 Tab",
-      UOM: "STRIP 10 TAB",
-      ItemCategory: "Rivarospire Oral Solid 10mg",
-      MedicationsStock: 100,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED106010076",
-      ItemDescription: "Tareg 40mg 5 Tab",
-      UOM: "STRIP 5TAB",
-      ItemCategory: "Valsartan Oral Solid 40mg",
-      MedicationsStock: 18,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED109020015",
-      ItemDescription: "Enemax Enema",
-      UOM: "bottle(s)",
-      ItemCategory:
-        "Sodium Dihydrogen phosphate dihydrate & Disodium Hydrogen phosphate dodecahydrate Enema Solution",
-      MedicationsStock: 20,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED110010081",
-      ItemDescription: "Aqualarm 10ml Eye Drops",
-      UOM: "bottle(s)",
-      ItemCategory: "Hyaluronic Acid Drops 0.24%",
-      MedicationsStock: 95,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED111010072",
-      ItemDescription: "Inestafenac 50mg 10Sachets",
-      UOM: "BOX 10 Sachet",
-      ItemCategory: "Diclofenac Oral Solid 50mg",
-      MedicationsStock: 40,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED111050027",
-      ItemDescription: "Efemyo eye Drops",
-      UOM: "bottle(s)",
-      ItemCategory:
-        "Fluorometholone Micronized & Tetrahydrozoline HCL Drops 10ml",
-      MedicationsStock: 3,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED111050042",
-      ItemDescription: "Macrofuran 50mg 10 Tab",
-      UOM: "STRIP 10 TAB",
-      ItemCategory: "Nitrofurantoin Oral Solid 50mg",
-      MedicationsStock: 3,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED111050105",
-      ItemDescription: "Forxiga 10mg 14 Tab",
-      UOM: "STRIP 14TAB",
-      ItemCategory: "Dapagliflozin Oral Solid 10mg",
-      MedicationsStock: 10,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED111050116",
-      ItemDescription: "Lepsiramp 4mg 7tab",
-      UOM: "STRIP 7TAB",
-      ItemCategory: "Perampanel Oral Solid 4mg",
-      MedicationsStock: 5,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED111050117",
-      ItemDescription: "Lepsiramp 6mg 7tab",
-      UOM: "STRIP 7TAB",
-      ItemCategory: "Perampanel Oral Solid 6mg",
-      MedicationsStock: 10,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED113010013",
-      ItemDescription: "Gadovist 1.0 mmol/ml syringe",
-      UOM: "syringe(s)",
-      ItemCategory: "Gadobutrol Injection 1.0 mmol/ml",
-      MedicationsStock: 100,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED114010008",
-      ItemDescription: "Twinrix 1ml Syringe",
-      UOM: "syringe(s)",
-      ItemCategory: "Hepatitis B Injection 0.5ml",
-      MedicationsStock: 450,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED115010013",
-      ItemDescription: "Qarziba 4.5 mg/ml",
-      UOM: "vial(s)",
-      ItemCategory: "Dinutuximab Beta Injection 4.5mg",
-      MedicationsStock: 20,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED115010024",
-      ItemDescription: "Lacteol Fort Sachets",
-      UOM: "box(es)",
-      ItemCategory: "Lyophilized Killed Microbial Bodies Oral Solid 6Sachets",
-      MedicationsStock: 12,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED115010042",
-      ItemDescription: "Zavicefta 2gm/0.5",
-      UOM: "vial(s)",
-      ItemCategory: "Ceftazidime-Avibactam Injection 2gm",
-      MedicationsStock: 179,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED115010045",
-      ItemDescription: "Prepawest",
-      UOM: "box(es)",
-      ItemCategory:
-        "Macrogol & Sodium Sulphate, chloride, Ascorbate & Potassium Chloride & Ascorbic Acid Oral Solid 115gm",
-      MedicationsStock: 4,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED115010056",
-      ItemDescription: "Pravotin 100mg 30 Eff Sachet",
-      UOM: "BOX 30 Sachet",
-      ItemCategory: "Lactoferrin Oral Solid 100mg",
-      MedicationsStock: 80,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED115010080",
-      ItemDescription: "Darzalex 400mg / 20ml Vial",
-      UOM: "vial(s)",
-      ItemCategory: "Daratumumab Injection 400mg / 20ml",
-      MedicationsStock: 6,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED115010081",
-      ItemDescription: "Keytruda 100mg / 4ml Vial",
-      UOM: "vial(s)",
-      ItemCategory: "Pembrolizumab Injection 100mg/4ml",
-      MedicationsStock: 1,
-    },
-    {
-      OrgCode: 10,
-      ItemNumber: "MED115010093",
-      ItemDescription: "Darzalex 1800mg / 15ml Vial",
-      UOM: "vial(s)",
-      ItemCategory: "Daratumumab Injection 1800mg",
-      MedicationsStock: 11,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED101010016",
-      ItemDescription: "Xeloda 500mg 10 Tab",
-      UOM: "STRIP 10 TAB",
-      ItemCategory: "Capecitabine Oral Solid 500mg",
-      MedicationsStock: 0.2,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED101010079",
-      ItemDescription: "Sutent 50mg 28 Cap",
-      UOM: "BOX 28CAP",
-      ItemCategory: "Sunitinib Oral Solid 50mg",
-      MedicationsStock: 0.10714,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED101010095",
-      ItemDescription: "Jakavi 5mg 14 Tab",
-      UOM: "STRIP 14TAB",
-      ItemCategory: "Ruxolitinib Oral Solid 5mg",
-      MedicationsStock: 156,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED101040009",
-      ItemDescription: "Rapamune 1g 10 Tab",
-      UOM: "STRIP 10 TAB",
-      ItemCategory: "Sirolimus Oral Solid 1gm",
-      MedicationsStock: 3,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED101040011",
-      ItemDescription: "Prograf 1mg 100 cap",
-      UOM: "BOX 100CAP",
-      ItemCategory: "Tacrolimus Oral Solid 1mg",
-      MedicationsStock: 2,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED101040018",
-      ItemDescription: "Afinitor 5mg 10 Tab",
-      UOM: "STRIP 10 TAB",
-      ItemCategory: "Everolimus Oral Solid 5mg",
-      MedicationsStock: 183,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED102010086",
-      ItemDescription: "Flub syrup 30ml",
-      UOM: "Bottle 30ml",
-      ItemCategory: "Flubendazole Oral Liquid 30ml",
-      MedicationsStock: 2,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED102020027",
-      ItemDescription: "Itracon 100mg 7Cap",
-      UOM: "STRIP 7CAP",
-      ItemCategory: "Itraconazole Oral Solid 100mg",
-      MedicationsStock: 2,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED104010007",
-      ItemDescription: "Atomax 25mg 10 Tab",
-      UOM: "STRIP 10 TAB",
-      ItemCategory: "Atomoxetine Oral Solid 25mg",
-      MedicationsStock: 27,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED104010025",
-      ItemDescription: "Lustral 50mg 10 Tab",
-      UOM: "STRIP 10 TAB",
-      ItemCategory: "Sertraline HCL Oral Solid 50mg",
-      MedicationsStock: 125,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED104010064",
-      ItemDescription: "Atomafutix 40mg 10Cap",
-      UOM: "STRIP 10CAP",
-      ItemCategory: "Atomoxetine Oral Solid 40mg",
-      MedicationsStock: 246.2,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED104020004",
-      ItemDescription: "Tegretol 200mg 10 Tab",
-      UOM: "STRIP 10 TAB",
-      ItemCategory: "Carbamazepime Oral Solid 200mg",
-      MedicationsStock: 165,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED104020052",
-      ItemDescription: "Convagran 100mg 10 Cap",
-      UOM: "STRIP 10CAP",
-      ItemCategory: "Zonisamide Oral Solid 100mg",
-      MedicationsStock: 4,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED106010067",
-      ItemDescription: "Tenormin 50mg tab",
-      UOM: "strip(s)",
-      ItemCategory: "Atenolol Oral Solid 50mg",
-      MedicationsStock: 29.4,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED106010076",
-      ItemDescription: "Tareg 40mg 5 Tab",
-      UOM: "STRIP 5TAB",
-      ItemCategory: "Valsartan Oral Solid 40mg",
-      MedicationsStock: 12,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED106040009",
-      ItemDescription: "Crestor 20mg 7 Tab",
-      UOM: "STRIP 7TAB",
-      ItemCategory: "Rosuvastatin Oral Solid 20mg",
-      MedicationsStock: 3.14286,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED109010032",
-      ItemDescription: "Glycerin Gelatin Ped 5 Supp",
-      UOM: "BOX 5 SUPP",
-      ItemCategory: "Glycerin Rectal and Vaginal 1.47gm",
-      MedicationsStock: 29,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED109010064",
-      ItemDescription: "Zarotex gel",
-      UOM: "tube(s)",
-      ItemCategory: "Tazarotene Topical 0.1%",
-      MedicationsStock: 2,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED110010081",
-      ItemDescription: "Aqualarm 10ml Eye Drops",
-      UOM: "bottle(s)",
-      ItemCategory: "Hyaluronic Acid Drops 0.24%",
-      MedicationsStock: 5,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED111010072",
-      ItemDescription: "Inestafenac 50mg 10Sachets",
-      UOM: "BOX 10 Sachet",
-      ItemCategory: "Diclofenac Oral Solid 50mg",
-      MedicationsStock: 9,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED111050049",
-      ItemDescription: "Betmiga 10 Tab",
-      UOM: "STRIP 10 TAB",
-      ItemCategory: "Mirabergron Oral Solid 10Tab",
-      MedicationsStock: 4.6,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED111050077",
-      ItemDescription: "Citra Forte Granules",
-      UOM: "bottle(s)",
-      ItemCategory: "Potassium Sodium Hydrogen Citrate Oral Liquid 280mg",
-      MedicationsStock: 1,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED111050088",
-      ItemDescription: "Revolade 50 mg 7 tab",
-      UOM: "STRIP 7TAB",
-      ItemCategory: "Eltrombopag Oral Solid 50mg",
-      MedicationsStock: 56,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED111050105",
-      ItemDescription: "Forxiga 10mg 14 Tab",
-      UOM: "STRIP 14TAB",
-      ItemCategory: "Dapagliflozin Oral Solid 10mg",
-      MedicationsStock: 6,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED112010027",
-      ItemDescription: "Stark Sachet 25g 10 Sachet",
-      UOM: "BOX 10 Sachet",
-      ItemCategory: "Supplements Oral Solid Between 1 Year to 18 Years",
-      MedicationsStock: 30.6,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED115010003",
-      ItemDescription: "XALKOR 250mg 60 Tab",
-      UOM: "BOX 60TAB",
-      ItemCategory: "Crizotinib Oral Solid 250mg",
-      MedicationsStock: 0.00001,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED115010009",
-      ItemDescription: "Epimag 12 sachet",
-      UOM: "BOX 12 Sachet",
-      ItemCategory: "Magnesium Citrate Oral Solid 2.125gm",
-      MedicationsStock: 3,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED115010024",
-      ItemDescription: "Lacteol Fort Sachets",
-      UOM: "box(es)",
-      ItemCategory: "Lyophilized Killed Microbial Bodies Oral Solid 6Sachets",
-      MedicationsStock: 7,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED115010044",
-      ItemDescription: "Procoralan 5mg 7 tab",
-      UOM: "STRIP 7TAB",
-      ItemCategory: "Ivabradine Oral Solid 5mg",
-      MedicationsStock: 40,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED115010052",
-      ItemDescription: "Plavix 75mg 14 Tab",
-      UOM: "STRIP 14TAB",
-      ItemCategory: "Clopidogrel Oral Solid 75mg",
-      MedicationsStock: 3,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED115010056",
-      ItemDescription: "Pravotin 100mg 30 Eff Sachet",
-      UOM: "BOX 30 Sachet",
-      ItemCategory: "Lactoferrin Oral Solid 100mg",
-      MedicationsStock: 8.33333,
-    },
-    {
-      OrgCode: 79,
-      ItemNumber: "MED115010062",
-      ItemDescription: "Entresto 50mg (24/26mg) 14 Tab",
-      UOM: "STRIP 14TAB",
-      ItemCategory: "Sacubitril and Valsartan Oral Solid 50mg",
-      MedicationsStock: 18,
-    },
-  ];
-  res.render("Store/perpatient", { array: array });
-});
+router.get(
+  "/perpatient",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const date = moment().format("YYYY-MM-DD");
+    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
+    const startDate = `${date}T14:00:00.000+00:00`;
+    const endDate = `${tomorrow}T13:59:59.000+00:00`;
+    const currentUser = await User.findOne({ _id: decoded.id });
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt);
+      return createdAt.isBetween(startDate, endDate);
+    });
+    const array = [
+      {
+        OrgCode: 10,
+        ItemNumber: "MED101010012",
+        ItemDescription: "Bleocip 15mg",
+        UOM: "amp",
+        ItemCategory: "Bleomycin Injection 15mg",
+        MedicationsStock: 3,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED101010013",
+        ItemDescription: "Velcade 3.5mg",
+        UOM: "vial(s)",
+        ItemCategory: "Bortezomib Injection 3.5mg",
+        MedicationsStock: 44,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED101010095",
+        ItemDescription: "Jakavi 5mg 14 Tab",
+        UOM: "STRIP 14TAB",
+        ItemCategory: "Ruxolitinib Oral Solid 5mg",
+        MedicationsStock: 20,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED101010096",
+        ItemDescription: "Adcetris 50mg",
+        UOM: "vial(s)",
+        ItemCategory: "Brentuximab Injection 50mg",
+        MedicationsStock: 5,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED101010164",
+        ItemDescription: "Busulfan 2mg 25 Tab",
+        UOM: "BOX 25TAB",
+        ItemCategory: "Busulfan Oral Solid 2mg",
+        MedicationsStock: 82,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED101040039",
+        ItemDescription:
+          "Cyclosporine Capsules USP Modified (Soft Gelatin Capsule) 100mg",
+        UOM: "STRIP 10CAP",
+        ItemCategory: "Cyclosporin Oral Solid 100mg (Modified)",
+        MedicationsStock: 12,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED102010162",
+        ItemDescription: "Unictam 1500mg Powder Vial",
+        UOM: "vial(s)",
+        ItemCategory: "Ampicillin and Sulbactam Injection 1500mg",
+        MedicationsStock: 126,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED102030012",
+        ItemDescription: "Tami Flu 75mg 10 Cap",
+        UOM: "STRIP 10CAP",
+        ItemCategory: "Oseltamivir Phosphate Oral Solid 75mg",
+        MedicationsStock: 2,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED104010007",
+        ItemDescription: "Atomax 25mg 10 Tab",
+        UOM: "STRIP 10 TAB",
+        ItemCategory: "Atomoxetine Oral Solid 25mg",
+        MedicationsStock: 102,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED104010038",
+        ItemDescription: "Mirtimash 30mg 10 tab",
+        UOM: "strip(s)",
+        ItemCategory: "Mirtazapine Oral Solid 30mg",
+        MedicationsStock: 72,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED104010062",
+        ItemDescription: "Prozac 20mg 14 Cap",
+        UOM: "Strip 14Cap",
+        ItemCategory: "Fluoxetine Oral Solid 20mg",
+        MedicationsStock: 4,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED104010063",
+        ItemDescription: "Atomafutix 25mg 10Cap",
+        UOM: "STRIP 10CAP",
+        ItemCategory: "Atomoxetine Oral Solid 25mg",
+        MedicationsStock: 1020,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED104020004",
+        ItemDescription: "Tegretol 200mg 10 Tab",
+        UOM: "STRIP 10 TAB",
+        ItemCategory: "Carbamazepime Oral Solid 200mg",
+        MedicationsStock: 531,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED104020082",
+        ItemDescription: "Cerebroforte 20% 120ML Syrup",
+        UOM: "bottle(s)",
+        ItemCategory: "Piracetam Oral Liquid 1gm",
+        MedicationsStock: 65,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED106010050",
+        ItemDescription: "Rivarospire 10mg 10 Tab",
+        UOM: "STRIP 10 TAB",
+        ItemCategory: "Rivarospire Oral Solid 10mg",
+        MedicationsStock: 100,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED106010076",
+        ItemDescription: "Tareg 40mg 5 Tab",
+        UOM: "STRIP 5TAB",
+        ItemCategory: "Valsartan Oral Solid 40mg",
+        MedicationsStock: 18,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED109020015",
+        ItemDescription: "Enemax Enema",
+        UOM: "bottle(s)",
+        ItemCategory:
+          "Sodium Dihydrogen phosphate dihydrate & Disodium Hydrogen phosphate dodecahydrate Enema Solution",
+        MedicationsStock: 20,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED110010081",
+        ItemDescription: "Aqualarm 10ml Eye Drops",
+        UOM: "bottle(s)",
+        ItemCategory: "Hyaluronic Acid Drops 0.24%",
+        MedicationsStock: 95,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED111010072",
+        ItemDescription: "Inestafenac 50mg 10Sachets",
+        UOM: "BOX 10 Sachet",
+        ItemCategory: "Diclofenac Oral Solid 50mg",
+        MedicationsStock: 40,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED111050027",
+        ItemDescription: "Efemyo eye Drops",
+        UOM: "bottle(s)",
+        ItemCategory:
+          "Fluorometholone Micronized & Tetrahydrozoline HCL Drops 10ml",
+        MedicationsStock: 3,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED111050042",
+        ItemDescription: "Macrofuran 50mg 10 Tab",
+        UOM: "STRIP 10 TAB",
+        ItemCategory: "Nitrofurantoin Oral Solid 50mg",
+        MedicationsStock: 3,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED111050105",
+        ItemDescription: "Forxiga 10mg 14 Tab",
+        UOM: "STRIP 14TAB",
+        ItemCategory: "Dapagliflozin Oral Solid 10mg",
+        MedicationsStock: 10,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED111050116",
+        ItemDescription: "Lepsiramp 4mg 7tab",
+        UOM: "STRIP 7TAB",
+        ItemCategory: "Perampanel Oral Solid 4mg",
+        MedicationsStock: 5,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED111050117",
+        ItemDescription: "Lepsiramp 6mg 7tab",
+        UOM: "STRIP 7TAB",
+        ItemCategory: "Perampanel Oral Solid 6mg",
+        MedicationsStock: 10,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED113010013",
+        ItemDescription: "Gadovist 1.0 mmol/ml syringe",
+        UOM: "syringe(s)",
+        ItemCategory: "Gadobutrol Injection 1.0 mmol/ml",
+        MedicationsStock: 100,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED114010008",
+        ItemDescription: "Twinrix 1ml Syringe",
+        UOM: "syringe(s)",
+        ItemCategory: "Hepatitis B Injection 0.5ml",
+        MedicationsStock: 450,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED115010013",
+        ItemDescription: "Qarziba 4.5 mg/ml",
+        UOM: "vial(s)",
+        ItemCategory: "Dinutuximab Beta Injection 4.5mg",
+        MedicationsStock: 20,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED115010024",
+        ItemDescription: "Lacteol Fort Sachets",
+        UOM: "box(es)",
+        ItemCategory: "Lyophilized Killed Microbial Bodies Oral Solid 6Sachets",
+        MedicationsStock: 12,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED115010042",
+        ItemDescription: "Zavicefta 2gm/0.5",
+        UOM: "vial(s)",
+        ItemCategory: "Ceftazidime-Avibactam Injection 2gm",
+        MedicationsStock: 179,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED115010045",
+        ItemDescription: "Prepawest",
+        UOM: "box(es)",
+        ItemCategory:
+          "Macrogol & Sodium Sulphate, chloride, Ascorbate & Potassium Chloride & Ascorbic Acid Oral Solid 115gm",
+        MedicationsStock: 4,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED115010056",
+        ItemDescription: "Pravotin 100mg 30 Eff Sachet",
+        UOM: "BOX 30 Sachet",
+        ItemCategory: "Lactoferrin Oral Solid 100mg",
+        MedicationsStock: 80,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED115010080",
+        ItemDescription: "Darzalex 400mg / 20ml Vial",
+        UOM: "vial(s)",
+        ItemCategory: "Daratumumab Injection 400mg / 20ml",
+        MedicationsStock: 6,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED115010081",
+        ItemDescription: "Keytruda 100mg / 4ml Vial",
+        UOM: "vial(s)",
+        ItemCategory: "Pembrolizumab Injection 100mg/4ml",
+        MedicationsStock: 1,
+      },
+      {
+        OrgCode: 10,
+        ItemNumber: "MED115010093",
+        ItemDescription: "Darzalex 1800mg / 15ml Vial",
+        UOM: "vial(s)",
+        ItemCategory: "Daratumumab Injection 1800mg",
+        MedicationsStock: 11,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED101010016",
+        ItemDescription: "Xeloda 500mg 10 Tab",
+        UOM: "STRIP 10 TAB",
+        ItemCategory: "Capecitabine Oral Solid 500mg",
+        MedicationsStock: 0.2,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED101010079",
+        ItemDescription: "Sutent 50mg 28 Cap",
+        UOM: "BOX 28CAP",
+        ItemCategory: "Sunitinib Oral Solid 50mg",
+        MedicationsStock: 0.10714,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED101010095",
+        ItemDescription: "Jakavi 5mg 14 Tab",
+        UOM: "STRIP 14TAB",
+        ItemCategory: "Ruxolitinib Oral Solid 5mg",
+        MedicationsStock: 156,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED101040009",
+        ItemDescription: "Rapamune 1g 10 Tab",
+        UOM: "STRIP 10 TAB",
+        ItemCategory: "Sirolimus Oral Solid 1gm",
+        MedicationsStock: 3,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED101040011",
+        ItemDescription: "Prograf 1mg 100 cap",
+        UOM: "BOX 100CAP",
+        ItemCategory: "Tacrolimus Oral Solid 1mg",
+        MedicationsStock: 2,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED101040018",
+        ItemDescription: "Afinitor 5mg 10 Tab",
+        UOM: "STRIP 10 TAB",
+        ItemCategory: "Everolimus Oral Solid 5mg",
+        MedicationsStock: 183,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED102010086",
+        ItemDescription: "Flub syrup 30ml",
+        UOM: "Bottle 30ml",
+        ItemCategory: "Flubendazole Oral Liquid 30ml",
+        MedicationsStock: 2,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED102020027",
+        ItemDescription: "Itracon 100mg 7Cap",
+        UOM: "STRIP 7CAP",
+        ItemCategory: "Itraconazole Oral Solid 100mg",
+        MedicationsStock: 2,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED104010007",
+        ItemDescription: "Atomax 25mg 10 Tab",
+        UOM: "STRIP 10 TAB",
+        ItemCategory: "Atomoxetine Oral Solid 25mg",
+        MedicationsStock: 27,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED104010025",
+        ItemDescription: "Lustral 50mg 10 Tab",
+        UOM: "STRIP 10 TAB",
+        ItemCategory: "Sertraline HCL Oral Solid 50mg",
+        MedicationsStock: 125,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED104010064",
+        ItemDescription: "Atomafutix 40mg 10Cap",
+        UOM: "STRIP 10CAP",
+        ItemCategory: "Atomoxetine Oral Solid 40mg",
+        MedicationsStock: 246.2,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED104020004",
+        ItemDescription: "Tegretol 200mg 10 Tab",
+        UOM: "STRIP 10 TAB",
+        ItemCategory: "Carbamazepime Oral Solid 200mg",
+        MedicationsStock: 165,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED104020052",
+        ItemDescription: "Convagran 100mg 10 Cap",
+        UOM: "STRIP 10CAP",
+        ItemCategory: "Zonisamide Oral Solid 100mg",
+        MedicationsStock: 4,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED106010067",
+        ItemDescription: "Tenormin 50mg tab",
+        UOM: "strip(s)",
+        ItemCategory: "Atenolol Oral Solid 50mg",
+        MedicationsStock: 29.4,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED106010076",
+        ItemDescription: "Tareg 40mg 5 Tab",
+        UOM: "STRIP 5TAB",
+        ItemCategory: "Valsartan Oral Solid 40mg",
+        MedicationsStock: 12,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED106040009",
+        ItemDescription: "Crestor 20mg 7 Tab",
+        UOM: "STRIP 7TAB",
+        ItemCategory: "Rosuvastatin Oral Solid 20mg",
+        MedicationsStock: 3.14286,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED109010032",
+        ItemDescription: "Glycerin Gelatin Ped 5 Supp",
+        UOM: "BOX 5 SUPP",
+        ItemCategory: "Glycerin Rectal and Vaginal 1.47gm",
+        MedicationsStock: 29,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED109010064",
+        ItemDescription: "Zarotex gel",
+        UOM: "tube(s)",
+        ItemCategory: "Tazarotene Topical 0.1%",
+        MedicationsStock: 2,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED110010081",
+        ItemDescription: "Aqualarm 10ml Eye Drops",
+        UOM: "bottle(s)",
+        ItemCategory: "Hyaluronic Acid Drops 0.24%",
+        MedicationsStock: 5,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED111010072",
+        ItemDescription: "Inestafenac 50mg 10Sachets",
+        UOM: "BOX 10 Sachet",
+        ItemCategory: "Diclofenac Oral Solid 50mg",
+        MedicationsStock: 9,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED111050049",
+        ItemDescription: "Betmiga 10 Tab",
+        UOM: "STRIP 10 TAB",
+        ItemCategory: "Mirabergron Oral Solid 10Tab",
+        MedicationsStock: 4.6,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED111050077",
+        ItemDescription: "Citra Forte Granules",
+        UOM: "bottle(s)",
+        ItemCategory: "Potassium Sodium Hydrogen Citrate Oral Liquid 280mg",
+        MedicationsStock: 1,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED111050088",
+        ItemDescription: "Revolade 50 mg 7 tab",
+        UOM: "STRIP 7TAB",
+        ItemCategory: "Eltrombopag Oral Solid 50mg",
+        MedicationsStock: 56,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED111050105",
+        ItemDescription: "Forxiga 10mg 14 Tab",
+        UOM: "STRIP 14TAB",
+        ItemCategory: "Dapagliflozin Oral Solid 10mg",
+        MedicationsStock: 6,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED112010027",
+        ItemDescription: "Stark Sachet 25g 10 Sachet",
+        UOM: "BOX 10 Sachet",
+        ItemCategory: "Supplements Oral Solid Between 1 Year to 18 Years",
+        MedicationsStock: 30.6,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED115010003",
+        ItemDescription: "XALKOR 250mg 60 Tab",
+        UOM: "BOX 60TAB",
+        ItemCategory: "Crizotinib Oral Solid 250mg",
+        MedicationsStock: 0.00001,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED115010009",
+        ItemDescription: "Epimag 12 sachet",
+        UOM: "BOX 12 Sachet",
+        ItemCategory: "Magnesium Citrate Oral Solid 2.125gm",
+        MedicationsStock: 3,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED115010024",
+        ItemDescription: "Lacteol Fort Sachets",
+        UOM: "box(es)",
+        ItemCategory: "Lyophilized Killed Microbial Bodies Oral Solid 6Sachets",
+        MedicationsStock: 7,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED115010044",
+        ItemDescription: "Procoralan 5mg 7 tab",
+        UOM: "STRIP 7TAB",
+        ItemCategory: "Ivabradine Oral Solid 5mg",
+        MedicationsStock: 40,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED115010052",
+        ItemDescription: "Plavix 75mg 14 Tab",
+        UOM: "STRIP 14TAB",
+        ItemCategory: "Clopidogrel Oral Solid 75mg",
+        MedicationsStock: 3,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED115010056",
+        ItemDescription: "Pravotin 100mg 30 Eff Sachet",
+        UOM: "BOX 30 Sachet",
+        ItemCategory: "Lactoferrin Oral Solid 100mg",
+        MedicationsStock: 8.33333,
+      },
+      {
+        OrgCode: 79,
+        ItemNumber: "MED115010062",
+        ItemDescription: "Entresto 50mg (24/26mg) 14 Tab",
+        UOM: "STRIP 14TAB",
+        ItemCategory: "Sacubitril and Valsartan Oral Solid 50mg",
+        MedicationsStock: 18,
+      },
+    ];
+    res.render("Store/perpatient", { array: array, receiver });
+  })
+);
 
 // INPATIENT
-router.get("/inpatient", checkIfUser, requireAuth, (req, res) => {
-  res.render("Inpatient/inpatient");
-});
+router.get("/inpatient", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+  const date = moment().format("YYYY-MM-DD");
+  const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+  const startDate = `${date}T14:00:00.000+00:00`;
+  const endDate = `${tomorrow}T13:59:59.000+00:00`;
+  const currentUser = await User.findOne({ _id: decoded.id });
+  const receiver = currentUser.watchreceiver.filter((item) => {
+    const createdAt = moment(item.createdAt)
+    return createdAt.isBetween(startDate, endDate)
+  })
+  res.render("Inpatient/inpatient", {receiver});
+}) );
 
 // INPATIENT OVERVIEW
 router.get(
@@ -806,20 +1022,28 @@ router.get(
     const skip = (page - 1) * limit;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
-    const firstname = user.firstname;
-    const lastname = user.lastname;
+    const {firstname} = user;
+    const {lastname} = user;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
     const num = await Inpatientschema.find({
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-    // 2024-03-25T22:05:10.868+00:00
     const results = await Inpatientschema.find({
       createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
+
+      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+      const startDate2 = `${date}T14:00:00.000+00:00`;
+      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+      const currentUser = await User.findOne({ _id: decoded.id });
+      const receiver = currentUser.watchreceiver.filter((item) => {
+        const createdAt = moment(item.createdAt)
+        return createdAt.isBetween(startDate2, endDate2)
+      })
     if (results) {
       res.render("Inpatient/inpatient3", {
         inpatientarray: results,
@@ -829,7 +1053,7 @@ router.get(
         skip,
         firstname,
         lastname,
-        num,
+        num, receiver
       });
     }
   })
@@ -846,11 +1070,11 @@ router.get(
     const skip = (page - 1) * limit;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
-    const firstname = user.firstname;
-    const lastname = user.lastname;
+    const {firstname} = user;
+    const {lastname} = user;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
 
     const results = await Inpatientschema.find({
       ptfloor: "ICU",
@@ -862,6 +1086,16 @@ router.get(
       ptfloor: "ICU",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
+
+    const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+    const startDate2 = `${date}T14:00:00.000+00:00`;
+    const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+    const currentUser = await User.findOne({ _id: decoded.id });
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt)
+      return createdAt.isBetween(startDate2, endDate2)
+    })
+
     if (results) {
       res.render("Inpatient/icu", {
         inpatientarray: results,
@@ -869,7 +1103,7 @@ router.get(
         floor: "ICU",
         firstname,
         lastname,
-        num,
+        num,receiver
       });
     }
   })
@@ -902,6 +1136,16 @@ router.get(
       ptfloor: "ICC",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
+
+    const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+    const startDate2 = `${date}T14:00:00.000+00:00`;
+    const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+    const currentUser = await User.findOne({ _id: decoded.id });
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt)
+      return createdAt.isBetween(startDate2, endDate2)
+    })
+
     if (results) {
       res.render("Inpatient/icc", {
         inpatientarray: results,
@@ -909,7 +1153,7 @@ router.get(
         floor: "ICC",
         firstname,
         lastname,
-        num,
+        num, receiver
       });
     }
   })
@@ -926,11 +1170,11 @@ router.get(
     const skip = (page - 1) * limit;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
-    const firstname = user.firstname;
-    const lastname = user.lastname;
+    const {firstname} = user;
+    const {lastname} = user;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
 
     const results = await Inpatientschema.find({
       ptfloor: "3rd O",
@@ -942,6 +1186,16 @@ router.get(
       ptfloor: "3rd O",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
+
+    const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+    const startDate2 = `${date}T14:00:00.000+00:00`;
+    const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+    const currentUser = await User.findOne({ _id: decoded.id });
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt)
+      return createdAt.isBetween(startDate2, endDate2)
+    })
+
     if (results) {
       res.render("Inpatient/3rdo", {
         inpatientarray: results,
@@ -949,7 +1203,7 @@ router.get(
         floor: "3rd O",
         firstname,
         lastname,
-        num,
+        num,receiver
       });
     }
   })
@@ -966,11 +1220,11 @@ router.get(
     const skip = (page - 1) * limit;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
-    const firstname = user.firstname;
-    const lastname = user.lastname;
+    const {firstname} = user;
+    const {lastname} = user;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
 
     const results = await Inpatientschema.find({
       ptfloor: "3rd N",
@@ -982,6 +1236,15 @@ router.get(
       ptfloor: "3rd N",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
+
+    const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+    const startDate2 = `${date}T14:00:00.000+00:00`;
+    const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+    const currentUser = await User.findOne({ _id: decoded.id });
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt)
+      return createdAt.isBetween(startDate2, endDate2)
+    })
     if (results) {
       res.render("Inpatient/3rdn", {
         inpatientarray: results,
@@ -989,7 +1252,7 @@ router.get(
         floor: "3rd N",
         firstname,
         lastname,
-        num,
+        num, receiver
       });
     }
   })
@@ -1006,11 +1269,11 @@ router.get(
     const skip = (page - 1) * limit;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
-    const firstname = user.firstname;
-    const lastname = user.lastname;
+    const {firstname} = user;
+    const {lastname} = user;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
 
     const results = await Inpatientschema.find({
       ptfloor: "4th",
@@ -1022,6 +1285,16 @@ router.get(
       ptfloor: "4th",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
+
+    const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+    const startDate2 = `${date}T14:00:00.000+00:00`;
+    const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+    const currentUser = await User.findOne({ _id: decoded.id });
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt)
+      return createdAt.isBetween(startDate2, endDate2)
+    })
+
     if (results) {
       res.render("Inpatient/4th", {
         inpatientarray: results,
@@ -1029,7 +1302,7 @@ router.get(
         floor: "4th",
         firstname,
         lastname,
-        num,
+        num, receiver
       });
     }
   })
@@ -1046,11 +1319,11 @@ router.get(
     const skip = (page - 1) * limit;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
-    const firstname = user.firstname;
-    const lastname = user.lastname;
+    const {firstname} = user;
+    const {lastname} = user;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
 
     const results = await Inpatientschema.find({
       ptfloor: "5th",
@@ -1062,6 +1335,16 @@ router.get(
       ptfloor: "5th",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
+
+    const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+    const startDate2 = `${date}T14:00:00.000+00:00`;
+    const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+    const currentUser = await User.findOne({ _id: decoded.id });
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt)
+      return createdAt.isBetween(startDate2, endDate2)
+    })
+
     if (results) {
       res.render("Inpatient/5th", {
         inpatientarray: results,
@@ -1069,7 +1352,7 @@ router.get(
         floor: "5th",
         firstname,
         lastname,
-        num,
+        num, receiver
       });
     }
   })
@@ -1086,11 +1369,11 @@ router.get(
     const skip = (page - 1) * limit;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
-    const firstname = user.firstname;
-    const lastname = user.lastname;
+    const {firstname} = user;
+    const {lastname} = user;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
 
     const results = await Inpatientschema.find({
       ptfloor: "BMT",
@@ -1102,6 +1385,16 @@ router.get(
       ptfloor: "BMT",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
+
+    const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+    const startDate2 = `${date}T14:00:00.000+00:00`;
+    const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+    const currentUser = await User.findOne({ _id: decoded.id });
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt)
+      return createdAt.isBetween(startDate2, endDate2)
+    })
+
     if (results) {
       res.render("Inpatient/bmt", {
         inpatientarray: results,
@@ -1109,16 +1402,26 @@ router.get(
         floor: "BMT",
         firstname,
         lastname,
-        num,
+        num, receiver
       });
     }
   })
 );
 
 // OUTPATIENT
-router.get("/outpatient", checkIfUser, requireAuth, (req, res) => {
-  res.render("Outpatient/outpatient");
-});
+router.get("/outpatient", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const date = moment().format("YYYY-MM-DD");
+    const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+    const startDate = `${date}T14:00:00.000+00:00`;
+    const endDate = `${tomorrow}T13:59:59.000+00:00`;
+    const currentUser = await User.findOne({ _id: decoded.id });
+    const receiver = currentUser.watchreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt)
+      return createdAt.isBetween(startDate, endDate)
+    })
+  res.render("Outpatient/outpatient", {receiver});
+}) );
 
 // OUPATIENT OVERVIEW
 router.get(
@@ -1131,11 +1434,11 @@ router.get(
     const skip = (page - 1) * limit;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
-    const firstname = user.firstname;
-    const lastname = user.lastname;
+    const {firstname} = user;
+    const {lastname} = user;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
     const num = await Outpatient.find({
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
@@ -1144,22 +1447,42 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+      const startDate2 = `${date}T14:00:00.000+00:00`;
+      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+      const currentUser = await User.findOne({ _id: decoded.id });
+      const receiver = currentUser.watchreceiver.filter((item) => {
+        const createdAt = moment(item.createdAt)
+        return createdAt.isBetween(startDate2, endDate2)
+      })
+
     if (results) {
       res.render("Outpatient/outpatient3", {
         outpatientarray: results,
         num,
         firstname,
         lastname,
-        moment: moment,
+        moment: moment, receiver
       });
     }
   })
 );
 
 //IVPREP
-router.get("/ivprep", checkIfUser, requireAuth, (req, res) => {
-  res.render("IvPrep/ivprep");
-});
+router.get("/ivprep", checkIfUser, requireAuth, asyncHandler( async  (req, res) => {
+  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+  const date = moment().format("YYYY-MM-DD");
+  const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+  const startDate = `${date}T14:00:00.000+00:00`;
+  const endDate = `${tomorrow}T13:59:59.000+00:00`;
+  const currentUser = await User.findOne({ _id: decoded.id });
+  const receiver = currentUser.watchreceiver.filter((item) => {
+    const createdAt = moment(item.createdAt)
+    return createdAt.isBetween(startDate, endDate)
+  })
+  res.render("IvPrep/ivprep", {receiver});
+}) );
 
 //IVPREP INPATIENT
 router.get(
@@ -1171,8 +1494,8 @@ router.get(
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
 
     const outpatient = await Outpatient.find({
       oraliv: "IV",
@@ -1196,13 +1519,23 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+      const startDate2 = `${date}T14:00:00.000+00:00`;
+      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+      const currentUser = await User.findOne({ _id: decoded.id });
+      const receiver = currentUser.watchreceiver.filter((item) => {
+        const createdAt = moment(item.createdAt)
+        return createdAt.isBetween(startDate2, endDate2)
+      })
+
     if (results) {
       res.render("IvPrep/ivprepin", {
         inarray: results,
         moment: moment,
         outpatient,
         dispense,
-        num,
+        num, receiver
       });
     }
   })
@@ -1218,8 +1551,8 @@ router.get(
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
     const outpatient = await Outpatient.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1244,13 +1577,24 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+      const startDate2 = `${date}T14:00:00.000+00:00`;
+      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+      const currentUser = await User.findOne({ _id: decoded.id });
+      const receiver = currentUser.watchreceiver.filter((item) => {
+        const createdAt = moment(item.createdAt)
+        return createdAt.isBetween(startDate2, endDate2)
+      })
+      
     if (results) {
       res.render("IvPrep/ivprepinextradose", {
         inarray: results,
         moment: moment,
         num,
         outpatient,
-        dispense,
+        dispense, receiver
       });
     }
   })
@@ -1266,8 +1610,8 @@ router.get(
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
     const outpatient = await Outpatient.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1292,13 +1636,24 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+      const startDate2 = `${date}T14:00:00.000+00:00`;
+      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+      const currentUser = await User.findOne({ _id: decoded.id });
+      const receiver = currentUser.watchreceiver.filter((item) => {
+        const createdAt = moment(item.createdAt)
+        return createdAt.isBetween(startDate2, endDate2)
+      })
+
     if (results) {
       res.render("IvPrep/ivprepinbmt", {
         inarray: results,
         moment: moment,
         outpatient,
         dispense,
-        num,
+        num,receiver
       });
     }
   })
@@ -1314,8 +1669,8 @@ router.get(
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
     const outpatient = await Outpatient.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1338,13 +1693,23 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+      const startDate2 = `${date}T14:00:00.000+00:00`;
+      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+      const currentUser = await User.findOne({ _id: decoded.id });
+      const receiver = currentUser.watchreceiver.filter((item) => {
+        const createdAt = moment(item.createdAt)
+        return createdAt.isBetween(startDate2, endDate2)
+      })
+
     if (results) {
       res.render("IvPrep/ivprepindoneview", {
         inarray: results,
         moment: moment,
         outpatient,
         dispense,
-        num,
+        num, receiver
       });
     }
   })
@@ -1360,8 +1725,8 @@ router.get(
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
     const inarray = await Inpatientschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1384,13 +1749,24 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+      const startDate2 = `${date}T14:00:00.000+00:00`;
+      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+      const currentUser = await User.findOne({ _id: decoded.id });
+      const receiver = currentUser.watchreceiver.filter((item) => {
+        const createdAt = moment(item.createdAt)
+        return createdAt.isBetween(startDate2, endDate2)
+      })
+
     if (results) {
       res.render("IvPrep/ivprepdis", {
         outarray: results,
         moment: moment,
         inarray,
         outpatient,
-        num,
+        num, receiver
       });
     }
   })
@@ -1406,8 +1782,8 @@ router.get(
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
     const dispense = await Dispenseschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1435,6 +1811,16 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+      const startDate2 = `${date}T14:00:00.000+00:00`;
+      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+      const currentUser = await User.findOne({ _id: decoded.id });
+      const receiver = currentUser.watchreceiver.filter((item) => {
+        const createdAt = moment(item.createdAt)
+        return createdAt.isBetween(startDate2, endDate2)
+      })
     if (results) {
       res.render("IvPrep/ivprepdispensedoneview", {
         disarray: results,
@@ -1442,7 +1828,7 @@ router.get(
         outpatient,
         inarray,
         num,
-        dispense,
+        dispense, receiver
       });
     }
   })
@@ -1458,8 +1844,8 @@ router.get(
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
     const dispense = await Dispenseschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1482,13 +1868,24 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+      const startDate2 = `${date}T14:00:00.000+00:00`;
+      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+      const currentUser = await User.findOne({ _id: decoded.id });
+      const receiver = currentUser.watchreceiver.filter((item) => {
+        const createdAt = moment(item.createdAt)
+        return createdAt.isBetween(startDate2, endDate2)
+      })
+
     if (results) {
       res.render("IvPrep/ivprepout", {
         outarray: results,
         moment: moment,
         inarray,
         dispense,
-        num,
+        num,receiver
       });
     }
   })
@@ -1504,8 +1901,8 @@ router.get(
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
     const inarray = await Inpatientschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1535,6 +1932,17 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+      const startDate2 = `${date}T14:00:00.000+00:00`;
+      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+      const currentUser = await User.findOne({ _id: decoded.id });
+      const receiver = currentUser.watchreceiver.filter((item) => {
+        const createdAt = moment(item.createdAt)
+        return createdAt.isBetween(startDate2, endDate2)
+      })
+
     if (results) {
       res.render("IvPrep/ivprepoutextradose", {
         outarray: results,
@@ -1542,7 +1950,7 @@ router.get(
         num,
         inarray,
         dispense,
-        outpatient,
+        outpatient, receiver
       });
     }
   })
@@ -1558,8 +1966,8 @@ router.get(
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
     const inarray = await Inpatientschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1587,6 +1995,17 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+      const startDate2 = `${date}T14:00:00.000+00:00`;
+      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+      const currentUser = await User.findOne({ _id: decoded.id });
+      const receiver = currentUser.watchreceiver.filter((item) => {
+        const createdAt = moment(item.createdAt)
+        return createdAt.isBetween(startDate2, endDate2)
+      })
+
     if (results) {
       res.render("IvPrep/ivprepoutdoneview", {
         outarray: results,
@@ -1594,7 +2013,7 @@ router.get(
         inarray,
         dispense,
         num,
-        outpatient,
+        outpatient,receiver
       });
     }
   })
@@ -1610,8 +2029,8 @@ router.get(
     const limit = req.query.limit * 1 || 6;
     const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
     const results = await Labschema.find({
       labcomment: { $not: { $regex: "RECEIVED" } },
       createdAt: { $gte: startDate, $lte: endDate },
@@ -1622,12 +2041,23 @@ router.get(
       labcomment: { $not: { $regex: "RECEIVED" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
+
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+      const startDate2 = `${date}T14:00:00.000+00:00`;
+      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+      const currentUser = await User.findOne({ _id: decoded.id });
+      const receiver = currentUser.watchreceiver.filter((item) => {
+        const createdAt = moment(item.createdAt)
+        return createdAt.isBetween(startDate2, endDate2)
+      })
+
     if (results) {
       res.render("Lab/lab.ejs", {
         labarray: results,
         moment: moment,
         num,
-        page,
+        page, receiver
       });
     }
   })
@@ -1648,21 +2078,42 @@ router.get(
     const results = await Labschema.find({ labcomment: "RECEIVED" })
       .skip(skip)
       .limit(limit);
+      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      const date = moment().format("YYYY-MM-DD");
+      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+      const startDate = `${date}T14:00:00.000+00:00`;
+      const endDate = `${tomorrow}T13:59:59.000+00:00`;
+      const currentUser = await User.findOne({ _id: decoded.id });
+      const receiver = currentUser.watchreceiver.filter((item) => {
+        const createdAt = moment(item.createdAt)
+        return createdAt.isBetween(startDate, endDate)
+      })
+
     if (results) {
       res.render("Lab/labreceivedview.ejs", {
         labarray: results,
         moment: moment,
         num,
-        page,
+        page, receiver
       });
     }
   })
 );
 
 // DISPENSE
-router.get("/dispense", checkIfUser, requireAuth, (req, res) => {
-  res.render("Dispense/dispense");
-});
+router.get("/dispense", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+  const date = moment().format("YYYY-MM-DD");
+  const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+  const startDate = `${date}T14:00:00.000+00:00`;
+  const endDate = `${tomorrow}T13:59:59.000+00:00`;
+  const currentUser = await User.findOne({ _id: decoded.id });
+  const receiver = currentUser.watchreceiver.filter((item) => {
+    const createdAt = moment(item.createdAt)
+    return createdAt.isBetween(startDate, endDate)
+  })
+  res.render("Dispense/dispense", {receiver});
+}));
 
 // DISPENSE OVERVIEW
 router.get(
@@ -1674,8 +2125,8 @@ router.get(
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
     const outpatient = await Outpatient.find({
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1695,13 +2146,24 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+      const startDate2 = `${date}T14:00:00.000+00:00`;
+      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+      const currentUser = await User.findOne({ _id: decoded.id });
+      const receiver = currentUser.watchreceiver.filter((item) => {
+        const createdAt = moment(item.createdAt)
+        return createdAt.isBetween(startDate2, endDate2)
+      })
+      
     if (results) {
       res.render("Dispense/dispense3", {
         dispensearray: results,
         moment: moment,
         outpatient,
         inarray,
-        num,
+        num, receiver
       });
     }
   })
@@ -1717,8 +2179,8 @@ router.get(
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
     const outpatient = await Outpatient.find({
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1737,12 +2199,23 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+      const startDate2 = `${date}T14:00:00.000+00:00`;
+      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+      const currentUser = await User.findOne({ _id: decoded.id });
+      const receiver = currentUser.watchreceiver.filter((item) => {
+        const createdAt = moment(item.createdAt)
+        return createdAt.isBetween(startDate2, endDate2)
+      })
+
     if (results) {
       res.render("Dispense/dispense3in", {
         dispensearray: results,
         moment: moment,
         num,
-        outpatient,
+        outpatient, receiver
       });
     }
   })
@@ -1758,8 +2231,8 @@ router.get(
     const limit = req.query.limit * 1 || 9;
     const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
     const inarray = await Inpatientschema.find({
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1782,13 +2255,24 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+      const startDate2 = `${date}T14:00:00.000+00:00`;
+      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+      const currentUser = await User.findOne({ _id: decoded.id });
+      const receiver = currentUser.watchreceiver.filter((item) => {
+        const createdAt = moment(item.createdAt)
+        return createdAt.isBetween(startDate2, endDate2)
+      })
+
     if (results) {
       res.render("Dispense/edindispense", {
         dispensearray: results,
         outpatient,
         inarray,
         num,
-        moment: moment,
+        moment: moment, receiver
       });
     }
   })
@@ -1804,8 +2288,8 @@ router.get(
     const limit = req.query.limit * 1 || 9;
     const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
     const inarray = await Inpatientschema.find({
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1828,13 +2312,24 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+      const startDate2 = `${date}T14:00:00.000+00:00`;
+      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+      const currentUser = await User.findOne({ _id: decoded.id });
+      const receiver = currentUser.watchreceiver.filter((item) => {
+        const createdAt = moment(item.createdAt)
+        return createdAt.isBetween(startDate2, endDate2)
+      })
+
     if (results) {
       res.render("Dispense/dischargeindispense", {
         dispensearray: results,
         inarray,
         outpatient,
         moment: moment,
-        num,
+        num, receiver
       });
     }
   })
@@ -1850,8 +2345,8 @@ router.get(
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
     const outpatient = await Outpatient.find({
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1872,13 +2367,24 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
+      const startDate2 = `${date}T14:00:00.000+00:00`;
+      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
+      const currentUser = await User.findOne({ _id: decoded.id });
+      const receiver = currentUser.watchreceiver.filter((item) => {
+        const createdAt = moment(item.createdAt)
+        return createdAt.isBetween(startDate2, endDate2)
+      })
+
     if (results) {
       res.render("Dispense/doneviewindispense", {
         dispensearray: results,
         moment: moment,
         num,
         outpatient,
-        inarray,
+        inarray, receiver
       });
     }
   })
@@ -2042,29 +2548,21 @@ router.post(
 
 // CHANGE IMAGE POST REQUEST
 router.post(
-  "/update-avatar",
-  upload.single("update-profile"),
+  "/updateavatar",
+  uploadSingleImage("updateprofile"),
+  profileimage,
   checkIfUser,
   requireAuth,
-  (req, res) => {
-    cloudinary.uploader.upload(
-      req.file.path,
-      { folder: "PharmacyConnect/Profile-Image" },
-      async (error, result) => {
-        if (result) {
-          const decoded = jwt.verify(
-            req.cookies.jwt,
-            process.env.JWTSECRET_KEY
-          );
-          await User.updateOne(
-            { _id: decoded.id },
-            { profileimage: result.secure_url }
-          );
-          res.redirect("/interface");
-        }
-      }
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.updateprofile }
     );
-  }
+    if (results) {
+      res.redirect("/interface");
+    }
+  })
 );
 
 //WATCH LIST
@@ -2145,438 +2643,392 @@ router.post(
 );
 
 // CHOOSE IMAGE POST REQUEST
-router.post("/avatarselection", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-01.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+router.post(
+  "/avatarselection",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-01.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.findByIdAndUpdate(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection2", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-02.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection2",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-02.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection3", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-03.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection3",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-03.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection4", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-04.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection4",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-04.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection5", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-06.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection5",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-06.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection6", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-07.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection6",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-07.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection7", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-08.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection7",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-08.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection8", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-09.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection8",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-09.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection9", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-10.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection09",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-10.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection10", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-11.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection10",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-11.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection11", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-12.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection11",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-12.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection12", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-13.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection12",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-13.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection13", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-14.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection13",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-14.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection14", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-15.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection14",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-15.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection15", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-16.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection15",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-16.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection16", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-17.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection16",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-17.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection17", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-18.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection17",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-18.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection18", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-19.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection18",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-19.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection19", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-20.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection19",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-20.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection20", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-21.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection20",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-21.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection21", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-22.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection21",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-22.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection22", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-23.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection22",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-23.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection23", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-24.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
+  })
+);
+router.post(
+  "/avatarselection23",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-24.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
     }
-  );
-});
-router.post("/avatarselection24", checkIfUser, requireAuth, (req, res) => {
-  cloudinary.uploader.upload(
-    "./public/img/Avatar/Untitled-1-25.png",
-    { folder: "PharmacyConnect/AVATAR" },
-    async (error, result) => {
-      if (result) {
-        const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-        await User.updateOne(
-          { _id: decoded.id },
-          { profileimage: result.secure_url }
-        );
-        res.redirect("/login");
-      } else {
-        console.log(error);
-      }
-    }
-  );
-});
+  })
+);
+// router.post("/avatarselection24", checkIfUser, requireAuth, (req, res) => {
+//   cloudinary.uploader.upload(
+//     "./public/img/Avatar/Untitled-1-25.png",
+//     { folder: "PharmacyConnect/AVATAR" },
+//     async (error, result) => {
+//       if (result) {
+//         const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+//         await User.updateOne(
+//           { _id: decoded.id },
+//           { profileimage: result.secure_url }
+//         );
+//         res.redirect("/login");
+//       } else {
+//         console.log(error);
+//       }
+//     }
+//   );
+// });
 
 // INPATIENT ADD PATIENT
 router.post(
@@ -2996,14 +3448,17 @@ router.post(
     const endDate = edate + "T23:59:59.000+00:00";
     const results = await Labschema.find({
       createdAt: { $gte: startDate, $lte: endDate },
-    }).skip(skip).limit(limit);
+    })
+      .skip(skip)
+      .limit(limit);
     const num = await Labschema.find({
       createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments()
+    }).countDocuments();
     if (results) {
       res.render("Lab/labfinddate.ejs", {
         searcharray: results,
-        moment: moment,num
+        moment: moment,
+        num,
       });
     }
   })
@@ -3016,6 +3471,7 @@ router.post(
   requireAuth,
   asyncHandler(async (req, res) => {
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+
     const add = await User.updateOne(
       { _id: decoded.id },
       {
@@ -3033,6 +3489,98 @@ router.post(
 
     if (add) {
       res.redirect("/todolist");
+    }
+  })
+);
+
+//ADD Medication
+router.post(
+  "/addmedication",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const results = await Medication.create(req.body);
+    if (results) {
+      res.redirect("/dic");
+    }
+  })
+);
+
+//ADD DIC QUESTION
+router.post(
+  "/addquestion",
+  [check("question").notEmpty()],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+
+    req.body.detector = Date.now();
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+
+    const dic = await User.findOneAndUpdate(
+      { role: "DIC" },
+      {
+        $push: {
+          dicreceiver: {
+            question: req.body.question,
+            answer: req.body.answer,
+            detector: req.body.detector,
+            sendername: req.body.sendername,
+            senderimage: req.body.senderimage,
+            createdAt: new Date(),
+          },
+        },
+      }
+    );
+
+    console.log(dic);
+
+    const results = await User.findOneAndUpdate(
+      { _id: decoded.id },
+      {
+        $push: {
+          dicsender: {
+            question: req.body.question,
+            answer: req.body.answer,
+            detector: req.body.detector,
+            createdAt: new Date(),
+          },
+        },
+      }
+    );
+
+    console.log(results);
+    if (results) {
+      res.json({ done: dic });
+    }
+  })
+);
+
+//ADD Medication CLASS
+router.post(
+  "/addmedicationclass",
+  [check("classname").notEmpty()],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+
+    const unique = await Medicationclass.findOne({
+      classname: req.body.classname,
+    });
+    if (unique) {
+      return res.json({ unique: "This Class Is Already Exist" });
+    }
+    const medclass = await Medicationclass.create(req.body);
+    if (medclass) {
+      res.json({ done: medclass });
     }
   })
 );
@@ -3185,6 +3733,22 @@ router.delete(
   })
 );
 
+//WATCH DELETE TASK
+router.delete(
+  "/dicdelete/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const deldic = await User.updateOne(
+      { _id: decoded.id },
+      { $pull: { dicsender: { _id: req.params.id } } }
+    );
+    if (deldic) {
+      res.redirect("/dicsender");
+    }
+  })
+);
 // ---------------------------------
 //PUT REQUEST
 // ----------------------------------
@@ -3514,11 +4078,12 @@ router.put(
 //ATTACH FILE INPATIENT
 router.put(
   "/attach/:id",
-  upload.single("attachfile"),
-  imageresize,
+  uploadSingleImage("attachfile"),
+  imageresizeforinpatient,
   checkIfUser,
   requireAuth,
   async (req, res) => {
+    console.log(req.file);
     const results = await Inpatientschema.findByIdAndUpdate(
       req.params.id,
       req.body
@@ -3532,8 +4097,8 @@ router.put(
 //ATTACH FILE ICU
 router.put(
   "/attachICU/:id",
-  upload.single("attachfile"),
-  imageresize,
+  uploadSingleImage("attachfile"),
+  imageresizeforinpatient,
   checkIfUser,
   requireAuth,
   async (req, res) => {
@@ -3550,8 +4115,8 @@ router.put(
 //ATTACH FILE ICC
 router.put(
   "/attachICC/:id",
-  upload.single("attachfile"),
-  imageresize,
+  uploadSingleImage("attachfile"),
+  imageresizeforinpatient,
   checkIfUser,
   requireAuth,
   async (req, res) => {
@@ -3568,8 +4133,8 @@ router.put(
 //ATTACH FILE BMT
 router.put(
   "/attachBMT/:id",
-  upload.single("attachfile"),
-  imageresize,
+  uploadSingleImage("attachfile"),
+  imageresizeforinpatient,
   checkIfUser,
   requireAuth,
   async (req, res) => {
@@ -3586,8 +4151,8 @@ router.put(
 //ATTACH FILE 5TH
 router.put(
   "/attach5TH/:id",
-  upload.single("attachfile"),
-  imageresize,
+  uploadSingleImage("attachfile"),
+  imageresizeforinpatient,
   checkIfUser,
   requireAuth,
   async (req, res) => {
@@ -3604,8 +4169,8 @@ router.put(
 //ATTACH FILE 4th
 router.put(
   "/attach4TH/:id",
-  upload.single("attachfile"),
-  imageresize,
+  uploadSingleImage("attachfile"),
+  imageresizeforinpatient,
   checkIfUser,
   requireAuth,
   async (req, res) => {
@@ -3622,8 +4187,8 @@ router.put(
 //ATTACH FILE 3rdO
 router.put(
   "/attach3rdO/:id",
-  upload.single("attachfile"),
-  imageresize,
+  uploadSingleImage("attachfile"),
+  imageresizeforinpatient,
   checkIfUser,
   requireAuth,
   async (req, res) => {
@@ -3640,8 +4205,8 @@ router.put(
 //ATTACH FILE 3rdN
 router.put(
   "/attach3rdN/:id",
-  upload.single("attachfile"),
-  imageresize,
+  uploadSingleImage("attachfile"),
+  imageresizeforinpatient,
   checkIfUser,
   requireAuth,
   async (req, res) => {
@@ -3658,20 +4223,18 @@ router.put(
 //ATTACH FILE outpatient
 router.put(
   "/attachout/:id",
-  upload.single("attachfile"),
-  imageresize,
+  uploadSingleImage("attachfile"),
+  imageresizeforoutpatient,
   checkIfUser,
   requireAuth,
   async (req, res) => {
-    const results = await Outpatient.findByIdAndUpdate(
-      req.params.id,
-      req.body
-    );
+    const results = await Outpatient.findByIdAndUpdate(req.params.id, req.body);
     if (results) {
       res.redirect("/outpatient3");
     }
   }
 );
+
 //CHANGE PASSWORD
 router.put(
   "/changepassword",
@@ -3784,7 +4347,11 @@ router.put(
 
     const results = await User.updateOne(
       { "todolist._id": req.params.id },
-      { "todolist.$": req.body }
+      {
+        $set: {
+          "todolist.$.title": req.body.title,
+        },
+      }
     );
     console.log(results);
     if (results) {
@@ -3848,4 +4415,190 @@ router.put(
   })
 );
 
+//UPDATE MEDICATION
+router.put(
+  "/updatemedication",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    if (req.body.select === "generic") {
+      const results = await Medication.findOneAndUpdate(
+        { trade: req.body.trade },
+        { generic: req.body.input }
+      );
+      if (results) {
+        res.redirect("/dic");
+      }
+    }
+
+    if (req.body.select === "mechanism") {
+      const results2 = await Medication.findOneAndUpdate(
+        { trade: req.body.trade },
+        { mechanism: req.body.input }
+      );
+      if (results2) {
+        res.redirect("/dic");
+      }
+    }
+
+    if (req.body.select === "dosageform") {
+      const results3 = await Medication.findOneAndUpdate(
+        { trade: req.body.trade },
+        { dosageform: req.body.input }
+      );
+      if (results3) {
+        res.redirect("/dic");
+      }
+    }
+
+    if (req.body.select === "dose") {
+      const results4 = await Medication.findOneAndUpdate(
+        { trade: req.body.trade },
+        { dose: req.body.input }
+      );
+      if (results4) {
+        res.redirect("/dic");
+      }
+    }
+
+    if (req.body.select === "adminstration") {
+      const results4 = await Medication.findOneAndUpdate(
+        { trade: req.body.trade },
+        { adminstration: req.body.input }
+      );
+      if (results4) {
+        res.redirect("/dic");
+      }
+    }
+
+    if (req.body.select === "ptinformation") {
+      const results4 = await Medication.findOneAndUpdate(
+        { trade: req.body.trade },
+        { ptinformation: req.body.input }
+      );
+      if (results4) {
+        res.redirect("/dic");
+      }
+    }
+
+    if (req.body.select === "sideeffect") {
+      const results4 = await Medication.findOneAndUpdate(
+        { trade: req.body.trade },
+        { sideeffect: req.body.input }
+      );
+      if (results4) {
+        res.redirect("/dic");
+      }
+    }
+
+    if (req.body.select === "monitor") {
+      const results4 = await Medication.findOneAndUpdate(
+        { trade: req.body.trade },
+        { monitor: req.body.input }
+      );
+      if (results4) {
+        res.redirect("/dic");
+      }
+    }
+
+    if (req.body.select === "interaction") {
+      const results4 = await Medication.findOneAndUpdate(
+        { trade: req.body.trade },
+        { interaction: req.body.input }
+      );
+      if (results4) {
+        res.redirect("/dic");
+      }
+    }
+
+    if (req.body.select === "specialprecaution") {
+      const results4 = await Medication.findOneAndUpdate(
+        { trade: req.body.trade },
+        { specialprecaution: req.body.input }
+      );
+      if (results4) {
+        res.redirect("/dic");
+      }
+    }
+
+    if (req.body.select === "miscellaneous") {
+      const results4 = await Medication.findOneAndUpdate(
+        { trade: req.body.trade },
+        { miscellaneous: req.body.input }
+      );
+      if (results4) {
+        res.redirect("/dic");
+      }
+    }
+  })
+);
+
+// DIC RECIEVER ANSWER
+router.put(
+  "/dicanswer/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const results = await User.updateOne(
+      { "dicreceiver._id": req.params.id },
+      {
+        $set: {
+          "dicreceiver.$.answer": req.body.answer,
+        },
+      }
+    );
+
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const selectedObject = user.dicreceiver.find((item) => {
+      return item._id == req.params.id;
+    });
+    const selectdetector = selectedObject.detector;
+    const detector = await User.updateOne(
+      { "dicsender.detector": selectdetector },
+      {
+        $set: {
+          "dicsender.$.answer": req.body.answer,
+        },
+      }
+    );
+
+    if (detector) {
+      res.redirect("/dic");
+    }
+  })
+);
+
+// DIC SEARCH DATE
+router.post(
+  "/findDatedic",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const sdate = req.body.sDate;
+    const edate = req.body.eDate;
+    const startDate = `${sdate}T00:00:00.000+00:00`;
+    const endDate = `${edate}T23:59:59.000+00:00`;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
+    const receiver = await User.findById({_id : decoded.id})
+    const searchdate = receiver.dicreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt)
+      return createdAt.isBetween(startDate,endDate)
+    })
+    const array = []
+    array.push(searchdate)
+    console.log(array);
+    if (searchdate === undefined) {
+       await User.findOneAndUpdate({role : "DIC"},   { $set : {dicsearch : [] }})
+    }
+
+    if (searchdate) {
+      await User.findOneAndUpdate({role : "DIC"},   { $set : {dicsearch : searchdate }})
+   }
+    // const search = await User.findOneAndUpdate({role : "DIC"},   { $set : {dicsearch : searchdate }})
+
+  
+      res.redirect("/dic")
+    })
+   )
 module.exports = router;

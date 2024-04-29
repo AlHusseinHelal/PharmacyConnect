@@ -65,7 +65,7 @@
 # body and sidebar
 --------------------------------------------------------------*/ -->
 
-      <main class="d-flex flex-nowrap" style="height: 89vh;">
+      <main id="main" class="d-flex flex-nowrap" style="height: 89vh;">
 
 
         <!-- ARROW SIDEBAR -->
@@ -162,6 +162,8 @@
 
             </li>
 
+
+
             <!-- MEDICATION -->
             <li class="mb-1">
               <div class="d-inline-flex divsvgpres">
@@ -180,65 +182,322 @@
               </div>
               <div class="collapse " id="medicationcollapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <!-- MEDICATION AntiCancer -->
+
+
+                  <!-- MEDICATION Anti-Cancer -->
                   <li>
                     <a id="btn4" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
                       data-bs-toggle="collapse" data-bs-target="#anticancercollapse"
-                      aria-expanded="false">AntiCancer</a>
+                      aria-expanded="false">Anti-Cancer</a>
                     <div class="collapse" id="anticancercollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
-                        <li class="my-1 list-group-item list-group-item-action Ifosfamide">Ifosfamide</li>
-                        <li class="mb-1 list-group-item list-group-item-action Cyclophpsphamide">Cyclophpsphamide</li>
-                        <li class="mb-1 list-group-item list-group-item-action Basiliximab">Basiliximab</li>
-                        <li class="mb-1 list-group-item list-group-item-action Rituximab">Rituximab</li>
 
 
+                        <% AntiCancer.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade %>">
+                            <%= item.trade %>
+                          </li>
+                        
+                          <% }) %>
 
 
-
-
-
+                            <li class="mb-1 list-group-item list-group-item-action ATRA">ATRA</li>
+                            <li class="mb-1 list-group-item list-group-item-action Basiliximab">Basiliximab</li>
+                            <li class="mb-1 list-group-item list-group-item-action Cyclophpsphamide">
+                              Cyclophpsphamide</li>
+                            <li class="mb-1 list-group-item list-group-item-action Dasatinib">Dasatinib</li>
+                            <li class="mb-1 list-group-item list-group-item-action Etoposide">Etoposide</li>
+                            <li class="mb-1 list-group-item list-group-item-action Hydroxyurea">Hydroxyurea</li>
+                            <li class="my-1 list-group-item list-group-item-action Ifosfamide">Ifosfamide</li>
+                            <li class="mb-1 list-group-item list-group-item-action Imatinib">Imatinib</li>
+                            <li class="mb-1 list-group-item list-group-item-action Isotretinoin">Isotretinoin</li>
+                            <li class="mb-1 list-group-item list-group-item-action Mercaptopurine">Mercaptopurine
+                            </li>
+                            <li class="mb-1 list-group-item list-group-item-action Procarbazine">Procarbazine</li>
+                            <li class="mb-1 list-group-item list-group-item-action Rituximab">Rituximab</li>
+                            <li class="mb-1 list-group-item list-group-item-action Temozolomide">Temozolomide</li>
 
                       </ul>
                     </div>
                   </li>
-                  <!-- MEDICATION AntiBiotics -->
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Anti-Biotics -->
                   <li>
                     <a id="btn5" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
                       data-bs-toggle="collapse" data-bs-target="#antibioticcollapse"
                       aria-expanded="false">AntiBiotics</a>
                     <div class="collapse" id="antibioticcollapse">
-                      <ul class="ms-3">
-                        <li>5-flurouracil ED 1%</li>
-                        <li>Asparaginase (Spectrila)</li>
-                        <li>Avastin</li>
-                        <li>Bleomycin intra-lesional lymphangioma</li>
-                        <li>Bortezomib</li>
-                        <li>brentuximab vedotin Information</li>
-                        <li>Dinutuximab</li>
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <% if (AntiBiotics) { %>
+                          <% AntiBiotics.forEach(item=> { %>
+                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade %>">
+                              <%= item.generic %>
+                            </li>
+                            <% }) %>
+                              <% } %>
+                                <li class="my-1 list-group-item list-group-item-action AmoxicillinClavulanic">
+                                  Amoxicillin +
+                                  Clavulanic</li>
+                                <li class="mb-1 list-group-item list-group-item-action Amoxicillin">Amoxicillin</li>
+                                <li class="mb-1 list-group-item list-group-item-action Azithromycin">Azithromycin</li>
+                                <li class="mb-1 list-group-item list-group-item-action Cefadroxil">Cefadroxil</li>
+                                <li class="mb-1 list-group-item list-group-item-action Cefdinir">Cefdinir</li>
+                                <li class="mb-1 list-group-item list-group-item-action Cefpodoxime">Cefpodoxime</li>
+                                <li class="mb-1 list-group-item list-group-item-action Ciprofloxacin">Ciprofloxacin</li>
+                                <li class="mb-1 list-group-item list-group-item-action Clindamycin">Clindamycin</li>
+                                <li class="mb-1 list-group-item list-group-item-action Dapsone">Dapsone</li>
+                                <li class="mb-1 list-group-item list-group-item-action Levofloxacin">Levofloxacin</li>
+                                <li class="mb-1 list-group-item list-group-item-action Linezolid">Linezolid</li>
+                                <li class="mb-1 list-group-item list-group-item-action Sulfamethoxazole">
+                                  Sulfamethoxazole +
+                                  Trimethoprim</li>
+
                       </ul>
                     </div>
                   </li>
-                  <!-- MEDICATION AntiFungal -->
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Anti-Coagulant-->
+                  <li>
+                    <a id="btn31" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#AntiCoagulantcollapse"
+                      aria-expanded="false">Anti-Coagulant</a>
+                    <div class="collapse" id="AntiCoagulantcollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Enoxaparin">Enoxaparin</li>
+                        <li class="mb-1 list-group-item list-group-item-action "></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Anti-Convulsant-->
+                  <li>
+                    <a id="btn36" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#AntiConvulsantcollapse"
+                      aria-expanded="false">Anti-Convulsant</a>
+                    <div class="collapse" id="AntiConvulsantcollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Gapabentin">Gapabentin</li>
+                        <li class="mb-1 list-group-item list-group-item-action "></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Anti-Diarrheal-->
+                  <li>
+                    <a id="btn29" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#AntiDiarrhealccollapse"
+                      aria-expanded="false">Anti-Diarrheal</a>
+                    <div class="collapse" id="AntiDiarrhealccollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Diphenoxylate">Diphenoxylate & Atropine
+                        </li>
+                        <li class="mb-1 list-group-item list-group-item-action Paracetamol">Paracetamol</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Anti-emetic -->
+                  <li>
+                    <a id="btn16" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Antiemeticcecollapse"
+                      aria-expanded="false">Anti-Emetic</a>
+                    <div class="collapse" id="Antiemeticcecollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Aprepitant">Aprepitant</li>
+                        <li class="mb-1 list-group-item list-group-item-action Ondansetron">Ondansetron</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Anti-Flatulence -->
+                  <li>
+                    <a id="btn11" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#AntiFlatulencecollapse"
+                      aria-expanded="false">Anti-Flatulence</a>
+                    <div class="collapse" id="AntiFlatulencecollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Acicone">(Magaldrate,
+                          Simethicone)</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Anti-Fungal -->
                   <li>
                     <a id="btn6" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
                       data-bs-toggle="collapse" data-bs-target="#antifungalcollapse"
                       aria-expanded="false">AntiFungal</a>
                     <div class="collapse" id="antifungalcollapse">
                       <ul class="ms-3 list-group group" style="list-style: none; text-align: center;">
-                        <li class="my-1 list-group-item list-group-item-action">5-flurouracil ED 1%</li>
-                        <li class="mb-1 list-group-item list-group-item-action px-1">Asparaginase (Spectrila)</li>
-                        <li class="mb-1 list-group-item list-group-item-action">Avastin</li>
-                        <li class="mb-1 list-group-item list-group-item-action px-1">Bleomycin intra-lesional
-                          lymphangioma
-                        </li>
-                        <li class="mb-1 list-group-item list-group-item-action px-2">Bortezomib</li>
-                        <li class="mb-1 list-group-item list-group-item-action px-2">brentuximab vedotin Information
-                        </li>
-                        <li class="mb-1 list-group-item list-group-item-action px-2">Dinutuximab</li>
+                        <li class="my-1 list-group-item list-group-item-action Bifonazole">Bifonazole</li>
+                        <li class="mb-1 list-group-item list-group-item-action Fluconazole">Fluconazole</li>
+                        <li class="mb-1 list-group-item list-group-item-action Itraconazole">Itraconazole</li>
+                        <li class="mb-1 list-group-item list-group-item-action Posaconazole">Posaconazole</li>
+                        <li class="mb-1 list-group-item list-group-item-action Terbinafine">Terbinafine</li>
+                        <li class="mb-1 list-group-item list-group-item-action Voriconazole">Voriconazole</li>
+
                       </ul>
                     </div>
                   </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Anti-gout -->
+                  <li>
+                    <a id="btn13" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Antigoutcecollapse" aria-expanded="false">Anti-Gout</a>
+                    <div class="collapse" id="Antigoutcecollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Allopurinol">Allopurinol</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Hyperprolactinemia-->
+                  <li>
+                    <a id="btn23" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Hyperprolactinemiacollapse"
+                      aria-expanded="false">Anti-Hyperprolactinemia</a>
+                    <div class="collapse" id="Hyperprolactinemiacollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Cabergoline">Cabergoline</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Anti-inflammatory & Antiedematous -->
+                  <li>
+                    <a id="btn14" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Antiinflamcecollapse"
+                      aria-expanded="false">Anti-inflammatory & Antiedematous</a>
+                    <div class="collapse" id="Antiinflamcecollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Alpha">Alpha Amylase</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Anti-Spasmodic-->
+                  <li>
+                    <a id="btn33" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#AntiSpasmodiccollapse"
+                      aria-expanded="false">Anti-Spasmodic</a>
+                    <div class="collapse" id="AntiSpasmodiccollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Flavoxate">Flavoxate</li>
+                        <li class="mb-1 list-group-item list-group-item-action "></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Anti-Tussive-->
+                  <li>
+                    <a id="btn22" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#AntiTussivecollapse"
+                      aria-expanded="false">Anti-Tussive</a>
+                    <div class="collapse" id="AntiTussivecollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Butamirate">Butamirate</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Anti-Viral -->
+                  <li>
+                    <a id="btn12" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Antiviralcecollapse"
+                      aria-expanded="false">Anti-Viral</a>
+                    <div class="collapse" id="Antiviralcecollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Acyclovir">Acyclovir</li>
+                        <li class="my-1 list-group-item list-group-item-action Oseltamivir">Oseltamivir</li>
+                        <li class="my-1 list-group-item list-group-item-action Ribavirin">Ribavirin</li>
+                        <li class="my-1 list-group-item list-group-item-action Valganciclovir">Valganciclovir</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Analgesic / NSAID-->
+                  <li>
+                    <a id="btn28" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Analgesiccollapse" aria-expanded="false">Analgesic /
+                      NSAID</a>
+                    <div class="collapse" id="Analgesiccollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Diclofenac">Diclofenac</li>
+                        <li class="mb-1 list-group-item list-group-item-action Ibuprofen">Ibuprofen</li>
+                        <li class="mb-1 list-group-item list-group-item-action Ketoprofen">Ketoprofen</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Antacid/ Anti-Flatulent -->
+                  <li>
+                    <a id="btn15" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Antacidcecollapse" aria-expanded="false">Antacid/
+                      Anti-Flatulent</a>
+                    <div class="collapse" id="Antacidcecollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action AluminumHydroxide">Aluminum Hydroxide +
+                          Mg + Dimethicone</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Anthelmintic-->
+                  <li>
+                    <a id="btn34" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Anthelminticcollapse"
+                      aria-expanded="false">Anthelmintic</a>
+                    <div class="collapse" id="Anthelminticcollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Flavoxate">Flubendazole</li>
+                        <li class="mb-1 list-group-item list-group-item-action "></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Antihistamine-->
+                  <li>
+                    <a id="btn26" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Antihistaminecollapse"
+                      aria-expanded="false">Antihistamine</a>
+                    <div class="collapse" id="Antihistaminecollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Cetirizine">Cetirizine</li>
+                        <li class="mb-1 list-group-item list-group-item-action "></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Antidote-->
+                  <li>
+                    <a id="btn24" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Antidotecollapse" aria-expanded="false">Antidote</a>
+                    <div class="collapse" id="Antidotecollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Calcitonin">Calcitonin</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
                   <!-- MEDICATION Cardiology -->
                   <li>
                     <a id="btn7" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
@@ -248,13 +507,16 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
                         <li class="my-1 list-group-item list-group-item-action Captopril">Captopril 25mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Furosemide">Furosemide 40mg</li>
-                        <li class="mb-1 list-group-item list-group-item-action px-2 Spironolactone">Spironolactone 25mg</li>
-                        <li class="mb-1 list-group-item list-group-item-action px-2 Lasilactone">Furosemide 20mg Spironolactone 50mg</li>
+                        <li class="mb-1 list-group-item list-group-item-action px-2 Spironolactone">Spironolactone 25mg
+                        </li>
+                        <li class="mb-1 list-group-item list-group-item-action px-2 Lasilactone">Furosemide 20mg
+                          Spironolactone 50mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Carvid">Carvedilol 6.25mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Coradarone">Amiodarone 200mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Propranolol">Propranolol 10mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Atenolol">Atenolol 100mg</li>
-                        <li class="mb-1 list-group-item list-group-item-action Apresoline">Hydralazine chloride tablet 25mg IV: 20mg/ml</li>
+                        <li class="mb-1 list-group-item list-group-item-action Apresoline">Hydralazine chloride tablet
+                          25mg IV: 20mg/ml</li>
                         <li class="mb-1 list-group-item list-group-item-action Nifedipine">Nifedipine</li>
                         <li class="mb-1 list-group-item list-group-item-action Minipress">Prazocin HCL 1 & 2 mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Doxazosin">Doxazosin 2mg</li>
@@ -262,10 +524,149 @@
                         <li class="mb-1 list-group-item list-group-item-action Valsartan">Valsartan 40, 80, 160 mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Sotalol">Sotalol 40 & 80 mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Ivabradine">Ivabradine 5 mg</li>
-                        <li class="mb-1 list-group-item list-group-item-action SacubitrilandValsartan">Sacubitril and Valsartan</li>
+                        <li class="mb-1 list-group-item list-group-item-action SacubitrilandValsartan">Sacubitril and
+                          Valsartan</li>
                         <li class="mb-1 list-group-item list-group-item-action Dapagliflozin">Dapagliflozin 10 mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Sildenafil">Sildenafil 100 mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Amlodipine">Amlodipine 5mg</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Nasal Corticosteroid -->
+                  <li>
+                    <a id="btn21" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Corticosteroidcollapse"
+                      aria-expanded="false">Corticosteroid</a>
+                    <div class="collapse" id="Corticosteroidcollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Budesonide">Budesonide</li>
+                        <li class="mb-1 list-group-item list-group-item-action Cosyntropin">Cosyntropin</li>
+                        <li class="mb-1 list-group-item list-group-item-action Dexamethasone">Dexamethasone</li>
+                        <li class="mb-1 list-group-item list-group-item-action Hydrocortisone">Hydrocortisone</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Dietary Supplement-->
+                  <li>
+                    <a id="btn37" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#DietarySupplementcollapse"
+                      aria-expanded="false">Dietary Supplement</a>
+                    <div class="collapse" id="DietarySupplementcollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Ginkgo">Ginkgo</li>
+                        <li class="mb-1 list-group-item list-group-item-action "></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Electrolyte Supplement-->
+                  <li>
+                    <a id="btn25" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Electrolytecollapse" aria-expanded="false">Electrolyte
+                      Supplement</a>
+                    <div class="collapse" id="Electrolytecollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action CalciumCitrate">Calcium Citrate</li>
+                        <li class="mb-1 list-group-item list-group-item-action Calcium">Calcium</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Expectorant -->
+                  <li>
+                    <a id="btn20" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Expectorantcollapse"
+                      aria-expanded="false">Expectorant</a>
+                    <div class="collapse" id="Expectorantcollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Bronchophane">Bronchophane</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Gastrointestinal-->
+                  <li>
+                    <a id="btn30" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Gastrointestinalcollapse"
+                      aria-expanded="false">Gastrointestinal</a>
+                    <div class="collapse" id="Gastrointestinalcollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Domperidone">Domperidone</li>
+                        <li class="mb-1 list-group-item list-group-item-action "></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Hemostatic Agent-->
+                  <li>
+                    <a id="btn32" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Hemostaticcollapse" aria-expanded="false">Hemostatic
+                      Agent</a>
+                    <div class="collapse" id="Hemostaticcollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Ethamsylate">Ethamsylate</li>
+                        <li class="mb-1 list-group-item list-group-item-action "></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Immunosuppressant -->
+                  <li>
+                    <a id="btn17" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Immunosuppressantcecollapse"
+                      aria-expanded="false">Immunosuppressant</a>
+                    <div class="collapse" id="Immunosuppressantcecollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Azathioprine">Azathioprine</li>
+                        <li class="mb-1 list-group-item list-group-item-action Cyclosporine">Cyclosporine</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Mast Cell Stabilizer-->
+                  <li>
+                    <a id="btn39" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#MSTcollapse" aria-expanded="false">Mast Cell
+                      Stabilizer</a>
+                    <div class="collapse" id="MSTcollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Ketotifen">Ketotifen</li>
+                        <li class="mb-1 list-group-item list-group-item-action "></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Mucolytic -->
+                  <li>
+                    <a id="btn19" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Mucolyticcollapse" aria-expanded="false">Mucolytic</a>
+                    <div class="collapse" id="Mucolyticcollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Bromhexine">Bromhexine</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION NEUROLOGY -->
+                  <li>
+                    <a id="btn10" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Neurologycollapse" aria-expanded="false">Neurology</a>
+                    <div class="collapse" id="Neurologycollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Acetazolamide">Acetazolamide</li>
+
 
 
 
@@ -275,6 +676,66 @@
                       </ul>
                     </div>
                   </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Osteoarthritis-->
+                  <li>
+                    <a id="btn38" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Osteoarthritiscollapse"
+                      aria-expanded="false">Osteoarthritis</a>
+                    <div class="collapse" id="Osteoarthritiscollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Glucosamine">Glucosamine</li>
+                        <li class="mb-1 list-group-item list-group-item-action "></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION SKELETL MUSCLE RELAXANT -->
+                  <li>
+                    <a id="btn18" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#smrcollapse" aria-expanded="false">Skeletal Muscle
+                      Relaxant</a>
+                    <div class="collapse" id="smrcollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Baclofen">Baclofen</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Vasopressin-->
+                  <li>
+                    <a id="btn27" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Vasopressincollapse" aria-expanded="false">Vasopressin
+                      Hormone</a>
+                    <div class="collapse" id="Vasopressincollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action Desmopressin">Desmopressin</li>
+                        <li class="mb-1 list-group-item list-group-item-action "></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Water Soluble Vitamin-->
+                  <li>
+                    <a id="btn35" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#WaterSolubleVitamincollapse"
+                      aria-expanded="false">Water Soluble Vitamin</a>
+                    <div class="collapse" id="WaterSolubleVitamincollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <li class="my-1 list-group-item list-group-item-action FolicAcid">Folic Acid</li>
+                        <li class="mb-1 list-group-item list-group-item-action "></li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+
+
+
 
                 </ul>
               </div>
@@ -386,570 +847,184 @@
         </div>
 
         <!-- 1250 580 -->
-        <div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-        </div>
+        
+          <div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+            <% med.forEach(item=> { %>
+            <div id="row" class="row d-none <%= item.trade %>">
+              <div class="col col-12">
+                <div class="one mt-5">
+                  <h1 class="flex-shrink-0">
+                    <%= item.generic %> <br>
+                      <p style="color:red;margin-bottom:0">
+                        <%= item.trade %><sup>®</sup>
+                      </p>
+                      <span class="mt-1">Medication Monograph</span>
+                  </h1>
+                </div>
+                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
 
-        <!-- <div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-          <div class="row">
-            <div class="col col-12">
-              <div class="one mt-3">
-                <h1 class="flex-shrink-0">Amlodipine 5 mg<p style="color: red; margin-bottom: 0;">Norvasc<sup>®</sup>
-                  </p>
-                  <span class="mt-1">Medication Monograph</span>
-                </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
+                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
 
-                <div class="accordion-item ">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                      DOSE
-                    </button>
-                  </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
+                    <div class="accordion-item <%=  item.class === ""? " d-none" : "d-block" %>">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapOne" aria-expanded="true" aria-controls="collapOne">
+                          <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
+                          Pharmacological Class
+                        </button>
+                      </h2>
+                      <div id="collapOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <%= item.classname %>
+                        </div>
+                      </div>
+                    </div>
 
-                      <ul>
-                        <li><strong><u>Hypertension:</u></strong>
-                          <p><strong>&lt;6 years:</strong> Limited data available: Initial: 0.1 mg/kg/dose once daily; titrate based on clinical response; maximum daily dose: 0.6 mg/kg/day or 5 mg/day.</p>
-                          <p><strong>&#8805;6 years</strong> and Adolescents:Initial: 2.5 mg once daily; titrate based on clinical response; maximum daily dose: 10 mg/day</p>
-                        </li>
-                      </ul>
+                    <div class="accordion-item <%=  item.mechanism === ""? " d-none" : "d-block" %>">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                          <img src="../svg/MOP.svg" alt="" height="30px" class="me-2">
+                          Mechanism Of Action
+                        </button>
+                      </h2>
+                      <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <%= item.mechanism %>
+                        </div>
+                      </div>
+                    </div>
 
+                    <div class="accordion-item <%=  item.dosageform === ""? " d-none" : "d-block" %>">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                          <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
+                          Dosage form
+                        </button>
+                      </h2>
+                      <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <%= item.dosageform %>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item <%=  item.dose === ""? " d-none" : "d-block" %>">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                          <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
+                          Dose
+                        </button>
+                      </h2>
+                      <div id="collapseFour" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <%= item.dose %>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item <%=  item.adminstration === ""? " d-none" : "d-block" %>">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapsefive" aria-expanded="true" aria-controls="collapsefive">
+                          <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
+                          Administration
+                        </button>
+                      </h2>
+                      <div id="collapsefive" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <%= item.adminstration %>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item <%=  item.ptinformation === ""? " d-none" : "d-block" %>">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                          <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
+                          Patient Information
+                        </button>
+                      </h2>
+                      <div id="collapseSix" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <%= item.ptinformation %>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item <%=  item.sideeffect === ""? " d-none" : "d-block" %>">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                          <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
+                          Side Effects
+                        </button>
+                      </h2>
+                      <div id="collapseSeven" class=" accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <%= item.sideeffect %>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item <%=  item.monitor === ""? " d-none" : "d-block" %>">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+                          <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
+                          Monitor Parameters
+                        </button>
+                      </h2>
+                      <div id="collapseEight" class=" accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <%= item.monitor %>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item <%=  item.interaction === ""? " d-none" : "d-block" %>">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseNine" aria-expanded="true" aria-controls="collapseNine">
+                          <img src="../svg/interaction.svg" alt="" height="30px" class="me-2">
+                          Interaction
+                        </button>
+                      </h2>
+                      <div id="collapseNine" class=" accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <%= item.interaction %>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="accordion-item <%=  item.specialprecaution === ""? " d-none" : "d-block" %>">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseTen" aria-expanded="true" aria-controls="collapseTen">
+                          <img src="../svg/alert.svg" alt="" height="30px" class="me-2">
+                          Special Precautions/Comments
+                        </button>
+                      </h2>
+                      <div id="collapseTen" class=" accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <%= item.specialprecaution %>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                <div class="accordion-item ">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                      <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                      ADMINISTRATION
-                    </button>
-                  </h2>
-                  <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                      <p>Administer without regard to meals</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                      <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                      SIDE EFFECT
-                    </button>
-                  </h2>
-                  <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                      <ul>
-                        <li><strong>Cardiovascular:</strong>Flushing &#8804;3%, dose related, , palpitations &#8804;5%, dose related</li>
-                        <li><strong>Gastrointestinal:</strong>Abdominal pain (2%), nausea (3%)</li>
-                        <li><strong>Nervous system:</strong>dizziness (doses ≥5 mg/day: 3%), fatigue (5%)</li>
-                        <li><strong>Neuromuscular & skeletal:</strong>Muscle cramps (≤2%)</li>
-                        <li><strong>Dermatologic:</strong>Pruritus (≤2%), skin rash (≤2%)</li>
-                        <li><strong>Respiratory:</strong>Dyspnea (≤2%)</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                      <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                      MONITORING PARAMETER
-                    </button>
-                  </h2>
-                  <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                      <ul>
-                        <li>Heart rate</li>
-                          <li>Blood Pressure</li>
-                          <li>Peripheral edema</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
               </div>
             </div>
+            <% }) %>
+
           </div>
-        </div> -->
+        
 
 
       </main>
-      <!-- <div id="container" class="container"
-            style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-            <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-              <div class="col col-12 text-center">
-                <object class="my-2 rounded-2" data="../presentation/Tyrosine.pdf" type="application/pdf"
-                  style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-
-
-
-
-
-
-
-
-
-
-      <!-- <div class="container" id="container">
-          <div class="row">
-            
-            <div class="col col-12">
-              <div class="one mt-5">
-                <h1 class="flex-shrink-0">Ifosfamide <br>
-                  <p style="color:red;margin-bottom:0">Holoxan 1 g<sup>®</sup></p>
-                  <span class="mt-1">Medication Monograph</span>
-                </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion-item ">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapsezero" aria-expanded="true" aria-controls="collapsezero">
-                      <img src="../svg/mop.svg" alt="" height="30px" class="me-2">
-                      MECHANISM OF ACTION
-                    </button>
-                  </h2>
-                  <div id="collapsezero" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                      Ifosfamide causes cross-linking of strands of DNA by binding with nucleic acids and other
-                      intracellular structures, resulting in cell death; inhibits protein synthesis and DNA
-                      synthesis
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item ">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                      DOSE
-                    </button>
-                  </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                      <ul>
-                        <li>
-                          <strong><u>Hodgkin Lymphoma:</u></strong>
-                          <p><strong>IV:</strong> 1.8 mg/kg/dose for Children ≥2 years and Adolescents,
-                            <strong>Maximum Dose: 180 mg/dose</strong>.
-                          </p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item ">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                      <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                      ADMINISTRATION
-                    </button>
-                  </h2>
-                  <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                      <ul>
-                        <li>
-                          <p> <strong>IV:</strong>
-                            Ifosfamide is associated with a moderate emetic potential; antiemetics are
-                            recommended to prevent nausea and vomiting.
-                            <br>
-                            Administer IV over at least 30 minutes (infusion times may vary by protocol;
-                            refer to specific protocol for infusion duration). To prevent bladder toxicity,
-                            ifosfamide should be given with mesna and hydration.
-                          </p>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                      <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                      TOXICITIES & MANAGEMENT
-                    </button>
-                  </h2>
-                  <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                      <ul>
-                        <li><strong>GI Toxicity:</strong> Acute pancreatitis, other serious and fatal GI
-                          complications (including hemorrhage, obstruction, perforation, erosion, ulcer,
-                          enterocolitis, neutropenic colitis, and ileus) have been reported. The risk for GI
-                          complications may be increased in patients with lymphoma with preexisting GI
-                          involvement.</li>
-                        <ul><strong>Management:</strong> Prompt diagnostic evaluation and management should be
-                          performed if new or worsening GI symptoms (including severe abdominal pain) occur.
-                        </ul>
-                        <li><strong>Hyperglycemia:</strong> Hyperglycemia, including new-onset hyperglycemia,
-                          exacerbation of pre-existing diabetes mellitus, and ketoacidosis have been reported,
-                          including grade 3 and 4 events. Hyperglycemia occurred more frequently in patients
-                          with increased body mass or diabetes.</li>
-                        <ul><strong>Management:</strong> As normal hyperglycemia but monitoring is enough.</ul>
-                        <li><strong>Hepatotoxicity:</strong> Serious hepatotoxicity has occurred; cases were
-                          consistent with hepatocellular injury, with elevations of transaminases and/or
-                          bilirubin.</li>
-                        <ul><strong>Management:</strong> Delay, dose adjustments or discontinuation of the drug.
-                        </ul>
-                        <li><strong>Infusion Reactions/Anaphylaxis:</strong> Infusion reactions, including
-                          anaphylaxis have been reported.</li>
-                        <ul><strong>Management:</strong> Paracetamol, an Antihistamine and a Corticosteroid as
-                          pre-medication.</ul>
-                        <li><strong>Peripheral Neuropathy:</strong> Peripheral neuropathy is common and is
-                          generally cumulative; grades 1 to 4 neuropathy have been reported. Neuropathy is
-                          usually sensory, although motor neuropathy has also been observed. Based on an
-                          updated analysis, neuropathy completely resolved in a majority of patients receiving
-                          brentuximab in combination with chemotherapy; although some patients experienced
-                          either partial improvement or no improvement. Symptoms of neuropathy include
-                          hypoesthesia, hyperesthesia, paresthesia, discomfort, burning sensation, neuropathic
-                          pain, or weakness.</li>
-                        <ul><strong>Management:</strong> Delay, dose adjustments or discontinuation of the drug.
-                        </ul>
-                        <li><strong>Pulmonary Toxicity:</strong> Noninfectious pulmonary toxicity (eg,
-                          pneumonitis, interstitial lung disease, acute respiratory distress syndrome), some
-                          fatal.</li>
-                        <ul><strong>Management:</strong> Discontinuing the offending drug and administering
-                          Corticosteroid therapy either orally or intravenously according to severity.</ul>
-                        <li><strong>Progressive Multifocal Leukoencephalopathy (PML):</strong> Cases of
-                          progressive multifocal leukoencephalopathy (PML) and death due to JC virus infection
-                          have been reported. Immunosuppression due to prior chemotherapy treatments or
-                          underlying disease may also contribute to PML development. New-onset signs/symptoms
-                          of CNS abnormalities include changes in mood, memory, cognition, motor
-                          incoordination and/or weakness, speech and/or visual disturbances.</li>
-                        <ul><strong>Management:</strong> If PML is confirmed the drug must be permanently
-                          discontinued.</ul>
-                        <li><strong>Tumor Lysis Syndrome:</strong> TLS may occur; risk of TLS is higher in
-                          patients with a high tumor burden or with rapid tumor proliferation.</li>
-                        <ul><strong>Management:</strong> Administer prophylaxis (anti-hyperuricemic therapy,
-                          aggressive hydration) in patients at high risk. Correct electrolyte abnormalities
-                          and administer supportive care as indicated.</ul>
-                        <li><strong>Renal Impairment:</strong> Due to higher exposure of MMAE (the microtubule
-                          disrupting agent component), the incidence of ≥ grade 3 adverse reactions may be
-                          increased in patients with severe impairment.</li>
-                        <ul><strong>Management:</strong> Dosage Adjustment to 1.2 mg/kg administered as an
-                          intravenous infusion over 30 minutes every 3 weeks with close monitoring.</ul>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                      <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                      DRUG INTERACTIONS
-                    </button>
-                  </h2>
-                  <div id="collapseFour" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                      <ul>
-                        <li><strong>Risk X:(Avoid Combination):</strong>
-                          <br>Natalizumab.
-                        </li>
-                        <li><strong>Risk C:(Monitor Therapy):</strong>
-                          <br>Amphotericin B
-                          <br>Aprepitant
-
-                          <br>Busulfan
-
-                          <br>Fluconazole
-
-                          <br>Imatinib
-                          <br> Itraconazole <br> Phenytoin
-                          <br>Verapamil
-                          <br>Voriconazole
-                          <br>Warfarin
-
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="accordion-item">
-                  <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-                      <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                      MONITORING PARAMETER
-                    </button>
-                  </h2>
-                  <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                      <ul>
-                        <li>CBC with
-                          differential
-                          (prior to and at
-                          appropriated
-                          intervals after
-                          each cycle, and
-                          as clinically
-                          appropriate).
-                        </li>
-                        <li>Urine output.</li>
-                        <li>Urinalysis (for
-                          erythrocytes
-                          prior to each
-                          dose).
-                        </li>
-                        <li>Liver function,
-                          and renal
-                          function tests
-                          (prior to and
-                          during
-                          treatment).
-                        </li>
-                        <li>Monitor for signs/symptoms of neurotoxicity, pulmonary toxicity, urotoxicity/hemorrhagic
-                          cystitis, and secondary malignancies. </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-
-
-
-      <!-- Presentation -->
-      <!-- <div >
-      <div class="" id="uparrow2">
-        <svg id="svgarrow" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-up-short" viewBox="0 0 16 16">
-          <path  d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"/>
-        </svg>
-      </div>
-      <div id="container" class="container" style="justify-content: center; align-items: center; height: 100vh; position: relative;">
-        
-          <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-            <div class="col col-12">
-              
-              <img src="../Presentation/Targeted Therapy - Large Molecules-01.png" alt="" style="height: fit-content; width: 1200px;">  
-              
-            </div>      
-          </div>
-      </div>
-    </div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- INFOGRAPH -->
-      <!-- <div id="container" class="container h-100  " style="justify-content: center; align-items: center;">
-        
-      <div class="row" style=" justify-content: center; align-items: center; ">
-        <div class="col col-12">
-          <img src="../Infograph/Dinutuximab.png" alt="" style=" width: 1200px;">
-    
-        </div>
-        
-      </div>
-      
-
-  </div> -->
-
-
-
-
-
-
-      <!-- <div class="one mt-5  ">
-            <h1 class="flex-shrink-0">LevETIRAcetam
-              <span class="mt-1">Medication Monograph</span>
-            </h1>
-          </div>
-    <div class="accordion mt-5 flex-shrink-0" id="accordionExample">
-
-
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                DOSE
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li> <u>1 month to &lt;6 months:</u> <strong>7 mg/kg twice daily;</strong> <u>increase</u> every
-                    <strong>2 weeks</strong> by <strong>7 mg/kg/dose</strong> to a <u>recommended</u> dose of
-                    <strong>21 mg/kg twice daily</strong>
-                  </li>
-                  <li> <u>6 months to &lt;4 years:</u> <strong>10 mg/kg twice daily;</strong> <u>increase</u> every
-                    <strong>2 weeks</strong> by <strong>10 mg/kg/dose</strong> to a <u>recommended</u> dose of
-                    <strong>25 mg/kg twice daily</strong>
-                  </li>
-                  <li> <u>4 to &lt;16 years:</u> <strong>10 mg/kg twice daily;</strong> <u>increase</u> every
-                    <strong>2 weeks</strong> by <strong>10 mg/kg/dose</strong> to a <u>recommended</u> dose of
-                    <strong>30 mg/kg twice daily</strong>
-                  </li>
-                  <li> <u>Adolescents ≥16 years:</u> <strong>500 mg twice daily;</strong> <u>increase</u> every
-                    <strong>2 weeks</strong> by <strong>500 mg/dose</strong>
-                  </li>
-                  <li> <u>Maximum daily dose:</u> <strong>3000 mg/day (1500mg twice daily)</strong>.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="./assets/svg/Infution.svg" alt="" height="30px" class="me-2">
-                ADMINISTRATION
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>Infuse over <span style="color: yellow;">15 minutes</span></li>
-                  <li>A rate of <span style="color: yellow;">2 to 5 mg/kg/minute</span> has been recommended</li>
-                  <li><u>Dilute</u> dose in <span style="color: yellow;">100 mL</span> of <span
-                      style="color: yellow;">NS, LR, or D5W</span></li>
-                  <li>If smaller diluent <span style="color: yellow;">(minimum dilution)</span> volume required,
-                    dilute dose in a compatible diluent to final concentration <span style="color: yellow;">15
-                      mg/mL</span></li>
-                  <li>A <span style="color: yellow;"> <u>1:1 dilution</u></span> of drug from vial with <span
-                      style="color: yellow;">D5W or NS</span> has also been <span style="color: yellow;">safely used
-                      in patient ≥4 years</strong></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <img src="./assets/svg/Storage.svg" alt="" height="30px" class="me-2">
-                STORAGE
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>Premixed solution for infusion: Store at <span style="color: yellow;">20°C to 25°C</span></li>
-                  <li>Vials for injection: Store at <span style="color: yellow;">25°C</span></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <img src="./assets/svg/Stability.svg" alt="" height="30px" class="me-2">
-                STABILITY
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>
-                    Admixed solution in <span style="color: yellow;">NS, LR, or D5W</span> is stable for <span
-                      style="color: yellow;">4 hours</span> in <span style="color:blue;">PVC bags</span> kept <u>at
-                      room temperature</u>
-                  </li>
-                </ul>
-                <p>NB</p>
-                <ul>
-                  <li>
-                    <span style="color: red;">refrigerated (2 – 8°C) Levetiracetam in PVC bags and NS 0.9% will be
-                      Stable for 14 days.</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-                <img src="../svg/Compitability.svg" alt="" height="30px" class="me-2">
-                COMPITABILITY
-              </button>
-            </h2>
-            <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>D5W</li>
-                  <li>LR</li>
-                  <li>NS 0.9%</li>
-                  <li>TNA (3-in-1) Total Nutrient Admixture</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
-                <img src="../svg/Reference.svg" alt="" height="30px" class="me-2">
-                REFERENCES
-              </button>
-            </h2>
-            <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ol>
-                  <li>Lexicomp (2018) LevETIRAcetam (Lexi-Drugs), Available at:
-                    https://online.lexi.com/lco/action/doc/retrieve/docid/patch_f/7162#f_administration-and-storage-issues
-                    (Accessed: Septemper 1, 2018).</li>
-                  <li>STABILIS (2018) Levetiracetam, Available at:
-                    http://www.stabilis.org/Monographie.php?IdMolecule=1022 (Accessed: Septemper 25, 2018).</li>
-                </ol>
-              </div>
-            </div>
-          </div>
-
-
-
-        </div>
-      </div> -->
-
-
-
-
-
-
 
 
       <!-- LINK TO jQuary -->
@@ -970,6 +1045,10 @@
 
       <!-- LINK TO CUSTOM JS -->
       <script defer src="../js/sidebars.js"></script>
+      <script>
+
+      </script>
+
 </body>
 
 </html>
