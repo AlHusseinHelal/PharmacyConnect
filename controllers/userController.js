@@ -1,11 +1,9 @@
 //ERROR HANDILING TRY_CATCH OR THEN_CATCH
 const asyncHandler = require("express-async-handler");
-//MOMMENT TIMESTAMP
-const moment = require("moment");
-//JWT TOKEN
-const jwt = require("jsonwebtoken");
+
+
 const Medication = require("../models/medication");
-const User = require("../models/newRegSchema");
+
 
 //SIGNOUT
 exports.signOut = (req, res) => {
@@ -35,35 +33,11 @@ exports.Avatar = (req, res) => {
 
 //INTERFACE
 exports.interface =  asyncHandler(async (req, res) => {
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-    const date = moment().format("YYYY-MM-DD");
-    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
-    const startDate = `${date}T14:00:00.000+00:00`;
-    const endDate = `${tomorrow}T13:59:59.000+00:00`;
-    const currentUser = await User.findOne({ _id: decoded.id });
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt);
-      return createdAt.isBetween(startDate, endDate);
-    });
-    if (receiver) {
-      res.render("interface.ejs", {receiver});
-    }
-  
+  res.render("interface.ejs");
 });
 
 //ONCOTIPS
 exports.OncoTips = asyncHandler(async (req, res) => {
-
-  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-  const date = moment().format("YYYY-MM-DD");
-  const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-  const startDate = `${date}T14:00:00.000+00:00`;
-  const endDate = `${tomorrow}T13:59:59.000+00:00`;
-  const currentUser = await User.findOne({ _id: decoded.id });
-  const receiver = currentUser.watchreceiver.filter((item) => {
-    const createdAt = moment(item.createdAt)
-    return createdAt.isBetween(startDate, endDate)
-  })
   const med = await Medication.find();
   
   const AntiCancer = await Medication.find({ classname: "Anti-Cancer" }).sort({
@@ -205,7 +179,7 @@ exports.OncoTips = asyncHandler(async (req, res) => {
       Osteoarthritis,
       SkeletalMuscleRelaxant,
       VasopressinHormone,
-      WaterSolubleVitamin,receiver
+      WaterSolubleVitamin
     });
   }
 });
@@ -227,17 +201,7 @@ exports.changepassword = (req, res) => {
 
 //STRUCTURE
 exports.STRUCTURE =  asyncHandler(async(req, res) => {
-  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-    const date = moment().format("YYYY-MM-DD");
-    const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-    const startDate = `${date}T14:00:00.000+00:00`;
-    const endDate = `${tomorrow}T13:59:59.000+00:00`;
-    const currentUser = await User.findOne({ _id: decoded.id });
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt)
-      return createdAt.isBetween(startDate, endDate)
-    })
-  res.render("STRUCTURE.ejs", {receiver});
+  res.render("STRUCTURE.ejs");
 })
 
 //FIRSTWELCOME

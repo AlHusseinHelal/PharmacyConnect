@@ -17,13 +17,12 @@ const { check, validationResult } = require("express-validator");
 //Cloudinary
 const cloudinary = require("cloudinary").v2;
 //TO CSV FILE
-const CsvParser = require('json2csv').Parser
+const CsvParser = require("json2csv").Parser;
 //TO EXCELL FILE
-const excelJs = require('exceljs')
-const xlsx = require('xlsx');
+const excelJs = require("exceljs");
+const xlsx = require("xlsx");
 //ERROR HANDILING
 const ApiError = require("../utils/apierror");
-
 
 //MULTER DISKSTORAGE
 // const multerStorage = multer.diskStorage({
@@ -139,20 +138,11 @@ router.get(
     const results = await User.find({ _id: { $ne: curentuserid } }).sort({
       firstname: "asc",
     });
-    const date = moment().format("YYYY-MM-DD");
-    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
-    const startDate = `${date}T14:00:00.000+00:00`;
-    const endDate = `${tomorrow}T13:59:59.000+00:00`;
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt);
-      return createdAt.isBetween(startDate, endDate);
-    });
     if (results) {
       res.render("Chat/chat.ejs", {
         array: results,
         currentusername,
         ChatMessage,
-        receiver,
       });
     }
   })
@@ -166,20 +156,11 @@ router.get(
   asyncHandler(async (req, res) => {
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const currentUser = await User.findOne({ _id: decoded.id });
-    const date = moment().format("YYYY-MM-DD");
-    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
-    const startDate = `${date}T14:00:00.000+00:00`;
-    const endDate = `${tomorrow}T13:59:59.000+00:00`;
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt);
-      return createdAt.isBetween(startDate, endDate);
-    });
     const { todolist } = currentUser;
     if (todolist) {
       res.render("todolist/Todolist.ejs", {
         array: todolist,
         moment: moment,
-        receiver: receiver,
       });
     }
   })
@@ -195,21 +176,12 @@ router.get(
     const currentUser = await User.findOne({ _id: decoded.id }).sort({
       createdAt: "asc",
     });
-    const todolist = currentUser.todolist;
+    const { todolist } = currentUser;
 
-    const date = moment().format("YYYY-MM-DD");
-    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
-    const startDate = `${date}T14:00:00.000+00:00`;
-    const endDate = `${tomorrow}T13:59:59.000+00:00`;
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt);
-      return createdAt.isBetween(startDate, endDate);
-    });
     if (todolist) {
       res.render("todolist/Todolist.ejs", {
         array: todolist,
         moment: moment,
-        receiver,
       });
     }
   })
@@ -225,21 +197,12 @@ router.get(
     const currentUser = await User.findOne({ _id: decoded.id }).sort({
       due: "asc",
     });
-    const todolist = currentUser.todolist;
+    const { todolist } = currentUser;
 
-    const date = moment().format("YYYY-MM-DD");
-    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
-    const startDate = `${date}T14:00:00.000+00:00`;
-    const endDate = `${tomorrow}T13:59:59.000+00:00`;
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt);
-      return createdAt.isBetween(startDate, endDate);
-    });
     if (todolist) {
       res.render("todolist/Todolist.ejs", {
         array: todolist,
         moment: moment,
-        receiver,
       });
     }
   })
@@ -256,26 +219,30 @@ router.get(
     const curentuserid = currentUser.id;
     const { firstname } = currentUser;
     const { lastname } = currentUser;
-    const date = moment().format("YYYY-MM-DD");
-    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
-    const startDate = `${date}T14:00:00.000+00:00`;
-    const endDate = `${tomorrow}T13:59:59.000+00:00`;
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt);
-      return createdAt.isBetween(startDate, endDate);
-    });
     const results = await User.find({ _id: { $ne: curentuserid } }).sort({
       firstname: "asc",
     });
     const sender = currentUser.watchsender;
+//     const comment = currentUser.watchsender.filter( item => {
+//       return item.comment == "" ;
+//     })
+
+//     const comment2 = currentUser.watchsender.filter( item => {
+//       return item.comment !== "" ;
+//     })
+
+//     const receive = currentUser.watchreceiver.
+// console.log("---------------------------");
+//     console.log(comment2);
+// console.log("---------------------------");
+
     if (results) {
       res.render("Watch/watch.ejs", {
         users: results,
         moment: moment,
         sender: sender,
         firstname,
-        lastname,
-        receiver,
+        lastname
       });
     }
   })
@@ -290,17 +257,14 @@ router.get(
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const date = moment().format("YYYY-MM-DD");
     const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
-    const startDate = `${date}T14:00:00.000+00:00`;
-    const endDate = `${tomorrow}T13:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+    console.log(startDate);
+    console.log(endDate);
     const currentUser = await User.findOne({ _id: decoded.id });
     const { firstname } = currentUser;
     const { lastname } = currentUser;
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt);
-      return createdAt.isBetween(startDate, endDate);
-    });
-    console.log(receiver);
-    // { $gte: startDate, $lte: endDate }
+    const receiver = currentUser.watchreceiver;
     if (receiver) {
       res.render("Watch/receiver.ejs", {
         moment: moment,
@@ -323,29 +287,23 @@ router.get(
     const medclass = await Medicationclass.find().sort({ classname: "asc" });
     const med = await Medication.find().sort("asc");
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
-    const search = currentUser.dicsearch
-    const dic = currentUser.dicreceiver.filter( (item) => {
+    const startDate = date + 'T00:00:00.000+00:00';
+    const endDate = date + 'T23:59:59.000+00:00';
+    console.log(startDate, endDate );
+    const search = currentUser.dicsearch;
+    const dic = currentUser.dicreceiver.filter((item) => {
       const createdAt = moment(item.createdAt);
       return createdAt.isBetween(startDate, endDate);
-    })
-
-
-    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
-    const startDate2 = `${date}T14:00:00.000+00:00`;
-    const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt);
-      return createdAt.isBetween(startDate2, endDate2);
     });
+    console.log(dic);
+
     if (medclass) {
       res.render("Dic/dic.ejs", {
         medclass,
         med,
         dic,
         moment: moment,
-        receiver, search
+        search,
       });
     }
   })
@@ -360,46 +318,37 @@ router.get(
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.findOne({ _id: decoded.id });
     const receive = results.dicsender;
-    const date = moment().format("YYYY-MM-DD");
-    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
-    const startDate = `${date}T14:00:00.000+00:00`;
-    const endDate = `${tomorrow}T13:59:59.000+00:00`;
-    const currentUser = await User.findOne({ _id: decoded.id });
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt);
-      return createdAt.isBetween(startDate, endDate);
-    });
     if (receive) {
-      res.render("Dic/dicsender.ejs", { receive, moment: moment, receiver });
+      res.render("Dic/dicsender.ejs", { receive, moment: moment });
     }
   })
 );
 
-router.get("/excel",
- checkIfUser,
- requireAuth, asyncHandler( async (req, res) => {
-  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-  const find = await User.findOne({_id : decoded.id});
-  const results = find.dicsearch
-  if (results.length > 0) {
-    const response = JSON.parse(JSON.stringify(results));
-    //CREATE NEW WORKBOOK
-    const workbook = xlsx.utils.book_new();
-    //CONVERT JSON ARRAY TO WORKSHEET
-    const worksheet = xlsx.utils.json_to_sheet(response);
-    //ADD WORKSHEET TO WORKBOOK
-    xlsx.utils.book_append_sheet(workbook, worksheet, "Users");
-    //DOWNLOAD EXCEL FILE
-    xlsx.writeFile(workbook, "C:\\Download\\Users.xlsx");
-    res.redirect('/dic')
-    res.send(new ApiError(201, "success", response));
-    
-  } else {
-    res.send(new ApiError(404, "No Data Avaliable")) 
-  }
-  
- })
-  )
+router.get(
+  "/excel",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const find = await User.findOne({ _id: decoded.id });
+    const results = find.dicsearch;
+    if (results.length > 0) {
+      const response = JSON.parse(JSON.stringify(results));
+      //CREATE NEW WORKBOOK
+      const workbook = xlsx.utils.book_new();
+      //CONVERT JSON ARRAY TO WORKSHEET
+      const worksheet = xlsx.utils.json_to_sheet(response);
+      //ADD WORKSHEET TO WORKBOOK
+      xlsx.utils.book_append_sheet(workbook, worksheet, "Users");
+      //DOWNLOAD EXCEL FILE
+      xlsx.writeFile(workbook, "C:\\Download\\Users.xlsx");
+      res.redirect("/dic");
+      res.send(new ApiError(201, "success", response));
+    } else {
+      res.send(new ApiError(404, "No Data Avaliable"));
+    }
+  })
+);
 
 //WORKFLOW
 router.get(
@@ -407,18 +356,7 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-    const date = moment().format("YYYY-MM-DD");
-    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
-    const startDate = `${date}T14:00:00.000+00:00`;
-    const endDate = `${tomorrow}T13:59:59.000+00:00`;
-    const currentUser = await User.findOne({ _id: decoded.id });
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt);
-      return createdAt.isBetween(startDate, endDate);
-    });
-
-    res.render("WorkFlow.ejs", { receiver });
+    res.render("WorkFlow.ejs");
   })
 );
 
@@ -428,17 +366,7 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-    const date = moment().format("YYYY-MM-DD");
-    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
-    const startDate = `${date}T14:00:00.000+00:00`;
-    const endDate = `${tomorrow}T13:59:59.000+00:00`;
-    const currentUser = await User.findOne({ _id: decoded.id });
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt);
-      return createdAt.isBetween(startDate, endDate);
-    });
-    res.render("index2", { receiver });
+    res.render("index2");
   })
 );
 
@@ -448,16 +376,6 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-    const date = moment().format("YYYY-MM-DD");
-    const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
-    const startDate = `${date}T14:00:00.000+00:00`;
-    const endDate = `${tomorrow}T13:59:59.000+00:00`;
-    const currentUser = await User.findOne({ _id: decoded.id });
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt);
-      return createdAt.isBetween(startDate, endDate);
-    });
     const array = [
       {
         OrgCode: 10,
@@ -992,24 +910,19 @@ router.get(
         MedicationsStock: 18,
       },
     ];
-    res.render("Store/perpatient", { array: array, receiver });
+    res.render("Store/perpatient", { array: array });
   })
 );
 
 // INPATIENT
-router.get("/inpatient", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
-  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-  const date = moment().format("YYYY-MM-DD");
-  const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-  const startDate = `${date}T14:00:00.000+00:00`;
-  const endDate = `${tomorrow}T13:59:59.000+00:00`;
-  const currentUser = await User.findOne({ _id: decoded.id });
-  const receiver = currentUser.watchreceiver.filter((item) => {
-    const createdAt = moment(item.createdAt)
-    return createdAt.isBetween(startDate, endDate)
+router.get(
+  "/inpatient",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    res.render("Inpatient/inpatient");
   })
-  res.render("Inpatient/inpatient", {receiver});
-}) );
+);
 
 // INPATIENT OVERVIEW
 router.get(
@@ -1022,8 +935,8 @@ router.get(
     const skip = (page - 1) * limit;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
-    const {firstname} = user;
-    const {lastname} = user;
+    const { firstname } = user;
+    const { lastname } = user;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
@@ -1036,14 +949,6 @@ router.get(
       .skip(skip)
       .limit(limit);
 
-      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-      const startDate2 = `${date}T14:00:00.000+00:00`;
-      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-      const currentUser = await User.findOne({ _id: decoded.id });
-      const receiver = currentUser.watchreceiver.filter((item) => {
-        const createdAt = moment(item.createdAt)
-        return createdAt.isBetween(startDate2, endDate2)
-      })
     if (results) {
       res.render("Inpatient/inpatient3", {
         inpatientarray: results,
@@ -1053,7 +958,7 @@ router.get(
         skip,
         firstname,
         lastname,
-        num, receiver
+        num,
       });
     }
   })
@@ -1070,12 +975,11 @@ router.get(
     const skip = (page - 1) * limit;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
-    const {firstname} = user;
-    const {lastname} = user;
+    const { firstname } = user;
+    const { lastname } = user;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
-
     const results = await Inpatientschema.find({
       ptfloor: "ICU",
       createdAt: { $gte: startDate, $lte: endDate },
@@ -1086,16 +990,6 @@ router.get(
       ptfloor: "ICU",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-
-    const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-    const startDate2 = `${date}T14:00:00.000+00:00`;
-    const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-    const currentUser = await User.findOne({ _id: decoded.id });
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt)
-      return createdAt.isBetween(startDate2, endDate2)
-    })
-
     if (results) {
       res.render("Inpatient/icu", {
         inpatientarray: results,
@@ -1103,7 +997,7 @@ router.get(
         floor: "ICU",
         firstname,
         lastname,
-        num,receiver
+        num,
       });
     }
   })
@@ -1120,11 +1014,11 @@ router.get(
     const skip = (page - 1) * limit;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
-    const firstname = user.firstname;
-    const lastname = user.lastname;
+    const {firstname} = user;
+    const {lastname} = user;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = `${date  }T00:00:00.000+00:00`;
+    const endDate = `${date  }T23:59:59.000+00:00`;
 
     const results = await Inpatientschema.find({
       ptfloor: "ICC",
@@ -1137,15 +1031,6 @@ router.get(
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
 
-    const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-    const startDate2 = `${date}T14:00:00.000+00:00`;
-    const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-    const currentUser = await User.findOne({ _id: decoded.id });
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt)
-      return createdAt.isBetween(startDate2, endDate2)
-    })
-
     if (results) {
       res.render("Inpatient/icc", {
         inpatientarray: results,
@@ -1153,7 +1038,7 @@ router.get(
         floor: "ICC",
         firstname,
         lastname,
-        num, receiver
+        num,
       });
     }
   })
@@ -1170,8 +1055,8 @@ router.get(
     const skip = (page - 1) * limit;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
-    const {firstname} = user;
-    const {lastname} = user;
+    const { firstname } = user;
+    const { lastname } = user;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
@@ -1186,16 +1071,6 @@ router.get(
       ptfloor: "3rd O",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-
-    const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-    const startDate2 = `${date}T14:00:00.000+00:00`;
-    const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-    const currentUser = await User.findOne({ _id: decoded.id });
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt)
-      return createdAt.isBetween(startDate2, endDate2)
-    })
-
     if (results) {
       res.render("Inpatient/3rdo", {
         inpatientarray: results,
@@ -1203,7 +1078,7 @@ router.get(
         floor: "3rd O",
         firstname,
         lastname,
-        num,receiver
+        num,
       });
     }
   })
@@ -1220,8 +1095,8 @@ router.get(
     const skip = (page - 1) * limit;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
-    const {firstname} = user;
-    const {lastname} = user;
+    const { firstname } = user;
+    const { lastname } = user;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
@@ -1236,15 +1111,6 @@ router.get(
       ptfloor: "3rd N",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-
-    const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-    const startDate2 = `${date}T14:00:00.000+00:00`;
-    const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-    const currentUser = await User.findOne({ _id: decoded.id });
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt)
-      return createdAt.isBetween(startDate2, endDate2)
-    })
     if (results) {
       res.render("Inpatient/3rdn", {
         inpatientarray: results,
@@ -1252,7 +1118,7 @@ router.get(
         floor: "3rd N",
         firstname,
         lastname,
-        num, receiver
+        num,
       });
     }
   })
@@ -1269,8 +1135,8 @@ router.get(
     const skip = (page - 1) * limit;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
-    const {firstname} = user;
-    const {lastname} = user;
+    const { firstname } = user;
+    const { lastname } = user;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
@@ -1285,16 +1151,6 @@ router.get(
       ptfloor: "4th",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-
-    const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-    const startDate2 = `${date}T14:00:00.000+00:00`;
-    const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-    const currentUser = await User.findOne({ _id: decoded.id });
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt)
-      return createdAt.isBetween(startDate2, endDate2)
-    })
-
     if (results) {
       res.render("Inpatient/4th", {
         inpatientarray: results,
@@ -1302,7 +1158,7 @@ router.get(
         floor: "4th",
         firstname,
         lastname,
-        num, receiver
+        num,
       });
     }
   })
@@ -1319,8 +1175,8 @@ router.get(
     const skip = (page - 1) * limit;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
-    const {firstname} = user;
-    const {lastname} = user;
+    const { firstname } = user;
+    const { lastname } = user;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
@@ -1335,16 +1191,6 @@ router.get(
       ptfloor: "5th",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-
-    const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-    const startDate2 = `${date}T14:00:00.000+00:00`;
-    const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-    const currentUser = await User.findOne({ _id: decoded.id });
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt)
-      return createdAt.isBetween(startDate2, endDate2)
-    })
-
     if (results) {
       res.render("Inpatient/5th", {
         inpatientarray: results,
@@ -1352,7 +1198,7 @@ router.get(
         floor: "5th",
         firstname,
         lastname,
-        num, receiver
+        num,
       });
     }
   })
@@ -1369,8 +1215,8 @@ router.get(
     const skip = (page - 1) * limit;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
-    const {firstname} = user;
-    const {lastname} = user;
+    const { firstname } = user;
+    const { lastname } = user;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
@@ -1385,16 +1231,6 @@ router.get(
       ptfloor: "BMT",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-
-    const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-    const startDate2 = `${date}T14:00:00.000+00:00`;
-    const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-    const currentUser = await User.findOne({ _id: decoded.id });
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt)
-      return createdAt.isBetween(startDate2, endDate2)
-    })
-
     if (results) {
       res.render("Inpatient/bmt", {
         inpatientarray: results,
@@ -1402,26 +1238,21 @@ router.get(
         floor: "BMT",
         firstname,
         lastname,
-        num, receiver
+        num,
       });
     }
   })
 );
 
 // OUTPATIENT
-router.get("/outpatient", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
-  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-    const date = moment().format("YYYY-MM-DD");
-    const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-    const startDate = `${date}T14:00:00.000+00:00`;
-    const endDate = `${tomorrow}T13:59:59.000+00:00`;
-    const currentUser = await User.findOne({ _id: decoded.id });
-    const receiver = currentUser.watchreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt)
-      return createdAt.isBetween(startDate, endDate)
-    })
-  res.render("Outpatient/outpatient", {receiver});
-}) );
+router.get(
+  "/outpatient",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    res.render("Outpatient/outpatient");
+  })
+);
 
 // OUPATIENT OVERVIEW
 router.get(
@@ -1434,8 +1265,8 @@ router.get(
     const skip = (page - 1) * limit;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
-    const {firstname} = user;
-    const {lastname} = user;
+    const { firstname } = user;
+    const { lastname } = user;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
@@ -1447,42 +1278,27 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-
-      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-      const startDate2 = `${date}T14:00:00.000+00:00`;
-      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-      const currentUser = await User.findOne({ _id: decoded.id });
-      const receiver = currentUser.watchreceiver.filter((item) => {
-        const createdAt = moment(item.createdAt)
-        return createdAt.isBetween(startDate2, endDate2)
-      })
-
     if (results) {
       res.render("Outpatient/outpatient3", {
         outpatientarray: results,
         num,
         firstname,
         lastname,
-        moment: moment, receiver
+        moment: moment,
       });
     }
   })
 );
 
 //IVPREP
-router.get("/ivprep", checkIfUser, requireAuth, asyncHandler( async  (req, res) => {
-  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-  const date = moment().format("YYYY-MM-DD");
-  const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-  const startDate = `${date}T14:00:00.000+00:00`;
-  const endDate = `${tomorrow}T13:59:59.000+00:00`;
-  const currentUser = await User.findOne({ _id: decoded.id });
-  const receiver = currentUser.watchreceiver.filter((item) => {
-    const createdAt = moment(item.createdAt)
-    return createdAt.isBetween(startDate, endDate)
+router.get(
+  "/ivprep",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    res.render("IvPrep/ivprep");
   })
-  res.render("IvPrep/ivprep", {receiver});
-}) );
+);
 
 //IVPREP INPATIENT
 router.get(
@@ -1519,23 +1335,14 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-      const startDate2 = `${date}T14:00:00.000+00:00`;
-      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-      const currentUser = await User.findOne({ _id: decoded.id });
-      const receiver = currentUser.watchreceiver.filter((item) => {
-        const createdAt = moment(item.createdAt)
-        return createdAt.isBetween(startDate2, endDate2)
-      })
-
+  
     if (results) {
       res.render("IvPrep/ivprepin", {
         inarray: results,
         moment: moment,
         outpatient,
         dispense,
-        num, receiver
+        num,
       });
     }
   })
@@ -1577,24 +1384,13 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-
-      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-      const startDate2 = `${date}T14:00:00.000+00:00`;
-      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-      const currentUser = await User.findOne({ _id: decoded.id });
-      const receiver = currentUser.watchreceiver.filter((item) => {
-        const createdAt = moment(item.createdAt)
-        return createdAt.isBetween(startDate2, endDate2)
-      })
-      
     if (results) {
       res.render("IvPrep/ivprepinextradose", {
         inarray: results,
         moment: moment,
         num,
         outpatient,
-        dispense, receiver
+        dispense,
       });
     }
   })
@@ -1636,24 +1432,13 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-
-      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-      const startDate2 = `${date}T14:00:00.000+00:00`;
-      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-      const currentUser = await User.findOne({ _id: decoded.id });
-      const receiver = currentUser.watchreceiver.filter((item) => {
-        const createdAt = moment(item.createdAt)
-        return createdAt.isBetween(startDate2, endDate2)
-      })
-
     if (results) {
       res.render("IvPrep/ivprepinbmt", {
         inarray: results,
         moment: moment,
         outpatient,
         dispense,
-        num,receiver
+        num,
       });
     }
   })
@@ -1693,23 +1478,13 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-      const startDate2 = `${date}T14:00:00.000+00:00`;
-      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-      const currentUser = await User.findOne({ _id: decoded.id });
-      const receiver = currentUser.watchreceiver.filter((item) => {
-        const createdAt = moment(item.createdAt)
-        return createdAt.isBetween(startDate2, endDate2)
-      })
-
     if (results) {
       res.render("IvPrep/ivprepindoneview", {
         inarray: results,
         moment: moment,
         outpatient,
         dispense,
-        num, receiver
+        num,
       });
     }
   })
@@ -1749,24 +1524,13 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-
-      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-      const startDate2 = `${date}T14:00:00.000+00:00`;
-      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-      const currentUser = await User.findOne({ _id: decoded.id });
-      const receiver = currentUser.watchreceiver.filter((item) => {
-        const createdAt = moment(item.createdAt)
-        return createdAt.isBetween(startDate2, endDate2)
-      })
-
     if (results) {
       res.render("IvPrep/ivprepdis", {
         outarray: results,
         moment: moment,
         inarray,
         outpatient,
-        num, receiver
+        num,
       });
     }
   })
@@ -1811,16 +1575,6 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-
-      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-      const startDate2 = `${date}T14:00:00.000+00:00`;
-      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-      const currentUser = await User.findOne({ _id: decoded.id });
-      const receiver = currentUser.watchreceiver.filter((item) => {
-        const createdAt = moment(item.createdAt)
-        return createdAt.isBetween(startDate2, endDate2)
-      })
     if (results) {
       res.render("IvPrep/ivprepdispensedoneview", {
         disarray: results,
@@ -1828,7 +1582,7 @@ router.get(
         outpatient,
         inarray,
         num,
-        dispense, receiver
+        dispense,
       });
     }
   })
@@ -1869,23 +1623,13 @@ router.get(
       .skip(skip)
       .limit(limit);
 
-      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-      const startDate2 = `${date}T14:00:00.000+00:00`;
-      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-      const currentUser = await User.findOne({ _id: decoded.id });
-      const receiver = currentUser.watchreceiver.filter((item) => {
-        const createdAt = moment(item.createdAt)
-        return createdAt.isBetween(startDate2, endDate2)
-      })
-
     if (results) {
       res.render("IvPrep/ivprepout", {
         outarray: results,
         moment: moment,
         inarray,
         dispense,
-        num,receiver
+        num,
       });
     }
   })
@@ -1932,17 +1676,6 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-
-      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-      const startDate2 = `${date}T14:00:00.000+00:00`;
-      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-      const currentUser = await User.findOne({ _id: decoded.id });
-      const receiver = currentUser.watchreceiver.filter((item) => {
-        const createdAt = moment(item.createdAt)
-        return createdAt.isBetween(startDate2, endDate2)
-      })
-
     if (results) {
       res.render("IvPrep/ivprepoutextradose", {
         outarray: results,
@@ -1950,7 +1683,8 @@ router.get(
         num,
         inarray,
         dispense,
-        outpatient, receiver
+        outpatient,
+      
       });
     }
   })
@@ -1996,16 +1730,6 @@ router.get(
       .skip(skip)
       .limit(limit);
 
-      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-      const startDate2 = `${date}T14:00:00.000+00:00`;
-      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-      const currentUser = await User.findOne({ _id: decoded.id });
-      const receiver = currentUser.watchreceiver.filter((item) => {
-        const createdAt = moment(item.createdAt)
-        return createdAt.isBetween(startDate2, endDate2)
-      })
-
     if (results) {
       res.render("IvPrep/ivprepoutdoneview", {
         outarray: results,
@@ -2013,7 +1737,7 @@ router.get(
         inarray,
         dispense,
         num,
-        outpatient,receiver
+        outpatient,
       });
     }
   })
@@ -2041,23 +1765,12 @@ router.get(
       labcomment: { $not: { $regex: "RECEIVED" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-      const startDate2 = `${date}T14:00:00.000+00:00`;
-      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-      const currentUser = await User.findOne({ _id: decoded.id });
-      const receiver = currentUser.watchreceiver.filter((item) => {
-        const createdAt = moment(item.createdAt)
-        return createdAt.isBetween(startDate2, endDate2)
-      })
-
     if (results) {
       res.render("Lab/lab.ejs", {
         labarray: results,
         moment: moment,
         num,
-        page, receiver
+        page,
       });
     }
   })
@@ -2078,42 +1791,26 @@ router.get(
     const results = await Labschema.find({ labcomment: "RECEIVED" })
       .skip(skip)
       .limit(limit);
-      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      const date = moment().format("YYYY-MM-DD");
-      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-      const startDate = `${date}T14:00:00.000+00:00`;
-      const endDate = `${tomorrow}T13:59:59.000+00:00`;
-      const currentUser = await User.findOne({ _id: decoded.id });
-      const receiver = currentUser.watchreceiver.filter((item) => {
-        const createdAt = moment(item.createdAt)
-        return createdAt.isBetween(startDate, endDate)
-      })
-
     if (results) {
       res.render("Lab/labreceivedview.ejs", {
         labarray: results,
         moment: moment,
         num,
-        page, receiver
+        page,
       });
     }
   })
 );
 
 // DISPENSE
-router.get("/dispense", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
-  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-  const date = moment().format("YYYY-MM-DD");
-  const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-  const startDate = `${date}T14:00:00.000+00:00`;
-  const endDate = `${tomorrow}T13:59:59.000+00:00`;
-  const currentUser = await User.findOne({ _id: decoded.id });
-  const receiver = currentUser.watchreceiver.filter((item) => {
-    const createdAt = moment(item.createdAt)
-    return createdAt.isBetween(startDate, endDate)
+router.get(
+  "/dispense",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    res.render("Dispense/dispense");
   })
-  res.render("Dispense/dispense", {receiver});
-}));
+);
 
 // DISPENSE OVERVIEW
 router.get(
@@ -2146,24 +1843,13 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-
-      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-      const startDate2 = `${date}T14:00:00.000+00:00`;
-      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-      const currentUser = await User.findOne({ _id: decoded.id });
-      const receiver = currentUser.watchreceiver.filter((item) => {
-        const createdAt = moment(item.createdAt)
-        return createdAt.isBetween(startDate2, endDate2)
-      })
-      
     if (results) {
       res.render("Dispense/dispense3", {
         dispensearray: results,
         moment: moment,
         outpatient,
         inarray,
-        num, receiver
+        num,
       });
     }
   })
@@ -2199,23 +1885,12 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-
-      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-      const startDate2 = `${date}T14:00:00.000+00:00`;
-      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-      const currentUser = await User.findOne({ _id: decoded.id });
-      const receiver = currentUser.watchreceiver.filter((item) => {
-        const createdAt = moment(item.createdAt)
-        return createdAt.isBetween(startDate2, endDate2)
-      })
-
     if (results) {
       res.render("Dispense/dispense3in", {
         dispensearray: results,
         moment: moment,
         num,
-        outpatient, receiver
+        outpatient,
       });
     }
   })
@@ -2256,23 +1931,13 @@ router.get(
       .skip(skip)
       .limit(limit);
 
-      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-      const startDate2 = `${date}T14:00:00.000+00:00`;
-      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-      const currentUser = await User.findOne({ _id: decoded.id });
-      const receiver = currentUser.watchreceiver.filter((item) => {
-        const createdAt = moment(item.createdAt)
-        return createdAt.isBetween(startDate2, endDate2)
-      })
-
     if (results) {
       res.render("Dispense/edindispense", {
         dispensearray: results,
         outpatient,
         inarray,
         num,
-        moment: moment, receiver
+        moment: moment,
       });
     }
   })
@@ -2313,23 +1978,13 @@ router.get(
       .skip(skip)
       .limit(limit);
 
-      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-      const startDate2 = `${date}T14:00:00.000+00:00`;
-      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-      const currentUser = await User.findOne({ _id: decoded.id });
-      const receiver = currentUser.watchreceiver.filter((item) => {
-        const createdAt = moment(item.createdAt)
-        return createdAt.isBetween(startDate2, endDate2)
-      })
-
     if (results) {
       res.render("Dispense/dischargeindispense", {
         dispensearray: results,
         inarray,
         outpatient,
         moment: moment,
-        num, receiver
+        num,
       });
     }
   })
@@ -2368,23 +2023,14 @@ router.get(
       .skip(skip)
       .limit(limit);
 
-      const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-      const tomorrow = moment().add(1, 'day').format("YYYY-MM-DD")
-      const startDate2 = `${date}T14:00:00.000+00:00`;
-      const endDate2 = `${tomorrow}T13:59:59.000+00:00`;
-      const currentUser = await User.findOne({ _id: decoded.id });
-      const receiver = currentUser.watchreceiver.filter((item) => {
-        const createdAt = moment(item.createdAt)
-        return createdAt.isBetween(startDate2, endDate2)
-      })
-
     if (results) {
       res.render("Dispense/doneviewindispense", {
         dispensearray: results,
         moment: moment,
         num,
         outpatient,
-        inarray, receiver
+        inarray,
+        
       });
     }
   })
@@ -2595,7 +2241,6 @@ router.post(
     const number = Math.random() * 10000;
     req.body.detector = number;
     const night = req.body.nightpharmacist;
-    // const pharmacist = night.substring(night.length - 4, night.length);
     const pharmacist = night.split("/")[1];
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const currentUserid = decoded.id;
@@ -2606,6 +2251,7 @@ router.post(
           watchsender: {
             nightpharmacist: req.body.nightpharmacist,
             ptname: req.body.patientname,
+            comment: req.body.comment,
             ptmrn: req.body.patientmrn,
             message: req.body.message,
             high: req.body.high,
@@ -2624,6 +2270,7 @@ router.post(
         $push: {
           watchreceiver: {
             nightpharmacist: req.body.nightpharmacist,
+            comment: req.body.comment,
             ptname: req.body.patientname,
             ptmrn: req.body.patientmrn,
             message: req.body.message,
@@ -3531,7 +3178,7 @@ router.post(
             detector: req.body.detector,
             sendername: req.body.sendername,
             senderimage: req.body.senderimage,
-            createdAt: new Date(),
+            createdAt: moment(Date.now()),
           },
         },
       }
@@ -3547,7 +3194,7 @@ router.post(
             question: req.body.question,
             answer: req.body.answer,
             detector: req.body.detector,
-            createdAt: new Date(),
+            createdAt: moment(Date.now()),
           },
         },
       }
@@ -3732,6 +3379,25 @@ router.delete(
     }
   })
 );
+
+//WATCHRECEIVE DELETE TASK
+router.delete(
+  "/watchreceiverdelete/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const deltodolist = await User.updateOne(
+      { _id: decoded.id },
+      { $pull: { watchreceiver: { _id: req.params.id } } }
+    );
+    if (deltodolist) {
+      res.redirect("/receiver");
+    }
+  })
+);
+
+
 
 //WATCH DELETE TASK
 router.delete(
@@ -4386,6 +4052,7 @@ router.put(
           "watchsender.$.floor": req.body.ptfloor,
           "watchsender.$.ptmrn": req.body.patientmrn,
           "watchsender.$.ptname": req.body.patientname,
+          "watchsender.$.comment": req.body.comment,
         },
       }
     );
@@ -4404,6 +4071,7 @@ router.put(
           "watchreceiver.$.dome": req.body.dome,
           "watchreceiver.$.floor": req.body.ptfloor,
           "watchreceiver.$.ptmrn": req.body.patientmrn,
+          "watchsender.$.comment": req.body.comment,
           "watchreceiver.$.ptname": req.body.patientname,
         },
       }
@@ -4411,6 +4079,44 @@ router.put(
 
     if (results) {
       res.redirect("/watch");
+    }
+  })
+);
+
+// WATCH RECIEVER / EDIT
+router.put(
+  "/watchreceiveredit/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+  
+    const results = await User.updateOne(
+      { "watchreceiver._id": req.params.id },
+      {
+        $set: {
+          "watchreceiver.$.comment": req.body.comment,
+        },
+      }
+    );
+
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const selectedObject = user.watchreceiver.find((item) => {
+      return item._id == req.params.id;
+    });
+    const selectdetector = selectedObject.detector;
+    const detector = await User.updateOne(
+      { "watchsender.detector": selectdetector },
+      {
+        $set: {
+          "watchsender.$.comment": req.body.comment,
+
+        },
+      }
+    );
+
+    if (results) {
+      res.redirect("/receiver");
     }
   })
 );
@@ -4579,26 +4285,28 @@ router.post(
     const edate = req.body.eDate;
     const startDate = `${sdate}T00:00:00.000+00:00`;
     const endDate = `${edate}T23:59:59.000+00:00`;
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
-    const receiver = await User.findById({_id : decoded.id})
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const receiver = await User.findById({ _id: decoded.id });
     const searchdate = receiver.dicreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt)
-      return createdAt.isBetween(startDate,endDate)
-    })
-    const array = []
-    array.push(searchdate)
+      const createdAt = moment(item.createdAt);
+      return createdAt.isBetween(startDate, endDate);
+    });
+    const array = [];
+    array.push(searchdate);
     console.log(array);
     if (searchdate === undefined) {
-       await User.findOneAndUpdate({role : "DIC"},   { $set : {dicsearch : [] }})
+      await User.findOneAndUpdate({ role: "DIC" }, { $set: { dicsearch: [] } });
     }
 
     if (searchdate) {
-      await User.findOneAndUpdate({role : "DIC"},   { $set : {dicsearch : searchdate }})
-   }
+      await User.findOneAndUpdate(
+        { role: "DIC" },
+        { $set: { dicsearch: searchdate } }
+      );
+    }
     // const search = await User.findOneAndUpdate({role : "DIC"},   { $set : {dicsearch : searchdate }})
 
-  
-      res.redirect("/dic")
-    })
-   )
+    res.redirect("/dic");
+  })
+);
 module.exports = router;

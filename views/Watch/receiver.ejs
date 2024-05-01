@@ -63,11 +63,23 @@
             </div>
           </div>
           <div class="d-flex flex-column w-75">
+            <div id="maincontent" class="d-flex justify-content-center align-items-center">
+              <% if (receiver.length===0) { %>
+                <div class="alert alert-success new2 p-4 w-50 mt-5 ">
+                  <i class="fa fa-info-circle" aria-hidden="true"></i>
+                  <span class="alert-body">
+                    <h6 class="alert-header">ATTENTION</h6>
+                    <p class="mb-0">No Data Received</p>
+                  </span>
+                </div>
+                <% } %>
+            </div>
+
             <% if (receiver.length>=1) { %>
               <% receiver.forEach(item=> { %>
 
-                <div class="my-3 rounded-3 <%= item.high == true? "high" : "low" %> " id="mesgframe">
-                  
+                <div class="my-3 rounded-3 <%= item.high == true? " high" : "low" %> " id="mesgframe">
+
                   <div class="" aria-current="true">
                     <div class="d-flex border rounded-3 p-1 align-items-center justify-content-between mb-1 ms-3 mt-2"
                       style="width: 95%;box-shadow: 0px 0px 4px 0px rgba(128, 128, 128, 0.6); background-color: white;">
@@ -83,7 +95,8 @@
                           <%= item.dome %>
                         </span>
                       </p>
-                      <p class="mb-0 bebas-neue-regular">Date : <%= moment(item.createdAt).format('DD-MM-YYYY') %></p>
+                      <p class="mb-0 bebas-neue-regular">Date : <%= moment(item.createdAt).format('DD-MM-YYYY') %>
+                      </p>
                     </div>
                     <div class="d-flex align-items-center ms-3 justify-content-between mt-2">
                       <div class="d-flex align-items-center justify-content-between">
@@ -92,12 +105,74 @@
                           <%= item.message %>
                         </p>
                       </div>
+                      <div class="me-4 d-flex align-items-center justify-content-between">
+                        <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal2<%= item._id %>"><i
+                            class="fa-solid fa-pen-to-square me-1"></i></a>
+                        <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal<%= item.id %>"><i
+                            class="fa-regular fa-trash-can " style="color: red;"></i></a>
+                      </div>
+
+                      <!-- DELETE MODAL -->
+                      <div class="connectmodal modal fade" id="exampleModal<%= item.id %>" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="glass modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Delete</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              Are You Sure ?
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <form action="/watchreceiverdelete/<%= item.id %>?_method=DELETE" method="post">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- EDIT MODAL -->
+                      <div class="connectmodal modal fade" id="exampleModal2<%= item._id %>" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="glass modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Edit</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                            </div>
+                            <form action="/watchreceiveredit/<%= item._id %>?_method=PUT" method="post">
+                              <div class="modal-body">
+                                <div class="custom_input mb-2 align-items-center">
+                                  <textarea class="input2" name="comment" cols="30" rows="7"></textarea>
+                                </div>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
                   </div>
 
 
                   <div class="d-flex justify-content-center">
                     <div class="mt-3 border border-primary-subtle border-bottom-2" style="width: 95%;"></div>
+                  </div>
+
+                  <div class="d-flex ms-3 mt-2 align-items-center mb-2">
+                    <i class="fa-solid fa-angles-right" style="color: #f10303d0;"></i>
+                    <p class="mb-0 ms-2">
+                      <%= item.comment %>
+                    </p>
                   </div>
 
                   <div class="badge text-wrap d-flex justify-content-between align-items-center" style="color: black;">
@@ -118,6 +193,7 @@
                   </div>
 
                 </div>
+
                 <% }) %>
                   <% } %>
           </div>
