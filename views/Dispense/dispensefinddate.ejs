@@ -94,7 +94,7 @@
             <!-- /*--------------------------------------------------------------
       # MAIN CONTENT
       --------------------------------------------------------------*/ -->
-      <div id="maincontent" class="d-flex justify-content-center align-items-center" >
+      <div id="maincontent" class="d-flex flex-column justify-content-center align-items-center" >
         <% if (searcharray.length===0) { %>
           <div class="text-center">
             <h1>No Data Available</h1>
@@ -102,6 +102,9 @@
 
           <% } %>
             <% if (searcharray.length>= 1) { %>
+              <div class="text-end w-100">
+                <a href="/exceldis" data-tooltip="Extract" data-flow="left"><i class="fa-solid fa-arrow-up-from-bracket fa-rotate-90 fa-xl my-3 me-3" style="color: #74c0fc;"> </i></a>
+              </div>
               <table style="width: 99%" class="mx-auto table table-striped table-bordered">
                 <thead>
                   <tr>

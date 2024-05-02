@@ -93,71 +93,12 @@
           </div>
 
 
-          <!-- EDIT ICON -->
-          <div class="d-flex align-items-center mx-2 mb-1 justify-content-between">
-            <div class="btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
-              <button type="button" class="btn btn-outline-dark"><a style="border: unset; color: unset;"
-                  href="/lab">LAB</a></button>
-              <button type="button" class="btn btn-outline-dark"><a style="border: unset; color: unset;"
-                  href="/labreceivedview">RECIEVED</a></button>
-            </div>
-            <div>
-              <a data-tooltip="Find By Date" data-flow="top" style="background-color: rgb(41, 39, 39);" href="" id="find" class="border rounded-2 d-inline-flex p-1"
-              data-bs-toggle="modal" data-bs-target="#exampleModal1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" style="fill: white;" class="bi bi-search" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-              </svg>
-              
-            </a>
-            </div>
-          </div>
-
-          <!-- FIND DATE MODAL MODAL -->
-          <div class="connectmodal modal fade" id="exampleModal1" data-bs-backdrop="static" tabindex="-1"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="glass modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    Search Date
-                  </h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                  <form action="/findDatelab" method="post">
-                    <div class="mb-3">
-                      <label for="sDate" class="col-form-label">Start Date</label>
-                      <input name="sDate" type="date" class="form-control" id="sDate" />
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="eDate" class="col-form-label">End Date</label>
-                      <input name="eDate" type="date" class="form-control" id="eDate" />
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Close
-                  </button>
-
-                  <button type="submit" class="btn btn-primary">ADD
-
-                  </button>
-                  </form>
-
-
-                </div>
-              </div>
-            </div>
-          </div>
-
+    
 
           <!-- /*--------------------------------------------------------------
       # MAIN CONTENT
       --------------------------------------------------------------*/ -->
-          <div id="maincontent" class="d-flex justify-content-center align-items-center">
+          <div id="maincontent" class="d-flex flex-column justify-content-center align-items-center">
             <% if (searcharray.length===0) { %>
               <div class="alert alert-success new2 p-4 w-50 mt-5 ">
                 <i class="fa fa-info-circle" aria-hidden="true"></i>
@@ -170,6 +111,9 @@
 
           <% } %>
             <% if (searcharray.length>= 1) { %>
+              <div class="text-end w-100">
+                <a href="/excellab" data-tooltip="Extract" data-flow="left"><i class="fa-solid fa-arrow-up-from-bracket fa-rotate-90 fa-xl my-3 me-3" style="color: #890e0e;"> </i></a>
+              </div>
               <table style="width: 99%" class="mx-auto table table-striped table-bordered">
                 <thead>
                   <tr>

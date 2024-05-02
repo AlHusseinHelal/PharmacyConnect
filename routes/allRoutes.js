@@ -223,19 +223,6 @@ router.get(
       firstname: "asc",
     });
     const sender = currentUser.watchsender;
-//     const comment = currentUser.watchsender.filter( item => {
-//       return item.comment == "" ;
-//     })
-
-//     const comment2 = currentUser.watchsender.filter( item => {
-//       return item.comment !== "" ;
-//     })
-
-//     const receive = currentUser.watchreceiver.
-// console.log("---------------------------");
-//     console.log(comment2);
-// console.log("---------------------------");
-
     if (results) {
       res.render("Watch/watch.ejs", {
         users: results,
@@ -324,6 +311,7 @@ router.get(
   })
 );
 
+//DIC EXTRACT
 router.get(
   "/excel",
   checkIfUser,
@@ -341,7 +329,7 @@ router.get(
       //ADD WORKSHEET TO WORKBOOK
       xlsx.utils.book_append_sheet(workbook, worksheet, "Users");
       //DOWNLOAD EXCEL FILE
-      xlsx.writeFile(workbook, "C:\\Download\\Users.xlsx");
+      xlsx.writeFile(workbook, "C:\\PharmacyConnect\\Users.xlsx");
       res.redirect("/dic");
       res.send(new ApiError(201, "success", response));
     } else {
@@ -1244,6 +1232,33 @@ router.get(
   })
 );
 
+//INPATIENT EXTRACT
+router.get(
+  "/excelin",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const find = await User.findOne({ _id: decoded.id });
+    const results = find.infinddate;
+    if (results.length > 0) {
+      const response = JSON.parse(JSON.stringify(results));
+      //CREATE NEW WORKBOOK
+      const workbook = xlsx.utils.book_new();
+      //CONVERT JSON ARRAY TO WORKSHEET
+      const worksheet = xlsx.utils.json_to_sheet(response);
+      //ADD WORKSHEET TO WORKBOOK
+      xlsx.utils.book_append_sheet(workbook, worksheet, "Inpatient");
+      //DOWNLOAD EXCEL FILE
+      xlsx.writeFile(workbook, "C:\\PharmacyConnect\\Inpatient.xlsx");
+      res.redirect("/inpatient3");
+      res.send(new ApiError(201, "success", response));
+    } else {
+      res.send(new ApiError(404, "No Data Avaliable"));
+    }
+  })
+);
+
 // OUTPATIENT
 router.get(
   "/outpatient",
@@ -1251,6 +1266,33 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     res.render("Outpatient/outpatient");
+  })
+);
+
+//OUTPATIENT EXTRACT
+router.get(
+  "/excelout",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
+    const find = await User.findOne({ _id : decoded.id })
+  const results = find.outfinddate;
+
+    if (results.length > 0) {
+      const response = JSON.parse(JSON.stringify(results));
+      //CREATE NEW WORKBOOK
+      const workbook = xlsx.utils.book_new();
+      //CONVERT JSON ARRAY TO WORKSHEET
+      const worksheet = xlsx.utils.json_to_sheet(response);
+      //ADD WORKSHEET TO WORKBOOK
+      xlsx.utils.book_append_sheet(workbook, worksheet, "Outpatient");
+      //DOWNLOAD EXCEL FILE
+      xlsx.writeFile(workbook, "C:\\PharmacyConnect\\Outpatient.xlsx");
+      res.redirect("/outpatient3");
+    } else {
+      res.send(new ApiError(404, "No Data Avaliable"));
+    }
   })
 );
 
@@ -1802,6 +1844,33 @@ router.get(
   })
 );
 
+//LAB EXTRACT
+router.get(
+  "/excellab",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
+    const find = await User.findOne({ _id : decoded.id })
+  const results = find.labfinddate;
+
+    if (results.length > 0) {
+      const response = JSON.parse(JSON.stringify(results));
+      //CREATE NEW WORKBOOK
+      const workbook = xlsx.utils.book_new();
+      //CONVERT JSON ARRAY TO WORKSHEET
+      const worksheet = xlsx.utils.json_to_sheet(response);
+      //ADD WORKSHEET TO WORKBOOK
+      xlsx.utils.book_append_sheet(workbook, worksheet, "Lab");
+      //DOWNLOAD EXCEL FILE
+      xlsx.writeFile(workbook, "C:\\PharmacyConnect\\Lab.xlsx");
+      res.redirect("/lab");
+    } else {
+      res.send(new ApiError(404, "No Data Avaliable"));
+    }
+  })
+);
+
 // DISPENSE
 router.get(
   "/dispense",
@@ -2056,6 +2125,33 @@ router.get("/viewdis/:id", checkIfUser, requireAuth, (req, res) => {
       console.log(err);
     });
 });
+
+//DISPENSE EXTRACT
+router.get(
+  "/exceldis",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
+    const find = await User.findOne({ _id : decoded.id })
+  const results = find.disfinddate;
+
+    if (results.length > 0) {
+      const response = JSON.parse(JSON.stringify(results));
+      //CREATE NEW WORKBOOK
+      const workbook = xlsx.utils.book_new();
+      //CONVERT JSON ARRAY TO WORKSHEET
+      const worksheet = xlsx.utils.json_to_sheet(response);
+      //ADD WORKSHEET TO WORKBOOK
+      xlsx.utils.book_append_sheet(workbook, worksheet, "Dispense");
+      //DOWNLOAD EXCEL FILE
+      xlsx.writeFile(workbook, "C:\\PharmacyConnect\\Dispense.xlsx");
+      res.redirect("/dispense3");
+    } else {
+      res.send(new ApiError(404, "No Data Avaliable"));
+    }
+  })
+);
 
 // ---------------------------------
 //POST REQUEST
@@ -2844,6 +2940,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
     const sdate = req.body.sDate;
     const edate = req.body.eDate;
     const startDate = sdate + "T00:00:00.000+00:00";
@@ -2851,6 +2948,18 @@ router.post(
     const results = await Inpatientschema.find({
       createdAt: { $gte: startDate, $lte: endDate },
     });
+
+    if (results === undefined) {
+      await User.findOneAndUpdate({ _id: decoded.id }, { $set: { infinddate : [] } });
+    }
+
+    if (results) {
+      await User.findOneAndUpdate(
+        { _id: decoded.id },
+        { $set: { infinddate: results } }
+      );
+    } 
+
     if (results) {
       res.render("Inpatient/inpatientfinddate.ejs", {
         searcharray: results,
@@ -2882,6 +2991,41 @@ router.post("/outpt2", checkIfUser, requireAuth, (req, res) => {
       console.log(err);
     });
 });
+
+// OUTPATIENT SEARCH DATE
+router.post(
+  "/findDateOut",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
+    const sdate = req.body.sDate;
+    const edate = req.body.eDate;
+    const startDate = sdate + "T00:00:00.000+00:00";
+    const endDate = edate + "T23:59:59.000+00:00";
+    const results = await Outpatient.find({
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+
+    if (results === undefined) {
+      await User.findOneAndUpdate({ _id: decoded.id }, { $set: { outfinddate : [] } });
+    }
+
+    if (results) {
+      await User.findOneAndUpdate(
+        { _id: decoded.id },
+        { $set: { outfinddate: results } }
+      );
+    }    
+
+    if (results) {
+      res.render("Outpatient/outpatientfinddate.ejs", {
+        searcharray: results,
+        moment: moment,
+      });
+    }
+  })
+);
 
 // OUTPATIENT ADD PATIENT
 router.post(
@@ -3054,6 +3198,7 @@ router.post(
       mrn: searchText,
       createdAt: { $gte: startDate, $lte: endDate },
     });
+
     res.render("Dispense/dispensesearch", { array: result, moment: moment });
   })
 );
@@ -3064,6 +3209,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
     const sdate = req.body.sDate;
     const edate = req.body.eDate;
     const startDate = sdate + "T00:00:00.000+00:00";
@@ -3071,6 +3217,17 @@ router.post(
     const results = await Dispenseschema.find({
       createdAt: { $gte: startDate, $lte: endDate },
     });
+
+    if (results === undefined) {
+      await User.findOneAndUpdate({ _id: decoded.id }, { $set: { disfinddate : [] } });
+    }
+
+    if (results) {
+      await User.findOneAndUpdate(
+        { _id: decoded.id },
+        { $set: { disfinddate: results } }
+      );
+    } 
     if (results) {
       res.render("Dispense/dispensefinddate.ejs", {
         searcharray: results,
@@ -3086,6 +3243,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
     const page = req.query.page * 1 || 1;
     const limit = req.query.limit * 1 || 6;
     const skip = (page - 1) * limit;
@@ -3101,6 +3259,18 @@ router.post(
     const num = await Labschema.find({
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
+
+    if (results === undefined) {
+      await User.findOneAndUpdate({ _id: decoded.id }, { $set: { labfinddate : [] } });
+    }
+
+    if (results) {
+      await User.findOneAndUpdate(
+        { _id: decoded.id },
+        { $set: { labfinddate: results } }
+      );
+    } 
+
     if (results) {
       res.render("Lab/labfinddate.ejs", {
         searcharray: results,
@@ -3204,6 +3374,41 @@ router.post(
     if (results) {
       res.json({ done: dic });
     }
+  })
+);
+
+// DIC SEARCH DATE
+router.post(
+  "/findDatedic",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const sdate = req.body.sDate;
+    const edate = req.body.eDate;
+    const startDate = `${sdate}T00:00:00.000+00:00`;
+    const endDate = `${edate}T23:59:59.000+00:00`;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const receiver = await User.findById({ _id: decoded.id });
+    const searchdate = receiver.dicreceiver.filter((item) => {
+      const createdAt = moment(item.createdAt);
+      return createdAt.isBetween(startDate, endDate);
+    });
+    const array = [];
+    array.push(searchdate);
+    console.log(array);
+    if (searchdate === undefined) {
+      await User.findOneAndUpdate({ role: "DIC" }, { $set: { dicsearch: [] } });
+    }
+
+    if (searchdate) {
+      await User.findOneAndUpdate(
+        { role: "DIC" },
+        { $set: { dicsearch: searchdate } }
+      );
+    }
+    // const search = await User.findOneAndUpdate({role : "DIC"},   { $set : {dicsearch : searchdate }})
+
+    res.redirect("/dic");
   })
 );
 
@@ -4275,38 +4480,5 @@ router.put(
   })
 );
 
-// DIC SEARCH DATE
-router.post(
-  "/findDatedic",
-  checkIfUser,
-  requireAuth,
-  asyncHandler(async (req, res) => {
-    const sdate = req.body.sDate;
-    const edate = req.body.eDate;
-    const startDate = `${sdate}T00:00:00.000+00:00`;
-    const endDate = `${edate}T23:59:59.000+00:00`;
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-    const receiver = await User.findById({ _id: decoded.id });
-    const searchdate = receiver.dicreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt);
-      return createdAt.isBetween(startDate, endDate);
-    });
-    const array = [];
-    array.push(searchdate);
-    console.log(array);
-    if (searchdate === undefined) {
-      await User.findOneAndUpdate({ role: "DIC" }, { $set: { dicsearch: [] } });
-    }
 
-    if (searchdate) {
-      await User.findOneAndUpdate(
-        { role: "DIC" },
-        { $set: { dicsearch: searchdate } }
-      );
-    }
-    // const search = await User.findOneAndUpdate({role : "DIC"},   { $set : {dicsearch : searchdate }})
-
-    res.redirect("/dic");
-  })
-);
 module.exports = router;

@@ -49,7 +49,7 @@ const user = new mongoose.Schema(
     todolist: [
       {
         title: {
-          type : "string",
+          type: "string",
           trim: true,
           required: [true, "Name Is Required"],
         },
@@ -93,7 +93,7 @@ const user = new mongoose.Schema(
         updatedAt: Date,
       },
     ],
-    dicsearch:[
+    dicsearch: [
       {
         question: String,
         answer: String,
@@ -104,7 +104,7 @@ const user = new mongoose.Schema(
     dicsender: [
       {
         question: {
-          type : "string",
+          type: "string",
           trim: true,
           required: [true, "Name Is Required"],
         },
@@ -118,7 +118,7 @@ const user = new mongoose.Schema(
     dicreceiver: [
       {
         question: {
-          type : "string",
+          type: "string",
           trim: true,
         },
         answer: String,
@@ -127,6 +127,60 @@ const user = new mongoose.Schema(
         senderimage: String,
         createdAt: Date,
         updatedAt: Date,
+      },
+    ],
+    outfinddate: [
+      {
+        patientname: String,
+        mrn: String,
+        ptfloor: String,
+        requestype: String,
+        oraliv: String,
+        roundcomment: String,
+        prepcomment: String,
+      },
+    ],
+    infinddate: [
+      {
+        patientname: String,
+        mrn: String,
+        ptfloor: String,
+        requestype: String,
+        oraliv: String,
+        roundcomment: String,
+        prepcomment: String,
+      },
+    ],
+    labfinddate: [
+      {
+        labpatientname: String,
+        mrnlab: {
+          type: Number,
+          
+        },
+        labptfloor: String,
+        labrequestype: String,
+        medstartdate: {
+          type: String,
+        },
+        phaname: String,
+        medstarttime: String,
+        samplewddate: String,
+        samplewdtime: String,
+        levelrequestreason: String,
+        comment: String,
+        labcomment: String,
+      },
+    ],
+    disfinddate: [
+      {
+        patientname: String,
+        mrn: String,
+        ptfloor: String,
+        requestype: String,
+        oraliv: String,
+        roundcomment: String,
+        prepcomment: String,
       },
     ],
   },
@@ -140,6 +194,20 @@ user.pre("save", async function (next) {
   const salt = await bcrypt.genSalt();
   this.password = await bcrypt.hash(this.password, salt);
   this.cpassword = undefined;
+  next();
+});
+
+user.pre("save", function (next) {
+  this.firstname =
+    this.firstname.trim()[0].toUpperCase() +
+    this.firstname.slice(1).toLowerCase();
+  next();
+});
+
+user.pre("save", function (next) {
+  this.lastname =
+    this.lastname.trim()[0].toUpperCase() +
+    this.lastname.slice(1).toLowerCase();
   next();
 });
 
@@ -180,8 +248,6 @@ user.post("init", (doc) => {
     doc.profileimage = profileimageUrl;
   }
 });
-
-
 
 const User = mongoose.model("User", user);
 
