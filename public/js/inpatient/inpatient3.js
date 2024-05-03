@@ -19,33 +19,6 @@ $(document).ready(function () {
   });
 
   /*--------------------------------------------------------------
-# ARROW CONTROL
---------------------------------------------------------------*/
-  if (localStorage.getItem("sidebarlarge") === "yes") {
-    $(".sidelist").removeClass("small-sidebar");
-    $("#arrowmove2").css("display", "none");
-    $("#arrowmove1").css("display", "block");
-  } else {
-    $(".sidelist").addClass("small-sidebar");
-    $("#arrowmove1").css("display", "none");
-    $("#arrowmove2").css("display", "block");
-  }
-
-  $("#arrowmove1").on("click", function () {
-    $(".sidelist").addClass("small-sidebar");
-    $(this).css("display", "none");
-    $("#arrowmove2").css("display", "block");
-    localStorage.setItem("sidebarlarge", "no");
-  });
-
-  $("#arrowmove2").on("click", function () {
-    $(".sidelist").removeClass("small-sidebar");
-    $(this).css("display", "none");
-    $("#arrowmove1").css("display", "block");
-    localStorage.setItem("sidebarlarge", "yes");
-  });
-
-  /*--------------------------------------------------------------
 # UP ARROW
 --------------------------------------------------------------*/
 

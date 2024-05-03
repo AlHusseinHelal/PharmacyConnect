@@ -495,3 +495,35 @@ transition: all 1s;
   animation: tooltip-horz .5s ease-out forwards;
 }
 
+/* ICONS */
+@keyframes rotate {
+  0% {
+    rotate: 0deg;
+  }
+
+  50% {
+    rotate: 180deg;
+  }
+
+  100% {
+    rotate: 360deg;
+  }
+}
+
+#gear2 {
+  transition: all 1s;
+  animation-name: rotate;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.disappearicon{
+  transition: all 1s;
+  transform: translateX(9vw);
+}
+
+.appearicon{
+  transition: all 1s;
+  transform: translateX(0vw);
+}

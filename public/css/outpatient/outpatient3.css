@@ -502,3 +502,15 @@ transition: all 1s;
 }
 
 
+/* ICONS */
+
+
+.disappearicon{
+  transition: all 1s;
+  transform: translateX(11vw);
+}
+
+.appearicon{
+  transition: all 1s;
+  transform: translateX(0vw);
+}

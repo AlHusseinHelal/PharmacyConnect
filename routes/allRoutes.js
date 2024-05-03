@@ -902,15 +902,6 @@ router.get(
   })
 );
 
-// INPATIENT
-router.get(
-  "/inpatient",
-  checkIfUser,
-  requireAuth,
-  asyncHandler(async (req, res) => {
-    res.render("Inpatient/inpatient");
-  })
-);
 
 // INPATIENT OVERVIEW
 router.get(
@@ -1259,15 +1250,7 @@ router.get(
   })
 );
 
-// OUTPATIENT
-router.get(
-  "/outpatient",
-  checkIfUser,
-  requireAuth,
-  asyncHandler(async (req, res) => {
-    res.render("Outpatient/outpatient");
-  })
-);
+
 
 //OUTPATIENT EXTRACT
 router.get(
@@ -1871,15 +1854,6 @@ router.get(
   })
 );
 
-// DISPENSE
-router.get(
-  "/dispense",
-  checkIfUser,
-  requireAuth,
-  asyncHandler(async (req, res) => {
-    res.render("Dispense/dispense");
-  })
-);
 
 // DISPENSE OVERVIEW
 router.get(

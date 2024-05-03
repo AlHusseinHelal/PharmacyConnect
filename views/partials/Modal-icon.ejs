@@ -1,14 +1,42 @@
-<div>
-  <a data-tooltip="Find By Date" data-flow="top" style="background-color: rgb(41, 39, 39);" href="" id="find" class="border rounded-2 d-inline-flex p-1"
-    data-bs-toggle="modal" data-bs-target="#exampleModal1">
-    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" style="fill: white;" class="bi bi-search" viewBox="0 0 16 16">
-      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+<style>
+  @keyframes rotate {
+  0% {
+    rotate: 0deg;
+  }
+
+  50% {
+    rotate: 180deg;
+  }
+
+  100% {
+    rotate: 360deg;
+  }
+}
+
+#gear2{
+  transition: all 1s;
+  animation-name: rotate;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+</style>
+
+<div id="icon_div" class="disappearicon d-flex align-items-center justify-content-between p-1"
+  style="width: 13vw;  border-radius: 5px; background-color:rgb(218, 226, 225);">
+  <i id="gear2" class="fa-solid fa-gear fa-2xl" style="color: #407de6;"></i>
+  <a data-tooltip="Find By Date" data-flow="top" style="background-color: rgb(41, 39, 39);" href="" id="find"
+    class="rounded-2 d-inline-flex p-1" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" style="fill: white;" class="bi bi-search"
+      viewBox="0 0 16 16">
+      <path
+        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
     </svg>
-    
+
   </a>
 
-  <a data-tooltip="Add To Lab" data-flow="top" style="background-color: rgb(0, 42, 255);" href="" id="editicon" class="border rounded-2 d-inline-flex p-1"
-    data-bs-toggle="modal" data-bs-target="#exampleModal4">
+  <a data-tooltip="Add To Lab" data-flow="top" style="background-color: rgb(0, 42, 255);" href="" id="editicon"
+    class="rounded-2 d-inline-flex p-1" data-bs-toggle="modal" data-bs-target="#exampleModal4">
     <svg style="fill: aliceblue" xmlns="http://www.w3.org/2000/svg" width="25" height="25"
       class="bi bi-person-bounding-box" viewBox="0 0 16 16">
       <path
@@ -17,8 +45,8 @@
     </svg>
   </a>
 
-  <a data-tooltip="Add Patient" data-flow="top" style="background-color: rgb(0, 42, 255);" href="" id="editicon" class="border rounded-2 d-inline-flex p-1"
-    data-bs-toggle="modal" data-bs-target="#exampleModal2">
+  <a data-tooltip="Add Patient" data-flow="top" style="background-color: rgb(0, 42, 255);" href="" id="editicon"
+    class="rounded-2 d-inline-flex p-1" data-bs-toggle="modal" data-bs-target="#exampleModal2">
     <svg style="fill: aliceblue" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
       class="bi bi-pencil" viewBox="0 0 16 16">
       <path
@@ -26,8 +54,8 @@
     </svg>
   </a>
 
-  <a data-tooltip="New" data-flow="top" style="background-color: rgb(203, 58, 58);" href="" id="addpatient" class="border rounded-2 d-inline-flex p-1"
-    data-bs-toggle="modal" data-bs-target="#exampleModal3">
+  <a data-tooltip="New" data-flow="top" style="background-color: rgb(203, 58, 58);" href="" id="addpatient"
+    class="rounded-2 d-inline-flex p-1" data-bs-toggle="modal" data-bs-target="#exampleModal3">
     <svg style="fill: aliceblue" xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="bi bi-person-fill-add"
       viewBox="0 0 16 16">
       <path
@@ -36,3 +64,23 @@
     </svg>
   </a>
 </div>
+
+<script>
+  // ICON
+  const icondiv = document.querySelector("#icon_div");
+  if (localStorage.getItem('iconbar') === 'NO') {
+    icondiv.classList.remove('appearicon')
+  } else {
+    icondiv.classList.add('appearicon')
+  }
+  const gear2 = document.querySelector("#gear2");
+  gear2.addEventListener("click", (eo) => {
+    if (localStorage.getItem('iconbar') === 'NO') {
+      localStorage.setItem('iconbar', 'YES')
+      icondiv.classList.add("appearicon")
+    } else if (localStorage.getItem('iconbar') === 'YES') {
+      localStorage.setItem('iconbar', 'NO')
+      icondiv.classList.remove("appearicon")
+    }
+  });
+</script>

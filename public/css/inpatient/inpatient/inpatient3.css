@@ -331,6 +331,14 @@ transition: all 1s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
+
+#gear2{
+  transition: all 1s;
+  animation-name: rotate;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
 .appear50 {
   transform: translateX(45px);
 
@@ -541,5 +549,15 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 
-/* NO DATA AVALIABLE */
+/* ICONS */
 
+
+.disappearicon{
+  transition: all 1s;
+  transform: translateX(11vw);
+}
+
+.appearicon{
+  transition: all 1s;
+  transform: translateX(0vw);
+}
