@@ -97,29 +97,21 @@ $(document).ready(function () {
 }); // END OF jQuary
 
 
-const add_patient = document.getElementById("add_patient")
-add_patient.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  console.log(oraliv.value)
 
-  const res = await fetch("/add_patient_out", {
-    method: "POST",
-    body: JSON.stringify({ patientname: patientname.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value }),
-    headers: { "Content-Type": "application/json" },
-  });
-
-  const data = await res.json();
-
-  if (data.iv_oral) {
-    console.log(data.iv_oral)
-    document.getElementById('iv_oralnot').classList.remove("d-none");
-    document.getElementById('oraliv').classList.add("redframe");  
+  // ICON
+  const icondiv = document.querySelector("#icon_div");
+  if (localStorage.getItem('iconbar') === 'NO') {
+    icondiv.classList.remove('appearicon')
   } else {
-    document.getElementById('iv_oralnot').classList.add("d-none");
-    document.getElementById('oraliv').classList.remove("redframe");  
-  } 
-  if (data.newoutpatientpatient) {
-    location.assign("/outpatient3")  
+    icondiv.classList.add('appearicon')
   }
-  
-});
+  const gear2 = document.querySelector("#gear2");
+  gear2.addEventListener("click", (eo) => {
+    if (localStorage.getItem('iconbar') === 'NO') {
+      localStorage.setItem('iconbar', 'YES')
+      icondiv.classList.add("appearicon")
+    } else if (localStorage.getItem('iconbar') === 'YES') {
+      localStorage.setItem('iconbar', 'NO')
+      icondiv.classList.remove("appearicon")
+    }
+  });

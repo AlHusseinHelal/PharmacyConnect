@@ -16560,20 +16560,20 @@ btn9.addEventListener("click", (params) => {
 });
 
 
-const medication = document.querySelectorAll(".medication")
+// const medication = document.querySelectorAll(".medication")
 
-medication.forEach(item => {
-  item.addEventListener("click", () => {
+// medication.forEach(item => {
+//   item.addEventListener("click", () => {
   
-    console.log("hellooo");
-    const row = document.getElementById("row")
-    if (row.classList.contains("Cataflam")) {
-      row.classList.remove("d-none")
-    } 
+//     console.log("hellooo");
+//     const row = document.getElementById("row")
+//     if (row.classList.contains("Cataflam")) {
+//       row.classList.remove("d-none")
+//     } 
   
   
     
 
-  })
-});
+//   })
+// });
 
