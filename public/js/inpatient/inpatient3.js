@@ -1,4 +1,6 @@
   // ICON
+localStorage.setItem('iconbar','NO')
+
   const icondiv = document.querySelector("#icon_div");
   if (localStorage.getItem('iconbar') === 'NO') {
     icondiv.classList.remove('appearicon')
