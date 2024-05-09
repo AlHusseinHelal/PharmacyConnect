@@ -91,6 +91,37 @@ cloudinary.config({
 //GET REQUEST
 // ----------------------------------
 
+//ADMIN
+router.get(
+  "/admin",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.findById({ _id: decoded.id });
+    const exam = results.examchoose
+    const custmer = await User.find().sort({ firstname : "asc"});
+    if (custmer) {
+      res.render("admin.ejs", { array: custmer, exam });
+    }
+  })
+);
+
+//EXAM
+router.get(
+  "/exam",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.findById({ _id: decoded.id });
+    const exam = results.examchoose
+    if (exam) {
+      res.render("Exam/exam.ejs", { exam });
+    }
+  })
+);
+
 //SIGNOUT
 router.get("/signout", signOut);
 
@@ -229,7 +260,7 @@ router.get(
         moment: moment,
         sender: sender,
         firstname,
-        lastname
+        lastname,
       });
     }
   })
@@ -274,9 +305,9 @@ router.get(
     const medclass = await Medicationclass.find().sort({ classname: "asc" });
     const med = await Medication.find().sort("asc");
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + 'T00:00:00.000+00:00';
-    const endDate = date + 'T23:59:59.000+00:00';
-    console.log(startDate, endDate );
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+    console.log(startDate, endDate);
     const search = currentUser.dicsearch;
     const dic = currentUser.dicreceiver.filter((item) => {
       const createdAt = moment(item.createdAt);
@@ -902,7 +933,6 @@ router.get(
   })
 );
 
-
 // INPATIENT OVERVIEW
 router.get(
   "/inpatient3",
@@ -993,11 +1023,11 @@ router.get(
     const skip = (page - 1) * limit;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
-    const {firstname} = user;
-    const {lastname} = user;
+    const { firstname } = user;
+    const { lastname } = user;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date  }T00:00:00.000+00:00`;
-    const endDate = `${date  }T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
 
     const results = await Inpatientschema.find({
       ptfloor: "ICC",
@@ -1250,17 +1280,15 @@ router.get(
   })
 );
 
-
-
 //OUTPATIENT EXTRACT
 router.get(
   "/excelout",
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
-    const find = await User.findOne({ _id : decoded.id })
-  const results = find.outfinddate;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const find = await User.findOne({ _id: decoded.id });
+    const results = find.outfinddate;
 
     if (results.length > 0) {
       const response = JSON.parse(JSON.stringify(results));
@@ -1360,7 +1388,7 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-  
+
     if (results) {
       res.render("IvPrep/ivprepin", {
         inarray: results,
@@ -1709,7 +1737,6 @@ router.get(
         inarray,
         dispense,
         outpatient,
-      
       });
     }
   })
@@ -1833,9 +1860,9 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
-    const find = await User.findOne({ _id : decoded.id })
-  const results = find.labfinddate;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const find = await User.findOne({ _id: decoded.id });
+    const results = find.labfinddate;
 
     if (results.length > 0) {
       const response = JSON.parse(JSON.stringify(results));
@@ -1853,7 +1880,6 @@ router.get(
     }
   })
 );
-
 
 // DISPENSE OVERVIEW
 router.get(
@@ -2073,7 +2099,6 @@ router.get(
         num,
         outpatient,
         inarray,
-        
       });
     }
   })
@@ -2106,9 +2131,9 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
-    const find = await User.findOne({ _id : decoded.id })
-  const results = find.disfinddate;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const find = await User.findOne({ _id: decoded.id });
+    const results = find.disfinddate;
 
     if (results.length > 0) {
       const response = JSON.parse(JSON.stringify(results));
@@ -2914,7 +2939,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const sdate = req.body.sDate;
     const edate = req.body.eDate;
     const startDate = sdate + "T00:00:00.000+00:00";
@@ -2922,9 +2947,13 @@ router.post(
     const results = await Inpatientschema.find({
       createdAt: { $gte: startDate, $lte: endDate },
     });
+    console.log(results);
 
     if (results === undefined) {
-      await User.findOneAndUpdate({ _id: decoded.id }, { $set: { infinddate : [] } });
+      await User.findOneAndUpdate(
+        { _id: decoded.id },
+        { $set: { infinddate: [] } }
+      );
     }
 
     if (results) {
@@ -2932,7 +2961,7 @@ router.post(
         { _id: decoded.id },
         { $set: { infinddate: results } }
       );
-    } 
+    }
 
     if (results) {
       res.render("Inpatient/inpatientfinddate.ejs", {
@@ -2972,7 +3001,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const sdate = req.body.sDate;
     const edate = req.body.eDate;
     const startDate = sdate + "T00:00:00.000+00:00";
@@ -2982,7 +3011,10 @@ router.post(
     });
 
     if (results === undefined) {
-      await User.findOneAndUpdate({ _id: decoded.id }, { $set: { outfinddate : [] } });
+      await User.findOneAndUpdate(
+        { _id: decoded.id },
+        { $set: { outfinddate: [] } }
+      );
     }
 
     if (results) {
@@ -2990,7 +3022,7 @@ router.post(
         { _id: decoded.id },
         { $set: { outfinddate: results } }
       );
-    }    
+    }
 
     if (results) {
       res.render("Outpatient/outpatientfinddate.ejs", {
@@ -3183,7 +3215,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const sdate = req.body.sDate;
     const edate = req.body.eDate;
     const startDate = sdate + "T00:00:00.000+00:00";
@@ -3193,7 +3225,10 @@ router.post(
     });
 
     if (results === undefined) {
-      await User.findOneAndUpdate({ _id: decoded.id }, { $set: { disfinddate : [] } });
+      await User.findOneAndUpdate(
+        { _id: decoded.id },
+        { $set: { disfinddate: [] } }
+      );
     }
 
     if (results) {
@@ -3201,7 +3236,7 @@ router.post(
         { _id: decoded.id },
         { $set: { disfinddate: results } }
       );
-    } 
+    }
     if (results) {
       res.render("Dispense/dispensefinddate.ejs", {
         searcharray: results,
@@ -3217,7 +3252,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const page = req.query.page * 1 || 1;
     const limit = req.query.limit * 1 || 6;
     const skip = (page - 1) * limit;
@@ -3235,7 +3270,10 @@ router.post(
     }).countDocuments();
 
     if (results === undefined) {
-      await User.findOneAndUpdate({ _id: decoded.id }, { $set: { labfinddate : [] } });
+      await User.findOneAndUpdate(
+        { _id: decoded.id },
+        { $set: { labfinddate: [] } }
+      );
     }
 
     if (results) {
@@ -3243,7 +3281,7 @@ router.post(
         { _id: decoded.id },
         { $set: { labfinddate: results } }
       );
-    } 
+    }
 
     if (results) {
       res.render("Lab/labfinddate.ejs", {
@@ -3407,6 +3445,49 @@ router.post(
     const medclass = await Medicationclass.create(req.body);
     if (medclass) {
       res.json({ done: medclass });
+    }
+  })
+);
+
+//EXAM FORM
+router.post(
+  "/examform",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const PHA = await User.findOne({ _id: decoded.id });
+    const pharmacist = PHA.selectedpharmacist;
+    const arr = Object.values(pharmacist);
+    req.body.detector = Date.now();
+    const results = await User.findOneAndUpdate(
+      { _id: decoded.id },
+      { examchoose: req.body }
+    );
+    arr.forEach( async (item) => {
+       await User.findOneAndUpdate({code: item}, { examchoose: req.body })
+    });
+
+    if (results) {
+      res.redirect("/admin");
+    }
+  })
+);
+
+//SELECTED PHARMACIST FOR EXAM
+router.post(
+  "/select",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    
+    const results = await User.findOneAndUpdate(
+      { _id: decoded.id },
+      { selectedpharmacist: req.body }
+    );
+    if (results) {
+      res.redirect("/admin");
     }
   })
 );
@@ -3576,8 +3657,6 @@ router.delete(
   })
 );
 
-
-
 //WATCH DELETE TASK
 router.delete(
   "/dicdelete/:id",
@@ -3594,6 +3673,20 @@ router.delete(
     }
   })
 );
+
+//WATCH DELETE TASK
+router.delete(
+  "/deleteuser/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const deldic = await User.findByIdAndDelete({ _id: req.params.id });
+    if (deldic) {
+      res.redirect("/admin");
+    }
+  })
+);
+
 // ---------------------------------
 //PUT REQUEST
 // ----------------------------------
@@ -4268,7 +4361,6 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-  
     const results = await User.updateOne(
       { "watchreceiver._id": req.params.id },
       {
@@ -4289,7 +4381,6 @@ router.put(
       {
         $set: {
           "watchsender.$.comment": req.body.comment,
-
         },
       }
     );
@@ -4454,5 +4545,41 @@ router.put(
   })
 );
 
+// ADMIN ROLE
+router.put(
+  "/userole/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const results = await User.findByIdAndUpdate(
+      { _id: req.params.id },
+      { role: req.body.role }
+    );
+
+    if (results) {
+      res.redirect("/admin");
+    }
+  })
+);
+
+// EXAM ANSWER
+router.put(
+  "/answer",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const selectedObject = user.examchoose;
+    const selectdetector = selectedObject.detector;
+    console.log(selectedObject);
+    const newObject = Object.assign(selectedObject, req.body)
+    console.log(newObject)
+    console.log(req.body.answerc1);
+    const update = await User.findByIdAndUpdate( decoded.id , { $set: {examchoose : newObject }} );
+
+    res.redirect("/exam");
+  })
+);
 
 module.exports = router;

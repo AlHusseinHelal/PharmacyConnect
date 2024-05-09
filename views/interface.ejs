@@ -112,6 +112,12 @@
             <hr class="dropdown-divider" />
           </li>
 
+          <li class="<%= user.role === "Admin"? 'd-block' : 'd-none' %>"><a class="dropdown-item" href="/admin">Admin</a></li>
+
+          <li class="<%= user.role === "Admin"? 'd-block' : 'd-none' %>">
+            <hr class="dropdown-divider" />
+          </li>
+
           <li><a class="dropdown-item" href="/signout">Sign out</a></li>
         </ul>
       </div>
@@ -520,9 +526,6 @@
                   </div>
                   <div class="modal-body">
                     Please Select
-
-
-
                     <div class="d-flex justify-content-around">
                       <div class="d-flex flex-column justify-content-center align-items-center <%= user.role === "DIC"? "d-none" : "d-block" %>">
                         <img src="/svg/sender2-11.svg" width="80%" alt="">
@@ -533,7 +536,6 @@
                         <a class="fs-5" href="/dic" target="_blank">Receiver</a>
                       </div>
                     </div>
-
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
@@ -543,6 +545,24 @@
                 </div>
               </div>
             </div>
+
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
+            data-aos-delay="100">
+            <div class="icon-box">
+              <div class="icon">
+                <img src="/img/exam-01.png" height="140px" alt="" />
+              </div>
+              <h4>
+                <a href="/exam">Exam</a>
+              </h4>
+              <p>
+                Voluptatum deleniti atque corrupti quos dolores et quas
+                molestias excepturi
+              </p>
+            </div>
+          </div>
+
+
           </div>
         </div>
       </section>

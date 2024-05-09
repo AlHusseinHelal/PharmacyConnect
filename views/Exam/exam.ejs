@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin</title>
+  <!-- LINK FAVICON -->
+  <link rel="shortcut icon" href="/svg/ConnectLogo.svg" type="image/x-icon" />
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- FONTAWESOME -->
+  <link href="../fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="../fontawesome/css/brands.css" rel="stylesheet" />
+  <link href="../fontawesome/css/solid.css" rel="stylesheet" />
+  <!-- BOOTSTRAP ICON -->
+  <link href="../css/bootstrap-icons.css" rel="stylesheet" />
+  <!-- BOOTSTRAP CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet" />
+  <!-- HEADER CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <!-- MY STYLE CSS -->
+  <link rel="stylesheet" href="../css/exam/exam.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <%- include("../partials/header.ejs") %>
+    <!-- LIGHT ICON -->
+    <%- include("../partials/lighticon.ejs") %>
+      <svg style="display: none">
+        <symbol id="home" viewBox="0 0 16 16">
+          <path
+            d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
+        </symbol>
+        <symbol id="table" viewBox="0 0 16 16">
+          <path
+            d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
+        </symbol>
+        <symbol id="people-circle" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+          <path fill-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+        </symbol>
+      </svg>
+
+
+
+      <main class="container m-0   " style="width: 100%; max-width: unset; height: 90%; ">
+        <div class="d-flex flex-column flex-md-row h-100 p-3 row justify-content-md-around ">
+
+          <div class="mh-100 border col-md-6 rounded-3 p-2 overflow-y-auto"
+            style="box-shadow: 0px 0px 4px 3px rgba(178, 178, 178, 0.6);">
+
+            <form action="/answer?_method=PUT" method="post">
+
+
+              <!-- CHOOSE -->
+              <!-- QUSETION NUMBER 1 -->
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose1 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Choose Q#1</div>
+
+                  <div  class="d-flex ">
+                    <div> <img class="<%= exam.answerc1 === exam.correctanswerquestion1? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.answerc1 !== exam.correctanswerquestion1 && exam.answerc1 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                  </div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionchoose1 %>
+
+                </div>
+
+                <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                  <div class="radio-button">
+                    <input name="answerc1" id="radio2" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose1 %>">
+                    <label for="radio2" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer1questionchoose1 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc1" id="radio1" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose1 %>">
+                    <label for="radio1" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer2questionchoose1 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc1" id="radio3" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose1 %>">
+                    <label for="radio3" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer3questionchoose1 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc1" id="radio4" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose1 %>">
+                    <label for="radio4" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer4questionchoose1 %>
+                    </label>
+                  </div>
+                  
+                </div>
+
+              </div>
+
+              <!-- QUSETION NUMBER 2 -->
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose2 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3">Choose Q#2</div>
+                <div  class="d-flex ">
+                  <div> <img class="<%= exam.answerc2 === exam.correctanswerquestion2? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.answerc2 !== exam.correctanswerquestion2 && exam.answerc2 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionchoose2 %>
+                </div>
+
+                <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                  <div class="radio-button">
+                    <input name="answerc2" id="radio5" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose2 %>">
+                    <label for="radio5" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer1questionchoose2 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc2" id="radio6" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose2 %>">
+                    <label for="radio6" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer2questionchoose2 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc2" id="radio7" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose2 %>">
+                    <label for="radio7" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer3questionchoose2 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc2" id="radio8" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose2 %>">
+                    <label for="radio8" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer4questionchoose2 %>
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- QUSETION NUMBER 3 -->
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose3 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3">Choose Q#3</div>
+                <div  class="d-flex ">
+                  <div> <img class="<%= exam.answerc3 === exam.correctanswerquestion3? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.answerc3 !== exam.correctanswerquestion3 && exam.answerc3 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionchoose3 %>
+                </div>
+
+                <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                  <div class="radio-button">
+                    <input name="answerc3" id="radio9" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose3 %>">
+                    <label for="radio9" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer1questionchoose3 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc3" id="radio10" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose3 %>">
+                    <label for="radio10" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer2questionchoose3 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc3" id="radio11" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose3 %>">
+                    <label for="radio11" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer3questionchoose3 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc3" id="radio12" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose3 %>">
+                    <label for="radio12" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer4questionchoose3 %>
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- QUSETION NUMBER 4 -->
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose4 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3">Choose Q#4</div>
+                <div  class="d-flex ">
+                  <div> <img class="<%= exam.answerc4 === exam.correctanswerquestion4? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.answerc4 !== exam.correctanswerquestion4 && exam.answerc4 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionchoose4 %>
+                </div>
+
+                <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                  <div class="radio-button">
+                    <input name="answerc4" id="radio13" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose4 %>">
+                    <label for="radio13" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer1questionchoose4 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc4" id="radio14" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose4 %>">
+                    <label for="radio14" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer2questionchoose4 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc4" id="radio15" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose4 %>">
+                    <label for="radio15" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer3questionchoose4 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc4" id="radio16" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose4 %>">
+                    <label for="radio16" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer4questionchoose4 %>
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- QUSETION NUMBER 5 -->
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose5 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3">Choose Q#5</div>
+                <div  class="d-flex ">
+                  <div> <img class="<%= exam.answerc5 === exam.correctanswerquestion5? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.answerc5 !== exam.correctanswerquestion5 && exam.answerc5 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionchoose5 %>
+                </div>
+
+                <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                  <div class="radio-button">
+                    <input name="answerc5" id="radio17" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose5 %>">
+                    <label for="radio17" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer1questionchoose5 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc5" id="radio18" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose5 %>">
+                    <label for="radio18" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer2questionchoose5 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc5" id="radio19" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose5 %>">
+                    <label for="radio19" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer3questionchoose5 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc5" id="radio20" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose5 %>">
+                    <label for="radio20" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer4questionchoose5 %>
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- QUSETION NUMBER 6 -->
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose6 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3">Choose Q#6</div>
+                <div  class="d-flex ">
+                  <div> <img class="<%= exam.answerc6 === exam.correctanswerquestion6? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.answerc6 !== exam.correctanswerquestion6 && exam.answerc6 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionchoose6 %>
+                </div>
+
+                <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                  <div class="radio-button">
+                    <input name="answerc6" id="radio21" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose6 %>">
+                    <label for="radio21" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer1questionchoose6 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc6" id="radio22" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose6 %>">
+                    <label for="radio22" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer2questionchoose6 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc6" id="radio23" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose6 %>">
+                    <label for="radio23" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer3questionchoose6 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc6" id="radio24" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose6 %>">
+                    <label for="radio24" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer4questionchoose6 %>
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- QUSETION NUMBER 7 -->
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose7 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3">Choose Q#7</div>
+                <div  class="d-flex ">
+                  <div> <img class="<%= exam.answerc7 === exam.correctanswerquestion7? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.answerc7 !== exam.correctanswerquestion7 && exam.answerc7 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionchoose7 %>
+                </div>
+
+                <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                  <div class="radio-button">
+                    <input name="answerc7" id="radio25" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose7 %>">
+                    <label for="radio25" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer1questionchoose7 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc7" id="radio26" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose7 %>">
+                    <label for="radio26" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer2questionchoose7 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc7" id="radio27" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose7 %>">
+                    <label for="radio27" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer3questionchoose7 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc7" id="radio28" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose7 %>">
+                    <label for="radio28" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer4questionchoose7 %>
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- QUSETION NUMBER 8 -->
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose8 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3">Choose Q#8</div>
+                <div  class="d-flex ">
+                  <div> <img class="<%= exam.answerc8 === exam.correctanswerquestion8? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.answerc8 !== exam.correctanswerquestion8 && exam.answerc8 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionchoose8 %>
+                </div>
+
+                <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                  <div class="radio-button">
+                    <input name="answerc8" id="radio29" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose8 %>">
+                    <label for="radio29" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer1questionchoose8 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc8" id="radio30" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose8 %>">
+                    <label for="radio30" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer2questionchoose8 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc8" id="radio31" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose8 %>">
+                    <label for="radio31" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer3questionchoose8 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc8" id="radio32" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose8 %>">
+                    <label for="radio32" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer4questionchoose8 %>
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- QUSETION NUMBER 9 -->
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose9 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3">Choose Q#9</div>
+                <div  class="d-flex ">
+                  <div> <img class="<%= exam.answerc9 === exam.correctanswerquestion9? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.answerc9 !== exam.correctanswerquestion9 && exam.answerc9 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionchoose9 %>
+                </div>
+
+                <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                  <div class="radio-button">
+                    <input name="answerc9" id="radio33" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose9 %>">
+                    <label for="radio33" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer1questionchoose9 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc9" id="radio34" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose9 %>">
+                    <label for="radio34" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer2questionchoose9 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc9" id="radio35" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose9 %>">
+                    <label for="radio35" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer3questionchoose9 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc9" id="radio36" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose9 %>">
+                    <label for="radio36" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer4questionchoose9 %>
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- QUSETION NUMBER 10 -->
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose10 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3">Choose Q#10</div>
+                <div  class="d-flex ">
+                  <div> <img class="<%= exam.answerc10 === exam.correctanswerquestion10? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.answerc10 !== exam.correctanswerquestion10 && exam.answerc10 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionchoose10 %>
+                </div>
+
+                <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                  <div class="radio-button">
+                    <input name="answerc10" id="radio37" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose10 %>">
+                    <label for="radio37" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer1questionchoose10 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc10" id="radio38" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose10 %>">
+                    <label for="radio38" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer2questionchoose10 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc10" id="radio39" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose10 %>">
+                    <label for="radio39" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer3questionchoose10 %>
+                    </label>
+                  </div>
+                  <div class="radio-button">
+                    <input name="answerc10" id="radio40" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose10 %>">
+                    <label for="radio40" class="radio-button__label">
+                      <span class="radio-button__custom"></span>
+
+                      <%= exam.answer4questionchoose10 %>
+                    </label>
+                  </div>
+                </div>
+
+              </div>
+
+
+
+              <!-- ASSY -->
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy1 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Essay Q#1</div>
+
+                  <div  class="d-flex ">
+                    <div> <img class="<%= exam.asnwerassy1 === exam.correctanswerassy1? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.asnwerassy1 !== exam.correctanswerassy1 && exam.asnwerassy1 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                  </div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionassy1 %>
+                </div>
+
+                <div class="w-100 d-flex justify-content-around">
+                  <input name="answerassy1" class="form-control w-100" type="text">
+                </div>
+
+              </div>
+
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy2 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Essay Q#2</div>
+
+                  <div  class="d-flex ">
+                    <div> <img class="<%= exam.asnwerassy2 === exam.correctanswerassy2? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.asnwerassy2 !== exam.correctanswerassy2 && exam.asnwerassy2 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                  </div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionassy2 %>
+                </div>
+
+                <div class="w-100 d-flex justify-content-around">
+                  <input name="answerassy2" class="form-control w-100" type="text">
+                </div>
+
+              </div>
+
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy3 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Essay Q#3</div>
+
+                  <div  class="d-flex ">
+                    <div> <img class="<%= exam.asnwerassy3 === exam.correctanswerassy3? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.asnwerassy3 !== exam.correctanswerassy3 && exam.asnwerassy3 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                  </div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionassy3 %>
+                </div>
+
+                <div class="w-100 d-flex justify-content-around">
+                  <input name="answerassy3" class="form-control w-100" type="text">
+                </div>
+
+              </div>
+
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy4 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Essay Q#4</div>
+
+                  <div  class="d-flex ">
+                    <div> <img class="<%= exam.asnwerassy4 === exam.correctanswerassy4? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.asnwerassy4 !== exam.correctanswerassy4 && exam.asnwerassy4 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                  </div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionassy4 %>
+                </div>
+
+                <div class="w-100 d-flex justify-content-around">
+                  <input name="answerassy4" class="form-control w-100" type="text">
+                </div>
+
+              </div>
+
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy5 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Essay Q#5</div>
+
+                  <div  class="d-flex ">
+                    <div> <img class="<%= exam.asnwerassy5 === exam.correctanswerassy5? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.asnwerassy5 !== exam.correctanswerassy5 && exam.asnwerassy5 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                  </div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionassy5 %>
+                </div>
+
+                <div class="w-100 d-flex justify-content-around">
+                  <input name="answerassy5" class="form-control w-100" type="text">
+                </div>
+
+              </div>
+
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy6 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Essay Q#6</div>
+
+                  <div  class="d-flex ">
+                    <div> <img class="<%= exam.asnwerassy6 === exam.correctanswerassy6? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.asnwerassy6 !== exam.correctanswerassy6 && exam.asnwerassy6 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                  </div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionassy6 %>
+                </div>
+
+                <div class="w-100 d-flex justify-content-around">
+                  <input name="answerassy6" class="form-control w-100" type="text">
+                </div>
+
+              </div>
+
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy7 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Essay Q#7</div>
+
+                  <div  class="d-flex ">
+                    <div> <img class="<%= exam.asnwerassy7 === exam.correctanswerassy7? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.asnwerassy7 !== exam.correctanswerassy7 && exam.asnwerassy7 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                  </div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionassy7 %>
+                </div>
+
+                <div class="w-100 d-flex justify-content-around">
+                  <input name="answerassy7" class="form-control w-100" type="text">
+                </div>
+
+              </div>
+
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy8 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Essay Q#8</div>
+
+                  <div  class="d-flex ">
+                    <div> <img class="<%= exam.asnwerassy8 === exam.correctanswerassy8? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.asnwerassy8 !== exam.correctanswerassy8 && exam.asnwerassy8 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                  </div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionassy8 %>
+                </div>
+
+                <div class="w-100 d-flex justify-content-around">
+                  <input name="answerassy8" class="form-control w-100" type="text">
+                </div>
+
+              </div>
+
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy9 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Essay Q#9</div>
+
+                  <div  class="d-flex ">
+                    <div> <img class="<%= exam.asnwerassy9 === exam.correctanswerassy9? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.asnwerassy9 !== exam.correctanswerassy9 && exam.asnwerassy9 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                  </div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionassy9 %>
+                </div>
+
+                <div class="w-100 d-flex justify-content-around">
+                  <input name="answerassy9" class="form-control w-100" type="text">
+                </div>
+
+              </div>
+
+              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy10 === undefined? "d-none" : "d-block" %>">
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Essay Q#10</div>
+
+                  <div  class="d-flex ">
+                    <div> <img class="<%= exam.asnwerassy10 === exam.correctanswerassy10? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.asnwerassy10 !== exam.correctanswerassy10 && exam.asnwerassy10 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                  </div>
+                </div>
+                <div class="info__title mb-3">
+                  <%= exam.questionassy10 %>
+                </div>
+
+                <div class="w-100 d-flex justify-content-around">
+                  <input name="answerassy10" class="form-control w-100" type="text">
+                </div>
+
+              </div>
+
+              <button id="submit" class="btn btn-primary" type="submit">Submit</button>
+            </form>
+
+
+
+          </div>
+
+
+
+        </div>
+
+
+
+
+
+        </div>
+      </main>
+
+
+
+      <!-- LINK TO jQuary -->
+      <script src="../js/jquery-3.7.1.min.js"></script>
+
+      <!-- LINK TO BOOTSTRAP.JS -->
+      <script src="../js/aos.js"></script>
+      <script src="../js/bootstrap.bundle.min.js"></script>
+      <script src="../js/glightbox.min.js"></script>
+      <script src="../js/isotope.pkgd.min.js"></script>
+      <script src="../js/swiper-bundle.min.js"></script>
+      <script src="../js/noframework.waypoints.js"></script>
+      <script src="../js/validate.js"></script>
+
+      <script src="../js/main.js"></script>
+
+      <script>
+        submit.addEventListener('click', (eo) => {
+          const hide = document.querySelectorAll('.hide')
+          hide.forEach(item => {
+            item.classList.remove("visibale")
+            item.classList.add("see")
+          });
+        });
+        
+      </script>
+
+</body>
+
+</html>

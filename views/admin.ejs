@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin</title>
+  <!-- LINK FAVICON -->
+  <link rel="shortcut icon" href="/svg/ConnectLogo.svg" type="image/x-icon" />
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sidebars/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- FONTAWESOME -->
+  <link href="../fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="../fontawesome/css/brands.css" rel="stylesheet" />
+  <link href="../fontawesome/css/solid.css" rel="stylesheet" />
+  <!-- BOOTSTRAP ICON -->
+  <link href="../css/bootstrap-icons.css" rel="stylesheet" />
+  <!-- BOOTSTRAP CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet" />
+  <!-- HEADER CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <!-- MY STYLE CSS -->
+  <link rel="stylesheet" href="../css/admin/admin.css">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <%- include("./partials/header.ejs") %>
+    <!-- LIGHT ICON -->
+    <%- include("./partials/lighticon.ejs") %>
+      <svg style="display: none">
+        <symbol id="home" viewBox="0 0 16 16">
+          <path
+            d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
+        </symbol>
+        <symbol id="table" viewBox="0 0 16 16">
+          <path
+            d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
+        </symbol>
+        <symbol id="people-circle" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+          <path fill-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+        </symbol>
+      </svg>
+
+
+
+      <main class="container m-0" style="width: 100%; max-width: unset; height: 90%; ">
+        <div class="d-flex flex-column flex-md-row h-100 p-3 row justify-content-md-around ">
+
+          <div class="mh-100 border col-md-5 rounded-3 p-2 overflow-y-auto"
+            style="box-shadow: 0px 0px 4px 3px rgba(178, 178, 178, 0.6);">
+            <div class="container2">
+
+              <div class="accordion">
+
+                <div class="accordion-item">
+                  <button class="but" id="accordion-button-1" aria-expanded="false"><span
+                      class="accordion-title">Users</span><span class="icon" aria-hidden="true"></span></button>
+                  <% if (array.length>= 1) { %>
+                    <div class="accordion-content">
+                      <% array.forEach(item=> { %>
+
+                        <div class="d-flex align-items-center justify-content-between mb-2 mt-5">
+                          <div class="d-flex align-items-center">
+                            <img class="me-2" style="border-radius: 50%;" width="20" height="20"
+                              src="<%= item.profileimage %>" alt=""><span>
+                              <%= item.firstname + "." + item.lastname %>
+                            </span><span>-<%= item.code %></span>
+                          </div>
+
+
+
+                          <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center me-2">
+                              <!-- <a class="ms-2 d-none" href="" data-tooltip="Locked" data-flow="top"><i
+                                  class="fa-regular fa-lock"></i></a> -->
+                              <a data-tooltip="DIC" data-flow="top" class="mx-2 <%= item.role === "DIC"? "d-block"
+                                : "d-none" %>" href=""><i class="fa-solid fa-d"></i></a>
+                              <a data-tooltip="Admin" data-flow="top" class="mx-2 <%= item.role === "Admin"? "d-block"
+                                : "d-none" %>" href=""><i class="fa-solid fa-screwdriver-wrench"
+                                  style="color: #df0707;"></i></a>
+                              <a href="" data-tooltip="Active" data-flow="top"><i class="fa-regular fa-unlock"></i></a>
+                            </div>
+                            <div class="d-flex align-items-center">
+                              <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" data-tooltip="Role"
+                                data-flow="top"><i class="fa-solid fa-user-tie" style="color: #74c0fc;"></i></a>
+                              <a class="ms-2 me-1" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i
+                                  class="fa-solid fa-trash-can" style="color: #df0707;"></i></a>
+                            </div>
+                          </div>
+
+                        </div>
+                        <li class="border-top notlist" style="list-style: none;"></li>
+
+                        <!-- MODAL DELETE USER -->
+                        <div class="connectmodal modal fade" id="exampleModal2" tabindex="-1"
+                          aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="glass modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete User</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                  aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                Are You Sure ?
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <form action="/deleteuser/<%= item._id %>?_method=DELETE" method="post">
+                                  <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- MODAL CHANGE USER ROLE -->
+                        <div class="connectmodal modal fade" id="exampleModal" tabindex="-1"
+                          aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="glass modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Select User Role</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                  aria-label="Close"></button>
+                              </div>
+                              <form action="/userole/<%= item._id %>?_method=PUT" method="post">
+                                <div class="modal-body">
+                                  <select class="input w-100" name="role">
+                                    <option hidden disabled selected value="User">Choose...</option>
+                                    <option class="input" value="User">User</option>
+                                    <option value="DIC">DIC</option>
+                                    <option value="Admin">Admin</option>
+                                  </select>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-primary">Save changes</button>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+
+
+                    <% }) %>
+                </div>
+                <% } %>
+              </div>
+
+
+
+
+              <div class="accordion-item">
+                <button class="but" id="accordion-button-3" aria-expanded="false"><span
+                    class="accordion-title">Exam</span><span class="icon" aria-hidden="true"></span></button>
+                <div class="accordion-content">
+                  <div class="d-flex align-items-center ms-1 mt-2 ">
+                    <i class="fa-regular fa-circle-check me-1" style="color: #74C0FC;"></i>
+                    <span class="my-2"
+                      style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Pharmacist</span>
+                  </div>
+
+                  <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Select Pharmacist
+                        </button>
+                      </h2>
+                      <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body overflow-y-scroll">
+                          <form action="/select" method="post">
+                            <% array.forEach((item, index)=> { %>
+                              <div class="input-group mb-3">
+                                <div class="input-group-text">
+                                  <input name="select<%= index+1 %>" class="form-check-input mt-0" type="checkbox"
+                                    value="<%= item.code %>" aria-label="Checkbox for following text input">
+                                </div>
+                                <input disabled value="<%= item.firstname + " ." + item.lastname %>" type="text"
+                              
+                                class="form-control" aria-label="Text input with checkbox">
+                                <span class="input-group-text">
+                                  <%= item.code %>
+                                </span>
+                              </div>
+                              <% }) %>
+                                <button class="btn btn-primary" type="submit">Select</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="d-flex align-items-center ms-1 mt-2 ">
+                    <i class="fa-regular fa-circle-check me-1" style="color: #74C0FC;"></i>
+                    <span class=""
+                      style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Choose</span>
+                  </div>
+                  <div class="w-100 d-flex my-2 justify-content-center">
+                    <select name="" class="form-control" type="text" id="selectChoose" style="width: 98%;">
+                      <option hidden disabled selected value="">Question#</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+
+                  </div>
+
+
+                  <div class="d-flex align-items-center ms-1 mt-2 ">
+                    <i class="fa-solid fa-object-group me-1" style="color: #74C0FC;"></i>
+                    <span class=""
+                      style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Essay</span>
+                  </div>
+                  <div class="w-100 d-flex my-2 justify-content-center">
+                    <select name="" class="form-control" type="text" id="selectAssy" style="width: 98%;">
+                      <option hidden disabled selected value="">Question#</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                    </select>
+
+                  </div>
+                  <div class=" d-flex justify-content-end" style="width: 98%;">
+                    <button class="btn btn-primary" id="submitChoose">Submit</button>
+
+                  </div>
+
+
+                  <div id="line" class="w-100 my-4 d-none" style="border-top: 2px solid #03b5d2;"></div>
+
+
+                  <form action="/examform" method="post" class="d-flex flex-column align-items-center">
+                    <div id="chooseForm" class="d-flex flex-column align-items-center"></div>
+                    <div id="submitbuttonchooseform" class="justify-content-end d-none" style="width: 98%;">
+                      <button class="btn btn-success" type="submit">Submit</button>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+
+              <div class="d-flex mt-2">
+                <button id="review" class="btn btn-primary me-2">Review</button>
+                <button id="results" class="btn btn-success">Results</button>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+
+
+        <div class="mh-100 border col-md-6 rounded-3 p-2 overflow-y-auto"
+          style="box-shadow: 0px 0px 4px 3px rgba(178, 178, 178, 0.6);">
+
+
+
+          <div id="exam" class="d-none">
+            <!-- CHOOSE -->
+            <!-- QUSETION NUMBER 1 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose1 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Choose Q#1</div>
+
+                <div class="d-flex ">
+                  <div> <img class="d-none" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="d-none" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questionchoose1 %>
+
+              </div>
+
+              <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                <div class="radio-button">
+                  <input name="answerc1" id="radio2" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose1 %>">
+                  <label for="radio2" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer1questionchoose1 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc1" id="radio1" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose1 %>">
+                  <label for="radio1" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer2questionchoose1 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc1" id="radio3" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose1 %>">
+                  <label for="radio3" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer3questionchoose1 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc1" id="radio4" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose1 %>">
+                  <label for="radio4" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer4questionchoose1 %>
+                  </label>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- QUSETION NUMBER 2 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose2 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3">Choose Q#2</div>
+              <div class="info__title mb-3">
+                <%= exam.questionchoose2 %>
+              </div>
+
+              <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                <div class="radio-button">
+                  <input name="answerc2" id="radio5" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose2 %>">
+                  <label for="radio5" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer1questionchoose2 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc2" id="radio6" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose2 %>">
+                  <label for="radio6" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer2questionchoose2 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc2" id="radio7" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose2 %>">
+                  <label for="radio7" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer3questionchoose2 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc2" id="radio8" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose2 %>">
+                  <label for="radio8" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer4questionchoose2 %>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- QUSETION NUMBER 3 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose3 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3">Choose Q#3</div>
+              <div class="info__title mb-3">
+                <%= exam.questionchoose3 %>
+              </div>
+
+              <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                <div class="radio-button">
+                  <input name="answerc3" id="radio9" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose3 %>">
+                  <label for="radio9" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer1questionchoose3 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc3" id="radio10" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose3 %>">
+                  <label for="radio10" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer2questionchoose3 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc3" id="radio11" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose3 %>">
+                  <label for="radio11" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer3questionchoose3 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc3" id="radio12" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose3 %>">
+                  <label for="radio12" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer4questionchoose3 %>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- QUSETION NUMBER 4 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose4 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3">Choose Q#4</div>
+              <div class="info__title mb-3">
+                <%= exam.questionchoose4 %>
+              </div>
+
+              <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                <div class="radio-button">
+                  <input name="answerc4" id="radio13" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose4 %>">
+                  <label for="radio13" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer1questionchoose4 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc4" id="radio14" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose4 %>">
+                  <label for="radio14" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer2questionchoose4 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc4" id="radio15" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose4 %>">
+                  <label for="radio15" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer3questionchoose4 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc4" id="radio16" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose4 %>">
+                  <label for="radio16" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer4questionchoose4 %>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- QUSETION NUMBER 5 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose5 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3">Choose Q#5</div>
+              <div class="info__title mb-3">
+                <%= exam.questionchoose5 %>
+              </div>
+
+              <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                <div class="radio-button">
+                  <input name="answerc5" id="radio17" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose5 %>">
+                  <label for="radio17" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer1questionchoose5 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc5" id="radio18" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose5 %>">
+                  <label for="radio18" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer2questionchoose5 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc5" id="radio19" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose5 %>">
+                  <label for="radio19" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer3questionchoose5 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc5" id="radio20" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose5 %>">
+                  <label for="radio20" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer4questionchoose5 %>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- QUSETION NUMBER 6 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose6 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3">Choose Q#6</div>
+              <div class="info__title mb-3">
+                <%= exam.questionchoose6 %>
+              </div>
+
+              <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                <div class="radio-button">
+                  <input name="answerc6" id="radio21" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose6 %>">
+                  <label for="radio21" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer1questionchoose6 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc6" id="radio22" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose6 %>">
+                  <label for="radio22" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer2questionchoose6 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc6" id="radio23" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose6 %>">
+                  <label for="radio23" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer3questionchoose6 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc6" id="radio24" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose6 %>">
+                  <label for="radio24" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer4questionchoose6 %>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- QUSETION NUMBER 7 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose7 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3">Choose Q#7</div>
+              <div class="info__title mb-3">
+                <%= exam.questionchoose7 %>
+              </div>
+
+              <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                <div class="radio-button">
+                  <input name="answerc7" id="radio25" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose7 %>">
+                  <label for="radio25" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer1questionchoose7 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc7" id="radio26" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose7 %>">
+                  <label for="radio26" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer2questionchoose7 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc7" id="radio27" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose7 %>">
+                  <label for="radio27" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer3questionchoose7 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc7" id="radio28" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose7 %>">
+                  <label for="radio28" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer4questionchoose7 %>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- QUSETION NUMBER 8 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose8 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3">Choose Q#8</div>
+              <div class="info__title mb-3">
+                <%= exam.questionchoose8 %>
+              </div>
+
+              <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                <div class="radio-button">
+                  <input name="answerc8" id="radio29" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose8 %>">
+                  <label for="radio29" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer1questionchoose8 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc8" id="radio30" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose8 %>">
+                  <label for="radio30" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer2questionchoose8 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc8" id="radio31" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose8 %>">
+                  <label for="radio31" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer3questionchoose8 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc8" id="radio32" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose8 %>">
+                  <label for="radio32" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer4questionchoose8 %>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- QUSETION NUMBER 9 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose9 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3">Choose Q#9</div>
+              <div class="info__title mb-3">
+                <%= exam.questionchoose9 %>
+              </div>
+
+              <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                <div class="radio-button">
+                  <input name="answerc9" id="radio33" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose9 %>">
+                  <label for="radio33" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer1questionchoose9 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc9" id="radio34" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose9 %>">
+                  <label for="radio34" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer2questionchoose9 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc9" id="radio35" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose9 %>">
+                  <label for="radio35" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer3questionchoose9 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc9" id="radio36" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose9 %>">
+                  <label for="radio36" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer4questionchoose9 %>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- QUSETION NUMBER 10 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose10 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3">Choose Q#10</div>
+              <div class="info__title mb-3">
+                <%= exam.questionchoose10 %>
+              </div>
+
+              <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                <div class="radio-button">
+                  <input name="answerc10" id="radio37" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose10 %>">
+                  <label for="radio37" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer1questionchoose10 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc10" id="radio38" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose10 %>">
+                  <label for="radio38" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer2questionchoose10 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc10" id="radio39" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose10 %>">
+                  <label for="radio39" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer3questionchoose10 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answerc10" id="radio40" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose10 %>">
+                  <label for="radio40" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer4questionchoose10 %>
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+
+
+            <!-- ASSY -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy1 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Essay Q#1</div>
+
+                <div class="d-flex ">
+                  <div> <img class="d-none" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="d-none" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questionassy1 %>
+              </div>
+
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerassy1" class="form-control w-100" type="text">
+              </div>
+
+            </div>
+
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy2 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Essay Q#2</div>
+
+                <div class="d-flex ">
+                  <div> <img class="d-none" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="d-none" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questionassy2 %>
+              </div>
+
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerassy2" class="form-control w-100" type="text">
+              </div>
+
+            </div>
+
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy3 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Essay Q#3</div>
+
+                <div class="d-flex ">
+                  <div> <img class="d-none" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="d-none" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questionassy3 %>
+              </div>
+
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerassy3" class="form-control w-100" type="text">
+              </div>
+
+            </div>
+
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy4 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Essay Q#4</div>
+
+                <div class="d-flex ">
+                  <div> <img class="d-none" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="d-none" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questionassy4 %>
+              </div>
+
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerassy4" class="form-control w-100" type="text">
+              </div>
+
+            </div>
+
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy5 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Essay Q#5</div>
+
+                <div class="d-flex ">
+                  <div> <img class="d-none" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="d-none" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questionassy5 %>
+              </div>
+
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerassy5" class="form-control w-100" type="text">
+              </div>
+
+            </div>
+
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy6 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Essay Q#6</div>
+
+                <div class="d-flex ">
+                  <div> <img class="d-none" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="d-none" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questionassy6 %>
+              </div>
+
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerassy6" class="form-control w-100" type="text">
+              </div>
+
+            </div>
+
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy7 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Essay Q#7</div>
+
+                <div class="d-flex ">
+                  <div> <img class="d-none" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="d-none" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questionassy7 %>
+              </div>
+
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerassy7" class="form-control w-100" type="text">
+              </div>
+
+            </div>
+
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy8 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Essay Q#8</div>
+
+                <div class="d-flex ">
+                  <div> <img class="d-none" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="d-none" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questionassy8 %>
+              </div>
+
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerassy8" class="form-control w-100" type="text">
+              </div>
+
+            </div>
+
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy9 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Essay Q#9</div>
+
+                <div class="d-flex ">
+                  <div> <img class="d-none" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="d-none" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questionassy9 %>
+              </div>
+
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerassy9" class="form-control w-100" type="text">
+              </div>
+
+            </div>
+
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionassy10 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Essay Q#10</div>
+
+                <div class="d-flex ">
+                  <div> <img class="d-none" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="d-none" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questionassy10 %>
+              </div>
+
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerassy10" class="form-control w-100" type="text">
+              </div>
+
+            </div>
+
+
+
+          </div>
+
+        </div>
+
+
+
+      </main>
+
+
+
+      <!-- LINK TO jQuary -->
+      <script src="../js/jquery-3.7.1.min.js"></script>
+
+      <!-- LINK TO BOOTSTRAP.JS -->
+      <script src="../js/aos.js"></script>
+      <script src="../js/bootstrap.bundle.min.js"></script>
+      <script src="../js/glightbox.min.js"></script>
+      <script src="../js/isotope.pkgd.min.js"></script>
+      <script src="../js/swiper-bundle.min.js"></script>
+      <script src="../js/noframework.waypoints.js"></script>
+      <script src="../js/validate.js"></script>
+
+      <script src="../js/main.js"></script>
+
+      <script>
+        const items = document.querySelectorAll(".accordion .but");
+
+        function toggleAccordion() {
+          const itemToggle = this.getAttribute('aria-expanded');
+
+          for (i = 0; i < items.length; i++) {
+            items[i].setAttribute('aria-expanded', 'false');
+          }
+
+          if (itemToggle == 'false') {
+            this.setAttribute('aria-expanded', 'true');
+          }
+        }
+
+        items.forEach(item => item.addEventListener('click', toggleAccordion));
+      </script>
+
+
+      <!-- SUBMITCHOOSE -->
+      <script>
+        submitChoose.addEventListener("click", (eo) => {
+          eo.preventDefault()
+          let c = selectChoose.value
+          let a = selectAssy.value
+          submitbuttonchooseform.classList.remove('d-none');
+          line.classList.remove('d-none');
+          for (let i = 0; i < c; i++) {
+
+            chooseForm.innerHTML += `<div class="form-floating my-2" style="width: 98%;">
+                      <input id="questionchoose${i + 1}" name="questionchoose${i + 1}" class="form-control " type="text" placeholder="Quedtion#1" >
+                      <label for="questionchoose${i + 1}">QuedtionChoose#${i + 1}</label>
+                    </div>
+
+                    <div class="input-group mb-2" style="width: 98%;">
+                      <span class="input-group-text">A</span>
+                      <input id="answer1questionchoose${i + 1}" name="answer1questionchoose${i + 1}" type="text" aria-label="First" class="form-control">
+                      <input id="answer2questionchoose${i + 1}" name="answer2questionchoose${i + 1}" type="text" aria-label="Second" class="form-control">
+                      <input id="answer3questionchoose${i + 1}" name="answer3questionchoose${i + 1}" type="text" aria-label="Third" class="form-control">
+                      <input id="answer4questionchoose${i + 1}" name="answer4questionchoose${i + 1}" type="text" aria-label="Fourth" class="form-control">
+                      <input id="correctanswerquestion${i + 1}" name="correctanswerquestion${i + 1}" type="text" aria-label="true" class="form-control is-invalid">
+                    </div>`
+
+            selectChoose.setAttribute("disabled", "")
+            submitChoose.setAttribute("disabled", "")
+            selectAssy.setAttribute("disabled", "")
+
+          }
+          for (let i = 0; i < a; i++) {
+
+            chooseForm.innerHTML += `<div class="form-floating my-2" style="width: 98%;">
+                      <input id="questionassy${i + 1}" name="questionassy${i + 1}" class="form-control " type="text" placeholder="Quedtion#1" >
+                      <label for="questionassy${i + 1}">QuedtionAssy#${i + 1}</label>
+                    </div>
+
+                    <div class="input-group mb-2" style="width: 98%;">
+                      <span class="input-group-text">KeyWords</span>
+                      <input id="key1forquestion${i + 1}" name="key1forquestion${i + 1}" type="text" aria-label="First" class="form-control">
+                      <input id="key2forquestion${i + 1}" name="key2forquestion${i + 1}" type="text" aria-label="Second" class="form-control">
+                      <input id="key3forquestion${i + 1}" name="key3forquestion${i + 1}" type="text" aria-label="Third" class="form-control">
+                      <input id="key4forquestion${i + 1}" name="key4forquestion${i + 1}" type="text" aria-label="Fourth" class="form-control">
+                    </div>`
+
+
+
+
+          }
+        
+        })
+
+      </script>
+
+      <script>
+          const review = document.getElementById("review")
+          review.addEventListener("click", (eo) => {
+            
+            const exam = document.getElementById("exam")
+            console.log(exam);
+            exam.classList.toggle("d-none")
+
+          })
+      </script>
+
+
+
+
+</body>
+
+</html>

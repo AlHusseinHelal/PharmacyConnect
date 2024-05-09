@@ -156,7 +156,6 @@ const user = new mongoose.Schema(
         labpatientname: String,
         mrnlab: {
           type: Number,
-          
         },
         labptfloor: String,
         labrequestype: String,
@@ -183,6 +182,19 @@ const user = new mongoose.Schema(
         prepcomment: String,
       },
     ],
+
+    examchoose: 
+      {
+        
+      },
+    
+    selectedpharmacist:
+      {
+      
+      }
+     ,
+
+  
   },
   {
     timestamps: true,

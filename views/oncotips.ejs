@@ -194,13 +194,11 @@
 
 
                         <% AntiCancer.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade %>">
-                            <%= item.trade %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
                           </li>
-                        
+                      
                           <% }) %>
-
-
                             <li class="mb-1 list-group-item list-group-item-action ATRA">ATRA</li>
                             <li class="mb-1 list-group-item list-group-item-action Basiliximab">Basiliximab</li>
                             <li class="mb-1 list-group-item list-group-item-action Cyclophpsphamide">
@@ -216,7 +214,6 @@
                             <li class="mb-1 list-group-item list-group-item-action Procarbazine">Procarbazine</li>
                             <li class="mb-1 list-group-item list-group-item-action Rituximab">Rituximab</li>
                             <li class="mb-1 list-group-item list-group-item-action Temozolomide">Temozolomide</li>
-
                       </ul>
                     </div>
                   </li>
@@ -229,13 +226,15 @@
                       aria-expanded="false">AntiBiotics</a>
                     <div class="collapse" id="antibioticcollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
-                        <% if (AntiBiotics) { %>
+
+                        
                           <% AntiBiotics.forEach(item=> { %>
-                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade %>">
-                              <%= item.generic %>
+                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                              <%= item.trade%>
                             </li>
                             <% }) %>
-                              <% } %>
+                            
+
                                 <li class="my-1 list-group-item list-group-item-action AmoxicillinClavulanic">
                                   Amoxicillin +
                                   Clavulanic</li>
@@ -265,6 +264,12 @@
                       aria-expanded="false">Anti-Coagulant</a>
                     <div class="collapse" id="AntiCoagulantcollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+                        <% AntiCoagulant.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                        
+                          <% }) %>
                         <li class="my-1 list-group-item list-group-item-action Enoxaparin">Enoxaparin</li>
                         <li class="mb-1 list-group-item list-group-item-action "></li>
                       </ul>
@@ -279,6 +284,13 @@
                       aria-expanded="false">Anti-Convulsant</a>
                     <div class="collapse" id="AntiConvulsantcollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% AntiConvulsant.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                        
+                          <% }) %>
                         <li class="my-1 list-group-item list-group-item-action Gapabentin">Gapabentin</li>
                         <li class="mb-1 list-group-item list-group-item-action "></li>
                       </ul>
@@ -293,6 +305,13 @@
                       aria-expanded="false">Anti-Diarrheal</a>
                     <div class="collapse" id="AntiDiarrhealccollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% AntiDiarrheal.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Diphenoxylate">Diphenoxylate & Atropine
                         </li>
                         <li class="mb-1 list-group-item list-group-item-action Paracetamol">Paracetamol</li>
@@ -308,6 +327,13 @@
                       aria-expanded="false">Anti-Emetic</a>
                     <div class="collapse" id="Antiemeticcecollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% AntiEmetic.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Aprepitant">Aprepitant</li>
                         <li class="mb-1 list-group-item list-group-item-action Ondansetron">Ondansetron</li>
                       </ul>
@@ -322,6 +348,13 @@
                       aria-expanded="false">Anti-Flatulence</a>
                     <div class="collapse" id="AntiFlatulencecollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% AntiFlatulence.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+                        
                         <li class="my-1 list-group-item list-group-item-action Acicone">(Magaldrate,
                           Simethicone)</li>
                       </ul>
@@ -336,6 +369,13 @@
                       aria-expanded="false">AntiFungal</a>
                     <div class="collapse" id="antifungalcollapse">
                       <ul class="ms-3 list-group group" style="list-style: none; text-align: center;">
+
+                        <% AntiFungal.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Bifonazole">Bifonazole</li>
                         <li class="mb-1 list-group-item list-group-item-action Fluconazole">Fluconazole</li>
                         <li class="mb-1 list-group-item list-group-item-action Itraconazole">Itraconazole</li>
@@ -354,6 +394,13 @@
                       data-bs-toggle="collapse" data-bs-target="#Antigoutcecollapse" aria-expanded="false">Anti-Gout</a>
                     <div class="collapse" id="Antigoutcecollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% AntiGout.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Allopurinol">Allopurinol</li>
                       </ul>
                     </div>
@@ -367,6 +414,13 @@
                       aria-expanded="false">Anti-Hyperprolactinemia</a>
                     <div class="collapse" id="Hyperprolactinemiacollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% AntiHyperprolactinemia.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Cabergoline">Cabergoline</li>
                       </ul>
                     </div>
@@ -380,6 +434,13 @@
                       aria-expanded="false">Anti-inflammatory & Antiedematous</a>
                     <div class="collapse" id="Antiinflamcecollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% Antiinflammatory.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Alpha">Alpha Amylase</li>
                       </ul>
                     </div>
@@ -393,6 +454,13 @@
                       aria-expanded="false">Anti-Spasmodic</a>
                     <div class="collapse" id="AntiSpasmodiccollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% AntiSpasmodic.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Flavoxate">Flavoxate</li>
                         <li class="mb-1 list-group-item list-group-item-action "></li>
                       </ul>
@@ -407,6 +475,13 @@
                       aria-expanded="false">Anti-Tussive</a>
                     <div class="collapse" id="AntiTussivecollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% AntiTussive.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Butamirate">Butamirate</li>
                       </ul>
                     </div>
@@ -420,6 +495,13 @@
                       aria-expanded="false">Anti-Viral</a>
                     <div class="collapse" id="Antiviralcecollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% AntiViral.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Acyclovir">Acyclovir</li>
                         <li class="my-1 list-group-item list-group-item-action Oseltamivir">Oseltamivir</li>
                         <li class="my-1 list-group-item list-group-item-action Ribavirin">Ribavirin</li>
@@ -436,6 +518,13 @@
                       NSAID</a>
                     <div class="collapse" id="Analgesiccollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% Analgesic.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Diclofenac">Diclofenac</li>
                         <li class="mb-1 list-group-item list-group-item-action Ibuprofen">Ibuprofen</li>
                         <li class="mb-1 list-group-item list-group-item-action Ketoprofen">Ketoprofen</li>
@@ -451,6 +540,13 @@
                       Anti-Flatulent</a>
                     <div class="collapse" id="Antacidcecollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% Antacid.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action AluminumHydroxide">Aluminum Hydroxide +
                           Mg + Dimethicone</li>
                       </ul>
@@ -465,6 +561,13 @@
                       aria-expanded="false">Anthelmintic</a>
                     <div class="collapse" id="Anthelminticcollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% Anthelmintic.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Flavoxate">Flubendazole</li>
                         <li class="mb-1 list-group-item list-group-item-action "></li>
                       </ul>
@@ -479,6 +582,13 @@
                       aria-expanded="false">Antihistamine</a>
                     <div class="collapse" id="Antihistaminecollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% Antihistamine.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Cetirizine">Cetirizine</li>
                         <li class="mb-1 list-group-item list-group-item-action "></li>
                       </ul>
@@ -492,6 +602,13 @@
                       data-bs-toggle="collapse" data-bs-target="#Antidotecollapse" aria-expanded="false">Antidote</a>
                     <div class="collapse" id="Antidotecollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% Antidote.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Calcitonin">Calcitonin</li>
                       </ul>
                     </div>
@@ -505,6 +622,13 @@
                       aria-expanded="false">Cardiology</a>
                     <div class="collapse" id="Cardiologycollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% Cardiology.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Captopril">Captopril 25mg</li>
                         <li class="mb-1 list-group-item list-group-item-action Furosemide">Furosemide 40mg</li>
                         <li class="mb-1 list-group-item list-group-item-action px-2 Spironolactone">Spironolactone 25mg
@@ -541,6 +665,13 @@
                       aria-expanded="false">Corticosteroid</a>
                     <div class="collapse" id="Corticosteroidcollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% Corticosteroid.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Budesonide">Budesonide</li>
                         <li class="mb-1 list-group-item list-group-item-action Cosyntropin">Cosyntropin</li>
                         <li class="mb-1 list-group-item list-group-item-action Dexamethasone">Dexamethasone</li>
@@ -557,6 +688,13 @@
                       aria-expanded="false">Dietary Supplement</a>
                     <div class="collapse" id="DietarySupplementcollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% DietarySupplement.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Ginkgo">Ginkgo</li>
                         <li class="mb-1 list-group-item list-group-item-action "></li>
                       </ul>
@@ -571,6 +709,13 @@
                       Supplement</a>
                     <div class="collapse" id="Electrolytecollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% ElectrolyteSupplement.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action CalciumCitrate">Calcium Citrate</li>
                         <li class="mb-1 list-group-item list-group-item-action Calcium">Calcium</li>
                       </ul>
@@ -585,6 +730,13 @@
                       aria-expanded="false">Expectorant</a>
                     <div class="collapse" id="Expectorantcollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% Expectorant.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Bronchophane">Bronchophane</li>
                       </ul>
                     </div>
@@ -598,6 +750,13 @@
                       aria-expanded="false">Gastrointestinal</a>
                     <div class="collapse" id="Gastrointestinalcollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% Gastrointestinal.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Domperidone">Domperidone</li>
                         <li class="mb-1 list-group-item list-group-item-action "></li>
                       </ul>
@@ -612,6 +771,13 @@
                       Agent</a>
                     <div class="collapse" id="Hemostaticcollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% HemostaticAgent.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Ethamsylate">Ethamsylate</li>
                         <li class="mb-1 list-group-item list-group-item-action "></li>
                       </ul>
@@ -626,6 +792,13 @@
                       aria-expanded="false">Immunosuppressant</a>
                     <div class="collapse" id="Immunosuppressantcecollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% Immunosuppressant.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Azathioprine">Azathioprine</li>
                         <li class="mb-1 list-group-item list-group-item-action Cyclosporine">Cyclosporine</li>
                       </ul>
@@ -640,6 +813,13 @@
                       Stabilizer</a>
                     <div class="collapse" id="MSTcollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% MastCellStabilizer.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Ketotifen">Ketotifen</li>
                         <li class="mb-1 list-group-item list-group-item-action "></li>
                       </ul>
@@ -653,6 +833,13 @@
                       data-bs-toggle="collapse" data-bs-target="#Mucolyticcollapse" aria-expanded="false">Mucolytic</a>
                     <div class="collapse" id="Mucolyticcollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% Mucolytic.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Bromhexine">Bromhexine</li>
                       </ul>
                     </div>
@@ -665,14 +852,14 @@
                       data-bs-toggle="collapse" data-bs-target="#Neurologycollapse" aria-expanded="false">Neurology</a>
                     <div class="collapse" id="Neurologycollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% Neurology.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Acetazolamide">Acetazolamide</li>
-
-
-
-
-
-
-
                       </ul>
                     </div>
                   </li>
@@ -685,6 +872,13 @@
                       aria-expanded="false">Osteoarthritis</a>
                     <div class="collapse" id="Osteoarthritiscollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% Osteoarthritis.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Glucosamine">Glucosamine</li>
                         <li class="mb-1 list-group-item list-group-item-action "></li>
                       </ul>
@@ -699,6 +893,13 @@
                       Relaxant</a>
                     <div class="collapse" id="smrcollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% SkeletalMuscleRelaxant.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Baclofen">Baclofen</li>
                       </ul>
                     </div>
@@ -712,6 +913,13 @@
                       Hormone</a>
                     <div class="collapse" id="Vasopressincollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% VasopressinHormone.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action Desmopressin">Desmopressin</li>
                         <li class="mb-1 list-group-item list-group-item-action "></li>
                       </ul>
@@ -726,6 +934,13 @@
                       aria-expanded="false">Water Soluble Vitamin</a>
                     <div class="collapse" id="WaterSolubleVitamincollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% WaterSolubleVitamin.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                            <%= item.trade%>
+                          </li>
+                          <% }) %>
+
                         <li class="my-1 list-group-item list-group-item-action FolicAcid">Folic Acid</li>
                         <li class="mb-1 list-group-item list-group-item-action "></li>
                       </ul>
@@ -733,10 +948,26 @@
                   </li>
                   <li class="ms-3 border-top notlist" style="list-style: none;"></li>
 
-
-
-
-
+                    <!-- MEDICATION Mao inhibitor-->
+                    <li>
+                      <a id="btn35" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                        data-bs-toggle="collapse" data-bs-target="#WaterSolubleVitamincollapse"
+                        aria-expanded="false">Mao inhibitor</a>
+                      <div class="collapse" id="WaterSolubleVitamincollapse">
+                        <ul class="list-group group" style="list-style: none; text-align: center;">
+  
+                          <% Maoinhibitor.forEach(item=> { %>
+                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.trade%>">
+                              <%= item.trade%>
+                            </li>
+                            <% }) %>
+  
+                          <li class="my-1 list-group-item list-group-item-action FolicAcid">Folic Acid</li>
+                          <li class="mb-1 list-group-item list-group-item-action "></li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
                 </ul>
               </div>
             </li>
@@ -850,7 +1081,7 @@
         
           <div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
             <% med.forEach(item=> { %>
-            <div id="row" class="row d-none <%= item.trade %>">
+            <div id="row" class="row d-none <%= item.trade%>">
               <div class="col col-12">
                 <div class="one mt-5">
                   <h1 class="flex-shrink-0">
@@ -1045,9 +1276,7 @@
 
       <!-- LINK TO CUSTOM JS -->
       <script defer src="../js/sidebars.js"></script>
-      <script>
-
-      </script>
+  
 
 </body>
 

@@ -143,6 +143,10 @@ exports.OncoTips = asyncHandler(async (req, res) => {
     classname: "Water Soluble Vitamin",
   }).sort({ generic: "asc" });
 
+  const Maoinhibitor = await Medication.find({
+    classname: "Mao inhibitor",
+  }).sort({ generic: "asc" });
+
   if (med) {
     res.render("oncotips.ejs", {
       med,
@@ -179,7 +183,7 @@ exports.OncoTips = asyncHandler(async (req, res) => {
       Osteoarthritis,
       SkeletalMuscleRelaxant,
       VasopressinHormone,
-      WaterSolubleVitamin
+      WaterSolubleVitamin,Maoinhibitor
     });
   }
 });

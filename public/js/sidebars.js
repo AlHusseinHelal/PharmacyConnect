@@ -1,13 +1,23 @@
-/* global bootstrap: false */
-// (function() {
-//   "use strict";
-//   const tooltipTriggerList = Array.from(
-//     document.querySelectorAll('[data-bs-toggle="tooltip"]')
-//   );
-//   tooltipTriggerList.forEach((tooltipTriggerEl) => {
-//     new bootstrap.Tooltip(tooltipTriggerEl);
-//   });
-// })();
+const medication = document.querySelectorAll(".medication")
+const row = document.querySelectorAll(".row")
+console.log(medication);
+medication.forEach(item => {
+  item.addEventListener('click', (eo) => {
+    const Name = eo.target
+    console.log(Name);
+    const getName = Name.textContent ;
+    console.log(getName);
+    const getsecName = document.getElementsByClassName(getName)[1]
+    console.log(getsecName);
+    const hide = row.forEach(el => {
+      el.classList.add('d-none')
+    });
+    getsecName.classList.toggle('d-none')
+  }
+  )
+});
+
+
 
 $(document).ready(function () {
   /*--------------------------------------------------------------
@@ -16560,7 +16570,7 @@ btn9.addEventListener("click", (params) => {
 });
 
 
-// const medication = document.querySelectorAll(".medication")
+
 
 // medication.forEach(item => {
 //   item.addEventListener("click", () => {
