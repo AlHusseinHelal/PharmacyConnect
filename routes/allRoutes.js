@@ -106,11 +106,6 @@ router.get(
     const ldsearch = user.ldsearch
     const searchcode = ldsearch.searchText
     const find = user.results.filter( item => item.code === searchcode || item.examname === searchcode)
-    // const arr = []
-    // arr.push(find)
-    // console.log(arr)
-
-    
 
     if (custmer) {
       res.render("admin.ejs", { array: custmer, exam, results, moment : moment , find });
@@ -303,8 +298,6 @@ router.get(
     const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
-    console.log(startDate);
-    console.log(endDate);
     const currentUser = await User.findOne({ _id: decoded.id });
     const { firstname } = currentUser;
     const { lastname } = currentUser;
@@ -333,14 +326,11 @@ router.get(
     const date = moment().format("YYYY-MM-DD");
     const startDate = date + "T00:00:00.000+00:00";
     const endDate = date + "T23:59:59.000+00:00";
-    console.log(startDate, endDate);
     const search = currentUser.dicsearch;
     const dic = currentUser.dicreceiver.filter((item) => {
       const createdAt = moment(item.createdAt);
       return createdAt.isBetween(startDate, endDate);
     });
-    console.log(dic);
-
     if (medclass) {
       res.render("Dic/dic.ejs", {
         medclass,
@@ -2975,8 +2965,6 @@ router.post(
     const results = await Inpatientschema.find({
       createdAt: { $gte: startDate, $lte: endDate },
     });
-    console.log(results);
-
     if (results === undefined) {
       await User.findOneAndUpdate(
         { _id: decoded.id },
@@ -3394,7 +3382,7 @@ router.post(
       }
     );
 
-    console.log(dic);
+
 
     const results = await User.findOneAndUpdate(
       { _id: decoded.id },
@@ -3410,7 +3398,7 @@ router.post(
       }
     );
 
-    console.log(results);
+
     if (results) {
       res.json({ done: dic });
     }
@@ -3435,7 +3423,7 @@ router.post(
     });
     const array = [];
     array.push(searchdate);
-    console.log(array);
+  
     if (searchdate === undefined) {
       await User.findOneAndUpdate({ role: "DIC" }, { $set: { dicsearch: [] } });
     }
@@ -4319,7 +4307,7 @@ router.put(
         },
       }
     );
-    console.log(results);
+  
     if (results) {
       res.redirect("/todolist");
     }
@@ -4600,7 +4588,6 @@ router.put(
   const user = await User.findOne({ _id: decoded.id });
   const selectedObject = user.examchoose;
   const examname = selectedObject.examname
-  console.log(examname);
   const search = req.body.answerassy1
   const search2 = req.body.answerassy2
   const search3 = req.body.answerassy3
