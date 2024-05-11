@@ -183,18 +183,24 @@ const user = new mongoose.Schema(
       },
     ],
 
-    examchoose: 
-      {
-        
-      },
-    
-    selectedpharmacist:
-      {
-      
-      }
-     ,
+    examchoose: {},
 
-  
+    selectedpharmacist: {},
+
+    results : [
+      {
+        firstname : String,
+        lastname : String,
+        code : String,
+        score : String,
+        examname : String,
+        questionnumber : String,
+        createdAt: Date,
+
+      }
+    ],
+
+    ldsearch : {},
   },
   {
     timestamps: true,

@@ -487,3 +487,23 @@ main {
 .dnone{
   display: none;
 }
+
+
+@keyframes myAnim {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+#exam{
+  animation: myAnim 2s ease 0s 1 normal forwards;
+}
+
+#res{
+  animation: myAnim 2s ease 0s 1 normal forwards;
+}
+

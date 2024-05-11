@@ -255,7 +255,10 @@
 
 
                   <form action="/examform" method="post" class="d-flex flex-column align-items-center">
-                    <div id="chooseForm" class="d-flex flex-column align-items-center"></div>
+                    <div id="chooseForm" class="d-flex flex-column align-items-center">
+                      
+                    </div>
+                    <input id="questionnumber" hidden type="text" value="" name="questionnumber">
                     <div id="submitbuttonchooseform" class="justify-content-end d-none" style="width: 98%;">
                       <button class="btn btn-success" type="submit">Submit</button>
                     </div>
@@ -971,6 +974,144 @@
 
           </div>
 
+          <div id="res" class="h-100 d-none" >
+            <div>
+              <nav class="navbar navbar-expand-lg bg-body-tertiary mx-1 mt-1 mb-1">
+                <div class="container-fluid py-2 rounded-2 bg-info">
+                  <div class="d-flex flex-row align-items-center">
+                    <img src="/svg/l&d-01.svg" height="35vh" alt="" />
+                  </div>
+  
+                  <div  id="navbarSupportedContent">
+                    <form class="d-flex" role="search" action="/ldsearch" method="post">
+                      <input name="searchText" class="form-control me-2" type="search" placeholder="Search"
+                        aria-label="Search" />
+                      <button class="btn btn-outline-success" type="submit">
+                        Search
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </nav>
+            </div>
+            <% if (results.length === 0) { %>
+              <div class="d-flex justify-content-center align-items-center h-100"  >
+                <div class="alert alert-success new2 p-4 w-50 mt-5 ">
+                  <i class="fa fa-info-circle" aria-hidden="true"></i>
+                  <span class="alert-body">
+                    <h6 class="alert-header">ATTENTION</h6>
+                    <p class="mb-0">No Data Avaliable</p>
+                  </span>
+                </div>
+              </div>
+          
+            <% } %>
+
+            <% if (results.length >=1 ) { %>
+              <table class="table">
+                <thead>
+                  <tr class="text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Code</th>
+                    <th scope="col">Exam Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Score</th>
+                  </tr>
+                </thead>
+
+                <% results.forEach((item, index) => { %>
+                  <tbody>
+                    <tr class="text-center">
+                      <th scope="row"><%= index+1 %></th>
+                      <td><%= item.firstname + "." + item.lastname %></td>
+                      <td><%= item.code %></td>
+                      <td style="text-transform: uppercase;"><%= item.examname %></td>
+                      <td style="text-transform: uppercase;"><%= moment(item.createdAt).format('DD-MM-YY HH:MM A') %></td>
+                      <td> <span style="color: blue;"><%= item.score %></span>/<span style="color: red;"><%= item.questionnumber  %></span></td>
+                    </tr>
+                  
+                  </tbody>
+                <% }) %>
+                
+              </table>
+            <% } %>
+          </div>
+
+          <div id="rsearch" class="h-100 " >
+            <div>
+              <nav class="navbar navbar-expand-lg bg-body-tertiary mx-1 mt-1 mb-1">
+                <div class="container-fluid py-2 rounded-2 bg-info">
+                  <div class="d-flex flex-row align-items-center">
+                    <img src="/svg/l&d-01.svg" height="35vh" alt="" />
+                  </div>
+  
+                  <div  id="navbarSupportedContent">
+                    <form class="d-flex" role="search" action="/ldsearch" method="post">
+                      <input name="searchText" class="form-control me-2" type="search" placeholder="Search"
+                        aria-label="Search" />
+                      <button class="btn btn-outline-success" type="submit">
+                        Search
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </nav>
+            </div>
+            <% if (find.length === 0) { %>
+              <div class="d-flex justify-content-center"  >
+                <div class="alert alert-success new2 p-4 w-50 mt-5 ">
+                  <i class="fa fa-info-circle" aria-hidden="true"></i>
+                  <span class="alert-body">
+                    <h6 class="alert-header">ATTENTION</h6>
+                    <p class="mb-0">No Data Avaliable</p>
+                  </span>
+                </div>
+              </div>
+          
+            <% } %>
+
+            <% if (find.length >= 1 ) { %>
+              <div class="d-flex justify-content-center"  >
+                <div class="alert alert-success new2 p-4 w-50 mt-5 ">
+                  <i class="fa fa-info-circle" aria-hidden="true" style="color: #eb0a0a;"></i>
+                  <span class="alert-body">
+                    <h6 class="alert-header" style="color: red;">ATTENTION</h6>
+                    <p class="mb-0" style="color: black;">Search Mode</p>
+                  </span>
+                </div>
+              </div>
+              <table class="table">
+                <thead>
+                  <tr class="text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Code</th>
+                    <th scope="col">Exam Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Score</th>
+                  </tr>
+                </thead>
+
+                <% find.forEach((item, index) => { %>
+                  <tbody>
+                    <tr class="text-center">
+                      <th scope="row"><%= index+1 %></th>
+                      <td><%= item.firstname + "." + item.lastname %></td>
+                      <td><%= item.code %></td>
+                      <td style="text-transform: uppercase;"><%= item.examname %></td>
+                      <td style="text-transform: uppercase;"><%= moment(item.createdAt).format('DD-MM-YY HH:MM A') %></td>
+                      <td> <span style="color: blue;"><%= item.score %></span>/<span style="color: red;"><%= item.questionnumber  %></span></td>
+                    </tr>
+                  
+                  </tbody>
+                <% }) %>
+                
+              </table>
+            <% } %>
+          </div>
+          </div>
+
         </div>
 
 
@@ -1018,11 +1159,22 @@
           eo.preventDefault()
           let c = selectChoose.value
           let a = selectAssy.value
+          questionnumber.value =  Number(selectChoose.value) + Number(selectAssy.value) 
+          console.log(questionnumber.value);
           submitbuttonchooseform.classList.remove('d-none');
           line.classList.remove('d-none');
+          chooseForm.innerHTML += `
+                     <div class="form-floating my-2" style="width: 98%;">
+                        <input id="examname" name="examname" class="form-control" type="text" placeholder="Exam-Name" >
+                        <label for="examname">Exam-Name</label>
+                      </div>`
+
           for (let i = 0; i < c; i++) {
 
-            chooseForm.innerHTML += `<div class="form-floating my-2" style="width: 98%;">
+            chooseForm.innerHTML += `
+                     
+            
+                    <div class="form-floating my-2" style="width: 98%;">
                       <input id="questionchoose${i + 1}" name="questionchoose${i + 1}" class="form-control " type="text" placeholder="Quedtion#1" >
                       <label for="questionchoose${i + 1}">QuedtionChoose#${i + 1}</label>
                     </div>
@@ -1068,10 +1220,25 @@
       <script>
           const review = document.getElementById("review")
           review.addEventListener("click", (eo) => {
-            
+            const res = document.getElementById("res")
+            const rsearch = document.getElementById("rsearch")
             const exam = document.getElementById("exam")
             console.log(exam);
             exam.classList.toggle("d-none")
+            res.classList.add("d-none")
+            rsearch.classList.add("d-none")
+
+          })
+
+          results.addEventListener("click", (eo) => {
+            const exam = document.getElementById("exam")
+            const res = document.getElementById("res")
+            const rsearch = document.getElementById("rsearch")
+            console.log(exam);
+            res.classList.toggle("d-none")
+            exam.classList.add("d-none")
+            rsearch.classList.add("d-none")
+
 
           })
       </script>

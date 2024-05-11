@@ -323,6 +323,22 @@ main {
   opacity: 1;
 }
 
+/* WLCOME TIELE + EXAMNAME */
+.city {
+  font-weight: 700;
+  font-size: 0.9em;
+  letter-spacing: 1.2px;
+  color: rgb(11, 0, 0);
+  text-transform: uppercase;
+}
+
+.weather {
+  font-weight: 500;
+  font-size: 0.7em;
+  letter-spacing: 1.2px;
+  color: rgb(135, 96, 96);
+}
+
 
 
 

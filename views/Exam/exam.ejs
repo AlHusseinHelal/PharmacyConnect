@@ -56,7 +56,10 @@
 
             <form action="/answer?_method=PUT" method="post">
 
-
+            <div class="text-center <%= exam.examname !== undefined? "d-block" : "d-none" %> mt-3">
+                <p class="city"><%= exam.examname %></p>
+                <p class="weather">WITH BEST WISHES</p>
+            </div>
               <!-- CHOOSE -->
               <!-- QUSETION NUMBER 1 -->
               <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose1 === undefined? "d-none" : "d-block" %>">
@@ -113,11 +116,13 @@
 
               <!-- QUSETION NUMBER 2 -->
               <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose2 === undefined? "d-none" : "d-block" %>">
-                <div class="info__title mb-3">Choose Q#2</div>
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Choose Q#2</div>
                 <div  class="d-flex ">
                   <div> <img class="<%= exam.answerc2 === exam.correctanswerquestion2? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
                   <div> <img class="<%= exam.answerc2 !== exam.correctanswerquestion2 && exam.answerc2 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
+              </div>
                 <div class="info__title mb-3">
                   <%= exam.questionchoose2 %>
                 </div>
@@ -161,11 +166,13 @@
 
               <!-- QUSETION NUMBER 3 -->
               <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose3 === undefined? "d-none" : "d-block" %>">
-                <div class="info__title mb-3">Choose Q#3</div>
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  Choose Q#3
                 <div  class="d-flex ">
                   <div> <img class="<%= exam.answerc3 === exam.correctanswerquestion3? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
                   <div> <img class="<%= exam.answerc3 !== exam.correctanswerquestion3 && exam.answerc3 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
+              </div>
                 <div class="info__title mb-3">
                   <%= exam.questionchoose3 %>
                 </div>
@@ -209,11 +216,13 @@
 
               <!-- QUSETION NUMBER 4 -->
               <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose4 === undefined? "d-none" : "d-block" %>">
-                <div class="info__title mb-3">Choose Q#4</div>
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Choose Q#4</div>
                 <div  class="d-flex ">
                   <div> <img class="<%= exam.answerc4 === exam.correctanswerquestion4? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
                   <div> <img class="<%= exam.answerc4 !== exam.correctanswerquestion4 && exam.answerc4 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
+              </div>
                 <div class="info__title mb-3">
                   <%= exam.questionchoose4 %>
                 </div>
@@ -257,11 +266,13 @@
 
               <!-- QUSETION NUMBER 5 -->
               <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose5 === undefined? "d-none" : "d-block" %>">
-                <div class="info__title mb-3">Choose Q#5</div>
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Choose Q#5</div>
                 <div  class="d-flex ">
                   <div> <img class="<%= exam.answerc5 === exam.correctanswerquestion5? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
                   <div> <img class="<%= exam.answerc5 !== exam.correctanswerquestion5 && exam.answerc5 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
+              </div>
                 <div class="info__title mb-3">
                   <%= exam.questionchoose5 %>
                 </div>
@@ -305,11 +316,13 @@
 
               <!-- QUSETION NUMBER 6 -->
               <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose6 === undefined? "d-none" : "d-block" %>">
-                <div class="info__title mb-3">Choose Q#6</div>
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Choose Q#6</div>
                 <div  class="d-flex ">
                   <div> <img class="<%= exam.answerc6 === exam.correctanswerquestion6? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
                   <div> <img class="<%= exam.answerc6 !== exam.correctanswerquestion6 && exam.answerc6 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
+              </div>
                 <div class="info__title mb-3">
                   <%= exam.questionchoose6 %>
                 </div>
@@ -353,11 +366,13 @@
 
               <!-- QUSETION NUMBER 7 -->
               <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose7 === undefined? "d-none" : "d-block" %>">
-                <div class="info__title mb-3">Choose Q#7</div>
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Choose Q#7</div>
                 <div  class="d-flex ">
                   <div> <img class="<%= exam.answerc7 === exam.correctanswerquestion7? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
                   <div> <img class="<%= exam.answerc7 !== exam.correctanswerquestion7 && exam.answerc7 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
+              </div>
                 <div class="info__title mb-3">
                   <%= exam.questionchoose7 %>
                 </div>
@@ -401,11 +416,13 @@
 
               <!-- QUSETION NUMBER 8 -->
               <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose8 === undefined? "d-none" : "d-block" %>">
-                <div class="info__title mb-3">Choose Q#8</div>
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Choose Q#8</div>
                 <div  class="d-flex ">
                   <div> <img class="<%= exam.answerc8 === exam.correctanswerquestion8? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
                   <div> <img class="<%= exam.answerc8 !== exam.correctanswerquestion8 && exam.answerc8 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
+              </div>
                 <div class="info__title mb-3">
                   <%= exam.questionchoose8 %>
                 </div>
@@ -449,11 +466,13 @@
 
               <!-- QUSETION NUMBER 9 -->
               <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose9 === undefined? "d-none" : "d-block" %>">
-                <div class="info__title mb-3">Choose Q#9</div>
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Choose Q#9</div>
                 <div  class="d-flex ">
                   <div> <img class="<%= exam.answerc9 === exam.correctanswerquestion9? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
                   <div> <img class="<%= exam.answerc9 !== exam.correctanswerquestion9 && exam.answerc9 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
+              </div>
                 <div class="info__title mb-3">
                   <%= exam.questionchoose9 %>
                 </div>
@@ -497,11 +516,13 @@
 
               <!-- QUSETION NUMBER 10 -->
               <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose10 === undefined? "d-none" : "d-block" %>">
-                <div class="info__title mb-3">Choose Q#10</div>
+                <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                  <div>Choose Q#10</div>
                 <div  class="d-flex ">
                   <div> <img class="<%= exam.answerc10 === exam.correctanswerquestion10? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
                   <div> <img class="<%= exam.answerc10 !== exam.correctanswerquestion10 && exam.answerc10 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
+              </div>
                 <div class="info__title mb-3">
                   <%= exam.questionchoose10 %>
                 </div>
@@ -551,8 +572,8 @@
                   <div>Essay Q#1</div>
 
                   <div  class="d-flex ">
-                    <div> <img class="<%= exam.asnwerassy1 === exam.correctanswerassy1? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                    <div> <img class="<%= exam.asnwerassy1 !== exam.correctanswerassy1 && exam.asnwerassy1 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy1 == true? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy1 == false && exam.resultassy1 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                   </div>
                 </div>
                 <div class="info__title mb-3">
@@ -561,6 +582,7 @@
 
                 <div class="w-100 d-flex justify-content-around">
                   <input name="answerassy1" class="form-control w-100" type="text">
+                  <input hidden name="resultassy1" class="form-control w-100" type="text">
                 </div>
 
               </div>
@@ -570,8 +592,8 @@
                   <div>Essay Q#2</div>
 
                   <div  class="d-flex ">
-                    <div> <img class="<%= exam.asnwerassy2 === exam.correctanswerassy2? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                    <div> <img class="<%= exam.asnwerassy2 !== exam.correctanswerassy2 && exam.asnwerassy2 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy2 == true? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy2 == false && exam.resultassy2 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                   </div>
                 </div>
                 <div class="info__title mb-3">
@@ -580,6 +602,7 @@
 
                 <div class="w-100 d-flex justify-content-around">
                   <input name="answerassy2" class="form-control w-100" type="text">
+                  <input hidden name="resultassy2" class="form-control w-100" type="text">
                 </div>
 
               </div>
@@ -589,8 +612,8 @@
                   <div>Essay Q#3</div>
 
                   <div  class="d-flex ">
-                    <div> <img class="<%= exam.asnwerassy3 === exam.correctanswerassy3? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                    <div> <img class="<%= exam.asnwerassy3 !== exam.correctanswerassy3 && exam.asnwerassy3 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy3 == true? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy3 == false && exam.resultassy3 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                   </div>
                 </div>
                 <div class="info__title mb-3">
@@ -599,6 +622,7 @@
 
                 <div class="w-100 d-flex justify-content-around">
                   <input name="answerassy3" class="form-control w-100" type="text">
+                  <input hidden name="resultassy3" class="form-control w-100" type="text">
                 </div>
 
               </div>
@@ -608,8 +632,8 @@
                   <div>Essay Q#4</div>
 
                   <div  class="d-flex ">
-                    <div> <img class="<%= exam.asnwerassy4 === exam.correctanswerassy4? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                    <div> <img class="<%= exam.asnwerassy4 !== exam.correctanswerassy4 && exam.asnwerassy4 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy4 == true? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy4 == false && exam.resultassy4 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                   </div>
                 </div>
                 <div class="info__title mb-3">
@@ -618,6 +642,7 @@
 
                 <div class="w-100 d-flex justify-content-around">
                   <input name="answerassy4" class="form-control w-100" type="text">
+                  <input hidden name="resultassy4" class="form-control w-100" type="text">
                 </div>
 
               </div>
@@ -627,8 +652,8 @@
                   <div>Essay Q#5</div>
 
                   <div  class="d-flex ">
-                    <div> <img class="<%= exam.asnwerassy5 === exam.correctanswerassy5? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                    <div> <img class="<%= exam.asnwerassy5 !== exam.correctanswerassy5 && exam.asnwerassy5 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy5 == true? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy5 == false && exam.resultassy5 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                   </div>
                 </div>
                 <div class="info__title mb-3">
@@ -637,6 +662,7 @@
 
                 <div class="w-100 d-flex justify-content-around">
                   <input name="answerassy5" class="form-control w-100" type="text">
+                  <input hidden name="resultassy5" class="form-control w-100" type="text">
                 </div>
 
               </div>
@@ -646,8 +672,8 @@
                   <div>Essay Q#6</div>
 
                   <div  class="d-flex ">
-                    <div> <img class="<%= exam.asnwerassy6 === exam.correctanswerassy6? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                    <div> <img class="<%= exam.asnwerassy6 !== exam.correctanswerassy6 && exam.asnwerassy6 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy6 == true? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy6 == false && exam.resultassy6 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                   </div>
                 </div>
                 <div class="info__title mb-3">
@@ -656,6 +682,7 @@
 
                 <div class="w-100 d-flex justify-content-around">
                   <input name="answerassy6" class="form-control w-100" type="text">
+                  <input hidden name="resultassy6" class="form-control w-100" type="text">
                 </div>
 
               </div>
@@ -665,8 +692,8 @@
                   <div>Essay Q#7</div>
 
                   <div  class="d-flex ">
-                    <div> <img class="<%= exam.asnwerassy7 === exam.correctanswerassy7? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                    <div> <img class="<%= exam.asnwerassy7 !== exam.correctanswerassy7 && exam.asnwerassy7 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy7 == true? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy7 == false && exam.resultassy7 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                   </div>
                 </div>
                 <div class="info__title mb-3">
@@ -675,6 +702,7 @@
 
                 <div class="w-100 d-flex justify-content-around">
                   <input name="answerassy7" class="form-control w-100" type="text">
+                  <input hidden name="resultassy7" class="form-control w-100" type="text">
                 </div>
 
               </div>
@@ -684,8 +712,8 @@
                   <div>Essay Q#8</div>
 
                   <div  class="d-flex ">
-                    <div> <img class="<%= exam.asnwerassy8 === exam.correctanswerassy8? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                    <div> <img class="<%= exam.asnwerassy8 !== exam.correctanswerassy8 && exam.asnwerassy8 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy8 == true? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy8 == false && exam.resultassy8 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                   </div>
                 </div>
                 <div class="info__title mb-3">
@@ -694,6 +722,7 @@
 
                 <div class="w-100 d-flex justify-content-around">
                   <input name="answerassy8" class="form-control w-100" type="text">
+                  <input hidden name="resultassy8" class="form-control w-100" type="text">
                 </div>
 
               </div>
@@ -703,8 +732,8 @@
                   <div>Essay Q#9</div>
 
                   <div  class="d-flex ">
-                    <div> <img class="<%= exam.asnwerassy9 === exam.correctanswerassy9? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                    <div> <img class="<%= exam.asnwerassy9 !== exam.correctanswerassy9 && exam.asnwerassy9 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy9 == true? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy9 == false && exam.resultassy9 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                   </div>
                 </div>
                 <div class="info__title mb-3">
@@ -713,6 +742,8 @@
 
                 <div class="w-100 d-flex justify-content-around">
                   <input name="answerassy9" class="form-control w-100" type="text">
+                  <input hidden name="resultassy9" class="form-control w-100" type="text">
+
                 </div>
 
               </div>
@@ -722,8 +753,8 @@
                   <div>Essay Q#10</div>
 
                   <div  class="d-flex ">
-                    <div> <img class="<%= exam.asnwerassy10 === exam.correctanswerassy10? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                    <div> <img class="<%= exam.asnwerassy10 !== exam.correctanswerassy10 && exam.asnwerassy10 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy10 == true? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                    <div> <img class="<%= exam.resultassy10 == false && exam.resultassy10 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                   </div>
                 </div>
                 <div class="info__title mb-3">
@@ -732,6 +763,7 @@
 
                 <div class="w-100 d-flex justify-content-around">
                   <input name="answerassy10" class="form-control w-100" type="text">
+                  <input hidden name="resultassy10" class="form-control w-100" type="text">
                 </div>
 
               </div>
