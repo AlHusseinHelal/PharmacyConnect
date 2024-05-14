@@ -17,7 +17,7 @@
                 <ul>
                   <li><a href="/inpatient3">InPatient</a></li>
                   <li><a href="/outpatient3">OutPatient</a></li>
-                  <li><a href="/ivprep">IV-PREP</a></li>
+                  <li><a href="/prepin">IV-PREP</a></li>
                   <li><a href="/dispense3">Dispense</a></li>
                   <li><a href="/lab">Lab</a></li>
                 </ul>
@@ -27,10 +27,10 @@
               <li><a href="https://phadispca.hospital57357.com/" target="_blank">QMS</a></li>
               <li class="dropdown"><a href="#"><span>Store</span> <i class="bi bi-chevron-right"></i></a>
                 <ul>
-                  <li><a href="">Pyxis Store (76)</a></li>
+                  <li><a href="/pyxis">Pyxis Store (76)</a></li>
                   <li><a href="">Main Pharmacy Store (528)</a></li>
+                  <li><a href="/rowa">Rowa Store (79)</a></li>
                   <li><a href="/perpatient">PerPatient Medication</a></li>
-                  <li><a href="">Main Hospital Store (10)</a></li>
                 </ul>
               </li>
               <li><a href="https://misk.hospital57357.com/Citrix/XenApp/auth/login.aspx" target="_blank">Cerner</a></li>
@@ -107,6 +107,11 @@
           </li>
           <li>
             <hr class="dropdown-divider" />
+            <li class="<%= user.role === "Admin"? 'd-block' : 'd-none' %>"><a class="dropdown-item" href="/admin">Admin</a></li>
+
+          <li class="<%= user.role === "Admin"? 'd-block' : 'd-none' %>">
+            <hr class="dropdown-divider" />
+          </li>
           </li>
           <li><a class="dropdown-item" href="/signout">Sign out</a></li>
         </ul>

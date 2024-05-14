@@ -46,6 +46,9 @@ const Labschema = require("../models/labSchema");
 const Chatmessage = require("../models/chatMessage");
 const Medication = require("../models/medication");
 const Medicationclass = require("../models/medicationClass");
+const Perpatient = require("../models/perpatientSchema");
+const Pyxis = require("../models/pyxisSchema");
+const Rowa = require("../models/rowaSchema");
 //MIDDLEWARE
 const { requireAuth } = require("../middleware/middleware");
 const { checkIfUser } = require("../middleware/middleware");
@@ -105,7 +108,10 @@ router.get(
     const custmer = await User.find().sort({ firstname : "asc"});
     const ldsearch = user.ldsearch
     const searchcode = ldsearch.searchText
-    const find = user.results.filter( item => item.code === searchcode || item.examname === searchcode)
+    const searchtext = ldsearch.searchText
+    console.log(searchtext)
+
+    const find = user.results.filter( item => item.code.match(searchcode) || item.examname.match(searchtext))
 
     if (custmer) {
       res.render("admin.ejs", { array: custmer, exam, results, moment : moment , find });
@@ -113,19 +119,7 @@ router.get(
   })
 );
 
-//ADMIN
-router.post(
-  "/ldsearch",
-  checkIfUser,
-  requireAuth,
-  asyncHandler(async (req, res) => {
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);  
-    const custmer = await User.findByIdAndUpdate({_id : decoded.id} , { $set : {ldsearch : req.body}} );
-    if (custmer) {
-      res.redirect("/admin");
-    }
-  })
-);
+
 
 //EXAM
 router.get(
@@ -385,8 +379,6 @@ router.get(
   })
 );
 
-
-
 //WORKFLOW
 router.get(
   "/WorkFlow",
@@ -413,541 +405,30 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const array = [
-      {
-        OrgCode: 10,
-        ItemNumber: "MED101010012",
-        ItemDescription: "Bleocip 15mg",
-        UOM: "amp",
-        ItemCategory: "Bleomycin Injection 15mg",
-        MedicationsStock: 3,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED101010013",
-        ItemDescription: "Velcade 3.5mg",
-        UOM: "vial(s)",
-        ItemCategory: "Bortezomib Injection 3.5mg",
-        MedicationsStock: 44,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED101010095",
-        ItemDescription: "Jakavi 5mg 14 Tab",
-        UOM: "STRIP 14TAB",
-        ItemCategory: "Ruxolitinib Oral Solid 5mg",
-        MedicationsStock: 20,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED101010096",
-        ItemDescription: "Adcetris 50mg",
-        UOM: "vial(s)",
-        ItemCategory: "Brentuximab Injection 50mg",
-        MedicationsStock: 5,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED101010164",
-        ItemDescription: "Busulfan 2mg 25 Tab",
-        UOM: "BOX 25TAB",
-        ItemCategory: "Busulfan Oral Solid 2mg",
-        MedicationsStock: 82,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED101040039",
-        ItemDescription:
-          "Cyclosporine Capsules USP Modified (Soft Gelatin Capsule) 100mg",
-        UOM: "STRIP 10CAP",
-        ItemCategory: "Cyclosporin Oral Solid 100mg (Modified)",
-        MedicationsStock: 12,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED102010162",
-        ItemDescription: "Unictam 1500mg Powder Vial",
-        UOM: "vial(s)",
-        ItemCategory: "Ampicillin and Sulbactam Injection 1500mg",
-        MedicationsStock: 126,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED102030012",
-        ItemDescription: "Tami Flu 75mg 10 Cap",
-        UOM: "STRIP 10CAP",
-        ItemCategory: "Oseltamivir Phosphate Oral Solid 75mg",
-        MedicationsStock: 2,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED104010007",
-        ItemDescription: "Atomax 25mg 10 Tab",
-        UOM: "STRIP 10 TAB",
-        ItemCategory: "Atomoxetine Oral Solid 25mg",
-        MedicationsStock: 102,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED104010038",
-        ItemDescription: "Mirtimash 30mg 10 tab",
-        UOM: "strip(s)",
-        ItemCategory: "Mirtazapine Oral Solid 30mg",
-        MedicationsStock: 72,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED104010062",
-        ItemDescription: "Prozac 20mg 14 Cap",
-        UOM: "Strip 14Cap",
-        ItemCategory: "Fluoxetine Oral Solid 20mg",
-        MedicationsStock: 4,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED104010063",
-        ItemDescription: "Atomafutix 25mg 10Cap",
-        UOM: "STRIP 10CAP",
-        ItemCategory: "Atomoxetine Oral Solid 25mg",
-        MedicationsStock: 1020,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED104020004",
-        ItemDescription: "Tegretol 200mg 10 Tab",
-        UOM: "STRIP 10 TAB",
-        ItemCategory: "Carbamazepime Oral Solid 200mg",
-        MedicationsStock: 531,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED104020082",
-        ItemDescription: "Cerebroforte 20% 120ML Syrup",
-        UOM: "bottle(s)",
-        ItemCategory: "Piracetam Oral Liquid 1gm",
-        MedicationsStock: 65,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED106010050",
-        ItemDescription: "Rivarospire 10mg 10 Tab",
-        UOM: "STRIP 10 TAB",
-        ItemCategory: "Rivarospire Oral Solid 10mg",
-        MedicationsStock: 100,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED106010076",
-        ItemDescription: "Tareg 40mg 5 Tab",
-        UOM: "STRIP 5TAB",
-        ItemCategory: "Valsartan Oral Solid 40mg",
-        MedicationsStock: 18,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED109020015",
-        ItemDescription: "Enemax Enema",
-        UOM: "bottle(s)",
-        ItemCategory:
-          "Sodium Dihydrogen phosphate dihydrate & Disodium Hydrogen phosphate dodecahydrate Enema Solution",
-        MedicationsStock: 20,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED110010081",
-        ItemDescription: "Aqualarm 10ml Eye Drops",
-        UOM: "bottle(s)",
-        ItemCategory: "Hyaluronic Acid Drops 0.24%",
-        MedicationsStock: 95,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED111010072",
-        ItemDescription: "Inestafenac 50mg 10Sachets",
-        UOM: "BOX 10 Sachet",
-        ItemCategory: "Diclofenac Oral Solid 50mg",
-        MedicationsStock: 40,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED111050027",
-        ItemDescription: "Efemyo eye Drops",
-        UOM: "bottle(s)",
-        ItemCategory:
-          "Fluorometholone Micronized & Tetrahydrozoline HCL Drops 10ml",
-        MedicationsStock: 3,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED111050042",
-        ItemDescription: "Macrofuran 50mg 10 Tab",
-        UOM: "STRIP 10 TAB",
-        ItemCategory: "Nitrofurantoin Oral Solid 50mg",
-        MedicationsStock: 3,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED111050105",
-        ItemDescription: "Forxiga 10mg 14 Tab",
-        UOM: "STRIP 14TAB",
-        ItemCategory: "Dapagliflozin Oral Solid 10mg",
-        MedicationsStock: 10,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED111050116",
-        ItemDescription: "Lepsiramp 4mg 7tab",
-        UOM: "STRIP 7TAB",
-        ItemCategory: "Perampanel Oral Solid 4mg",
-        MedicationsStock: 5,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED111050117",
-        ItemDescription: "Lepsiramp 6mg 7tab",
-        UOM: "STRIP 7TAB",
-        ItemCategory: "Perampanel Oral Solid 6mg",
-        MedicationsStock: 10,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED113010013",
-        ItemDescription: "Gadovist 1.0 mmol/ml syringe",
-        UOM: "syringe(s)",
-        ItemCategory: "Gadobutrol Injection 1.0 mmol/ml",
-        MedicationsStock: 100,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED114010008",
-        ItemDescription: "Twinrix 1ml Syringe",
-        UOM: "syringe(s)",
-        ItemCategory: "Hepatitis B Injection 0.5ml",
-        MedicationsStock: 450,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED115010013",
-        ItemDescription: "Qarziba 4.5 mg/ml",
-        UOM: "vial(s)",
-        ItemCategory: "Dinutuximab Beta Injection 4.5mg",
-        MedicationsStock: 20,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED115010024",
-        ItemDescription: "Lacteol Fort Sachets",
-        UOM: "box(es)",
-        ItemCategory: "Lyophilized Killed Microbial Bodies Oral Solid 6Sachets",
-        MedicationsStock: 12,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED115010042",
-        ItemDescription: "Zavicefta 2gm/0.5",
-        UOM: "vial(s)",
-        ItemCategory: "Ceftazidime-Avibactam Injection 2gm",
-        MedicationsStock: 179,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED115010045",
-        ItemDescription: "Prepawest",
-        UOM: "box(es)",
-        ItemCategory:
-          "Macrogol & Sodium Sulphate, chloride, Ascorbate & Potassium Chloride & Ascorbic Acid Oral Solid 115gm",
-        MedicationsStock: 4,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED115010056",
-        ItemDescription: "Pravotin 100mg 30 Eff Sachet",
-        UOM: "BOX 30 Sachet",
-        ItemCategory: "Lactoferrin Oral Solid 100mg",
-        MedicationsStock: 80,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED115010080",
-        ItemDescription: "Darzalex 400mg / 20ml Vial",
-        UOM: "vial(s)",
-        ItemCategory: "Daratumumab Injection 400mg / 20ml",
-        MedicationsStock: 6,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED115010081",
-        ItemDescription: "Keytruda 100mg / 4ml Vial",
-        UOM: "vial(s)",
-        ItemCategory: "Pembrolizumab Injection 100mg/4ml",
-        MedicationsStock: 1,
-      },
-      {
-        OrgCode: 10,
-        ItemNumber: "MED115010093",
-        ItemDescription: "Darzalex 1800mg / 15ml Vial",
-        UOM: "vial(s)",
-        ItemCategory: "Daratumumab Injection 1800mg",
-        MedicationsStock: 11,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED101010016",
-        ItemDescription: "Xeloda 500mg 10 Tab",
-        UOM: "STRIP 10 TAB",
-        ItemCategory: "Capecitabine Oral Solid 500mg",
-        MedicationsStock: 0.2,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED101010079",
-        ItemDescription: "Sutent 50mg 28 Cap",
-        UOM: "BOX 28CAP",
-        ItemCategory: "Sunitinib Oral Solid 50mg",
-        MedicationsStock: 0.10714,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED101010095",
-        ItemDescription: "Jakavi 5mg 14 Tab",
-        UOM: "STRIP 14TAB",
-        ItemCategory: "Ruxolitinib Oral Solid 5mg",
-        MedicationsStock: 156,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED101040009",
-        ItemDescription: "Rapamune 1g 10 Tab",
-        UOM: "STRIP 10 TAB",
-        ItemCategory: "Sirolimus Oral Solid 1gm",
-        MedicationsStock: 3,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED101040011",
-        ItemDescription: "Prograf 1mg 100 cap",
-        UOM: "BOX 100CAP",
-        ItemCategory: "Tacrolimus Oral Solid 1mg",
-        MedicationsStock: 2,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED101040018",
-        ItemDescription: "Afinitor 5mg 10 Tab",
-        UOM: "STRIP 10 TAB",
-        ItemCategory: "Everolimus Oral Solid 5mg",
-        MedicationsStock: 183,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED102010086",
-        ItemDescription: "Flub syrup 30ml",
-        UOM: "Bottle 30ml",
-        ItemCategory: "Flubendazole Oral Liquid 30ml",
-        MedicationsStock: 2,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED102020027",
-        ItemDescription: "Itracon 100mg 7Cap",
-        UOM: "STRIP 7CAP",
-        ItemCategory: "Itraconazole Oral Solid 100mg",
-        MedicationsStock: 2,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED104010007",
-        ItemDescription: "Atomax 25mg 10 Tab",
-        UOM: "STRIP 10 TAB",
-        ItemCategory: "Atomoxetine Oral Solid 25mg",
-        MedicationsStock: 27,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED104010025",
-        ItemDescription: "Lustral 50mg 10 Tab",
-        UOM: "STRIP 10 TAB",
-        ItemCategory: "Sertraline HCL Oral Solid 50mg",
-        MedicationsStock: 125,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED104010064",
-        ItemDescription: "Atomafutix 40mg 10Cap",
-        UOM: "STRIP 10CAP",
-        ItemCategory: "Atomoxetine Oral Solid 40mg",
-        MedicationsStock: 246.2,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED104020004",
-        ItemDescription: "Tegretol 200mg 10 Tab",
-        UOM: "STRIP 10 TAB",
-        ItemCategory: "Carbamazepime Oral Solid 200mg",
-        MedicationsStock: 165,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED104020052",
-        ItemDescription: "Convagran 100mg 10 Cap",
-        UOM: "STRIP 10CAP",
-        ItemCategory: "Zonisamide Oral Solid 100mg",
-        MedicationsStock: 4,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED106010067",
-        ItemDescription: "Tenormin 50mg tab",
-        UOM: "strip(s)",
-        ItemCategory: "Atenolol Oral Solid 50mg",
-        MedicationsStock: 29.4,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED106010076",
-        ItemDescription: "Tareg 40mg 5 Tab",
-        UOM: "STRIP 5TAB",
-        ItemCategory: "Valsartan Oral Solid 40mg",
-        MedicationsStock: 12,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED106040009",
-        ItemDescription: "Crestor 20mg 7 Tab",
-        UOM: "STRIP 7TAB",
-        ItemCategory: "Rosuvastatin Oral Solid 20mg",
-        MedicationsStock: 3.14286,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED109010032",
-        ItemDescription: "Glycerin Gelatin Ped 5 Supp",
-        UOM: "BOX 5 SUPP",
-        ItemCategory: "Glycerin Rectal and Vaginal 1.47gm",
-        MedicationsStock: 29,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED109010064",
-        ItemDescription: "Zarotex gel",
-        UOM: "tube(s)",
-        ItemCategory: "Tazarotene Topical 0.1%",
-        MedicationsStock: 2,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED110010081",
-        ItemDescription: "Aqualarm 10ml Eye Drops",
-        UOM: "bottle(s)",
-        ItemCategory: "Hyaluronic Acid Drops 0.24%",
-        MedicationsStock: 5,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED111010072",
-        ItemDescription: "Inestafenac 50mg 10Sachets",
-        UOM: "BOX 10 Sachet",
-        ItemCategory: "Diclofenac Oral Solid 50mg",
-        MedicationsStock: 9,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED111050049",
-        ItemDescription: "Betmiga 10 Tab",
-        UOM: "STRIP 10 TAB",
-        ItemCategory: "Mirabergron Oral Solid 10Tab",
-        MedicationsStock: 4.6,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED111050077",
-        ItemDescription: "Citra Forte Granules",
-        UOM: "bottle(s)",
-        ItemCategory: "Potassium Sodium Hydrogen Citrate Oral Liquid 280mg",
-        MedicationsStock: 1,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED111050088",
-        ItemDescription: "Revolade 50 mg 7 tab",
-        UOM: "STRIP 7TAB",
-        ItemCategory: "Eltrombopag Oral Solid 50mg",
-        MedicationsStock: 56,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED111050105",
-        ItemDescription: "Forxiga 10mg 14 Tab",
-        UOM: "STRIP 14TAB",
-        ItemCategory: "Dapagliflozin Oral Solid 10mg",
-        MedicationsStock: 6,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED112010027",
-        ItemDescription: "Stark Sachet 25g 10 Sachet",
-        UOM: "BOX 10 Sachet",
-        ItemCategory: "Supplements Oral Solid Between 1 Year to 18 Years",
-        MedicationsStock: 30.6,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED115010003",
-        ItemDescription: "XALKOR 250mg 60 Tab",
-        UOM: "BOX 60TAB",
-        ItemCategory: "Crizotinib Oral Solid 250mg",
-        MedicationsStock: 0.00001,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED115010009",
-        ItemDescription: "Epimag 12 sachet",
-        UOM: "BOX 12 Sachet",
-        ItemCategory: "Magnesium Citrate Oral Solid 2.125gm",
-        MedicationsStock: 3,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED115010024",
-        ItemDescription: "Lacteol Fort Sachets",
-        UOM: "box(es)",
-        ItemCategory: "Lyophilized Killed Microbial Bodies Oral Solid 6Sachets",
-        MedicationsStock: 7,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED115010044",
-        ItemDescription: "Procoralan 5mg 7 tab",
-        UOM: "STRIP 7TAB",
-        ItemCategory: "Ivabradine Oral Solid 5mg",
-        MedicationsStock: 40,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED115010052",
-        ItemDescription: "Plavix 75mg 14 Tab",
-        UOM: "STRIP 14TAB",
-        ItemCategory: "Clopidogrel Oral Solid 75mg",
-        MedicationsStock: 3,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED115010056",
-        ItemDescription: "Pravotin 100mg 30 Eff Sachet",
-        UOM: "BOX 30 Sachet",
-        ItemCategory: "Lactoferrin Oral Solid 100mg",
-        MedicationsStock: 8.33333,
-      },
-      {
-        OrgCode: 79,
-        ItemNumber: "MED115010062",
-        ItemDescription: "Entresto 50mg (24/26mg) 14 Tab",
-        UOM: "STRIP 14TAB",
-        ItemCategory: "Sacubitril and Valsartan Oral Solid 50mg",
-        MedicationsStock: 18,
-      },
-    ];
-    res.render("Store/perpatient", { array: array });
+    const array = await Perpatient.find()
+    res.render("Store/perpatient.ejs", { array: array });
+  })
+);
+
+//PYXIS STORE
+router.get(
+  "/pyxis",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const array = await Pyxis.find()
+    res.render("Store/pyxis.ejs", { array: array });
+  })
+);
+
+//ROWA STORE
+router.get(
+  "/rowa",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const array = await Rowa.find()
+    res.render("Store/rowa.ejs", { array: array });
   })
 );
 
@@ -2173,6 +1654,22 @@ router.get(
 // ---------------------------------
 //POST REQUEST
 // ----------------------------------
+
+
+//L&D SEARCH
+router.post(
+  "/ldsearch",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);  
+    const custmer = await User.findByIdAndUpdate({_id : decoded.id} , { $set : {ldsearch : req.body}} );
+    if (custmer) {
+      res.redirect("/admin");
+    }
+  })
+);
+
 
 // Register USER
 router.post(
@@ -3508,6 +3005,55 @@ router.post(
   })
 );
 
+// PERPATIENT SEARCH
+router.post("/perpatientsearch", 
+checkIfUser, 
+requireAuth, 
+asyncHandler( async (req, res) => {
+  const searchtext = req.body.searchText.trim()[0].toUpperCase() + req.body.searchText.slice(1,22222);
+  const searchNumber = req.body.searchText.trim().toUpperCase() 
+  console.log(searchNumber)
+  const results = await Perpatient.find()
+  const array =  results.filter( item => item.ItemDescription.match(searchtext) || item.ItemNumber.match(searchNumber) || item.ItemCategory.match(searchtext) )
+
+    if (array) {
+      res.render("Store/perpatientsearch.ejs", {array})
+    }
+    
+}) );
+
+// PYXIS SEARCH
+router.post("/pyxissearch", 
+checkIfUser, 
+requireAuth, 
+asyncHandler( async (req, res) => {
+  const searchtext = req.body.searchText.trim()[0].toUpperCase() + req.body.searchText.slice(1,22222);
+  const searchNumber = req.body.searchText.trim().toUpperCase() 
+  console.log(searchNumber)
+  const results = await Perpatient.find()
+  const array =  results.filter( item => item.ItemDescription.match(searchtext) || item.ItemNumber.match(searchNumber) || item.ItemCategory.match(searchtext) )
+    if (array) {
+      res.render("Store/pyxissearch.ejs", {array})
+    }
+    
+}) );
+
+// ROWA SEARCH
+router.post("/rowasearch", 
+checkIfUser, 
+requireAuth, 
+asyncHandler( async (req, res) => {
+  const searchtext = req.body.searchText.trim()[0].toUpperCase() + req.body.searchText.slice(1,22222);
+  const searchNumber = req.body.searchText.trim().toUpperCase() 
+  console.log(searchNumber)
+  const results = await Perpatient.find()
+  const array =  results.filter( item => item.ItemDescription.match(searchtext) || item.ItemNumber.match(searchNumber) || item.ItemCategory.match(searchtext) )
+    if (array) {
+      res.render("Store/rowasearch.ejs", {array})
+    }
+    
+}) );
+
 // ---------------------------------
 //DELETE REQUEST
 // ----------------------------------
@@ -4598,6 +4144,16 @@ router.put(
   const search8 = req.body.answerassy8
   const search9 = req.body.answerassy9
   const search10 = req.body.answerassy10
+  const search11 = req.body.answerchoose1
+  const search12 = req.body.answerchoose2
+  const search13 = req.body.answerchoose3
+  const search14 = req.body.answerchoose4
+  const search15 = req.body.answerchoose5
+  const search16 = req.body.answerchoose6
+  const search17 = req.body.answerchoose7
+  const search18 = req.body.answerchoose8
+  const search19 = req.body.answerchoose9
+  const search20 = req.body.answerchoose10
   const resultassy1 = search.includes(selectedObject.key1forquestion1) && search.includes(selectedObject.key2forquestion1) && search.includes(selectedObject.key3forquestion1) && search.includes(selectedObject.key4forquestion1)
   const resultassy2 = search2.includes(selectedObject.key1forquestion2) && search2.includes(selectedObject.key2forquestion2) && search2.includes(selectedObject.key3forquestion2) && search2.includes(selectedObject.key4forquestion2)
   const resultassy3 = search3.includes(selectedObject.key1forquestion3) && search3.includes(selectedObject.key2forquestion3) && search3.includes(selectedObject.key3forquestion3) && search3.includes(selectedObject.key4forquestion3)
@@ -4608,6 +4164,16 @@ router.put(
   const resultassy8 = search8.includes(selectedObject.key1forquestion8) && search8.includes(selectedObject.key2forquestion8) && search8.includes(selectedObject.key3forquestion8) && search8.includes(selectedObject.key4forquestion8)
   const resultassy9 = search9.includes(selectedObject.key1forquestion9) && search9.includes(selectedObject.key2forquestion9) && search9.includes(selectedObject.key3forquestion9) && search9.includes(selectedObject.key4forquestion9)
   const resultassy10 = search10.includes(selectedObject.key1forquestion10) && search10.includes(selectedObject.key2forquestion10) && search10.includes(selectedObject.key3forquestion10) && search10.includes(selectedObject.key4forquestion10)
+  const resultchoose1 = search11.includes(selectedObject.key1forquestioncomplete1) 
+  const resultchoose2 = search12.includes(selectedObject.key1forquestioncomplete2)
+  const resultchoose3 = search13.includes(selectedObject.key1forquestioncomplete3)
+  const resultchoose4 = search14.includes(selectedObject.key1forquestioncomplete4)
+  const resultchoose5 = search15.includes(selectedObject.key1forquestioncomplete5)
+  const resultchoose6 = search16.includes(selectedObject.key1forquestioncomplete6)
+  const resultchoose7 = search17.includes(selectedObject.key1forquestioncomplete7)
+  const resultchoose8 = search18.includes(selectedObject.key1forquestioncomplete8)
+  const resultchoose9 = search19.includes(selectedObject.key1forquestioncomplete9)
+  const resultchoose10 = search20.includes(selectedObject.key1forquestioncomplete10)
   req.body.resultassy1 = resultassy1
   req.body.resultassy2 = resultassy2
   req.body.resultassy3 = resultassy3
@@ -4618,6 +4184,16 @@ router.put(
   req.body.resultassy8 = resultassy8
   req.body.resultassy9 = resultassy9
   req.body.resultassy10 = resultassy10
+  req.body.resultchoose1 = resultchoose1
+  req.body.resultchoose2 = resultchoose2
+  req.body.resultchoose3 = resultchoose3
+  req.body.resultchoose4 = resultchoose4
+  req.body.resultchoose5 = resultchoose5
+  req.body.resultchoose6 = resultchoose6
+  req.body.resultchoose7 = resultchoose7
+  req.body.resultchoose8 = resultchoose8
+  req.body.resultchoose9 = resultchoose9
+  req.body.resultchoose10 = resultchoose10
   const newObject = Object.assign(selectedObject, req.body)
   await User.findByIdAndUpdate( decoded.id , { $set: {examchoose : newObject }} );
 
@@ -4831,10 +4407,220 @@ function answ20() {
     return (0)
    } 
 }
+
+function answ21() {
+  if (resultchoose1 === true) {
+    return (1)
+   } 
+   if (resultchoose1 === false) {
+    return (0)
+   } 
+}
+
+function answ22() {
+  if (resultchoose2 === true) {
+    return (1)
+   } 
+   if (resultchoose2 === false) {
+    return (0)
+   } 
+}
+
+function answ23() {
+  if (resultchoose3 === true) {
+    return (1)
+   } 
+   if (resultchoose3 === false) {
+    return (0)
+   } 
+}
+
+function answ24() {
+  if (resultchoose4 === true) {
+    return (1)
+   } 
+   if (resultchoose4 === false) {
+    return (0)
+   } 
+}
+
+function answ25() {
+  if (resultchoose5 === true) {
+    return (1)
+   } 
+   if (resultchoose5 === false) {
+    return (0)
+   } 
+}
+
+function answ26() {
+  if (resultchoose6 === true) {
+    return (1)
+   } 
+   if (resultchoose6 === false) {
+    return (0)
+   } 
+}
+
+function answ27() {
+  if (resultchoose7 === true) {
+    return (1)
+   } 
+   if (resultchoose7 === false) {
+    return (0)
+   } 
+}
+
+function answ28() {
+  if (resultchoose8 === true) {
+    return (1)
+   } 
+   if (resultchoose8 === false) {
+    return (0)
+   } 
+}
+
+function answ29() {
+  if (resultchoose9 === true) {
+    return (1)
+   } 
+   if (resultchoose9 === false) {
+    return (0)
+   } 
+}
+
+function answ30() {
+  if (resultchoose10 === true) {
+    return (1)
+   } 
+   if (resultchoose10 === false) {
+    return (0)
+   } 
+}
+
+function answ31() {
+  if (req.body.answertf1 === selectedObject.correctanswertruefalse1 && req.body.answertf1 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf1 !== selectedObject.correctanswertruefalse1) {
+   return (0)
+  }
+  if (req.body.answertf1 === undefined) {
+   return (0)
+  }
+}
+
+function answ32() {
+  if (req.body.answertf2 === selectedObject.correctanswertruefalse2 && req.body.answertf2 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf2 !== selectedObject.correctanswertruefalse2) {
+   return (0)
+  }
+  if (req.body.answertf2 === undefined) {
+   return (0)
+  }
+}
+
+function answ33() {
+  if (req.body.answertf3 === selectedObject.correctanswertruefalse3 && req.body.answertf3 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf3 !== selectedObject.correctanswertruefalse3) {
+   return (0)
+  }
+  if (req.body.answertf3 === undefined) {
+   return (0)
+  }
+}
+
+function answ34() {
+  if (req.body.answertf4 === selectedObject.correctanswertruefalse4 && req.body.answertf4 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf4 !== selectedObject.correctanswertruefalse4) {
+   return (0)
+  }
+  if (req.body.answertf4 === undefined) {
+   return (0)
+  }
+}
+
+function answ35() {
+  if (req.body.answertf5 === selectedObject.correctanswertruefalse5 && req.body.answertf5 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf5 !== selectedObject.correctanswertruefalse5) {
+   return (0)
+  }
+  if (req.body.answertf5 === undefined) {
+   return (0)
+  }
+}
+
+function answ36() {
+  if (req.body.answertf6 === selectedObject.correctanswertruefalse6 && req.body.answertf6 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf6 !== selectedObject.correctanswertruefalse6) {
+   return (0)
+  }
+  if (req.body.answertf6 === undefined) {
+   return (0)
+  }
+}
+
+function answ37() {
+  if (req.body.answertf7 === selectedObject.correctanswertruefalse7 && req.body.answertf7 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf7 !== selectedObject.correctanswertruefalse7) {
+   return (0)
+  }
+  if (req.body.answertf7 === undefined) {
+   return (0)
+  }
+}
+
+function answ38() {
+  if (req.body.answertf8 === selectedObject.correctanswertruefalse8 && req.body.answertf8 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf8 !== selectedObject.correctanswertruefalse8) {
+   return (0)
+  }
+  if (req.body.answertf8 === undefined) {
+   return (0)
+  }
+}
+
+function answ39() {
+  if (req.body.answertf9 === selectedObject.correctanswertruefalse9 && req.body.answertf9 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf9 !== selectedObject.correctanswertruefalse9) {
+   return (0)
+  }
+  if (req.body.answertf9 === undefined) {
+   return (0)
+  }
+}
+
+function answ40() {
+  if (req.body.answertf10 === selectedObject.correctanswertruefalse10 && req.body.answertf10 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf10 !== selectedObject.correctanswertruefalse10) {
+   return (0)
+  }
+  if (req.body.answertf10 === undefined) {
+   return (0)
+  }
+}
   
 
 
-  const score = answ1() + answ2() + answ3() + answ4() + answ5() + answ6() + answ7() + answ8() + answ9() + answ10() + answ11() + answ12()+ answ13()+ answ14()+ answ15()+ answ16()+ answ17()+ answ18()+ answ19()+ answ20() 
+  const score = answ1() + answ2() + answ3() + answ4() + answ5() + answ6() + answ7() + answ8() + answ9() + answ10() + answ11() + answ12()+ answ13()+ answ14()+ answ15()+ answ16()+ answ17()+ answ18()+ answ19()+ answ20() + answ21() + answ22() + answ23() + answ24() + answ25() + answ26() + answ27() + answ28() + answ29() + answ30() + answ31() + answ32() + answ33() + answ34() + answ35() + answ36() + answ37() + answ38() + answ39() + answ40()  
 console.log(score);
   
 
