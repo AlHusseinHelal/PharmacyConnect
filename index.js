@@ -26,7 +26,7 @@ const server = http.createServer(app);
 //SOCKETIO SERVER
 const io = socketio(server);
 //PORT
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 7777;
 const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
 

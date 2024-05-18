@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="" />
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
+  <meta name="generator" content="Hugo 0.112.5" />
+  <title>Connect</title>
+
+  <!-- LINK FAVICON -->
+  <link rel="shortcut icon" href="/svg/ConnectLogo.svg" type="image/x-icon" />
+
+  <!-- FONTAWESOME -->
+  <link href="../fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="../fontawesome/css/brands.css" rel="stylesheet" />
+  <link href="../fontawesome/css/solid.css" rel="stylesheet" />
+
+  <!-- BOOTSTRAP ICON -->
+  <link href="/css/bootstrap-icons.css" rel="stylesheet" />
+  <!-- BOOTSTRAP CSS -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- HEADER CSS -->
+  <link rel="stylesheet" href="/css/style.css" />
+  <!-- Custom styles for this template -->
+  <link href="/css/pyxis/pyxis.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- /*--------------------------------------------------------------
+  # header
+  --------------------------------------------------------------*/ -->
+  <%- include("../partials/header.ejs") %>
+
+    <!-- /*--------------------------------------------------------------
+  # light icon
+  --------------------------------------------------------------*/ -->
+    <%- include("../partials/lighticon.ejs") %>
+
+      <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+        <symbol id="home" viewBox="0 0 16 16">
+          <path
+            d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z" />
+        </symbol>
+        <symbol id="table" viewBox="0 0 16 16">
+          <path
+            d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
+        </symbol>
+        <symbol id="people-circle" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+          <path fill-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+        </symbol>
+      </svg>
+
+      <main class="d-flex flex-nowrap">
+
+
+
+        <!-- /*--------------------------------------------------------------
+    # DEVIDER
+    --------------------------------------------------------------*/ -->
+
+        <div style="position: relative; height: 90vh" class="w-100">
+          <!-- /*--------------------------------------------------------------
+      # NAVBAR
+      --------------------------------------------------------------*/ -->
+          <div>
+            <nav class="navbar navbar-expand-lg bg-body-tertiary mx-1 mt-1 mb-1">
+              <div class="container-fluid py-2 rounded-2 bg-info">
+                <div class="d-flex flex-row align-items-center">
+                  <img src="../svg/pyxistradereview-01.svg" height="35vh" alt="" />
+                </div>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                  aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <form class="d-flex" role="search" action="/pyxismedsearch" method="post">
+                    <input name="searchText" class="form-control me-2" type="search" placeholder="Search"
+                      aria-label="Search" />
+                    <button class="btn btn-outline-success" type="submit">
+                      Search
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </nav>
+          </div>
+
+          <!-- /*--------------------------------------------------------------
+      # EDIT ICON
+      --------------------------------------------------------------*/ -->
+
+
+          <div class="d-flex align-items-center mx-2 mb-1 justify-content-end">
+
+            <a data-tooltip="Add Med" data-flow="left" style="background-color: rgb(0, 42, 255);" href="" id="editicon"
+              class="rounded-2 d-inline-flex p-1" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+              <svg style="fill: aliceblue" width="25" height="25" fill="currentColor" class="bi bi-pencil"
+                viewBox="0 0 16 16">
+                <path
+                  d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+              </svg>
+            </a>
+
+            <!-- ADD MEDICATION MODAL -->
+            <div class="connectmodal modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="glass modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Adding New Trade</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <form id="medsubmit" class="medform">
+                    <div class="modal-body">
+
+                      <div class="group">
+                        <input placeholder="" type="text" id="generic" name="generic" style="background-color: transparent;">
+                        <label for="generic">MedName</label>
+                      </div>
+
+                      <div id="medempty" class=" d-flex flex-row align-items-center mb-4 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 4px solid red; border-radius: 5px;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">You Must Enter This Field With A Valid MED</p>
+                      </div>
+
+                      <input hidden placeholder="" type="text" id="tradeselect" name="tradeselect" value="">
+
+                      <div class="group">
+                        <input placeholder="" type="text" id="trade1" name="trade1">
+                        <label for="trade1">Trade#1</label>
+                      </div>
+                      <div class="group">
+                        <input placeholder="" type="text" id="trade2" name="trade2">
+                        <label for="trade2">Trade#2</label>
+                      </div>
+                      <div class="group">
+                        <input placeholder="" type="text" id="trade3" name="trade3">
+                        <label for="trade3">Trade#3</label>
+                      </div>
+                      <div class="group">
+                        <input placeholder="" type="text" id="trade4" name="trade4">
+                        <label for="trade4">Trade#3</label>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Save</button>
+                      </div>
+
+
+                  </form>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- /*--------------------------------------------------------------
+      # MAIN CONTENT
+      --------------------------------------------------------------*/ -->
+
+        <div id="maincontent" class="d-flex flex-column justify-content-center align-items-center" style="position: relative;">
+          <div class="p-4" style="width: 98%; border: 2px solid ; border-radius: 10px; top: 26vh;height: 73vh; overflow-y: scroll;">
+            <% if (results.length===0) { %>
+              <div class=" d-flex justify-content-center" style="width: 100%;">
+                <div class="alert alert-success new2 p-4 w-50 mt-5 ">
+                  <i class="fa fa-info-circle" aria-hidden="true"></i>
+                  <span class="alert-body">
+                    <h6 class="alert-header">ATTENTION</h6>
+                    <p class="mb-0">No Data Avaliable</p>
+                  </span>
+                </div>
+              </div>
+              <% } %>
+                <table style="width: 99%" class="mx-auto table-success table-striped table-bordered">
+                  <% if (results.length>= 1) { %>
+                    <thead>
+                      <tr>
+                        <th class="text-center" scope="col">#</th>
+                        <th class="text-center" scope="col">Generic</th>
+                        <th class="text-center" scope="col">Trade #1</th>
+                        <th class="text-center" scope="col">Trade #2</th>
+                        <th class="text-center" scope="col">Trade #3</th>
+                        <th class="text-center" scope="col">Trade #4</th>
+                        <th class="text-center <%= user.role === "Admin"? "" : "d-none" %>" scope="col">Active</th>
+                        <th class="text-center <%= user.role === "Admin"? "" : "d-none" %>" scope="col">Edit</th>
+                        <th class="text-center <%= user.role === "Admin"? "" : "d-none" %>" scope="col">Delete</th>
+                      </tr>
+                    </thead>
+
+                    <% results.forEach((item, index)=> { %>
+                      <tbody id="tbody" style="font-size: smaller;">
+                        <tr id="tr">
+
+                          <td class="text-center p-3">
+                            <%= index+1 %>
+                          </td>
+
+
+                          <td class="text-center p-3">
+                            <%= item.generic %>
+                          </td>
+
+                          <td class="text-center p-3 <%= item.tradeselect === item.trade1 && item.tradeselect !== ""? " bgcolor" : "" %>">
+                            <%= item.trade1 %>
+                          </td>
+
+                          <td class="text-center p-3 <%= item.tradeselect === item.trade2 && item.tradeselect !== ""? " bgcolor" : "" %>">
+                            <%= item.trade2 %>
+                          </td>
+
+                          <td class="text-center p-3 <%= item.tradeselect === item.trade3 && item.tradeselect !== ""? " bgcolor" : "" %>">
+                            <%= item.trade3 %>
+                          </td>
+
+                          <td class="text-center p-3 <%= item.tradeselect === item.trade4 && item.tradeselect !== ""? " bgcolor" : "" %>" >
+                            <%= item.trade4 %>
+                          </td>
+
+                          <td class="text-center p-3 <%= user.role === "Admin"? "" : "d-none" %>">
+                            <form action="/tradeselect/<%= item._id %>?_method=Put" method="post">
+                              <div class="d-flex align-items-center">
+                                <select class="form-control" name="tradeselect" id="tradeselect">
+                                  <option hidden selected value="">Choose...</option>
+                                  <option value="<%= item.trade1 %>">
+                                    <%= item.trade1 %>
+                                  </option>
+                                  <option value="<%= item.trade2 %>">
+                                    <%= item.trade2 %>
+                                  </option>
+                                  <option value="<%= item.trade3 %>">
+                                    <%= item.trade3 %>
+                                  </option>
+                                  <option value="<%= item.trade4 %>">
+                                    <%= item.trade4 %>
+                                  </option>
+                                </select>
+                                <button class="but ms-1" style="width: 30px; height: 30px;">
+                                  <svg viewBox="0 0 448 512" class="bell">
+                                    <path
+                                      d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z">
+                                    </path>
+                                  </svg>
+                                </button>
+
+                              </div>
+                            </form>
+                          </td>
+
+
+                          
+                          <td style="position: relative;" class="text-center p-3 <%= user.role === "Admin"? "" : "d-none" %>"  >
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal6<%= item._id %>">
+                              <i class="fa-solid fa-pen-to-square fa-lg" style="color: #74c0fc;"></i>
+                              
+                            </a>
+                            <div class="connectmodal modal fade" id="exampleModal6<%= item._id %>" tabindex="-1"
+                              aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="glass modal-content">
+                                  <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                      aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <form action="/pyxistradeupdate/<%= item._id %>?_method=PUT" method="post">
+                                      <input class="form-control my-2" placeholder="Trade#1" type="text" name="trade1"
+                                        value="<%= item.trade1 %>">
+      
+                                      <input class="form-control my-2" placeholder="Trade#2" type="text" name="trade2"
+                                        value="<%= item.trade2 %>">
+      
+                                      <input class="form-control my-2" placeholder="Trade#3" type="text" name="trade3"
+                                        value="<%= item.trade3 %>">
+      
+                                      <input class="form-control my-2" placeholder="Trade#4" type="text" name="trade4"
+                                        value="<%= item.trade4 %>">
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                      data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                      
+                          </td>
+                          
+
+                          <td class="text-center p-3 <%= user.role === "Admin"? "" : "d-none" %>">
+                            <button type="button" class="btn btn-primary border rounded-2 d-inline-flex p-1"
+                              data-bs-toggle="modal" data-bs-target="#exampleModal<%= item._id %>"
+                              style="background-color: red">
+                              <svg style="fill: aliceblue" width="20" height="20" class="bi bi-trash"
+                                viewBox="0 0 16 16">
+                                <path
+                                  d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                <path
+                                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                              </svg>
+                            </button>
+                            
+                            <div class="connectmodal modal fade" id="exampleModal<%= item._id %>" tabindex="-1"
+                              aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="glass modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Warning</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                      aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    Are you sure you want to delete ?
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                      data-bs-dismiss="modal">Close</button>
+                                    <form action="/deletepyxismed/<%= item._id %>?_method=DELETE" method="post">
+                                      <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+
+
+
+                        </tr>
+                      </tbody>
+
+
+
+                      <% }) %>
+                        <% } %>
+                </table>
+          </div>
+
+        </div>
+
+
+        </div>
+
+
+
+
+      </main>
+
+      <!-- LINK TO jQuary -->
+      <script src="/js/jquery-3.7.1.min.js"></script>
+
+      <!-- LINK TO BOOTSTRAP.JS -->
+      <script src="/js/aos.js"></script>
+      <script src="/js/bootstrap.bundle.min.js"></script>
+      <script src="/js/glightbox.min.js"></script>
+      <script src="/js/isotope.pkgd.min.js"></script>
+      <script src="/js/swiper-bundle.min.js"></script>
+      <script src="/js/noframework.waypoints.js"></script>
+      <script src="/js/validate.js"></script>
+
+      <script src="../js/main.js"></script>
+
+      <script src="/js/pyxismed.js"></script>
+
+
+
+      <!-- ADD PATIENT INPATIENT -->
+      <script>
+        medsubmit.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const res = await fetch("/medsubmit", {
+            method: "POST",
+            body: JSON.stringify({  trade1: trade1.value, trade2: trade2.value, trade3: trade3.value, trade4: trade4.value, tradeselect: tradeselect.value, generic: generic.value, createdAt: new Date() }),
+            headers: { "Content-Type": "application/json" },
+          });
+          const data = await res.json();
+          if (data.validationerrors) {
+            data.validationerrors.forEach(item => {
+              if (item.path == "med") {
+                medempty.classList.remove("d-none");
+                generic.classList.add("redframe");
+              } else {
+                medempty.classList.add("d-none");
+                generic.classList.remove("redframe");
+              }
+            });
+          }
+
+
+          if (data.created) {
+            location.assign("/pyxismed")
+          }
+        });
+      </script>
+
+
+
+
+
+</body>
+
+</html>

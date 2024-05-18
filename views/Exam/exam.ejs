@@ -54,7 +54,7 @@
           <div class="mh-100 border col-md-6 rounded-3 p-2 overflow-y-auto"
             style="box-shadow: 0px 0px 4px 3px rgba(178, 178, 178, 0.6);">
 
-            <form action="/answer?_method=PUT" method="post">
+            <form action="/answer" method="post">
 
             <div class="text-center <%= exam.examname !== undefined? "d-block" : "d-none" %> mt-3">
                 <p class="city"><%= exam.examname %></p>
@@ -802,7 +802,7 @@
              </div>
 
              <!-- QUSETION NUMBER 2 -->
-             <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
+             <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete2 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Complete Q#2</div>
              
@@ -823,7 +823,7 @@
             </div>
 
             <!-- QUSETION NUMBER 3 -->
-            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete3 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Complete Q#3</div>
              
@@ -844,7 +844,7 @@
             </div>
 
             <!-- QUSETION NUMBER 4 -->
-            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete4 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Complete Q#4</div>
              
@@ -865,7 +865,7 @@
             </div>
 
             <!-- QUSETION NUMBER 5 -->
-            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete5 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Complete Q#5</div>
              
@@ -886,7 +886,7 @@
             </div>
 
             <!-- QUSETION NUMBER 6 -->
-            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete6 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Complete Q#6</div>
              
@@ -907,7 +907,7 @@
             </div>
 
             <!-- QUSETION NUMBER 7 -->
-            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete7 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Complete Q#7</div>
              
@@ -928,7 +928,7 @@
             </div>
 
             <!-- QUSETION NUMBER 8 -->
-            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete8 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Complete Q#8</div>
              
@@ -938,7 +938,7 @@
                 </div>
               </div>
               <div class="info__title mb-3">
-                <%= exam.questioncomplete1 %>
+                <%= exam.questioncomplete8 %>
               </div>
              
               <div class="w-100 d-flex justify-content-around">
@@ -949,7 +949,7 @@
             </div>
 
             <!-- QUSETION NUMBER 9 -->
-            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete9 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Complete Q#9</div>
              
@@ -970,7 +970,7 @@
             </div>
 
             <!-- QUSETION NUMBER 10 -->
-            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete10 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Complete Q#10</div>
              

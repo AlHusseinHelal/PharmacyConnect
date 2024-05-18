@@ -49,6 +49,9 @@ const Medicationclass = require("../models/medicationClass");
 const Perpatient = require("../models/perpatientSchema");
 const Pyxis = require("../models/pyxisSchema");
 const Rowa = require("../models/rowaSchema");
+const PyxisMed = require("../models/pyxismedSchema");
+const PyxisTrade = require("../models/pyxistradeSchema");
+const Score = require("../models/score");
 //MIDDLEWARE
 const { requireAuth } = require("../middleware/middleware");
 const { checkIfUser } = require("../middleware/middleware");
@@ -96,6 +99,28 @@ cloudinary.config({
 // ----------------------------------
 
 //ADMIN
+// router.get(
+//   "/admin",
+//   checkIfUser,
+//   requireAuth,
+//   asyncHandler(async (req, res) => {
+//     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+//     const user = await User.findById({ _id: decoded.id });
+//     const exam = user.examchoose
+//     const {results} = user
+//     const custmer = await User.find().sort({ firstname : "asc"});
+//     const ldsearch = user.ldsearch
+//     const searchcode = ldsearch.searchText
+//     const searchtext = ldsearch.searchText
+//     console.log(searchtext)
+
+//     const find = user.results.filter( item => item.code.match(searchcode) || item.examname.match(searchtext))
+
+//     if (custmer) {
+//       res.render("admin.ejs", { array: custmer, exam, results, moment : moment , find });
+//     }
+//   })
+// );
 router.get(
   "/admin",
   checkIfUser,
@@ -103,16 +128,16 @@ router.get(
   asyncHandler(async (req, res) => {
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findById({ _id: decoded.id });
-    const exam = user.examchoose
-    const {results} = user
+    const results = await Score.find()
     const custmer = await User.find().sort({ firstname : "asc"});
+
+    const exam = user.examchoose
     const ldsearch = user.ldsearch
     const searchcode = ldsearch.searchText
-    const searchtext = ldsearch.searchText
-    console.log(searchtext)
-
-    const find = user.results.filter( item => item.code.match(searchcode) || item.examname.match(searchtext))
-
+    const searchtext = ldsearch.searchText.toLowerCase()
+    const scoreSchema = await Score.find()
+    const find = scoreSchema.filter( item => item.code.match(searchcode) || item.examname.toLowerCase().match(searchtext))
+    // const find = user.results.filter( item => item.code.match(searchcode) || item.examname.match(searchtext))
     if (custmer) {
       res.render("admin.ejs", { array: custmer, exam, results, moment : moment , find });
     }
@@ -1651,6 +1676,24 @@ router.get(
   })
 );
 
+//PYXIS TRADE
+router.get(
+  "/pyxismed",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 5;
+    const skip = (page - 1) * limit;
+    const results = await PyxisTrade.find();
+    const num = await PyxisTrade.find().countDocuments();
+    if (results) {
+      res.render("Pyxis/pyxismed.ejs", {results, num})
+    }
+  
+  })
+);
+
 // ---------------------------------
 //POST REQUEST
 // ----------------------------------
@@ -1896,6 +1939,25 @@ router.post(
       }
     );
     res.json({ created: watch });
+  })
+);
+
+//PYXIS MEDICATION SUBMIT
+router.post(
+  "/medsubmit",
+  [
+    check("generic").notEmpty(),
+  ],
+  asyncHandler(async (req, res) => {
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ validationerrors: error.errors });
+    }
+    const results = await PyxisTrade.create(req.body)
+    if (results) {
+      res.json({ created: results });  
+    }
+    
   })
 );
 
@@ -3054,6 +3116,573 @@ asyncHandler( async (req, res) => {
     
 }) );
 
+// PYXIS TRADE SEARCH
+router.post("/pyxismedsearch", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  const searchText = req.body.searchText.trim().toLowerCase();
+  
+  console.log(searchText)
+  const pyxistrade = await PyxisTrade.find()
+  const results = pyxistrade.filter( item => item.generic.toLowerCase().match(searchText) || item.trade1.toLowerCase().match(searchText))
+  console.log(results)
+  if (results) {
+    res.render("Pyxis/pyxismedsearch.ejs", {results})
+  }
+}) );
+
+// EXAM ANSWER
+router.post(
+  "/answer",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+  const user = await User.findOne({ _id: decoded.id });
+  const selectedObject = user.examchoose;
+  const examname = selectedObject.examname
+  const search = req.body.answerassy1
+  const search2 = req.body.answerassy2
+  const search3 = req.body.answerassy3
+  const search4 = req.body.answerassy4
+  const search5 = req.body.answerassy5
+  const search6 = req.body.answerassy6
+  const search7 = req.body.answerassy7
+  const search8 = req.body.answerassy8
+  const search9 = req.body.answerassy9
+  const search10 = req.body.answerassy10
+  const search11 = req.body.answerchoose1
+  const search12 = req.body.answerchoose2
+  const search13 = req.body.answerchoose3
+  const search14 = req.body.answerchoose4
+  const search15 = req.body.answerchoose5
+  const search16 = req.body.answerchoose6
+  const search17 = req.body.answerchoose7
+  const search18 = req.body.answerchoose8
+  const search19 = req.body.answerchoose9
+  const search20 = req.body.answerchoose10
+  const resultassy1 = search.includes(selectedObject.key1forquestion1) && search.includes(selectedObject.key2forquestion1) && search.includes(selectedObject.key3forquestion1) && search.includes(selectedObject.key4forquestion1)
+  const resultassy2 = search2.includes(selectedObject.key1forquestion2) && search2.includes(selectedObject.key2forquestion2) && search2.includes(selectedObject.key3forquestion2) && search2.includes(selectedObject.key4forquestion2)
+  const resultassy3 = search3.includes(selectedObject.key1forquestion3) && search3.includes(selectedObject.key2forquestion3) && search3.includes(selectedObject.key3forquestion3) && search3.includes(selectedObject.key4forquestion3)
+  const resultassy4 = search4.includes(selectedObject.key1forquestion4) && search4.includes(selectedObject.key2forquestion4) && search4.includes(selectedObject.key3forquestion4) && search4.includes(selectedObject.key4forquestion4)
+  const resultassy5 = search5.includes(selectedObject.key1forquestion5) && search5.includes(selectedObject.key2forquestion5) && search5.includes(selectedObject.key3forquestion5) && search5.includes(selectedObject.key4forquestion5)
+  const resultassy6 = search6.includes(selectedObject.key1forquestion6) && search6.includes(selectedObject.key2forquestion6) && search6.includes(selectedObject.key3forquestion6) && search6.includes(selectedObject.key4forquestion6)
+  const resultassy7 = search7.includes(selectedObject.key1forquestion7) && search7.includes(selectedObject.key2forquestion7) && search7.includes(selectedObject.key3forquestion7) && search7.includes(selectedObject.key4forquestion7)
+  const resultassy8 = search8.includes(selectedObject.key1forquestion8) && search8.includes(selectedObject.key2forquestion8) && search8.includes(selectedObject.key3forquestion8) && search8.includes(selectedObject.key4forquestion8)
+  const resultassy9 = search9.includes(selectedObject.key1forquestion9) && search9.includes(selectedObject.key2forquestion9) && search9.includes(selectedObject.key3forquestion9) && search9.includes(selectedObject.key4forquestion9)
+  const resultassy10 = search10.includes(selectedObject.key1forquestion10) && search10.includes(selectedObject.key2forquestion10) && search10.includes(selectedObject.key3forquestion10) && search10.includes(selectedObject.key4forquestion10)
+  const resultchoose1 = search11.includes(selectedObject.key1forquestioncomplete1) 
+  const resultchoose2 = search12.includes(selectedObject.key1forquestioncomplete2)
+  const resultchoose3 = search13.includes(selectedObject.key1forquestioncomplete3)
+  const resultchoose4 = search14.includes(selectedObject.key1forquestioncomplete4)
+  const resultchoose5 = search15.includes(selectedObject.key1forquestioncomplete5)
+  const resultchoose6 = search16.includes(selectedObject.key1forquestioncomplete6)
+  const resultchoose7 = search17.includes(selectedObject.key1forquestioncomplete7)
+  const resultchoose8 = search18.includes(selectedObject.key1forquestioncomplete8)
+  const resultchoose9 = search19.includes(selectedObject.key1forquestioncomplete9)
+  const resultchoose10 = search20.includes(selectedObject.key1forquestioncomplete10)
+  req.body.resultassy1 = resultassy1
+  req.body.resultassy2 = resultassy2
+  req.body.resultassy3 = resultassy3
+  req.body.resultassy4 = resultassy4
+  req.body.resultassy5 = resultassy5
+  req.body.resultassy6 = resultassy6
+  req.body.resultassy7 = resultassy7
+  req.body.resultassy8 = resultassy8
+  req.body.resultassy9 = resultassy9
+  req.body.resultassy10 = resultassy10
+  req.body.resultchoose1 = resultchoose1
+  req.body.resultchoose2 = resultchoose2
+  req.body.resultchoose3 = resultchoose3
+  req.body.resultchoose4 = resultchoose4
+  req.body.resultchoose5 = resultchoose5
+  req.body.resultchoose6 = resultchoose6
+  req.body.resultchoose7 = resultchoose7
+  req.body.resultchoose8 = resultchoose8
+  req.body.resultchoose9 = resultchoose9
+  req.body.resultchoose10 = resultchoose10
+  const newObject = Object.assign(selectedObject, req.body)
+  await User.findByIdAndUpdate( decoded.id , { $set: {examchoose : newObject }} );
+
+function answ1() {
+     if (req.body.answerc1 === selectedObject.correctanswerquestion1 && req.body.answerc1 !== undefined) {
+      return (1)
+     }  
+     if (req.body.answerc1 !== selectedObject.correctanswerquestion1) {
+      return (0)
+     }
+     if (req.body.answerc1 === undefined) {
+      return (0)
+     }
+}
+
+function answ2() {
+     if (req.body.answerc2 === selectedObject.correctanswerquestion2 && req.body.answerc2 !== undefined) {
+      return (1)
+     } 
+     if (req.body.answerc2 !== selectedObject.correctanswerquestion2) {
+      return (0)
+     }
+     if (req.body.answerc2 === undefined) {
+      return (0)
+     }
+}
+
+function answ3() {
+  if (req.body.answerc3 === selectedObject.correctanswerquestion3 && req.body.answerc3 !== undefined) {
+    return (1)
+   } 
+   if (req.body.answerc3 !== selectedObject.correctanswerquestion3) {
+    return (0)
+   }
+   if (req.body.answerc3 === undefined) {
+    return (0)
+   }
+  
+}
+
+function answ4() {
+  if (req.body.answerc4 === selectedObject.correctanswerquestion4 && req.body.answerc4 !== undefined ) {
+    return (1)
+   } 
+   if (req.body.answerc4 !== selectedObject.correctanswerquestion4) {
+    return (0)
+   }
+   if (req.body.answerc4 === undefined) {
+    return (0)
+   } 
+}
+
+function answ5() {
+  if (req.body.answerc5 === selectedObject.correctanswerquestion5 && req.body.answerc5 !== undefined ) {
+    return (1)
+   } 
+   if (req.body.answerc5 !== selectedObject.correctanswerquestion5) {
+    return (0)
+   }
+   if (req.body.answerc5 === undefined) {
+    return (0)
+   }
+}
+
+function answ6() {
+  if (req.body.answerc6 === selectedObject.correctanswerquestion6 && req.body.answerc6 !== undefined) {
+    return (1)
+   } 
+   if (req.body.answerc6 !== selectedObject.correctanswerquestion6) {
+    return (0)
+   }
+   if (req.body.answerc6 === undefined) {
+    return (0)
+   }
+}
+
+function answ7() {
+  if (req.body.answerc7 === selectedObject.correctanswerquestion7 && req.body.answerc7 !== undefined ) {
+    return (1)
+   } 
+   if (req.body.answerc7 !== selectedObject.correctanswerquestion7) {
+    return (0)
+   }
+   if (req.body.answerc7 === undefined) {
+    return (0)
+   }
+}
+
+function answ8() {
+  if (req.body.answerc8 === selectedObject.correctanswerquestion8 && req.body.answerc8 !== undefined ) {
+    return (1)
+   } 
+   if (req.body.answerc8 !== selectedObject.correctanswerquestion8) {
+    return (0)
+   }
+   if (req.body.answerc8 === undefined) {
+    return (0)
+   }
+  }
+
+function answ9() {
+  if (req.body.answerc9 === selectedObject.correctanswerquestion9 && req.body.answerc9 !== undefined) {
+    return (1)
+   } 
+   if (req.body.answerc9 !== selectedObject.correctanswerquestion9) {
+    return (0)
+   }
+   if (req.body.answerc9 === undefined) {
+    return (0)
+   }
+}
+
+function answ10() {
+  if (req.body.answerc10 === selectedObject.correctanswerquestion10 && req.body.answerc10 !== undefined ) {
+    return (1)
+   } 
+   if (req.body.answerc10 !== selectedObject.correctanswerquestion10) {
+    return (0)
+   }
+   if (req.body.answerc10 === undefined) {
+    return (0)
+   }
+}
+
+function answ11() {
+     if (resultassy1 === true) {
+      return (1)
+     } 
+     if (resultassy1 === false) {
+      return (0)
+     }
+}
+
+function answ12() {
+  if (resultassy2 === true) {
+    return (1)
+   } 
+   if (resultassy2 === false) {
+    return (0)
+   } 
+}
+
+function answ13() {
+  if (resultassy3 === true) {
+    return (1)
+   } 
+   if (resultassy3 === false) {
+    return (0)
+   } 
+}
+
+function answ14() {
+  if (resultassy4 === true) {
+    return (1)
+   } 
+   if (resultassy4 === false) {
+    return (0)
+   }  
+}
+
+function answ15() {
+  if (resultassy5 === true) {
+    return (1)
+   } 
+   if (resultassy5 === false) {
+    return (0)
+   } 
+}
+
+function answ16() {
+  if (resultassy6 === true) {
+    return (1)
+   } 
+   if (resultassy6 === false) {
+    return (0)
+   }  
+}
+
+function answ17() {
+  if (resultassy7 === true) {
+    return (1)
+   } 
+   if (resultassy7 === false) {
+    return (0)
+   } 
+}
+
+function answ18() {
+  if (resultassy8 === true) {
+    return (1)
+   } 
+   if (resultassy8 === false) {
+    return (0)
+   } 
+}
+
+function answ19() {
+  if (resultassy9 === true) {
+    return (1)
+   } 
+   if (resultassy9 === false) {
+    return (0)
+   } 
+}
+
+function answ20() {
+  if (resultassy10 === true) {
+    return (1)
+   } 
+   if (resultassy10 === false) {
+    return (0)
+   } 
+}
+
+function answ21() {
+  if (resultchoose1 === true) {
+    return (1)
+   } 
+   if (resultchoose1 === false) {
+    return (0)
+   } 
+}
+
+function answ22() {
+  if (resultchoose2 === true) {
+    return (1)
+   } 
+   if (resultchoose2 === false) {
+    return (0)
+   } 
+}
+
+function answ23() {
+  if (resultchoose3 === true) {
+    return (1)
+   } 
+   if (resultchoose3 === false) {
+    return (0)
+   } 
+}
+
+function answ24() {
+  if (resultchoose4 === true) {
+    return (1)
+   } 
+   if (resultchoose4 === false) {
+    return (0)
+   } 
+}
+
+function answ25() {
+  if (resultchoose5 === true) {
+    return (1)
+   } 
+   if (resultchoose5 === false) {
+    return (0)
+   } 
+}
+
+function answ26() {
+  if (resultchoose6 === true) {
+    return (1)
+   } 
+   if (resultchoose6 === false) {
+    return (0)
+   } 
+}
+
+function answ27() {
+  if (resultchoose7 === true) {
+    return (1)
+   } 
+   if (resultchoose7 === false) {
+    return (0)
+   } 
+}
+
+function answ28() {
+  if (resultchoose8 === true) {
+    return (1)
+   } 
+   if (resultchoose8 === false) {
+    return (0)
+   } 
+}
+
+function answ29() {
+  if (resultchoose9 === true) {
+    return (1)
+   } 
+   if (resultchoose9 === false) {
+    return (0)
+   } 
+}
+
+function answ30() {
+  if (resultchoose10 === true) {
+    return (1)
+   } 
+   if (resultchoose10 === false) {
+    return (0)
+   } 
+}
+
+function answ31() {
+  if (req.body.answertf1 === selectedObject.correctanswertruefalse1 && req.body.answertf1 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf1 !== selectedObject.correctanswertruefalse1) {
+   return (0)
+  }
+  if (req.body.answertf1 === undefined) {
+   return (0)
+  }
+}
+
+function answ32() {
+  if (req.body.answertf2 === selectedObject.correctanswertruefalse2 && req.body.answertf2 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf2 !== selectedObject.correctanswertruefalse2) {
+   return (0)
+  }
+  if (req.body.answertf2 === undefined) {
+   return (0)
+  }
+}
+
+function answ33() {
+  if (req.body.answertf3 === selectedObject.correctanswertruefalse3 && req.body.answertf3 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf3 !== selectedObject.correctanswertruefalse3) {
+   return (0)
+  }
+  if (req.body.answertf3 === undefined) {
+   return (0)
+  }
+}
+
+function answ34() {
+  if (req.body.answertf4 === selectedObject.correctanswertruefalse4 && req.body.answertf4 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf4 !== selectedObject.correctanswertruefalse4) {
+   return (0)
+  }
+  if (req.body.answertf4 === undefined) {
+   return (0)
+  }
+}
+
+function answ35() {
+  if (req.body.answertf5 === selectedObject.correctanswertruefalse5 && req.body.answertf5 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf5 !== selectedObject.correctanswertruefalse5) {
+   return (0)
+  }
+  if (req.body.answertf5 === undefined) {
+   return (0)
+  }
+}
+
+function answ36() {
+  if (req.body.answertf6 === selectedObject.correctanswertruefalse6 && req.body.answertf6 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf6 !== selectedObject.correctanswertruefalse6) {
+   return (0)
+  }
+  if (req.body.answertf6 === undefined) {
+   return (0)
+  }
+}
+
+function answ37() {
+  if (req.body.answertf7 === selectedObject.correctanswertruefalse7 && req.body.answertf7 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf7 !== selectedObject.correctanswertruefalse7) {
+   return (0)
+  }
+  if (req.body.answertf7 === undefined) {
+   return (0)
+  }
+}
+
+function answ38() {
+  if (req.body.answertf8 === selectedObject.correctanswertruefalse8 && req.body.answertf8 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf8 !== selectedObject.correctanswertruefalse8) {
+   return (0)
+  }
+  if (req.body.answertf8 === undefined) {
+   return (0)
+  }
+}
+
+function answ39() {
+  if (req.body.answertf9 === selectedObject.correctanswertruefalse9 && req.body.answertf9 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf9 !== selectedObject.correctanswertruefalse9) {
+   return (0)
+  }
+  if (req.body.answertf9 === undefined) {
+   return (0)
+  }
+}
+
+function answ40() {
+  if (req.body.answertf10 === selectedObject.correctanswertruefalse10 && req.body.answertf10 !== undefined) {
+   return (1)
+  }  
+  if (req.body.answertf10 !== selectedObject.correctanswertruefalse10) {
+   return (0)
+  }
+  if (req.body.answertf10 === undefined) {
+   return (0)
+  }
+}
+  
+
+
+  const score = answ1() + answ2() + answ3() + answ4() + answ5() + answ6() + answ7() + answ8() + answ9() + answ10() + answ11() + answ12()+ answ13()+ answ14()+ answ15()+ answ16()+ answ17()+ answ18()+ answ19()+ answ20() + answ21() + answ22() + answ23() + answ24() + answ25() + answ26() + answ27() + answ28() + answ29() + answ30() + answ31() + answ32() + answ33() + answ34() + answ35() + answ36() + answ37() + answ38() + answ39() + answ40()  
+console.log(score);
+  
+
+const group = { firstname : user.firstname, lastname : user.lastname, score : score, code : user.code,  examname : selectedObject.examname, createdAt : Date(now), questionnumber : selectedObject.questionnumber,
+   answerc1 : req.body.answerc1, 
+   answerc2 : req.body.answerc2, 
+   answerc3 : req.body.answerc3, 
+   answerc4 : req.body.answerc4, 
+   answerc5 : req.body.answerc5, 
+   answerc6 : req.body.answerc6, 
+   answerc7 : req.body.answerc7,
+   answerc8 : req.body.answerc8, 
+   answerc9 : req.body.answerc9, 
+   answerc10 : req.body.answerc10, 
+   answerassy1 : req.body.answerassy1, 
+   answerassy2 : req.body.answerassy2, 
+   answerassy3 : req.body.answerassy3, 
+   answerassy4 : req.body.answerassy4,
+   answerassy5 : req.body.answerassy5, 
+   answerassy6 : req.body.answerassy6, 
+   answerassy7 : req.body.answerassy7, 
+   answerassy8 : req.body.answerassy8, 
+   answerassy9 : req.body.answerassy9, 
+   answerassy10 : req.body.answerassy10,
+   answerchoose1 : req.body.answerchoose1, 
+   answerchoose2 : req.body.answerchoose2, 
+   answerchoose3 : req.body.answerchoose3, 
+   answerchoose4 : req.body.answerchoose4, 
+   answerchoose5 : req.body.answerchoose5, 
+   answerchoose6 : req.body.answerchoose6, 
+   answerchoose7 : req.body.answerchoose7,
+   answerchoose8 : req.body.answerchoose8, 
+   answerchoose9 : req.body.answerchoose9, 
+   answerchoose10 : req.body.answerchoose10, 
+   answertf1 : req.body.answertf1, 
+   answertf2 : req.body.answertf2, 
+   answertf3 : req.body.answertf3, 
+   answertf4 : req.body.answertf4,
+   answertf5 : req.body.answertf5, 
+   answertf6 : req.body.answertf6, 
+   answertf7 : req.body.answertf7, 
+   answertf8 : req.body.answertf8, 
+   answertf9 : req.body.answertf9, 
+   answertf10 : req.body.answertf10
+  
+ }
+  // const results = 
+  // await User.updateOne( {role : "Admin"}, 
+  // { $push: {results : group}})
+
+  const results2 = 
+  await Score.create(group)
+
+    res.redirect("/exam");
+  })
+);
+
 // ---------------------------------
 //DELETE REQUEST
 // ----------------------------------
@@ -3248,6 +3877,24 @@ router.delete(
     }
   })
 );
+
+//PYXIS MEDICATION TRADE DELETE
+router.delete(
+  "/deletepyxismed/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const deldic = await PyxisTrade.findByIdAndDelete({ _id: req.params.id });
+    if (deldic) {
+      res.redirect("/pyxismed");
+    }
+  })
+);
+
+
+
+
+
 
 // ---------------------------------
 //PUT REQUEST
@@ -4124,513 +4771,53 @@ router.put(
   })
 );
 
-// EXAM ANSWER
+
+
+// TRADE CHOOSE SUBMIT
 router.put(
-  "/answer",
+  "/tradeselect/:id",
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-  const user = await User.findOne({ _id: decoded.id });
-  const selectedObject = user.examchoose;
-  const examname = selectedObject.examname
-  const search = req.body.answerassy1
-  const search2 = req.body.answerassy2
-  const search3 = req.body.answerassy3
-  const search4 = req.body.answerassy4
-  const search5 = req.body.answerassy5
-  const search6 = req.body.answerassy6
-  const search7 = req.body.answerassy7
-  const search8 = req.body.answerassy8
-  const search9 = req.body.answerassy9
-  const search10 = req.body.answerassy10
-  const search11 = req.body.answerchoose1
-  const search12 = req.body.answerchoose2
-  const search13 = req.body.answerchoose3
-  const search14 = req.body.answerchoose4
-  const search15 = req.body.answerchoose5
-  const search16 = req.body.answerchoose6
-  const search17 = req.body.answerchoose7
-  const search18 = req.body.answerchoose8
-  const search19 = req.body.answerchoose9
-  const search20 = req.body.answerchoose10
-  const resultassy1 = search.includes(selectedObject.key1forquestion1) && search.includes(selectedObject.key2forquestion1) && search.includes(selectedObject.key3forquestion1) && search.includes(selectedObject.key4forquestion1)
-  const resultassy2 = search2.includes(selectedObject.key1forquestion2) && search2.includes(selectedObject.key2forquestion2) && search2.includes(selectedObject.key3forquestion2) && search2.includes(selectedObject.key4forquestion2)
-  const resultassy3 = search3.includes(selectedObject.key1forquestion3) && search3.includes(selectedObject.key2forquestion3) && search3.includes(selectedObject.key3forquestion3) && search3.includes(selectedObject.key4forquestion3)
-  const resultassy4 = search4.includes(selectedObject.key1forquestion4) && search4.includes(selectedObject.key2forquestion4) && search4.includes(selectedObject.key3forquestion4) && search4.includes(selectedObject.key4forquestion4)
-  const resultassy5 = search5.includes(selectedObject.key1forquestion5) && search5.includes(selectedObject.key2forquestion5) && search5.includes(selectedObject.key3forquestion5) && search5.includes(selectedObject.key4forquestion5)
-  const resultassy6 = search6.includes(selectedObject.key1forquestion6) && search6.includes(selectedObject.key2forquestion6) && search6.includes(selectedObject.key3forquestion6) && search6.includes(selectedObject.key4forquestion6)
-  const resultassy7 = search7.includes(selectedObject.key1forquestion7) && search7.includes(selectedObject.key2forquestion7) && search7.includes(selectedObject.key3forquestion7) && search7.includes(selectedObject.key4forquestion7)
-  const resultassy8 = search8.includes(selectedObject.key1forquestion8) && search8.includes(selectedObject.key2forquestion8) && search8.includes(selectedObject.key3forquestion8) && search8.includes(selectedObject.key4forquestion8)
-  const resultassy9 = search9.includes(selectedObject.key1forquestion9) && search9.includes(selectedObject.key2forquestion9) && search9.includes(selectedObject.key3forquestion9) && search9.includes(selectedObject.key4forquestion9)
-  const resultassy10 = search10.includes(selectedObject.key1forquestion10) && search10.includes(selectedObject.key2forquestion10) && search10.includes(selectedObject.key3forquestion10) && search10.includes(selectedObject.key4forquestion10)
-  const resultchoose1 = search11.includes(selectedObject.key1forquestioncomplete1) 
-  const resultchoose2 = search12.includes(selectedObject.key1forquestioncomplete2)
-  const resultchoose3 = search13.includes(selectedObject.key1forquestioncomplete3)
-  const resultchoose4 = search14.includes(selectedObject.key1forquestioncomplete4)
-  const resultchoose5 = search15.includes(selectedObject.key1forquestioncomplete5)
-  const resultchoose6 = search16.includes(selectedObject.key1forquestioncomplete6)
-  const resultchoose7 = search17.includes(selectedObject.key1forquestioncomplete7)
-  const resultchoose8 = search18.includes(selectedObject.key1forquestioncomplete8)
-  const resultchoose9 = search19.includes(selectedObject.key1forquestioncomplete9)
-  const resultchoose10 = search20.includes(selectedObject.key1forquestioncomplete10)
-  req.body.resultassy1 = resultassy1
-  req.body.resultassy2 = resultassy2
-  req.body.resultassy3 = resultassy3
-  req.body.resultassy4 = resultassy4
-  req.body.resultassy5 = resultassy5
-  req.body.resultassy6 = resultassy6
-  req.body.resultassy7 = resultassy7
-  req.body.resultassy8 = resultassy8
-  req.body.resultassy9 = resultassy9
-  req.body.resultassy10 = resultassy10
-  req.body.resultchoose1 = resultchoose1
-  req.body.resultchoose2 = resultchoose2
-  req.body.resultchoose3 = resultchoose3
-  req.body.resultchoose4 = resultchoose4
-  req.body.resultchoose5 = resultchoose5
-  req.body.resultchoose6 = resultchoose6
-  req.body.resultchoose7 = resultchoose7
-  req.body.resultchoose8 = resultchoose8
-  req.body.resultchoose9 = resultchoose9
-  req.body.resultchoose10 = resultchoose10
-  const newObject = Object.assign(selectedObject, req.body)
-  await User.findByIdAndUpdate( decoded.id , { $set: {examchoose : newObject }} );
+    const results = await PyxisTrade.findByIdAndUpdate(
+      { _id: req.params.id },
+      { tradeselect: req.body.tradeselect }
+    );
 
-function answ1() {
-     if (req.body.answerc1 === selectedObject.correctanswerquestion1 && req.body.answerc1 !== undefined) {
-      return (1)
-     }  
-     if (req.body.answerc1 !== selectedObject.correctanswerquestion1) {
-      return (0)
-     }
-     if (req.body.answerc1 === undefined) {
-      return (0)
-     }
-}
-
-function answ2() {
-     if (req.body.answerc2 === selectedObject.correctanswerquestion2 && req.body.answerc2 !== undefined) {
-      return (1)
-     } 
-     if (req.body.answerc2 !== selectedObject.correctanswerquestion2) {
-      return (0)
-     }
-     if (req.body.answerc2 === undefined) {
-      return (0)
-     }
-}
-
-function answ3() {
-  if (req.body.answerc3 === selectedObject.correctanswerquestion3 && req.body.answerc3 !== undefined) {
-    return (1)
-   } 
-   if (req.body.answerc3 !== selectedObject.correctanswerquestion3) {
-    return (0)
-   }
-   if (req.body.answerc3 === undefined) {
-    return (0)
-   }
-  
-}
-
-function answ4() {
-  if (req.body.answerc4 === selectedObject.correctanswerquestion4 && req.body.answerc4 !== undefined ) {
-    return (1)
-   } 
-   if (req.body.answerc4 !== selectedObject.correctanswerquestion4) {
-    return (0)
-   }
-   if (req.body.answerc4 === undefined) {
-    return (0)
-   } 
-}
-
-function answ5() {
-  if (req.body.answerc5 === selectedObject.correctanswerquestion5 && req.body.answerc5 !== undefined ) {
-    return (1)
-   } 
-   if (req.body.answerc5 !== selectedObject.correctanswerquestion5) {
-    return (0)
-   }
-   if (req.body.answerc5 === undefined) {
-    return (0)
-   }
-}
-
-function answ6() {
-  if (req.body.answerc6 === selectedObject.correctanswerquestion6 && req.body.answerc6 !== undefined) {
-    return (1)
-   } 
-   if (req.body.answerc6 !== selectedObject.correctanswerquestion6) {
-    return (0)
-   }
-   if (req.body.answerc6 === undefined) {
-    return (0)
-   }
-}
-
-function answ7() {
-  if (req.body.answerc7 === selectedObject.correctanswerquestion7 && req.body.answerc7 !== undefined ) {
-    return (1)
-   } 
-   if (req.body.answerc7 !== selectedObject.correctanswerquestion7) {
-    return (0)
-   }
-   if (req.body.answerc7 === undefined) {
-    return (0)
-   }
-}
-
-function answ8() {
-  if (req.body.answerc8 === selectedObject.correctanswerquestion8 && req.body.answerc8 !== undefined ) {
-    return (1)
-   } 
-   if (req.body.answerc8 !== selectedObject.correctanswerquestion8) {
-    return (0)
-   }
-   if (req.body.answerc8 === undefined) {
-    return (0)
-   }
-  }
-
-function answ9() {
-  if (req.body.answerc9 === selectedObject.correctanswerquestion9 && req.body.answerc9 !== undefined) {
-    return (1)
-   } 
-   if (req.body.answerc9 !== selectedObject.correctanswerquestion9) {
-    return (0)
-   }
-   if (req.body.answerc9 === undefined) {
-    return (0)
-   }
-}
-
-function answ10() {
-  if (req.body.answerc10 === selectedObject.correctanswerquestion10 && req.body.answerc10 !== undefined ) {
-    return (1)
-   } 
-   if (req.body.answerc10 !== selectedObject.correctanswerquestion10) {
-    return (0)
-   }
-   if (req.body.answerc10 === undefined) {
-    return (0)
-   }
-}
-
-function answ11() {
-     if (resultassy1 === true) {
-      return (1)
-     } 
-     if (resultassy1 === false) {
-      return (0)
-     }
-}
-
-function answ12() {
-  if (resultassy2 === true) {
-    return (1)
-   } 
-   if (resultassy2 === false) {
-    return (0)
-   } 
-}
-
-function answ13() {
-  if (resultassy3 === true) {
-    return (1)
-   } 
-   if (resultassy3 === false) {
-    return (0)
-   } 
-}
-
-function answ14() {
-  if (resultassy4 === true) {
-    return (1)
-   } 
-   if (resultassy4 === false) {
-    return (0)
-   }  
-}
-
-function answ15() {
-  if (resultassy5 === true) {
-    return (1)
-   } 
-   if (resultassy5 === false) {
-    return (0)
-   } 
-}
-
-function answ16() {
-  if (resultassy6 === true) {
-    return (1)
-   } 
-   if (resultassy6 === false) {
-    return (0)
-   }  
-}
-
-function answ17() {
-  if (resultassy7 === true) {
-    return (1)
-   } 
-   if (resultassy7 === false) {
-    return (0)
-   } 
-}
-
-function answ18() {
-  if (resultassy8 === true) {
-    return (1)
-   } 
-   if (resultassy8 === false) {
-    return (0)
-   } 
-}
-
-function answ19() {
-  if (resultassy9 === true) {
-    return (1)
-   } 
-   if (resultassy9 === false) {
-    return (0)
-   } 
-}
-
-function answ20() {
-  if (resultassy10 === true) {
-    return (1)
-   } 
-   if (resultassy10 === false) {
-    return (0)
-   } 
-}
-
-function answ21() {
-  if (resultchoose1 === true) {
-    return (1)
-   } 
-   if (resultchoose1 === false) {
-    return (0)
-   } 
-}
-
-function answ22() {
-  if (resultchoose2 === true) {
-    return (1)
-   } 
-   if (resultchoose2 === false) {
-    return (0)
-   } 
-}
-
-function answ23() {
-  if (resultchoose3 === true) {
-    return (1)
-   } 
-   if (resultchoose3 === false) {
-    return (0)
-   } 
-}
-
-function answ24() {
-  if (resultchoose4 === true) {
-    return (1)
-   } 
-   if (resultchoose4 === false) {
-    return (0)
-   } 
-}
-
-function answ25() {
-  if (resultchoose5 === true) {
-    return (1)
-   } 
-   if (resultchoose5 === false) {
-    return (0)
-   } 
-}
-
-function answ26() {
-  if (resultchoose6 === true) {
-    return (1)
-   } 
-   if (resultchoose6 === false) {
-    return (0)
-   } 
-}
-
-function answ27() {
-  if (resultchoose7 === true) {
-    return (1)
-   } 
-   if (resultchoose7 === false) {
-    return (0)
-   } 
-}
-
-function answ28() {
-  if (resultchoose8 === true) {
-    return (1)
-   } 
-   if (resultchoose8 === false) {
-    return (0)
-   } 
-}
-
-function answ29() {
-  if (resultchoose9 === true) {
-    return (1)
-   } 
-   if (resultchoose9 === false) {
-    return (0)
-   } 
-}
-
-function answ30() {
-  if (resultchoose10 === true) {
-    return (1)
-   } 
-   if (resultchoose10 === false) {
-    return (0)
-   } 
-}
-
-function answ31() {
-  if (req.body.answertf1 === selectedObject.correctanswertruefalse1 && req.body.answertf1 !== undefined) {
-   return (1)
-  }  
-  if (req.body.answertf1 !== selectedObject.correctanswertruefalse1) {
-   return (0)
-  }
-  if (req.body.answertf1 === undefined) {
-   return (0)
-  }
-}
-
-function answ32() {
-  if (req.body.answertf2 === selectedObject.correctanswertruefalse2 && req.body.answertf2 !== undefined) {
-   return (1)
-  }  
-  if (req.body.answertf2 !== selectedObject.correctanswertruefalse2) {
-   return (0)
-  }
-  if (req.body.answertf2 === undefined) {
-   return (0)
-  }
-}
-
-function answ33() {
-  if (req.body.answertf3 === selectedObject.correctanswertruefalse3 && req.body.answertf3 !== undefined) {
-   return (1)
-  }  
-  if (req.body.answertf3 !== selectedObject.correctanswertruefalse3) {
-   return (0)
-  }
-  if (req.body.answertf3 === undefined) {
-   return (0)
-  }
-}
-
-function answ34() {
-  if (req.body.answertf4 === selectedObject.correctanswertruefalse4 && req.body.answertf4 !== undefined) {
-   return (1)
-  }  
-  if (req.body.answertf4 !== selectedObject.correctanswertruefalse4) {
-   return (0)
-  }
-  if (req.body.answertf4 === undefined) {
-   return (0)
-  }
-}
-
-function answ35() {
-  if (req.body.answertf5 === selectedObject.correctanswertruefalse5 && req.body.answertf5 !== undefined) {
-   return (1)
-  }  
-  if (req.body.answertf5 !== selectedObject.correctanswertruefalse5) {
-   return (0)
-  }
-  if (req.body.answertf5 === undefined) {
-   return (0)
-  }
-}
-
-function answ36() {
-  if (req.body.answertf6 === selectedObject.correctanswertruefalse6 && req.body.answertf6 !== undefined) {
-   return (1)
-  }  
-  if (req.body.answertf6 !== selectedObject.correctanswertruefalse6) {
-   return (0)
-  }
-  if (req.body.answertf6 === undefined) {
-   return (0)
-  }
-}
-
-function answ37() {
-  if (req.body.answertf7 === selectedObject.correctanswertruefalse7 && req.body.answertf7 !== undefined) {
-   return (1)
-  }  
-  if (req.body.answertf7 !== selectedObject.correctanswertruefalse7) {
-   return (0)
-  }
-  if (req.body.answertf7 === undefined) {
-   return (0)
-  }
-}
-
-function answ38() {
-  if (req.body.answertf8 === selectedObject.correctanswertruefalse8 && req.body.answertf8 !== undefined) {
-   return (1)
-  }  
-  if (req.body.answertf8 !== selectedObject.correctanswertruefalse8) {
-   return (0)
-  }
-  if (req.body.answertf8 === undefined) {
-   return (0)
-  }
-}
-
-function answ39() {
-  if (req.body.answertf9 === selectedObject.correctanswertruefalse9 && req.body.answertf9 !== undefined) {
-   return (1)
-  }  
-  if (req.body.answertf9 !== selectedObject.correctanswertruefalse9) {
-   return (0)
-  }
-  if (req.body.answertf9 === undefined) {
-   return (0)
-  }
-}
-
-function answ40() {
-  if (req.body.answertf10 === selectedObject.correctanswertruefalse10 && req.body.answertf10 !== undefined) {
-   return (1)
-  }  
-  if (req.body.answertf10 !== selectedObject.correctanswertruefalse10) {
-   return (0)
-  }
-  if (req.body.answertf10 === undefined) {
-   return (0)
-  }
-}
-  
-
-
-  const score = answ1() + answ2() + answ3() + answ4() + answ5() + answ6() + answ7() + answ8() + answ9() + answ10() + answ11() + answ12()+ answ13()+ answ14()+ answ15()+ answ16()+ answ17()+ answ18()+ answ19()+ answ20() + answ21() + answ22() + answ23() + answ24() + answ25() + answ26() + answ27() + answ28() + answ29() + answ30() + answ31() + answ32() + answ33() + answ34() + answ35() + answ36() + answ37() + answ38() + answ39() + answ40()  
-console.log(score);
-  
-
-const group = { firstname : user.firstname, lastname : user.lastname, score : score, code : user.code,  examname : selectedObject.examname, createdAt : Date(now), questionnumber : selectedObject.questionnumber }
-  const results = 
-  await User.updateOne( {role : "Admin"}, 
-  { $push: {results : group}})
-
-    res.redirect("/exam");
+    if (results) {
+      res.redirect("/pyxismed");
+    }
   })
 );
+
+// TRADE UPDATE
+router.put(
+  "/pyxistradeupdate/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    console.log(req.body.trade1);
+    const results = await PyxisTrade.findByIdAndUpdate(req.params.id, req.body);
+
+    if (results) {
+      res.redirect("/pyxismed");
+    }
+  })
+);
+
+// SCORE UPDATE
+router.put(
+  "/editscore/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const scoreUpdate = await Score.findByIdAndUpdate( req.params.id, { $set : {score : req.body.score}})
+
+    if (scoreUpdate) {
+      res.redirect("/admin");
+    }
+  })
+);
+
 
 module.exports = router;

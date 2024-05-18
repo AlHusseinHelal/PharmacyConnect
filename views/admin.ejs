@@ -329,17 +329,20 @@
 
 
           <div id="exam" class="d-none">
-            <div class="text-center <%= exam.examname !== undefined? "d-block" : "d-none" %> mt-3">
-              <p class="city"><%= exam.examname %></p>
-          </div>
+            <div class="text-center <%= exam.examname !== undefined? " d-block" : "d-none" %> mt-3">
+              <p class="city">
+                <%= exam.examname %>
+              </p>
+            </div>
             <!-- CHOOSE -->
             <!-- QUSETION NUMBER 1 -->
             <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose1 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Choose Q#1</div>
 
-                <div  class="d-flex ">
-                  <div> <img class="<%= exam.answerc1 === exam.correctanswerquestion1? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answerc1 === exam.correctanswerquestion1? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
                   <div> <img class="<%= exam.answerc1 !== exam.correctanswerquestion1 && exam.answerc1 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
               </div>
@@ -350,7 +353,8 @@
 
               <div class="radio-buttons-container w-100 d-flex justify-content-around">
                 <div class="radio-button">
-                  <input name="answerc1" id="radio2" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose1 %>">
+                  <input name="answerc1" id="radio2" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose1 %>">
                   <label for="radio2" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -358,7 +362,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc1" id="radio1" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose1 %>">
+                  <input name="answerc1" id="radio1" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose1 %>">
                   <label for="radio1" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -366,7 +371,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc1" id="radio3" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose1 %>">
+                  <input name="answerc1" id="radio3" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose1 %>">
                   <label for="radio3" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -374,14 +380,15 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc1" id="radio4" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose1 %>">
+                  <input name="answerc1" id="radio4" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose1 %>">
                   <label for="radio4" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
                     <%= exam.answer4questionchoose1 %>
                   </label>
                 </div>
-                
+
               </div>
 
             </div>
@@ -390,18 +397,20 @@
             <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose2 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Choose Q#2</div>
-              <div  class="d-flex ">
-                <div> <img class="<%= exam.answerc2 === exam.correctanswerquestion2? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                <div> <img class="<%= exam.answerc2 !== exam.correctanswerquestion2 && exam.answerc2 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answerc2 === exam.correctanswerquestion2? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.answerc2 !== exam.correctanswerquestion2 && exam.answerc2 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
               </div>
-            </div>
               <div class="info__title mb-3">
                 <%= exam.questionchoose2 %>
               </div>
 
               <div class="radio-buttons-container w-100 d-flex justify-content-around">
                 <div class="radio-button">
-                  <input name="answerc2" id="radio5" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose2 %>">
+                  <input name="answerc2" id="radio5" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose2 %>">
                   <label for="radio5" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -409,7 +418,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc2" id="radio6" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose2 %>">
+                  <input name="answerc2" id="radio6" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose2 %>">
                   <label for="radio6" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -417,7 +427,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc2" id="radio7" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose2 %>">
+                  <input name="answerc2" id="radio7" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose2 %>">
                   <label for="radio7" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -425,7 +436,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc2" id="radio8" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose2 %>">
+                  <input name="answerc2" id="radio8" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose2 %>">
                   <label for="radio8" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -440,18 +452,20 @@
             <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose3 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 Choose Q#3
-              <div  class="d-flex ">
-                <div> <img class="<%= exam.answerc3 === exam.correctanswerquestion3? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                <div> <img class="<%= exam.answerc3 !== exam.correctanswerquestion3 && exam.answerc3 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answerc3 === exam.correctanswerquestion3? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.answerc3 !== exam.correctanswerquestion3 && exam.answerc3 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
               </div>
-            </div>
               <div class="info__title mb-3">
                 <%= exam.questionchoose3 %>
               </div>
 
               <div class="radio-buttons-container w-100 d-flex justify-content-around">
                 <div class="radio-button">
-                  <input name="answerc3" id="radio9" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose3 %>">
+                  <input name="answerc3" id="radio9" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose3 %>">
                   <label for="radio9" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -459,7 +473,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc3" id="radio10" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose3 %>">
+                  <input name="answerc3" id="radio10" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose3 %>">
                   <label for="radio10" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -467,7 +482,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc3" id="radio11" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose3 %>">
+                  <input name="answerc3" id="radio11" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose3 %>">
                   <label for="radio11" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -475,7 +491,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc3" id="radio12" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose3 %>">
+                  <input name="answerc3" id="radio12" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose3 %>">
                   <label for="radio12" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -490,18 +507,20 @@
             <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose4 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Choose Q#4</div>
-              <div  class="d-flex ">
-                <div> <img class="<%= exam.answerc4 === exam.correctanswerquestion4? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                <div> <img class="<%= exam.answerc4 !== exam.correctanswerquestion4 && exam.answerc4 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answerc4 === exam.correctanswerquestion4? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.answerc4 !== exam.correctanswerquestion4 && exam.answerc4 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
               </div>
-            </div>
               <div class="info__title mb-3">
                 <%= exam.questionchoose4 %>
               </div>
 
               <div class="radio-buttons-container w-100 d-flex justify-content-around">
                 <div class="radio-button">
-                  <input name="answerc4" id="radio13" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose4 %>">
+                  <input name="answerc4" id="radio13" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose4 %>">
                   <label for="radio13" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -509,7 +528,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc4" id="radio14" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose4 %>">
+                  <input name="answerc4" id="radio14" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose4 %>">
                   <label for="radio14" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -517,7 +537,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc4" id="radio15" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose4 %>">
+                  <input name="answerc4" id="radio15" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose4 %>">
                   <label for="radio15" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -525,7 +546,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc4" id="radio16" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose4 %>">
+                  <input name="answerc4" id="radio16" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose4 %>">
                   <label for="radio16" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -540,18 +562,20 @@
             <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose5 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Choose Q#5</div>
-              <div  class="d-flex ">
-                <div> <img class="<%= exam.answerc5 === exam.correctanswerquestion5? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                <div> <img class="<%= exam.answerc5 !== exam.correctanswerquestion5 && exam.answerc5 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answerc5 === exam.correctanswerquestion5? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.answerc5 !== exam.correctanswerquestion5 && exam.answerc5 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
               </div>
-            </div>
               <div class="info__title mb-3">
                 <%= exam.questionchoose5 %>
               </div>
 
               <div class="radio-buttons-container w-100 d-flex justify-content-around">
                 <div class="radio-button">
-                  <input name="answerc5" id="radio17" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose5 %>">
+                  <input name="answerc5" id="radio17" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose5 %>">
                   <label for="radio17" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -559,7 +583,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc5" id="radio18" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose5 %>">
+                  <input name="answerc5" id="radio18" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose5 %>">
                   <label for="radio18" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -567,7 +592,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc5" id="radio19" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose5 %>">
+                  <input name="answerc5" id="radio19" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose5 %>">
                   <label for="radio19" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -575,7 +601,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc5" id="radio20" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose5 %>">
+                  <input name="answerc5" id="radio20" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose5 %>">
                   <label for="radio20" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -590,18 +617,20 @@
             <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose6 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Choose Q#6</div>
-              <div  class="d-flex ">
-                <div> <img class="<%= exam.answerc6 === exam.correctanswerquestion6? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                <div> <img class="<%= exam.answerc6 !== exam.correctanswerquestion6 && exam.answerc6 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answerc6 === exam.correctanswerquestion6? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.answerc6 !== exam.correctanswerquestion6 && exam.answerc6 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
               </div>
-            </div>
               <div class="info__title mb-3">
                 <%= exam.questionchoose6 %>
               </div>
 
               <div class="radio-buttons-container w-100 d-flex justify-content-around">
                 <div class="radio-button">
-                  <input name="answerc6" id="radio21" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose6 %>">
+                  <input name="answerc6" id="radio21" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose6 %>">
                   <label for="radio21" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -609,7 +638,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc6" id="radio22" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose6 %>">
+                  <input name="answerc6" id="radio22" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose6 %>">
                   <label for="radio22" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -617,7 +647,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc6" id="radio23" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose6 %>">
+                  <input name="answerc6" id="radio23" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose6 %>">
                   <label for="radio23" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -625,7 +656,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc6" id="radio24" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose6 %>">
+                  <input name="answerc6" id="radio24" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose6 %>">
                   <label for="radio24" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -640,18 +672,20 @@
             <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose7 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Choose Q#7</div>
-              <div  class="d-flex ">
-                <div> <img class="<%= exam.answerc7 === exam.correctanswerquestion7? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                <div> <img class="<%= exam.answerc7 !== exam.correctanswerquestion7 && exam.answerc7 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answerc7 === exam.correctanswerquestion7? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.answerc7 !== exam.correctanswerquestion7 && exam.answerc7 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
               </div>
-            </div>
               <div class="info__title mb-3">
                 <%= exam.questionchoose7 %>
               </div>
 
               <div class="radio-buttons-container w-100 d-flex justify-content-around">
                 <div class="radio-button">
-                  <input name="answerc7" id="radio25" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose7 %>">
+                  <input name="answerc7" id="radio25" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose7 %>">
                   <label for="radio25" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -659,7 +693,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc7" id="radio26" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose7 %>">
+                  <input name="answerc7" id="radio26" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose7 %>">
                   <label for="radio26" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -667,7 +702,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc7" id="radio27" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose7 %>">
+                  <input name="answerc7" id="radio27" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose7 %>">
                   <label for="radio27" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -675,7 +711,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc7" id="radio28" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose7 %>">
+                  <input name="answerc7" id="radio28" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose7 %>">
                   <label for="radio28" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -690,18 +727,20 @@
             <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose8 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Choose Q#8</div>
-              <div  class="d-flex ">
-                <div> <img class="<%= exam.answerc8 === exam.correctanswerquestion8? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                <div> <img class="<%= exam.answerc8 !== exam.correctanswerquestion8 && exam.answerc8 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answerc8 === exam.correctanswerquestion8? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.answerc8 !== exam.correctanswerquestion8 && exam.answerc8 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
               </div>
-            </div>
               <div class="info__title mb-3">
                 <%= exam.questionchoose8 %>
               </div>
 
               <div class="radio-buttons-container w-100 d-flex justify-content-around">
                 <div class="radio-button">
-                  <input name="answerc8" id="radio29" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose8 %>">
+                  <input name="answerc8" id="radio29" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose8 %>">
                   <label for="radio29" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -709,7 +748,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc8" id="radio30" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose8 %>">
+                  <input name="answerc8" id="radio30" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose8 %>">
                   <label for="radio30" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -717,7 +757,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc8" id="radio31" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose8 %>">
+                  <input name="answerc8" id="radio31" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose8 %>">
                   <label for="radio31" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -725,7 +766,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc8" id="radio32" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose8 %>">
+                  <input name="answerc8" id="radio32" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose8 %>">
                   <label for="radio32" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -740,18 +782,20 @@
             <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose9 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Choose Q#9</div>
-              <div  class="d-flex ">
-                <div> <img class="<%= exam.answerc9 === exam.correctanswerquestion9? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                <div> <img class="<%= exam.answerc9 !== exam.correctanswerquestion9 && exam.answerc9 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answerc9 === exam.correctanswerquestion9? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.answerc9 !== exam.correctanswerquestion9 && exam.answerc9 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
               </div>
-            </div>
               <div class="info__title mb-3">
                 <%= exam.questionchoose9 %>
               </div>
 
               <div class="radio-buttons-container w-100 d-flex justify-content-around">
                 <div class="radio-button">
-                  <input name="answerc9" id="radio33" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose9 %>">
+                  <input name="answerc9" id="radio33" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose9 %>">
                   <label for="radio33" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -759,7 +803,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc9" id="radio34" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose9 %>">
+                  <input name="answerc9" id="radio34" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose9 %>">
                   <label for="radio34" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -767,7 +812,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc9" id="radio35" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose9 %>">
+                  <input name="answerc9" id="radio35" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose9 %>">
                   <label for="radio35" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -775,7 +821,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc9" id="radio36" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose9 %>">
+                  <input name="answerc9" id="radio36" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose9 %>">
                   <label for="radio36" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -790,18 +837,21 @@
             <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questionchoose10 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Choose Q#10</div>
-              <div  class="d-flex ">
-                <div> <img class="<%= exam.answerc10 === exam.correctanswerquestion10? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                <div> <img class="<%= exam.answerc10 !== exam.correctanswerquestion10 && exam.answerc10 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answerc10 === exam.correctanswerquestion10? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img
+                      class="<%= exam.answerc10 !== exam.correctanswerquestion10 && exam.answerc10 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
               </div>
-            </div>
               <div class="info__title mb-3">
                 <%= exam.questionchoose10 %>
               </div>
 
               <div class="radio-buttons-container w-100 d-flex justify-content-around">
                 <div class="radio-button">
-                  <input name="answerc10" id="radio37" class="radio-button__input" type="radio" value="<%= exam.answer1questionchoose10 %>">
+                  <input name="answerc10" id="radio37" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1questionchoose10 %>">
                   <label for="radio37" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -809,7 +859,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc10" id="radio38" class="radio-button__input" type="radio" value="<%= exam.answer2questionchoose10 %>">
+                  <input name="answerc10" id="radio38" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2questionchoose10 %>">
                   <label for="radio38" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -817,7 +868,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc10" id="radio39" class="radio-button__input" type="radio" value="<%= exam.answer3questionchoose10 %>">
+                  <input name="answerc10" id="radio39" class="radio-button__input" type="radio"
+                    value="<%= exam.answer3questionchoose10 %>">
                   <label for="radio39" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -825,7 +877,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answerc10" id="radio40" class="radio-button__input" type="radio" value="<%= exam.answer4questionchoose10 %>">
+                  <input name="answerc10" id="radio40" class="radio-button__input" type="radio"
+                    value="<%= exam.answer4questionchoose10 %>">
                   <label for="radio40" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -844,9 +897,10 @@
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Essay Q#1</div>
 
-                <div  class="d-flex ">
-                  <div> <img class="<%= exam.resultassy1 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                  <div> <img class="<%= exam.resultassy1 === "false" && exam.resultassy1 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultassy1 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultassy1 === " false" && exam.resultassy1 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
               </div>
               <div class="info__title mb-3">
@@ -865,9 +919,10 @@
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Essay Q#2</div>
 
-                <div  class="d-flex ">
-                  <div> <img class="<%= exam.resultassy2 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                  <div> <img class="<%= exam.resultassy2 === "false" && exam.resultassy2 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultassy2 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultassy2 === " false" && exam.resultassy2 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
               </div>
               <div class="info__title mb-3">
@@ -886,9 +941,10 @@
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Essay Q#3</div>
 
-                <div  class="d-flex ">
-                  <div> <img class="<%= exam.resultassy3 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                  <div> <img class="<%= exam.resultassy3 === "false" && exam.resultassy3 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultassy3 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultassy3 === " false" && exam.resultassy3 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
               </div>
               <div class="info__title mb-3">
@@ -907,9 +963,10 @@
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Essay Q#4</div>
 
-                <div  class="d-flex ">
-                  <div> <img class="<%= exam.resultassy4 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                  <div> <img class="<%= exam.resultassy4 === "false" && exam.resultassy4 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultassy4 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultassy4 === " false" && exam.resultassy4 !==undefined? "d-block"  : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
               </div>
               <div class="info__title mb-3">
@@ -928,9 +985,10 @@
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Essay Q#5</div>
 
-                <div  class="d-flex ">
-                  <div> <img class="<%= exam.resultassy5 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                  <div> <img class="<%= exam.resultassy5 === "false" && exam.resultassy5 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultassy5 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultassy5 === " false" && exam.resultassy5 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
               </div>
               <div class="info__title mb-3">
@@ -949,9 +1007,10 @@
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Essay Q#6</div>
 
-                <div  class="d-flex ">
-                  <div> <img class="<%= exam.resultassy6 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                  <div> <img class="<%= exam.resultassy6 === "false" && exam.resultassy6 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultassy6 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultassy6 === " false" && exam.resultassy6 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
               </div>
               <div class="info__title mb-3">
@@ -970,9 +1029,10 @@
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Essay Q#7</div>
 
-                <div  class="d-flex ">
-                  <div> <img class="<%= exam.resultassy7 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                  <div> <img class="<%= exam.resultassy7 === "false" && exam.resultassy7 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultassy7 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultassy7 === " false" && exam.resultassy7 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
               </div>
               <div class="info__title mb-3">
@@ -991,9 +1051,10 @@
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Essay Q#8</div>
 
-                <div  class="d-flex ">
-                  <div> <img class="<%= exam.resultassy8 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                  <div> <img class="<%= exam.resultassy8 === "false" && exam.resultassy8 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultassy8 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultassy8 === " false" && exam.resultassy8 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
               </div>
               <div class="info__title mb-3">
@@ -1012,9 +1073,10 @@
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Essay Q#9</div>
 
-                <div  class="d-flex ">
-                  <div> <img class="<%= exam.resultassy9 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                  <div> <img class="<%= exam.resultassy9 === "false" && exam.resultassy9 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultassy9 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultassy9 === " false" && exam.resultassy9 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
               </div>
               <div class="info__title mb-3">
@@ -1034,9 +1096,10 @@
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>Essay Q#10</div>
 
-                <div  class="d-flex ">
-                  <div> <img class="<%= exam.resultassy10 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                  <div> <img class="<%= exam.resultassy10 === "false" && exam.resultassy10 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultassy10 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultassy10 === " false" && exam.resultassy10 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
               </div>
               <div class="info__title mb-3">
@@ -1051,216 +1114,226 @@
             </div>
 
 
-           <!-- COMPLETE -->
-           <!-- QUSETION NUMBER 1 -->
-           <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
-             <div class="info__title mb-3 d-flex w-100 justify-content-between">
-               <div>Complete Q#1</div>
-            
-               <div  class="d-flex ">
-                 <div> <img class="<%= exam.resultchoose1 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                 <div> <img class="<%= exam.resultchoose1 === "false" && exam.resultchoose1 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
-               </div>
-             </div>
-             <div class="info__title mb-3">
-               <%= exam.questioncomplete1 %>
-             </div>
-            
-             <div class="w-100 d-flex justify-content-around">
-               <input name="answerchoose1" class="form-control w-100" type="text">
-               <input hidden name="resultchoose1" class="form-control w-100" type="text">
-             </div>
-            
-           </div>
+            <!-- COMPLETE -->
+            <!-- QUSETION NUMBER 1 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Complete Q#1</div>
 
-           <!-- QUSETION NUMBER 2 -->
-           <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
-            <div class="info__title mb-3 d-flex w-100 justify-content-between">
-              <div>Complete Q#2</div>
-           
-              <div  class="d-flex ">
-                <div> <img class="<%= exam.resultchoose2 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                <div> <img class="<%= exam.resultchoose2 === "false" && exam.resultchoose2 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultchoose1 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultchoose1 === " false" && exam.resultchoose1 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
               </div>
-            </div>
-            <div class="info__title mb-3">
-              <%= exam.questioncomplete2 %>
-            </div>
-           
-            <div class="w-100 d-flex justify-content-around">
-              <input name="answerchoose2" class="form-control w-100" type="text">
-              <input hidden name="resultchoose2" class="form-control w-100" type="text">
-            </div>
-           
-          </div>
+              <div class="info__title mb-3">
+                <%= exam.questioncomplete1 %>
+              </div>
 
-          <!-- QUSETION NUMBER 3 -->
-          <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
-            <div class="info__title mb-3 d-flex w-100 justify-content-between">
-              <div>Complete Q#3</div>
-           
-              <div  class="d-flex ">
-                <div> <img class="<%= exam.resultchoose3 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                <div> <img class="<%= exam.resultchoose3 === "false" && exam.resultchoose3 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerchoose1" class="form-control w-100" type="text">
+                <input hidden name="resultchoose1" class="form-control w-100" type="text">
               </div>
-            </div>
-            <div class="info__title mb-3">
-              <%= exam.questioncomplete3 %>
-            </div>
-           
-            <div class="w-100 d-flex justify-content-around">
-              <input name="answerchoose3" class="form-control w-100" type="text">
-              <input hidden name="resultchoose3" class="form-control w-100" type="text">
-            </div>
-           
-          </div>
 
-          <!-- QUSETION NUMBER 4 -->
-          <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
-            <div class="info__title mb-3 d-flex w-100 justify-content-between">
-              <div>Complete Q#4</div>
-           
-              <div  class="d-flex ">
-                <div> <img class="<%= exam.resultchoose4 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                <div> <img class="<%= exam.resultchoose4 === "false" && exam.resultchoose4 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
-              </div>
             </div>
-            <div class="info__title mb-3">
-              <%= exam.questioncomplete4 %>
-            </div>
-           
-            <div class="w-100 d-flex justify-content-around">
-              <input name="answerchoose4" class="form-control w-100" type="text">
-              <input hidden name="resultchoose4" class="form-control w-100" type="text">
-            </div>
-           
-          </div>
 
-          <!-- QUSETION NUMBER 5 -->
-          <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
-            <div class="info__title mb-3 d-flex w-100 justify-content-between">
-              <div>Complete Q#5</div>
-           
-              <div  class="d-flex ">
-                <div> <img class="<%= exam.resultchoose5 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                <div> <img class="<%= exam.resultchoose5 === "false" && exam.resultchoose5 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
-              </div>
-            </div>
-            <div class="info__title mb-3">
-              <%= exam.questioncomplete5 %>
-            </div>
-           
-            <div class="w-100 d-flex justify-content-around">
-              <input name="answerchoose5" class="form-control w-100" type="text">
-              <input hidden name="resultchoose5" class="form-control w-100" type="text">
-            </div>
-           
-          </div>
+            <!-- QUSETION NUMBER 2 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete2 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Complete Q#2</div>
 
-          <!-- QUSETION NUMBER 6 -->
-          <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
-            <div class="info__title mb-3 d-flex w-100 justify-content-between">
-              <div>Complete Q#6</div>
-           
-              <div  class="d-flex ">
-                <div> <img class="<%= exam.resultchoose6 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                <div> <img class="<%= exam.resultchoose6 === "false" && exam.resultchoose6 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultchoose2 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultchoose2 === " false" && exam.resultchoose2 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
               </div>
-            </div>
-            <div class="info__title mb-3">
-              <%= exam.questioncomplete6 %>
-            </div>
-           
-            <div class="w-100 d-flex justify-content-around">
-              <input name="answerchoose6" class="form-control w-100" type="text">
-              <input hidden name="resultchoose6" class="form-control w-100" type="text">
-            </div>
-           
-          </div>
+              <div class="info__title mb-3">
+                <%= exam.questioncomplete2 %>
+              </div>
 
-          <!-- QUSETION NUMBER 7 -->
-          <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
-            <div class="info__title mb-3 d-flex w-100 justify-content-between">
-              <div>Complete Q#7</div>
-           
-              <div  class="d-flex ">
-                <div> <img class="<%= exam.resultchoose7 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                <div> <img class="<%= exam.resultchoose7 === "false" && exam.resultchoose7 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerchoose2" class="form-control w-100" type="text">
+                <input hidden name="resultchoose2" class="form-control w-100" type="text">
               </div>
-            </div>
-            <div class="info__title mb-3">
-              <%= exam.questioncomplete7 %>
-            </div>
-           
-            <div class="w-100 d-flex justify-content-around">
-              <input name="answerchoose7" class="form-control w-100" type="text">
-              <input hidden name="resultchoose7" class="form-control w-100" type="text">
-            </div>
-           
-          </div>
 
-          <!-- QUSETION NUMBER 8 -->
-          <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
-            <div class="info__title mb-3 d-flex w-100 justify-content-between">
-              <div>Complete Q#8</div>
-           
-              <div  class="d-flex ">
-                <div> <img class="<%= exam.resultchoose8 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                <div> <img class="<%= exam.resultchoose8 === "false" && exam.resultchoose8 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
-              </div>
             </div>
-            <div class="info__title mb-3">
-              <%= exam.questioncomplete1 %>
-            </div>
-           
-            <div class="w-100 d-flex justify-content-around">
-              <input name="answerchoose8" class="form-control w-100" type="text">
-              <input hidden name="resultchoose8" class="form-control w-100" type="text">
-            </div>
-           
-          </div>
 
-          <!-- QUSETION NUMBER 9 -->
-          <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
-            <div class="info__title mb-3 d-flex w-100 justify-content-between">
-              <div>Complete Q#9</div>
-           
-              <div  class="d-flex ">
-                <div> <img class="<%= exam.resultchoose9 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                <div> <img class="<%= exam.resultchoose9 === "false" && exam.resultchoose9 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
-              </div>
-            </div>
-            <div class="info__title mb-3">
-              <%= exam.questioncomplete9 %>
-            </div>
-           
-            <div class="w-100 d-flex justify-content-around">
-              <input name="answerchoose9" class="form-control w-100" type="text">
-              <input hidden name="resultchoose9" class="form-control w-100" type="text">
-            </div>
-           
-          </div>
+            <!-- QUSETION NUMBER 3 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete3 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Complete Q#3</div>
 
-          <!-- QUSETION NUMBER 10 -->
-          <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete1 === undefined? "d-none" : "d-block" %>">
-            <div class="info__title mb-3 d-flex w-100 justify-content-between">
-              <div>Complete Q#10</div>
-           
-              <div  class="d-flex ">
-                <div> <img class="<%= exam.resultchoose10 === "true"? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                <div> <img class="<%= exam.resultchoose10 === "false" && exam.resultchoose10 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultchoose3 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultchoose3 === " false" && exam.resultchoose3 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
               </div>
+              <div class="info__title mb-3">
+                <%= exam.questioncomplete3 %>
+              </div>
+
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerchoose3" class="form-control w-100" type="text">
+                <input hidden name="resultchoose3" class="form-control w-100" type="text">
+              </div>
+
             </div>
-            <div class="info__title mb-3">
-              <%= exam.questioncomplete10 %>
+
+            <!-- QUSETION NUMBER 4 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete4 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Complete Q#4</div>
+
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultchoose4 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultchoose4 === " false" && exam.resultchoose4 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questioncomplete4 %>
+              </div>
+
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerchoose4" class="form-control w-100" type="text">
+                <input hidden name="resultchoose4" class="form-control w-100" type="text">
+              </div>
+
             </div>
-           
-            <div class="w-100 d-flex justify-content-around">
-              <input name="answerchoose10" class="form-control w-100" type="text">
-              <input hidden name="resultchoose10" class="form-control w-100" type="text">
+
+            <!-- QUSETION NUMBER 5 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete5 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Complete Q#5</div>
+
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultchoose5 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultchoose5 === " false" && exam.resultchoose5 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questioncomplete5 %>
+              </div>
+
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerchoose5" class="form-control w-100" type="text">
+                <input hidden name="resultchoose5" class="form-control w-100" type="text">
+              </div>
+
             </div>
-           
-          </div>
+
+            <!-- QUSETION NUMBER 6 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete6 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Complete Q#6</div>
+
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultchoose6 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultchoose6 === " false" && exam.resultchoose6 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questioncomplete6 %>
+              </div>
+
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerchoose6" class="form-control w-100" type="text">
+                <input hidden name="resultchoose6" class="form-control w-100" type="text">
+              </div>
+
+            </div>
+
+            <!-- QUSETION NUMBER 7 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete7 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Complete Q#7</div>
+
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultchoose7 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultchoose7 === " false" && exam.resultchoose7 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questioncomplete7 %>
+              </div>
+
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerchoose7" class="form-control w-100" type="text">
+                <input hidden name="resultchoose7" class="form-control w-100" type="text">
+              </div>
+
+            </div>
+
+            <!-- QUSETION NUMBER 8 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete8 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Complete Q#8</div>
+
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultchoose8 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultchoose8 === " false" && exam.resultchoose8 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questioncomplete8 %>
+              </div>
+
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerchoose8" class="form-control w-100" type="text">
+                <input hidden name="resultchoose8" class="form-control w-100" type="text">
+              </div>
+
+            </div>
+
+            <!-- QUSETION NUMBER 9 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete9 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Complete Q#9</div>
+
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultchoose9 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultchoose9 === " false" && exam.resultchoose9 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questioncomplete9 %>
+              </div>
+
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerchoose9" class="form-control w-100" type="text">
+                <input hidden name="resultchoose9" class="form-control w-100" type="text">
+              </div>
+
+            </div>
+
+            <!-- QUSETION NUMBER 10 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questioncomplete10 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>Complete Q#10</div>
+
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.resultchoose10 === " true"? "d-block" : "d-none" %>" src="/svg/true-06.svg"
+                    width="25" height="25" alt=""></div>
+                  <div> <img class="<%= exam.resultchoose10 === " false" && exam.resultchoose10 !==undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questioncomplete10 %>
+              </div>
+
+              <div class="w-100 d-flex justify-content-around">
+                <input name="answerchoose10" class="form-control w-100" type="text">
+                <input hidden name="resultchoose10" class="form-control w-100" type="text">
+              </div>
+
+            </div>
 
 
 
@@ -1270,9 +1343,11 @@
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>TRUE&FALSE Q#1</div>
 
-                <div  class="d-flex ">
-                  <div> <img class="<%= exam.answertf1 === exam.correctanswertruefalse1? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                  <div> <img class="<%= exam.answertf1 !== exam.correctanswertruefalse1 && exam.answertf1 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answertf1 === exam.correctanswertruefalse1? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img
+                      class="<%= exam.answertf1 !== exam.correctanswertruefalse1 && exam.answertf1 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
               </div>
               <div class="info__title mb-3">
@@ -1282,7 +1357,8 @@
 
               <div class="radio-buttons-container w-100 d-flex justify-content-around">
                 <div class="radio-button">
-                  <input name="answertf1" id="radio41" class="radio-button__input" type="radio" value="<%= exam.answer1truefalse1 %>">
+                  <input name="answertf1" id="radio41" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1truefalse1 %>">
                   <label for="radio41" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -1290,7 +1366,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answertf1" id="radio42" class="radio-button__input" type="radio" value="<%= exam.answer2truefalse1 %>">
+                  <input name="answertf1" id="radio42" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2truefalse1 %>">
                   <label for="radio42" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -1298,19 +1375,21 @@
                   </label>
                 </div>
 
-                
+
               </div>
 
             </div>
 
-                <!-- QUSETION NUMBER 2 -->
+            <!-- QUSETION NUMBER 2 -->
             <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questiontruefalse2 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>TRUE&FALSE Q#2</div>
 
-                <div  class="d-flex ">
-                  <div> <img class="<%= exam.answertf2 === exam.correctanswertruefalse2? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                  <div> <img class="<%= exam.answertf2 !== exam.correctanswertruefalse2 && exam.answertf2 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answertf2 === exam.correctanswertruefalse2? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img
+                      class="<%= exam.answertf2 !== exam.correctanswertruefalse2 && exam.answertf2 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
               </div>
               <div class="info__title mb-3">
@@ -1320,7 +1399,8 @@
 
               <div class="radio-buttons-container w-100 d-flex justify-content-around">
                 <div class="radio-button">
-                  <input name="answertf2" id="radio43" class="radio-button__input" type="radio" value="<%= exam.answer1truefalse2 %>">
+                  <input name="answertf2" id="radio43" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1truefalse2 %>">
                   <label for="radio43" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -1328,7 +1408,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answertf2" id="radio44" class="radio-button__input" type="radio" value="<%= exam.answer2truefalse2 %>">
+                  <input name="answertf2" id="radio44" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2truefalse2 %>">
                   <label for="radio44" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -1336,57 +1417,63 @@
                   </label>
                 </div>
 
-                
+
               </div>
 
             </div>
 
-              <!-- QUSETION NUMBER 3 -->
-              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questiontruefalse3 === undefined? "d-none" : "d-block" %>">
-                <div class="info__title mb-3 d-flex w-100 justify-content-between">
-                  <div>TRUE&FALSE Q#3</div>
+            <!-- QUSETION NUMBER 3 -->
+            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questiontruefalse3 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>TRUE&FALSE Q#3</div>
 
-                  <div  class="d-flex ">
-                    <div> <img class="<%= exam.answertf3 === exam.correctanswertruefalse3? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                    <div> <img class="<%= exam.answertf3 !== exam.correctanswertruefalse3 && exam.answertf3 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
-                  </div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answertf3 === exam.correctanswertruefalse3? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img
+                      class="<%= exam.answertf3 !== exam.correctanswertruefalse3 && exam.answertf3 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
-                <div class="info__title mb-3">
-                  <%= exam.questiontruefalse3 %>
-
-                </div>
-
-                <div class="radio-buttons-container w-100 d-flex justify-content-around">
-                  <div class="radio-button">
-                    <input name="answertf3" id="radio45" class="radio-button__input" type="radio" value="<%= exam.answer1truefalse3 %>">
-                    <label for="radio45" class="radio-button__label">
-                      <span class="radio-button__custom"></span>
-
-                      <%= exam.answer1truefalse3 %>
-                    </label>
-                  </div>
-                  <div class="radio-button">
-                    <input name="answertf3" id="radio46" class="radio-button__input" type="radio" value="<%= exam.answer2truefalse3 %>">
-                    <label for="radio46" class="radio-button__label">
-                      <span class="radio-button__custom"></span>
-
-                      <%= exam.answer2truefalse3 %>
-                    </label>
-                  </div>
-
-                  
-                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questiontruefalse3 %>
 
               </div>
 
-                <!-- QUSETION NUMBER 4 -->
+              <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                <div class="radio-button">
+                  <input name="answertf3" id="radio45" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1truefalse3 %>">
+                  <label for="radio45" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer1truefalse3 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answertf3" id="radio46" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2truefalse3 %>">
+                  <label for="radio46" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer2truefalse3 %>
+                  </label>
+                </div>
+
+
+              </div>
+
+            </div>
+
+            <!-- QUSETION NUMBER 4 -->
             <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questiontruefalse4 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>TRUE&FALSE Q#4</div>
 
-                <div  class="d-flex ">
-                  <div> <img class="<%= exam.answertf4 === exam.correctanswertruefalse4? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                  <div> <img class="<%= exam.answertf4 !== exam.correctanswertruefalse4 && exam.answertf4 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answertf4 === exam.correctanswertruefalse4? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img
+                      class="<%= exam.answertf4 !== exam.correctanswertruefalse4 && exam.answertf4 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
               </div>
               <div class="info__title mb-3">
@@ -1396,7 +1483,8 @@
 
               <div class="radio-buttons-container w-100 d-flex justify-content-around">
                 <div class="radio-button">
-                  <input name="answertf4" id="radio47" class="radio-button__input" type="radio" value="<%= exam.answer1truefalse4 %>">
+                  <input name="answertf4" id="radio47" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1truefalse4 %>">
                   <label for="radio47" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -1404,7 +1492,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answertf4" id="radio48" class="radio-button__input" type="radio" value="<%= exam.answer2truefalse4 %>">
+                  <input name="answertf4" id="radio48" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2truefalse4 %>">
                   <label for="radio48" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -1412,57 +1501,65 @@
                   </label>
                 </div>
 
-                
+
               </div>
 
             </div>
 
-              <!-- QUSETION NUMBER 5 -->
-              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questiontruefalse5 === undefined? "d-none" : "d-block" %>">
-                <div class="info__title mb-3 d-flex w-100 justify-content-between">
-                  <div>TRUE&FALSE Q#5</div>
+            <!-- QUSETION NUMBER 5 -->
+            <div
+              class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questiontruefalse5 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>TRUE&FALSE Q#5</div>
 
-                  <div  class="d-flex ">
-                    <div> <img class="<%= exam.answertf5 === exam.correctanswertruefalse5? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                    <div> <img class="<%= exam.answertf5 !== exam.correctanswertruefalse5 && exam.answertf5 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
-                  </div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answertf5 === exam.correctanswertruefalse5? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img
+                      class="<%= exam.answertf5 !== exam.correctanswertruefalse5 && exam.answertf5 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
-                <div class="info__title mb-3">
-                  <%= exam.questiontruefalse5 %>
-
-                </div>
-
-                <div class="radio-buttons-container w-100 d-flex justify-content-around">
-                  <div class="radio-button">
-                    <input name="answertf5" id="radio49" class="radio-button__input" type="radio" value="<%= exam.answer1truefalse5 %>">
-                    <label for="radio49" class="radio-button__label">
-                      <span class="radio-button__custom"></span>
-
-                      <%= exam.answer1truefalse5 %>
-                    </label>
-                  </div>
-                  <div class="radio-button">
-                    <input name="answertf5" id="radio50" class="radio-button__input" type="radio" value="<%= exam.answer2truefalse5 %>">
-                    <label for="radio50" class="radio-button__label">
-                      <span class="radio-button__custom"></span>
-
-                      <%= exam.answer2truefalse5 %>
-                    </label>
-                  </div>
-
-                  
-                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questiontruefalse5 %>
 
               </div>
 
-                <!-- QUSETION NUMBER 6 -->
-            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questiontruefalse6 === undefined? "d-none" : "d-block" %>">
+              <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                <div class="radio-button">
+                  <input name="answertf5" id="radio49" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1truefalse5 %>">
+                  <label for="radio49" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer1truefalse5 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answertf5" id="radio50" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2truefalse5 %>">
+                  <label for="radio50" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer2truefalse5 %>
+                  </label>
+                </div>
+
+
+              </div>
+
+            </div>
+
+            <!-- QUSETION NUMBER 6 -->
+            <div
+              class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questiontruefalse6 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>TRUE&FALSE Q#6</div>
 
-                <div  class="d-flex ">
-                  <div> <img class="<%= exam.answertf6 === exam.correctanswertruefalse6? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                  <div> <img class="<%= exam.answertf6 !== exam.correctanswertruefalse6 && exam.answertf6 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answertf6 === exam.correctanswertruefalse6? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img
+                      class="<%= exam.answertf6 !== exam.correctanswertruefalse6 && exam.answertf6 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
               </div>
               <div class="info__title mb-3">
@@ -1472,7 +1569,8 @@
 
               <div class="radio-buttons-container w-100 d-flex justify-content-around">
                 <div class="radio-button">
-                  <input name="answertf6" id="radio51" class="radio-button__input" type="radio" value="<%= exam.answer1truefalse6 %>">
+                  <input name="answertf6" id="radio51" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1truefalse6 %>">
                   <label for="radio51" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -1480,7 +1578,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answertf6" id="radio52" class="radio-button__input" type="radio" value="<%= exam.answer2truefalse6 %>">
+                  <input name="answertf6" id="radio52" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2truefalse6 %>">
                   <label for="radio52" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -1488,57 +1587,65 @@
                   </label>
                 </div>
 
-                
+
               </div>
 
             </div>
 
-              <!-- QUSETION NUMBER 7 -->
-              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questiontruefalse7 === undefined? "d-none" : "d-block" %>">
-                <div class="info__title mb-3 d-flex w-100 justify-content-between">
-                  <div>TRUE&FALSE Q#7</div>
+            <!-- QUSETION NUMBER 7 -->
+            <div
+              class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questiontruefalse7 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>TRUE&FALSE Q#7</div>
 
-                  <div  class="d-flex ">
-                    <div> <img class="<%= exam.answertf7 === exam.correctanswertruefalse7? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                    <div> <img class="<%= exam.answertf7 !== exam.correctanswertruefalse7 && exam.answertf7 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
-                  </div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answertf7 === exam.correctanswertruefalse7? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img
+                      class="<%= exam.answertf7 !== exam.correctanswertruefalse7 && exam.answertf7 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
-                <div class="info__title mb-3">
-                  <%= exam.questiontruefalse7 %>
-
-                </div>
-
-                <div class="radio-buttons-container w-100 d-flex justify-content-around">
-                  <div class="radio-button">
-                    <input name="answertf7" id="radio53" class="radio-button__input" type="radio" value="<%= exam.answer1truefalse7 %>">
-                    <label for="radio53" class="radio-button__label">
-                      <span class="radio-button__custom"></span>
-
-                      <%= exam.answer1truefalse7 %>
-                    </label>
-                  </div>
-                  <div class="radio-button">
-                    <input name="answertf7" id="radio54" class="radio-button__input" type="radio" value="<%= exam.answer2truefalse7 %>">
-                    <label for="radio54" class="radio-button__label">
-                      <span class="radio-button__custom"></span>
-
-                      <%= exam.answer2truefalse7 %>
-                    </label>
-                  </div>
-
-                  
-                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questiontruefalse7 %>
 
               </div>
 
-                <!-- QUSETION NUMBER 8 -->
-            <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questiontruefalse8 === undefined? "d-none" : "d-block" %>">
+              <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                <div class="radio-button">
+                  <input name="answertf7" id="radio53" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1truefalse7 %>">
+                  <label for="radio53" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer1truefalse7 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answertf7" id="radio54" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2truefalse7 %>">
+                  <label for="radio54" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer2truefalse7 %>
+                  </label>
+                </div>
+
+
+              </div>
+
+            </div>
+
+            <!-- QUSETION NUMBER 8 -->
+            <div
+              class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questiontruefalse8 === undefined? "d-none" : "d-block" %>">
               <div class="info__title mb-3 d-flex w-100 justify-content-between">
                 <div>TRUE&FALSE Q#8</div>
 
-                <div  class="d-flex ">
-                  <div> <img class="<%= exam.answertf8 === exam.correctanswertruefalse8? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                  <div> <img class="<%= exam.answertf8 !== exam.correctanswertruefalse8 && exam.answertf8 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answertf8 === exam.correctanswertruefalse8? "d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img
+                      class="<%= exam.answertf8 !== exam.correctanswertruefalse8 && exam.answertf8 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
               </div>
               <div class="info__title mb-3">
@@ -1548,7 +1655,8 @@
 
               <div class="radio-buttons-container w-100 d-flex justify-content-around">
                 <div class="radio-button">
-                  <input name="answertf8" id="radio55" class="radio-button__input" type="radio" value="<%= exam.answer1truefalse8 %>">
+                  <input name="answertf8" id="radio55" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1truefalse8 %>">
                   <label for="radio55" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -1556,7 +1664,8 @@
                   </label>
                 </div>
                 <div class="radio-button">
-                  <input name="answertf8" id="radio56" class="radio-button__input" type="radio" value="<%= exam.answer2truefalse8 %>">
+                  <input name="answertf8" id="radio56" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2truefalse8 %>">
                   <label for="radio56" class="radio-button__label">
                     <span class="radio-button__custom"></span>
 
@@ -1564,66 +1673,75 @@
                   </label>
                 </div>
 
-                
+
               </div>
 
             </div>
 
-              <!-- QUSETION NUMBER 9 -->
-              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questiontruefalse9 === undefined? "d-none" : "d-block" %>">
-                <div class="info__title mb-3 d-flex w-100 justify-content-between">
-                  <div>TRUE&FALSE Q#9</div>
+            <!-- QUSETION NUMBER 9 -->
+            <div
+              class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questiontruefalse9 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>TRUE&FALSE Q#9</div>
 
-                  <div  class="d-flex ">
-                    <div> <img class="<%= exam.answertf9 === exam.correctanswertruefalse9? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                    <div> <img class="<%= exam.answertf9 !== exam.correctanswertruefalse9 && exam.answertf9 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
-                  </div>
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answertf9 === exam.correctanswertruefalse9? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img
+                      class="<%= exam.answertf9 !== exam.correctanswertruefalse9 && exam.answertf9 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
                 </div>
-                <div class="info__title mb-3">
-                  <%= exam.questiontruefalse9 %>
-
-                </div>
-
-                <div class="radio-buttons-container w-100 d-flex justify-content-around">
-                  <div class="radio-button">
-                    <input name="answertf9" id="radio57" class="radio-button__input" type="radio" value="<%= exam.answer1truefalse9 %>">
-                    <label for="radio57" class="radio-button__label">
-                      <span class="radio-button__custom"></span>
-
-                      <%= exam.answer1truefalse9 %>
-                    </label>
-                  </div>
-                  <div class="radio-button">
-                    <input name="answertf9" id="radio58" class="radio-button__input" type="radio" value="<%= exam.answer2truefalse9 %>">
-                    <label for="radio58" class="radio-button__label">
-                      <span class="radio-button__custom"></span>
-
-                      <%= exam.answer2truefalse9 %>
-                    </label>
-                  </div>
-
-                  
-                </div>
+              </div>
+              <div class="info__title mb-3">
+                <%= exam.questiontruefalse9 %>
 
               </div>
 
-              <!-- QUSETION NUMBER 10 -->
-              <div class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questiontruefalse10 === undefined? "d-none" : "d-block" %>">
-                <div class="info__title mb-3 d-flex w-100 justify-content-between">
-                  <div>TRUE&FALSE Q#10</div>
+              <div class="radio-buttons-container w-100 d-flex justify-content-around">
+                <div class="radio-button">
+                  <input name="answertf9" id="radio57" class="radio-button__input" type="radio"
+                    value="<%= exam.answer1truefalse9 %>">
+                  <label for="radio57" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
 
-                  <div  class="d-flex ">
-                    <div> <img class="<%= exam.answertf10 === exam.correctanswertruefalse10? "d-block" : "d-none" %>" src="/svg/true-06.svg" width="25" height="25" alt=""></div>
-                    <div> <img class="<%= exam.answertf10 !== exam.correctanswertruefalse10 && exam.answertf10 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
-                  </div>
-                  <div class="info__title mb-3">
+                    <%= exam.answer1truefalse9 %>
+                  </label>
+                </div>
+                <div class="radio-button">
+                  <input name="answertf9" id="radio58" class="radio-button__input" type="radio"
+                    value="<%= exam.answer2truefalse9 %>">
+                  <label for="radio58" class="radio-button__label">
+                    <span class="radio-button__custom"></span>
+
+                    <%= exam.answer2truefalse9 %>
+                  </label>
+                </div>
+
+
+              </div>
+
+            </div>
+
+            <!-- QUSETION NUMBER 10 -->
+            <div
+              class="info w-100 d-flex flex-column align-items-start mb-2 <%= exam.questiontruefalse10 === undefined? "d-none" : "d-block" %>">
+              <div class="info__title mb-3 d-flex w-100 justify-content-between">
+                <div>TRUE&FALSE Q#10</div>
+
+                <div class="d-flex ">
+                  <div> <img class="<%= exam.answertf10 === exam.correctanswertruefalse10? " d-block" : "d-none" %>"
+                    src="/svg/true-06.svg" width="25" height="25" alt=""></div>
+                  <div> <img
+                      class="<%= exam.answertf10 !== exam.correctanswertruefalse10 && exam.answertf10 !== undefined? "d-block" : "d-none" %>" src="/svg/false-05.svg" width="25" height="25" alt=""></div>
+                </div>
+                <div class="info__title mb-3">
                   <%= exam.questiontruefalse10 %>
 
                 </div>
 
                 <div class="radio-buttons-container w-100 d-flex justify-content-around">
                   <div class="radio-button">
-                    <input name="answertf10" id="radio59" class="radio-button__input" type="radio" value="<%= exam.answer1truefalse10 %>">
+                    <input name="answertf10" id="radio59" class="radio-button__input" type="radio"
+                      value="<%= exam.answer1truefalse10 %>">
                     <label for="radio59" class="radio-button__label">
                       <span class="radio-button__custom"></span>
 
@@ -1631,7 +1749,8 @@
                     </label>
                   </div>
                   <div class="radio-button">
-                    <input name="answertf10" id="radio60" class="radio-button__input" type="radio" value="<%= exam.answer2truefalse10 %>">
+                    <input name="answertf10" id="radio60" class="radio-button__input" type="radio"
+                      value="<%= exam.answer2truefalse10 %>">
                     <label for="radio60" class="radio-button__label">
                       <span class="radio-button__custom"></span>
 
@@ -1639,7 +1758,7 @@
                     </label>
                   </div>
 
-                  
+
                 </div>
 
               </div>
@@ -1679,8 +1798,8 @@
 
               <% } %>
 
+              <table class="table">
                 <% if (results.length>=1 ) { %>
-                  <table class="table">
                     <thead>
                       <tr class="text-center">
                         <th scope="col">#</th>
@@ -1692,7 +1811,7 @@
                       </tr>
                     </thead>
 
-                    <% results.forEach((item, index)=> { %>
+                    <% results.forEach((item, index)=> { %>                    
                       <tbody>
                         <tr class="text-center">
                           <th scope="row">
@@ -1715,13 +1834,186 @@
                             </span>/<span style="color: red;">
                               <%= item.questionnumber %>
                             </span></td>
-                        </tr>
+                          <td>
+                            <a data-tooltip="Answers" data-flow="top" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal5<%= item._id %>">
+                              <i  class="fa-solid fa-street-view" style="color: #74C0FC;"></i>
+                            </a>
+                          
+                          </td> 
+                            <!-- Modal -->
+                          
+                            <div class="connectmodal modal fade" id="exampleModal5<%= item._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="glass modal-content">
+                                  <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">View Results</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body text-start">
+                                    
+                                    <label class="<%= item.answerc1 === undefined? "d-none" : "d-block" %>" for="AnswerChoose#1">Answer Choose#1</label>
+                                    <input disabled id="AnswerChoose#1" placeholder="Answer Choose#1" type="text" class="form-control mb-2 <%= item.answerc1 === undefined? "d-none" : "d-block" %>" value="<%= item.answerc1 %>">
+                                    
+                                    <label class="<%= item.answerc2 === undefined? "d-none" : "d-block" %>" for="AnswerChoose#2">Answer Choose#2</label>
+                                    <input disabled id="AnswerChoose#2" placeholder="Answer Choose#2" type="text" class="form-control mb-2 <%= item.answerc2 === undefined? "d-none" : "d-block" %>" value="<%= item.answerc2 %>">
+                                    
+                                    <label class="<%= item.answerc3 === undefined? "d-none" : "d-block" %>" for="AnswerChoose#3">Answer Choose#3</label>
+                                    <input disabled id="AnswerChoose#3" placeholder="Answer Choose#3" type="text" class="form-control mb-2 <%= item.answerc3 === undefined? "d-none" : "d-block" %>" value="<%= item.answerc3 %>">
+                                    
+                                    <label class="<%= item.answerc4 === undefined? "d-none" : "d-block" %>" for="AnswerChoose#4">Answer Choose#4</label>
+                                    <input disabled id="AnswerChoose#4" placeholder="Answer Choose#4" type="text" class="form-control mb-2 <%= item.answerc4 === undefined? "d-none" : "d-block" %>" value="<%= item.answerc4 %>">
+                                    
+                                    <label class="<%= item.answerc5 === undefined? "d-none" : "d-block" %>" for="AnswerChoose#5">Answer Choose#5</label>
+                                    <input disabled id="AnswerChoose#5" placeholder="Answer Choose#5" type="text" class="form-control mb-2 <%= item.answerc5 === undefined? "d-none" : "d-block" %>" value="<%= item.answerc5 %>">
+                                    
+                                    <label class="<%= item.answerc6 === undefined? "d-none" : "d-block" %>" for="AnswerChoose#6">Answer Choose#6</label>
+                                    <input disabled id="AnswerChoose#6" placeholder="Answer Choose#6" type="text" class="form-control mb-2 <%= item.answerc6 === undefined? "d-none" : "d-block" %>" value="<%= item.answerc6 %>">
+                                    
+                                    <label class="<%= item.answerc7 === undefined? "d-none" : "d-block" %>" for="AnswerChoose#7">Answer Choose#7</label>
+                                    <input disabled id="AnswerChoose#7" placeholder="Answer Choose#7" type="text" class="form-control mb-2 <%= item.answerc7 === undefined? "d-none" : "d-block" %>" value="<%= item.answerc7 %>">
+                                    
+                                    <label class="<%= item.answerc8 === undefined? "d-none" : "d-block" %>" for="AnswerChoose#8">Answer Choose#8</label>
+                                    <input disabled id="AnswerChoose#8" placeholder="Answer Choose#8" type="text" class="form-control mb-2 <%= item.answerc8 === undefined? "d-none" : "d-block" %>" value="<%= item.answerc8 %>">
+                                    
+                                    <label class="<%= item.answerc9 === undefined? "d-none" : "d-block" %>" for="AnswerChoose#9">Answer Choose#9</label>
+                                    <input disabled id="AnswerChoose#9" placeholder="Answer Choose#9" type="text" class="form-control mb-2 <%= item.answerc9 === undefined? "d-none" : "d-block" %>" value="<%= item.answerc9 %>">
+                                    
+                                    <label class="<%= item.answerc10 === undefined? "d-none" : "d-block" %>" for="AnswerChoose#10">Answer Choose#10</label>
+                                    <input disabled id="AnswerChoose#10" placeholder="Answer Choose#10" type="text" class="form-control mb-2 <%= item.answerc10 === undefined? "d-none" : "d-block" %>" value="<%= item.answerc10 %>">
+                          
+                                    <label class="<%= item.answerassy1 === undefined || item.answerassy1 === ""? "d-none" : "d-block" %>" for="AnswerEssay#1">Answer Essay#1</label>
+                                    <input disabled id="AnswerEssay#1" placeholder="Answer Essay#1" type="text" class="form-control mb-2 <%= item.answerassy1 === undefined || item.answerassy1 === ""? "d-none" : "d-block" %>" value="<%= item.answerassy1 %>">
+                                    
+                                    <label class="<%= item.answerassy2 === undefined || item.answerassy2 === ""? "d-none" : "d-block" %>" for="AnswerEssay#2">Answer Essay#2</label>
+                                    <input disabled id="AnswerEssay#2" placeholder="Answer Essay#2" type="text" class="form-control mb-2 <%= item.answerassy2 === undefined || item.answerassy2 === ""? "d-none" : "d-block" %>" value="<%= item.answerassy2 %>">
+                                    
+                                    <label class="<%= item.answerassy3 === undefined || item.answerassy3 === ""? "d-none" : "d-block" %>" for="AnswerEssay#3">Answer Essay#3</label>
+                                    <input disabled id="AnswerEssay#3" placeholder="Answer Essay#3" type="text" class="form-control mb-2 <%= item.answerassy3 === undefined || item.answerassy3 === ""? "d-none" : "d-block" %>" value="<%= item.answerassy3 %>">
+                                    
+                                    <label class="<%= item.answerassy4 === undefined || item.answerassy4 === ""? "d-none" : "d-block" %>" for="AnswerEssay#4">Answer Essay#4</label>
+                                    <input disabled id="AnswerEssay#4" placeholder="Answer Essay#4" type="text" class="form-control mb-2 <%= item.answerassy4 === undefined || item.answerassy4 === ""? "d-none" : "d-block" %>" value="<%= item.answerassy4 %>">
+                                    
+                                    <label class="<%= item.answerassy5 === undefined || item.answerassy5 === ""? "d-none" : "d-block" %>" for="AnswerEssay#5">Answer Essay#5</label>
+                                    <input disabled id="AnswerEssay#5" placeholder="Answer Essay#5" type="text" class="form-control mb-2 <%= item.answerassy5 === undefined || item.answerassy5 === ""? "d-none" : "d-block" %>" value="<%= item.answerassy5 %>">
+                                    
+                                    <label class="<%= item.answerassy6 === undefined || item.answerassy6 === ""? "d-none" : "d-block" %>" for="AnswerEssay#6">Answer Essay#6</label>
+                                    <input disabled id="AnswerEssay#6" placeholder="Answer Essay#6" type="text" class="form-control mb-2 <%= item.answerassy6 === undefined || item.answerassy6 === ""? "d-none" : "d-block" %>" value="<%= item.answerassy6 %>">
+                                    
+                                    <label class="<%= item.answerassy7 === undefined || item.answerassy7 === ""? "d-none" : "d-block" %>" for="AnswerEssay#7">Answer Essay#7</label>
+                                    <input disabled id="AnswerEssay#7" placeholder="Answer Essay#7" type="text" class="form-control mb-2 <%= item.answerassy7 === undefined || item.answerassy7 === ""? "d-none" : "d-block" %>" value="<%= item.answerassy7 %>">
+                                    
+                                    <label class="<%= item.answerassy8 === undefined || item.answerassy8 === ""? "d-none" : "d-block" %>" for="AnswerEssay#8">Answer Essay#8</label>
+                                    <input disabled id="AnswerEssay#8" placeholder="Answer Essay#8" type="text" class="form-control mb-2 <%= item.answerassy8 === undefined || item.answerassy8 === ""? "d-none" : "d-block" %>" value="<%= item.answerassy8 %>">
+                                    
+                                    <label class="<%= item.answerassy9 === undefined || item.answerassy9 === ""? "d-none" : "d-block" %>" for="AnswerEssay#9">Answer Essay#9</label>
+                                    <input disabled id="AnswerEssay#9" placeholder="Answer Essay#9" type="text" class="form-control mb-2 <%= item.answerassy9 === undefined || item.answerassy9 === ""? "d-none" : "d-block" %>" value="<%= item.answerassy9 %>">
+                                    
+                                    <label class="<%= item.answerassy10 === undefined || item.answerassy10 === ""? "d-none" : "d-block" %>" for="AnswerEssay#10">Answer Essay#10</label>
+                                    <input disabled id="AnswerEssay#10" placeholder="Answer Essay#10" type="text" class="form-control mb-2 <%= item.answerassy10 === undefined || item.answerassy10 === ""? "d-none" : "d-block" %>" value="<%= item.answerassy10 %>">
+                          
+                                    <label class="<%= item.answerchoose1 === undefined || item.answerchoose1 === ""? "d-none" : "d-block" %>" for="AnswerComplete#1">Answer Complete#1</label>
+                                    <input disabled id="AnswerComplete#1" placeholder="Answer Complete#1" type="text" class="form-control mb-2 <%= item.answerchoose1 === undefined || item.answerchoose1 === ""? "d-none" : "d-block" %>" value="<%= item.answerchoose1 %>">
+                                    
+                                    <label class="<%= item.answerchoose2 === undefined || item.answerchoose2 === ""? "d-none" : "d-block" %>" for="AnswerComplete#2">Answer Complete#2</label>
+                                    <input disabled id="AnswerComplete#2" placeholder="Answer Complete#2" type="text" class="form-control mb-2 <%= item.answerchoose2 === undefined || item.answerchoose2 === ""? "d-none" : "d-block" %>" value="<%= item.answerchoose2 %>">
+                                    
+                                    <label class="<%= item.answerchoose3 === undefined || item.answerchoose3 === ""? "d-none" : "d-block" %>" for="AnswerComplete#3">Answer Complete#3</label>
+                                    <input disabled id="AnswerComplete#3" placeholder="Answer Complete#3" type="text" class="form-control mb-2 <%= item.answerchoose3 === undefined || item.answerchoose3 === ""? "d-none" : "d-block" %>" value="<%= item.answerchoose3 %>">
+                                    
+                                    <label class="<%= item.answerchoose4 === undefined || item.answerchoose4 === ""? "d-none" : "d-block" %>" for="AnswerComplete#4">Answer Complete#4</label>
+                                    <input disabled id="AnswerComplete#4" placeholder="Answer Complete#4" type="text" class="form-control mb-2 <%= item.answerchoose4 === undefined || item.answerchoose4 === ""? "d-none" : "d-block" %>" value="<%= item.answerchoose4 %>">
+                                    
+                                    <label class="<%= item.answerchoose5 === undefined || item.answerchoose5 === ""? "d-none" : "d-block" %>" for="AnswerComplete#5">Answer Complete#5</label>
+                                    <input disabled id="AnswerComplete#5" placeholder="Answer Complete#5" type="text" class="form-control mb-2 <%= item.answerchoose5 === undefined || item.answerchoose5 === ""? "d-none" : "d-block" %>" value="<%= item.answerchoose5 %>">
+                                    
+                                    <label class="<%= item.answerchoose6 === undefined || item.answerchoose6 === ""? "d-none" : "d-block" %>" for="AnswerComplete#6">Answer Complete#6</label>
+                                    <input disabled id="AnswerComplete#6" placeholder="Answer Complete#6" type="text" class="form-control mb-2 <%= item.answerchoose6 === undefined || item.answerchoose6 === ""? "d-none" : "d-block" %>" value="<%= item.answerchoose6 %>">
+                                    
+                                    <label class="<%= item.answerchoose7 === undefined || item.answerchoose7 === ""? "d-none" : "d-block" %>" for="AnswerComplete#7">Answer Complete#7</label>
+                                    <input disabled id="AnswerComplete#7" placeholder="Answer Complete#7" type="text" class="form-control mb-2 <%= item.answerchoose7 === undefined || item.answerchoose7 === ""? "d-none" : "d-block" %>" value="<%= item.answerchoose7 %>">
+                                    
+                                    <label class="<%= item.answerchoose8 === undefined || item.answerchoose8 === ""? "d-none" : "d-block" %>" for="AnswerComplete#8">Answer Complete#8</label>
+                                    <input disabled id="AnswerComplete#8" placeholder="Answer Complete#8" type="text" class="form-control mb-2 <%= item.answerchoose8 === undefined || item.answerchoose8 === ""? "d-none" : "d-block" %>" value="<%= item.answerchoose8 %>">
+                                    
+                                    <label class="<%= item.answerchoose9 === undefined || item.answerchoose9 === ""? "d-none" : "d-block" %>" for="AnswerComplete#9">Answer Complete#9</label>
+                                    <input disabled id="AnswerComplete#9" placeholder="Answer Complete#9" type="text" class="form-control mb-2 <%= item.answerchoose9 === undefined || item.answerchoose9 === ""? "d-none" : "d-block" %>" value="<%= item.answerchoose9 %>">
+                                    
+                                    <label class="<%= item.answerchoose10 === undefined || item.answerchoose10 === ""? "d-none" : "d-block" %>" for="AnswerComplete#10">Answer Complete#10</label>
+                                    <input disabled id="AnswerComplete#10" placeholder="Answer Complete#10" type="text" class="form-control mb-2 <%= item.answerchoose10 === undefined || item.answerchoose10 === ""? "d-none" : "d-block" %>" value="<%= item.answerchoose10 %>">
+                          
+                                    <label class="<%= item.answertf1 === undefined? "d-none" : "d-block" %>" for="AnswerTrue/False#1">Answer True/False#1</label>
+                                    <input disabled id="AnswerTrue/False#1" placeholder="Answer True/False#1" type="text" class="form-control mb-2 <%= item.answertf1 === undefined? "d-none" : "d-block" %>" value="<%= item.answertf1 %>">
+                                    
+                                    <label class="<%= item.answertf2 === undefined? "d-none" : "d-block" %>" for="AnswerTrue/False#2">Answer True/False#2</label>
+                                    <input disabled id="AnswerTrue/False#2" placeholder="Answer True/False#2" type="text" class="form-control mb-2 <%= item.answertf2 === undefined? "d-none" : "d-block" %>" value="<%= item.answertf2 %>">
+                                    
+                                    <label class="<%= item.answertf3 === undefined? "d-none" : "d-block" %>" for="AnswerTrue/False#3">Answer True/False#3</label>
+                                    <input disabled id="AnswerTrue/False#3" placeholder="Answer True/False#3" type="text" class="form-control mb-2 <%= item.answertf3 === undefined? "d-none" : "d-block" %>" value="<%= item.answertf3 %>">
+                                    
+                                    <label class="<%= item.answertf4 === undefined? "d-none" : "d-block" %>" for="AnswerTrue/False#4">Answer True/False#4</label>
+                                    <input disabled id="AnswerTrue/False#4" placeholder="Answer True/False#4" type="text" class="form-control mb-2 <%= item.answertf4 === undefined? "d-none" : "d-block" %>" value="<%= item.answertf4 %>">
+                                    
+                                    <label class="<%= item.answertf5 === undefined? "d-none" : "d-block" %>" for="AnswerTrue/False#5">Answer True/False#5</label>
+                                    <input disabled id="AnswerTrue/False#5" placeholder="Answer True/False#5" type="text" class="form-control mb-2 <%= item.answertf5 === undefined? "d-none" : "d-block" %>" value="<%= item.answertf5 %>">
+                                    
+                                    <label class="<%= item.answertf6 === undefined? "d-none" : "d-block" %>" for="AnswerTrue/False#6">Answer True/False#6</label>
+                                    <input disabled id="AnswerTrue/False#6" placeholder="Answer True/False#6" type="text" class="form-control mb-2 <%= item.answertf6 === undefined? "d-none" : "d-block" %>" value="<%= item.answertf6 %>">
+                                    
+                                    <label class="<%= item.answertf7 === undefined? "d-none" : "d-block" %>" for="AnswerTrue/False#7">Answer True/False#7</label>
+                                    <input disabled id="AnswerTrue/False#7" placeholder="Answer True/False#7" type="text" class="form-control mb-2 <%= item.answertf7 === undefined? "d-none" : "d-block" %>" value="<%= item.answertf7 %>">
+                                    
+                                    <label class="<%= item.answertf8 === undefined? "d-none" : "d-block" %>" for="AnswerTrue/False#8">Answer True/False#8</label>
+                                    <input disabled id="AnswerTrue/False#8" placeholder="Answer True/False#8" type="text" class="form-control mb-2 <%= item.answertf8 === undefined? "d-none" : "d-block" %>" value="<%= item.answertf8 %>">
+                                    
+                                    <label class="<%= item.answertf9 === undefined? "d-none" : "d-block" %>" for="AnswerTrue/False#9">Answer True/False#9</label>
+                                    <input disabled id="AnswerTrue/False#9" placeholder="Answer True/False#9" type="text" class="form-control mb-2 <%= item.answertf9 === undefined? "d-none" : "d-block" %>" value="<%= item.answertf9 %>">
+                                    
+                                    <label class="<%= item.answertf10 === undefined? "d-none" : "d-block" %>" for="AnswerTrue/False#10">Answer True/False#10</label>
+                                    <input disabled id="AnswerTrue/False#10" placeholder="Answer True/False#10" type="text" class="form-control mb-2 <%= item.answertf10 === undefined? "d-none" : "d-block" %>" value="<%= item.answertf10 %>">
+                                
+                          
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+                              
+                            </div>
+                        </div> 
 
+                        <td>
+                          <a data-tooltip="Edit" data-flow="top" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal<%= item._id %>">
+                            <i class="fa-regular fa-user-pen" style="color: #74C0FC;"></i>
+                          </a>
+                        </td>
+
+                        <div class="connectmodal modal fade" id="exampleModal<%= item._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="glass modal-content">
+                              <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">View Results</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body text-start">
+                                <form action="/editscore/<%= item._id %>?_method=PUT" method="post">
+                                <label class="mb-2" for="score">Edit Score</label>
+                                <input type="text" name="score" id="score" class="form-control">
+                      
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Save</button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                    </div> 
+
+                        </tr>
                       </tbody>
                       <% }) %>
-
-                  </table>
                   <% } %>
+                </table>
           </div>
 
           <div id="rsearch" class="h-100">
