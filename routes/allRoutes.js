@@ -134,9 +134,9 @@ router.get(
     const exam = user.examchoose
     const ldsearch = user.ldsearch
     const searchcode = ldsearch.searchText
-    const searchtext = ldsearch.searchText.toLowerCase()
+    const searchtext = ldsearch.searchText
     const scoreSchema = await Score.find()
-    const find = scoreSchema.filter( item => item.code.match(searchcode) || item.examname.toLowerCase().match(searchtext))
+    const find = scoreSchema.filter( item => item.code.match(searchcode) || item.examname.toLowerCase().match(searchtext.toLowerCase()))
     // const find = user.results.filter( item => item.code.match(searchcode) || item.examname.match(searchtext))
     if (custmer) {
       res.render("admin.ejs", { array: custmer, exam, results, moment : moment , find });
