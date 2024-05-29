@@ -76,8 +76,8 @@
     <button class="btn btn-primary w-100 py-2 my-2" type="submit"><a href="/register"
         style="color: white; text-decoration: none;">Registration</a></button>
 
-    <button id="activbtn" class="btn btn-primary w-100 py-2 mb-2 d-none" type="submit"><a href=""
-        style="color: white; text-decoration: none;">Activation</a></button>
+    <!-- <button id="activbtn" class="btn btn-primary w-100 py-2 mb-2 d-none" type="submit"><a href=""
+        style="color: white; text-decoration: none;">Activation</a></button> -->
 
     <form id="forgetpassword">
       <button class="btn btn-primary w-100 py-2 mb-2" type="submit">Forget Password</button>
@@ -111,11 +111,11 @@
 
       if (data.inactiveuser) {
         inactiveuser.classList.remove('d-none');
-        activbtn.classList.remove('d-none');
+        // activbtn.classList.remove('d-none');
         code.classList.add('redframe');
       } else {
         inactiveuser.classList.add('d-none');
-        activbtn.classList.add('d-none');
+        // activbtn.classList.add('d-none');
         code.classList.remove('redframe');
       }
 

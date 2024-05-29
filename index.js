@@ -8,18 +8,6 @@ const http = require("http");
 
 const path = require("path");
 
-const livereload = require("livereload");
-
-const liveReloadServer = livereload.createServer();
-
-const connectLivereload = require("connect-livereload");
-
-liveReloadServer.watch(path.join(__dirname, 'public'));
-
-
-//ERROR HANDILING TRY_CATCH OR THEN_CATCH
-const asyncHandler = require("express-async-handler");
-
 const app = express();
 //SERVER
 const server = http.createServer(app);
@@ -36,9 +24,6 @@ const ApiError = require(`./utils/apierror`);
 const { globalError } = require(`./middleware/middleware`);
 //FORMAT MESSAGE FOR CHAT
 const formatMessage = require("./utils/messages");
-//USERS
-const User = require("./models/newRegSchema");
-const Chatmessage = require("./models/chatMessage");
 //dotenv
 require("dotenv").config();
 //allRoutes
@@ -50,7 +35,6 @@ app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
 app.use(cookieParser());
 app.use(express.json());
-app.use(connectLivereload());
 app.use(express.static(path.join(__dirname, 'uploads')));
 
 io.on("connection", (socket) => {
@@ -63,11 +47,7 @@ mongoose.connect(process.env.MDB).then(() => {
   });
 });
 
-liveReloadServer.server.once("connection", () => {
-  setTimeout(() => {
-    liveReloadServer.refresh("/");
-  }, 100);
-});
+
 
 app.use(allRoutes);
 //Error Handling Inside EXPRESS
