@@ -208,4 +208,7 @@ exports.STRUCTURE =  asyncHandler(async(req, res) => {
   res.render("STRUCTURE.ejs");
 })
 
-//FIRSTWELCOME
+//VERIFY USER
+exports.VERIFIY =  asyncHandler(async(req, res) => {
+  res.render("Entery/verifiyuser.ejs");
+})

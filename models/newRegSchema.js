@@ -30,6 +30,9 @@ const user = new mongoose.Schema(
     passwordResetCode: String,
     passwordResetExpire: Date,
     passwordResetVerified: Boolean,
+    verificationcode: String,
+    verificationcodeExpire: Date,
+    verificationcodeVerified: Boolean,
 
     code: {
       type: Number,
@@ -43,7 +46,7 @@ const user = new mongoose.Schema(
     },
     active: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     profileimage: String,
     todolist: [
@@ -490,19 +493,33 @@ user.pre("save", async function (next) {
   next();
 });
 
+// user.pre("save", function (next) {
+//   this.firstname =
+//     this.firstname.trim()[0].toUpperCase() +
+//     this.firstname.slice(1).toLowerCase();
+//   next();
+// });
+
 user.pre("save", function (next) {
   this.firstname =
-    this.firstname.trim()[0].toUpperCase() +
-    this.firstname.slice(1).toLowerCase();
+    this.email.split(".")[0].trim()[0].toUpperCase() +
+    this.email.split(".")[0].slice(1).toLowerCase();
   next();
 });
 
 user.pre("save", function (next) {
   this.lastname =
-    this.lastname.trim()[0].toUpperCase() +
-    this.lastname.slice(1).toLowerCase();
+    this.email.split(".")[1].split("@")[0].trim()[0].toUpperCase() +
+    this.email.split(".")[1].split("@")[0].slice(1).toLowerCase();
   next();
 });
+
+// user.pre("save", function (next) {
+//   this.lastname =
+//     this.lastname.trim()[0].toUpperCase() +
+//     this.lastname.slice(1).toLowerCase();
+//   next();
+// });
 
 user.post("save", (doc) => {
   if (doc.profileimage) {

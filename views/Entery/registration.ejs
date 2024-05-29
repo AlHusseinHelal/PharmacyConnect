@@ -34,17 +34,21 @@
 
     <form id="registrationform">
 
-      <div class="form-floating mb-2">
-        <input type="text" class="form-control rounded-top-2 " id="firstname" name="firstname" placeholder="User Name"
-          required style="border-radius: 0;">
+      <div hidden class="form-floating mb-2">
+        <input value="firstname" type="text" class="form-control rounded-top-2 " id="firstname" name="firstname" placeholder="User Name"
+          style="border-radius: 0;">
         <label for="firstname">First Name</label>
       </div>
 
-      <div class="form-floating mb-2">
-        <input type="text" class="form-control rounded-1 " id="lastname" name="lastname" placeholder="User Name"
-          required style="border-radius: 0;">
+      
+
+      <div hidden class="form-floating mb-2">
+        <input value="lastname" type="text" class="form-control rounded-1" id="lastname" name="lastname" placeholder="User Name"
+          style="border-radius: 0;">
         <label for="lastname">Last Name</label>
       </div>
+
+      
 
 
       <div class="form-floating">
@@ -52,7 +56,7 @@
         <label for="Code">Code</label>
       </div>
 
-      <div id="codeexist" class=" d-flex flex-row align-items-center mt-2 d-none"
+      <div id="codeexist" class=" d-flex flex-row align-items-center my-2 d-none"
         style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
         <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
         <p class="my-1 ms-1">The Code Is Already Existing</p>
@@ -100,14 +104,14 @@
         <p class="my-1 ms-1">Password Not Match</p>
       </div>
 
-      
 
-      <button class="btn btn-primary w-100 py-2 mt-2" type="submit" value="register">Sign Up</button>
+
+      <button class="btn btn-primary w-100 py-2 mt-2" type="submit" value="register">Register</button>
 
     </form>
 
 
-    <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
+
   </main>
 
   <script>
@@ -138,7 +142,21 @@
             wrongpassword.classList.add("d-none")
             password.classList.remove("redframe")
           }
-          
+          // if (item.path == "lastname") {
+          //   nolastname.classList.remove("d-none")
+          //   lastname.classList.add("redframe")
+          // } else {
+          //   nolastname.classList.add("d-none")
+          //   lastname.classList.remove("redframe")
+          // }
+          // if (item.path == "firstname") {
+          //   nofirstname.classList.remove("d-none")
+          //   firstname.classList.add("redframe")
+          // } else {
+          //   nofirstname.classList.add("d-none")
+          //   firstname.classList.remove("redframe")
+          // }
+
         });
       }
 
@@ -170,9 +188,21 @@
         cpassword.classList.remove("redframe")
       }
 
-      if (data.user) {
-        location.assign("/Avatar")
+      if (data.invalidemail) {
+        emailwrong.classList.remove("d-none")
+        email.classList.add("redframe")
+      } else {
+        emailwrong.classList.add("d-none")
+        email.classList.remove("redframe")
       }
+
+      // if (data.user) {
+      //   location.assign("/Avatar")
+      // }
+      if (data.user) {
+        location.assign("/verifiyuser")
+      }
+
     });
   </script>
 

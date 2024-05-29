@@ -58,55 +58,67 @@
                       alt="">Add New Medication</a>
                   <ul class="sub-accordion">
                     <li class="sub-accordion__item ">
-                      <form action="/addmedication" method="post" class="d-flex flex-column">
-                        <input placeholder="Generic Name" class="input mb-2" name="generic" type="text" />
-                        <input placeholder="Trade Name" class="input mb-2" name="trade" type="text" />
-                        <div class="d-flex justify-content-between align-items-center">
-
-                          <select placeholder="Class" class="input" name="classname" type="text" style="width: 75%;">
-                            <option disabled hidden selected>Select...</option>
-                            <% medclass.forEach(item=> { %>
-                              <option value="<%= item.classname %>">
-                                <%= item.classname %>
-                              </option>
-                              <% }) %>
-                          </select>
-                          <div class="uiverse mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                            style="width: 20%; margin: unset;">
-                            <span class="tooltip">Add Class</span>
-                            <span>
-                              ADD
-                            </span>
+                      
+                        <div class="d-flex flex-column">
+                          <input placeholder="Generic Name" class="input mb-2" name="generic" id="generic" type="text" />
+                          <input placeholder="Trade Name" class="input mb-2" name="trade" id="trade" type="text" />
+                          <input placeholder="Med Code" class="input mb-2" name="code" id="code" type="text" />
+                          
+                          <div id="invalidcode" class=" d-flex flex-row align-items-center my-2 d-none"
+                            style="border: 1px solid #000509; border-left: 3px solid red; border-radius: 5px;">
+                            <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                            <p class="my-1 ms-1">This Code Is Already Exist</p>
                           </div>
+                          
+                          <div class="d-flex justify-content-between align-items-center">
+                          
+                            <select placeholder="Class" class="input" name="classname" id="clas" type="text" style="width: 75%;">
+                              <option disabled hidden selected>Select...</option>
+                              <% medclass.forEach(item=> { %>
+                                <option value="<%= item.classname %>">
+                                  <%= item.classname %>
+                                </option>
+                                <% }) %>
+                            </select>
+                            <div class="uiverse mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                              style="width: 20%; margin: unset;">
+                              <span class="tooltip">Add Class</span>
+                              <span>
+                                ADD
+                              </span>
+                            </div>
+                          </div>
+                          <!-- <input placeholder="Class" class="input mb-2" name="class" type="text" /> -->
+                          <textarea placeholder="Mechanism" class="input mb-2" name="mechanism" id="mechanism" type="text" cols="30"
+                            rows="10"></textarea>
+                          <input placeholder="Dosage Form" class="input mb-2" name="dosageform" id="dosageform" type="text" />
+                          <textarea placeholder="Dose" class="input mb-2" name="dose" id="dose" type="text" cols="30"
+                            rows="10"></textarea>
+                          <textarea placeholder="Administration" class="input mb-2" name="administration" id="administration" type="text"
+                            cols="30" rows="10"></textarea>
+                          <textarea placeholder="Patient Information" class="input mb-2" name="ptinformation" id="ptinformation" type="text"
+                            cols="30" rows="10"></textarea>
+                          <textarea placeholder="Side Effects" class="input mb-2" name="sideeffect" id="sideeffect" type="text" cols="30"
+                            rows="10"></textarea>
+                          <textarea placeholder="Monitor" class="input mb-2" name="monitor" id="monitor" type="text" cols="30"
+                            rows="10"></textarea>
+                          <textarea placeholder="Interaction" class="input mb-2" name="interaction" id="interaction" type="text" cols="30"
+                            rows="10"></textarea>
+                          <textarea placeholder="Interaction" class="input mb-2" name="specialprecaution" id="specialprecaution" type="text"
+                            cols="30" rows="10"></textarea>
+                            <textarea placeholder="Toxicity" class="input mb-2" name="toxicity" id="toxicity" type="text"
+                            cols="30" rows="10"></textarea>
+                          <textarea placeholder="Miscellaneous" class="input mb-2" name="miscellaneous" id="miscellaneous" type="text"
+                            cols="30" rows="10"></textarea>
+                            <form id="addmedication" class="d-flex flex-column">
+                          <button  type="submit" style="width:130px;">
+                            Submit
+                            <div class="arrow-wrapper">
+                              <div class="arrow"></div>
+                            </div>
+                          </button>
+                          <form>
                         </div>
-                        <!-- <input placeholder="Class" class="input mb-2" name="class" type="text" /> -->
-                        <textarea placeholder="Mechanism" class="input mb-2" name="mechanism" type="text" cols="30"
-                          rows="10"></textarea>
-                        <input placeholder="Dosage Form" class="input mb-2" name="dosageform" type="text" />
-                        <textarea placeholder="Dose" class="input mb-2" name="dose" type="text" cols="30"
-                          rows="10"></textarea>
-                        <textarea placeholder="Adminstration" class="input mb-2" name="adminstration" type="text"
-                          cols="30" rows="10"></textarea>
-                        <textarea placeholder="Patient Information" class="input mb-2" name="ptinformation" type="text"
-                          cols="30" rows="10"></textarea>
-                        <textarea placeholder="Side Effects" class="input mb-2" name="sideeffect" type="text" cols="30"
-                          rows="10"></textarea>
-                        <textarea placeholder="Monitor" class="input mb-2" name="monitor" type="text" cols="30"
-                          rows="10"></textarea>
-                        <textarea placeholder="Interaction" class="input mb-2" name="interaction" type="text" cols="30"
-                          rows="10"></textarea>
-                        <textarea placeholder="Interaction" class="input mb-2" name="specialprecaution" type="text"
-                          cols="30" rows="10"></textarea>
-                        <textarea placeholder="Miscellaneous" class="input mb-2" name="miscellaneous" type="text"
-                          cols="30" rows="10"></textarea>
-                        <button type="submit" style="width:130px;">
-                          Submit
-                          <div class="arrow-wrapper">
-                            <div class="arrow"></div>
-
-                          </div>
-                        </button>
-                      </form>
                     </li>
 
                   </ul>
@@ -160,24 +172,26 @@
                         <select placeholder="Trade Name" class="input mb-2" name="trade" type="text">
                           <option disabled hidden selected>Trade Name ...</option>
                           <% med.forEach(item=> { %>
-                            <option value="<%= item.trade %>">
-                              <%= item.trade %>
+                            <option value="<%= item.generic %>">
+                              <%= item.generic %>
                             </option>
                             <% }) %>
                         </select>
 
                         <select placeholder="Change" class="input mb-2" name="select" type="text">
                           <option disabled hidden selected>Select....</option>
-                          <option value="generic">Generic</option>
+                          <option value="trade">Trade</option>
+                          <option value="origin">Origin</option>
                           <option value="mechanism">Mechanism Of Action</option>
                           <option value="dosageform">Dosage Form</option>
                           <option value="dose">Dose</option>
-                          <option value="adminstration">Adminstration</option>
+                          <option value="administration">Administration</option>
                           <option value="ptinformation">Patient Information</option>
                           <option value="sideeffect">Side Effect</option>
                           <option value="monitor">Monitor</option>
                           <option value="interaction">Interaction</option>
                           <option value="specialprecaution">Special Precaution</option>
+                          <option value="toxicity">Toxicity</option>
                           <option value="miscellaneous">Miscellaneous</option>
                         </select>
 
@@ -540,6 +554,34 @@
           } else {
             classnameexist.classList.add("d-none")
             classname.classList.remove("redframe")
+          }
+
+          if (data.done) {
+            location.assign("/dic")
+          }
+
+        });
+
+      </script>
+
+      <!-- ADD MEDICATION  -->
+      <script>
+        addmedication.addEventListener('click', async (event) => {
+          event.preventDefault()
+          const res = await fetch("/addmedication", {
+            method: "POST",
+            body: JSON.stringify({ generic: generic.value, trade: trade.value, code: code.value, classname: clas.value, mechanism: mechanism.value, dosageform: dosageform.value, administration: administration.value, ptinformation: ptinformation.value, sideeffect: sideeffect.value, monitor: monitor.value, interaction: interaction.value, specialprecaution: specialprecaution.value, toxicity: toxicity.value, miscellaneous: miscellaneous.value, }),
+            headers: { "Content-Type": "application/json" }, 
+          })
+          const data = await res.json()
+          
+
+          if (data.code) {
+            invalidcode.classList.remove("d-none")
+            code.classList.add("redframe")
+          } else {
+            invalidcode.classList.add("d-none")
+            code.classList.remove("redframe")
           }
 
           if (data.done) {

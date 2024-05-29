@@ -73,14 +73,15 @@
 
                           <div class="d-flex align-items-center">
                             <div class="d-flex align-items-center me-2">
-                              <!-- <a class="ms-2 d-none" href="" data-tooltip="Locked" data-flow="top"><i
-                                  class="fa-regular fa-lock"></i></a> -->
-                              <a data-tooltip="DIC" data-flow="top" class="mx-2 <%= item.role === "DIC"? "d-block"
+                              
+                              <a data-tooltip="DIC" data-flow="top" class=" <%= item.role === "DIC"? "d-block"
                                 : "d-none" %>" href=""><i class="fa-solid fa-d"></i></a>
-                              <a data-tooltip="Admin" data-flow="top" class="mx-2 <%= item.role === "Admin"? "d-block"
+                              <a data-tooltip="Admin" data-flow="top" class=" <%= item.role === "Admin"? "d-block"
                                 : "d-none" %>" href=""><i class="fa-solid fa-screwdriver-wrench"
                                   style="color: #df0707;"></i></a>
-                              <a href="" data-tooltip="Active" data-flow="top"><i class="fa-regular fa-unlock"></i></a>
+                              <form action="/lockuser/<%= item._id %>?_method=PUT" method="post"><button style="border: unset; color: unset; background-color: unset;" class=" <%= item.active === true? "" : "d-none" %>" href="" data-tooltip="Active" data-flow="top"><i class="ms-2 fa-regular fa-unlock" style="color: #74C0FC;"></i></button></form>
+                              <form action="/unlockuser/<%= item._id %>?_method=PUT" method="post"><button style="border: unset; background-color: unset;" class="ms-2 <%= item.active === false? "" : "d-none" %>" data-tooltip="Locked" data-flow="top"><i
+                                class="fa-regular fa-lock" style="color: red;"></i></button></form>
                             </div>
                             <div class="d-flex align-items-center">
                               <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal<%= item._id %>"

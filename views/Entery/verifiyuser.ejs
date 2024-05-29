@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verification</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Libre+Baskerville&family=Poppins:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="shortcut icon" href="svg/ConnectLogo.svg" type="image/x-icon">
+  <!-- bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- My STYLE CSS -->
+  <link rel="stylesheet" href="css/changepass.css">
+</head>
+
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
+
+
+  <main class="form-signin w-100 m-auto">
+    <img class="mb-4 d-flex mx-auto" src="svg/PharmacyLogo.svg" alt="" height="150">
+    <h1 class="mb-3 text-center"> Please Enter The Verification Code Sent to Your Email</h1>
+
+    <div class="form-floating mt-2">
+      <input type="text" class="form-control rounded-1 mb-2" id="verifiycode" name="verifiycode"
+        placeholder="verifiycode" required>
+      <label for="verifiycode">Verification Code</label>
+    </div>
+
+
+    <div id="vcode" class=" d-flex flex-row align-items-center my-2 d-none"
+      style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+      <img class="ms-1 " src="/svg/alertsign-02.svg" height="20vh" alt="">
+      <p class="my-1 ms-1">VerificationCode Didn't Match Or Expired</p>
+    </div>
+
+    <div id="nocode" class=" d-flex flex-row align-items-center my-2 d-none"
+      style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+      <img class="ms-1 " src="/svg/alertsign-02.svg" height="20vh" alt="">
+      <p class="my-1 ms-1">You Must Enter This Field</p>
+    </div>
+
+
+    <form id="verification">
+      <button class="btn btn-primary w-50 py-2 my-3 " type="submit">Submit</button>
+    </form>
+
+
+  </main>
+
+  <script>
+    verification.addEventListener('click', async (event) => {
+      event.preventDefault()
+      const res = await fetch("/verifiyuser", {
+        method: "POST",
+        body: JSON.stringify({ verifiycode: verifiycode.value }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const data = await res.json();
+      if (data.message) {
+        vcode.classList.remove('d-none');
+        verifiycode.classList.add('redframe');
+      } else {
+        vcode.classList.add('d-none');
+        verifiycode.classList.remove('redframe');
+      }
+
+      if (data.verified) {
+        location.assign("/Avatar")
+      }
+    }
+    );
+
+  </script>
+
+
+
+
+</body>
+
+</html>

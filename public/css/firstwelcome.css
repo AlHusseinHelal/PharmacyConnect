@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap"); */
 
 
 html,
@@ -21,15 +21,16 @@ body{
 
 .svg {
   font-family: "Russo One", sans-serif;
-  width: 100%;
-  height: 100%;
+  /* width: 100%; */
+  /* height: 100%; */
+  height: 70%;
 }
 
 .svg text {
   animation: stroke 5s alternate;
   stroke-width: 0;
   stroke: rgba(72, 138, 204, 1);
-  font-size: 55px;
+  font-size: 45px;
   fill: rgba(72, 138, 204, 1)
 }
 
@@ -64,8 +65,72 @@ body{
 
 .wrapper-one {
   background-color: transparent;
+height: 50px;
 }
 
 .wrapper-one:hover{
   cursor:default;
 }
+
+
+.card {
+  width: 280px;
+  height: 530px;
+  padding: 0 15px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  background: #fff;
+  border-radius: 20px;
+}
+
+.card > * {
+  margin: 0;
+}
+
+.card__title {
+  font-size: 23px;
+  font-weight: 900;
+  color: #333;
+}
+
+.card__content {
+  font-size: 13px;
+  line-height: 18px;
+  color: #333;
+}
+
+.card__form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card__form input {
+  margin-top: 10px;
+  outline: 0;
+  background: rgb(255, 255, 255);
+  box-shadow: transparent 0px 0px 0px 1px inset;
+  padding: 0.6em;
+  border-radius: 14px;
+  border: 1px solid #333;
+  color: black;
+}
+
+.card__form button {
+  width: 250%;
+  border: 0;
+  background: #111;
+  color: #fff;
+  padding: 0.68em;
+  border-radius: 14px;
+  font-weight: bold;
+  outline: 0;
+}
+
+.sign-up:hover {
+  opacity: 0.8;
+} 
