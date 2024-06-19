@@ -116,20 +116,7 @@ const profileimage = asyncHandler(async (req, res, next) => {
   next();
 });
 
-function watchreceiver(req, res, cb) {
-  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-  const date = moment().format("YYYY-MM-DD");
-  const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
-  const startDate = `${date}T14:00:00.000+00:00`;
-  const endDate = `${tomorrow}T13:59:59.000+00:00`;
-  const currentUser = User.findOne({ _id: decoded.id });
-  const receiver = currentUser.watchreceiver.filter((item) => {
-    const createdAt = moment(item.createdAt);
-    return createdAt.isBetween(startDate, endDate);
-  });
-  console.log(receiver);
-   cb(receiver);
-}
+
 
 module.exports = {
   requireAuth,
@@ -139,5 +126,4 @@ module.exports = {
   imageresizeforoutpatient,
   profileimage,
   uploadSingleImage,
-  watchreceiver,
 };

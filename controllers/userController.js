@@ -136,15 +136,73 @@ exports.OncoTips = asyncHandler(async (req, res) => {
   const SkeletalMuscleRelaxant = await Medication.find({
     classname: "Skeletal Muscle Relaxant",
   }).sort({ generic: "asc" });
-  const VasopressinHormone = await Medication.find({
-    classname: "Vasopressin Hormone",
-  }).sort({ generic: "asc" });
+  // const VasopressinHormone = await Medication.find({
+  //   classname: "Vasopressin Hormone",
+  // }).sort({ generic: "asc" });
   const WaterSolubleVitamin = await Medication.find({
     classname: "Water Soluble Vitamin",
   }).sort({ generic: "asc" });
 
   const Maoinhibitor = await Medication.find({
     classname: "Mao inhibitor",
+  }).sort({ generic: "asc" });
+
+  const Antitraumatic = await Medication.find({
+    classname: "Anti-Traumatic",
+  }).sort({ generic: "asc" });
+
+  const Bronchodilator = await Medication.find({
+    classname: "Bronchodilator",
+  }).sort({ generic: "asc" });
+
+  const Contraceptive
+  = await Medication.find({
+    classname: "Contraceptive",
+  }).sort({ generic: "asc" });
+
+  const Decongestant
+  = await Medication.find({
+    classname: "Decongestant",
+  }).sort({ generic: "asc" });
+
+  const Digestive
+  = await Medication.find({
+    classname: "Digestive",
+  }).sort({ generic: "asc" });
+
+  const Hormone
+  = await Medication.find({
+    classname: "Hormone",
+  }).sort({ generic: "asc" });
+
+  const Laxative
+  = await Medication.find({
+    classname: "Laxative",
+  }).sort({ generic: "asc" });
+
+  const AntiAsthmatic
+  = await Medication.find({
+    classname: "Anti-Asthmatic",
+  }).sort({ generic: "asc" });
+
+  const Diuretic
+  = await Medication.find({
+    classname: "Diuretic",
+  }).sort({ generic: "asc" });
+
+  const AntiHyperphosphatemia
+  = await Medication.find({
+    classname: "Anti-Hyperphosphatemia",
+  }).sort({ generic: "asc" });
+
+  const PPI
+  = await Medication.find({
+    classname: "Proton Pump Inhibitor",
+  }).sort({ generic: "asc" });
+
+  const Weakopioid
+  = await Medication.find({
+    classname: "Weak opioid",
   }).sort({ generic: "asc" });
 
   if (med) {
@@ -182,8 +240,22 @@ exports.OncoTips = asyncHandler(async (req, res) => {
       Neurology,
       Osteoarthritis,
       SkeletalMuscleRelaxant,
-      VasopressinHormone,
-      WaterSolubleVitamin,Maoinhibitor
+      // VasopressinHormone,
+      WaterSolubleVitamin,
+      Maoinhibitor,
+      Antitraumatic,
+      Bronchodilator,
+      Contraceptive,
+      Decongestant,
+      Digestive,
+      Hormone,
+      Laxative,
+      AntiAsthmatic,
+      Diuretic,
+      AntiHyperphosphatemia,
+      PPI,
+      Weakopioid
+      
     });
   }
 });

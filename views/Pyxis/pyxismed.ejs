@@ -190,9 +190,9 @@
                         <th class="text-center" scope="col">Trade #2</th>
                         <th class="text-center" scope="col">Trade #3</th>
                         <th class="text-center" scope="col">Trade #4</th>
-                        <th class="text-center <%= user.role === "Admin"? "" : "d-none" %>" scope="col">Active</th>
-                        <th class="text-center <%= user.role === "Admin"? "" : "d-none" %>" scope="col">Edit</th>
-                        <th class="text-center <%= user.role === "Admin"? "" : "d-none" %>" scope="col">Delete</th>
+                        <th class="text-center <%= user.role === "Admin" || user.role === "Pyxis"? "" : "d-none" %>" scope="col">Active</th>
+                        <th class="text-center <%= user.role === "Admin" || user.role === "Pyxis"? "" : "d-none" %>" scope="col">Edit</th>
+                        <th class="text-center <%= user.role === "Admin" || user.role === "Pyxis"? "" : "d-none" %>" scope="col">Delete</th>
                       </tr>
                     </thead>
 
@@ -225,7 +225,7 @@
                             <%= item.trade4 %>
                           </td>
 
-                          <td class="text-center p-3 <%= user.role === "Admin"? "" : "d-none" %>">
+                          <td class="text-center p-3 <%= user.role === "Admin" || user.role === "Pyxis"? "" : "d-none" %>">
                             <form action="/tradeselect/<%= item._id %>?_method=Put" method="post">
                               <div class="d-flex align-items-center">
                                 <select class="form-control" name="tradeselect" id="tradeselect">
@@ -257,7 +257,7 @@
 
 
                           
-                          <td style="position: relative;" class="text-center p-3 <%= user.role === "Admin"? "" : "d-none" %>"  >
+                          <td style="position: relative;" class="text-center p-3 <%= user.role === "Admin" || user.role === "Pyxis"? "" : "d-none" %>"  >
                             <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal6<%= item._id %>">
                               <i class="fa-solid fa-pen-to-square fa-lg" style="color: #74c0fc;"></i>
                               
@@ -298,7 +298,7 @@
                           </td>
                           
 
-                          <td class="text-center p-3 <%= user.role === "Admin"? "" : "d-none" %>">
+                          <td class="text-center p-3 <%= user.role === "Admin" || user.role === "Pyxis"? "" : "d-none" %>">
                             <button type="button" class="btn btn-primary border rounded-2 d-inline-flex p-1"
                               data-bs-toggle="modal" data-bs-target="#exampleModal<%= item._id %>"
                               style="background-color: red">

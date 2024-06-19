@@ -51,105 +51,105 @@ $(document).ready(function () {
 # ARROW CONTROL
 --------------------------------------------------------------*/
   // data-toggle="tooltip" data-placement="top" title="Tooltip on top"
-  if (localStorage.getItem("sidebarlarge") === "yes") {
-    $("#sidelist").css("transition", "all 2s");
-    $("#sidelist").css("width", "250px");
-    $("#arrowmove1").removeClass("dnone");
-    $("#arrowmove2").addClass("dnone");
-    $("#oncotips").css("transition", "all 2s");
-    $("#oncotips").css("height", "20vh");
-    $("#connectlogo").css("transition", "all 2s");
-    $("#connectlogo").css("height", "20vh");
-    $("#btn1").css("visibility", "visible");
-    $("#btn2").css("visibility", "visible");
-    $("#btn3").css("visibility", "visible");
-    $("#btn8").css("visibility", "visible");
-    $("#btn9").css("visibility", "visible");
-    $(".Layer").css("transition", "all 2s");
-    $(".Layer").css("width", "25px");
-    $(".Layer").css("margin-left", "0px");
-    $(".btnsubheadfont").css("margin-left", "20px");
-    $(".group").css("transition", "all 2s");
-    $(".group").css("margin-left", "16px");
-    $(".group").css("font-size", "14px");
-    $("#container").css("transition", "all 2s");
-    $("#container").css("width", "82vw");
-  } else {
-    $("#sidelist").css("transition", "all 2s");
-    $("#sidelist").css("width", "8rem");
-    $("#arrowmove1").addClass("dnone");
-    $("#arrowmove2").removeClass("dnone");
-    $("#oncotips").css("transition", "all 2s");
-    $("#oncotips").css("height", "5vh");
-    $("#connectlogo").css("transition", "all 2s");
-    $("#connectlogo").css("height", "5vh");
-    $("#btn1").css("visibility", "hidden");
-    $("#btn2").css("visibility", "hidden");
-    $("#btn3").css("visibility", "hidden");
-    $("#btn8").css("visibility", "hidden");
-    $("#btn9").css("visibility", "hidden");
-    $(".Layer").css("transition", "all 2s");
-    $(".Layer").css("width", "2em");
-    $(".Layer").css("margin-left", "20px");
-    $(".btnsubheadfont").css("margin-left", "0px");
-    $(".group").css("transition", "all 2s");
-    $(".group").css("margin-left", "0px");
-    $(".group").css("font-size", "11px");
-    $("#container").css("transition", "all 2s");
-    $("#container").css("width", "100vw");
-  }
-  $("#arrowmove1").on("click", function () {
-    localStorage.setItem("sidebarlarge", "no");
-    $("#sidelist").css("transition", "all 2s");
-    $("#sidelist").css("width", "8rem");
-    $("#arrowmove1").addClass("dnone");
-    $("#arrowmove2").removeClass("dnone");
-    $("#oncotips").css("transition", "all 2s");
-    $("#oncotips").css("height", "5vh");
-    $("#connectlogo").css("transition", "all 2s");
-    $("#connectlogo").css("height", "5vh");
-    $("#btn1").css("visibility", "hidden");
-    $("#btn2").css("visibility", "hidden");
-    $("#btn3").css("visibility", "hidden");
-    $("#btn8").css("visibility", "hidden");
-    $("#btn9").css("visibility", "hidden");
-    $(".Layer").css("transition", "all 2s");
-    $(".Layer").css("width", "2em");
-    $(".Layer").css("margin-left", "20px");
-    $(".btnsubheadfont").css("margin-left", "0px");
-    $(".group").css("transition", "all 2s");
-    $(".group").css("margin-left", "0px");
-    $(".group").css("font-size", "11px");
-    $("#container").css("transition", "all 2s");
-    $("#container").css("width", "100vw");
-  });
-  $("#arrowmove2").on("click", function () {
-    if (localStorage.getItem("sidebarlarge") === "no") {
-      localStorage.setItem("sidebarlarge", "yes");
-    }
-    $("#sidelist").css("transition", "all 2s");
-    $("#sidelist").css("width", "250px");
-    $("#arrowmove1").removeClass("dnone");
-    $("#arrowmove2").addClass("dnone");
-    $("#oncotips").css("transition", "all 2s");
-    $("#oncotips").css("height", "20vh");
-    $("#connectlogo").css("transition", "all 2s");
-    $("#connectlogo").css("height", "20vh");
-    $("#btn1").css("visibility", "visible");
-    $("#btn2").css("visibility", "visible");
-    $("#btn3").css("visibility", "visible");
-    $("#btn8").css("visibility", "visible");
-    $("#btn9").css("visibility", "visible");
-    $(".Layer").css("transition", "all 2s");
-    $(".Layer").css("width", "25px");
-    $(".Layer").css("margin-left", "0px");
-    $(".btnsubheadfont").css("margin-left", "20px");
-    $(".group").css("transition", "all 2s");
-    $(".group").css("margin-left", "16px");
-    $(".group").css("font-size", "14px");
-    $("#container").css("transition", "all 2s");
-    $("#container").css("width", "82vw");
-  });
+  // if (localStorage.getItem("sidebarlarge") === "yes") {
+  //   $("#sidelist").css("transition", "all 2s");
+  //   $("#sidelist").css("width", "250px");
+  //   $("#arrowmove1").removeClass("dnone");
+  //   $("#arrowmove2").addClass("dnone");
+  //   $("#oncotips").css("transition", "all 2s");
+  //   $("#oncotips").css("height", "20vh");
+  //   $("#connectlogo").css("transition", "all 2s");
+  //   $("#connectlogo").css("height", "20vh");
+  //   $("#btn1").css("visibility", "visible");
+  //   $("#btn2").css("visibility", "visible");
+  //   $("#btn3").css("visibility", "visible");
+  //   $("#btn8").css("visibility", "visible");
+  //   $("#btn9").css("visibility", "visible");
+  //   $(".Layer").css("transition", "all 2s");
+  //   $(".Layer").css("width", "25px");
+  //   $(".Layer").css("margin-left", "0px");
+  //   $(".btnsubheadfont").css("margin-left", "20px");
+  //   $(".group").css("transition", "all 2s");
+  //   $(".group").css("margin-left", "16px");
+  //   $(".group").css("font-size", "14px");
+  //   $("#container").css("transition", "all 2s");
+  //   $("#container").css("width", "82vw");
+  // } else {
+  //   $("#sidelist").css("transition", "all 2s");
+  //   $("#sidelist").css("width", "8rem");
+  //   $("#arrowmove1").addClass("dnone");
+  //   $("#arrowmove2").removeClass("dnone");
+  //   $("#oncotips").css("transition", "all 2s");
+  //   $("#oncotips").css("height", "5vh");
+  //   $("#connectlogo").css("transition", "all 2s");
+  //   $("#connectlogo").css("height", "5vh");
+  //   $("#btn1").css("visibility", "hidden");
+  //   $("#btn2").css("visibility", "hidden");
+  //   $("#btn3").css("visibility", "hidden");
+  //   $("#btn8").css("visibility", "hidden");
+  //   $("#btn9").css("visibility", "hidden");
+  //   $(".Layer").css("transition", "all 2s");
+  //   $(".Layer").css("width", "2em");
+  //   $(".Layer").css("margin-left", "20px");
+  //   $(".btnsubheadfont").css("margin-left", "0px");
+  //   $(".group").css("transition", "all 2s");
+  //   $(".group").css("margin-left", "0px");
+  //   $(".group").css("font-size", "11px");
+  //   $("#container").css("transition", "all 2s");
+  //   $("#container").css("width", "100vw");
+  // }
+  // $("#arrowmove1").on("click", function () {
+  //   localStorage.setItem("sidebarlarge", "no");
+  //   $("#sidelist").css("transition", "all 2s");
+  //   $("#sidelist").css("width", "8rem");
+  //   $("#arrowmove1").addClass("dnone");
+  //   $("#arrowmove2").removeClass("dnone");
+  //   $("#oncotips").css("transition", "all 2s");
+  //   $("#oncotips").css("height", "5vh");
+  //   $("#connectlogo").css("transition", "all 2s");
+  //   $("#connectlogo").css("height", "5vh");
+  //   $("#btn1").css("visibility", "hidden");
+  //   $("#btn2").css("visibility", "hidden");
+  //   $("#btn3").css("visibility", "hidden");
+  //   $("#btn8").css("visibility", "hidden");
+  //   $("#btn9").css("visibility", "hidden");
+  //   $(".Layer").css("transition", "all 2s");
+  //   $(".Layer").css("width", "2em");
+  //   $(".Layer").css("margin-left", "20px");
+  //   $(".btnsubheadfont").css("margin-left", "0px");
+  //   $(".group").css("transition", "all 2s");
+  //   $(".group").css("margin-left", "0px");
+  //   $(".group").css("font-size", "11px");
+  //   $("#container").css("transition", "all 2s");
+  //   $("#container").css("width", "100vw");
+  // });
+  // $("#arrowmove2").on("click", function () {
+  //   if (localStorage.getItem("sidebarlarge") === "no") {
+  //     localStorage.setItem("sidebarlarge", "yes");
+  //   }
+  //   $("#sidelist").css("transition", "all 2s");
+  //   $("#sidelist").css("width", "250px");
+  //   $("#arrowmove1").removeClass("dnone");
+  //   $("#arrowmove2").addClass("dnone");
+  //   $("#oncotips").css("transition", "all 2s");
+  //   $("#oncotips").css("height", "20vh");
+  //   $("#connectlogo").css("transition", "all 2s");
+  //   $("#connectlogo").css("height", "20vh");
+  //   $("#btn1").css("visibility", "visible");
+  //   $("#btn2").css("visibility", "visible");
+  //   $("#btn3").css("visibility", "visible");
+  //   $("#btn8").css("visibility", "visible");
+  //   $("#btn9").css("visibility", "visible");
+  //   $(".Layer").css("transition", "all 2s");
+  //   $(".Layer").css("width", "25px");
+  //   $(".Layer").css("margin-left", "0px");
+  //   $(".btnsubheadfont").css("margin-left", "20px");
+  //   $(".group").css("transition", "all 2s");
+  //   $(".group").css("margin-left", "16px");
+  //   $(".group").css("font-size", "14px");
+  //   $("#container").css("transition", "all 2s");
+  //   $("#container").css("width", "82vw");
+  // });
 
   /*--------------------------------------------------------------
 # ADD PRESENTATION
@@ -15147,9 +15147,14 @@ btn1.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //INFOGRAPH
@@ -15191,9 +15196,14 @@ btn2.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION
@@ -15235,9 +15245,14 @@ btn3.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //DIC
@@ -15279,9 +15294,14 @@ btn4.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //WORKFLOW
@@ -15323,9 +15343,14 @@ btn5.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //SCIENTIFIC
@@ -15367,9 +15392,14 @@ btn6.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //ANTICANCER
@@ -15411,9 +15441,14 @@ btn11.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //ANTIBIOTIC
@@ -15455,9 +15490,14 @@ btn12.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //ANTICOAGULANT
@@ -15499,9 +15539,14 @@ btn13.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //ANTI-CONVALSANT
@@ -15543,9 +15588,14 @@ btn14.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //ANTI_DIARRHEAL
@@ -15587,9 +15637,14 @@ btn15.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION Antiemetic
@@ -15631,9 +15686,14 @@ btn16.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION ANTI_FLATULANCE
@@ -15675,9 +15735,14 @@ btn17.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION ANTI_FUNGAL
@@ -15719,9 +15784,14 @@ btn18.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION ANTI_GOUT
@@ -15763,9 +15833,14 @@ btn19.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION HYPERLACTINEMIA
@@ -15807,9 +15882,14 @@ btn20.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION ANTIINFLAM
@@ -15851,9 +15931,14 @@ btn21.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION SPASMODIC
@@ -15895,9 +15980,14 @@ btn22.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION TUSSIVE
@@ -15939,9 +16029,14 @@ btn23.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION ANTI-VIRAL
@@ -15983,9 +16078,14 @@ btn24.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION ANALGESIC
@@ -16027,9 +16127,14 @@ btn25.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION ANTACID
@@ -16071,9 +16176,14 @@ btn26.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION ANTHELIMENTIC
@@ -16115,9 +16225,14 @@ btn27.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION ANTI_HISTAMINE
@@ -16159,9 +16274,14 @@ btn28.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION ANTI_DOTE
@@ -16203,9 +16323,14 @@ btn29.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION CARDIOLOGY
@@ -16247,9 +16372,14 @@ btn30.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION CORTICOSTEROIDS
@@ -16291,9 +16421,14 @@ btn31.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION DIEATORY
@@ -16335,9 +16470,14 @@ btn32.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 
@@ -16380,9 +16520,14 @@ btn33.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 
@@ -16425,9 +16570,14 @@ btn34.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 
@@ -16470,9 +16620,14 @@ btn35.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION HEMOSTATIC
@@ -16514,9 +16669,14 @@ btn36.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 
@@ -16559,9 +16719,14 @@ btn37.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION MAST CELL ST
@@ -16603,9 +16768,14 @@ btn38.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 //MEDICATION MUCOLYTIC
@@ -16647,9 +16817,14 @@ btn39.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 
@@ -16692,9 +16867,14 @@ btn40.addEventListener("click", (params) => {
   Mucolyticcollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 
@@ -16737,9 +16917,14 @@ btn41.addEventListener("click", (params) => {
   Mucolyticcollapse.classList.remove("show");
   Neurologycollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 
@@ -16782,55 +16967,65 @@ btn42.addEventListener("click", (params) => {
   Mucolyticcollapse.classList.remove("show");
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 
-//MEDICATION VASOPRESSIN
-btn43.addEventListener("click", (params) => {
-  presentationcollapse.classList.remove("show");
-  infographcollapse.classList.remove("show");
-  // medicationcollapse.classList.remove("show");
-  DICcollapse.classList.remove("show");
-  workflowcollapse.classList.remove("show");
-  papercollapse.classList.remove("show");
-  anticancercollapse.classList.remove("show");
-  antibioticcollapse.classList.remove("show");
-  AntiCoagulantcollapse.classList.remove("show");
-  AntiConvulsantcollapse.classList.remove("show");
-  AntiDiarrhealccollapse.classList.remove("show");
-  Antiemeticcecollapse.classList.remove("show");
-  AntiFlatulencecollapse.classList.remove("show");
-  antifungalcollapse.classList.remove("show");
-  Antigoutcecollapse.classList.remove("show");
-  Hyperprolactinemiacollapse.classList.remove("show");
-  Antiinflamcecollapse.classList.remove("show");
-  AntiSpasmodiccollapse.classList.remove("show");
-  AntiTussivecollapse.classList.remove("show");
-  Antiviralcecollapse.classList.remove("show");
-  Analgesiccollapse.classList.remove("show");
-  Antacidcecollapse.classList.remove("show");
-  Anthelminticcollapse.classList.remove("show");
-  Antihistaminecollapse.classList.remove("show");
-  Antidotecollapse.classList.remove("show");
-  Cardiologycollapse.classList.remove("show");
-  Corticosteroidcollapse.classList.remove("show");
-  DietarySupplementcollapse.classList.remove("show");
-  Electrolytecollapse.classList.remove("show");
-  Expectorantcollapse.classList.remove("show");
-  Gastrointestinalcollapse.classList.remove("show");
-  Hemostaticcollapse.classList.remove("show");
-  Immunosuppressantcecollapse.classList.remove("show");
-  MSTcollapse.classList.remove("show");
-  Mucolyticcollapse.classList.remove("show");
-  Neurologycollapse.classList.remove("show");
-  Osteoarthritiscollapse.classList.remove("show");
-  smrcollapse.classList.remove("show");
-  WaterSolubleVitamincollapse.classList.remove("show");
-  Maocollapse.classList.remove("show");
-});
+// //MEDICATION VASOPRESSIN
+// btn43.addEventListener("click", (params) => {
+//   presentationcollapse.classList.remove("show");
+//   infographcollapse.classList.remove("show");
+//   // medicationcollapse.classList.remove("show");
+//   DICcollapse.classList.remove("show");
+//   workflowcollapse.classList.remove("show");
+//   papercollapse.classList.remove("show");
+//   anticancercollapse.classList.remove("show");
+//   antibioticcollapse.classList.remove("show");
+//   AntiCoagulantcollapse.classList.remove("show");
+//   AntiConvulsantcollapse.classList.remove("show");
+//   AntiDiarrhealccollapse.classList.remove("show");
+//   Antiemeticcecollapse.classList.remove("show");
+//   AntiFlatulencecollapse.classList.remove("show");
+//   antifungalcollapse.classList.remove("show");
+//   Antigoutcecollapse.classList.remove("show");
+//   Hyperprolactinemiacollapse.classList.remove("show");
+//   Antiinflamcecollapse.classList.remove("show");
+//   AntiSpasmodiccollapse.classList.remove("show");
+//   AntiTussivecollapse.classList.remove("show");
+//   Antiviralcecollapse.classList.remove("show");
+//   Analgesiccollapse.classList.remove("show");
+//   Antacidcecollapse.classList.remove("show");
+//   Anthelminticcollapse.classList.remove("show");
+//   Antihistaminecollapse.classList.remove("show");
+//   Antidotecollapse.classList.remove("show");
+//   Cardiologycollapse.classList.remove("show");
+//   Corticosteroidcollapse.classList.remove("show");
+//   DietarySupplementcollapse.classList.remove("show");
+//   Electrolytecollapse.classList.remove("show");
+//   Expectorantcollapse.classList.remove("show");
+//   Gastrointestinalcollapse.classList.remove("show");
+//   Hemostaticcollapse.classList.remove("show");
+//   Immunosuppressantcecollapse.classList.remove("show");
+//   MSTcollapse.classList.remove("show");
+//   Mucolyticcollapse.classList.remove("show");
+//   Neurologycollapse.classList.remove("show");
+//   Osteoarthritiscollapse.classList.remove("show");
+//   smrcollapse.classList.remove("show");
+//   WaterSolubleVitamincollapse.classList.remove("show");
+//   Maocollapse.classList.remove("show");
+//   Antitraumaticcollapse.classList.remove("show");
+//   Bronchodilatorcollapse.classList.remove("show");
+//   Contraceptivecollapse.classList.remove("show");
+//   Decongestantcollapse.classList.remove("show");
+//   Digestivecollapse.classList.remove("show");
+// });
 
 
 //MEDICATION WATER SOL
@@ -16873,13 +17068,18 @@ btn44.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
 
 
 //MEDICATION MAO INHIB
-btn44.addEventListener("click", (params) => {
+btn45.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
@@ -16918,9 +17118,646 @@ btn44.addEventListener("click", (params) => {
   Neurologycollapse.classList.remove("show");
   Osteoarthritiscollapse.classList.remove("show");
   smrcollapse.classList.remove("show");
-  Vasopressincollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
   WaterSolubleVitamincollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
 });
+
+//MEDICATION Antitraumatic
+btn46.addEventListener("click", (params) => {
+  presentationcollapse.classList.remove("show");
+  infographcollapse.classList.remove("show");
+  // medicationcollapse.classList.remove("show");
+  DICcollapse.classList.remove("show");
+  workflowcollapse.classList.remove("show");
+  papercollapse.classList.remove("show");
+  anticancercollapse.classList.remove("show");
+  antibioticcollapse.classList.remove("show");
+  AntiCoagulantcollapse.classList.remove("show");
+  AntiConvulsantcollapse.classList.remove("show");
+  AntiDiarrhealccollapse.classList.remove("show");
+  Antiemeticcecollapse.classList.remove("show");
+  AntiFlatulencecollapse.classList.remove("show");
+  antifungalcollapse.classList.remove("show");
+  Antigoutcecollapse.classList.remove("show");
+  Hyperprolactinemiacollapse.classList.remove("show");
+  Antiinflamcecollapse.classList.remove("show");
+  AntiSpasmodiccollapse.classList.remove("show");
+  AntiTussivecollapse.classList.remove("show");
+  Antiviralcecollapse.classList.remove("show");
+  Analgesiccollapse.classList.remove("show");
+  Antacidcecollapse.classList.remove("show");
+  Anthelminticcollapse.classList.remove("show");
+  Antihistaminecollapse.classList.remove("show");
+  Antidotecollapse.classList.remove("show");
+  Cardiologycollapse.classList.remove("show");
+  Corticosteroidcollapse.classList.remove("show");
+  DietarySupplementcollapse.classList.remove("show");
+  Electrolytecollapse.classList.remove("show");
+  Expectorantcollapse.classList.remove("show");
+  Gastrointestinalcollapse.classList.remove("show");
+  Hemostaticcollapse.classList.remove("show");
+  Immunosuppressantcecollapse.classList.remove("show");
+  MSTcollapse.classList.remove("show");
+  Mucolyticcollapse.classList.remove("show");
+  Neurologycollapse.classList.remove("show");
+  Osteoarthritiscollapse.classList.remove("show");
+  smrcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  WaterSolubleVitamincollapse.classList.remove("show");
+  Maocollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
+});
+
+//MEDICATION Bronchodilator
+btn47.addEventListener("click", (params) => {
+  presentationcollapse.classList.remove("show");
+  infographcollapse.classList.remove("show");
+  // medicationcollapse.classList.remove("show");
+  DICcollapse.classList.remove("show");
+  workflowcollapse.classList.remove("show");
+  papercollapse.classList.remove("show");
+  anticancercollapse.classList.remove("show");
+  antibioticcollapse.classList.remove("show");
+  AntiCoagulantcollapse.classList.remove("show");
+  AntiConvulsantcollapse.classList.remove("show");
+  AntiDiarrhealccollapse.classList.remove("show");
+  Antiemeticcecollapse.classList.remove("show");
+  AntiFlatulencecollapse.classList.remove("show");
+  antifungalcollapse.classList.remove("show");
+  Antigoutcecollapse.classList.remove("show");
+  Hyperprolactinemiacollapse.classList.remove("show");
+  Antiinflamcecollapse.classList.remove("show");
+  AntiSpasmodiccollapse.classList.remove("show");
+  AntiTussivecollapse.classList.remove("show");
+  Antiviralcecollapse.classList.remove("show");
+  Analgesiccollapse.classList.remove("show");
+  Antacidcecollapse.classList.remove("show");
+  Anthelminticcollapse.classList.remove("show");
+  Antihistaminecollapse.classList.remove("show");
+  Antidotecollapse.classList.remove("show");
+  Cardiologycollapse.classList.remove("show");
+  Corticosteroidcollapse.classList.remove("show");
+  DietarySupplementcollapse.classList.remove("show");
+  Electrolytecollapse.classList.remove("show");
+  Expectorantcollapse.classList.remove("show");
+  Gastrointestinalcollapse.classList.remove("show");
+  Hemostaticcollapse.classList.remove("show");
+  Immunosuppressantcecollapse.classList.remove("show");
+  MSTcollapse.classList.remove("show");
+  Mucolyticcollapse.classList.remove("show");
+  Neurologycollapse.classList.remove("show");
+  Osteoarthritiscollapse.classList.remove("show");
+  smrcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  WaterSolubleVitamincollapse.classList.remove("show");
+  Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
+});
+
+//MEDICATION Contraceptive
+btn48.addEventListener("click", (params) => {
+  presentationcollapse.classList.remove("show");
+  infographcollapse.classList.remove("show");
+  // medicationcollapse.classList.remove("show");
+  DICcollapse.classList.remove("show");
+  workflowcollapse.classList.remove("show");
+  papercollapse.classList.remove("show");
+  anticancercollapse.classList.remove("show");
+  antibioticcollapse.classList.remove("show");
+  AntiCoagulantcollapse.classList.remove("show");
+  AntiConvulsantcollapse.classList.remove("show");
+  AntiDiarrhealccollapse.classList.remove("show");
+  Antiemeticcecollapse.classList.remove("show");
+  AntiFlatulencecollapse.classList.remove("show");
+  antifungalcollapse.classList.remove("show");
+  Antigoutcecollapse.classList.remove("show");
+  Hyperprolactinemiacollapse.classList.remove("show");
+  Antiinflamcecollapse.classList.remove("show");
+  AntiSpasmodiccollapse.classList.remove("show");
+  AntiTussivecollapse.classList.remove("show");
+  Antiviralcecollapse.classList.remove("show");
+  Analgesiccollapse.classList.remove("show");
+  Antacidcecollapse.classList.remove("show");
+  Anthelminticcollapse.classList.remove("show");
+  Antihistaminecollapse.classList.remove("show");
+  Antidotecollapse.classList.remove("show");
+  Cardiologycollapse.classList.remove("show");
+  Corticosteroidcollapse.classList.remove("show");
+  DietarySupplementcollapse.classList.remove("show");
+  Electrolytecollapse.classList.remove("show");
+  Expectorantcollapse.classList.remove("show");
+  Gastrointestinalcollapse.classList.remove("show");
+  Hemostaticcollapse.classList.remove("show");
+  Immunosuppressantcecollapse.classList.remove("show");
+  MSTcollapse.classList.remove("show");
+  Mucolyticcollapse.classList.remove("show");
+  Neurologycollapse.classList.remove("show");
+  Osteoarthritiscollapse.classList.remove("show");
+  smrcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  WaterSolubleVitamincollapse.classList.remove("show");
+  Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
+});
+
+//MEDICATION Decongestant
+btn49.addEventListener("click", (params) => {
+  presentationcollapse.classList.remove("show");
+  infographcollapse.classList.remove("show");
+  // medicationcollapse.classList.remove("show");
+  DICcollapse.classList.remove("show");
+  workflowcollapse.classList.remove("show");
+  papercollapse.classList.remove("show");
+  anticancercollapse.classList.remove("show");
+  antibioticcollapse.classList.remove("show");
+  AntiCoagulantcollapse.classList.remove("show");
+  AntiConvulsantcollapse.classList.remove("show");
+  AntiDiarrhealccollapse.classList.remove("show");
+  Antiemeticcecollapse.classList.remove("show");
+  AntiFlatulencecollapse.classList.remove("show");
+  antifungalcollapse.classList.remove("show");
+  Antigoutcecollapse.classList.remove("show");
+  Hyperprolactinemiacollapse.classList.remove("show");
+  Antiinflamcecollapse.classList.remove("show");
+  AntiSpasmodiccollapse.classList.remove("show");
+  AntiTussivecollapse.classList.remove("show");
+  Antiviralcecollapse.classList.remove("show");
+  Analgesiccollapse.classList.remove("show");
+  Antacidcecollapse.classList.remove("show");
+  Anthelminticcollapse.classList.remove("show");
+  Antihistaminecollapse.classList.remove("show");
+  Antidotecollapse.classList.remove("show");
+  Cardiologycollapse.classList.remove("show");
+  Corticosteroidcollapse.classList.remove("show");
+  DietarySupplementcollapse.classList.remove("show");
+  Electrolytecollapse.classList.remove("show");
+  Expectorantcollapse.classList.remove("show");
+  Gastrointestinalcollapse.classList.remove("show");
+  Hemostaticcollapse.classList.remove("show");
+  Immunosuppressantcecollapse.classList.remove("show");
+  MSTcollapse.classList.remove("show");
+  Mucolyticcollapse.classList.remove("show");
+  Neurologycollapse.classList.remove("show");
+  Osteoarthritiscollapse.classList.remove("show");
+  smrcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  WaterSolubleVitamincollapse.classList.remove("show");
+  Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
+});
+
+//MEDICATION Digestive
+btn50.addEventListener("click", (params) => {
+  presentationcollapse.classList.remove("show");
+  infographcollapse.classList.remove("show");
+  // medicationcollapse.classList.remove("show");
+  DICcollapse.classList.remove("show");
+  workflowcollapse.classList.remove("show");
+  papercollapse.classList.remove("show");
+  anticancercollapse.classList.remove("show");
+  antibioticcollapse.classList.remove("show");
+  AntiCoagulantcollapse.classList.remove("show");
+  AntiConvulsantcollapse.classList.remove("show");
+  AntiDiarrhealccollapse.classList.remove("show");
+  Antiemeticcecollapse.classList.remove("show");
+  AntiFlatulencecollapse.classList.remove("show");
+  antifungalcollapse.classList.remove("show");
+  Antigoutcecollapse.classList.remove("show");
+  Hyperprolactinemiacollapse.classList.remove("show");
+  Antiinflamcecollapse.classList.remove("show");
+  AntiSpasmodiccollapse.classList.remove("show");
+  AntiTussivecollapse.classList.remove("show");
+  Antiviralcecollapse.classList.remove("show");
+  Analgesiccollapse.classList.remove("show");
+  Antacidcecollapse.classList.remove("show");
+  Anthelminticcollapse.classList.remove("show");
+  Antihistaminecollapse.classList.remove("show");
+  Antidotecollapse.classList.remove("show");
+  Cardiologycollapse.classList.remove("show");
+  Corticosteroidcollapse.classList.remove("show");
+  DietarySupplementcollapse.classList.remove("show");
+  Electrolytecollapse.classList.remove("show");
+  Expectorantcollapse.classList.remove("show");
+  Gastrointestinalcollapse.classList.remove("show");
+  Hemostaticcollapse.classList.remove("show");
+  Immunosuppressantcecollapse.classList.remove("show");
+  MSTcollapse.classList.remove("show");
+  Mucolyticcollapse.classList.remove("show");
+  Neurologycollapse.classList.remove("show");
+  Osteoarthritiscollapse.classList.remove("show");
+  smrcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  WaterSolubleVitamincollapse.classList.remove("show");
+  Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+});
+
+//MEDICATION Hormone
+btn51.addEventListener("click", (params) => {
+  presentationcollapse.classList.remove("show");
+  infographcollapse.classList.remove("show");
+  // medicationcollapse.classList.remove("show");
+  DICcollapse.classList.remove("show");
+  workflowcollapse.classList.remove("show");
+  papercollapse.classList.remove("show");
+  anticancercollapse.classList.remove("show");
+  antibioticcollapse.classList.remove("show");
+  AntiCoagulantcollapse.classList.remove("show");
+  AntiConvulsantcollapse.classList.remove("show");
+  AntiDiarrhealccollapse.classList.remove("show");
+  Antiemeticcecollapse.classList.remove("show");
+  AntiFlatulencecollapse.classList.remove("show");
+  antifungalcollapse.classList.remove("show");
+  Antigoutcecollapse.classList.remove("show");
+  Hyperprolactinemiacollapse.classList.remove("show");
+  Antiinflamcecollapse.classList.remove("show");
+  AntiSpasmodiccollapse.classList.remove("show");
+  AntiTussivecollapse.classList.remove("show");
+  Antiviralcecollapse.classList.remove("show");
+  Analgesiccollapse.classList.remove("show");
+  Antacidcecollapse.classList.remove("show");
+  Anthelminticcollapse.classList.remove("show");
+  Antihistaminecollapse.classList.remove("show");
+  Antidotecollapse.classList.remove("show");
+  Cardiologycollapse.classList.remove("show");
+  Corticosteroidcollapse.classList.remove("show");
+  DietarySupplementcollapse.classList.remove("show");
+  Electrolytecollapse.classList.remove("show");
+  Expectorantcollapse.classList.remove("show");
+  Gastrointestinalcollapse.classList.remove("show");
+  Hemostaticcollapse.classList.remove("show");
+  Immunosuppressantcecollapse.classList.remove("show");
+  MSTcollapse.classList.remove("show");
+  Mucolyticcollapse.classList.remove("show");
+  Neurologycollapse.classList.remove("show");
+  Osteoarthritiscollapse.classList.remove("show");
+  smrcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  WaterSolubleVitamincollapse.classList.remove("show");
+  Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Laxativecollapse.classList.remove("show");
+  AntiAsthmaticcollapse.classList.remove("show");
+  Diureticcollapse.classList.remove("show");
+  AntiHyperphosphatemiacollapse.classList.remove("show");
+  PPIcollapse.classList.remove("show");
+  Weakopioidcollapse.classList.remove("show");
+});
+
+//MEDICATION Laxative
+btn52.addEventListener("click", (params) => {
+  presentationcollapse.classList.remove("show");
+  infographcollapse.classList.remove("show");
+  // medicationcollapse.classList.remove("show");
+  DICcollapse.classList.remove("show");
+  workflowcollapse.classList.remove("show");
+  papercollapse.classList.remove("show");
+  anticancercollapse.classList.remove("show");
+  antibioticcollapse.classList.remove("show");
+  AntiCoagulantcollapse.classList.remove("show");
+  AntiConvulsantcollapse.classList.remove("show");
+  AntiDiarrhealccollapse.classList.remove("show");
+  Antiemeticcecollapse.classList.remove("show");
+  AntiFlatulencecollapse.classList.remove("show");
+  antifungalcollapse.classList.remove("show");
+  Antigoutcecollapse.classList.remove("show");
+  Hyperprolactinemiacollapse.classList.remove("show");
+  Antiinflamcecollapse.classList.remove("show");
+  AntiSpasmodiccollapse.classList.remove("show");
+  AntiTussivecollapse.classList.remove("show");
+  Antiviralcecollapse.classList.remove("show");
+  Analgesiccollapse.classList.remove("show");
+  Antacidcecollapse.classList.remove("show");
+  Anthelminticcollapse.classList.remove("show");
+  Antihistaminecollapse.classList.remove("show");
+  Antidotecollapse.classList.remove("show");
+  Cardiologycollapse.classList.remove("show");
+  Corticosteroidcollapse.classList.remove("show");
+  DietarySupplementcollapse.classList.remove("show");
+  Electrolytecollapse.classList.remove("show");
+  Expectorantcollapse.classList.remove("show");
+  Gastrointestinalcollapse.classList.remove("show");
+  Hemostaticcollapse.classList.remove("show");
+  Immunosuppressantcecollapse.classList.remove("show");
+  MSTcollapse.classList.remove("show");
+  Mucolyticcollapse.classList.remove("show");
+  Neurologycollapse.classList.remove("show");
+  Osteoarthritiscollapse.classList.remove("show");
+  smrcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  WaterSolubleVitamincollapse.classList.remove("show");
+  Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  AntiAsthmaticcollapse.classList.remove("show");
+  Diureticcollapse.classList.remove("show");
+  AntiHyperphosphatemiacollapse.classList.remove("show");
+  PPIcollapse.classList.remove("show");
+  Weakopioidcollapse.classList.remove("show");
+});
+
+//MEDICATION AntiAsthmatic
+btn53.addEventListener("click", (params) => {
+  presentationcollapse.classList.remove("show");
+  infographcollapse.classList.remove("show");
+  // medicationcollapse.classList.remove("show");
+  DICcollapse.classList.remove("show");
+  workflowcollapse.classList.remove("show");
+  papercollapse.classList.remove("show");
+  anticancercollapse.classList.remove("show");
+  antibioticcollapse.classList.remove("show");
+  AntiCoagulantcollapse.classList.remove("show");
+  AntiConvulsantcollapse.classList.remove("show");
+  AntiDiarrhealccollapse.classList.remove("show");
+  Antiemeticcecollapse.classList.remove("show");
+  AntiFlatulencecollapse.classList.remove("show");
+  antifungalcollapse.classList.remove("show");
+  Antigoutcecollapse.classList.remove("show");
+  Hyperprolactinemiacollapse.classList.remove("show");
+  Antiinflamcecollapse.classList.remove("show");
+  AntiSpasmodiccollapse.classList.remove("show");
+  AntiTussivecollapse.classList.remove("show");
+  Antiviralcecollapse.classList.remove("show");
+  Analgesiccollapse.classList.remove("show");
+  Antacidcecollapse.classList.remove("show");
+  Anthelminticcollapse.classList.remove("show");
+  Antihistaminecollapse.classList.remove("show");
+  Antidotecollapse.classList.remove("show");
+  Cardiologycollapse.classList.remove("show");
+  Corticosteroidcollapse.classList.remove("show");
+  DietarySupplementcollapse.classList.remove("show");
+  Electrolytecollapse.classList.remove("show");
+  Expectorantcollapse.classList.remove("show");
+  Gastrointestinalcollapse.classList.remove("show");
+  Hemostaticcollapse.classList.remove("show");
+  Immunosuppressantcecollapse.classList.remove("show");
+  MSTcollapse.classList.remove("show");
+  Mucolyticcollapse.classList.remove("show");
+  Neurologycollapse.classList.remove("show");
+  Osteoarthritiscollapse.classList.remove("show");
+  smrcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  WaterSolubleVitamincollapse.classList.remove("show");
+  Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  Laxativecollapse.classList.remove("show");
+  Diureticcollapse.classList.remove("show");
+  AntiHyperphosphatemiacollapse.classList.remove("show");
+  PPIcollapse.classList.remove("show");
+  Weakopioidcollapse.classList.remove("show");
+});
+
+//MEDICATION Diuretic
+btn54.addEventListener("click", (params) => {
+  presentationcollapse.classList.remove("show");
+  infographcollapse.classList.remove("show");
+  // medicationcollapse.classList.remove("show");
+  DICcollapse.classList.remove("show");
+  workflowcollapse.classList.remove("show");
+  papercollapse.classList.remove("show");
+  anticancercollapse.classList.remove("show");
+  antibioticcollapse.classList.remove("show");
+  AntiCoagulantcollapse.classList.remove("show");
+  AntiConvulsantcollapse.classList.remove("show");
+  AntiDiarrhealccollapse.classList.remove("show");
+  Antiemeticcecollapse.classList.remove("show");
+  AntiFlatulencecollapse.classList.remove("show");
+  antifungalcollapse.classList.remove("show");
+  Antigoutcecollapse.classList.remove("show");
+  Hyperprolactinemiacollapse.classList.remove("show");
+  Antiinflamcecollapse.classList.remove("show");
+  AntiSpasmodiccollapse.classList.remove("show");
+  AntiTussivecollapse.classList.remove("show");
+  Antiviralcecollapse.classList.remove("show");
+  Analgesiccollapse.classList.remove("show");
+  Antacidcecollapse.classList.remove("show");
+  Anthelminticcollapse.classList.remove("show");
+  Antihistaminecollapse.classList.remove("show");
+  Antidotecollapse.classList.remove("show");
+  Cardiologycollapse.classList.remove("show");
+  Corticosteroidcollapse.classList.remove("show");
+  DietarySupplementcollapse.classList.remove("show");
+  Electrolytecollapse.classList.remove("show");
+  Expectorantcollapse.classList.remove("show");
+  Gastrointestinalcollapse.classList.remove("show");
+  Hemostaticcollapse.classList.remove("show");
+  Immunosuppressantcecollapse.classList.remove("show");
+  MSTcollapse.classList.remove("show");
+  Mucolyticcollapse.classList.remove("show");
+  Neurologycollapse.classList.remove("show");
+  Osteoarthritiscollapse.classList.remove("show");
+  smrcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  WaterSolubleVitamincollapse.classList.remove("show");
+  Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  Laxativecollapse.classList.remove("show");
+  AntiAsthmaticcollapse.classList.remove("show");
+  AntiHyperphosphatemiacollapse.classList.remove("show");
+  PPIcollapse.classList.remove("show");
+  Weakopioidcollapse.classList.remove("show");
+});
+
+//MEDICATION AntiHyperphosphatemia
+btn55.addEventListener("click", (params) => {
+  presentationcollapse.classList.remove("show");
+  infographcollapse.classList.remove("show");
+  // medicationcollapse.classList.remove("show");
+  DICcollapse.classList.remove("show");
+  workflowcollapse.classList.remove("show");
+  papercollapse.classList.remove("show");
+  anticancercollapse.classList.remove("show");
+  antibioticcollapse.classList.remove("show");
+  AntiCoagulantcollapse.classList.remove("show");
+  AntiConvulsantcollapse.classList.remove("show");
+  AntiDiarrhealccollapse.classList.remove("show");
+  Antiemeticcecollapse.classList.remove("show");
+  AntiFlatulencecollapse.classList.remove("show");
+  antifungalcollapse.classList.remove("show");
+  Antigoutcecollapse.classList.remove("show");
+  Hyperprolactinemiacollapse.classList.remove("show");
+  Antiinflamcecollapse.classList.remove("show");
+  AntiSpasmodiccollapse.classList.remove("show");
+  AntiTussivecollapse.classList.remove("show");
+  Antiviralcecollapse.classList.remove("show");
+  Analgesiccollapse.classList.remove("show");
+  Antacidcecollapse.classList.remove("show");
+  Anthelminticcollapse.classList.remove("show");
+  Antihistaminecollapse.classList.remove("show");
+  Antidotecollapse.classList.remove("show");
+  Cardiologycollapse.classList.remove("show");
+  Corticosteroidcollapse.classList.remove("show");
+  DietarySupplementcollapse.classList.remove("show");
+  Electrolytecollapse.classList.remove("show");
+  Expectorantcollapse.classList.remove("show");
+  Gastrointestinalcollapse.classList.remove("show");
+  Hemostaticcollapse.classList.remove("show");
+  Immunosuppressantcecollapse.classList.remove("show");
+  MSTcollapse.classList.remove("show");
+  Mucolyticcollapse.classList.remove("show");
+  Neurologycollapse.classList.remove("show");
+  Osteoarthritiscollapse.classList.remove("show");
+  smrcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  WaterSolubleVitamincollapse.classList.remove("show");
+  Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  Laxativecollapse.classList.remove("show");
+  AntiAsthmaticcollapse.classList.remove("show");
+  Diureticcollapse.classList.remove("show");
+  AntiHyperphosphatemiacollapse.classList.remove("show");
+  PPIcollapse.classList.remove("show");
+  Weakopioidcollapse.classList.remove("show");
+});
+
+//MEDICATION PPI
+btn56.addEventListener("click", (params) => {
+  presentationcollapse.classList.remove("show");
+  infographcollapse.classList.remove("show");
+  // medicationcollapse.classList.remove("show");
+  DICcollapse.classList.remove("show");
+  workflowcollapse.classList.remove("show");
+  papercollapse.classList.remove("show");
+  anticancercollapse.classList.remove("show");
+  antibioticcollapse.classList.remove("show");
+  AntiCoagulantcollapse.classList.remove("show");
+  AntiConvulsantcollapse.classList.remove("show");
+  AntiDiarrhealccollapse.classList.remove("show");
+  Antiemeticcecollapse.classList.remove("show");
+  AntiFlatulencecollapse.classList.remove("show");
+  antifungalcollapse.classList.remove("show");
+  Antigoutcecollapse.classList.remove("show");
+  Hyperprolactinemiacollapse.classList.remove("show");
+  Antiinflamcecollapse.classList.remove("show");
+  AntiSpasmodiccollapse.classList.remove("show");
+  AntiTussivecollapse.classList.remove("show");
+  Antiviralcecollapse.classList.remove("show");
+  Analgesiccollapse.classList.remove("show");
+  Antacidcecollapse.classList.remove("show");
+  Anthelminticcollapse.classList.remove("show");
+  Antihistaminecollapse.classList.remove("show");
+  Antidotecollapse.classList.remove("show");
+  Cardiologycollapse.classList.remove("show");
+  Corticosteroidcollapse.classList.remove("show");
+  DietarySupplementcollapse.classList.remove("show");
+  Electrolytecollapse.classList.remove("show");
+  Expectorantcollapse.classList.remove("show");
+  Gastrointestinalcollapse.classList.remove("show");
+  Hemostaticcollapse.classList.remove("show");
+  Immunosuppressantcecollapse.classList.remove("show");
+  MSTcollapse.classList.remove("show");
+  Mucolyticcollapse.classList.remove("show");
+  Neurologycollapse.classList.remove("show");
+  Osteoarthritiscollapse.classList.remove("show");
+  smrcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  WaterSolubleVitamincollapse.classList.remove("show");
+  Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  Laxativecollapse.classList.remove("show");
+  AntiAsthmaticcollapse.classList.remove("show");
+  Diureticcollapse.classList.remove("show");
+  Weakopioidcollapse.classList.remove("show");
+});
+
+//MEDICATION Weakopioid
+btn57.addEventListener("click", (params) => {
+  presentationcollapse.classList.remove("show");
+  infographcollapse.classList.remove("show");
+  // medicationcollapse.classList.remove("show");
+  DICcollapse.classList.remove("show");
+  workflowcollapse.classList.remove("show");
+  papercollapse.classList.remove("show");
+  anticancercollapse.classList.remove("show");
+  antibioticcollapse.classList.remove("show");
+  AntiCoagulantcollapse.classList.remove("show");
+  AntiConvulsantcollapse.classList.remove("show");
+  AntiDiarrhealccollapse.classList.remove("show");
+  Antiemeticcecollapse.classList.remove("show");
+  AntiFlatulencecollapse.classList.remove("show");
+  antifungalcollapse.classList.remove("show");
+  Antigoutcecollapse.classList.remove("show");
+  Hyperprolactinemiacollapse.classList.remove("show");
+  Antiinflamcecollapse.classList.remove("show");
+  AntiSpasmodiccollapse.classList.remove("show");
+  AntiTussivecollapse.classList.remove("show");
+  Antiviralcecollapse.classList.remove("show");
+  Analgesiccollapse.classList.remove("show");
+  Antacidcecollapse.classList.remove("show");
+  Anthelminticcollapse.classList.remove("show");
+  Antihistaminecollapse.classList.remove("show");
+  Antidotecollapse.classList.remove("show");
+  Cardiologycollapse.classList.remove("show");
+  Corticosteroidcollapse.classList.remove("show");
+  DietarySupplementcollapse.classList.remove("show");
+  Electrolytecollapse.classList.remove("show");
+  Expectorantcollapse.classList.remove("show");
+  Gastrointestinalcollapse.classList.remove("show");
+  Hemostaticcollapse.classList.remove("show");
+  Immunosuppressantcecollapse.classList.remove("show");
+  MSTcollapse.classList.remove("show");
+  Mucolyticcollapse.classList.remove("show");
+  Neurologycollapse.classList.remove("show");
+  Osteoarthritiscollapse.classList.remove("show");
+  smrcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  WaterSolubleVitamincollapse.classList.remove("show");
+  Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  Laxativecollapse.classList.remove("show");
+  AntiAsthmaticcollapse.classList.remove("show");
+  Diureticcollapse.classList.remove("show");
+  AntiHyperphosphatemiacollapse.classList.remove("show");
+  PPIcollapse.classList.remove("show");
+});
+
+
 
 
 

@@ -16,14 +16,8 @@ const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator");
 //Cloudinary
 const cloudinary = require("cloudinary").v2;
-//TO CSV FILE
-const CsvParser = require("json2csv").Parser;
 //TO EXCELL FILE
-const excelJs = require("exceljs");
 const xlsx = require("xlsx");
-const { marked } = require("marked");
-
-const html = marked.parse("# Marked in Node.js\n\nRendered by **\\n**.");
 
 // 'markdownString' would be the markdown field read from mongodb
 // const replacedWithSingleEscape = markdownString.replace(/\\n/g, "\n");
@@ -60,6 +54,7 @@ const Rowa = require("../models/rowaSchema");
 const PyxisMed = require("../models/pyxismedSchema");
 const PyxisTrade = require("../models/pyxistradeSchema");
 const Score = require("../models/score");
+const Qa = require("../models/q&a");
 //MIDDLEWARE
 const { requireAuth } = require("../middleware/middleware");
 const { checkIfUser } = require("../middleware/middleware");
@@ -67,7 +62,6 @@ const { uploadSingleImage } = require("../middleware/middleware");
 const { imageresizeforinpatient } = require("../middleware/middleware");
 const { imageresizeforoutpatient } = require("../middleware/middleware");
 const { profileimage } = require("../middleware/middleware");
-const { watchreceiver } = require("../middleware/middleware");
 //CONTROLLER
 const { signOut } = require("../controllers/userController");
 const { firstWelcome } = require("../controllers/userController");
@@ -340,12 +334,19 @@ router.get(
     const { firstname } = currentUser;
     const { lastname } = currentUser;
     const receiver = currentUser.watchreceiver;
+    const sender = currentUser.dicsender
+    const array = []
+    for (let i = 0; i < sender.length; i++) {
+      const ele = sender[i].answer;
+      array.push(ele)
+  } 
+
     if (receiver) {
       res.render("Watch/receiver.ejs", {
         moment: moment,
         receiver: receiver,
         firstname,
-        lastname,
+        lastname,array
       });
     }
   })
@@ -365,10 +366,8 @@ router.get(
     const startDate = date + "T00:00:00.000+00:00";
     const endDate = date + "T23:59:59.000+00:00";
     const search = currentUser.dicsearch;
-    const dic = currentUser.dicreceiver.filter((item) => {
-      const createdAt = moment(item.createdAt);
-      return createdAt.isBetween(startDate, endDate);
-    });
+    const qa = await Qa.find()
+    const dic = qa.filter(item => item.answer === "" );
     if (medclass) {
       res.render("Dic/dic.ejs", {
         medclass,
@@ -390,8 +389,11 @@ router.get(
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.findOne({ _id: decoded.id });
     const receive = results.dicsender;
+    const usersearch = results.userquestionsearch 
+
+
     if (receive) {
-      res.render("Dic/dicsender.ejs", { receive, moment: moment });
+      res.render("Dic/dicsender.ejs", { usersearch, receive, moment: moment });
     }
   })
 );
@@ -1768,9 +1770,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email" });
-    // }
+    if (!email.includes("57357.org")) {
+      return res.json({ invalidemail: "Invalid Email" });
+    }
 
     const newUser = await User.create(req.body);
     const token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
@@ -3042,22 +3044,8 @@ router.post(
 
     req.body.detector = Date.now();
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const dic = await Qa.create(req.body)
 
-    const dic = await User.findOneAndUpdate(
-      { role: "DIC" },
-      {
-        $push: {
-          dicreceiver: {
-            question: req.body.question,
-            answer: req.body.answer,
-            detector: req.body.detector,
-            sendername: req.body.sendername,
-            senderimage: req.body.senderimage,
-            createdAt: moment(Date.now()),
-          },
-        },
-      }
-    );
 
     const results = await User.findOneAndUpdate(
       { _id: decoded.id },
@@ -3074,10 +3062,11 @@ router.post(
     );
 
     if (results) {
-      res.json({ done: dic });
+      res.json({ done: results });
     }
   })
 );
+
 
 // DIC SEARCH DATE
 router.post(
@@ -3090,27 +3079,75 @@ router.post(
     const startDate = `${sdate}T00:00:00.000+00:00`;
     const endDate = `${edate}T23:59:59.000+00:00`;
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-    const receiver = await User.findById({ _id: decoded.id });
-    const searchdate = receiver.dicreceiver.filter((item) => {
+    const search = await Qa.find()
+    const searchdate = search.filter((item) => {
       const createdAt = moment(item.createdAt);
       return createdAt.isBetween(startDate, endDate);
     });
-    const array = [];
-    array.push(searchdate);
-
     if (searchdate === undefined) {
-      await User.findOneAndUpdate({ role: "DIC" }, { $set: { dicsearch: [] } });
+      await User.findByIdAndUpdate({ _id: decoded.id }, { $set: { dicsearch: [] } });
     }
-
     if (searchdate) {
-      await User.findOneAndUpdate(
-        { role: "DIC" },
+      await User.findByIdAndUpdate(
+        { _id: decoded.id },
         { $set: { dicsearch: searchdate } }
       );
     }
-    // const search = await User.findOneAndUpdate({role : "DIC"},   { $set : {dicsearch : searchdate }})
-
     res.redirect("/dic");
+  })
+);
+
+// CLEAR DIC SEARCH QUESTION
+router.post(
+  "/cleardicsearch",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    await User.findByIdAndUpdate({ _id: decoded.id }, { $set : {dicsearch : [] }});  
+    res.redirect("/dic");
+  })
+);
+
+// USER SEARCH QUESTION
+router.post(
+  "/searchquestion",
+  [
+    check("search").notEmpty()
+  ],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+    const search = await Qa.find()
+    const searchquestion = search.filter(item => item.question.match(req.body.search))
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const usersearch = await User.findByIdAndUpdate({ _id: decoded.id }, { $set : {userquestionsearch : searchquestion }});
+    if (searchquestion.length === 0) { 
+      return res.json({ nodata : "No Data"})
+    } 
+    
+    
+   
+    if (usersearch) {
+      res.json({ done: usersearch });
+    }
+    
+  })
+);
+
+// CLEAR USER SEARCH QUESTION
+router.post(
+  "/clearsearch",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findByIdAndUpdate({ _id: decoded.id }, { $set : {userquestionsearch : [] }});  
+    res.redirect("/dicsender");
   })
 );
 
@@ -3192,7 +3229,6 @@ router.post(
       req.body.searchText.trim()[0].toUpperCase() +
       req.body.searchText.slice(1, 22222);
     const searchNumber = req.body.searchText.trim().toUpperCase();
-    console.log(searchNumber);
     const results = await Perpatient.find();
     const array = results.filter(
       (item) =>
@@ -3217,7 +3253,6 @@ router.post(
       req.body.searchText.trim()[0].toUpperCase() +
       req.body.searchText.slice(1, 22222);
     const searchNumber = req.body.searchText.trim().toUpperCase();
-    console.log(searchNumber);
     const results = await Perpatient.find();
     const array = results.filter(
       (item) =>
@@ -3241,7 +3276,6 @@ router.post(
       req.body.searchText.trim()[0].toUpperCase() +
       req.body.searchText.slice(1, 22222);
     const searchNumber = req.body.searchText.trim().toUpperCase();
-    console.log(searchNumber);
     const results = await Perpatient.find();
     const array = results.filter(
       (item) =>
@@ -3262,15 +3296,12 @@ router.post(
   requireAuth,
   asyncHandler(async (req, res) => {
     const searchText = req.body.searchText.trim().toLowerCase();
-
-    console.log(searchText);
     const pyxistrade = await PyxisTrade.find();
     const results = pyxistrade.filter(
       (item) =>
         item.generic.toLowerCase().match(searchText) ||
         item.trade1.toLowerCase().match(searchText)
     );
-    console.log(results);
     if (results) {
       res.render("Pyxis/pyxismedsearch.ejs", { results });
     }
@@ -3933,7 +3964,6 @@ router.post(
       answ38() +
       answ39() +
       answ40();
-    console.log(score);
 
     const group = {
       firstname: user.firstname,
@@ -4536,7 +4566,6 @@ router.put(
   checkIfUser,
   requireAuth,
   async (req, res) => {
-    console.log(req.file);
     const results = await Inpatientschema.findByIdAndUpdate(
       req.params.id,
       req.body
@@ -4912,6 +4941,19 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+
+    if (req.body.select === "classname") {
+      const results0 = await Medication.findOneAndUpdate(
+        { generic: req.body.generic },
+        { classname: req.body.input }
+      );
+      if (results0) {
+        res.redirect("/dic");
+      }
+    }
+    
+    
+
     if (req.body.select === "trade") {
       const results = await Medication.findOneAndUpdate(
         { generic: req.body.generic },
@@ -5050,21 +5092,10 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const results = await User.updateOne(
-      { "dicreceiver._id": req.params.id },
-      {
-        $set: {
-          "dicreceiver.$.answer": req.body.answer,
-        },
-      }
+    const results = await Qa.findByIdAndUpdate(req.params.id ,
+      {answer: req.body.answer,}
     );
-
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-    const user = await User.findOne({ _id: decoded.id });
-    const selectedObject = user.dicreceiver.find((item) => {
-      return item._id == req.params.id;
-    });
-    const selectdetector = selectedObject.detector;
+    const selectdetector = results.detector;
     const detector = await User.updateOne(
       { "dicsender.detector": selectdetector },
       {
@@ -5120,7 +5151,6 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    console.log(req.body.trade1);
     const results = await PyxisTrade.findByIdAndUpdate(req.params.id, req.body);
 
     if (results) {
@@ -5173,6 +5203,24 @@ router.put(
 
     if (unlockUser) {
       res.redirect("/admin");
+    }
+  })
+);
+
+//DIC ANSWER UPDATE
+router.put(
+  "/answerupdate/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+  
+    const results = await Qa.findOneAndUpdate(
+      { _id: req.params.id},
+      {answer: req.body.answerupdate}
+    );
+
+    if (results) {
+    res.redirect("/dic")
     }
   })
 );

@@ -169,8 +169,8 @@
                   <ul class="sub-accordion">
                     <li class="sub-accordion__item">
                       <form action="/updatemedication?_method=PUT" method="post" class="d-flex flex-column">
-                        <select placeholder="Trade Name" class="input mb-2" name="trade" type="text">
-                          <option disabled hidden selected>Trade Name ...</option>
+                        <select placeholder="Trade Name" class="input mb-2" name="generic" type="text">
+                          <option disabled hidden selected>Generic Name ...</option>
                           <% med.forEach(item=> { %>
                             <option value="<%= item.generic %>">
                               <%= item.generic %>
@@ -182,6 +182,7 @@
                           <option disabled hidden selected>Select....</option>
                           <option value="trade">Trade</option>
                           <option value="origin">Origin</option>
+                          <option value="classname">Class Name</option>
                           <option value="mechanism">Mechanism Of Action</option>
                           <option value="dosageform">Dosage Form</option>
                           <option value="dose">Dose</option>
@@ -206,6 +207,9 @@
                           </div>
                         </button>
                       </form>
+
+                  
+
                     </li>
 
                   </ul>
@@ -218,16 +222,49 @@
                 <p class="card__content">No Search Data Avaliable. </p>
               <% } %>
               <% if (search.length >= 1) { %>
-                <a href="/excel" ><i class="fa-solid fa-arrow-up-from-bracket fa-rotate-90" style="color: #74c0fc;"> </i></a>
+                <a href="/excel" ><i class="fa-solid fa-download fa-lg" style="color: #74C0FC;"></i></a>
                 
                 <% search.forEach((item, index) => { %>
-                  <h3 class="card__title">Question#<%= index+1 %>
-                  </h3>
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      <h3 class="card__title m-0">Question#<%= index+1 %>
+                      </h3>
+                    </div>
+                    <div class="d-flex align-items-center">
+                    <a data-tooltip="Update Answer" data-flow="left" data-bs-toggle="modal" data-bs-target="#exampleModal<%= item._id %>">
+                      <i class="fa-regular fa-pen-to-square fa-lg" style="color: #74C0FC;"></i></a>  
+                    </div>
+
+                      <!-- Modal -->
+                      <div class="connectmodal modal fade" id="exampleModal<%= item._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="glass modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="/answerupdate/<%= item._id %>?_method=PUT" method="post">
+                            <div class="modal-body">
+                              <input name="answerupdate" type="text" value="<%= item.answer %>" class="input w-100">
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-danger">Update</button>
+                            </div>
+                          </form>
+                          </div>
+                        </div>
+                      </div>
+                    
+                  </div>
                   <p class="card__content"><%= item.question %> </p>
                   <p class="card__content"><i class="me-1" style="color: blue;">ANSWER:</i><%= item.answer %> </p>
                   <li class=" border-top my-3 notlist" style="list-style: none;"></li>
+                  
                 <% }) %>
-                
+                <form action="/cleardicsearch" method="post">
+                  <button class="btn btn-danger mt-2">Clear Search</button>
+                  </form>
               <% } %>
                 
               
@@ -246,6 +283,8 @@
               </div>
 
 
+              
+
               <!-- Modal SEARCH DATE -->
               <div class="connectmodal modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -255,9 +294,10 @@
                       <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <form action="/findDatedic" method="post">
                     <div class="modal-body">
 
-                      <form action="/findDatedic" method="post">
+                      
                         <div class="mb-3">
                           <label for="sDate" class="col-form-label">Start Date</label>
                           <input name="sDate" type="date" class="form-control" id="sDate" />
@@ -289,6 +329,7 @@
 
           <div class="mh-100 border col-md-8 rounded-2 p-2 d-flex flex-column align-items-center overflow-y-auto"
             style="box-shadow: 0px 0px 4px 3px rgba(178, 178, 178, 0.6);">
+            
             <% if (dic.length>= 1) { %>
               <% dic.forEach(item=> { %>
                 <div class="card mb-1">

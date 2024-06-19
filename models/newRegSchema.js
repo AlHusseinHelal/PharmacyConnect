@@ -41,7 +41,7 @@ const user = new mongoose.Schema(
     },
     role: {
       type: "string",
-      enum: ["User", "Admin", "DIC"],
+      enum: ["User", "Admin", "DIC", "Pyxis"],
       default: "User",
     },
     active: {
@@ -116,6 +116,13 @@ const user = new mongoose.Schema(
         createdAt: Date,
         updatedAt: Date,
       },
+    ],
+
+    userquestionsearch: [
+      {
+        question : String,
+        answer : String
+      }
     ],
 
     dicreceiver: [

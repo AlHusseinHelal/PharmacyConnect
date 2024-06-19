@@ -73,7 +73,7 @@
 
                       <input hidden type="text" name="detector" id="detector">
                       <input hidden type="text" name="answer" id="answer">
-                      <input hidden type="text" name="sendername" id="sendername" value="<%= user.firstname + " ." +
+                      <input hidden type="text" name="sendername" id="sendername" value="<%= user.firstname + "." +
                         user.lastname %>">
                       <input hidden type="text" name="senderimage" id="senderimage" value="<%= user.profileimage %>">
 
@@ -90,9 +90,83 @@
 
                   </ul>
                 </li>
+                <li class="accordion__item ">
+                  <a href="#" class="accordion__link d-flex align-items-center">
+                    <i class="fa-solid fa-magnifying-glass fa-lg me-3"></i>
+                    <span>Search Question</span>
+                  </a>
+                  <ul class="sub-accordion">
+                    <li class="sub-accordion__item ">
+
+
+                      <input required placeholder="Write Your Question ..." class="input mb-2 w-100" name="search"
+                        id="search" type="text"></input>
+
+                      <div id="nosearchquestion" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">Please Enter A Question</p>
+                      </div>
+
+                      <form id="searchquestion">
+                        <button type="submit" style="width:130px;">
+                          Search
+                          <div class="arrow-wrapper">
+                            <div class="arrow"></div>
+
+                          </div>
+                        </button>
+                      </form>
+                    </li>
+
+                  </ul>
+                </li>
 
               </ul>
             </article>
+            <div id="nodata" class="mt-1 border rounded-2 p-2 d-none">
+                
+            
+              <div class="border rounded-2 p-2 bg-secondary-subtle mb-2">
+              
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    <span class="alert-body">
+                      <h6 class="alert-header m-0" style="color: red;">ATTENTION</h6>
+                      <p class="m-0" style="color: green;">No Data Avaliable</p>
+                    </span>
+
+              </div>
+          </div>
+            <% if (usersearch.length >= 1) { %>
+              <div class="mt-1 border rounded-2 p-2">
+                
+                <% usersearch.forEach((item , index) => { %>
+                  <div class="border rounded-2 p-2 bg-secondary-subtle mb-2">
+                  
+                    <div class="d-flex align-items-center">
+                      <h6 class="p-0 m-0" style="color: red;"><i>Question</i></h6>
+                      <span class="ms-2">#<%= index + 1 %></span>
+                    </div>
+                    <p class="m-0"><%= item.question %></p>
+    
+                    <div class="my-2" style="border: 1px solid rgb(84, 16, 231);"></div>
+    
+                    <div class="d-flex align-items-center">
+                      <h6 class="p-0 m-0" style="color: blue;"><i>Answer</i></h6>
+                    </div>
+                    <p><%= item.answer %></p>
+    
+                  </div>
+                <% }) %>
+                <form action="/clearsearch" method="post">
+                <button class="btn btn-danger mt-2">Clear Search</button>
+              </form>
+              </div>
+            <% } %>
+          
+
+          
+
           </div>
 
           <div class="mh-100 border col-md-8 rounded-2 p-2 d-flex flex-column align-items-center overflow-y-auto"
@@ -338,7 +412,7 @@
         <!-- ADD QUESTION  -->
         <script>
           addquestion.addEventListener('click', async (event) => {
-            
+            event.preventDefault()
             const res = await fetch("/addquestion", {
               method: "POST",
               body: JSON.stringify({ question: question.value, detector: detector.value, answer: answer.value, senderimage: senderimage.value, sendername: sendername.value }),
@@ -362,36 +436,36 @@
           });
         </script>
 
-        <!-- addnewpatient -->
+        <!-- SEARCH QUESTION -->
         <script>
-          addnewpatient.addEventListener("click", async (item) => {
-            item.preventDefault()
-            const res = await fetch("/addnewpatient", {
+          searchquestion.addEventListener("click", async (event) => {
+            event.preventDefault()
+            const res = await fetch("/searchquestion", {
               method: "POST",
-              body: JSON.stringify({ addpatientmrn: addpatientmrn.value, addpatientname: addpatientname.value, createdAt: new Date() }),
+              body: JSON.stringify({ search: search.value }),
               headers: { "Content-Type": "application/json" },
             })
             const data = await res.json()
             if (data.errors) {
               data.errors.forEach(item => {
-                if (item.path = "addpatientname") {
-                  nopatientname.classList.remove("d-none");
-                  addpatientname.classList.add("redframe");
+                if (item.path = "search") {
+                  nosearchquestion.classList.remove("d-none");
+                  search.classList.add("redframe");
                 } else {
-                  nopatientname.classList.add("d-none");
-                  addpatientname.classList.remove("redframe");
+                  nosearchquestion.classList.add("d-none");
+                  search.classList.remove("redframe");
                 }
               });
             }
-            if (data.patientexist) {
-              patientexist.classList.remove("d-none");
-              addpatientmrn.classList.add("redframe");
+
+            if (data.nodata) {
+              nodata.classList.remove("d-none");
             } else {
-              patientexist.classList.add("d-none");
-              addpatientmrn.classList.remove("redframe");
-            }
+              nodata.classList.add("d-none");
+                }
+          
             if (data.done) {
-              location.assign("/watch")
+              location.assign("/dicsender")
             }
           })
         </script>
