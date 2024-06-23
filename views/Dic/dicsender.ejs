@@ -73,6 +73,9 @@
 
                       <input hidden type="text" name="detector" id="detector">
                       <input hidden type="text" name="answer" id="answer">
+                      <input hidden type="text" name="refrence" id="refrence" value="">
+                      <input hidden type="text" name="refrencelink" id="refrencelink" value="">
+                      <input hidden type="text" name="drugname" id="drugname" value="">
                       <input hidden type="text" name="sendername" id="sendername" value="<%= user.firstname + "." +
                         user.lastname %>">
                       <input hidden type="text" name="senderimage" id="senderimage" value="<%= user.profileimage %>">
@@ -143,9 +146,14 @@
                 <% usersearch.forEach((item , index) => { %>
                   <div class="border rounded-2 p-2 bg-secondary-subtle mb-2">
                   
-                    <div class="d-flex align-items-center">
-                      <h6 class="p-0 m-0" style="color: red;"><i>Question</i></h6>
-                      <span class="ms-2">#<%= index + 1 %></span>
+                    <div class="d-flex align-items-center justify-content-between">
+                      <div class="d-flex align-items-center">
+                        <h6 class="p-0 m-0" style="color: red;"><i>Question</i></h6>
+                        <span class="ms-2">#<%= index + 1 %></span>
+                      </div>
+                      <div data-tooltip="View Question" data-flow="left" data-bs-toggle="modal" data-bs-target="#exampleModal5<%= item._id %>">
+                        <i class="fa-solid fa-eye fa-lg" style="color: #74C0FC;"></i>
+                      </div>
                     </div>
                     <p class="m-0"><%= item.question %></p>
     
@@ -155,8 +163,42 @@
                       <h6 class="p-0 m-0" style="color: blue;"><i>Answer</i></h6>
                     </div>
                     <p><%= item.answer %></p>
+                    
     
                   </div>
+
+
+                  <!-- Modal VIEW QUESTION -->
+                  <div class="connectmodal modal fade" id="exampleModal5<%= item._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="glass modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Question Review</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <label for="one">Question</label>
+                          <input disabled type="text" id="one" class="form-control mb-2" value="<%= item.question %>">
+                          <label for="two">Answer</label>
+                          <input disabled type="text" id="two" class="form-control mb-2" value="<%= item.answer %>">
+                          <label for="three">Refrence</label>
+                          <input disabled type="text" id="three" class="form-control mb-2" value="<%= item.refrence %>">
+                          <label for="four">Refrence Link</label>
+                          <input disabled type="text" id="four" class="form-control mb-2" value="<%= item.refrencelink %>">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+
+
                 <% }) %>
                 <form action="/clearsearch" method="post">
                 <button class="btn btn-danger mt-2">Clear Search</button>
@@ -197,7 +239,7 @@
                         </span>
                       </div>
                       <div class="card-text">
-                        <%= item.question %>
+                        <span><strong><%= item.question %></strong></span>
                       </div>
                       <button type="button" class="btn-accept mb-2">Answer<span class="ms-1 <%= item.answer !== ""? "d-block" : "d-none" %>"><i
                             style="font-size: smaller; color: grey;">
@@ -205,7 +247,17 @@
                           </i></span></button>
                       <div class="card-text mb-3">
                         <div style="position: relative;">
-                          <%= item.answer %>
+                          <strong style="color: crimson;"><%= item.answer %></strong>
+                          <div class="mt-3 <%= item.answer !== ""? "d-block" : "d-none" %>">
+                            <span style="color: blue;"><i>Refrence:</i></span>
+                            <div><%= item.refrence %></div>
+                          </div>
+                          <div class="<%= item.answer !== ""? "d-block" : "d-none" %>">
+                            <span style="color: blue;"><i>Refrence Link:</i></span>
+                            <div><%= item.refrencelink %></div>
+                          </div>
+                          
+                          
                           <div class="<%= item.answer === ""? "d-none" : "d-block" %>" style="position: absolute; bottom: 0; right: 0; font-family: 'Dancing Script', cursive; font-weight: 700;">Amr Elkashef</div>
                         </div>
                         
@@ -415,7 +467,7 @@
             event.preventDefault()
             const res = await fetch("/addquestion", {
               method: "POST",
-              body: JSON.stringify({ question: question.value, detector: detector.value, answer: answer.value, senderimage: senderimage.value, sendername: sendername.value }),
+              body: JSON.stringify({ question: question.value, detector: detector.value, answer: answer.value, senderimage: senderimage.value, sendername: sendername.value, refrence : refrence.value, refrencelink : refrencelink.value, drugname: drugname.value }),
               headers: { "Content-Type": "application/json" },
             })
             const data = await res.json()

@@ -12,6 +12,7 @@ const moment = require("moment");
 //ERROR HANDILING
 const ApiError = require("../utils/apierror");
 const User = require("../models/newRegSchema");
+const Qa = require("../models/q&a");
 //dotenv
 require("dotenv").config();
 
@@ -39,7 +40,9 @@ const checkIfUser = (req, res, next) => {
         next();
       } else {
         const currentUser = await User.findById(decoded.id);
+        const qa = await Qa.find()
         res.locals.user = currentUser;
+        res.locals.qa = qa;
         next();
       }
     });

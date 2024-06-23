@@ -65,6 +65,9 @@
 # body and sidebar
 --------------------------------------------------------------*/ -->
 
+
+
+
       <main id="main" class="d-flex flex-nowrap" style="height: 89vh;">
 
 
@@ -191,7 +194,7 @@
 
 
                         <% AntiCancer.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>  
                           </li>
@@ -213,7 +216,7 @@
 
 
                         <% AntiBiotics.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -232,7 +235,7 @@
                     <div class="collapse" id="AntiCoagulantcollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
                         <% AntiCoagulant.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -252,7 +255,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% AntiConvulsant.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -272,7 +275,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% AntiDiarrheal.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -292,7 +295,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% AntiEmetic.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -313,7 +316,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% AntiFlatulence.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -334,7 +337,7 @@
                       <ul class="ms-3 list-group group" style="list-style: none; text-align: center;">
 
                         <% AntiFungal.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -353,7 +356,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% AntiGout.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -374,7 +377,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% AntiHyperprolactinemia.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -395,7 +398,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% Antiinflammatory.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -416,7 +419,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% AntiSpasmodic.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -437,7 +440,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% AntiTussive.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -458,7 +461,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% AntiViral.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -478,7 +481,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% Analgesic.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -499,7 +502,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% Antacid.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -519,7 +522,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% Anthelmintic.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -540,7 +543,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% Antihistamine.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -560,7 +563,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% Antidote.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -581,7 +584,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% Cardiology.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -601,7 +604,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% Corticosteroid.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -622,7 +625,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% DietarySupplement.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -643,7 +646,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% ElectrolyteSupplement.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -664,7 +667,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% Expectorant.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -685,7 +688,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% Gastrointestinal.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -706,7 +709,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% HemostaticAgent.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -727,7 +730,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% Immunosuppressant.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -748,7 +751,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% MastCellStabilizer.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -768,7 +771,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% Mucolytic.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -788,7 +791,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% Neurology.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -809,7 +812,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% Osteoarthritis.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -830,7 +833,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% SkeletalMuscleRelaxant.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -872,7 +875,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% WaterSolubleVitamin.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -893,7 +896,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% Maoinhibitor.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -912,7 +915,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% Antitraumatic.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -931,7 +934,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% Bronchodilator.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -950,7 +953,7 @@
                         <ul class="list-group group" style="list-style: none; text-align: center;">
   
                           <% Contraceptive.forEach(item=> { %>
-                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                               <p hidden class="code"><%= item.code%></p>
                               <%= item.generic%>
                             </li>
@@ -969,7 +972,7 @@
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
                         <% Decongestant.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <%= item.generic%>
                           </li>
@@ -988,7 +991,7 @@
                         <ul class="list-group group" style="list-style: none; text-align: center;">
   
                           <% Digestive.forEach(item=> { %>
-                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                               <p hidden class="code"><%= item.code%></p>
                               <%= item.generic%>
                             </li>
@@ -1007,7 +1010,7 @@
                           <ul class="list-group group" style="list-style: none; text-align: center;">
     
                             <% Hormone.forEach(item=> { %>
-                              <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                              <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic.toLowerCase()%>">
                                 <p hidden class="code"><%= item.code%></p>
                                 <%= item.generic%>
                               </li>
@@ -1026,7 +1029,7 @@
                         <ul class="list-group group" style="list-style: none; text-align: center;">
   
                           <% Laxative.forEach(item=> { %>
-                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                               <p hidden class="code"><%= item.code%></p>
                               <%= item.generic%>
                             </li>
@@ -1045,7 +1048,7 @@
                           <ul class="list-group group" style="list-style: none; text-align: center;">
     
                             <% AntiAsthmatic.forEach(item=> { %>
-                              <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                              <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                                 <p hidden class="code"><%= item.code%></p>
                                 <%= item.generic%>
                               </li>
@@ -1064,7 +1067,7 @@
                         <ul class="list-group group" style="list-style: none; text-align: center;">
   
                           <% Diuretic.forEach(item=> { %>
-                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                               <p hidden class="code"><%= item.code%></p>
                               <%= item.generic%>
                             </li>
@@ -1083,7 +1086,7 @@
                           <ul class="list-group group" style="list-style: none; text-align: center;">
     
                             <% AntiHyperphosphatemia.forEach(item=> { %>
-                              <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                              <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                                 <p hidden class="code"><%= item.code%></p>
                                 <%= item.generic%>
                               </li>
@@ -1102,7 +1105,7 @@
                         <ul class="list-group group" style="list-style: none; text-align: center;">
   
                           <% PPI.forEach(item=> { %>
-                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                               <p hidden class="code"><%= item.code%></p>
                               <%= item.generic%>
                             </li>
@@ -1121,7 +1124,7 @@
                           <ul class="list-group group" style="list-style: none; text-align: center;">
     
                             <% Weakopioid.forEach(item=> { %>
-                              <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%>">
+                              <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                                 <p hidden class="code"><%= item.code%></p>
                                 <%= item.generic%>
                               </li>
@@ -1480,13 +1483,40 @@
 
             <li class=" border-top my-3"></li>
 
+            <% const test = user.searchmedication
+        const test2 = test.find( item => item.generic)
+        const test3 = test2.generic
+        %>
+
+            <!-- SERACH MEDICATION -->
             <div class="container-fluid search">
-              <form class="d-flex flex-column " role="search">
-                <input id="searchInput" class="form-control me-2 mb-2" type="search" placeholder="Search"
-                  aria-label="Search">
-                <button id="searchButton" class="btn btn-outline-success searchbtn" type="submit">Search</button>
-              </form>
+              <div class="d-flex flex-column">
+                <input id="searchinput" name="searchinput" class="form-control me-2 mb-2" type="text">
+                <input hidden id="searchinput2" name="searchinput2" class="form-control me-2 mb-2" type="text" value="<%= test3 %>">
+                  <form id="searchmedication">
+                    <button class="btn btn-outline-success searchbtn" type="submit">Search</button>
+                  </form>
+                
+              </div>
             </div>
+
+            <div id="nosearchquestion" class=" d-flex flex-row align-items-center my-2 d-none"
+              style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+              <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+              <p class="my-1 ms-1">Please Enter Medication Name</p>
+            </div>
+
+            <div id="nodata" class="mt-1 border rounded-2 p-2 d-none">
+              <div class="border rounded-2 p-2 bg-secondary-subtle mb-2">        
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                <span class="alert-body">
+                  <h6 class="alert-header m-0" style="color: red;">ATTENTION</h6>
+                  <p class="m-0" style="color: green;">No Data Avaliable</p>
+                </span>
+              </div>
+          </div>
+
+
           </ul>
         </div>
 
@@ -1510,7 +1540,7 @@
 
                   <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample<%= item.code %>">
 
-                    <div class="accordion-item <%=  item.classname === "" || item.classname === undefined? " d-none" : "d-block" %>">
+                    <div class="accordion-item <%=  item.classname === "" || item.classname === " " || item.classname === undefined? "d-none" : "d-block" %>">
                       <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#collapZero<%= item.code %>" aria-expanded="true" aria-controls="collapZero<%= item.code %>">
@@ -1525,7 +1555,7 @@
                       </div>
                     </div>
 
-                    <div class="accordion-item <%=  item.origin === "" || item.origin === undefined? " d-none" : "d-block" %>">
+                    <div class="accordion-item <%=  item.origin === "" || item.origin === " " || item.origin === undefined? "d-none" : "d-block" %>">
                       <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#collapOne<%= item.code %>" aria-expanded="true" aria-controls="collapOne<%= item.code %>">
@@ -1533,14 +1563,14 @@
                           Pharmacological Class
                         </button>
                       </h2>
-                      <div id="collapOne<%= item.code %>" class="accordion-collapse collapse " data-bs-parent="#accordionExample<%= item.code %>">
+                      <div id="collapOne<%= item.code %>" class="accordion-collapse collapse" data-bs-parent="#accordionExample<%= item.code %>">
                         <div class="accordion-body">
                           <p class="mb-0 accordion-content"><%= item.classname %></p>
                         </div>
                       </div>
                     </div>
 
-                    <div class="accordion-item <%=  item.mechanism === "" || item.mechanism === undefined? " d-none" : "d-block" %>">
+                    <div class="accordion-item <%=  item.mechanism === "" || item.mechanism === " " || item.mechanism === undefined? "d-none" : "d-block" %>">
                       <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#collapseTwo<%= item.code %>" aria-expanded="true" aria-controls="collapseTwo<%= item.code %>">
@@ -1555,7 +1585,7 @@
                       </div>
                     </div>
 
-                    <div class="accordion-item <%=  item.dosageform === "" || item.dosageform === undefined? " d-none" : "d-block" %>">
+                    <div class="accordion-item <%=  item.dosageform === "" || item.dosageform === " " || item.dosageform === undefined? "d-none" : "d-block" %>">
                       <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#collapseThree<%= item.code %>" aria-expanded="true" aria-controls="collapseThree<%= item.code %>">
@@ -1570,7 +1600,7 @@
                       </div>
                     </div>
 
-                    <div class="accordion-item <%=  item.dose === "" || item.dose === undefined? " d-none" : "d-block" %>">
+                    <div class="accordion-item <%=  item.dose === "" || item.dose === " " || item.dose === undefined? "d-none" : "d-block" %>">
                       <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#collapseFour<%= item.code %>" aria-expanded="true" aria-controls="collapseFour<%= item.code %>">
@@ -1585,7 +1615,7 @@
                       </div>
                     </div>
 
-                    <div class="accordion-item <%=  item.administration === "" || item.administration === undefined? " d-none" : "d-block" %>">
+                    <div class="accordion-item <%=  item.administration === "" || item.administration === " " || item.administration === undefined? "d-none" : "d-block" %>">
                       <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#collapsefive<%= item.code %>" aria-expanded="true" aria-controls="collapsefive<%= item.code %>">
@@ -1600,7 +1630,7 @@
                       </div>
                     </div>
 
-                    <div class="accordion-item <%=  item.ptinformation === "" || item.ptinformation === undefined? " d-none" : "d-block" %>">
+                    <div class="accordion-item <%=  item.ptinformation === "" || item.ptinformation === " " || item.ptinformation === undefined? "d-none" : "d-block" %>">
                       <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#collapseSix<%= item.code %>" aria-expanded="true" aria-controls="collapseSix<%= item.code %>">
@@ -1615,7 +1645,7 @@
                       </div>
                     </div>
 
-                    <div class="accordion-item <%=  item.sideeffect === "" || item.sideeffect === undefined? " d-none" : "d-block" %>">
+                    <div class="accordion-item <%=  item.sideeffect === "" || item.sideeffect === " " || item.sideeffect === undefined? "d-none" : "d-block" %>">
                       <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#collapseSeven<%= item.code %>" aria-expanded="true" aria-controls="collapseSeven<%= item.code %>">
@@ -1630,7 +1660,7 @@
                       </div>
                     </div>
 
-                    <div class="accordion-item <%=  item.monitor === "" || item.monitor === undefined? " d-none" : "d-block" %>">
+                    <div class="accordion-item <%=  item.monitor === "" || item.monitor === " " || item.monitor === undefined? "d-none" : "d-block" %>">
                       <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#collapseEight<%= item.code %>" aria-expanded="true" aria-controls="collapseEight<%= item.code %>">
@@ -1645,7 +1675,7 @@
                       </div>
                     </div>
 
-                    <div class="accordion-item <%=  item.interaction === "" || item.interaction === undefined? " d-none" : "d-block" %>">
+                    <div class="accordion-item <%=  item.interaction === "" || item.interaction === " " || item.interaction === undefined? "d-none" : "d-block" %>">
                       <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#collapseNine<%= item.code %>" aria-expanded="true" aria-controls="collapseNine<%= item.code %>">
@@ -1660,7 +1690,7 @@
                       </div>
                     </div>
 
-                    <div class="accordion-item <%=  item.specialprecaution === "" || item.specialprecaution === undefined? " d-none" : "d-block" %>">
+                    <div class="accordion-item <%=  item.specialprecaution === "" || item.specialprecaution === " " || item.specialprecaution === undefined? "d-none" : "d-block" %>">
                       <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#collapseTen<%= item.code %>" aria-expanded="true" aria-controls="collapseTen<%= item.code %>">
@@ -1676,7 +1706,7 @@
                       </div>
                     </div>
 
-                    <div class="accordion-item <%=  item.toxicity === "" || item.toxicity === undefined? " d-none" : "d-block" %>">
+                    <div class="accordion-item <%=  item.toxicity === "" || item.toxicity === " " || item.toxicity === undefined? "d-none" : "d-block" %>">
                       <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#collapseEleven<%= item.code %>" aria-expanded="true" aria-controls="collapseEleven<%= item.code %>">
@@ -1692,11 +1722,11 @@
                       </div>
                     </div>
 
-                    <div class="accordion-item <%=  item.miscellaneous === "" || item.miscellaneous === undefined? " d-none" : "d-block" %>">
+                    <div class="accordion-item <%=  item.miscellaneous === "" || item.miscellaneous === " " || item.miscellaneous === undefined? "d-none" : "d-block" %>">
                       <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                           data-bs-target="#collapseTwelve<%= item.code %>" aria-expanded="true" aria-controls="collapseTwelve<%= item.code %>">
-                          <img src="/svg/toxicity-16.svg" alt="" height="30px" class="me-2">
+                          <img src="/svg/miscellaneous-18.svg" alt="" height="30px" class="me-2">
                           Miscellaneous
                         </button>
                       </h2>
@@ -1717,7 +1747,7 @@
         </div>
 
 
-
+        
       </main>
 
 
@@ -1745,6 +1775,45 @@
           white-space: pre-wrap	;
         }
       </style>
+
+        <!-- SEARCH Medication -->
+        <script>
+          searchmedication.addEventListener("click", async (event) => {
+            event.preventDefault()
+            const res = await fetch("/searchmedication", {
+              method: "POST",
+              body: JSON.stringify({ searchinput: searchinput.value }),
+              headers: { "Content-Type": "application/json" },
+            })
+            const data = await res.json()
+            if (data.errors) {
+              data.errors.forEach(item => {
+                if (item.path = "searchinput") {
+                  nosearchquestion.classList.remove("d-none");
+                  searchinput.classList.add("redframe");
+                } else {
+                  nosearchquestion.classList.add("d-none");
+                  searchinput.classList.remove("redframe");
+                }
+              });
+            }
+            if (data.nodata) {
+              nodata.classList.remove("d-none");
+            } else {
+              nodata.classList.add("d-none");
+                }
+
+          if (data.done) {
+            const select = searchinput2.value
+            document.querySelector("." + select.toUpperCase()).classList.add("backgroundcolor");
+            document.querySelector("." + select.toUpperCase()).parentElement.parentElement.classList.add("show");
+            document.querySelector("." + select.toUpperCase()).parentElement.parentElement.parentElement.parentElement.parentElement.classList.add("show");
+            document.querySelector("." + select.toUpperCase()).parentElement.parentElement.parentElement.firstElementChild.previousElementSibling;
+            document.querySelector("." + select.toUpperCase()).parentElement.parentElement.parentElement.setAttribute("aria-expanded", "true");  
+          }
+          
+          })
+        </script>
 
 
 </body>

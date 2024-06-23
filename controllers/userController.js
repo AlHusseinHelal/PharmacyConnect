@@ -1,9 +1,10 @@
 //ERROR HANDILING TRY_CATCH OR THEN_CATCH
 const asyncHandler = require("express-async-handler");
 
-
+//JWT TOKEN
+const jwt = require("jsonwebtoken");
 const Medication = require("../models/medication");
-
+const User = require("../models/newRegSchema");
 
 //SIGNOUT
 exports.signOut = (req, res) => {
@@ -205,6 +206,12 @@ exports.OncoTips = asyncHandler(async (req, res) => {
     classname: "Weak opioid",
   }).sort({ generic: "asc" });
 
+  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
+  const user = await User.findOne({ _id : decoded.id})
+  const searchmed = user.searchmedication
+
+
+
   if (med) {
     res.render("oncotips.ejs", {
       med,
@@ -254,8 +261,7 @@ exports.OncoTips = asyncHandler(async (req, res) => {
       Diuretic,
       AntiHyperphosphatemia,
       PPI,
-      Weakopioid
-      
+      Weakopioid,searchmed
     });
   }
 });

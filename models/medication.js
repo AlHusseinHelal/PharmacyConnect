@@ -3,14 +3,8 @@ const mongoose = require("mongoose");
 // INPATIENT SCHEMA
 const med = new mongoose.Schema(
   {
-    generic: {
-      type : String,
-      trim : true,
-    },
-    trade: {
-      type : String,
-      trim : true,
-    },
+    generic: String,
+    trade: String,
     code : String,
     classname: String,
     origin : String,
@@ -30,8 +24,8 @@ const med = new mongoose.Schema(
 );
 
 med.pre("save", function (next) {
-  this.ptinformation.replace(/\\n/g, "\n")
-
+  this.generic =
+    this.generic.toUpperCase()
   next();
 });
 

@@ -100,6 +100,9 @@ const user = new mongoose.Schema(
       {
         question: String,
         answer: String,
+        refrence: String,
+        refrencelink:String,
+        drugname: String,
         createdAt: Date,
         updatedAt: Date,
       },
@@ -115,30 +118,44 @@ const user = new mongoose.Schema(
         detector: String,
         createdAt: Date,
         updatedAt: Date,
+        refrence: String,
+        refrencelink:String,
+        drugname: String,
       },
     ],
 
     userquestionsearch: [
       {
         question : String,
-        answer : String
+        answer : String,
+        refrence: String,
+        refrencelink:String,
+        drugname: String,
       }
     ],
 
-    dicreceiver: [
+    searchmedication: [
       {
-        question: {
-          type: "string",
-          trim: true,
-        },
-        answer: String,
-        detector: String,
-        sendername: String,
-        senderimage: String,
-        createdAt: Date,
-        updatedAt: Date,
-      },
+        generic: String,
+        trade : String,
+        code : String,
+      }
     ],
+
+    // dicreceiver: [
+    //   {
+    //     question: {
+    //       type: "string",
+    //       trim: true,
+    //     },
+    //     answer: String,
+    //     detector: String,
+    //     sendername: String,
+    //     senderimage: String,
+    //     createdAt: Date,
+    //     updatedAt: Date,
+    //   },
+    // ],
     outfinddate: [
       {
         patientname: String,
@@ -427,6 +444,11 @@ const user = new mongoose.Schema(
       correctanswertruefalse10: String,
       answertf10 : String,
       detector: String,
+    },
+
+    update: {
+      generic : String,
+      select : String
     },
 
     selectedpharmacist: {},

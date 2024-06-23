@@ -61,25 +61,54 @@
                       
                         <div class="d-flex flex-column">
                           <input placeholder="Generic Name" class="input mb-2" name="generic" id="generic" type="text" />
-                          <input placeholder="Trade Name" class="input mb-2" name="trade" id="trade" type="text" />
-                          <input placeholder="Med Code" class="input mb-2" name="code" id="code" type="text" />
+
+                          <div id="genericempty" class=" d-flex flex-row align-items-center my-2 d-none"
+                          style="border: 1px solid #000509; border-left: 3px solid red; border-radius: 5px;">
+                          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                          <p class="my-1 ms-1">You Must Enter This Field</p>
+                        </div>
+
+                        <div id="genericfound" class=" d-flex flex-row align-items-center my-2 d-none"
+                          style="border: 1px solid #000509; border-left: 3px solid red; border-radius: 5px;">
+                          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                          <p class="my-1 ms-1">This Name Is Already Exist</p>
+                        </div>
+
+                          <input  placeholder="Trade Name" class="input mb-2" name="trade" id="trade" type="text" />
+
+                          <div id="tradeempty" class=" d-flex flex-row align-items-center my-2 d-none"
+                          style="border: 1px solid #000509; border-left: 3px solid red; border-radius: 5px;">
+                          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                          <p class="my-1 ms-1">You Must Enter This Field</p>
+                        </div>
+
+                          <input  placeholder="Med Code" class="input mb-2" name="code" id="code" type="text" />
+
                           
                           <div id="invalidcode" class=" d-flex flex-row align-items-center my-2 d-none"
                             style="border: 1px solid #000509; border-left: 3px solid red; border-radius: 5px;">
                             <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
                             <p class="my-1 ms-1">This Code Is Already Exist</p>
                           </div>
+
+                          <div id="codeempty" class=" d-flex flex-row align-items-center my-2 d-none"
+                          style="border: 1px solid #000509; border-left: 3px solid red; border-radius: 5px;">
+                          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                          <p class="my-1 ms-1">You Must Enter This Field</p>
+                        </div>
                           
                           <div class="d-flex justify-content-between align-items-center">
                           
                             <select placeholder="Class" class="input" name="classname" id="clas" type="text" style="width: 75%;">
-                              <option disabled hidden selected>Select...</option>
+                              <option disabled hidden selected>Select Class...</option>
                               <% medclass.forEach(item=> { %>
                                 <option value="<%= item.classname %>">
                                   <%= item.classname %>
                                 </option>
                                 <% }) %>
                             </select>
+
+
                             <div class="uiverse mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal"
                               style="width: 20%; margin: unset;">
                               <span class="tooltip">Add Class</span>
@@ -88,36 +117,64 @@
                               </span>
                             </div>
                           </div>
+
+                          
+                          <div id="noclass" class=" d-flex flex-row align-items-center my-2 d-none"
+                          style="border: 1px solid #000509; border-left: 3px solid red; border-radius: 5px;">
+                          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                          <p class="my-1 ms-1">You Must Enter This Field</p>
+                        </div>
                           <!-- <input placeholder="Class" class="input mb-2" name="class" type="text" /> -->
+                           <label for="mechanism"><i>Mechanism</i></label>
                           <textarea placeholder="Mechanism" class="input mb-2" name="mechanism" id="mechanism" type="text" cols="30"
-                            rows="10"></textarea>
-                          <input placeholder="Dosage Form" class="input mb-2" name="dosageform" id="dosageform" type="text" />
+                            rows="10"> </textarea>
+
+                          <label for="dosageform"><i>Dosage Form</i></label>
+                          <input value=" " placeholder="Dosage Form" class="input mb-2" name="dosageform" id="dosageform" type="text" />
+                          
+                          <label for="dose"><i>Dose</i></label>
                           <textarea placeholder="Dose" class="input mb-2" name="dose" id="dose" type="text" cols="30"
-                            rows="10"></textarea>
+                            rows="10"> </textarea>
+
+                          <label for="administration"><i>Administration</i></label>  
                           <textarea placeholder="Administration" class="input mb-2" name="administration" id="administration" type="text"
-                            cols="30" rows="10"></textarea>
+                            cols="30" rows="10"> </textarea>
+
+                          <label for="ptinformation"><i>Patient Information</i></label>
                           <textarea placeholder="Patient Information" class="input mb-2" name="ptinformation" id="ptinformation" type="text"
-                            cols="30" rows="10"></textarea>
+                            cols="30" rows="10"> </textarea>
+
+                          <label for="sideeffect"><i>Side Effects</i></label>
                           <textarea placeholder="Side Effects" class="input mb-2" name="sideeffect" id="sideeffect" type="text" cols="30"
-                            rows="10"></textarea>
+                            rows="10"> </textarea>
+
+                          <label for="monitor"><i>Monitor</i></label>
                           <textarea placeholder="Monitor" class="input mb-2" name="monitor" id="monitor" type="text" cols="30"
-                            rows="10"></textarea>
+                            rows="10"> </textarea>
+
+                          <label for="interaction"><i>Interaction</i></label>
                           <textarea placeholder="Interaction" class="input mb-2" name="interaction" id="interaction" type="text" cols="30"
-                            rows="10"></textarea>
+                            rows="10"> </textarea>
+
+                          <label for="specialprecaution"><i>Special Precaution</i></label>
                           <textarea placeholder="Interaction" class="input mb-2" name="specialprecaution" id="specialprecaution" type="text"
-                            cols="30" rows="10"></textarea>
+                            cols="30" rows="10"> </textarea>
+
+                            <label for="toxicity"><i>Toxicity</i></label>
                             <textarea placeholder="Toxicity" class="input mb-2" name="toxicity" id="toxicity" type="text"
-                            cols="30" rows="10"></textarea>
+                            cols="30" rows="10"> </textarea>
+
+                            <label for="miscellaneous"><i>Miscellaneous</i></label>
                           <textarea placeholder="Miscellaneous" class="input mb-2" name="miscellaneous" id="miscellaneous" type="text"
-                            cols="30" rows="10"></textarea>
+                            cols="30" rows="10"> </textarea>
                             <form id="addmedication" class="d-flex flex-column">
-                          <button  type="submit" style="width:130px;">
-                            Submit
-                            <div class="arrow-wrapper">
-                              <div class="arrow"></div>
-                            </div>
-                          </button>
-                          <form>
+                                <button  type="submit" style="width:130px;">
+                                  Submit
+                                <div class="arrow-wrapper">
+                                  <div class="arrow"></div>
+                                </div>
+                                </button>
+                              </form>
                         </div>
                     </li>
 
@@ -163,12 +220,14 @@
                   </div>
                 </div>
 
+
+                <!-- //UPDATE MEDICATION -->
                 <li class="accordion__item">
                   <a href="#" class="accordion__link d-flex"><img class="me-2" src="../svg/updatemedication-13.svg"
                       width="18" alt="">Update Medication</a>
                   <ul class="sub-accordion">
                     <li class="sub-accordion__item">
-                      <form action="/updatemedication?_method=PUT" method="post" class="d-flex flex-column">
+                      <form action="/updatemedication" method="post" class="d-flex flex-column">
                         <select placeholder="Trade Name" class="input mb-2" name="generic" type="text">
                           <option disabled hidden selected>Generic Name ...</option>
                           <% med.forEach(item=> { %>
@@ -196,11 +255,8 @@
                           <option value="miscellaneous">Miscellaneous</option>
                         </select>
 
-                        <textarea placeholder="" class="input mb-2" name="input" type="text" cols="30"
-                          rows="10"></textarea>
-
                         <button type="submit" style="width:130px;">
-                          Submit
+                          View
                           <div class="arrow-wrapper">
                             <div class="arrow"></div>
 
@@ -215,6 +271,8 @@
                   </ul>
                 </li>
               </ul>
+
+              <!-- SEARCH HISTORY -->
               <div class="cardtwo w-100">
               <% if (search.length === 0) { %>
                 <h3 class="card__title">Data Search
@@ -259,6 +317,9 @@
                   </div>
                   <p class="card__content"><%= item.question %> </p>
                   <p class="card__content"><i class="me-1" style="color: blue;">ANSWER:</i><%= item.answer %> </p>
+                  <p class="card__content"><i class="me-1" style="color: blue;">Refrence:</i><%= item.refrence %> </p>
+                  <p class="card__content"><i class="me-1" style="color: blue;">Refrence Link:</i><%= item.refrencelink %> </p>
+                  <p class="card__content"><i class="me-1" style="color: blue;">Drug Name:</i><%= item.drugname %> </p>
                   <li class=" border-top my-3 notlist" style="list-style: none;"></li>
                   
                 <% }) %>
@@ -330,7 +391,8 @@
           <div class="mh-100 border col-md-8 rounded-2 p-2 d-flex flex-column align-items-center overflow-y-auto"
             style="box-shadow: 0px 0px 4px 3px rgba(178, 178, 178, 0.6);">
             
-            <% if (dic.length>= 1) { %>
+            
+              
               <% dic.forEach(item=> { %>
                 <div class="card mb-1">
                   <div class="card-wrapper">
@@ -355,8 +417,7 @@
                       <div class="card-text">
                         <%= item.question %>
                       </div>
-                      <button type="button" class="btn-accept mb-2" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal<%= item._id %>">Answer<span class="ms-1 <%= item.answer !== ""? "d-block" : "d-none" %>">
+                      <button type="button" class="btn-accept mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal2<%= item._id %>">Answer<span class="ms-1 <%= item.answer !== ""? "d-block" : "d-none" %>">
                           <i style="font-size:x-small; color: grey;">
                             <%= moment(item.updatedAt).format('DD-MM-YYYY hh:mm a') %>
                           </i></span></span></button>
@@ -368,35 +429,69 @@
                 </div>
 
 
-                <!-- Modal dicanswer -->
-                <div class="modal fade" id="exampleModal<%= item._id %>" tabindex="-1"
-                  aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="connectmodal modal-dialog">
-                    <div class="glass modal-content">
-                      <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Answer</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <form action="/dicanswer/<%= item._id %>?_method=PUT" method="post">
-                        <div class="modal-body">
-                          <textarea class="input w-100" name="answer" id="" cols="30" rows="10"></textarea>
+
+                  <!-- Modal -->
+                  <div class="connectmodal modal fade" id="exampleModal2<%= item._id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="glass modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
+                        <div class="modal-body">
+                          
+                          <form action="/dicanswer/<%= item._id %>?_method=PUT" method="post">
+                            <label for="answer">Answer</label>
+                            <textarea id="answer" class="input w-100" name="answer" cols="30" rows="5"></textarea>
+                          
+                             <div>
+                              <label for="refrence">Refrence</label> 
+                             </div>
+                             <div class="mb-2">
+                              <input id="refrence" type="text" class="input w-100" name="refrence"> 
+                             </div>
+                          
+                
+                        
+                            <div>
+                              <label for="refrencelink">Refrence Link</label>
+                            </div>
+                            <div class="mb-2">
+                              <input id="refrencelink" type="text" class="input w-100" name="refrencelink">
+                            </div>
+                          
+                
+                        
+                            <div>
+                              <label for="drugname">Drug Name</label>
+                            </div>
+                            <div class="mb-2">
+                              <input id="drugname" type="text" class="input w-100" name="drugname">
+                            </div>
+                          
+                        
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                           <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
                       </form>
+
+                        </div>
+                      
+                      </div>
                     </div>
                   </div>
-                </div>
-          </div>
           <% }) %>
-            <% } %>
-
-
-
-        </div>
-        </div>
+        
+          
+          
+          </div>
       </main>
+
+
+
+
+
 
 
 
@@ -611,11 +706,46 @@
           event.preventDefault()
           const res = await fetch("/addmedication", {
             method: "POST",
-            body: JSON.stringify({ generic: generic.value, trade: trade.value, code: code.value, classname: clas.value, mechanism: mechanism.value, dosageform: dosageform.value, administration: administration.value, ptinformation: ptinformation.value, sideeffect: sideeffect.value, monitor: monitor.value, interaction: interaction.value, specialprecaution: specialprecaution.value, toxicity: toxicity.value, miscellaneous: miscellaneous.value, }),
+            body: JSON.stringify({ generic: generic.value.toUpperCase(), trade: trade.value, code: code.value, classname: clas.value, mechanism: mechanism.value, dosageform: dosageform.value, dose : dose.value, administration: administration.value, ptinformation: ptinformation.value, sideeffect: sideeffect.value, monitor: monitor.value, interaction: interaction.value, specialprecaution: specialprecaution.value, toxicity: toxicity.value, miscellaneous: miscellaneous.value, }),
             headers: { "Content-Type": "application/json" }, 
           })
           const data = await res.json()
-          
+          if (data.errors) {
+            data.errors.forEach(item => {
+              if (item.path === "generic") {
+                genericempty.classList.remove("d-none")
+                generic.classList.add("redframe")
+              } else {
+                genericempty.classList.add("d-none")
+                generic.classList.remove("redframe")
+              }
+
+              if (item.path === "trade") {
+                tradeempty.classList.remove("d-none")
+                trade.classList.add("redframe")
+              } else {
+                tradeempty.classList.add("d-none")
+                trade.classList.remove("redframe")
+              }
+
+              if (item.path === "code") {
+                codeempty.classList.remove("d-none")
+                code.classList.add("redframe")
+              } else {
+                codeempty.classList.add("d-none")
+                code.classList.remove("redframe")
+              }
+
+            })
+          }
+
+          if (data.generic) {
+            genericfound.classList.remove("d-none")
+            generic.classList.add("redframe")
+          } else {
+            genericfound.classList.add("d-none")
+            generic.classList.remove("redframe")
+          }
 
           if (data.code) {
             invalidcode.classList.remove("d-none")
@@ -623,6 +753,14 @@
           } else {
             invalidcode.classList.add("d-none")
             code.classList.remove("redframe")
+          }
+
+          if (data.classname) {
+            noclass.classList.remove("d-none")
+            clas.classList.add("redframe")
+          } else {
+            noclass.classList.add("d-none")
+            clas.classList.remove("redframe")
           }
 
           if (data.done) {

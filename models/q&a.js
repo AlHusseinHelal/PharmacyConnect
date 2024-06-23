@@ -8,6 +8,9 @@ const qa = new mongoose.Schema(
     detector: String,
     sendername: String,
     senderimage: String,
+    refrence: String,
+    refrencelink:String,
+    drugname: String,
   },
   { timestamps: true }
 );

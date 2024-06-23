@@ -51,7 +51,6 @@ const Medicationclass = require("../models/medicationClass");
 const Perpatient = require("../models/perpatientSchema");
 const Pyxis = require("../models/pyxisSchema");
 const Rowa = require("../models/rowaSchema");
-const PyxisMed = require("../models/pyxismedSchema");
 const PyxisTrade = require("../models/pyxistradeSchema");
 const Score = require("../models/score");
 const Qa = require("../models/q&a");
@@ -361,13 +360,14 @@ router.get(
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const currentUser = await User.findById({ _id: decoded.id });
     const medclass = await Medicationclass.find().sort({ classname: "asc" });
-    const med = await Medication.find().sort("asc");
+    const med = await Medication.find().sort({ generic: "asc" });
     const date = moment().format("YYYY-MM-DD");
     const startDate = date + "T00:00:00.000+00:00";
     const endDate = date + "T23:59:59.000+00:00";
     const search = currentUser.dicsearch;
     const qa = await Qa.find()
     const dic = qa.filter(item => item.answer === "" );
+    console.log(dic);
     if (medclass) {
       res.render("Dic/dic.ejs", {
         medclass,
@@ -1770,9 +1770,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email" });
-    // }
+    if (!email.includes("57357.org")) {
+      return res.json({ invalidemail: "Invalid Email" });
+    }
 
     const newUser = await User.create(req.body);
     const token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
@@ -3015,13 +3015,28 @@ router.post(
 
 //ADD Medication
 router.post(
-  "/addmedication",
+  "/addmedication",[
+    check("code").notEmpty(),
+    check("trade").notEmpty(),
+    check("generic").notEmpty(),  
+  ],
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+    const generic = await Medication.findOne({ generic : req.body.generic});
+    if (generic) {
+      return res.json({ generic: "This Name Is Already Exist" });
+    }
     const results = await Medication.findOne({ code: req.body.code });
     if (results) {
       return res.json({ code: "This Code Is Already Exist" });
+    }
+    if (req.body.classname === "Select Class...") {
+      return res.json({ classname: "You Must Enter This Field" });
     }
     const result = await Medication.create(req.body);
     if (result) {
@@ -3123,7 +3138,9 @@ router.post(
       return res.json({ errors: error.errors });
     }
     const search = await Qa.find()
-    const searchquestion = search.filter(item => item.question.match(req.body.search))
+    const findquestion = req.body.search 
+    const searchquestion = search.filter(item => 
+    item.question.toLowerCase().match(findquestion.toLowerCase()))
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const usersearch = await User.findByIdAndUpdate({ _id: decoded.id }, { $set : {userquestionsearch : searchquestion }});
     if (searchquestion.length === 0) { 
@@ -3138,6 +3155,41 @@ router.post(
     
   })
 );
+
+// USER SEARCH QUESTION
+router.post(
+  "/searchmedication",
+  [
+    check("searchinput").notEmpty()
+  ],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+    const search = await Medication.find()
+    
+    const findmed = req.body.searchinput 
+    
+    const searchmed = search.find(item => item.generic.toLowerCase().match(findmed.toLowerCase()))
+    if (!searchmed) { 
+      return res.json({ nodata : "No Data"})
+    } 
+
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const usersearch = await User.findByIdAndUpdate({ _id: decoded.id }, { $set : {searchmedication : searchmed }});
+    const {code} = searchmed
+
+    if (searchmed) {
+      res.json({ done : code });
+    }
+    
+  })
+);
+
+
 
 // CLEAR USER SEARCH QUESTION
 router.post(
@@ -3253,7 +3305,7 @@ router.post(
       req.body.searchText.trim()[0].toUpperCase() +
       req.body.searchText.slice(1, 22222);
     const searchNumber = req.body.searchText.trim().toUpperCase();
-    const results = await Perpatient.find();
+    const results = await Pyxis.find();
     const array = results.filter(
       (item) =>
         item.ItemDescription.match(searchtext) ||
@@ -3276,7 +3328,7 @@ router.post(
       req.body.searchText.trim()[0].toUpperCase() +
       req.body.searchText.slice(1, 22222);
     const searchNumber = req.body.searchText.trim().toUpperCase();
-    const results = await Perpatient.find();
+    const results = await Rowa.find();
     const array = results.filter(
       (item) =>
         item.ItemDescription.match(searchtext) ||
@@ -4021,6 +4073,46 @@ router.post(
     const results2 = await Score.create(group);
 
     res.redirect("/exam");
+  })
+);
+
+router.post(
+  "/updatemedication",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
+    await User.findByIdAndUpdate({_id : decoded.id},  { update : req.body})
+  
+
+    const result = await Medication.findOne({generic : req.body.generic})
+    const update = req.body.select
+    const updatemedication = result[update]
+    
+  
+    if (updatemedication) {
+      res.render("edit.ejs", {updatemedication})
+    }
+
+  })
+);
+
+router.post(
+  "/updatemedication2",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
+    const user = await User.findById({_id : decoded.id})
+    const userupdate = user.update
+    const {generic} = userupdate
+    const {select} = userupdate
+    const medicationupdate = await Medication.findOneAndUpdate({generic : generic}, { [select] : req.body.input})
+if (medicationupdate) {
+  res.redirect("/dic")
+}
+    
+
   })
 );
 
@@ -4936,155 +5028,153 @@ router.put(
 );
 
 //UPDATE MEDICATION
-router.put(
-  "/updatemedication",
-  checkIfUser,
-  requireAuth,
-  asyncHandler(async (req, res) => {
+// router.put(
+//   "/updatemedication",
+//   checkIfUser,
+//   requireAuth,
+//   asyncHandler(async (req, res) => {
 
-    if (req.body.select === "classname") {
-      const results0 = await Medication.findOneAndUpdate(
-        { generic: req.body.generic },
-        { classname: req.body.input }
-      );
-      if (results0) {
-        res.redirect("/dic");
-      }
-    }
+//     if (req.body.select === "classname") {
+//       const results0 = await Medication.findOneAndUpdate(
+//         { generic: req.body.generic },
+//         { classname: req.body.input }
+//       );
+//       if (results0) {
+//         res.redirect("/dic");
+//       }
+//     }
     
-    
+//     if (req.body.select === "trade") {
+//       const results = await Medication.findOneAndUpdate(
+//         { generic: req.body.generic },
+//         { trade: req.body.input }
+//       );
+//       if (results) {
+//         res.redirect("/dic");
+//       }
+//     }
 
-    if (req.body.select === "trade") {
-      const results = await Medication.findOneAndUpdate(
-        { generic: req.body.generic },
-        { trade: req.body.input }
-      );
-      if (results) {
-        res.redirect("/dic");
-      }
-    }
+//     if (req.body.select === "origin") {
+//       const results1 = await Medication.findOneAndUpdate(
+//         { generic: req.body.generic },
+//         { origin: req.body.input }
+//       );
+//       if (results1) {
+//         res.redirect("/dic");
+//       }
+//     }
 
-    if (req.body.select === "origin") {
-      const results1 = await Medication.findOneAndUpdate(
-        { generic: req.body.generic },
-        { origin: req.body.input }
-      );
-      if (results1) {
-        res.redirect("/dic");
-      }
-    }
+//     if (req.body.select === "mechanism") {
+//       const results2 = await Medication.findOneAndUpdate(
+//         { generic: req.body.generic },
+//         { mechanism: req.body.input }
+//       );
+//       if (results2) {
+//         res.redirect("/dic");
+//       }
+//     }
 
-    if (req.body.select === "mechanism") {
-      const results2 = await Medication.findOneAndUpdate(
-        { generic: req.body.generic },
-        { mechanism: req.body.input }
-      );
-      if (results2) {
-        res.redirect("/dic");
-      }
-    }
+//     if (req.body.select === "dosageform") {
+//       const results3 = await Medication.findOneAndUpdate(
+//         { generic: req.body.generic },
+//         { dosageform: req.body.input }
+//       );
+//       if (results3) {
+//         res.redirect("/dic");
+//       }
+//     }
 
-    if (req.body.select === "dosageform") {
-      const results3 = await Medication.findOneAndUpdate(
-        { generic: req.body.generic },
-        { dosageform: req.body.input }
-      );
-      if (results3) {
-        res.redirect("/dic");
-      }
-    }
+//     if (req.body.select === "dose") {
+//       const results4 = await Medication.findOneAndUpdate(
+//         { generic: req.body.generic },
+//         { dose: req.body.input }
+//       );
+//       if (results4) {
+//         res.redirect("/dic");
+//       }
+//     }
 
-    if (req.body.select === "dose") {
-      const results4 = await Medication.findOneAndUpdate(
-        { generic: req.body.generic },
-        { dose: req.body.input }
-      );
-      if (results4) {
-        res.redirect("/dic");
-      }
-    }
+//     if (req.body.select === "adminstration") {
+//       const results5 = await Medication.findOneAndUpdate(
+//         { generic: req.body.generic },
+//         { adminstration: req.body.input }
+//       );
+//       if (results5) {
+//         res.redirect("/dic");
+//       }
+//     }
 
-    if (req.body.select === "adminstration") {
-      const results5 = await Medication.findOneAndUpdate(
-        { generic: req.body.generic },
-        { adminstration: req.body.input }
-      );
-      if (results5) {
-        res.redirect("/dic");
-      }
-    }
+//     if (req.body.select === "ptinformation") {
+//       const results6 = await Medication.findOneAndUpdate(
+//         { generic: req.body.generic },
+//         { ptinformation: req.body.input }
+//       );
+//       if (results6) {
+//         res.redirect("/dic");
+//       }
+//     }
 
-    if (req.body.select === "ptinformation") {
-      const results6 = await Medication.findOneAndUpdate(
-        { generic: req.body.generic },
-        { ptinformation: req.body.input }
-      );
-      if (results6) {
-        res.redirect("/dic");
-      }
-    }
+//     if (req.body.select === "sideeffect") {
+//       const results7 = await Medication.findOneAndUpdate(
+//         { generic: req.body.generic },
+//         { sideeffect: req.body.input }
+//       );
+//       if (results7) {
+//         res.redirect("/dic");
+//       }
+//     }
 
-    if (req.body.select === "sideeffect") {
-      const results7 = await Medication.findOneAndUpdate(
-        { generic: req.body.generic },
-        { sideeffect: req.body.input }
-      );
-      if (results7) {
-        res.redirect("/dic");
-      }
-    }
+//     if (req.body.select === "monitor") {
+//       const results8 = await Medication.findOneAndUpdate(
+//         { generic: req.body.generic },
+//         { monitor: req.body.input }
+//       );
+//       if (results8) {
+//         res.redirect("/dic");
+//       }
+//     }
 
-    if (req.body.select === "monitor") {
-      const results8 = await Medication.findOneAndUpdate(
-        { generic: req.body.generic },
-        { monitor: req.body.input }
-      );
-      if (results8) {
-        res.redirect("/dic");
-      }
-    }
+//     if (req.body.select === "interaction") {
+//       const results9 = await Medication.findOneAndUpdate(
+//         { generic: req.body.generic },
+//         { interaction: req.body.input }
+//       );
+//       if (results9) {
+//         res.redirect("/dic");
+//       }
+//     }
 
-    if (req.body.select === "interaction") {
-      const results9 = await Medication.findOneAndUpdate(
-        { generic: req.body.generic },
-        { interaction: req.body.input }
-      );
-      if (results9) {
-        res.redirect("/dic");
-      }
-    }
+//     if (req.body.select === "specialprecaution") {
+//       const results10 = await Medication.findOneAndUpdate(
+//         { generic: req.body.generic },
+//         { specialprecaution: req.body.input }
+//       );
+//       if (results10) {
+//         res.redirect("/dic");
+//       }
+//     }
 
-    if (req.body.select === "specialprecaution") {
-      const results10 = await Medication.findOneAndUpdate(
-        { generic: req.body.generic },
-        { specialprecaution: req.body.input }
-      );
-      if (results10) {
-        res.redirect("/dic");
-      }
-    }
+//     if (req.body.select === "toxicity") {
+//       const results11 = await Medication.findOneAndUpdate(
+//         { generic: req.body.generic },
+//         { toxicity: req.body.input }
+//       );
+//       if (results11) {
+//         res.redirect("/dic");
+//       }
+//     }
 
-    if (req.body.select === "toxicity") {
-      const results11 = await Medication.findOneAndUpdate(
-        { generic: req.body.generic },
-        { toxicity: req.body.input }
-      );
-      if (results11) {
-        res.redirect("/dic");
-      }
-    }
-
-    if (req.body.select === "miscellaneous") {
-      const results12 = await Medication.findOneAndUpdate(
-        { generic: req.body.generic },
-        { miscellaneous: req.body.input }
-      );
-      if (results12) {
-        res.redirect("/dic");
-      }
-    }
-  })
-);
+//     if (req.body.select === "miscellaneous") {
+//       const results12 = await Medication.findOneAndUpdate(
+//         { generic: req.body.generic },
+//         { miscellaneous: req.body.input }
+//       );
+//       if (results12) {
+//         res.redirect("/dic");
+//       }
+//     }
+//   })
+// );
 
 // DIC RECIEVER ANSWER
 router.put(
@@ -5092,15 +5182,16 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const results = await Qa.findByIdAndUpdate(req.params.id ,
-      {answer: req.body.answer,}
-    );
+    const results = await Qa.findByIdAndUpdate(req.params.id , req.body );
     const selectdetector = results.detector;
     const detector = await User.updateOne(
       { "dicsender.detector": selectdetector },
       {
         $set: {
           "dicsender.$.answer": req.body.answer,
+          "dicsender.$.refrence": req.body.refrence,
+          "dicsender.$.refrencelink": req.body.refrencelink,
+          "dicsender.$.drugname": req.body.drugname,
         },
       }
     );

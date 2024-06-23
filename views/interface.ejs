@@ -60,7 +60,10 @@
             array.push(ele)
         } 
         const array2 = array.filter( item => item !== "")
-        console.log(array2);
+      
+
+        const questionreceive = qa.filter( item => item.answer === "")
+      
         %>
 
           <li class="dropdown"><a href="#"><span>Watch</span> <i class="bi bi-chevron-down"></i><span class="<%= comment.length>=1?"d-block":"d-none" %> position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -93,7 +96,13 @@
           <li>
             <a class="nav-link scrollto" href="<%= user.role === "DIC"? "/dic" : "/dicsender" %>"><span>DIC</span><span class="<%= array2.length >= 1? "d-block" : "d-none" %> position-absolute top-0 start-50 translate-middle badge rounded-pill bg-primary">
               <%=  array2.length %>A
-            </span></a>
+            </span>
+            <div class="<%= user.role === "DIC"? "d-block" : "d-none" %>">
+              <span class="<%= questionreceive.length >= 1? "d-block" : "d-none" %> position-absolute top-0 start-50 translate-middle badge rounded-pill bg-primary">
+                <%=  questionreceive.length %>Q
+              </span>
+            </div>
+          </a>
           </li>
 
           <li>

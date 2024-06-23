@@ -49,14 +49,18 @@
         
           <% const comment = user.watchsender.filter( item => { return item.comment !== "" ;}) %>
           <% const receive = user.watchreceiver %>
-          <%   const sender = user.dicsender
+          <% const sender = user.dicsender
           const array = []
           for (let i = 0; i < sender.length; i++) {
             const ele = sender[i].answer;
             array.push(ele)
         } 
         const array2 = array.filter( item => item !== "")
-        console.log(array2);
+        
+
+      const questionreceive = qa.filter( item => item.answer === "")
+    
+        
         %>
 
           <li class="dropdown">
@@ -89,7 +93,14 @@
           <li>
             <a class="nav-link scrollto" href="<%= user.role === "DIC"? "/dic" : "/dicsender" %>"><span>DIC</span><span class="<%= array2.length >= 1? "d-block" : "d-none" %> position-absolute top-0 start-50 translate-middle badge rounded-pill bg-primary">
               <%=  array2.length %>A
-            </span></a>
+            </span>
+            <div class="<%= user.role === "DIC"? "d-block" : "d-none" %>">
+              <span class="<%= questionreceive.length >= 1? "d-block" : "d-none" %> position-absolute top-0 start-50 translate-middle badge rounded-pill bg-primary">
+                <%=  questionreceive.length %>Q
+              </span>
+            </div>
+            
+          </a>
           </li>
         </ul>
 

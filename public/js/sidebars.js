@@ -1,14 +1,11 @@
 const medication = document.querySelectorAll(".medication")
 const row = document.querySelectorAll(".row")
-console.log(medication);
 medication.forEach(item => {
   item.addEventListener('click', (eo) => {
     const Name = eo.target
     const code = item.querySelector(".code")
     const getName = code.textContent ;
-    console.log(getName);
     const getsecName = document.getElementsByClassName(getName)[1]
-    console.log(getsecName);
     const hide = row.forEach(el => {
       el.classList.add('d-none')
     });
