@@ -1,22 +1,21 @@
-  // ICON
-localStorage.setItem('iconbar','NO')
 
-  const icondiv = document.querySelector("#icon_div");
-  if (localStorage.getItem('iconbar') === 'NO') {
-    icondiv.classList.remove('appearicon')
-  } else {
-    icondiv.classList.add('appearicon')
-  }
-  const gear2 = document.querySelector("#gear2");
-  gear2.addEventListener("click", (eo) => {
-    if (localStorage.getItem('iconbar') === 'NO') {
-      localStorage.setItem('iconbar', 'YES')
-      icondiv.classList.add("appearicon")
-    } else if (localStorage.getItem('iconbar') === 'YES') {
-      localStorage.setItem('iconbar', 'NO')
-      icondiv.classList.remove("appearicon")
-    }
-  });
+
+  // const icondiv = document.querySelector("#icon_div");
+  // if (localStorage.getItem('iconbar') === 'NO') {
+  //   icondiv.classList.remove('appearicon')
+  // } else {
+  //   icondiv.classList.add('appearicon')
+  // }
+  // const gear2 = document.querySelector("#gear2");
+  // gear2.addEventListener("click", (eo) => {
+  //   if (localStorage.getItem('iconbar') === 'NO') {
+  //     localStorage.setItem('iconbar', 'YES')
+  //     icondiv.classList.add("appearicon")
+  //   } else if (localStorage.getItem('iconbar') === 'YES') {
+  //     localStorage.setItem('iconbar', 'NO')
+  //     icondiv.classList.remove("appearicon")
+  //   }
+  // });
 
 
 

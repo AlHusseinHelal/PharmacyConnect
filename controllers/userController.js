@@ -206,9 +206,9 @@ exports.OncoTips = asyncHandler(async (req, res) => {
     classname: "Weak opioid",
   }).sort({ generic: "asc" });
 
-  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
-  const user = await User.findOne({ _id : decoded.id})
-  const searchmed = user.searchmedication
+  // const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
+  // const user = await User.findOne({ _id : decoded.id})
+  // const searchmed = user.searchmedication
 
 
 
@@ -261,7 +261,7 @@ exports.OncoTips = asyncHandler(async (req, res) => {
       Diuretic,
       AntiHyperphosphatemia,
       PPI,
-      Weakopioid,searchmed
+      Weakopioid,
     });
   }
 });

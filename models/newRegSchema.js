@@ -134,13 +134,7 @@ const user = new mongoose.Schema(
       }
     ],
 
-    searchmedication: [
-      {
-        generic: String,
-        trade : String,
-        code : String,
-      }
-    ],
+    searchmedication: String,
 
     // dicreceiver: [
     //   {

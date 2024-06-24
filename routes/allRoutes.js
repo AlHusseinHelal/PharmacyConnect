@@ -1770,9 +1770,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email" });
-    // }
+    if (!email.includes("57357.org")) {
+      return res.json({ invalidemail: "Invalid Email" });
+    }
 
     const newUser = await User.create(req.body);
     const token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
@@ -3179,11 +3179,13 @@ router.post(
     } 
 
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-    const usersearch = await User.findByIdAndUpdate({ _id: decoded.id }, { $set : {searchmedication : searchmed }});
-    const {code} = searchmed
-
-    if (searchmed) {
-      res.json({ done : code });
+    const searchmedselect = searchmed.generic
+    const usersearch = await User.findOneAndUpdate({ _id: decoded.id },  {searchmedication : searchmedselect });
+    if (!usersearch) {
+      res.json({ notdone : "notDONE" });
+    }
+    if (usersearch) {
+      res.json({ done : searchmedselect });
     }
     
   })
