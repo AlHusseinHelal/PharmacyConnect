@@ -482,7 +482,7 @@
           item.preventDefault()
           const res = await fetch("/addnewpatientdispense", {
             method: "POST",
-            body: JSON.stringify({ addpatientmrn: addpatientmrn.value, addpatientname: addpatientname.value, createdAt: new Date() }),
+            body: JSON.stringify({ addpatientmrn: addpatientmrn.value, addpatientname: addpatientname.value, }),
             headers: { "Content-Type": "application/json" },
           })
           const data = await res.json()
@@ -511,7 +511,6 @@
       </script>
 
       <script>
-        // ICON
         localStorage.setItem('iconbar','NO')
         const icondiv = document.querySelector("#icon_div");
         if (localStorage.getItem('iconbar') === 'NO') {

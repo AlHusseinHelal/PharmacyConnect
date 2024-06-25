@@ -211,7 +211,7 @@
                             </td>
 
                             <td class="text-center">
-                              <a href="<%= item.attachfile%>"><i class="bi bi-envelope"></i></a>
+                              <a href="../INupload/<%= item.attachfile %>" target="_blank"><i class="bi bi-envelope <%= item.attachfile === ""? "d-none" : "d-block" %> "></i></a>
                               <% if (item.attachfile) { %>
                                 <% } %>
                             </td>

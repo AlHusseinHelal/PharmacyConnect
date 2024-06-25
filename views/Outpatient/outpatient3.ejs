@@ -302,7 +302,7 @@
             e.preventDefault();
             const res = await fetch("/add_patient_out", {
               method: "POST",
-              body: JSON.stringify({ patientname: patientname.value, attachfile : attachfile.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value, createdAt: new Date() }),
+              body: JSON.stringify({ patientname: patientname.value, attachfile : attachfile.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value, }),
               headers: { "Content-Type": "application/json" },
             });
             const data = await res.json();
@@ -362,7 +362,7 @@
           e.preventDefault();
           const res = await fetch("/add_lab_out", {
             method: "POST",
-            body: JSON.stringify({ labpatientname: labpatientname.value, mrnlab: mrnlab.value, labptfloor: labptfloor.value, labrequestype: labrequestype.value, medstartdate: medstartdate.value, medstarttime: medstarttime.value, samplewddate: samplewddate.value, samplewdtime: samplewdtime.value, levelrequestreason: levelrequestreason.value, labcomment: labcomment.value, phaname: phaname.value, createdAt: new Date() }),
+            body: JSON.stringify({ labpatientname: labpatientname.value, mrnlab: mrnlab.value, labptfloor: labptfloor.value, labrequestype: labrequestype.value, medstartdate: medstartdate.value, medstarttime: medstarttime.value, samplewddate: samplewddate.value, samplewdtime: samplewdtime.value, levelrequestreason: levelrequestreason.value, labcomment: labcomment.value, phaname: phaname.value, }),
             headers: { "Content-Type": "application/json" },
           });
           const data = await res.json();
@@ -424,7 +424,7 @@
           item.preventDefault()
           const res = await fetch("/addnewpatient", {
             method: "POST",
-            body: JSON.stringify({ addpatientmrn: addpatientmrn.value, addpatientname: addpatientname.value, createdAt: new Date() }),
+            body: JSON.stringify({ addpatientmrn: addpatientmrn.value, addpatientname: addpatientname.value, }),
             headers: { "Content-Type": "application/json" },
           })
           const data = await res.json()

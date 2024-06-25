@@ -134,7 +134,7 @@
               <%- include('../partials/AddNewPatient-Modal.ejs') %>
 
               <!-- ADD LAB PATIENT MODAL -->
-            <%- include('../partials/AddLabPatient-Modal-Floor.ejs') %>
+            <%- include('../partials/AddLabPatient-Modal.ejs') %>
 
                   <!-- /*--------------------------------------------------------------
       # MAIN CONTENT
@@ -322,7 +322,7 @@
           e.preventDefault();
           const res = await fetch("/add_patient_in", {
             method: "POST",
-            body: JSON.stringify({ patientname: patientname.value,attachfile : attachfile.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value, createdAt: Date.now() }),
+            body: JSON.stringify({ patientname: patientname.value,attachfile : attachfile.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value,}),
             headers: { "Content-Type": "application/json" },
           });
 
@@ -344,7 +344,7 @@
             document.getElementById('oraliv').classList.remove("redframe");
           }
           if (data.inpatient_add_patient) {
-            location.assign("/icc")
+            location.assign("/icc" + window.location.search)
           }
 
         });
@@ -355,7 +355,7 @@
     e.preventDefault();
     const res = await fetch("/add_lab_in", {
       method: "POST",
-      body: JSON.stringify({ labpatientname: labpatientname.value,  mrnlab: mrnlab.value, labptfloor: labptfloor.value, labrequestype: labrequestype.value, medstartdate: medstartdate.value, medstarttime: medstarttime.value, samplewddate: samplewddate.value, samplewdtime: samplewdtime.value, levelrequestreason: levelrequestreason.value, labcomment : labcomment.value, phaname: phaname.value, createdAt: Date.now() }),
+      body: JSON.stringify({ labpatientname: labpatientname.value,  mrnlab: mrnlab.value, labptfloor: labptfloor.value, labrequestype: labrequestype.value, medstartdate: medstartdate.value, medstarttime: medstarttime.value, samplewddate: samplewddate.value, samplewdtime: samplewdtime.value, levelrequestreason: levelrequestreason.value, labcomment : labcomment.value, phaname: phaname.value,}),
       headers: { "Content-Type": "application/json" },
     });
     const data = await res.json();
@@ -404,7 +404,7 @@
     }
 
     if (data.lab_add_patient) {
-      location.assign("icc")
+      location.assign("icc" + window.location.search)
     }
   });
 
@@ -415,7 +415,7 @@
           item.preventDefault()
           const res = await fetch("/addnewpatient", {
             method: "POST",
-            body: JSON.stringify({ addpatientmrn: addpatientmrn.value, addpatientname: addpatientname.value, createdAt: Date.now() }),
+            body: JSON.stringify({ addpatientmrn: addpatientmrn.value, addpatientname: addpatientname.value, }),
             headers: { "Content-Type": "application/json" },
           })
           const data = await res.json()
@@ -438,7 +438,7 @@
             addpatientmrn.classList.remove("redframe");
           }
           if (data.done) {
-            location.assign("/icc")
+            location.assign("/icc" + window.location.search)
           }
         })
       </script>

@@ -21,6 +21,10 @@ const lab = new mongoose.Schema(
     levelrequestreason: String,
     comment: String,
     labcomment: String,
+    active : {
+      type: Boolean,
+      default : true
+    }
   },
   { timestamps: true }
 );

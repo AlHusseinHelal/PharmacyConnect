@@ -188,11 +188,12 @@
                     <th class="text-center" scope="col">Reason</th>
                     <th class="text-center" scope="col">Lab Comment</th>
                     <th class="text-center" scope="col">Edit</th>
+                    <th class="text-center" scope="col">Del</th>
                     
                   </tr>
                 </thead>
                 <% labarray.forEach((item,index)=> { %>
-                  <tbody id="tbody">
+                  <tbody id="tbody" class="<%= item.active === false? "d-none" : "" %>" >
                     <tr id="tr">
                       <td class="text-center">
                         <%= index+1 %>
@@ -277,6 +278,39 @@
                                 data-bs-dismiss="modal">Close</button>
                               
                                 <button type="submit" class="btn btn-primary">ADD</button>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td class="text-center" style="padding: 11px;">
+
+                            
+                        <a  data-bs-toggle="modal" data-bs-target="#exampleModal2<%= item._id%>">
+                          <i class="fa-solid fa-trash fa-xl mt-2" style="color: #ce0d0d;"></i>
+                        </a>
+
+
+                        <!-- MODAL -->
+                        <div class="connectmodal modal fade" id="exampleModal2<%= item._id%>" tabindex="-1"
+                          aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="glass modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                  aria-label="Close"></button>
+                              </div>
+                              <form action="/labdelrec/<%= item._id%>?_method=PUT" method="post">
+                                <div class="modal-body text-start">
+                                  Are You Sure ?
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Close</button>
+
+                                  <button type="submit" class="btn btn-danger">Save</button>
                               </form>
                             </div>
                           </div>

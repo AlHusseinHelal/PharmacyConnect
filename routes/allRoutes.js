@@ -484,19 +484,21 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 9;
-    const skip = (page - 1) * limit;
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-    const user = await User.findOne({ _id: decoded.id });
-    const { firstname } = user;
-    const { lastname } = user;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
     const num = await Inpatientschema.find({
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    
     const results = await Inpatientschema.find({
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -504,7 +506,7 @@ router.get(
       .limit(limit);
 
     if (results) {
-      res.render("Inpatient/inpatient3", {
+      res.render("Inpatient/inpatient3",  {
         inpatientarray: results,
         moment: moment,
         page,
@@ -524,26 +526,28 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Inpatientschema.find({
+      ptfloor: "ICU",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     const limit = req.query.limit * 1 || 9;
-    const skip = (page - 1) * limit;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
     const { firstname } = user;
     const { lastname } = user;
-    const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
     const results = await Inpatientschema.find({
       ptfloor: "ICU",
       createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({
-      ptfloor: "ICU",
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+    
     if (results) {
       res.render("Inpatient/icu", {
         inpatientarray: results,
@@ -557,32 +561,35 @@ router.get(
   })
 );
 
-// INPATIENT ICU
+// INPATIENT ICU NOT DONE
 router.get(
   "/icunotdone",
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Inpatientschema.find({
+      ptfloor: "ICU", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     const limit = req.query.limit * 1 || 9;
-    const skip = (page - 1) * limit;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
     const { firstname } = user;
     const { lastname } = user;
-    const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    
     const results = await Inpatientschema.find({
       ptfloor: "ICU", prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({
-      ptfloor: "ICU", prepcomment: { $not: { $regex: "DONE" } },
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+  
     if (results) {
       res.render("Inpatient/icunotdoneview", {
         inpatientarray: results,
@@ -602,27 +609,29 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Inpatientschema.find({
+      ptfloor: "ICC",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     const limit = req.query.limit * 1 || 9;
-    const skip = (page - 1) * limit;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
     const { firstname } = user;
     const { lastname } = user;
-    const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
-
+  
     const results = await Inpatientschema.find({
       ptfloor: "ICC",
       createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({
-      ptfloor: "ICC",
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+  
 
     if (results) {
       res.render("Inpatient/icc", {
@@ -643,16 +652,22 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Inpatientschema.find({
+      ptfloor: "ICC", prepcomment: { $not: { $regex: "DONE" } }, 
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     const limit = req.query.limit * 1 || 9;
-    const skip = (page - 1) * limit;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
     const { firstname } = user;
     const { lastname } = user;
-    const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    
 
     const results = await Inpatientschema.find({
       ptfloor: "ICC", prepcomment: { $not: { $regex: "DONE" } },
@@ -660,10 +675,7 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({
-      ptfloor: "ICC", prepcomment: { $not: { $regex: "DONE" } }, 
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+  
 
     if (results) {
       res.render("Inpatient/iccnotdone", {
@@ -685,16 +697,22 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Inpatientschema.find({
+      ptfloor: "3rd O",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     const limit = req.query.limit * 1 || 9;
-    const skip = (page - 1) * limit;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
     const { firstname } = user;
     const { lastname } = user;
-    const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    
 
     const results = await Inpatientschema.find({
       ptfloor: "3rd O",
@@ -702,10 +720,7 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({
-      ptfloor: "3rd O",
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+    
     if (results) {
       res.render("Inpatient/3rdo", {
         inpatientarray: results,
@@ -719,22 +734,28 @@ router.get(
   })
 );
 
-// INPATIENT 3rdO
+// INPATIENT 3rdO NOT DONE
 router.get(
   "/3rdonotdone",
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Inpatientschema.find({
+      ptfloor: "3rd O", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     const limit = req.query.limit * 1 || 9;
-    const skip = (page - 1) * limit;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
     const { firstname } = user;
     const { lastname } = user;
-    const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    
 
     const results = await Inpatientschema.find({
       ptfloor: "3rd O", prepcomment: { $not: { $regex: "DONE" } },
@@ -742,10 +763,7 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({
-      ptfloor: "3rd O", prepcomment: { $not: { $regex: "DONE" } },
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+    
     if (results) {
       res.render("Inpatient/3rdonotdone", {
         inpatientarray: results,
@@ -765,16 +783,22 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Inpatientschema.find({
+      ptfloor: "3rd N",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     const limit = req.query.limit * 1 || 9;
-    const skip = (page - 1) * limit;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
     const { firstname } = user;
     const { lastname } = user;
-    const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    
 
     const results = await Inpatientschema.find({
       ptfloor: "3rd N",
@@ -782,10 +806,7 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({
-      ptfloor: "3rd N",
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+    
     if (results) {
       res.render("Inpatient/3rdn", {
         inpatientarray: results,
@@ -805,16 +826,22 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Inpatientschema.find({
+      ptfloor: "3rd N", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     const limit = req.query.limit * 1 || 9;
-    const skip = (page - 1) * limit;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
     const { firstname } = user;
     const { lastname } = user;
-    const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    
 
     const results = await Inpatientschema.find({
       ptfloor: "3rd N", prepcomment: { $not: { $regex: "DONE" } },
@@ -822,10 +849,7 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({
-      ptfloor: "3rd N", prepcomment: { $not: { $regex: "DONE" } },
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+    
     if (results) {
       res.render("Inpatient/3rdn", {
         inpatientarray: results,
@@ -845,16 +869,22 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Inpatientschema.find({
+      ptfloor: "4th",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     const limit = req.query.limit * 1 || 9;
-    const skip = (page - 1) * limit;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
     const { firstname } = user;
     const { lastname } = user;
-    const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    
 
     const results = await Inpatientschema.find({
       ptfloor: "4th",
@@ -862,10 +892,7 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({
-      ptfloor: "4th",
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+  
     if (results) {
       res.render("Inpatient/4th", {
         inpatientarray: results,
@@ -885,16 +912,22 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Inpatientschema.find({
+      ptfloor: "4th", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     const limit = req.query.limit * 1 || 9;
-    const skip = (page - 1) * limit;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
     const { firstname } = user;
     const { lastname } = user;
-    const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    
 
     const results = await Inpatientschema.find({
       ptfloor: "4th", prepcomment: { $not: { $regex: "DONE" } },
@@ -902,10 +935,7 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({
-      ptfloor: "4th", prepcomment: { $not: { $regex: "DONE" } },
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+  
     if (results) {
       res.render("Inpatient/4thnotdone", {
         inpatientarray: results,
@@ -925,16 +955,22 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Inpatientschema.find({
+      ptfloor: "5th",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     const limit = req.query.limit * 1 || 9;
-    const skip = (page - 1) * limit;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
     const { firstname } = user;
     const { lastname } = user;
-    const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+03:00`;
-    const endDate = `${date}T23:59:59.000+03:00`;
+  
 
     const results = await Inpatientschema.find({
       ptfloor: "5th",
@@ -942,10 +978,7 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({
-      ptfloor: "5th",
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+  
     if (results) {
       res.render("Inpatient/5th", {
         inpatientarray: results,
@@ -965,16 +998,22 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Inpatientschema.find({
+      ptfloor: "5th", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     const limit = req.query.limit * 1 || 9;
-    const skip = (page - 1) * limit;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
     const { firstname } = user;
     const { lastname } = user;
-    const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+03:00`;
-    const endDate = `${date}T23:59:59.000+03:00`;
+    
 
     const results = await Inpatientschema.find({
       ptfloor: "5th", prepcomment: { $not: { $regex: "DONE" } } ,
@@ -982,10 +1021,7 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({
-      ptfloor: "5th", prepcomment: { $not: { $regex: "DONE" } },
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+
     if (results) {
       res.render("Inpatient/5thnotdone", {
         inpatientarray: results,
@@ -1005,16 +1041,22 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Inpatientschema.find({
+      ptfloor: "BMT",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     const limit = req.query.limit * 1 || 9;
-    const skip = (page - 1) * limit;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
     const { firstname } = user;
     const { lastname } = user;
-    const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+  
 
     const results = await Inpatientschema.find({
       ptfloor: "BMT",
@@ -1022,10 +1064,7 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({
-      ptfloor: "BMT",
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+    
     if (results) {
       res.render("Inpatient/bmt", {
         inpatientarray: results,
@@ -1045,16 +1084,22 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Inpatientschema.find({
+      ptfloor: "BMT", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
     const limit = req.query.limit * 1 || 9;
-    const skip = (page - 1) * limit;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
     const { firstname } = user;
     const { lastname } = user;
-    const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    
 
     const results = await Inpatientschema.find({
       ptfloor: "BMT", prepcomment: { $not: { $regex: "DONE" } },
@@ -1062,10 +1107,7 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-    const num = await Inpatientschema.find({
-      ptfloor: "BMT", prepcomment: { $not: { $regex: "DONE" } },
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+  
     if (results) {
       res.render("Inpatient/bmtnotdone", {
         inpatientarray: results,
@@ -1139,19 +1181,22 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 9;
-    const skip = (page - 1) * limit;
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-    const user = await User.findOne({ _id: decoded.id });
-    const { firstname } = user;
-    const { lastname } = user;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
     const num = await Outpatient.find({
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+  
+    
     const results = await Outpatient.find({
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -1185,12 +1230,20 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 8;
-    const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+03:00`;
     const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Inpatientschema.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 8;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
+    
 
     const outpatient = await Outpatient.find({
       oraliv: "IV",
@@ -1202,11 +1255,7 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
-    const num = await Inpatientschema.find({
-      oraliv: "IV",
-      prepcomment: { $not: { $regex: "DONE" } },
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+    
     const results = await Inpatientschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1233,12 +1282,20 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 8;
-    const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Inpatientschema.find({
+      oraliv: "IV",
+      requestype: "ExtraDose",
+      prepcomment: "",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 8;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
     const outpatient = await Outpatient.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1249,12 +1306,7 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
-    const num = await Inpatientschema.find({
-      oraliv: "IV",
-      requestype: "ExtraDose",
-      prepcomment: "",
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+    
     const results = await Inpatientschema.find({
       oraliv: "IV",
       requestype: "ExtraDose",
@@ -1281,12 +1333,20 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 8;
-    const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Inpatientschema.find({
+      oraliv: "IV",
+      requestype: "BMT",
+      prepcomment: "",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 8;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
     const outpatient = await Outpatient.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1297,12 +1357,7 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
-    const num = await Inpatientschema.find({
-      oraliv: "IV",
-      requestype: "BMT",
-      prepcomment: "",
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+  
     const results = await Inpatientschema.find({
       oraliv: "IV",
       ptfloor: "BMT",
@@ -1329,12 +1384,19 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 8;
-    const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Inpatientschema.find({
+      oraliv: "IV",
+      prepcomment: "DONE",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 8;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
     const outpatient = await Outpatient.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1345,11 +1407,7 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
-    const num = await Inpatientschema.find({
-      oraliv: "IV",
-      prepcomment: "DONE",
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+    
     const results = await Inpatientschema.find({
       oraliv: "IV",
       prepcomment: "DONE",
@@ -1375,12 +1433,19 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 8;
-    const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Dispenseschema.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 8;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
     const inarray = await Inpatientschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1391,11 +1456,7 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
-    const num = await Dispenseschema.find({
-      oraliv: "IV",
-      prepcomment: { $not: { $regex: "DONE" } },
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+    
     const results = await Dispenseschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1421,12 +1482,19 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 8;
-    const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Dispenseschema.find({
+      oraliv: "IV",
+      prepcomment: "DONE",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
     const dispense = await Dispenseschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1442,11 +1510,7 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
-    const num = await Dispenseschema.find({
-      oraliv: "IV",
-      prepcomment: "DONE",
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+  
     const results = await Dispenseschema.find({
       oraliv: "IV",
       prepcomment: "DONE",
@@ -1473,12 +1537,19 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 8;
-    const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Outpatient.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 8;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+  
     const dispense = await Dispenseschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1489,11 +1560,7 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
-    const num = await Outpatient.find({
-      oraliv: "IV",
-      prepcomment: { $not: { $regex: "DONE" } },
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+    
     const results = await Outpatient.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1520,12 +1587,20 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 8;
-    const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Outpatient.find({
+      oraliv: "IV",
+      requestype: "ExtraDose",
+      prepcomment: "",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 8;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
     const inarray = await Inpatientschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1541,12 +1616,7 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
-    const num = await Outpatient.find({
-      oraliv: "IV",
-      requestype: "ExtraDose",
-      prepcomment: "",
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+  
     const results = await Outpatient.find({
       oraliv: "IV",
       requestype: "ExtraDose",
@@ -1574,12 +1644,19 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 8;
-    const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Outpatient.find({
+      oraliv: "IV",
+      prepcomment: "DONE",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 8;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
     const inarray = await Inpatientschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1595,11 +1672,7 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
-    const num = await Outpatient.find({
-      oraliv: "IV",
-      prepcomment: "DONE",
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+    
     const results = await Outpatient.find({
       oraliv: "IV",
       prepcomment: "DONE",
@@ -1627,22 +1700,25 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 6;
-    const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
-    const results = await Labschema.find({
-      labcomment: { $not: { $regex: "RECEIVED" } },
-      createdAt: { $gte: startDate, $lte: endDate },
-    })
-      .skip(skip)
-      .limit(limit);
     const num = await Labschema.find({
       labcomment: { $not: { $regex: "RECEIVED" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
+    const limit = req.query.limit * 1 || 8;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
+    const results = await Labschema.find({
+      labcomment: { $not: { $regex: "RECEIVED" } },
+      
+    })
+      .skip(skip)
+      .limit(limit);
+    
     if (results) {
       res.render("Lab/lab.ejs", {
         labarray: results,
@@ -1660,12 +1736,14 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 7;
-    const skip = (page - 1) * limit;
     const num = await Labschema.find({
       labcomment: "RECEIVED",
     }).countDocuments();
+    const limit = req.query.limit * 1 || 7;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
     const results = await Labschema.find({ labcomment: "RECEIVED" })
       .skip(skip)
       .limit(limit);
@@ -1713,12 +1791,18 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 8;
-    const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Dispenseschema.find({
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 8;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
     const outpatient = await Outpatient.find({
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1729,10 +1813,7 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
-    const num = await Dispenseschema.find({
-      prepcomment: { $not: { $regex: "DONE" } },
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+    
     const results = await Dispenseschema.find({
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -1756,23 +1837,26 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 8;
-    const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Inpatientschema.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 8;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+  
     const outpatient = await Outpatient.find({
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
 
-    const num = await Inpatientschema.find({
-      oraliv: "Oral",
-      prepcomment: { $not: { $regex: "DONE" } },
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+    
     const results = await Inpatientschema.find({
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1797,12 +1881,19 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 9;
-    const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Inpatientschema.find({
+      oraliv: "Oral",
+      requestype: "ExtraDose",
+      prepcomment: { $not: { $regex: "DONE" } },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
     const inarray = await Inpatientschema.find({
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1813,11 +1904,7 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
-    const num = await Inpatientschema.find({
-      oraliv: "Oral",
-      requestype: "ExtraDose",
-      prepcomment: { $not: { $regex: "DONE" } },
-    }).countDocuments();
+  
     const results = await Inpatientschema.find({
       oraliv: "Oral",
       requestype: "ExtraDose",
@@ -1844,12 +1931,19 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 9;
-    const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
+    const num = await Inpatientschema.find({
+      oraliv: "Oral",
+      requestype: "DisCharge Medication",
+      prepcomment: { $not: { $regex: "DONE" } },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
     const inarray = await Inpatientschema.find({
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1860,11 +1954,7 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
-    const num = await Inpatientschema.find({
-      oraliv: "Oral",
-      requestype: "DisCharge Medication",
-      prepcomment: { $not: { $regex: "DONE" } },
-    }).countDocuments();
+    
     const results = await Inpatientschema.find({
       oraliv: "Oral",
       requestype: "DisCharge Medication",
@@ -1891,9 +1981,14 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const page = req.query.page * 1 || 1;
+    const num = await Inpatientschema.find({
+      oraliv: "Oral",
+      prepcomment: "DONE",
+    }).countDocuments();
     const limit = req.query.limit * 1 || 8;
-    const skip = (page - 1) * limit;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
     const date = moment().format("YYYY-MM-DD");
     const startDate = `${date}T00:00:00.000+00:00`;
     const endDate = `${date}T23:59:59.000+00:00`;
@@ -1907,10 +2002,7 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
-    const num = await Inpatientschema.find({
-      oraliv: "Oral",
-      prepcomment: "DONE",
-    }).countDocuments();
+  
     const results = await Inpatientschema.find({
       oraliv: "Oral",
       prepcomment: "DONE",
@@ -1932,12 +2024,19 @@ router.get(
 
 // DISPENSE OUTPATIENT
 router.get("/dispout", checkIfUser, requireAuth, async (req, res) => {
-  const page = req.query.page * 1 || 1;
-  const limit = req.query.limit * 1 || 8;
-  const skip = (page - 1) * limit;
   const date = moment().format("YYYY-MM-DD");
   const startDate = `${date}T00:00:00.000+00:00`;
   const endDate = `${date}T23:59:59.000+00:00`;
+  const num = await Outpatient.find({
+    oraliv: "Oral",
+    prepcomment: { $not: { $regex: "DONE" } },
+    createdAt: { $gte: startDate, $lte: endDate },
+  }).countDocuments();
+  const limit = req.query.limit * 1 || 8;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+  
 
   const inarray = await Inpatientschema.find({
     oraliv: "Oral",
@@ -1945,11 +2044,7 @@ router.get("/dispout", checkIfUser, requireAuth, async (req, res) => {
     createdAt: { $gte: startDate, $lte: endDate },
   })
 
-  const num = await Outpatient.find({
-    oraliv: "Oral",
-    prepcomment: { $not: { $regex: "DONE" } },
-    createdAt: { $gte: startDate, $lte: endDate },
-  }).countDocuments();
+
 
   const results = await Outpatient.find({
     oraliv: "Oral",
@@ -2079,9 +2174,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email" });
-    // }
+    if (!email.includes("57357.org")) {
+      return res.json({ invalidemail: "Invalid Email" });
+    }
 
     const newUser = await User.create(req.body);
     const token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
@@ -3252,22 +3347,26 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 6;
-    const skip = (page - 1) * limit;
     const sdate = req.body.sDate;
     const edate = req.body.eDate;
     const startDate = sdate + "T00:00:00.000+00:00";
     const endDate = edate + "T23:59:59.000+00:00";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const num = await Labschema.find({
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 6;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
+    
     const results = await Labschema.find({
       createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
-    const num = await Labschema.find({
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
+    
 
     if (results === undefined) {
       await User.findOneAndUpdate(
@@ -4957,6 +5056,38 @@ router.put(
     await Labschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
         res.redirect("/lab");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// LAB HIDE
+router.put(
+  "/labdel/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    await Labschema.findByIdAndUpdate(req.params.id, {active : false})
+      .then(() => {
+        res.redirect("/lab");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// LAB HIDE RECIVED
+router.put(
+  "/labdelrec/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    await Labschema.findByIdAndUpdate(req.params.id, {active : false})
+      .then(() => {
+        res.redirect("/labreceivedview");
       })
       .catch((err) => {
         console.log(err);

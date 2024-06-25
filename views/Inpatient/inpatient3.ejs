@@ -101,7 +101,7 @@
 
           <div class="d-flex align-items-center mx-2 mb-1 justify-content-between">
             <div class="btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
-              <button type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;"
+              <button id="inpatient3" type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;"
                   href="/inpatient3">INPATIENT</a></button>
               <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                   href="/ICU">ICU</a></button>
@@ -333,11 +333,12 @@
 
       <!-- ADD PATIENT INPATIENT -->
       <script>
+
         add_patient_inpatient.addEventListener("submit", async (e) => {
           e.preventDefault();
           const res = await fetch("/add_patient_in", {
             method: "POST",
-            body: JSON.stringify({ patientname: patientname.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, attachfile: attachfile.value, prepcomment: prepcomment.value, createdAt: Date.now() }),
+            body: JSON.stringify({ patientname: patientname.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, attachfile: attachfile.value, prepcomment: prepcomment.value, }),
             headers: { "Content-Type": "application/json" },
           });
           const data = await res.json();
@@ -386,7 +387,7 @@
 
 
           if (data.inpatient_add_patient) {
-            location.assign("/inpatient3")
+            location.assign("/inpatient3" + window.location.search)
           }
         });
       </script>
@@ -397,7 +398,7 @@
           e.preventDefault();
           const res = await fetch("/add_lab_in", {
             method: "POST",
-            body: JSON.stringify({ labpatientname: labpatientname.value, mrnlab: mrnlab.value, labptfloor: labptfloor.value, labrequestype: labrequestype.value, medstartdate: medstartdate.value, medstarttime: medstarttime.value, samplewddate: samplewddate.value, samplewdtime: samplewdtime.value, levelrequestreason: levelrequestreason.value, labcomment: labcomment.value, phaname: phaname.value, createdAt: Date.now() }),
+            body: JSON.stringify({ labpatientname: labpatientname.value, mrnlab: mrnlab.value, labptfloor: labptfloor.value, labrequestype: labrequestype.value, medstartdate: medstartdate.value, medstarttime: medstarttime.value, samplewddate: samplewddate.value, samplewdtime: samplewdtime.value, levelrequestreason: levelrequestreason.value, labcomment: labcomment.value, phaname: phaname.value, }),
             headers: { "Content-Type": "application/json" },
           });
           const data = await res.json();
@@ -446,7 +447,7 @@
           }
 
           if (data.lab_add_patient) {
-            location.assign("inpatient3")
+            location.assign("inpatient3" + window.location.search)
           }
 
 
@@ -459,7 +460,7 @@
           item.preventDefault()
           const res = await fetch("/addnewpatient", {
             method: "POST",
-            body: JSON.stringify({ addpatientmrn: addpatientmrn.value, addpatientname: addpatientname.value, createdAt: Date.now() }),
+            body: JSON.stringify({ addpatientmrn: addpatientmrn.value, addpatientname: addpatientname.value, }),
             headers: { "Content-Type": "application/json" },
           })
           const data = await res.json()
@@ -482,7 +483,7 @@
             addpatientmrn.classList.remove("redframe");
           }
           if (data.done) {
-            location.assign("/inpatient3")
+            location.assign("/inpatient3" + window.location.search)
           }
         })
       </script>

@@ -168,7 +168,7 @@
       --------------------------------------------------------------*/ -->
 
         <div id="maincontent" class="d-flex flex-column justify-content-center align-items-center" style="position: relative;">
-          <div class="p-4" style="width: 98%; border: 2px solid ; border-radius: 10px; top: 26vh;height: 73vh; overflow-y: scroll;">
+          <div id="scroll" class="p-4" style="width: 98%; border: 2px solid ; border-radius: 10px; top: 26vh;height: 73vh; overflow-y: scroll;">
             <% if (results.length===0) { %>
               <div class=" d-flex justify-content-center" style="width: 100%;">
                 <div class="alert alert-success new2 p-4 w-50 mt-5 ">
@@ -381,7 +381,7 @@
           e.preventDefault();
           const res = await fetch("/medsubmit", {
             method: "POST",
-            body: JSON.stringify({  trade1: trade1.value, trade2: trade2.value, trade3: trade3.value, trade4: trade4.value, tradeselect: tradeselect.value, generic: generic.value, createdAt: new Date() }),
+            body: JSON.stringify({  trade1: trade1.value, trade2: trade2.value, trade3: trade3.value, trade4: trade4.value, tradeselect: tradeselect.value, generic: generic.value, }),
             headers: { "Content-Type": "application/json" },
           });
           const data = await res.json();
@@ -399,6 +399,11 @@
 
 
           if (data.created) {
+            // const getScrollPosition = (el = document.documentElement) => ({
+            //   x : el.scrollLeft,
+            //   y: el.scrollTop
+            // })
+            // console.log(getScrollPosition(document.querySelector("#maincontent")));
             location.assign("/pyxismed")
           }
         });

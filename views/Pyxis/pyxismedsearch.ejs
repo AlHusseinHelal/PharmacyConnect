@@ -315,7 +315,7 @@
           e.preventDefault();
           const res = await fetch("/medsubmit", {
             method: "POST",
-            body: JSON.stringify({  trade1: trade1.value, trade2: trade2.value, trade3: trade3.value, trade4: trade4.value, tradeselect: tradeselect.value, generic: generic.value, createdAt: new Date() }),
+            body: JSON.stringify({  trade1: trade1.value, trade2: trade2.value, trade3: trade3.value, trade4: trade4.value, tradeselect: tradeselect.value, generic: generic.value, }),
             headers: { "Content-Type": "application/json" },
           });
           const data = await res.json();
