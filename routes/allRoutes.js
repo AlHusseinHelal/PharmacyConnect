@@ -557,6 +557,45 @@ router.get(
   })
 );
 
+// INPATIENT ICU
+router.get(
+  "/icunotdone",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 9;
+    const skip = (page - 1) * limit;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+    const results = await Inpatientschema.find({
+      ptfloor: "ICU", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+    const num = await Inpatientschema.find({
+      ptfloor: "ICU", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    if (results) {
+      res.render("Inpatient/icunotdoneview", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "ICU",
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
 // INPATIENT ICC
 router.get(
   "/ICC",
@@ -598,6 +637,48 @@ router.get(
   })
 );
 
+// INPATIENT ICC NOT DONE VIEW
+router.get(
+  "/iccnotdone",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 9;
+    const skip = (page - 1) * limit;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+
+    const results = await Inpatientschema.find({
+      ptfloor: "ICC", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+    const num = await Inpatientschema.find({
+      ptfloor: "ICC", prepcomment: { $not: { $regex: "DONE" } }, 
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+
+    if (results) {
+      res.render("Inpatient/iccnotdone", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "ICC",
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
+
 // INPATIENT 3rdO
 router.get(
   "/3rdO",
@@ -638,6 +719,46 @@ router.get(
   })
 );
 
+// INPATIENT 3rdO
+router.get(
+  "/3rdonotdone",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 9;
+    const skip = (page - 1) * limit;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+
+    const results = await Inpatientschema.find({
+      ptfloor: "3rd O", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+    const num = await Inpatientschema.find({
+      ptfloor: "3rd O", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    if (results) {
+      res.render("Inpatient/3rdonotdone", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "3rd O",
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
 // INPATIENT 3rdN
 router.get(
   "/3rdN",
@@ -663,6 +784,46 @@ router.get(
       .limit(limit);
     const num = await Inpatientschema.find({
       ptfloor: "3rd N",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    if (results) {
+      res.render("Inpatient/3rdn", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "3rd N",
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
+// INPATIENT 3rdN
+router.get(
+  "/3rdnnotdone",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 9;
+    const skip = (page - 1) * limit;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+
+    const results = await Inpatientschema.find({
+      ptfloor: "3rd N", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+    const num = await Inpatientschema.find({
+      ptfloor: "3rd N", prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     if (results) {
@@ -718,9 +879,9 @@ router.get(
   })
 );
 
-// INPATIENT 5th
+// INPATIENT 4th NOT DONE VIEW
 router.get(
-  "/5th",
+  "/4thnotdone",
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
@@ -736,6 +897,46 @@ router.get(
     const endDate = `${date}T23:59:59.000+00:00`;
 
     const results = await Inpatientschema.find({
+      ptfloor: "4th", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+    const num = await Inpatientschema.find({
+      ptfloor: "4th", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    if (results) {
+      res.render("Inpatient/4thnotdone", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "4th",
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
+// INPATIENT 5th
+router.get(
+  "/5th",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 9;
+    const skip = (page - 1) * limit;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+
+    const results = await Inpatientschema.find({
       ptfloor: "5th",
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -747,6 +948,46 @@ router.get(
     }).countDocuments();
     if (results) {
       res.render("Inpatient/5th", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "5th",
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
+// INPATIENT 5th NOT DONE VIEW
+router.get(
+  "/5thnotdone",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 9;
+    const skip = (page - 1) * limit;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+
+    const results = await Inpatientschema.find({
+      ptfloor: "5th", prepcomment: { $not: { $regex: "DONE" } } ,
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+    const num = await Inpatientschema.find({
+      ptfloor: "5th", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    if (results) {
+      res.render("Inpatient/5thnotdone", {
         inpatientarray: results,
         moment: moment,
         floor: "5th",
@@ -787,6 +1028,46 @@ router.get(
     }).countDocuments();
     if (results) {
       res.render("Inpatient/bmt", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "BMT",
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
+// INPATIENT BMT NOT DONE VIEW
+router.get(
+  "/bmtnotdone",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 9;
+    const skip = (page - 1) * limit;
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+00:00`;
+    const endDate = `${date}T23:59:59.000+00:00`;
+
+    const results = await Inpatientschema.find({
+      ptfloor: "BMT", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+    const num = await Inpatientschema.find({
+      ptfloor: "BMT", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    if (results) {
+      res.render("Inpatient/bmtnotdone", {
         inpatientarray: results,
         moment: moment,
         floor: "BMT",
@@ -908,8 +1189,8 @@ router.get(
     const limit = req.query.limit * 1 || 8;
     const skip = (page - 1) * limit;
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
 
     const outpatient = await Outpatient.find({
       oraliv: "IV",
@@ -1650,13 +1931,41 @@ router.get(
 );
 
 // DISPENSE OUTPATIENT
-router.get("/dispout", checkIfUser, requireAuth, (req, res) => {
-  Outpatient.find({ oraliv: "Oral" }).then((result) => {
+router.get("/dispout", checkIfUser, requireAuth, async (req, res) => {
+  const page = req.query.page * 1 || 1;
+  const limit = req.query.limit * 1 || 8;
+  const skip = (page - 1) * limit;
+  const date = moment().format("YYYY-MM-DD");
+  const startDate = `${date}T00:00:00.000+00:00`;
+  const endDate = `${date}T23:59:59.000+00:00`;
+
+  const inarray = await Inpatientschema.find({
+    oraliv: "Oral",
+    prepcomment: { $not: { $regex: "DONE" } },
+    createdAt: { $gte: startDate, $lte: endDate },
+  })
+
+  const num = await Outpatient.find({
+    oraliv: "Oral",
+    prepcomment: { $not: { $regex: "DONE" } },
+    createdAt: { $gte: startDate, $lte: endDate },
+  }).countDocuments();
+
+  const results = await Outpatient.find({
+    oraliv: "Oral",
+    prepcomment: { $not: { $regex: "DONE" } },
+    createdAt: { $gte: startDate, $lte: endDate },
+  }).skip(skip)
+  .limit(limit);
+  
+  if (results) {
     res.render("Dispense/dispense3out", {
-      dispensearray: result,
+      dispensearray: results,
       moment: moment,
+      num,
+      inarray,
     });
-  });
+  }
 });
 
 //DISPENSE VIEW DELETE
@@ -1770,9 +2079,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email" });
-    // }
+    if (!email.includes("57357.org")) {
+      return res.json({ invalidemail: "Invalid Email" });
+    }
 
     const newUser = await User.create(req.body);
     const token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
@@ -3279,16 +3588,13 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const searchtext =
-      req.body.searchText.trim()[0].toUpperCase() +
-      req.body.searchText.slice(1, 22222);
-    const searchNumber = req.body.searchText.trim().toUpperCase();
+    const searchtext = req.body.searchText
     const results = await Perpatient.find();
     const array = results.filter(
       (item) =>
-        item.ItemDescription.match(searchtext) ||
-        item.ItemNumber.match(searchNumber) ||
-        item.ItemCategory.match(searchtext)
+        item.ItemDescription.toLowerCase().match(searchtext.toLowerCase()) ||
+        item.ItemNumber.match(searchtext) ||
+        item.ItemCategory.toLowerCase().match(searchtext.toLowerCase())
     );
 
     if (array) {
@@ -3303,16 +3609,11 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const searchtext =
-      req.body.searchText.trim()[0].toUpperCase() +
-      req.body.searchText.slice(1, 22222);
-    const searchNumber = req.body.searchText.trim().toUpperCase();
+    const searchtext = req.body.searchText
     const results = await Pyxis.find();
     const array = results.filter(
       (item) =>
-        item.ItemDescription.match(searchtext) ||
-        item.ItemNumber.match(searchNumber) ||
-        item.ItemCategory.match(searchtext)
+        item.ItemDescription.toLowerCase().match(searchtext.toLowerCase()) || item.ItemNumber.match(searchtext) 
     );
     if (array) {
       res.render("Store/pyxissearch.ejs", { array });
@@ -3326,16 +3627,11 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const searchtext =
-      req.body.searchText.trim()[0].toUpperCase() +
-      req.body.searchText.slice(1, 22222);
-    const searchNumber = req.body.searchText.trim().toUpperCase();
+    const searchtext = req.body.searchText
     const results = await Rowa.find();
     const array = results.filter(
       (item) =>
-        item.ItemDescription.match(searchtext) ||
-        item.ItemNumber.match(searchNumber) ||
-        item.ItemCategory.match(searchtext)
+        item.ItemDescription.toLowerCase().match(searchtext.toLowerCase()) || item.ItemNumber.match(searchtext) 
     );
     if (array) {
       res.render("Store/rowasearch.ejs", { array });
@@ -4531,6 +4827,22 @@ router.put("/dispineditdischarge/:id", checkIfUser, requireAuth, (req, res) => {
       console.log(err);
     });
 });
+
+// DISPENSE INPATIENT DONE VIEW / EDIT
+router.put(
+  "/dispineditdoneview/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/dispensedoneviewin");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
 
 // Dispense OUTPATIENT / EDIT
 router.put("/dispoutedit/:id", checkIfUser, requireAuth, (req, res) => {

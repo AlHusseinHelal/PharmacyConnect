@@ -124,8 +124,11 @@
                 href="/edindispense">ExtraDose</a></button>
             <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                 href="/dischargeindispense">Discharge</a></button>
+            
+          </div>
+          <div class="ms-3">
             <button type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;"
-                href="/dispensedoneviewin">DONE</a></button>
+              href="/dispensedoneviewin">DONE</a></button>
           </div>
 
         </div>
@@ -203,7 +206,7 @@
                                     <% } %>    
                                   </td>
                             <td class="text-center">
-                              <a href="<%= item.attachfile%>"><i class="bi bi-envelope"></i></a>
+                              <a href="../INupload/<%= item.attachfile%>"><i class="bi bi-envelope <%= item.attachfile === ""? "d-none" : "d-block" %>"></i></a>
                               <% if (item.attachfile) { %>
                                 <% } %>
                             </td>
@@ -222,10 +225,10 @@
 
                             
                                <!-- MODAL -->
-                              <div class="modal fade" id="exampleModal<%= item._id%>" tabindex="-1"
+                              <div class="connectmodal modal fade" id="exampleModal<%= item._id%>" tabindex="-1"
                               aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog">
-                                <div class="modal-content">
+                                <div class="glass modal-content">
                                   <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">EDITING</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -233,12 +236,12 @@
                                   </div>
                                   <form action="/dispineditdoneview/<%= item._id%>?_method=PUT" method="post">
                                   <div class="modal-body">
-                                    Please Write Comment
+                                    <p>Please Write Comment</p>
                                     <label for="prepcomment" class="form-label"></label>
                                     <input class="form-control" type="text" name="prepcomment">
                                   </div>
                                   <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
+                                    <button type="submit" class="btn btn-secondary"
                                       data-bs-dismiss="modal">Close</button>
                                     
                                       <button type="submit" class="btn btn-primary">ADD</button>

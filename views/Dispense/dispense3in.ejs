@@ -124,8 +124,11 @@
                     href="/edindispense">ExtraDose</a></button>
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                     href="/dischargeindispense">Discharge</a></button>
+                
+              </div>
+              <div class="ms-3">
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
-                    href="/dispensedoneviewin">DONE</a></button>
+                  href="/dispensedoneviewin">DONE</a></button>
               </div>
 
             </div>
@@ -139,11 +142,16 @@
 
           <div id="maincontent" class="d-flex justify-content-center align-items-center" >
             <% if (dispensearray.length===0) { %>
-              <div class="text-center">
-                <h1>No Data Available</h1>
+              <div class="alert alert-success new2 p-4 w-50 mt-5 ">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                <span class="alert-body">
+                  <h6 class="alert-header">ATTENTION</h6>
+                  <p class="mb-0">No Data Avaliable</p>
+                </span>
               </div>
+          </div>
 
-              <% } %>
+          <% } %>
                 <% if (dispensearray.length>= 1) { %>
                   <table style="width: 99%" class="mx-auto table table-striped table-bordered">
                     <thead>
@@ -157,7 +165,7 @@
                         <th class="text-center" scope="col">Round Comment</th>
                         <th class="text-center" scope="col">Round Time</th>
                         <th class="text-center" scope="col">Comment</th>
-                        <th class="text-center" scope="col">Prep Time</th>
+                        <th class="text-center" scope="col">Disp Time</th>
                         <th class="text-center" scope="col">Attach</th>
                         <th class="text-center" scope="col">Add</th>
                         <th class="text-center" scope="col">Done</th>
@@ -199,7 +207,7 @@
                                     <% } %>    
                                   </td>
                           <td class="text-center">
-                            <a href="<%= item.attachfile%>"><i class="bi bi-envelope"></i></a>
+                            <a href="../INupload/<%= item.attachfile%>" target="_blank"><i class="bi bi-envelope <%= item.attachfile === ""? "d-none" : "d-block" %>"></i></a>
                             <% if (item.attachfile) { %>
                               <% } %>
                           </td>

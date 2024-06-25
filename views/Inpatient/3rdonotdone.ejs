@@ -106,26 +106,26 @@
                     href="/ICU">ICU</a></button>
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                     href="/ICC">ICC</a></button>
-                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
+                <button type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;"
                     href="/3rdO">3rd O</a></button>
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                     href="/3rdN">3rd N</a></button>
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                     href="/4th">4th</a></button>
-                <button type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;"
+                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                     href="/5th">5th</a></button>
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                     href="/BMT">BMT</a></button>
-                    <button type="button" class="btn btn-outline-primary"><a style="border: unset; color: unset;"
-                      href="/5thnotdone">ACTIVE</a></button>
+                    <button type="button" class="btn btn-outline-primary active"><a style="border: unset; color: unset;"
+                      href="/3rdonotdone">ACTIVE</a></button>
               </div>
 
               <!-- MODAL ICON -->
               <%- include('../partials/Modal-icon.ejs') %>
             </div>
 
-            <!-- SEARCH DATE -->
-          <%- include('../partials/DateSearch-Modal.ejs') %>
+<!-- SEARCH DATE -->
+<%- include('../partials/DateSearch-Modal.ejs') %>
 
             <!-- ADD PATIENT MODAL -->
             <%- include('../partials/AddPatient-Model-Floor.ejs') %>
@@ -133,8 +133,8 @@
               <!-- ADD NEW PATIENT MODAL -->
               <%- include('../partials/AddNewPatient-Modal.ejs') %>
 
-              <!-- ADD LAB PATIENT MODAL -->
-            <%- include('../partials/AddLabPatient-Modal-Floor.ejs') %>
+                <!-- ADD LAB PATIENT MODAL -->
+                <%- include('../partials/AddLabPatient-Modal-Floor.ejs') %>
 
                   <!-- /*--------------------------------------------------------------
       # MAIN CONTENT
@@ -149,7 +149,6 @@
                           <p class="mb-0">No Data Avaliable</p>
                         </span>
                      </div>
-                   </div>
 
                       <% } %>
                         <% if (inpatientarray.length>= 1) { %>
@@ -233,7 +232,7 @@
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                               data-bs-dismiss="modal">Close</button>
-                                            <form action="/delete5th/<%= item.id%>?_method=DELETE" method="post">
+                                            <form action="/delete3rdo/<%= item.id%>?_method=DELETE" method="post">
                                               <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                           </div>
@@ -259,7 +258,7 @@
 
                                     <div class="connectmodal modal fade" id="exampleModal2<%= item._id%>" tabindex="-1"
                                       aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                      <form action="/attach5TH/<%= item._id %>?_method=PUT " method="post" enctype="multipart/form-data"
+                                      <form action="/attach3rdO/<%= item._id %>?_method=PUT " method="post" enctype="multipart/form-data"
                                         class="modal-dialog">
                                         <div class="glass modal-content">
                                           <div class="modal-header">
@@ -293,7 +292,6 @@
                           </table>
                           <% } %>
                   </div>
-
                     <!-- PAGINATION -->
                 <%- include('../partials/inpatientpagination.ejs') %>
           </div>
@@ -315,17 +313,17 @@
 
       <script src="/js/inpatient/inpatient3.js"></script>
 
+
       <script>
         add_patient_inpatient.addEventListener("submit", async (e) => {
           e.preventDefault();
           const res = await fetch("/add_patient_in", {
             method: "POST",
-            body: JSON.stringify({ patientname: patientname.value,attachfile : attachfile.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value, createdAt: Date.now() }),
+            body: JSON.stringify({ patientname: patientname.value,  attachfile : attachfile.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value, createdAt: Date.now() }),
             headers: { "Content-Type": "application/json" },
           });
 
           const data = await res.json();
-
           if (data.nopatient) {
             nopatient.classList.remove("d-none");
             mrn.classList.add("redframe");
@@ -342,7 +340,7 @@
             document.getElementById('oraliv').classList.remove("redframe");
           }
           if (data.inpatient_add_patient) {
-            location.assign("/5th")
+            location.assign("/3rdo")
           }
 
         });
@@ -353,7 +351,7 @@
     e.preventDefault();
     const res = await fetch("/add_lab_in", {
       method: "POST",
-      body: JSON.stringify({ labpatientname: labpatientname.value,  mrnlab: mrnlab.value, labptfloor: labptfloor.value, labrequestype: labrequestype.value, medstartdate: medstartdate.value, medstarttime: medstarttime.value, samplewddate: samplewddate.value, samplewdtime: samplewdtime.value, levelrequestreason: levelrequestreason.value, labcomment : labcomment.value, phaname: phaname.value, createdAt: Date.now() }),
+      body: JSON.stringify({ labpatientname: labpatientname.value, mrnlab: mrnlab.value, labptfloor: labptfloor.value, labrequestype: labrequestype.value, medstartdate: medstartdate.value, medstarttime: medstarttime.value, samplewddate: samplewddate.value, samplewdtime: samplewdtime.value, levelrequestreason: levelrequestreason.value, labcomment : labcomment.value, phaname: phaname.value, createdAt: Date.now() }),
       headers: { "Content-Type": "application/json" },
     });
     const data = await res.json();
@@ -402,44 +400,45 @@
     }
 
     if (data.lab_add_patient) {
-      location.assign("5th")
+      location.assign("3rdo")
     }
   });
 
 </script>
 
-      <script>
-        addnewpatient.addEventListener("click", async (item) => {
-          item.preventDefault()
-          const res = await fetch("/addnewpatient", {
-            method: "POST",
-            body: JSON.stringify({ addpatientmrn: addpatientmrn.value, addpatientname: addpatientname.value, createdAt: Date.now() }),
-            headers: { "Content-Type": "application/json" },
+        <script>
+          addnewpatient.addEventListener("click", async (item) => {
+            item.preventDefault()
+            const res = await fetch("/addnewpatient", {
+              method: "POST",
+              body: JSON.stringify({ addpatientmrn: addpatientmrn.value, addpatientname: addpatientname.value, createdAt: Date.now() }),
+              headers: { "Content-Type": "application/json" },
+            })
+            const data = await res.json()
+            if (data.errors) {
+              data.errors.forEach(item => {
+                if (item.path = "addpatientname") {
+                  nopatientname.classList.remove("d-none");
+                  addpatientname.classList.add("redframe");
+                } else {
+                  nopatientname.classList.add("d-none");
+                  addpatientname.classList.remove("redframe");
+                }
+              });
+            }
+
+            if (data.patientexist) {
+              patientexist.classList.remove("d-none");
+              addpatientmrn.classList.add("redframe");
+            } else {
+              patientexist.classList.add("d-none");
+              addpatientmrn.classList.remove("redframe");
+            }
+            if (data.done) {
+              location.assign("/3rdo")
+            }
           })
-          const data = await res.json()
-          if (data.errors) {
-            data.errors.forEach(item => {
-              if (item.path = "addpatientname") {
-                nopatientname.classList.remove("d-none");
-                addpatientname.classList.add("redframe");
-              } else {
-                nopatientname.classList.add("d-none");
-                addpatientname.classList.remove("redframe");
-              }
-            });
-          }
-          if (data.patientexist) {
-            patientexist.classList.remove("d-none");
-            addpatientmrn.classList.add("redframe");
-          } else {
-            patientexist.classList.add("d-none");
-            addpatientmrn.classList.remove("redframe");
-          }
-          if (data.done) {
-            location.assign("/5th")
-          }
-        })
-      </script>
+        </script>
 </body>
 
 </html>

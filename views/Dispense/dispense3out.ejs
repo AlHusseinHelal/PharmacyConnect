@@ -24,7 +24,7 @@
   <!-- HEADER CSS -->
   <link rel="stylesheet" href="/css/style.css" />
   <!-- Custom styles for this template -->
-  <link href="/css/dispense3.css" rel="stylesheet" />
+  <link href="/css/dispense/dispense3.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -55,54 +55,9 @@
       </svg>
 
       <main class="d-flex flex-nowrap">
-        <!-- /*--------------------------------------------------------------
-    # Arrow Sidebar
-    --------------------------------------------------------------*/ -->
-        <%- include("../partials/arrow sidebar.ejs") %>
 
-          <!-- /*--------------------------------------------------------------
-    # SIDE LIST
-    --------------------------------------------------------------*/ -->
-          <div class="d-flex flex-column flex-shrink-0 p-3 bg-body-tertiary sidelist">
-            <img id="connectlogo" src="/svg/PharmacyConnectLogodispense-01.svg" height="139vh" alt="" />
 
-            <hr />
-            <ul class="nav navul nav-pills flex-column mb-0 mainul">
-              <li>
-                <div class="d-inline-flex align-items-center" style="width: 164.56px">
-                  <a href="/dispense3" class="nav-link d-inline-flex align-items-center width side-bg">
-                    <svg class="margin side-svg" style="width: 30px; height: 30px; fill: rgb(6, 0, 0)">
-                      <use xlink:href="#table" />
-                    </svg>
-                    <span style="color: rgb(1, 0, 0);" class="side-text">OverView</span>
-                  </a>
-                </div>
-              </li>
-              <li  >
-                <div class="d-inline-flex align-items-center" style="width: 164.56px;" >                  
-                  <a  href="/dispin "  
-                    class="  nav-link  d-inline-flex align-items-center width side-bg " style="color: black;" >
-                    <svg class="margin side-svg" style="width: 30px; height:30px; fill:rgb(0, 0, 0)" >
-                      <use xlink:href="#table" />
-                    </svg>
-                    <span style="color: rgb(0, 0, 0);" class="side-text">InPatient</span>                    
-                  </a>
-                </div>
-              </li>
-              <li  >
-                <div class="d-inline-flex align-items-center" style="width: 164.56px;" >
-                  <a  href="/dispout "  
-                    class="  nav-link active d-inline-flex align-items-center width side-bg " style="color: black;" >
-                    <svg class="margin side-svg" style="width: 30px; height:30px; fill:rgb(255, 255, 255)" >
-                      <use xlink:href="#table" />
-                    </svg>
-                    <span style="color: white;" class="side-text">OutPatient</span>                    
-                  </a>
-                </div>
-              </li>
-            </ul>
-            <hr />
-          </div>
+
 
           <!-- /*--------------------------------------------------------------
     # DEVIDER
@@ -112,29 +67,202 @@
             <!-- /*--------------------------------------------------------------
       # NAVBAR
       --------------------------------------------------------------*/ -->
-            <div>
-              <nav class="navbar navbar-expand-lg bg-body-tertiary mx-1 mt-1 mb-5">
-                <div class="container-fluid py-2 rounded-2 bg-info">
-                  <div class="d-flex flex-row align-items-center">
-                    <img src="/svg/ConnectLogo.svg" height="35vh" alt="" />
-                  </div>
+      <div>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary mx-1 mt-1 mb-1">
+          <div class="container-fluid py-2 rounded-2 bg-info">
+            <div class="d-flex flex-row align-items-center">
+              <img src="/svg/dispense.svg" height="35vh" alt="" />
+            </div>
 
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <form class="d-flex" role="search" action="/inpatientsearch" method="post">
-                      <input name="searchText" class="form-control me-2" type="search" placeholder="Search"
-                        aria-label="Search" />
-                      <button class="btn btn-outline-success" type="submit">
-                        Search
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <form class="d-flex" role="search" action="/dispensesearch" method="post">
+                <input name="searchText" class="form-control me-2" type="search" placeholder="Search"
+                  aria-label="Search" />
+                <button class="btn btn-outline-success" type="submit">
+                  Search
+                </button>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <!-- /*--------------------------------------------------------------
+      # EDIT ICON
+      --------------------------------------------------------------*/ -->
+          <div class="d-flex align-items-center mx-2 mb-1 justify-content-between">
+            <div class="btn d-inline-flex justify-content-between">
+              <button type="button" class="btn btn-outline-primary position-relative"><a href="/dispense3"
+                  style="border: unset; color: unset;">
+                  <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                0
+                <span class="visually-hidden">unread messages</span>
+              </span> -->
+                  <span class="side-text">OverView</span>
+                </a></button>
+              <button type="button" class="btn btn-outline-primary mx-3 position-relative active"><a href="/dispout"
+                  style="border: unset; color: unset;">
+                  <!-- <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  
+                      <span class="visually-hidden">unread messages</span>
+                  </span> -->
+                  <span class="side-text">OutPatient</span>
+                </a></button>
+              <button type="button" class="btn btn-outline-primary position-relative"><a href="/dispin"
+                  style="border: unset; color: unset;">
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <%= inarray.length %>
+                      <span class="visually-hidden">unread messages</span>
+                  </span>
+                  <span class="side-text">InPatient</span>
+                </a></button>
+            </div>
+
+          
+
+          </div>
+
+          <!-- SEARCH BY DATE -->
+          <%- include('../partials/DateSearch-Modal-Dispense.ejs') %>
+
+
+
+
+            <!-- ADD PATIENT -->
+            <div class="connectmodal modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="glass modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                      Add Patient
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+
+
+                    <div class="mb-3">
+                      <label hidden for="patientname" class="col-form-label">Patient Name</label>
+                      <input hidden name="patientname" type="text" class="form-control" id="patientname" />
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="mrn" class="col-form-label">MRN</label>
+                      <input name="mrn" type="text" class="form-control" id="mrn" />
+                    </div>
+
+                    <div id="nopatient" class=" d-flex flex-row align-items-center my-2 d-none"
+                      style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+                      <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                      <p class="my-1 ms-1">This Patient Not Found</p>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="requestype" class="form-label">Request Type</label>
+                      <select class="form-select" name="requestype" id="requestype">
+                        <option selected hidden disabled>Choose....</option>
+                        <option>Methotrexate</option>
+                        <option>ExtraDose</option>
+                      </select>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="oraliv" class="form-label">Oral/IV</label>
+                      <select required class="form-select" id="oraliv" name="oraliv">
+                        <option selected hidden disabled>Choose....</option>
+                        <option>IV</option>
+                        <option>Pyxis</option>
+                      </select>
+                    </div>
+
+                    <div id="iv_oralnot" class=" d-flex flex-row align-items-center my-2 d-none"
+                      style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+                      <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                      <p class="my-1 ms-1">You Must Enter This Field</p>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="roundcomment" class="col-form-label">Round Comment</label>
+                      <textarea name="roundcomment" class="form-control" id="roundcomment"></textarea>
+                    </div>
+
+                    <div class="mb-3 d-none">
+                      <label for="prepcomment" class="col-form-label"></label>
+                      <input name="prepcomment" type="text" class="form-control" id="prepcomment" />
+                    </div>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                      Close
+                    </button>
+                    <form id="add_patient_dispense">
+                      <button type="submit" class="btn btn-primary">
+                        Send message
                       </button>
                     </form>
                   </div>
                 </div>
-              </nav>
+              </div>
+            </div>
+
+            <!-- ADD NEW PATIENT MODAL -->
+            <div class="connectmodal modal fade" id="exampleModal3" data-bs-backdrop="static" tabindex="-1"
+              aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="glass modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                      Add New Patient
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+
+
+                    <div class="mb-3">
+                      <label for="addpatientname" class="col-form-label">Patient Name</label>
+                      <input name="addpatientname" type="text" class="form-control" id="addpatientname" />
+                    </div>
+
+                    <div id="nopatientname" class=" d-flex flex-row align-items-center my-2 d-none"
+                      style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+                      <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                      <p class="my-1 ms-1">You Must Enter This Field</p>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="addpatientmrn" class="col-form-label">MRN</label>
+                      <input name="addpatientmrn" type="text" class="form-control" id="addpatientmrn" />
+                    </div>
+
+                    <div id="patientexist" class=" d-flex flex-row align-items-center my-2 d-none"
+                      style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+                      <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                      <p class="my-1 ms-1">This Patient Is Already Exist</p>
+                    </div>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                      Close
+                    </button>
+                    <form id="addnewpatient">
+                      <button type="submit" class="btn btn-primary">
+                        ADD
+                      </button>
+                    </form>
+
+
+                  </div>
+                </div>
+              </div>
             </div>
 
 
@@ -167,7 +295,7 @@
                           <th class="text-center" scope="col">Round Comment</th>
                           <th class="text-center" scope="col">Round Time</th>
                           <th class="text-center" scope="col">Comment</th>
-                          <th class="text-center" scope="col">Prep Time</th>
+                          <th class="text-center" scope="col">Disp Time</th>
                           <th class="text-center" scope="col">Attach</th>
                           <th class="text-center" scope="col">Add</th>
                           <th class="text-center" scope="col">Done</th>
@@ -210,7 +338,7 @@
                                   </td>
 
                             <td class="text-center">
-                              <a href="<%= item.attachfile%>"><i class="bi bi-envelope"></i></a>
+                              <a href="../OUTupload/<%= item.attachfile%>"><i class="bi bi-envelope <%= item.attachfile === ""? "d-none" : "d-block" %>"></i></a>
                               <% if (item.attachfile) { %>
                                 <% } %>
                             </td>

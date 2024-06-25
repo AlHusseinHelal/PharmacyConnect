@@ -124,8 +124,11 @@
                       href="/edindispense">ExtraDose</a></button>
                   <button type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;"
                       href="/dischargeindispense">Discharge</a></button>
+                  
+                </div>
+                <div class="ms-3">
                   <button type="button" class="btn btn-outline-danger "><a style="border: unset; color: unset;"
-                      href="/dispensedoneviewin">DONE</a></button>
+                    href="/dispensedoneviewin">DONE</a></button>
                 </div>
       
               </div>
@@ -206,7 +209,7 @@
                                     <% } %>    
                                   </td>
                             <td class="text-center">
-                              <a href="<%= item.attachfile%>"><i class="bi bi-envelope"></i></a>
+                              <a href="../INupload/<%= item.attachfile%>"><i class="bi bi-envelope <%= item.attachfile === ""? "d-none" : "d-block" %>"></i></a>
                               <% if (item.attachfile) { %>
                                 <% } %>
                             </td>
