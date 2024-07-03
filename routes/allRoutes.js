@@ -42,6 +42,7 @@ const ApiError = require("../utils/apierror");
 const Inpatientschema = require("../models/inpatientSchema");
 const User = require("../models/newRegSchema");
 const Outpatient = require("../models/outpatientSchema");
+const Nurse = require("../models/nurseSchema");
 const Dispenseschema = require("../models/dispenseSchema");
 const Newpatient = require("../models/newPatientSchema");
 const Labschema = require("../models/labSchema");
@@ -60,6 +61,7 @@ const { checkIfUser } = require("../middleware/middleware");
 const { uploadSingleImage } = require("../middleware/middleware");
 const { imageresizeforinpatient } = require("../middleware/middleware");
 const { imageresizeforoutpatient } = require("../middleware/middleware");
+const { imageresizefordispense } = require("../middleware/middleware");
 const { profileimage } = require("../middleware/middleware");
 //CONTROLLER
 const { signOut } = require("../controllers/userController");
@@ -327,8 +329,8 @@ router.get(
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const date = moment().format("YYYY-MM-DD");
     const tomorrow = moment().add(1, "day").format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const currentUser = await User.findOne({ _id: decoded.id });
     const { firstname } = currentUser;
     const { lastname } = currentUser;
@@ -485,9 +487,10 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     const limit = req.query.limit * 1 || 9;
@@ -500,6 +503,7 @@ router.get(
     const { lastname } = user;
     
     const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
@@ -527,9 +531,10 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "ICU",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
@@ -542,6 +547,7 @@ router.get(
     const { firstname } = user;
     const { lastname } = user;
     const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "ICU",
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -568,9 +574,10 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "ICU", prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
@@ -584,6 +591,7 @@ router.get(
     const { lastname } = user;
     
     const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "ICU", prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -603,6 +611,180 @@ router.get(
   })
 );
 
+// INPATIENT SICU
+router.get(
+  "/surgical",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
+      ptfloor: "SICU",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
+      ptfloor: "SICU",
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+    
+    if (results) {
+      res.render("Inpatient/surgical", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "SICU",
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
+// INPATIENT SICU NOT DONE
+router.get(
+  "/surgicalnotdone",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
+      ptfloor: "SICU", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    
+    const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
+      ptfloor: "SICU", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+  
+    if (results) {
+      res.render("Inpatient/surgicalnotdoneview", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "SICU",
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
+// INPATIENT OR
+router.get(
+  "/or",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
+      ptfloor: "OR",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
+      ptfloor: "OR",
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+    
+    if (results) {
+      res.render("Inpatient/or", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "OR",
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
+// INPATIENT OR NOT DONE
+router.get(
+  "/ornotdone",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
+      ptfloor: "OR", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    
+    const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
+      ptfloor: "OR", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+  
+    if (results) {
+      res.render("Inpatient/ornotdoneview", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "OR",
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
 // INPATIENT ICC
 router.get(
   "/ICC",
@@ -610,9 +792,10 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "ICC",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
@@ -626,6 +809,7 @@ router.get(
     const { lastname } = user;
   
     const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "ICC",
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -653,9 +837,10 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "ICC", prepcomment: { $not: { $regex: "DONE" } }, 
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
@@ -670,6 +855,7 @@ router.get(
     
 
     const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "ICC", prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -698,9 +884,10 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "3rd O",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
@@ -715,6 +902,7 @@ router.get(
     
 
     const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "3rd O",
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -741,9 +929,10 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "3rd O", prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
@@ -758,6 +947,7 @@ router.get(
     
 
     const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "3rd O", prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -784,9 +974,10 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "3rd N",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
@@ -801,6 +992,7 @@ router.get(
     
 
     const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "3rd N",
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -820,16 +1012,17 @@ router.get(
   })
 );
 
-// INPATIENT 3rdN
+// INPATIENT 3rdN NOT DONE VIEW
 router.get(
   "/3rdnnotdone",
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "3rd N", prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
@@ -844,6 +1037,7 @@ router.get(
     
 
     const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "3rd N", prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -851,7 +1045,7 @@ router.get(
       .limit(limit);
     
     if (results) {
-      res.render("Inpatient/3rdn", {
+      res.render("Inpatient/3rdnnotdone", {
         inpatientarray: results,
         moment: moment,
         floor: "3rd N",
@@ -870,9 +1064,10 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "4th",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
@@ -887,6 +1082,7 @@ router.get(
     
 
     const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "4th",
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -913,9 +1109,10 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "4th", prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
@@ -930,6 +1127,7 @@ router.get(
     
 
     const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "4th", prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -959,6 +1157,7 @@ router.get(
     const startDate = `${date}T00:00:00.000+03:00`;
     const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "5th",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
@@ -973,6 +1172,7 @@ router.get(
   
 
     const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "5th",
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -1002,6 +1202,7 @@ router.get(
     const startDate = `${date}T00:00:00.000+03:00`;
     const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "5th", prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
@@ -1016,6 +1217,7 @@ router.get(
     
 
     const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "5th", prepcomment: { $not: { $regex: "DONE" } } ,
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -1042,9 +1244,10 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "BMT",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
@@ -1059,6 +1262,7 @@ router.get(
   
 
     const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "BMT",
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -1085,9 +1289,10 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "BMT", prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
@@ -1102,6 +1307,7 @@ router.get(
     
 
     const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
       ptfloor: "BMT", prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -1182,8 +1388,8 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Outpatient.find({
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
@@ -1238,8 +1444,8 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-    const limit = req.query.limit * 1 || 8;
-    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
     
@@ -1283,16 +1489,16 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
       oraliv: "IV",
       requestype: "ExtraDose",
       prepcomment: "",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-    const limit = req.query.limit * 1 || 8;
-    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
     
@@ -1304,6 +1510,12 @@ router.get(
     const dispense = await Dispenseschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const inpatient = await Inpatientschema.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+      requestype: { $not: { $regex: "ExtraDose" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
     
@@ -1321,7 +1533,7 @@ router.get(
         moment: moment,
         num,
         outpatient,
-        dispense,
+        dispense,inpatient,
       });
     }
   })
@@ -1334,16 +1546,16 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
       oraliv: "IV",
       requestype: "BMT",
       prepcomment: "",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-    const limit = req.query.limit * 1 || 8;
-    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
     
@@ -1355,6 +1567,13 @@ router.get(
     const dispense = await Dispenseschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+
+    const inpatient = await Inpatientschema.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+      ptfloor: { $not: { $regex: "BMT" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
   
@@ -1372,7 +1591,7 @@ router.get(
         moment: moment,
         outpatient,
         dispense,
-        num,
+        num,inpatient
       });
     }
   })
@@ -1385,15 +1604,15 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
       oraliv: "IV",
       prepcomment: "DONE",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-    const limit = req.query.limit * 1 || 8;
-    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
     
@@ -1407,6 +1626,13 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
+
+    const inpatient = await Inpatientschema.find({
+      oraliv: "IV",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+    
     
     const results = await Inpatientschema.find({
       oraliv: "IV",
@@ -1418,10 +1644,9 @@ router.get(
     if (results) {
       res.render("IvPrep/ivprepindoneview", {
         inarray: results,
-        moment: moment,
+        moment: moment,inpatient,
         outpatient,
-        dispense,
-        num,
+        dispense,num
       });
     }
   })
@@ -1434,15 +1659,15 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Dispenseschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-    const limit = req.query.limit * 1 || 8;
-    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
     
@@ -1483,15 +1708,15 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Dispenseschema.find({
       oraliv: "IV",
       prepcomment: "DONE",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     const limit = req.query.limit * 1 || 9;
-    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const page = req.query.page * 1 
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
     
@@ -1538,15 +1763,15 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Outpatient.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-    const limit = req.query.limit * 1 || 8;
-    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
   
@@ -1588,16 +1813,16 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Outpatient.find({
       oraliv: "IV",
       requestype: "ExtraDose",
-      prepcomment: "",
+      prepcomment : { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-    const limit = req.query.limit * 1 || 8;
-    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
     
@@ -1609,6 +1834,7 @@ router.get(
     const outpatient = await Outpatient.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
+      requestype: { $not: { $regex: "ExtraDose" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
     const dispense = await Dispenseschema.find({
@@ -1620,7 +1846,7 @@ router.get(
     const results = await Outpatient.find({
       oraliv: "IV",
       requestype: "ExtraDose",
-      prepcomment: "",
+      prepcomment : { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
@@ -1638,22 +1864,22 @@ router.get(
   })
 );
 
-//IVPREP INPATIENT DONE VIEW
+//IVPREP OUTPATIENT DONE VIEW
 router.get(
   "/doneviewout",
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Outpatient.find({
       oraliv: "IV",
       prepcomment: "DONE",
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-    const limit = req.query.limit * 1 || 8;
-    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
     
@@ -1701,24 +1927,27 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Labschema.find({
-      labcomment: { $not: { $regex: "RECEIVED" } },
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
-    const limit = req.query.limit * 1 || 8;
-    const page = req.query.page * 1 || Math.ceil(num / limit);
+      labcomment: { $not: { $in: [ /RECEIVED/i, /DELETED/i ] }},
+      
+    }).countDocuments()
+
+    const limit = req.query.limit * 1 || 6;
+    const page = req.query.page * 1 
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
     
-    const results = await Labschema.find({
-      labcomment: { $not: { $regex: "RECEIVED" } },
+    const result = await Labschema.find({
+      labcomment: { $not: { $in: [ /RECEIVED/i, /DELETED/i ] }},
       
-    })
-      .skip(skip)
-      .limit(limit);
-    
+    }).skip(skip).limit(limit)
+      
+    const results = result
+    // .sort((a,b) => b.createdAt - a.createdAt).skip(skip).limit(limit);
+      
+
     if (results) {
       res.render("Lab/lab.ejs", {
         labarray: results,
@@ -1736,23 +1965,16 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const num = await Labschema.find({
-      labcomment: "RECEIVED",
-    }).countDocuments();
-    const limit = req.query.limit * 1 || 7;
-    const page = req.query.page * 1 || Math.ceil(num / limit);
-    const sk = (page - 1) * limit
-    const skip = Math.abs(sk)
-    
-    const results = await Labschema.find({ labcomment: "RECEIVED" })
-      .skip(skip)
-      .limit(limit);
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const results = await Labschema.find({ labcomment: "RECEIVED", updatedAt: { $gte: startDate, $lte: endDate }, }
+      
+    )
     if (results) {
       res.render("Lab/labreceivedview.ejs", {
         labarray: results,
         moment: moment,
-        num,
-        page,
       });
     }
   })
@@ -1792,10 +2014,10 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Dispenseschema.find({
-      prepcomment: { $not: { $regex: "DONE" } },
+    
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     const limit = req.query.limit * 1 || 8;
@@ -1813,6 +2035,12 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
+
+    const pyxis = await Inpatientschema.find({
+      oraliv: "Pyxis",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
     
     const results = await Dispenseschema.find({
       createdAt: { $gte: startDate, $lte: endDate },
@@ -1825,7 +2053,7 @@ router.get(
         moment: moment,
         outpatient,
         inarray,
-        num,
+        num,pyxis
       });
     }
   })
@@ -1838,8 +2066,8 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1856,7 +2084,12 @@ router.get(
       createdAt: { $gte: startDate, $lte: endDate },
     });
 
-    
+    const pyxis = await Inpatientschema.find({
+      oraliv: "Pyxis",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+
     const results = await Inpatientschema.find({
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1869,7 +2102,7 @@ router.get(
         dispensearray: results,
         moment: moment,
         num,
-        outpatient,
+        outpatient,pyxis
       });
     }
   })
@@ -1882,8 +2115,8 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
       oraliv: "Oral",
       requestype: "ExtraDose",
@@ -1904,7 +2137,11 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
-  
+    const pyxis = await Inpatientschema.find({
+      oraliv: "Pyxis",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
     const results = await Inpatientschema.find({
       oraliv: "Oral",
       requestype: "ExtraDose",
@@ -1919,7 +2156,7 @@ router.get(
         outpatient,
         inarray,
         num,
-        moment: moment,
+        moment: moment,pyxis
       });
     }
   })
@@ -1932,8 +2169,8 @@ router.get(
   requireAuth,
   asyncHandler(async (req, res) => {
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
       oraliv: "Oral",
       requestype: "DisCharge Medication",
@@ -1951,6 +2188,11 @@ router.get(
     });
     const outpatient = await Outpatient.find({
       oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const pyxis = await Inpatientschema.find({
+      oraliv: "Pyxis",
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
@@ -1968,7 +2210,7 @@ router.get(
         dispensearray: results,
         inarray,
         outpatient,
-        moment: moment,
+        moment: moment,pyxis,
         num,
       });
     }
@@ -1990,8 +2232,8 @@ router.get(
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
     const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+00:00`;
-    const endDate = `${date}T23:59:59.000+00:00`;
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const outpatient = await Outpatient.find({
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -1999,6 +2241,12 @@ router.get(
     });
     const inarray = await Inpatientschema.find({
       oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+
+    const pyxis = await Inpatientschema.find({
+      oraliv: "Pyxis",
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
@@ -2016,7 +2264,7 @@ router.get(
         moment: moment,
         num,
         outpatient,
-        inarray,
+        inarray,pyxis
       });
     }
   })
@@ -2044,7 +2292,11 @@ router.get("/dispout", checkIfUser, requireAuth, async (req, res) => {
     createdAt: { $gte: startDate, $lte: endDate },
   })
 
-
+  const pyxis = await Inpatientschema.find({
+    oraliv: "Pyxis",
+    prepcomment: { $not: { $regex: "DONE" } },
+    createdAt: { $gte: startDate, $lte: endDate },
+  });
 
   const results = await Outpatient.find({
     oraliv: "Oral",
@@ -2058,7 +2310,7 @@ router.get("/dispout", checkIfUser, requireAuth, async (req, res) => {
       dispensearray: results,
       moment: moment,
       num,
-      inarray,
+      inarray,pyxis
     });
   }
 });
@@ -2114,6 +2366,261 @@ router.get(
     const num = await PyxisTrade.find().countDocuments();
     if (results) {
       res.render("Pyxis/pyxismed.ejs", { results, num });
+    }
+  })
+);
+
+// PYXIS VIEW
+router.get(
+  "/pyxisview",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Inpatientschema.find({
+      oraliv: "Pyxis",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 8;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+  
+    const outpatient = await Outpatient.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+
+    
+    const inpatient = await Inpatientschema.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+
+    const pyxis = await Inpatientschema.find({
+      oraliv: "Pyxis",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+    if (pyxis) {
+      res.render("Dispense/dispensepyxis", {
+        pyxisarray: pyxis,
+        moment: moment,
+        num, inpatient,
+        outpatient,
+      });
+    }
+  })
+);
+
+//PYXIS DONE VIEW
+router.get(
+  "/pyxisdoneview",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const num = await Inpatientschema.find({
+      oraliv: "Pyxis",
+      prepcomment: "DONE",
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 8;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const outpatient = await Outpatient.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const inarray = await Inpatientschema.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+
+    const pyxis = await Inpatientschema.find({
+      oraliv: "Pyxis",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+  
+    const results = await Inpatientschema.find({
+      oraliv: "Pyxis",
+      prepcomment: "DONE",
+    })
+      .skip(skip)
+      .limit(limit);
+
+    if (results) {
+      res.render("Dispense/pyxisdoneview", {
+        pyxisarray: results,
+        moment: moment,
+        num,
+        outpatient,
+        inarray,pyxis
+      });
+    }
+  })
+);
+
+//PYXIS REFILL
+router.get(
+  "/pyxisrefill",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Inpatientschema.find({
+      oraliv: "Pyxis",
+      requestype: "Refill",
+      prepcomment: { $not: { $regex: "DONE" } },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
+    const inarray = await Inpatientschema.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const outpatient = await Outpatient.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const pyxis = await Inpatientschema.find({
+      oraliv: "Pyxis",
+      requestype: { $not: { $regex: "Refill" } },
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const results = await Inpatientschema.find({
+      oraliv: "Pyxis",
+      requestype: "Refill",
+      prepcomment: { $not: { $regex: "DONE" } },
+    })
+      .skip(skip)
+      .limit(limit);
+
+    if (results) {
+      res.render("Dispense/pyxisrefill", {
+        pyxisarray: results,
+        outpatient,
+        inarray,
+        num,
+        moment: moment,pyxis
+      });
+    }
+  })
+);
+
+//PYXIS PRODUCT ASSGIN
+router.get(
+  "/pyxisproductassgin",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Inpatientschema.find({
+      oraliv: "Pyxis",
+      requestype: "Product Assign",
+      prepcomment: { $not: { $regex: "DONE" } },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
+    const inarray = await Inpatientschema.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const outpatient = await Outpatient.find({
+      oraliv: "Oral",
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const pyxis = await Inpatientschema.find({
+      oraliv: "Pyxis",
+      requestype: { $not: { $regex: "Product Assign" } },
+      prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    
+    const results = await Inpatientschema.find({
+      oraliv: "Pyxis",
+      requestype: "Product Assign",
+      prepcomment: { $not: { $regex: "DONE" } },
+    })
+      .skip(skip)
+      .limit(limit);
+console.log(results);
+    if (results) {
+      res.render("Dispense/pyxisproduct", {
+        pyxisarray: results,
+        inarray,
+        outpatient,
+        moment: moment,pyxis,
+        num,
+      });
+    }
+  })
+);
+
+// NURSE OVERVIEW
+router.get(
+  "/nurse",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Inpatientschema.find({
+      requestype : { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+  
+    
+    const results = await Inpatientschema.find({
+      requestype : { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] },
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+    if (results) {
+      res.render("Nurse/nurse", {
+        nursearray: results,
+        num,
+        firstname,
+        lastname,
+        moment: moment,
+      });
     }
   })
 );
@@ -2174,9 +2681,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email" });
-    // }
+    if (!email.includes("57357.org")) {
+      return res.json({ invalidemail: "Invalid Email" });
+    }
 
     const newUser = await User.create(req.body);
     const token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
@@ -3023,10 +3530,12 @@ router.post(
     const startDate = date + "T00:00:00.000+00:00";
     const endDate = date + "T23:59:59.000+00:00";
     const result = await Inpatientschema.find({
-      mrn: searchText,
       createdAt: { $gte: startDate, $lte: endDate },
     });
-    res.render("Inpatient/inpatientsearch", { array: result, moment: moment });
+    const results = result.filter( item => item.mrn.match(req.body.searchText))
+    console.log(results)
+
+    res.render("Inpatient/inpatientsearch", { array: results, moment: moment });
   })
 );
 
@@ -3039,8 +3548,8 @@ router.post(
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const sdate = req.body.sDate;
     const edate = req.body.eDate;
-    const startDate = sdate + "T00:00:00.000+00:00";
-    const endDate = edate + "T23:59:59.000+00:00";
+    const startDate = sdate + "T00:00:00.000+03:00";
+    const endDate = edate + "T23:59:59.000+03:00";
     const results = await Inpatientschema.find({
       createdAt: { $gte: startDate, $lte: endDate },
     });
@@ -3067,17 +3576,36 @@ router.post(
   })
 );
 
+// INPATIENT FIND DATE SEARCH
+router.post(
+  "/inpatientfinddatesearch",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const searchText = req.body.searchText.trim();
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({_id : decoded.id})
+    const find = user.infinddate.filter( item => item.mrn.match(searchText))
+  
+
+    res.render("Inpatient/inpatientfinddate.ejs", { searcharray: find, moment: moment });
+  })
+);
+
 // INPATIENT/PREP POST SEARCH
-router.post("/inpatientprepsearch", checkIfUser, requireAuth, (req, res) => {
+router.post("/inpatientprepsearch", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
   const searchText = req.body.searchText.trim();
-  Inpatientschema.find({ mrn: searchText })
-    .then((result) => {
-      res.render("IvPrep/ivprepinsearch", { array: result, moment: moment });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+  const date = moment().format("YYYY-MM-DD");
+  const startDate = date + "T00:00:00.000+03:00";
+  const endDate = date + "T23:59:59.000+03:00";
+  const result = await Inpatientschema.find({createdAt: { $gte: startDate, $lte: endDate }})
+  const find = result.filter( item => item.mrn.match(searchText))
+  if (find) {
+    res.render("IvPrep/ivprepinsearch", { array: find, moment: moment });
+  }  
+}))
+
+
 
 // OUTPATIENT POST REQUEST
 router.post("/outpt2", checkIfUser, requireAuth, (req, res) => {
@@ -3099,8 +3627,8 @@ router.post(
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const sdate = req.body.sDate;
     const edate = req.body.eDate;
-    const startDate = sdate + "T00:00:00.000+00:00";
-    const endDate = edate + "T23:59:59.000+00:00";
+    const startDate = sdate + "T00:00:00.000+03:00";
+    const endDate = edate + "T23:59:59.000+03:00";
     const results = await Outpatient.find({
       createdAt: { $gte: startDate, $lte: endDate },
     });
@@ -3209,31 +3737,46 @@ router.post(
 );
 
 // OUTPATIENT POST SEARCH
-router.post("/outpatientsearch", checkIfUser, requireAuth, (req, res) => {
+router.post("/outpatientsearch", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
   const searchText = req.body.searchText.trim();
-  Outpatient.find({ mrn: searchText })
-    .then((result) => {
-      res.render("Outpatient/outpatientsearch", {
-        array: result,
-        moment: moment,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+  const date = moment().format("YYYY-MM-DD");
+  const startDate = date + "T00:00:00.000+03:00";
+  const endDate = date + "T23:59:59.000+03:00";
+  const result = await Outpatient.find( {createdAt: { $gte: startDate, $lte: endDate } })
+  const find = result.filter( item => item.mrn.match(searchText))
+if (find) {
+  res.render("Outpatient/outpatientsearch.ejs", {array : find, moment: moment})
+}
+}) );
+
+// OUTPATIENT FIND DATE SEARCH
+router.post(
+  "/outpatientfindsearch",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const searchText = req.body.searchText.trim();
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({_id : decoded.id})
+    const find = user.outfinddate.filter( item => item.mrn.match(searchText))
+  
+
+    res.render("Outpatient/outpatientfinddate.ejs", { searcharray: find, moment: moment });
+  })
+);
 
 // OUTPATIENT/PREP POST SEARCH
-router.post("/outpatientprepsearch", checkIfUser, requireAuth, (req, res) => {
+router.post("/outpatientprepsearch", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
   const searchText = req.body.searchText.trim();
-  Outpatient.find({ mrn: searchText })
-    .then((result) => {
-      res.render("IvPrep/ivprepoutsearch", { array: result, moment: moment });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+  const date = moment().format("YYYY-MM-DD");
+  const startDate = date + "T00:00:00.000+03:00";
+  const endDate = date + "T23:59:59.000+03:00";
+  const result = await Outpatient.find({createdAt: { $gte: startDate, $lte: endDate }})
+  const find = result.filter(item => item.mrn.match(searchText))
+  if (find) {
+    res.render("IvPrep/ivprepoutsearch", { array: result, moment: moment });
+  }
+}) );
 
 // DISPENSE ADD PATIENT
 router.post(
@@ -3313,8 +3856,8 @@ router.post(
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const sdate = req.body.sDate;
     const edate = req.body.eDate;
-    const startDate = sdate + "T00:00:00.000+00:00";
-    const endDate = edate + "T23:59:59.000+00:00";
+    const startDate = sdate + "T00:00:00.000+03:00";
+    const endDate = edate + "T23:59:59.000+03:00";
     const results = await Dispenseschema.find({
       createdAt: { $gte: startDate, $lte: endDate },
     });
@@ -3341,6 +3884,22 @@ router.post(
   })
 );
 
+// DISPENSE/PREP POST SEARCH
+router.post("/dispenseprepsearch", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  const searchText = req.body.searchText.trim();
+  const date = moment().format("YYYY-MM-DD");
+  const startDate = date + "T00:00:00.000+03:00";
+  const endDate = date + "T23:59:59.000+03:00";
+  const result = await Dispenseschema.find({createdAt: { $gte: startDate, $lte: endDate }})
+  const find = result.filter( item => item.mrn.match(searchText))
+  console.log(find)
+
+  if (find) {
+    res.render("IvPrep/ivprepdissearch", { array: find, moment: moment });
+  }  
+  
+}))
+
 // LAB SEARCH DATE
 router.post(
   "/findDatelab",
@@ -3349,23 +3908,13 @@ router.post(
   asyncHandler(async (req, res) => {
     const sdate = req.body.sDate;
     const edate = req.body.eDate;
-    const startDate = sdate + "T00:00:00.000+00:00";
-    const endDate = edate + "T23:59:59.000+00:00";
+    const startDate = sdate + "T00:00:00.000+03:00";
+    const endDate = edate + "T23:59:59.000+03:00";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-    const num = await Labschema.find({
-      createdAt: { $gte: startDate, $lte: endDate },
-    }).countDocuments();
-    const limit = req.query.limit * 1 || 6;
-    const page = req.query.page * 1 || Math.ceil(num / limit);
-    const sk = (page - 1) * limit
-    const skip = Math.abs(sk)
-    
-    
     const results = await Labschema.find({
       createdAt: { $gte: startDate, $lte: endDate },
     })
-      .skip(skip)
-      .limit(limit);
+      
     
 
     if (results === undefined) {
@@ -3386,9 +3935,58 @@ router.post(
       res.render("Lab/labfinddate.ejs", {
         searcharray: results,
         moment: moment,
-        num,
+        
       });
     }
+  })
+);
+
+// LAB SEARCH
+router.post(
+  "/labsearch",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const searchText = req.body.searchText.trim();
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+03:00";
+    const endDate = date + "T23:59:59.000+03:00";
+    const result = await Labschema.find({
+      createdAt: { $gte: startDate, $lte: endDate },
+      labcomment: { $not: { $in: [ /DELETED/ ] }},
+    });
+    console.log(result)
+    const array = result.filter( item => item.mrnlab.match(searchText)) 
+    console.log(array)
+
+    res.render("Lab/labsearch", { labarray: array, moment: moment });
+  })
+);
+
+// LAB SEARCH IN FIND DATE
+router.post(
+  "/labsearchfinddate",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const searchText = req.body.searchText.trim();
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+03:00";
+    const endDate = date + "T23:59:59.000+03:00";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY)
+    const user = await User.findOne({ _id : decoded.id})
+    const find = user.labfinddate.filter( item => item.mrnlab.match(req.body.searchText))
+    console.log(find)
+    
+    // const result = await Labschema.find({
+    //   createdAt: { $gte: startDate, $lte: endDate },
+    //   labcomment: { $not: { $in: [ /DELETED/ ] }},
+    // });
+    // console.log(result)
+    // const array = result.filter( item => item.mrnlab.match(searchText)) 
+    // console.log(array)
+
+    res.render("Lab/labsearch", { labarray: find, moment: moment });
   })
 );
 
@@ -4513,6 +5111,98 @@ if (medicationupdate) {
   })
 );
 
+// NURSE ADD PATIENT
+router.post(
+  "/add_patient_nurse",
+  [check("mrn").isNumeric(), check("requestype").notEmpty()],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+    const patient = await Newpatient.findOne({ addpatientmrn: req.body.mrn });
+
+    if (patient == null) {
+      return res.json({ nopatient: "This Patient Not Found" });
+    }
+
+    if (patient) {
+      req.body.patientname = patient.addpatientname;
+    }
+
+    if (req.body.ptfloor === "Choose...") {
+      return res.json({ noptfloor: "You Must Enter This Field" });
+    }
+
+    if (req.body.requestype === "Choose....") {
+      return res.json({ norequestype: "You Must Enter This Field" });
+    }
+
+    if (req.body.oraliv === "Choose....") {
+      return res.json({ oraliv: "You Must Enter This Field" });
+    }
+
+    const nurseAddpatient = await Inpatientschema.create(req.body);
+    res.json({ nurse_add_patient: nurseAddpatient });
+  })
+);
+
+// NURSE POST SEARCH
+router.post("/nursesearch", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  const searchText = req.body.searchText.trim();
+  const date = moment().format("YYYY-MM-DD");
+  const startDate = date + "T00:00:00.000+03:00";
+  const endDate = date + "T23:59:59.000+03:00";
+  const result = await Inpatientschema.find( {
+    requestype : { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ]} ,
+    createdAt: { $gte: startDate, $lte: endDate } })
+  const find = result.filter( item => item.mrn.match(searchText))
+if (find) {
+  res.render("Nurse/nursesearch.ejs", {array : find, moment: moment})
+}
+}) );
+
+// NURSE SEARCH DATE
+router.post(
+  "/findDateNurse",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const sdate = req.body.sDate;
+    const edate = req.body.eDate;
+    const startDate = sdate + "T00:00:00.000+03:00";
+    const endDate = edate + "T23:59:59.000+03:00";
+    const results = await Inpatientschema.find({
+      requestype :  { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] },
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+
+    if (results === undefined) {
+      await User.findOneAndUpdate(
+        { _id: decoded.id },
+        { $set: { nursefinddate: [] } }
+      );
+    }
+
+    if (results) {
+      await User.findOneAndUpdate(
+        { _id: decoded.id },
+        { $set: { nursefinddate: results } }
+      );
+    }
+
+    if (results) {
+      res.render("Nurse/nursefinddate.ejs", {
+        searcharray: results,
+        moment: moment,
+      });
+    }
+  })
+);
+
 // ---------------------------------
 //DELETE REQUEST
 // ----------------------------------
@@ -4721,6 +5411,25 @@ router.delete(
   })
 );
 
+//DISPENSE DELETE PATIENT
+router.delete("/deletedisp/:id", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+const result = await  Dispenseschema.findByIdAndDelete(req.params.id)
+  if (result) {
+    res.redirect("/dispense3")
+  }
+}) );
+
+//NURSE DELETE PATIENT
+router.delete("/deletenurse/:id", checkIfUser, requireAuth, (req, res) => {
+  Inpatientschema.findByIdAndDelete(req.params.id)
+    .then((result) => {
+      res.redirect("/nurse");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 // ---------------------------------
 //PUT REQUEST
 // ----------------------------------
@@ -4742,28 +5451,32 @@ router.put(
 );
 
 // IVPREP INPATIENT EXTRADOSE / DONE
-router.put("/doneed/:id", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      Inpatientschema.find({
-        oraliv: "IV",
-        requestype: "ExtraDose",
-        prepcomment: "",
-      }).then((result) => {
-        res.render("IvPrep/ivprepinextradose", {
-          inarray: result,
-          moment: moment,
-        });
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.put("/doneed/:id", checkIfUser, requireAuth, asyncHandler(async (req, res) => {
+  const results = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body.prepcomment)
+  if(results)  {
+    res.redirect("/ed");
+  }
+}) );
 
 // IVPREP INPATIENT / EDIT
 router.put(
   "/inedit/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/prepin");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// IVPREP SEARCH INPATIENT / EDIT
+router.put(
+  "/insearchedit/:id",
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
@@ -4826,6 +5539,22 @@ router.put(
   })
 );
 
+// IVPREP OUTPATIENT DONE VIEW / EDIT
+router.put(
+  "/outeditdoneview/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    await Outpatient.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/doneviewout");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
 // IVPREP OUTPATIENT / EDIT
 router.put(
   "/outedit/:id",
@@ -4839,6 +5568,22 @@ router.put(
   })
 );
 
+// IVPREP OUTPATIENT EXTRADOSE / EDIT
+router.put("/outedited/:id", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+const results = await  Outpatient.findByIdAndUpdate(req.params.id, req.body)
+    if (results) {
+      res.redirect("/edout"); 
+    }
+}) );
+
+// IVPREP OUTPATIENT EXTRADOSE / DONE
+router.put("/doneedout/:id", checkIfUser, requireAuth, asyncHandler(async (req, res) => {
+  const results = await Outpatient.findByIdAndUpdate(req.params.id, req.body)
+  if(results)  {
+    res.redirect("/edout");
+  }
+}) );
+
 // IVPREP DISPENSE / EDIT
 router.put(
   "/editdisp/:id",
@@ -4848,6 +5593,22 @@ router.put(
     await Dispenseschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
         res.redirect("/prepdis");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// IVPREP DISPENSE / EDIT / DONE VIEW
+router.put(
+  "/editdonedisp/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    await Dispenseschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/ivprepdispensedoneview");
       })
       .catch((err) => {
         console.log(err);
@@ -4868,6 +5629,19 @@ router.put(
       .catch((err) => {
         console.log(err);
       });
+  })
+);
+
+// IVPREP DISPENSE / SEARCH / EDIT
+router.put(
+  "/dissearchedit/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const results = await Dispenseschema.findByIdAndUpdate(req.params.id, req.body);
+    if (results) {
+      res.redirect("/dispenseprepsearch");
+    }
   })
 );
 
@@ -5031,6 +5805,134 @@ router.put("/donedisout/:id", checkIfUser, requireAuth, (req, res) => {
     });
 });
 
+// Dispense PYXIS / EDIT
+router.put(
+  "/pyxisedit/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const results = await Inpatientschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/pyxisview");
+    }
+  })
+);
+
+// Dispense PYXIS / EDIT / REFILL
+router.put(
+  "/pyxiseditrefill/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const results = await Inpatientschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/pyxisrefill");
+    }
+  })
+);
+
+// Dispense PYXIS / EDIT / PRODUCT ASSIGN
+router.put(
+  "/pyxiseditproduct/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const results = await Inpatientschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/pyxisproductassgin");
+    }
+  })
+);
+
+// Dispense PYXIS / EDIT / DONE VIEW
+router.put(
+  "/pyxiseditdoneview/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const results = await Inpatientschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/pyxisdoneview");
+    }
+  })
+);
+
+// DISPENSE PYXIS / DONE VIEW
+router.put(
+  "/pyxisviewdone/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const results = await Inpatientschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/pyxisview");
+    }
+  })
+);
+
+// DISPENSE PYXIS / REFILL / DONE 
+router.put(
+  "/pyxisrefilldone/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const results = await Inpatientschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/pyxisrefill");
+    }
+  })
+);
+
+// DISPENSE PYXIS / PRODUCT / DONE 
+router.put(
+  "/pyxisproductdone/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const results = await Inpatientschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/pyxisproductassgin");
+    }
+  })
+);
+
+// DISPENSE PYXIS / DONE / DONE 
+router.put(
+  "/pyxisdonedone/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const results = await Inpatientschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/pyxisdoneview");
+    }
+  })
+);
+
 // LAB INPATIENT / DONE
 router.put(
   "/donelab/:id",
@@ -5085,7 +5987,7 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    await Labschema.findByIdAndUpdate(req.params.id, {active : false})
+    await Labschema.findByIdAndUpdate(req.params.id, {labcomment : req.body.labcomment})
       .then(() => {
         res.redirect("/labreceivedview");
       })
@@ -5250,6 +6152,24 @@ router.put(
     const results = await Outpatient.findByIdAndUpdate(req.params.id, req.body);
     if (results) {
       res.redirect("/outpatient3");
+    }
+  }
+);
+
+//ATTACH FILE DISPENSE
+router.put(
+  "/attachdisp/:id",
+  uploadSingleImage("attachfile"),
+  imageresizefordispense,
+  checkIfUser,
+  requireAuth,
+  async (req, res) => {
+    const results = await Dispenseschema.findByIdAndUpdate(
+      req.params.id,
+      req.body
+    );
+    if (results) {
+      res.redirect("/dispense3");
     }
   }
 );

@@ -81,8 +81,8 @@
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                  <form action="/labsearchfinddate" method="post" class="d-flex" role="search">
+                    <input name="searchText" class="form-control me-2" placeholder="Search" aria-label="Search" />
                     <button class="btn btn-outline-success" type="submit">
                       Search
                     </button>
@@ -94,43 +94,47 @@
 
 
     
-
+          <div class="text-end w-100">
+            <a href="/excellab" data-tooltip="Extract" data-flow="left"><i class="fa-solid fa-download fa-xl my-3 me-3" style="color: #f20707;"></i></a>
+          </div>
           <!-- /*--------------------------------------------------------------
       # MAIN CONTENT
       --------------------------------------------------------------*/ -->
-          <div id="maincontent" class="d-flex flex-column justify-content-center align-items-center">
+          <div id="maincontent" class="d-flex flex-column justify-content-center align-items-center" style="position: relative;">
+            <div id="scroll" class="p-2" style="width: 98%; border: 2px solid ; border-radius: 10px; top: 26vh;height: 73vh; overflow-y: scroll;">
             <% if (searcharray.length===0) { %>
-              <div class="alert alert-success new2 p-4 w-50 mt-5 ">
-                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                <span class="alert-body">
-                  <h6 class="alert-header">ATTENTION</h6>
-                  <p class="mb-0">No Data Avaliable</p>
-                </span>
+              <div class="w-100 d-flex justify-content-center">
+                <div class="alert alert-success new2 p-4 w-50 mt-5 ">
+                  <i class="fa fa-info-circle" aria-hidden="true"></i>
+                  <span class="alert-body">
+                    <h6 class="alert-header">ATTENTION</h6>
+                    <p class="mb-0">No Data Avaliable</p>
+                  </span>
+                </div>
               </div>
-          </div>
+          
 
           <% } %>
             <% if (searcharray.length>= 1) { %>
-              <div class="text-end w-100">
-                <a href="/excellab" data-tooltip="Extract" data-flow="left"><i class="fa-solid fa-arrow-up-from-bracket fa-rotate-90 fa-xl my-3 me-3" style="color: #890e0e;"> </i></a>
-              </div>
-              <table style="width: 99%" class="mx-auto table table-striped table-bordered">
-                <thead>
+              
+              <table style="width: 99%;" class="mx-auto table table-striped table-bordered">
+                <thead >
                   <tr>
-                    <th class="text-center" scope="col">#</th>
-                    <th class="text-center" scope="col">Patient Name</th>
-                    <th class="text-center" scope="col">MRN</th>
-                    <th class="text-center" scope="col">Patient Floor</th>
-                    <th class="text-center" scope="col">Request Type</th>
-                    <th class="text-center" scope="col">PHA Name</th>
-                    <th class="text-center" scope="col">Med. Start Date</th>
-                    <th class="text-center" scope="col">Med. Start Time</th>
-                    <th class="text-center" scope="col">Sample WD Date</th>
-                    <th class="text-center" scope="col">Sample WD Time</th>
-                    <th class="text-center" scope="col">Reason</th>
-                    <th class="text-center" scope="col">Lab Comment</th>
-                    <th class="text-center" scope="col">Edit</th>
-                    <th class="text-center" scope="col">Recieved</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">#</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Patient Name</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">MRN</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Rec. Time</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Patient Floor</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Request Type</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">PHA Name</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Med. Start Date</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Med. Start Time</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Sample WD Date</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Sample WD Time</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Reason</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Lab Comment</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Edit</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Recieved</th>
                   </tr>
                 </thead>
                 <% searcharray.forEach((item,index)=> { %>
@@ -146,6 +150,10 @@
 
                       <td class="text-center">
                         <%= item.mrnlab%>
+                      </td>
+
+                      <td class="text-center">
+                        <%= moment(item.createdAt).format('DD-MM, h:mm a')%>
                       </td>
 
                       <td class="text-center">
@@ -177,11 +185,11 @@
                       </td>
 
                       <td class="text-center">
-                        <%= item.levelrequestreason%>
+                        <span dir="rtl"><%= item.levelrequestreason%></span>
                       </td>
 
                       <td class="text-center">
-                        <%= item.labcomment%>
+                        <span dir="rtl"><%= item.labcomment%></span>
                       </td>
 
                       <td class="text-center">
@@ -212,7 +220,7 @@
                                 <div class="modal-body">
                                   Please Write Comment
                                   <label for="labcomment" class="col-form-label">Level Request Reason</label>
-                                  <input name="labcomment" type="text" class="form-control" id="labcomment" />
+                                  <input dir="rtl" name="labcomment" type="text" class="form-control" id="labcomment" />
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -255,8 +263,7 @@
 
         </div>
 
-        <!-- PAGINATION -->
-        <%- include('../partials/labpagination.ejs') %>
+      </div>
           </div>
       </main>
       <!-- LINK TO jQuary -->

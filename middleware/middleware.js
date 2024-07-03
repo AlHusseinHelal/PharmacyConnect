@@ -107,6 +107,18 @@ const imageresizeforoutpatient = asyncHandler(async (req, res, next) => {
   next();
 });
 
+//RESIZE IMAGE FOR ATTACH DISPENSE
+const imageresizefordispense = asyncHandler(async (req, res, next) => {
+  const filename = `DISupload-${uuidv4()}-${Date.now()}.jpeg `;
+  await sharp(req.file.buffer)
+    .toFormat("jpeg")
+    .jpeg({ quality: 80 })
+    .toFile(`uploads/DISupload/${filename}`);
+
+  req.body.attachfile = filename;
+  next();
+});
+
 //RESIZE IMAGE FOR PROFILEIMAGE
 const profileimage = asyncHandler(async (req, res, next) => {
   const filename = `user-${uuidv4()}-${Date.now()}.jpeg `;
@@ -129,4 +141,5 @@ module.exports = {
   imageresizeforoutpatient,
   profileimage,
   uploadSingleImage,
+  imageresizefordispense
 };

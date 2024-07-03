@@ -43,7 +43,7 @@
             <a class="nav-link scrollto active" href="/interface">Home</a>
           </li>
           <li><a class="nav-link scrollto" href="/STRUCTURE">About</a></li>
-          <li><a class="nav-link scrollto" href="/todolist">ToDo List<span class="<%= user.todolist.length>= 1? "d-block" : "d-none" %> position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          <li class="<%= user.role === "Nurse"? "d-none" : "d-block" %>"><a class="nav-link scrollto" href="/todolist">ToDo List<span class="<%= user.todolist.length>= 1? "d-block" : "d-none" %> position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
             <%= user.todolist.length %>
             <span class="visually-hidden">unread messages</span>
           </span></a></li>
@@ -66,7 +66,7 @@
       
         %>
 
-          <li class="dropdown"><a href="#"><span>Watch</span> <i class="bi bi-chevron-down"></i><span class="<%= comment.length>=1?"d-block":"d-none" %> position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          <li class="dropdown <%= user.role === "Nurse"? "d-none" : "d-block" %>"><a href="#"><span>Watch</span> <i class="bi bi-chevron-down"></i><span class="<%= comment.length>=1?"d-block":"d-none" %> position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
             <%= comment.length %>C
           </span>
           <span class="<%= receive.length >= 1? "d-block" : "d-none" %>  position-absolute top-0 start-200 translate-middle badge rounded-pill bg-primary">
@@ -74,7 +74,7 @@
           </span>
         </a>
             <ul>
-              <li>
+              <li class="<%= user.role === "Nurse"? "d-none" : "d-block" %>">
                 <a href="/watch" class=" d-flex align-items-center"> 
                   <span>Sender</span><span class="<%= comment.length>=1?"d-block":"d-none" %> position-absolute top-10 start-50 translate-middle badge rounded-pill bg-danger">
                     <%= comment.length %>C
@@ -82,7 +82,7 @@
                   <img src="/svg/sender-02.svg" width="25px" height="25px" alt="">
                 </a>
               </li>
-              <li>
+              <li class="<%= user.role === "Nurse"? "d-none" : "d-block" %>">
                 <a href="/receiver" class=" d-flex align-items-center" style="position: relative;" >
                   <span>Receiver</span><span class="<%= receive.length >= 1? "d-block" : "d-none" %> position-absolute top-10 start-50 translate-middle badge rounded-pill bg-primary">
                     <%=  receive.length %>R
@@ -93,7 +93,7 @@
             </ul>
           </li>
 
-          <li>
+          <li class="<%= user.role === "Nurse"? "d-none" : "d-block" %>">
             <a class="nav-link scrollto" href="<%= user.role === "DIC"? "/dic" : "/dicsender" %>"><span>DIC</span><span class="<%= array2.length >= 1? "d-block" : "d-none" %> position-absolute top-0 start-50 translate-middle badge rounded-pill bg-primary">
               <%=  array2.length %>A
             </span>
@@ -124,7 +124,7 @@
           </strong>
         </a>
         <ul class="dropdown-menu text-small shadow">
-          <li>
+          <li class="<%= user.role === "Nurse"? "d-none" : "d-block" %>">
             <a data-bs-toggle="modal" data-bs-target="#exampleModa2" class="dropdown-item" href="/signout">Profile
               Image</a>
           </li>
@@ -221,7 +221,7 @@
           </div>
 
           <div class="row">
-            <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in" data-aos-delay="100">
               <div class="icon-box">
                 <div class="icon">
                   <img src="/svg/OncoTips.svg" height="140px" alt="" />
@@ -262,29 +262,34 @@
                   <div class="modal-body">PLEASE SELECT YOUR PLATEFORM</div>
 
                   <div class="d-flex justify-content-around mb-2">
-                    <div class="d-flex flex-column justify-content-center align-items-center">
+                    <div class="d-flex flex-column justify-content-center align-items-center <%= user.role === "Nurse"? "d-none" : "d-block" %>">
                       <img src="/svg/inpatienticon-02.svg" width="80%" alt="">
                       <a class="fs-5" href="/inpatient3" style="font-family: 'Jost', sans-serif;">InPatient</a>
                     </div>
                     
-                    <div class="d-flex flex-column justify-content-center align-items-center">
+                    <div class="d-flex flex-column justify-content-center align-items-center <%= user.role === "Nurse"? "d-none" : "d-block" %>">
                       <img src="/svg/outpatienticon-03.svg" width="80%" alt="">
                       <a class="fs-5" href="/outpatient3" style="font-family: 'Jost', sans-serif;">OutPatient</a>
                     </div>
                     
-                    <div class="d-flex flex-column justify-content-center align-items-center">
+                    <div class="d-flex flex-column justify-content-center align-items-center <%= user.role === "Nurse"? "d-none" : "d-block" %>">
                       <img src="/svg/ivprepicon-05.svg" width="80%" alt="">
                       <a class="fs-5" href="/prepin" style="font-family: 'Jost', sans-serif;">IV Prep</a>
                     </div>
                     
-                    <div class="d-flex flex-column justify-content-center align-items-center">
+                    <div class="d-flex flex-column justify-content-center align-items-center <%= user.role === "Nurse"? "d-none" : "d-block" %>">
                       <img src="/svg/dispenceicon-04.svg" width="80%" alt="">
                       <a class="fs-5" href="/dispense3" style="font-family: 'Jost', sans-serif;">Dispense</a>
                     </div>
                     
-                    <div class="d-flex flex-column justify-content-center align-items-center">
+                    <div class="d-flex flex-column justify-content-center align-items-center <%= user.role === "Nurse"? "d-none" : "d-block" %>">
                       <img src="/svg/lab-01.svg" width="80%" alt="">
                       <a class="fs-5" href="/lab" style="font-family: 'Jost', sans-serif;">Lab</a>
+                    </div>
+
+                    <div class="d-flex flex-column justify-content-center align-items-center <%= user.role === "Nurse"? "d-block" : "d-none" %>">
+                      <img src="/svg/inpatienticon-02.svg" width="80%" alt="">
+                      <a class="fs-5" href="/nurse" style="font-family: 'Jost', sans-serif;">Nurse</a>
                     </div>
                   </div>
 
@@ -297,7 +302,7 @@
               </div>
             </div>
 
-            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in"
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
               data-aos-delay="300">
               <div class="icon-box">
                 <div class="icon">
@@ -311,7 +316,7 @@
               </div>
             </div>
 
-            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
               data-aos-delay="100">
               <div class="icon-box">
                 <div class="icon">
@@ -325,7 +330,7 @@
               </div>
             </div>
 
-            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
               data-aos-delay="100">
               <div class="icon-box">
                 <div class="icon">
@@ -341,7 +346,7 @@
               </div>
             </div>
 
-            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
               data-aos-delay="100">
               <div class="icon-box">
                 <div class="icon">
@@ -417,7 +422,7 @@
               </div>
             </div>
 
-            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
               data-aos-delay="100">
               <div class="icon-box">
                 <div class="icon">
@@ -449,7 +454,7 @@
               </div>
             </div> -->
 
-            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
               data-aos-delay="100">
               <div class="icon-box">
                 <div class="icon">
@@ -501,7 +506,7 @@
               </div>
             </div>
 
-            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
               data-aos-delay="100">
               <div class="icon-box">
                 <div class="icon">
@@ -517,7 +522,7 @@
               </div>
             </div>
 
-            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
             data-aos-delay="100">
             <div class="icon-box">
               <div class="icon">
@@ -566,7 +571,7 @@
               </div>
             </div>
 
-            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
             data-aos-delay="100">
             <div class="icon-box">
               <div class="icon">
@@ -582,7 +587,7 @@
             </div>
           </div>
 
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
           data-aos-delay="100">
           <div class="icon-box">
             <div class="icon">

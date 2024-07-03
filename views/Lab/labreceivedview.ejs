@@ -83,8 +83,8 @@
                     <span class="navbar-toggler-icon"></span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                    <form action="/labsearch" method="post" class="d-flex" role="search">
+                      <input name="searchText" class="form-control me-2" placeholder="Search" aria-label="Search" />
                       <button class="btn btn-outline-success" type="submit">
                         Search
                       </button>
@@ -105,7 +105,7 @@
               href="/labreceivedview">RECIEVED</a></button>
         </div>  
         <div>
-          <a data-tooltip="Find By Date" data-flow="top" style="background-color: rgb(41, 39, 39);" href="" id="find" class="border rounded-2 d-inline-flex p-1"
+          <a data-tooltip="Find By Date" data-flow="left" style="background-color: rgb(41, 39, 39);" href="" id="find" class="border rounded-2 d-inline-flex p-1"
           data-bs-toggle="modal" data-bs-target="#exampleModal1">
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" style="fill: white;" class="bi bi-search" viewBox="0 0 16 16">
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
@@ -159,36 +159,40 @@
       <!-- /*--------------------------------------------------------------
       # MAIN CONTENT
       --------------------------------------------------------------*/ -->
-      <div id="maincontent" class="d-flex justify-content-center align-items-center" >
+      <div id="maincontent" class="d-flex flex-column justify-content-center align-items-center" style="position: relative;" >
+        <div id="scroll" class="p-2" style="width: 98%;box-shadow: 0px 0px 3px 0px rgba(128, 0, 0, 0.62); border-radius: 10px;filter: drop-shadow(0px,0px,5px,5px); top: 26vh;height: 73vh; overflow-y: scroll;">
         <% if (labarray.length===0) { %>
-          <div class="alert alert-success new2 p-4 w-50 mt-5 ">
-                        <i class="fa fa-info-circle" aria-hidden="true"></i>
-                        <span class="alert-body">
-                          <h6 class="alert-header">ATTENTION</h6>
-                          <p class="mb-0">No Data Avaliable</p>
-                        </span>
-                     </div>
-                   </div>
+          <div class="d-flex justify-content-center w-100">
+            <div class="alert alert-success new2 p-4 w-50 mt-5 ">
+                          <i class="fa fa-info-circle" aria-hidden="true"></i>
+                          <span class="alert-body">
+                            <h6 class="alert-header">ATTENTION</h6>
+                            <p class="mb-0">No Data Avaliable</p>
+                          </span>
+                       </div>
+          </div>
+                   
 
           <% } %>
             <% if (labarray.length>= 1) { %>
               <table style="width: 99%" class="mx-auto table table-striped table-bordered">
                 <thead>
                   <tr>
-                    <th class="text-center" scope="col">#</th>
-                    <th class="text-center" scope="col">Patient Name</th>
-                    <th class="text-center" scope="col">MRN</th>
-                    <th class="text-center" scope="col">Patient Floor</th>
-                    <th class="text-center" scope="col">Request Type</th>
-                    <th class="text-center" scope="col">PHA Name</th>
-                    <th class="text-center" scope="col">Med. Start Date</th>
-                    <th class="text-center" scope="col">Med. Start Time</th>
-                    <th class="text-center" scope="col">Sample WD Date</th>
-                    <th class="text-center" scope="col">Sample WD Time</th>
-                    <th class="text-center" scope="col">Reason</th>
-                    <th class="text-center" scope="col">Lab Comment</th>
-                    <th class="text-center" scope="col">Edit</th>
-                    <th class="text-center" scope="col">Del</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">#</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Patient Name</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">MRN</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Rec. Time</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Patient Floor</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Request Type</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">PHA Name</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Med. Start Date</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Med. Start Time</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Sample WD Date</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Sample WD Time</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Reason</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Lab Comment</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Edit</th>
+                    <th style="position: sticky; top: 0;" class="text-center" scope="col">Del</th>
                     
                   </tr>
                 </thead>
@@ -205,6 +209,10 @@
 
                       <td class="text-center">
                         <%= item.mrnlab%>
+                      </td>
+
+                      <td class="text-center">
+                        <%= moment(item.createdAt).format('DD-MM, h:mm a')%>
                       </td>
 
                       <td class="text-center">
@@ -236,11 +244,11 @@
                       </td>
 
                       <td class="text-center">
-                        <%= item.levelrequestreason%>
+                        <span dir="rtl"><%= item.levelrequestreason%></span>
                       </td>
 
                       <td class="text-center">
-                        <%= item.labcomment%>
+                        <span dir="rtl"><%= item.labcomment%></span>
                       </td>
 
                       <td class="text-center">
@@ -271,7 +279,7 @@
                             <div class="modal-body">
                               Please Write Comment
                               <label for="labcomment" class="form-label"></label>
-                              <input class="form-control" type="text" name="labcomment">
+                              <input dir="rtl" class="form-control" type="text" name="labcomment">
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary"
@@ -305,6 +313,7 @@
                               <form action="/labdelrec/<%= item._id%>?_method=PUT" method="post">
                                 <div class="modal-body text-start">
                                   Are You Sure ?
+                                  <input hidden type="text" value="DELETED" name="labcomment" id="labdelete">
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary"
@@ -324,12 +333,12 @@
               </table>
               <% } %>
 
-  <!-- PAGINATION -->
-  <%- include('../partials/labpagination.ejs') %>
-      </div>
+
+      
 
             
           </div>
+        </div>
       </main>
       <!-- LINK TO jQuary -->
       <script src="/js/jquery-3.7.1.min.js"></script>

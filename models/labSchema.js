@@ -4,11 +4,7 @@ const mongoose = require("mongoose");
 const lab = new mongoose.Schema(
   {
     labpatientname: String,
-    mrnlab: {
-      type: Number,
-      trim: true,
-      isNumeric: true,
-    },
+    mrnlab: String,
     labptfloor: String,
     labrequestype: String,
     medstartdate: {
@@ -21,10 +17,6 @@ const lab = new mongoose.Schema(
     levelrequestreason: String,
     comment: String,
     labcomment: String,
-    active : {
-      type: Boolean,
-      default : true
-    }
   },
   { timestamps: true }
 );

@@ -104,6 +104,10 @@
                   href="/inpatient3">INPATIENT</a></button>
                 <button type="button" class="btn btn-outline-danger "><a style="border: unset; color: unset;"
                     href="/ICU">ICU</a></button>
+                    <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
+                      href="/surgical">Surgical</a></button>
+                  <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
+                      href="/or">OR</a></button>
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                     href="/ICC">ICC</a></button>
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
@@ -192,14 +196,19 @@
                                     <%= item.oraliv%>
                                   </td>
                                   <td class="text-center">
-                                    <%= item.roundcomment%>
+                                    <span dir="rtl"><%= item.roundcomment%></span>
                                   </td>
                                   <td class="text-center">
                                     <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
                                   </td>
-                                  <td class="text-center">
-                                    <%= item.prepcomment%>
-                                  </td>
+                                    <style>
+                                  .bgred{
+                                    color: red;
+                                  }
+                                </style>
+                                <td class="text-center">
+                                  <strong dir="rtl" class="<%= item.prepcomment !== "DONE"? "bgred" : "" %>" ><i><%= item.prepcomment %></i></strong>
+                                </td>
                                 <td class="text-center"> 
                                     <% if (item.prepcomment !== "") { %>
                                       <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
@@ -320,7 +329,7 @@
           e.preventDefault();
           const res = await fetch("/add_patient_in", {
             method: "POST",
-            body: JSON.stringify({ patientname: patientname.value, attachfile : attachfile.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value, phaname: phaname.value, }),
+            body: JSON.stringify({ patientname: patientname.value, attachfile : attachfile.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value,  }),
             headers: { "Content-Type": "application/json" },
           });
 
@@ -353,7 +362,7 @@
     e.preventDefault();
     const res = await fetch("/add_lab_in", {
       method: "POST",
-      body: JSON.stringify({ labpatientname: labpatientname.value, mrnlab: mrnlab.value, labptfloor: labptfloor.value, labrequestype: labrequestype.value, medstartdate: medstartdate.value, medstarttime: medstarttime.value, samplewddate: samplewddate.value, samplewdtime: samplewdtime.value, levelrequestreason: levelrequestreason.value, labcomment : labcomment.value,}),
+      body: JSON.stringify({ labpatientname: labpatientname.value, mrnlab: mrnlab.value, labptfloor: labptfloor.value, labrequestype: labrequestype.value, medstartdate: medstartdate.value, medstarttime: medstarttime.value, samplewddate: samplewddate.value, samplewdtime: samplewdtime.value, levelrequestreason: levelrequestreason.value, labcomment : labcomment.value, phaname: phaname.value,}),
       headers: { "Content-Type": "application/json" },
     });
     const data = await res.json();

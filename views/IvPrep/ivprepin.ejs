@@ -196,13 +196,13 @@
                               <%= item.oraliv%>
                             </td>
                             <td class="text-center">
-                              <%= item.roundcomment%>
+                              <span dir="rtl"><%= item.roundcomment%></span>
                             </td>
                             <td class="text-center">
                               <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
                             </td>
                             <td class="text-center">
-                              <%= item.prepcomment%>
+                              <span dir="rtl"><%= item.prepcomment%></span>
                             </td>
                             <td class="text-center">
                               <% if (item.prepcomment !=="" ) { %>
@@ -242,7 +242,7 @@
                                       <div class="modal-body">
                                         Please Write Comment
                                         <label for="prepcomment" class="form-label"></label>
-                                        <input class="form-control" type="text" name="prepcomment">
+                                        <input dir="rtl" class="form-control" type="text" name="prepcomment">
                                       </div>
                                       <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"

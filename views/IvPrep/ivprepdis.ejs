@@ -85,7 +85,7 @@
                     <span class="navbar-toggler-icon"></span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <form class="d-flex" role="search" action="/outpatientprepsearch" method="post">
+                    <form class="d-flex" role="search" action="/dispenseprepsearch" method="post">
                       <input name="searchText" class="form-control me-2" type="search" placeholder="Search"
                         aria-label="Search" />
                       <button class="btn btn-outline-success" type="submit">
@@ -157,13 +157,13 @@
                       <th class="text-center" scope="col">#</th>
                       <th class="text-center" scope="col">Patient Name</th>
                       <th class="text-center" scope="col">MRN</th>
-                      <th class="text-center" scope="col">Patient Floor</th>
                       <th class="text-center" scope="col">Request Type</th>
                       <th class="text-center" scope="col">Oral/IV</th>
                       <th class="text-center" scope="col">Round Comment</th>
                       <th class="text-center" scope="col">Round Time</th>
                       <th class="text-center" scope="col">Comment</th>
                       <th class="text-center" scope="col">Prep Time</th>
+                      <th class="text-center" scope="col">Attach</th>
                       <th class="text-center" scope="col">Edit</th>
                       <th class="text-center" scope="col">Done</th>
                     </tr>
@@ -181,27 +181,28 @@
                           <%= item.mrn%>
                         </td>
                         <td class="text-center">
-                          <%= item.ptfloor%>
-                        </td>
-                        <td class="text-center">
                           <%= item.requestype%>
                         </td>
                         <td class="text-center">
                           <%= item.oraliv%>
                         </td>
                         <td class="text-center">
-                          <%= item.roundcomment%>
+                          <span dir="rtl"><%= item.roundcomment%></span>
                         </td>
                         <td class="text-center">
                           <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
                         </td>
                         <td class="text-center">
-                          <%= item.prepcomment%>
+                          <span dir="rtl"><%= item.prepcomment%></span>
                         </td>
                         <td class="text-center">
                           <% if (item.prepcomment !=="" ) { %>
                             <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
                               <% } %>
+                        </td>
+
+                        <td class="text-center">
+                          <a href="../DISupload/<%= item.attachfile %>" target="_blank"><i class="bi bi-envelope <%= item.attachfile === ""? "d-none" : "d-block" %> "></i></a>
                         </td>
 
                         <td class="text-center">
@@ -230,7 +231,7 @@
                                   <div class="modal-body">
                                     Please Write Comment
                                     <label for="prepcomment" class="form-label"></label>
-                                    <input class="form-control" type="text" name="prepcomment">
+                                    <input dir="rtl" class="form-control" type="text" name="prepcomment">
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"

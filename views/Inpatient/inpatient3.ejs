@@ -106,6 +106,10 @@
               <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                   href="/ICU">ICU</a></button>
               <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
+                  href="/surgical">Surgical</a></button>
+              <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
+                  href="/or">OR</a></button>
+              <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                   href="/ICC">ICC</a></button>
               <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                   href="/3rdO">3rd O</a></button>
@@ -198,13 +202,18 @@
                                 <%= item.oraliv%>
                               </td>
                               <td class="text-center">
-                                <%= item.roundcomment%>
+                                <span dir="rtl"><%= item.roundcomment%></span>
                               </td>
                               <td class="text-center">
                                 <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
                               </td>
+                              <style>
+                                .bgred{
+                                  color: red;
+                                }
+                              </style>
                               <td class="text-center">
-                                <%= item.prepcomment%>
+                                <strong dir="rtl" class="<%= item.prepcomment !== "DONE"? "bgred" : "" %>" ><i><%= item.prepcomment %></i></strong>
                               </td>
                               <td class="text-center">
                                 <% if (item.prepcomment !=="" ) { %>

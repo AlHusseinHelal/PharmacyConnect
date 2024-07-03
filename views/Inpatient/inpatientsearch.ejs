@@ -95,21 +95,19 @@
       --------------------------------------------------------------*/ -->
             <div id="maincontent" class="d-flex flex-column justify-content-center align-items-center" >
 
-              <div class="d-flex flex-column">
-                <h2 style="color: red;" class="text-center">YOU ARE IN A SEARCH MODE</h2>
+              
+                <div><p class="m-0"><i style="color: red; font-size: larger;">You Are In Search Mode</i></p></div>
                 <% if (array.length === 0) { %>
-                  <div class=" d-flex justify-content-center" style="width: 100%;">
-                    <div class="alert alert-success new2 p-4 w-50 mt-5 ">
-                      <i class="fa fa-info-circle" aria-hidden="true"></i>
-                      <span class="alert-body">
-                        <h6 class="alert-header">ATTENTION</h6>
-                        <p class="mb-0">No Data Avaliable</p>
-                      </span>
-                    </div>
+                  <div class="alert alert-success new2 p-4 w-50 mt-5 ">
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    <span class="alert-body">
+                      <h6 class="alert-header">ATTENTION</h6>
+                      <p class="mb-0">No Data Avaliable</p>
+                    </span>
                   </div>
                 
                   <% } %>
-              </div>
+            
 
                   <% if (array.length >= 1) { %>
                     <table style="width: 99%" class="mx-auto table table-striped table-bordered">
@@ -126,6 +124,7 @@
                           <th class="text-center" scope="col">Comment</th>
                           <th class="text-center" scope="col">Prep Time</th>
                           <th class="text-center" scope="col">Delete</th>
+                          <th class="text-center" scope="col">Attach</th>
                         </tr>
                       </thead>
                       <tbody id="tbody">
@@ -150,13 +149,18 @@
                               <%= item.oraliv%>
                             </td>
                             <td class="text-center">
-                              <%= item.roundcomment%>
+                              <span dir="rtl"><%= item.roundcomment%></span>
                             </td>
                             <td class="text-center">
                               <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
                             </td>
+                            <style>
+                              .bgred{
+                                color: red;
+                              }
+                            </style>
                             <td class="text-center">
-                              <%= item.prepcomment%>
+                              <strong dir="rtl" class="<%= item.prepcomment !== "DONE"? "bgred" : "" %>" ><i><%= item.prepcomment %></i></strong>
                             </td>
                             <td class="text-center"> 
                               <% if (item.prepcomment !== "") { %>
@@ -181,6 +185,51 @@
 
 
                             </td>
+                            <td class="text-center">
+
+
+                              <button type="button" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal2<%= item._id%>"
+                                style="background-color: rgb(229, 220, 220)"
+                                class="border rounded-2 d-inline-flex p-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                  class="bi bi-paperclip" viewBox="0 0 16 16">
+                                  <path
+                                    d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0z">
+                                  </path>
+                                </svg>
+                              </button>
+
+
+                              <div class="connectmodal modal fade" id="exampleModal2<%= item._id%>" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <form action="/attach/<%= item._id %>?_method=PUT " method="post"
+                                  enctype="multipart/form-data" class="modal-dialog">
+                                  <div class="glass modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">Attach File</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                      <label for="attach<%= item._id%>">Choose File...</label>
+                                      <input hidden id="attach<%= item._id%>" type="file" name="attachfile">
+                                      <!-- <embed hidden id="imgsrc" src="" type=""> -->
+                                      <!-- <img id="imgsrc" src="/img/Avatar/Untitled-1-01.png" width="150px" alt=""> -->
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                      <button type="submit" class="btn btn-primary">Save
+                                        changes</button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                            </td>
+
+                          
                           </tr>
                           <% }) %>
                       </tbody>

@@ -85,7 +85,7 @@
                     <span class="navbar-toggler-icon"></span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <form class="d-flex" role="search" action="/inpatientprepsearch" method="post">
+                    <form class="d-flex" role="search" action="/outpatientprepsearch" method="post">
                       <input name="searchText" class="form-control me-2" type="search" placeholder="Search"
                         aria-label="Search" />
                       <button class="btn btn-outline-success" type="submit">
@@ -195,13 +195,14 @@
                               <%= item.oraliv%>
                             </td>
                             <td class="text-center">
-                              <%= item.roundcomment%>
+                              <span dir="rtl"><%= item.roundcomment%></span>
                             </td>
                             <td class="text-center">
                               <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
                             </td>
+                            
                             <td class="text-center">
-                              <%= item.prepcomment%>
+                              <span dir="rtl"><%= item.prepcomment%></span>
                             </td>
                             <td class="text-center">
                               <% if (item.prepcomment !=="" ) { %>
@@ -210,7 +211,7 @@
                             </td>
 
                             <td class="text-center">
-                              <a href="<%= item.attachfile%>"><i class="bi bi-envelope"></i></a>
+                              <a href="<%= item.attachfile%>"><i class="bi bi-envelope <%= item.attachfile === ""? "d-none" : "d-block" %> "></i></a>
                               <% if (item.attachfile) { %>
                                 <% } %>
                             </td>
@@ -239,11 +240,11 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                       aria-label="Close"></button>
                                   </div>
-                                  <form action="/ineditdoneview/<%= item._id%>?_method=PUT" method="post">
+                                  <form action="/outeditdoneview/<%= item._id%>?_method=PUT" method="post">
                                   <div class="modal-body">
                                     Please Write Comment
                                     <label for="prepcomment" class="form-label"></label>
-                                    <input class="form-control" type="text" name="prepcomment">
+                                    <input dir="rtl" class="form-control" type="text" name="prepcomment">
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"

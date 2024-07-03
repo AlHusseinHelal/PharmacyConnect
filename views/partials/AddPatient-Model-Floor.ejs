@@ -47,8 +47,9 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
             <option>TPN</option>
             <option>Modification</option>
             <option>ExtraDose</option>
-            <option>Refill</option>
-            <option>DisCharge Medication</option>
+            <option style="color: blue;">DisCharge Medication</option>
+            <option style="color: red;">Refill</option>
+            <option style="color: red;">Product Assign</option>
           </select>
         </div>
 
@@ -70,12 +71,12 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
 
         <div class="mb-3">
           <label for="roundcomment" class="col-form-label">Round Comment</label>
-          <textarea name="roundcomment" class="form-control" id="roundcomment"></textarea>
+          <input dir="rtl" name="roundcomment" class="form-control" id="roundcomment">
         </div>
 
         <div class="mb-3 d-none">
           <label for="prepcomment" class="col-form-label"></label>
-          <input name="prepcomment" type="text" class="form-control" id="prepcomment" />
+          <input dir="rtl" name="prepcomment" type="text" class="form-control" id="prepcomment" />
         </div>
 
         <input hidden name="attachfile" type="text" class="form-control" id="attachfile" value="" />

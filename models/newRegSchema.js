@@ -159,6 +159,9 @@ const user = new mongoose.Schema(
         oraliv: String,
         roundcomment: String,
         prepcomment: String,
+        attachfile: String,
+        createdAt : Date,
+        updatedAt : Date,
       },
     ],
     infinddate: [
@@ -170,14 +173,15 @@ const user = new mongoose.Schema(
         oraliv: String,
         roundcomment: String,
         prepcomment: String,
+        attachfile: String,
+        createdAt : Date,
+        updatedAt : Date,
       },
     ],
     labfinddate: [
       {
         labpatientname: String,
-        mrnlab: {
-          type: Number,
-        },
+        mrnlab: String,
         labptfloor: String,
         labrequestype: String,
         medstartdate: {
@@ -190,6 +194,8 @@ const user = new mongoose.Schema(
         levelrequestreason: String,
         comment: String,
         labcomment: String,
+        createdAt : Date,
+        updatedAt : Date,
       },
     ],
     disfinddate: [
@@ -201,6 +207,24 @@ const user = new mongoose.Schema(
         oraliv: String,
         roundcomment: String,
         prepcomment: String,
+        attachfile: String,
+        createdAt : Date,
+        updatedAt : Date,
+      },
+    ],
+
+    nursefinddate: [
+      {
+        patientname: String,
+        mrn: String,
+        ptfloor: String,
+        requestype: String,
+        oraliv: String,
+        roundcomment: String,
+        prepcomment: String,
+        attachfile: String,
+        createdAt : Date,
+        updatedAt : Date,
       },
     ],
 
@@ -502,6 +526,8 @@ const user = new mongoose.Schema(
     ldsearch: {
       searchText: String,
     },
+
+    labsearch : String
   },
   {
     timestamps: true,

@@ -119,6 +119,14 @@
                   </span>
                   <span class="side-text">InPatient</span>
                 </a></button>
+                <button type="button" class="btn btn-outline-primary position-relative ms-3"><a href="/pyxisview"
+                  style="border: unset; color: unset;">
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <%= pyxis.length %>
+                      <span class="visually-hidden">unread messages</span>
+                  </span>
+                  <span class="side-text">Pyxis</span>
+                </a></button>
             </div>
 
             <div id="icon_div" class="disappearicon d-flex align-items-center justify-content-between p-1" style="width: 11vw;  border-radius: 5px; background-color:rgb(218, 226, 225);">
@@ -198,8 +206,10 @@
                       <label for="requestype" class="form-label">Request Type</label>
                       <select class="form-select" name="requestype" id="requestype">
                         <option selected hidden disabled>Choose....</option>
-                        <option>Methotrexate</option>
+                        <option>Ara-C</option>
                         <option>ExtraDose</option>
+                        <option>Methotrexate</option>
+                        <option>Vepsid Oral</option>
                       </select>
                     </div>
 
@@ -220,12 +230,12 @@
 
                     <div class="mb-3">
                       <label for="roundcomment" class="col-form-label">Round Comment</label>
-                      <textarea name="roundcomment" class="form-control" id="roundcomment"></textarea>
+                      <input dir="rtl" name="roundcomment" class="form-control" id="roundcomment">
                     </div>
 
                     <div class="mb-3 d-none">
                       <label for="prepcomment" class="col-form-label"></label>
-                      <input name="prepcomment" type="text" class="form-control" id="prepcomment" />
+                      <input dir="rtl" name="prepcomment" type="text" class="form-control" id="prepcomment" />
                     </div>
 
                   </div>
@@ -278,6 +288,8 @@
                       <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
                       <p class="my-1 ms-1">This Patient Is Already Exist</p>
                     </div>
+
+                    <input hidden name="attachfile" type="text" class="form-control" id="attachfile" value="" />
 
                   </div>
                   <div class="modal-footer">
@@ -352,13 +364,18 @@
                           <%= item.oraliv%>
                         </td>
                         <td class="text-center">
-                          <%= item.roundcomment%>
+                          <span dir="rtl"><%= item.roundcomment%></span>
                         </td>
                         <td class="text-center">
                           <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
                         </td>
+                        <style>
+                          .bgred{
+                            color: red;
+                          }
+                        </style>
                         <td class="text-center">
-                          <%= item.prepcomment%>
+                          <strong dir="rtl" class="<%= item.prepcomment !== "DONE"? "bgred" : "" %>" ><i><%= item.prepcomment %></i></strong>
                         </td>
                         <td class="text-center">
                           <% if (item.prepcomment !=="" ) { %>
@@ -366,55 +383,82 @@
                               <% } %>
                         </td>
                         <td class="text-center">
-                          <a style="background-color: red" class="border rounded-2 d-inline-flex p-1"
-                            href="/viewdis/<%= item._id%>">
-                            <svg style="fill: aliceblue"  width="20" height="20"
+                          <button type="button" class="btn btn-primary border rounded-2 d-inline-flex p-1"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal<%= item.id %>"
+                            style="background-color: red">
+                            <svg style="fill: aliceblue" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                               class="bi bi-trash" viewBox="0 0 16 16">
                               <path
                                 d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
                               <path
                                 d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
                             </svg>
-                          </a>
+                          </button>
+                          <!-- Modal -->
+                          <div class="connectmodal modal fade" id="exampleModal<%= item.id %>" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="glass modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Warning</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  Are you sure you want to delete ?
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Close</button>
+                                  <form action="/deletedisp/<%= item.id%>?_method=DELETE" method="post">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </td>
                         <td class="text-center">
-                          <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal<%= item._id %>"
-                            style="background-color: rgb(229, 220, 220)" class="border rounded-2 d-inline-flex p-1">
-                            <svg  width="16" height="16" fill="currentColor"
+
+
+                          <button type="button" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal22<%= item._id%>"
+                            style="background-color: rgb(229, 220, 220)"
+                            class="border rounded-2 d-inline-flex p-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                               class="bi bi-paperclip" viewBox="0 0 16 16">
                               <path
                                 d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0z">
                               </path>
                             </svg>
-                          </a>
-                          <div class="modal fade" id="exampleModal<%= item._id %>" tabindex="-1"
+                          </button>
+
+
+                          <div class="connectmodal modal fade" id="exampleModal22<%= item._id%>" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
+                            <form action="/attachdisp/<%= item._id %>?_method=PUT " method="post"
+                              enctype="multipart/form-data" class="modal-dialog">
+                              <div class="glass modal-content">
                                 <div class="modal-header">
-                                  <h1 class="modal-title fs-5" id="exampleModalLabel<%= item._id %>">Attach File
-                                  </h1>
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Attach File</h1>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                                 </div>
-                                <!-- <form action="/attach_file" method="post" enctype="multipart/form-data"> -->
-                                <form action="/attach" method="post" enctype="multipart/form-data">
-                                  <div class="modal-body">
-                                    <label for="attach">Choose File...</label>
-                                    <input id="attach" type="file" name="attach-file" id="" style="display: none;">
-                                    <embed hidden id="imgsrc" src="" type="">
-                                    <!-- <img id="imgsrc" src="/img/Avatar/Untitled-1-01.png" width="150px" alt=""> -->
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                      data-bs-dismiss="modal">Close</button>
-                                    <button id="saveattach<%= item._id %>" type="submit" class="btn btn-primary">Save
-                                      changes</button>
 
-                                  </div>
-                                </form>
+                                <div class="modal-body">
+                                  <label for="attach<%= item._id%>">Choose File...</label>
+                                  <input hidden id="attach<%= item._id%>" type="file" name="attachfile">
+                                  <!-- <embed hidden id="imgsrc" src="" type=""> -->
+                                  <!-- <img id="imgsrc" src="/img/Avatar/Untitled-1-01.png" width="150px" alt=""> -->
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-primary">Save
+                                    changes</button>
+                                </div>
                               </div>
-                            </div>
+                            </form>
                           </div>
                         </td>
                         <!-- Modal -->
@@ -450,7 +494,7 @@
           e.preventDefault();
           const res = await fetch("/add_patient_dis", {
             method: "POST",
-            body: JSON.stringify({ patientname: patientname.value, mrn: mrn.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value }),
+            body: JSON.stringify({ patientname: patientname.value, mrn: mrn.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value, attachfile: attachfile.value, }),
             headers: { "Content-Type": "application/json" },
           });
 
@@ -511,23 +555,46 @@
       </script>
 
       <script>
-        localStorage.setItem('iconbar','NO')
+        // localStorage.setItem('iconbar','NO')
+        // const icondiv = document.querySelector("#icon_div");
+        // if (localStorage.getItem('iconbar') === 'NO') {
+        //   icondiv.classList.remove('appearicon')
+        // } else {
+        //   icondiv.classList.add('appearicon')
+        // }
+        // const gear2 = document.querySelector("#gear2");
+        // gear2.addEventListener("click", (eo) => {
+        //   if (localStorage.getItem('iconbar') === 'NO') {
+        //     localStorage.setItem('iconbar', 'YES')
+        //     icondiv.classList.add("appearicon")
+        //   } else if (localStorage.getItem('iconbar') === 'YES') {
+        //     localStorage.setItem('iconbar', 'NO')
+        //     icondiv.classList.remove("appearicon")
+        //   }
+        // });
+
         const icondiv = document.querySelector("#icon_div");
-        if (localStorage.getItem('iconbar') === 'NO') {
-          icondiv.classList.remove('appearicon')
-        } else {
-          icondiv.classList.add('appearicon')
-        }
-        const gear2 = document.querySelector("#gear2");
-        gear2.addEventListener("click", (eo) => {
-          if (localStorage.getItem('iconbar') === 'NO') {
-            localStorage.setItem('iconbar', 'YES')
-            icondiv.classList.add("appearicon")
-          } else if (localStorage.getItem('iconbar') === 'YES') {
-            localStorage.setItem('iconbar', 'NO')
-            icondiv.classList.remove("appearicon")
-          }
-        });
+  const gear2 = document.querySelector("#gear2");
+  gear2.addEventListener("click", (eo) => {
+    if (localStorage.getItem('iconbar') === 'NO') {
+      localStorage.setItem('iconbar', 'YES')
+      icondiv.classList.add("appearicon")
+    } else if (localStorage.getItem('iconbar') === 'YES') {
+      localStorage.setItem('iconbar', 'NO')
+      icondiv.classList.remove("appearicon")
+    }
+  })
+    if (localStorage.getItem('iconbar') === 'NO') {
+    icondiv.classList.remove('appearicon')
+  } else {
+    icondiv.classList.add('appearicon')
+  }
+  if (localStorage.getItem('iconbar') === 'YES') {
+    icondiv.classList.add('appearicon')
+  } else {
+    icondiv.classList.remove('appearicon')
+  }
+  ;
       </script>
 
 </body>
