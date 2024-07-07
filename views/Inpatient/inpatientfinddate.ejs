@@ -143,10 +143,10 @@
                         <%= item.oraliv%>
                       </td>
                       <td class="text-center">
-                        <span dir="rtl"><%= item.roundcomment%></span>
+                        <strong dir="rtl"><%= item.roundcomment%></strong>
                       </td>
-                      <td class="text-center">
-                        <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
+                      <td class="text-center">  
+                        <%= moment(item.commentime).format('DD-MM-YYYY, h:mm a')%>
                       </td>
                       <style>
                         .bgred{
@@ -156,11 +156,11 @@
                       <td class="text-center">
                         <strong dir="rtl" class="<%= item.prepcomment !== "DONE"? "bgred" : "" %>" ><i><%= item.prepcomment %></i></strong>
                       </td>
-                      <td class="text-center"> 
-                        <% if (item.prepcomment !== "") { %>
-                          <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
-                        <% } %>    
-                      </td>
+                      <td class="text-center">
+                                <% if (item.prepcomment !=="" ) { %>
+                                  <%= moment(item.commentime2).format('DD-MM-YYYY, h:mm a')%>
+                                    <% } %>
+                              </td>
                     
 
 

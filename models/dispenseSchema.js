@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema;
+const {Schema} = mongoose;
 
 // DISPENSE SCHEMA
 const dispense = new Schema(
@@ -14,6 +14,9 @@ const dispense = new Schema(
     roundcomment: String,
     prepcomment: String,
     attachfile: String,
+    commentime : Date,
+    commentime2 : Date,
+    edit : String
   },
   { timestamps: true }
 );

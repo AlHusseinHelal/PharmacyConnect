@@ -712,3 +712,46 @@ li:hover {
 *::-webkit-scrollbar-thumb:active {
   background-color: #3653D5;
 }
+
+
+/* ICONS */
+
+
+.disappearicon{
+  transition: all 1s;
+  transform: translateX(8vw);
+}
+
+.appearicon{
+  transition: all 1s;
+  transform: translateX(0vw);
+}
+
+@keyframes rotate {
+  0% {
+    rotate: 0deg;
+  }
+
+  50% {
+    rotate: 180deg;
+  }
+
+  100% {
+    rotate: 360deg;
+  }
+}
+#svggear {
+  transition: all 1s;
+  animation-name: rotate;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+#gear2{
+  transition: all 1s;
+  animation-name: rotate;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}

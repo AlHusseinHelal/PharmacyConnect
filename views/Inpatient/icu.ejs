@@ -122,6 +122,15 @@
                   <button type="button" class="btn btn-outline-primary"><a style="border: unset; color: unset;"
                     href="/icunotdone">ACTIVE</a></button>
             </div>
+            <div>
+              <button type="button" class="btn btn-outline-danger position-relative"><a style="border: unset; color: unset;"
+                href="/labtoxixity">
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                  <%= toxicity.length %>
+                    <span class="visually-hidden">unread messages</span>
+                </span>
+                <span>Lab Toxicity</span></a></button>
+            </div>
             
 
             <!-- MODAL ICON -->
@@ -170,6 +179,7 @@
                                 <th class="text-center" scope="col">Round Time</th>
                                 <th class="text-center" scope="col">Comment</th>
                                 <th class="text-center" scope="col">Prep Time</th>
+                                <th class="text-center" scope="col">ُEdit</th>
                                 <th class="text-center" scope="col">Delete</th>
                                 <th class="text-center" scope="col">Attach</th>
                               </tr>
@@ -196,11 +206,11 @@
                                     <%= item.oraliv%>
                                   </td>
                                   <td class="text-center">
-                                    <span dir="rtl"><%= item.roundcomment%></span>
+                                    <strong dir="rtl"><%= item.roundcomment%></strong>
                                   </td>
-                                  <td class="text-center">
-                                    <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
-                                  </td>
+                                  <td class="text-center">  
+                                <%= moment(item.commentime).format('DD-MM-YYYY, h:mm a')%>
+                              </td>
                                     <style>
                                   .bgred{
                                     color: red;
@@ -209,11 +219,111 @@
                                 <td class="text-center">
                                   <strong dir="rtl" class="<%= item.prepcomment !== "DONE"? "bgred" : "" %>" ><i><%= item.prepcomment %></i></strong>
                                 </td>
-                                <td class="text-center"> 
-                                    <% if (item.prepcomment !== "") { %>
-                                      <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
-                                    <% } %>    
-                                  </td>
+                                <td class="text-center">
+                                <% if (item.prepcomment !=="" ) { %>
+                                  <%= moment(item.commentime2).format('DD-MM-YYYY, h:mm a')%>
+                                    <% } %>
+                              </td>
+
+                                  <!-- edit -->
+                              <td class="text-center">
+
+                                <!-- <a href="/edit/"> -->
+                                <button type="button" style="background-color: rgb(0, 42, 255);"
+                                  class="border rounded-2 d-inline-flex p-1 " data-bs-toggle="modal"
+                                  data-bs-target="#exampleModal<%= item._id%>">
+                                  <svg style="fill: aliceblue;" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path
+                                      d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+                                  </svg>
+                                </button>
+  
+  
+                                <!-- MODAL -->
+                                <div class="connectmodal modal fade" id="exampleModal<%= item._id%>" tabindex="-1"
+                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="glass modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">EDITING</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                          aria-label="Close"></button>
+                                      </div>
+                                      <form action="/editicu/<%= item._id%>?_method=PUT" method="post">
+                                        <div class="modal-body text-start">
+                                          
+                                          <div class="mb-3">
+                                            <label for="ptf" class="form-label">Patient Floor</label>
+                                            <select id="ptf" name="ptfloor" class="form-select">
+                                              <option hidden selected><%= item.ptfloor %></option>
+                                              <option>2nd</option>
+                                              <option>3rd O</option>
+                                              <option>3rd N</option>
+                                              <option>4th</option>
+                                              <option>5th</option>
+                                              <option>6th</option>
+                                              <option>MCU</option>
+                                              <option>SCU</option>
+                                              <option>ER</option>
+                                              <option>ICC</option>
+                                              <option>OR</option>
+                                              <option>SICU</option>
+                                              <option>DayCare</option>
+                                              <option>Dispense</option>
+                                              <option>OutPatient</option>
+                                              <option>ICU</option>
+                                            </select>
+                                          </div>
+
+                                          <div class="mb-3">
+                                            <label for="request" class="form-label">Request Type</label>
+                                            <select class="form-select" name="requestype" id="request">
+                                              <option selected hidden><%= item.requestype %></option>
+                                              <option>Chemotherapy</option>
+                                              <option>Zofran</option>
+                                              <option>Hydration</option>
+                                              <option>TPN</option>
+                                              <option>Modification</option>
+                                              <option>ExtraDose</option>
+                                              <option style="color: blue;">DisCharge Medication</option>
+                                              <option style="color: red;">Refill</option>
+                                              <option style="color: red;">Product Assign</option>
+                                  
+                                            </select>
+                                          </div>
+
+                                          <div class="mb-3">
+                                            <label for="oriv" class="form-label">Oral/IV</label>
+                                            <select required class="form-select" id="oriv" name="oraliv" >
+                                              <option selected hidden><%= item.oraliv %></option>
+                                              <option>Oral</option>
+                                              <option>IV</option>
+                                              <option>Pyxis</option>
+                                            </select>
+                                          </div>
+
+                                          <div>
+                                            <label for="rcomment" class="form-label">Comment</label>
+                                            <input id="rcomment" dir="rtl" class="form-control" type="text" name="roundcomment" value="<%= item.roundcomment %>">
+                                          </div>
+
+                                          <input hidden name="commentime" type="text" class="form-control" id="commentime" value="" />
+
+                                          <input hidden name="edit" type="text" class="form-control" id="edit" value="edit" />
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+  
+                                          <button type="submit" class="btn btn-primary">ADD</button>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+
+                                  <!-- DELETE -->
                                   <td class="text-center">
                                     <button type="button" class="btn btn-primary border rounded-2 d-inline-flex p-1"
                                       data-bs-toggle="modal" data-bs-target="#exampleModal<%= item.id %>"
@@ -252,6 +362,7 @@
                                     </div>
                                   </td>
 
+                                  <!-- ATTACH -->
                                   <td class="text-center">
 
 

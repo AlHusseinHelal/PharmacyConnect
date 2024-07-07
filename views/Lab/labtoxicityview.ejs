@@ -96,11 +96,11 @@
           <!-- EDIT ICON -->
           <div class="d-flex align-items-center mx-2 mb-1 justify-content-between">
             <div class="btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
-              <button type="button" class="btn btn-outline-dark active"><a style="border: unset; color: unset;"
+              <button type="button" class="btn btn-outline-dark "><a style="border: unset; color: unset;"
                   href="/lab">LAB</a></button>
               <button type="button" class="btn btn-outline-dark"><a style="border: unset; color: unset;"
                   href="/labreceivedview">RECIEVED</a></button>
-              <button type="button" class="btn btn-outline-dark"><a style="border: unset; color: unset;"
+              <button type="button" class="btn btn-outline-dark active"><a style="border: unset; color: unset;"
                 href="/labtoxicityview">Toxicity</a></button>
             </div>
 
@@ -122,7 +122,7 @@
               </a>
 
               <!-- TOXICITY ADDITION -->
-              <a data-tooltip="Toxicity" data-flow="top" href="" 
+              <a data-tooltip="Toxicity" data-flow="top" href=""
                 class="p-1" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                 <i class="fa-solid fa-biohazard fa-2xl" style="color: #f40b0b;"></i>
               </a>
@@ -288,18 +288,13 @@
                     <th class="text-center" scope="col">#</th>
                     <th class="text-center" scope="col">Patient Name</th>
                     <th class="text-center" scope="col">MRN</th>
-                    <th class="text-center" scope="col">Rec. Time</th>
-                    <th class="text-center" scope="col">Patient Floor</th>
-                    <th class="text-center" scope="col">Request Type</th>
-                    <th class="text-center" scope="col">PHA Name</th>
-                    <th class="text-center" scope="col">Med. Start Date</th>
-                    <th class="text-center" scope="col">Med. Start Time</th>
-                    <th class="text-center" scope="col">Sample WD Date</th>
-                    <th class="text-center" scope="col">Sample WD Time</th>
-                    <th class="text-center" scope="col">Reason</th>
-                    <th class="text-center" scope="col">Lab Comment</th>
+                    <th class="text-center" scope="col">Drug Name</th>
+                    <th class="text-center" scope="col">Drug Level</th>
+                    <th class="text-center" scope="col">Sender</th>
+                    <th class="text-center" scope="col">Time</th>
+                    <th class="text-center" scope="col">Reciver</th>
+                    <th class="text-center" scope="col">Time</th>
                     <th class="text-center" scope="col">Edit</th>
-                    <th class="text-center" scope="col">Done</th>
                   </tr>
                 </thead>
                 <% labarray.forEach((item,index)=> { %>
@@ -310,55 +305,37 @@
                       </td>
 
                       <td class="text-center">
-                        <%= item.labpatientname %>
+                        <%= item.patientname %>
                       </td>
 
                       <td class="text-center">
-                        <%= item.mrnlab%>
+                        <%= item.mrn%>
                       </td>
 
                       <td class="text-center">
-                        <%= moment(item.createdAt).format('DD-MM, h:mm a')%>
+                        <%= item.drugname%>
                       </td>
 
                       <td class="text-center">
-                        <%= item.labptfloor%>
+                        <%= item.druglevel%>
                       </td>
 
                       <td class="text-center">
-                        <%= item.labrequestype%>
+                        <%= item.sender%>
                       </td>
 
                       <td class="text-center">
-                        <%= item.phaname%>
+                        <%= moment(item.time).format('DD-MM, h:mm a')%>
                       </td>
 
                       <td class="text-center">
-                        <%= item.medstartdate%>
+                        <%= item.receiver%>
                       </td>
 
                       <td class="text-center">
-                        <%= item.medstarttime%>
-                      </td>
-
-                      <td class="text-center">
-                        <%= item.samplewddate%>
-                      </td>
-
-                      <td class="text-center">
-                        <%= item.samplewdtime%>
-                      </td>
-
-                      <td class="text-center">
-                        <span dir="rtl">
-                          <%= item.levelrequestreason%>
-                        </span>
-                      </td>
-
-                      <td class="text-center">
-                        <span dir="rtl">
-                          <%= item.labcomment%>
-                        </span>
+                        <% if (item.receiver !=="" ) { %>
+                          <%= moment(item.time2).format('DD-MM-YYYY, h:mm a')%>
+                            <% } %>
                       </td>
 
 
@@ -386,11 +363,16 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                   aria-label="Close"></button>
                               </div>
-                              <form action="/labedit/<%= item._id%>?_method=PUT" method="post">
-                                <div class="modal-body">
-                                  Please Write Comment
-                                  <label for="labcomment" class="col-form-label">Level Request Reason</label>
-                                  <input dir="rtl" name="labcomment" type="text" class="form-control" id="labcomment" />
+                              <form action="/labtoxicityviewedit/<%= item._id%>?_method=PUT" method="post">
+                                <div class="modal-body text-start">
+                                  EDITING
+                                  <label for="drugname">Drug Name</label>
+                                  <input class="form-control my-2" type="text" name="drugname" value="<%= item.drugname %>" >
+
+                                  <label for="druglevel">Drug Name</label>
+                                  <input class="form-control my-2" type="text" name="druglevel" value="<%= item.druglevel %>">
+
+                                  <input hidden class="form-control my-2" type="text" name="time">
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -401,27 +383,6 @@
                           </div>
                         </div>
                       </td>
-
-
-                      <td class="text-center">
-                        <form action="/donelab/<%= item._id %>?_method=PUT" method="post">
-                          <button type="submit" class="d-inline-flex p-1 text-center"
-                            style="outline-style: unset; border: none; background-color: transparent;">
-                            <label hidden for="labcomment" class="form-label" style="display: none;"> </label>
-                            <input hidden type="text" class="form-control" value="RECEIVED" id="labcomment"
-                              style="display: none;" name="labcomment" placeholder="">
-
-                            <svg style="fill: #298c43;" width="22" height="22" id="Layer_1" data-name="Layer 1"
-                              viewBox="0 0 25 27">
-                              <path class="cls-1"
-                                d="m19.13,11.97c-.14.17-.28.35-.41.52v8.39c0,.72-.58,1.3-1.3,1.3H4.46c-.72,0-1.3-.58-1.3-1.3V7.93c0-.72.58-1.3,1.3-1.3h12.22c.49-.58.94-1.12,1.42-1.65l.41-.46.23-.26c-.42-.15-.87-.23-1.33-.23H4.46c-2.16,0-3.91,1.75-3.91,3.91v12.95c0,2.16,1.75,3.91,3.91,3.91h12.95c2.16,0,3.91-1.75,3.91-3.91v-11.56c-.68.79-1.39,1.65-2.19,2.65Z" />
-                              <path class="cls-1"
-                                d="m24.26,2.86c-.38-.63-1.2-.84-1.83-.47-.36.21-.69.45-1.01.7-.16.12-.31.26-.46.39-.15.13-.3.27-.44.41-.3.28-.56.58-.83.87l-.41.44-.4.45c-.53.6-1.05,1.21-1.56,1.82l-.76.93-.74.94c-.97,1.26-1.92,2.54-2.83,3.84-.46.65-.9,1.31-1.35,1.96-.16.25-.32.49-.49.74-.35-.29-.66-.61-.94-.97-.57-.72-1.02-1.6-1.39-2.55v-.02c-.26-.63-.96-.97-1.62-.76-.69.22-1.07.95-.85,1.64.18.57.39,1.15.66,1.72.26.57.58,1.13.96,1.66.38.53.82,1.03,1.31,1.47.48.44,1.01.82,1.55,1.15.65.4,1.52.22,1.95-.42l.03-.04c.43-.64.88-1.27,1.33-1.9.45-.63.9-1.26,1.36-1.88.92-1.24,1.85-2.47,2.81-3.68.96-1.2,1.94-2.39,2.96-3.53l.38-.43.39-.42c.26-.28.52-.56.77-.84.25-.28.5-.58.73-.88.24-.3.47-.6.67-.94l.03-.05c.25-.41.27-.94,0-1.37Z" />
-                            </svg>
-                          </button>
-                        </form>
-                      </td>
-
 
                     </tr>
 
@@ -434,7 +395,7 @@
         </div>
 
         <!-- PAGINATION -->
-        <%- include('../partials/labpagination.ejs') %>
+        <%- include('../partials/inpatientpagination.ejs') %>
           </div>
       </main>
       <!-- LINK TO jQuary -->
@@ -522,7 +483,7 @@
   
   
             if (data.lab_add_toxicity) {
-              location.assign("/lab" + window.location.search)
+              location.assign("/labtoxicityview" + window.location.search)
             }
   
   

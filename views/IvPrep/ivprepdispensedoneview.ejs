@@ -159,8 +159,8 @@
                       
                       <th class="text-center" scope="col">Request Type</th>
                       <th class="text-center" scope="col">Oral/IV</th>
-                      <th class="text-center" scope="col">Round Comment</th>
-                      <th class="text-center" scope="col">Round Time</th>
+                      <th class="text-center" scope="col">Comment</th>
+                      <th class="text-center" scope="col">Time</th>
                       <th class="text-center" scope="col">Comment</th>
                       <th class="text-center" scope="col">Prep Time</th>
                       <th class="text-center" scope="col">Attach</th>
@@ -188,24 +188,25 @@
                           <%= item.oraliv%>
                         </td>
                         <td class="text-center">
-                          <span dir="rtl"><%= item.roundcomment%></span>
+                          <strong dir="rtl"><%= item.roundcomment%></strong>
+                        </td>
+                        <td class="text-center">  
+                          <%= moment(item.commentime).format('DD-MM-YYYY, h:mm a')%>
                         </td>
                         <td class="text-center">
-                          <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
-                        </td>
-                        <td class="text-center">
-                          <span dir="rtl"><%= item.prepcomment%></span>
+                          <strong dir="rtl"><%= item.prepcomment%></strong>
                         </td>
                         <td class="text-center"> 
-                                    <% if (item.prepcomment !== "") { %>
-                                      <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
-                                    <% } %>    
-                                  </td>
+                          <% if (item.prepcomment !== "") { %>
+                            <%= moment(item.commentime2).format('DD-MM-YYYY, h:mm a')%>
+                          <% } %>    
+                        </td>
 
-                                  <td class="text-center">
-                                    <a href="../DISupload/<%= item.attachfile %>" target="_blank"><i class="bi bi-envelope <%= item.attachfile === ""? "d-none" : "d-block" %> "></i></a>
-                                  </td>
+                        <td class="text-center">
+                          <a href="../DISupload/<%= item.attachfile %>" target="_blank"><i class="bi bi-envelope <%= item.attachfile === ""? "d-none" : "d-block" %> "></i></a>
+                        </td>
   
+                        <!-- EDIT -->
                         <td class="text-center">
                           
                             <button  style="background-color: rgb(0, 42, 255);"
@@ -234,6 +235,7 @@
                                     Please Write Comment
                                     <label for="prepcomment" class="form-label"></label>
                                     <input dir="rtl" class="form-control" type="text" name="prepcomment">
+                                    <input hidden name="commentime2" type="text" class="form-control" id="commentime2" value="" />
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"

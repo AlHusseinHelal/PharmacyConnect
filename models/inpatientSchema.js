@@ -12,7 +12,9 @@ const inpat2 = new mongoose.Schema(
     roundcomment: String,
     prepcomment: String,
     attachfile: String,
-    
+    commentime : Date,
+    commentime2 : Date,
+    edit : String
   },
   { timestamps: true }
 );

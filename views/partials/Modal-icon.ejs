@@ -25,6 +25,7 @@
 <div id="icon_div" class="disappearicon d-flex align-items-center justify-content-between p-1"
   style="width: 13vw;  border-radius: 5px; background-color:rgb(218, 226, 225);">
   <i id="gear2" class="fa-solid fa-gear fa-2xl" style="color: #407de6;"></i>
+  
   <a data-tooltip="Find By Date" data-flow="top" style="background-color: rgb(41, 39, 39);" href="" id="find"
     class="rounded-2 d-inline-flex p-1" data-bs-toggle="modal" data-bs-target="#exampleModal1">
     <svg  width="25" height="25" style="fill: white;" class="bi bi-search"
@@ -67,36 +68,7 @@
 
 <script>
     
-  const icondiv = document.querySelector("#icon_div");
-  const gear2 = document.querySelector("#gear2");
-  gear2.addEventListener("click", (eo) => {
-    if (localStorage.getItem('iconbar') === 'NO') {
-      localStorage.setItem('iconbar', 'YES')
-      icondiv.classList.add("appearicon")
-    } else if (localStorage.getItem('iconbar') === 'YES') {
-      localStorage.setItem('iconbar', 'NO')
-      icondiv.classList.remove("appearicon")
-    }
-  })
-    if (localStorage.getItem('iconbar') === 'NO') {
-    icondiv.classList.remove('appearicon')
-  } else {
-    icondiv.classList.add('appearicon')
-  }
-  if (localStorage.getItem('iconbar') === 'YES') {
-    icondiv.classList.add('appearicon')
-  } else {
-    icondiv.classList.remove('appearicon')
-  }
-  ;
-
   // const icondiv = document.querySelector("#icon_div");
-  
-  // if (localStorage.getItem('iconbar') === 'NO') {
-  //   icondiv.classList.remove('appearicon')
-  // } else {
-  //   icondiv.classList.add('appearicon')
-  // }
   // const gear2 = document.querySelector("#gear2");
   // gear2.addEventListener("click", (eo) => {
   //   if (localStorage.getItem('iconbar') === 'NO') {
@@ -106,6 +78,35 @@
   //     localStorage.setItem('iconbar', 'NO')
   //     icondiv.classList.remove("appearicon")
   //   }
-  // });
+  // })
+  //   if (localStorage.getItem('iconbar') === 'NO') {
+  //   icondiv.classList.remove('appearicon')
+  // } else {
+  //   icondiv.classList.add('appearicon')
+  // }
+  // if (localStorage.getItem('iconbar') === 'YES') {
+  //   icondiv.classList.add('appearicon')
+  // } else {
+  //   icondiv.classList.remove('appearicon')
+  // }
+  // ;
+
+  const icondiv = document.querySelector("#icon_div");
+  
+  if (localStorage.getItem('iconbar') === 'NO') {
+    icondiv.classList.remove('appearicon')
+  } else {
+    icondiv.classList.add('appearicon')
+  }
+  const gear2 = document.querySelector("#gear2");
+  gear2.addEventListener("click", (eo) => {
+    if (localStorage.getItem('iconbar') === 'NO') {
+      localStorage.setItem('iconbar', 'YES')
+      icondiv.classList.add("appearicon")
+    } else if (localStorage.getItem('iconbar') === 'YES') {
+      localStorage.setItem('iconbar', 'NO')
+      icondiv.classList.remove("appearicon")
+    }
+  });
 </script>
 

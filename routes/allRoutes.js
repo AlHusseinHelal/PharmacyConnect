@@ -55,6 +55,7 @@ const Rowa = require("../models/rowaSchema");
 const PyxisTrade = require("../models/pyxistradeSchema");
 const Score = require("../models/score");
 const Qa = require("../models/q&a");
+const Labtoxicityschema = require("../models/labtoxicitySchema");
 //MIDDLEWARE
 const { requireAuth } = require("../middleware/middleware");
 const { checkIfUser } = require("../middleware/middleware");
@@ -501,6 +502,10 @@ router.get(
     const user = await User.findOne({ _id: decoded.id });
     const { firstname } = user;
     const { lastname } = user;
+
+    const toxicity = await Labtoxicityschema.find({
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
     
     const results = await Inpatientschema.find({
       requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
@@ -519,6 +524,7 @@ router.get(
         firstname,
         lastname,
         num,
+        toxicity
       });
     }
   })
@@ -553,6 +559,10 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      })
     
     if (results) {
       res.render("Inpatient/icu", {
@@ -561,7 +571,7 @@ router.get(
         floor: "ICU",
         firstname,
         lastname,
-        num,
+        num,toxicity
       });
     }
   })
@@ -597,7 +607,11 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
-  
+
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      })
+
     if (results) {
       res.render("Inpatient/icunotdoneview", {
         inpatientarray: results,
@@ -605,7 +619,7 @@ router.get(
         floor: "ICU",
         firstname,
         lastname,
-        num,
+        num,toxicity
       });
     }
   })
@@ -640,6 +654,10 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      })
     
     if (results) {
       res.render("Inpatient/surgical", {
@@ -648,7 +666,7 @@ router.get(
         floor: "SICU",
         firstname,
         lastname,
-        num,
+        num,toxicity
       });
     }
   })
@@ -684,6 +702,10 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      })
   
     if (results) {
       res.render("Inpatient/surgicalnotdoneview", {
@@ -692,7 +714,7 @@ router.get(
         floor: "SICU",
         firstname,
         lastname,
-        num,
+        num,toxicity
       });
     }
   })
@@ -727,6 +749,10 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      })
     
     if (results) {
       res.render("Inpatient/or", {
@@ -735,7 +761,7 @@ router.get(
         floor: "OR",
         firstname,
         lastname,
-        num,
+        num,toxicity
       });
     }
   })
@@ -771,6 +797,10 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      })
   
     if (results) {
       res.render("Inpatient/ornotdoneview", {
@@ -779,7 +809,7 @@ router.get(
         floor: "OR",
         firstname,
         lastname,
-        num,
+        num,toxicity
       });
     }
   })
@@ -816,6 +846,9 @@ router.get(
       .skip(skip)
       .limit(limit);
   
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      })
 
     if (results) {
       res.render("Inpatient/icc", {
@@ -824,7 +857,7 @@ router.get(
         floor: "ICC",
         firstname,
         lastname,
-        num,
+        num,toxicity
       });
     }
   })
@@ -862,6 +895,9 @@ router.get(
       .skip(skip)
       .limit(limit);
   
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      })
 
     if (results) {
       res.render("Inpatient/iccnotdone", {
@@ -870,7 +906,7 @@ router.get(
         floor: "ICC",
         firstname,
         lastname,
-        num,
+        num,toxicity
       });
     }
   })
@@ -908,6 +944,10 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      })
     
     if (results) {
       res.render("Inpatient/3rdo", {
@@ -916,7 +956,7 @@ router.get(
         floor: "3rd O",
         firstname,
         lastname,
-        num,
+        num,toxicity
       });
     }
   })
@@ -953,6 +993,10 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      })
     
     if (results) {
       res.render("Inpatient/3rdonotdone", {
@@ -961,7 +1005,7 @@ router.get(
         floor: "3rd O",
         firstname,
         lastname,
-        num,
+        num,toxicity
       });
     }
   })
@@ -998,6 +1042,10 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      })
     
     if (results) {
       res.render("Inpatient/3rdn", {
@@ -1006,7 +1054,7 @@ router.get(
         floor: "3rd N",
         firstname,
         lastname,
-        num,
+        num,toxicity
       });
     }
   })
@@ -1043,6 +1091,10 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      })
     
     if (results) {
       res.render("Inpatient/3rdnnotdone", {
@@ -1051,7 +1103,7 @@ router.get(
         floor: "3rd N",
         firstname,
         lastname,
-        num,
+        num,toxicity
       });
     }
   })
@@ -1088,6 +1140,10 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      })
   
     if (results) {
       res.render("Inpatient/4th", {
@@ -1096,7 +1152,7 @@ router.get(
         floor: "4th",
         firstname,
         lastname,
-        num,
+        num,toxicity
       });
     }
   })
@@ -1133,6 +1189,10 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      })
   
     if (results) {
       res.render("Inpatient/4thnotdone", {
@@ -1141,7 +1201,7 @@ router.get(
         floor: "4th",
         firstname,
         lastname,
-        num,
+        num,toxicity
       });
     }
   })
@@ -1178,6 +1238,10 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      })
   
     if (results) {
       res.render("Inpatient/5th", {
@@ -1186,7 +1250,7 @@ router.get(
         floor: "5th",
         firstname,
         lastname,
-        num,
+        num,toxicity
       });
     }
   })
@@ -1224,6 +1288,10 @@ router.get(
       .skip(skip)
       .limit(limit);
 
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      })
+
     if (results) {
       res.render("Inpatient/5thnotdone", {
         inpatientarray: results,
@@ -1231,7 +1299,7 @@ router.get(
         floor: "5th",
         firstname,
         lastname,
-        num,
+        num,toxicity
       });
     }
   })
@@ -1268,6 +1336,10 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      })
     
     if (results) {
       res.render("Inpatient/bmt", {
@@ -1276,7 +1348,7 @@ router.get(
         floor: "BMT",
         firstname,
         lastname,
-        num,
+        num,toxicity
       });
     }
   })
@@ -1313,6 +1385,10 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+      })
   
     if (results) {
       res.render("Inpatient/bmtnotdone", {
@@ -1321,7 +1397,7 @@ router.get(
         floor: "BMT",
         firstname,
         lastname,
-        num,
+        num,toxicity
       });
     }
   })
@@ -1494,7 +1570,7 @@ router.get(
     const num = await Inpatientschema.find({
       oraliv: "IV",
       requestype: "ExtraDose",
-      prepcomment: "",
+      prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     const limit = req.query.limit * 1 || 9;
@@ -1522,7 +1598,7 @@ router.get(
     const results = await Inpatientschema.find({
       oraliv: "IV",
       requestype: "ExtraDose",
-      prepcomment: "",
+      prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
@@ -1551,7 +1627,7 @@ router.get(
     const num = await Inpatientschema.find({
       oraliv: "IV",
       requestype: "BMT",
-      prepcomment: "",
+      prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     const limit = req.query.limit * 1 || 9;
@@ -1580,7 +1656,7 @@ router.get(
     const results = await Inpatientschema.find({
       oraliv: "IV",
       ptfloor: "BMT",
-      prepcomment: "",
+      prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
@@ -2007,6 +2083,80 @@ router.get(
   })
 );
 
+//PHARMACY LAB TOXICITY VIEW
+router.get(
+  "/labtoxicityview",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Labtoxicityschema.find({  
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments()
+
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
+    const result = await Labtoxicityschema.find({  
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).skip(skip).limit(limit)
+      
+  
+    if (result) {
+      res.render("Lab/labtoxicityview.ejs", {
+        labarray: result,
+        moment: moment,
+        num,
+        page,
+      });
+    }
+  })
+);
+
+//INPATIENT LAB TOXICITY
+router.get(
+  "/labtoxixity",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Labtoxicityschema.find({
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments()
+
+    const limit = req.query.limit * 1 || 6;
+    const page = req.query.page * 1 
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
+    const result = await Labtoxicityschema.find({
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).skip(skip).limit(limit)
+    
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+  
+    // .sort((a,b) => b.createdAt - a.createdAt).skip(skip).limit(limit);
+      
+    if (result) {
+      res.render("Lab/labtoxicity.ejs", {
+        labarray: result,
+        moment: moment,
+        num,
+        page,firstname,lastname
+      });
+    }
+  })
+);
+
 // DISPENSE OVERVIEW
 router.get(
   "/dispense3",
@@ -2020,7 +2170,7 @@ router.get(
     
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-    const limit = req.query.limit * 1 || 8;
+    const limit = req.query.limit * 1 || 9;
     const page = req.query.page * 1 || Math.ceil(num / limit);
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
@@ -2130,6 +2280,7 @@ router.get(
     const inarray = await Inpatientschema.find({
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
+      requestype: { $not: { $regex: "ExtraDose" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
     const outpatient = await Outpatient.find({
@@ -2184,6 +2335,7 @@ router.get(
     const inarray = await Inpatientschema.find({
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
+      requestype: { $not: { $regex: "DisCharge Medication" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
     const outpatient = await Outpatient.find({
@@ -2384,8 +2536,8 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-    const limit = req.query.limit * 1 || 8;
-    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
   
@@ -2430,8 +2582,8 @@ router.get(
       oraliv: "Pyxis",
       prepcomment: "DONE",
     }).countDocuments();
-    const limit = req.query.limit * 1 || 8;
-    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
     const date = moment().format("YYYY-MM-DD");
@@ -2447,13 +2599,11 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
-
     const pyxis = await Inpatientschema.find({
       oraliv: "Pyxis",
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
-  
     const results = await Inpatientschema.find({
       oraliv: "Pyxis",
       prepcomment: "DONE",
@@ -2484,14 +2634,22 @@ router.get(
     const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
       oraliv: "Pyxis",
-      requestype: "Refill",
+      requestype: { $in : [ /Refill/i , /Pyxis Refill/i] } ,
       prepcomment: { $not: { $regex: "DONE" } },
     }).countDocuments();
     const limit = req.query.limit * 1 || 9;
-    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const page = req.query.page * 1 
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
-    
+
+    const results = await Inpatientschema.find({
+      oraliv: "Pyxis",
+      requestype: { $in : [ /Refill/i , /Pyxis Refill/i] } ,
+      prepcomment: { $not: { $regex: "DONE" } },
+    })
+      .skip(skip)
+      .limit(limit);
+
     const inarray = await Inpatientschema.find({
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -2508,13 +2666,7 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
-    const results = await Inpatientschema.find({
-      oraliv: "Pyxis",
-      requestype: "Refill",
-      prepcomment: { $not: { $regex: "DONE" } },
-    })
-      .skip(skip)
-      .limit(limit);
+  
 
     if (results) {
       res.render("Dispense/pyxisrefill", {
@@ -2543,7 +2695,7 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
     }).countDocuments();
     const limit = req.query.limit * 1 || 9;
-    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const page = req.query.page * 1 
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
     
@@ -2625,6 +2777,8 @@ router.get(
   })
 );
 
+
+
 // ---------------------------------
 //POST REQUEST
 // ----------------------------------
@@ -2681,9 +2835,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email" });
-    // }
+    if (!email.includes("57357.org")) {
+      return res.json({ invalidemail: "Invalid Email" });
+    }
 
     const newUser = await User.create(req.body);
     const token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
@@ -3388,6 +3542,7 @@ router.post(
       return res.json({ errors: error.errors });
     }
     const patient = await Newpatient.findOne({ addpatientmrn: req.body.mrn });
+    const patientname = patient.addpatientname
 
     if (patient == null) {
       return res.json({ nopatient: "This Patient Not Found" });
@@ -3408,9 +3563,11 @@ router.post(
     if (req.body.oraliv === "Choose....") {
       return res.json({ oraliv: "You Must Enter This Field" });
     }
+    req.body.commentime = moment()
+    req.body.commentime2 = moment()
 
     const inpatientAddpatient = await Inpatientschema.create(req.body);
-    res.json({ inpatient_add_patient: inpatientAddpatient });
+    res.json({ inpatient_add_patient: inpatientAddpatient, patientname });
   })
 );
 
@@ -3798,6 +3955,9 @@ router.post(
       return res.json({ oraliv: "You Must Enter This Field" });
     }
 
+    req.body.commentime = moment()
+    req.body.commentime2 = moment()
+
     const dispenseAddpatient = await Dispenseschema.create(req.body);
     res.json({ dispense_add_patient: dispenseAddpatient });
   })
@@ -3836,14 +3996,14 @@ router.post(
   asyncHandler(async (req, res) => {
     const searchText = req.body.searchText.trim();
     const date = moment().format("YYYY-MM-DD");
-    const startDate = date + "T00:00:00.000+00:00";
-    const endDate = date + "T23:59:59.000+00:00";
+    const startDate = date + "T00:00:00.000+03:00";
+    const endDate = date + "T23:59:59.000+03:00";
     const result = await Dispenseschema.find({
-      mrn: searchText,
       createdAt: { $gte: startDate, $lte: endDate },
     });
+    const find = result.filter( item => item.mrn.match(searchText))
 
-    res.render("Dispense/dispensesearch", { array: result, moment: moment });
+    res.render("Dispense/dispensesearch", { array: find, moment: moment });
   })
 );
 
@@ -3884,6 +4044,26 @@ router.post(
   })
 );
 
+// DISPENSE INPATIENT SEARCH
+router.post(
+  "/dispenseinsearch",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const searchText = req.body.searchText.trim();
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+03:00";
+    const endDate = date + "T23:59:59.000+03:00";
+    const result = await Inpatientschema.find({
+      requestype : "Oral" ,
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const find = result.filter( item => item.mrn.match(searchText))
+
+    res.render("Dispense/dispensesearch", { array: find, moment: moment });
+  })
+);
+
 // DISPENSE/PREP POST SEARCH
 router.post("/dispenseprepsearch", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
   const searchText = req.body.searchText.trim();
@@ -3899,6 +4079,49 @@ router.post("/dispenseprepsearch", checkIfUser, requireAuth, asyncHandler( async
   }  
   
 }))
+
+// LAB TOXICITY
+router.post(
+  "/add_lab_toxicity",
+  [
+    check("druglevel").notEmpty(),
+    check("drugname").notEmpty(),
+    check("mrn").isNumeric(),  
+  ],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const validationerrors = validationResult(req);
+
+    const patient = await Newpatient.findOne({
+      addpatientmrn: req.body.mrn,
+    });
+
+    if (patient == null) {
+      return res.json({ nopatient: "This Patient Not Found" });
+    }
+
+    if (patient) {
+      req.body.patientname = patient.addpatientname;
+    }
+
+    if (!validationerrors.isEmpty()) {
+      return res.json({ errors: validationerrors.errors });
+    }
+
+    req.body.time = moment()
+    req.body.time2 = moment()
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne( {_id : decoded.id})
+    req.body.sender = `${user.firstname}.${user.lastname}`
+    
+    
+    
+
+    const labtoxicity = await Labtoxicityschema.create(req.body);
+    res.json({ lab_add_toxicity: labtoxicity });
+  })
+);
 
 // LAB SEARCH DATE
 router.post(
@@ -5434,12 +5657,336 @@ router.delete("/deletenurse/:id", checkIfUser, requireAuth, (req, res) => {
 //PUT REQUEST
 // ----------------------------------
 
+// INPATIENT / EDIT
+router.put(
+  "/edit/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/inpatient3");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// 3RDN / EDIT
+router.put(
+  "/edit3rdn/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/3rdN");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// 3RDN NOTDONE / EDIT
+router.put(
+  "/edit3rdnotdone/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/3rdnnotdone");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// 3RDO / EDIT
+router.put(
+  "/edit3rdo/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/3rdO");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// 3RDO NOT DONE / EDIT
+router.put(
+  "/edit3rdonotdone/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/3rdonotdone");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// 4TH / EDIT
+router.put(
+  "/edit4th/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/4th");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// 4TH NOT DONE / EDIT
+router.put(
+  "/edit4thnotdone/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/4thnotdone");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// 5TH / EDIT
+router.put(
+  "/edit5th/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/5th");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// 5TH NOT DONE / EDIT
+router.put(
+  "/edit5thnotdone/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/5thnotdone");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// BMT / EDIT
+router.put(
+  "/editbmt/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/BMT");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// BMT NOT DONE / EDIT
+router.put(
+  "/editbmtnotdone/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/bmtnotdone");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// ICC / EDIT
+router.put(
+  "/editicc/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/ICC");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// ICC NOT DONE / EDIT
+router.put(
+  "/editiccnotdone/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/iccnotdone");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// ICU / EDIT
+router.put(
+  "/editicu/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/ICU");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// ICU NOT DONE / EDIT
+router.put(
+  "/editicunotdone/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/icunotdone");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// OR / EDIT
+router.put(
+  "/editor/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/or");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// OR NOT DONE / EDIT
+router.put(
+  "/editornotdone/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/ornotdone");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// SURGICAL / EDIT
+router.put(
+  "/editsurgical/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/surgical");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// OR NOT DONE / EDIT
+router.put(
+  "/editsurgicalnotdone/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/surgicalnotdone");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
 // IVPREP INPATIENT / DONE
 router.put(
   "/done/:id",
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    req.body.commentime2 = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
         res.redirect("/prepin");
@@ -5452,11 +5999,21 @@ router.put(
 
 // IVPREP INPATIENT EXTRADOSE / DONE
 router.put("/doneed/:id", checkIfUser, requireAuth, asyncHandler(async (req, res) => {
-  const results = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body.prepcomment)
+req.body.commentime2 = moment()
+  const results = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
   if(results)  {
     res.redirect("/ed");
   }
 }) );
+
+// IVPREP BMT / DONE
+router.put("/donebmt/:id", checkIfUser, requireAuth, asyncHandler(async (req, res) => {
+  req.body.commentime2 = moment()
+    const results = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+    if(results)  {
+      res.redirect("/bmtview");
+    }
+  }) );
 
 // IVPREP INPATIENT / EDIT
 router.put(
@@ -5464,6 +6021,7 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    req.body.commentime2 = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
         res.redirect("/prepin");
@@ -5480,6 +6038,7 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    req.body.commentime2 = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
         res.redirect("/prepin");
@@ -5491,24 +6050,24 @@ router.put(
 );
 
 // IVPREP INPATIENT EXTRADOSE / EDIT
-router.put("/inedited/:id", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      Inpatientschema.find({
-        oraliv: "IV",
-        requestype: "ExtraDose",
-        prepcomment: "",
-      }).then((result) => {
-        res.render("IvPrep/ivprepinextradose", {
-          inarray: result,
-          moment: moment,
-        });
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.put("/inedited/:id", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  req.body.commentime2 = moment()
+  const result = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+  if(result)  {
+    res.redirect("/ed");
+  }
+  
+}) );
+
+// IVPREP BMT / EDIT
+router.put("/ineditedbmt/:id", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  req.body.commentime2 = moment()
+  const result = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+  if(result)  {
+    res.redirect("/bmtview");
+  }
+  
+}) );
 
 // IVPREP INPATIENT DONE VIEW / EDIT
 router.put(
@@ -5516,6 +6075,7 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    req.body.commentime2 = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
         res.redirect("/doneview");
@@ -5590,6 +6150,7 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    req.body.commentime2 = moment()
     await Dispenseschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
         res.redirect("/prepdis");
@@ -5606,6 +6167,7 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    req.body.commentime2 = moment()
     await Dispenseschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
         res.redirect("/ivprepdispensedoneview");
@@ -5622,6 +6184,7 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    req.body.commentime2 = moment()
     await Dispenseschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
         res.redirect("/prepdis");
@@ -5645,12 +6208,30 @@ router.put(
   })
 );
 
+// DISPENSE / EDIT
+router.put(
+  "/editdispense/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Dispenseschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/dispense3");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
 // Dispense INPATIENT / EDIT
 router.put(
   "/dispinedit/:id",
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    req.body.commentime2 = moment()
     const results = await Inpatientschema.findByIdAndUpdate(
       req.params.id,
       req.body
@@ -5662,44 +6243,22 @@ router.put(
 );
 
 // DISPENSE INPATIENT EXTRADOSE / EDIT
-router.put("/dispinedited/:id", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      Inpatientschema.find({
-        oraliv: "Oral",
-        requestype: "ExtraDose",
-        prepcomment: "",
-      }).then((result) => {
-        res.render("Dispense/edindispense", {
-          dispensearray: result,
-          moment: moment,
-        });
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.put("/dispinedited/:id", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  req.body.commentime2 = moment() 
+  const result = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+  if (result) {
+    res.redirect("/edindispense")
+  }
+}) );
 
 // DISPENSE INPATIENT DISCHARGE / EDIT
-router.put("/dispineditdischarge/:id", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      Inpatientschema.find({
-        oraliv: "Oral",
-        requestype: "DisCharge Medication",
-        prepcomment: "",
-      }).then((result) => {
-        res.render("Dispense/dischargeindispense", {
-          dispensearray: result,
-          moment: moment,
-        });
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.put("/dispineditdischarge/:id", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  req.body.commentime2 = moment()
+  const result = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+  if (result) {
+    res.redirect("/dischargeindispense")
+  }
+}) );
 
 // DISPENSE INPATIENT DONE VIEW / EDIT
 router.put(
@@ -5707,13 +6266,11 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
-      .then(() => {
-        res.redirect("/dispensedoneviewin");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    req.body.commentime2 = moment()
+    const results = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+    if (results) {
+      res.redirect("/dispensedoneviewin")
+    }
   })
 );
 
@@ -5739,6 +6296,7 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    req.body.commentime2 = moment()
     const results = await Inpatientschema.findByIdAndUpdate(
       req.params.id,
       req.body
@@ -5750,24 +6308,13 @@ router.put(
 );
 
 // DISPENSE INPATIENT EXTRADOSE / DONE
-router.put("/donedisined/:id", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      Inpatientschema.find({
-        oraliv: "Oral",
-        requestype: "ExtraDose",
-        prepcomment: "",
-      }).then((result) => {
-        res.render("Dispense/edindispense", {
-          dispensearray: result,
-          moment: moment,
-        });
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.put("/donedisined/:id", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  req.body.commentime2 = moment()
+  const result = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+  if (result) {
+    res.redirect("/edindispense")
+  }
+}) );
 
 // DISPENSE INPATIENT DISCHARGE / DONE
 router.put("/donedisindischarge/:id", checkIfUser, requireAuth, (req, res) => {
@@ -5811,6 +6358,7 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    req.body.commentime2 = moment()
     const results = await Inpatientschema.findByIdAndUpdate(
       req.params.id,
       req.body
@@ -5827,6 +6375,7 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    req.body.commentime2 = moment()
     const results = await Inpatientschema.findByIdAndUpdate(
       req.params.id,
       req.body
@@ -5843,6 +6392,7 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    req.body.commentime2 = moment()
     const results = await Inpatientschema.findByIdAndUpdate(
       req.params.id,
       req.body
@@ -5859,6 +6409,7 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    req.body.commentime2 = moment()
     const results = await Inpatientschema.findByIdAndUpdate(
       req.params.id,
       req.body
@@ -5875,6 +6426,7 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    req.body.commentime2 = moment()
     const results = await Inpatientschema.findByIdAndUpdate(
       req.params.id,
       req.body
@@ -5907,6 +6459,7 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    req.body.commentime2 = moment()
     const results = await Inpatientschema.findByIdAndUpdate(
       req.params.id,
       req.body
@@ -5949,15 +6502,16 @@ router.put(
   })
 );
 
-// LAB INPATIENT / DONE
+// LAB TOXICITY VIEW EDIT
 router.put(
-  "/labedit/:id",
+  "/labtoxicityviewedit/:id",
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    await Labschema.findByIdAndUpdate(req.params.id, req.body)
+    req.body.time = moment()
+    await Labtoxicityschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/lab");
+        res.redirect("/labtoxicityview");
       })
       .catch((err) => {
         console.log(err);
@@ -6678,6 +7232,23 @@ router.put(
     if (results) {
     res.redirect("/dic")
     }
+  })
+);
+
+// LAB TOXICITY / DONE
+router.put(
+  "/donelabtoxicity/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.time2 = moment()
+    await Labtoxicityschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/labtoxixity");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   })
 );
 

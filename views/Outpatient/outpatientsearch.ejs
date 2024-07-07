@@ -150,13 +150,18 @@
                               <%= item.oraliv%>
                             </td>
                             <td class="text-center">
-                              <%= item.roundcomment%>
+                              <strong dir="rtl"><%= item.roundcomment%></strong>
                             </td>
                             <td class="text-center">
                               <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
                             </td>
+                            <style>
+                              .bgred{
+                                color: red;
+                              }
+                            </style>
                             <td class="text-center">
-                              <%= item.prepcomment%>
+                              <strong dir="rtl" class="<%= item.prepcomment !== "DONE"? "bgred" : "" %>" ><i><%= item.prepcomment %></i></strong>
                             </td>
                             <td class="text-center">
                               <% if (item.prepcomment !=="" ) { %>

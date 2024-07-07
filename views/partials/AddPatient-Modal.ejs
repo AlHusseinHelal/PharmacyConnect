@@ -25,7 +25,7 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
 
         <div class="mb-3">
           <label hidden for="patientname" class="col-form-label">Patient Name</label>
-          <input hidden name="patientname" type="text" class="form-control" id="patientname" />
+          <input hidden name="patientname" type="text" class="form-control" id="patientname" value="patientname" />
         </div>
 
 
@@ -67,7 +67,7 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="mb-3">
           <label for="requestype" class="form-label">Request Type</label>
           <select class="form-select" name="requestype" id="requestype">
-            <option selected disabled>Choose....</option>
+            <option disabled hidden selected>Choose....</option>
             <option>Chemotherapy</option>
             <option>Zofran</option>
             <option>Hydration</option>
@@ -90,7 +90,7 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="mb-3">
           <label for="oraliv" class="form-label">Oral/IV</label>
           <select required class="form-select" id="oraliv" name="oraliv">
-            <option selected hidden disabled>Choose....</option>
+            <option disabled hidden selected>Choose....</option>
             <option>Oral</option>
             <option>IV</option>
             <option>Pyxis</option>
@@ -114,6 +114,9 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
         </div>
 
         <input hidden name="attachfile" type="text" class="form-control" id="attachfile" value="" />
+        <input hidden name="commentime" type="text" class="form-control" id="commentime" value="" />
+        <input hidden name="commentime2" type="text" class="form-control" id="commentime2" value="" />
+        <input hidden name="edit" type="text" class="form-control" id="edit" value="" />
 
     </div>
     <div class="modal-footer">

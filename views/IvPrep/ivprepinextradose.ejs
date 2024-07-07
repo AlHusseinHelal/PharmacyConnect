@@ -196,17 +196,38 @@
                               <%= item.oraliv%>
                             </td>
                             <td class="text-center">
-                              <span dir="rtl"><%= item.roundcomment%></span>
+                              <strong dir="rtl"><%= item.roundcomment%></strong>
                             </td>
                             <td class="text-center">
-                              <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
-                            </td>
+                              <style>
+                                @keyframes customAni {
+                                    0%,
+                                    50%,
+                                    100% {
+                                  	opacity: 1;
+                                    }
+                                  
+                                    25%,
+                                    75% {
+                                  	opacity: 0;
+                                    }
+                                  }
+                              </style>
+                                <div class="d-flex align-items-center justify-content-center">
+                                  <div>
+                                    <i class="fa-solid fa-user-pen fa-lg me-2 <%= item.edit !== "edit" || item.commentime2 > item.commentime? "d-none" : "d-block" %>" style="color: #cb0b0b; animation: customAni 2s ease 0s infinite normal none;"></i>
+                                  </div>
+                                  <div>
+                                    <%= moment(item.commentime).format('DD-MM-YYYY, h:mm a')%>
+                                  </div>
+                                </div>
+                              </td>
                             <td class="text-center">
-                              <span dir="rtl"><%= item.prepcomment%></span>
+                              <strong dir="rtl"><%= item.prepcomment%></strong>
                             </td>
                             <td class="text-center">
                               <% if (item.prepcomment !=="" ) { %>
-                                <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
+                                <%= moment(item.commentime2).format('DD-MM-YYYY, h:mm a')%>
                                   <% } %>
                             </td>
 
@@ -216,6 +237,8 @@
                                 <% } %>
                             </td>
 
+
+                            <!-- EDIT -->
                             <td class="text-center">
                             
                               <!-- <a href="/edit/"> -->
@@ -245,6 +268,7 @@
                                     Please Write Comment
                                     <label for="prepcomment" class="form-label"></label>
                                     <input dir="rtl" class="form-control" type="text" name="prepcomment">
+                                    <input hidden name="commentime2" type="text" class="form-control" id="commentime2" value="" />
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
@@ -257,6 +281,8 @@
                               </div>
                             </td>
 
+
+                            <!-- DONE -->
                             <td class="text-center">
                               <form action="/doneed/<%= item._id %>?_method=PUT" method="post">
                                 <button type="submit" class="d-inline-flex p-1 text-center"
@@ -265,6 +291,7 @@
                                     Comment</label>
                                   <input hidden type="text" class="form-control" value="DONE" id="prepcomment"
                                     style="display: none;" name="prepcomment" placeholder="">
+                                    <input hidden name="commentime2" type="text" class="form-control" id="commentime2" value="" />
 
                                   <svg style="fill: #298c43;" width="22" height="22" id="Layer_1" data-name="Layer 1"
                                     viewBox="0 0 25 27">

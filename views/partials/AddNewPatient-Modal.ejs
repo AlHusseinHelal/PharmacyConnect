@@ -11,6 +11,17 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
     </div>
     <div class="modal-body">
 
+      <div class="mb-3">
+        <label for="addpatientmrn" class="col-form-label">MRN</label>
+        <input name="addpatientmrn" type="text" class="form-control" id="addpatientmrn" />
+      </div>
+
+      <div id="patientexist" class=" d-flex flex-row align-items-center my-2 d-none"
+        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+        <p class="my-1 ms-1">This Patient Is Already Exist</p>
+      </div>
+
 
       <div class="mb-3">
         <label for="addpatientname" class="col-form-label">Patient Name</label>
@@ -23,16 +34,7 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
         <p class="my-1 ms-1">You Must Enter This Field</p>
       </div>
 
-      <div class="mb-3">
-        <label for="addpatientmrn" class="col-form-label">MRN</label>
-        <input name="addpatientmrn" type="text" class="form-control" id="addpatientmrn" />
-      </div>
-
-      <div id="patientexist" class=" d-flex flex-row align-items-center my-2 d-none"
-        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
-        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
-        <p class="my-1 ms-1">This Patient Is Already Exist</p>
-      </div>
+      
 
     </div>
     <div class="modal-footer">
