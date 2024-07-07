@@ -2835,9 +2835,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    if (!email.includes("57357.org")) {
-      return res.json({ invalidemail: "Invalid Email" });
-    }
+    // if (!email.includes("57357.org")) {
+    //   return res.json({ invalidemail: "Invalid Email" });
+    // }
 
     const newUser = await User.create(req.body);
     const token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
