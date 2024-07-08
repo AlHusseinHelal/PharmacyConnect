@@ -261,10 +261,27 @@
                                         aria-label="Close"></button>
                                     </div>
                                     <form action="/inedit/<%= item._id%>?_method=PUT" method="post">
-                                      <div class="modal-body">
-                                        Please Write Comment
-                                        <label for="prepcomment" class="form-label"></label>
-                                        <input dir="rtl" class="form-control" type="text" name="prepcomment">
+                                      <div class="modal-body text-start">
+                                        
+                                        <label for="prepcomment" class="form-label">Comment</label>
+                                        <input dir="rtl" class="form-control mb-2" type="text" name="prepcomment">
+
+                                        <div class="mb-3">
+                                          <label for="request" class="form-label">Request Type</label>
+                                          <select class="form-select" name="requestype" id="request">
+                                            <option selected hidden disabled><%= item.requestype %></option>
+                                            <option>Chemotherapy</option>
+                                            <option>Zofran</option>
+                                            <option>Hydration</option>
+                                            <option>TPN</option>
+                                            <option>Modification</option>
+                                            <option>ExtraDose</option>
+                                            <option style="color: blue;">DisCharge Medication</option>
+                                            <option style="color: red;">Refill</option>
+                                            <option style="color: red;">Product Assign</option>
+                                          </select>
+                                        </div>
+
                                         <input hidden name="commentime2" type="text" class="form-control" id="commentime2" value="" />
                                       </div>
                                       <div class="modal-footer">

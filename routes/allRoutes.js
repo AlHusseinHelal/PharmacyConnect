@@ -505,6 +505,7 @@ router.get(
 
     const toxicity = await Labtoxicityschema.find({
       createdAt: { $gte: startDate, $lte: endDate },
+      edit : { $not: { $in: [ /DONE/i ] }},
     })
     
     const results = await Inpatientschema.find({
@@ -562,6 +563,7 @@ router.get(
 
       const toxicity = await Labtoxicityschema.find({
         createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
       })
     
     if (results) {
@@ -610,6 +612,7 @@ router.get(
 
       const toxicity = await Labtoxicityschema.find({
         createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
       })
 
     if (results) {
@@ -657,6 +660,7 @@ router.get(
 
       const toxicity = await Labtoxicityschema.find({
         createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
       })
     
     if (results) {
@@ -705,6 +709,7 @@ router.get(
 
       const toxicity = await Labtoxicityschema.find({
         createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
       })
   
     if (results) {
@@ -752,6 +757,7 @@ router.get(
 
       const toxicity = await Labtoxicityschema.find({
         createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
       })
     
     if (results) {
@@ -800,6 +806,7 @@ router.get(
 
       const toxicity = await Labtoxicityschema.find({
         createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
       })
   
     if (results) {
@@ -848,6 +855,7 @@ router.get(
   
       const toxicity = await Labtoxicityschema.find({
         createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
       })
 
     if (results) {
@@ -897,6 +905,7 @@ router.get(
   
       const toxicity = await Labtoxicityschema.find({
         createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
       })
 
     if (results) {
@@ -947,6 +956,7 @@ router.get(
 
       const toxicity = await Labtoxicityschema.find({
         createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
       })
     
     if (results) {
@@ -996,6 +1006,7 @@ router.get(
 
       const toxicity = await Labtoxicityschema.find({
         createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
       })
     
     if (results) {
@@ -1045,6 +1056,7 @@ router.get(
 
       const toxicity = await Labtoxicityschema.find({
         createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
       })
     
     if (results) {
@@ -1094,6 +1106,7 @@ router.get(
 
       const toxicity = await Labtoxicityschema.find({
         createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
       })
     
     if (results) {
@@ -1143,6 +1156,7 @@ router.get(
 
       const toxicity = await Labtoxicityschema.find({
         createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
       })
   
     if (results) {
@@ -1192,6 +1206,7 @@ router.get(
 
       const toxicity = await Labtoxicityschema.find({
         createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
       })
   
     if (results) {
@@ -1241,6 +1256,7 @@ router.get(
 
       const toxicity = await Labtoxicityschema.find({
         createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
       })
   
     if (results) {
@@ -1290,6 +1306,7 @@ router.get(
 
       const toxicity = await Labtoxicityschema.find({
         createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
       })
 
     if (results) {
@@ -1339,6 +1356,7 @@ router.get(
 
       const toxicity = await Labtoxicityschema.find({
         createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
       })
     
     if (results) {
@@ -1388,6 +1406,7 @@ router.get(
 
       const toxicity = await Labtoxicityschema.find({
         createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
       })
   
     if (results) {
@@ -1395,6 +1414,106 @@ router.get(
         inpatientarray: results,
         moment: moment,
         floor: "BMT",
+        firstname,
+        lastname,
+        num,toxicity
+      });
+    }
+  })
+);
+
+// INPATIENT ER
+router.get(
+  "/ER",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
+      ptfloor: "ER",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+  
+
+    const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
+      ptfloor: "ER",
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
+    
+    if (results) {
+      res.render("Inpatient/er", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "ER",
+        firstname,
+        lastname,
+        num,toxicity
+      });
+    }
+  })
+);
+
+// INPATIENT ER NOT DONE VIEW
+router.get(
+  "/ernotdone",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
+      ptfloor: "ER", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    
+
+    const results = await Inpatientschema.find({
+      requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
+      ptfloor: "ER", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+
+      const toxicity = await Labtoxicityschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
+  
+    if (results) {
+      res.render("Inpatient/ernotdone", {
+        inpatientarray: results,
+        moment: moment,
+        floor: "ER",
         firstname,
         lastname,
         num,toxicity
@@ -2223,8 +2342,8 @@ router.get(
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
-    const limit = req.query.limit * 1 || 8;
-    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
   
@@ -2379,7 +2498,7 @@ router.get(
       oraliv: "Oral",
       prepcomment: "DONE",
     }).countDocuments();
-    const limit = req.query.limit * 1 || 8;
+    const limit = req.query.limit * 1 || 9;
     const page = req.query.page * 1 || Math.ceil(num / limit);
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
@@ -2432,8 +2551,8 @@ router.get("/dispout", checkIfUser, requireAuth, async (req, res) => {
     prepcomment: { $not: { $regex: "DONE" } },
     createdAt: { $gte: startDate, $lte: endDate },
   }).countDocuments();
-  const limit = req.query.limit * 1 || 8;
-    const page = req.query.page * 1 || Math.ceil(num / limit);
+  const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
   
@@ -2835,9 +2954,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email" });
-    // }
+    if (!email.includes("57357.org")) {
+      return res.json({ invalidemail: "Invalid Email" });
+    }
 
     const newUser = await User.create(req.body);
     const token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
@@ -3733,6 +3852,26 @@ router.post(
   })
 );
 
+// INPATIENT LAB TOXICITY SEARCH
+router.post(
+  "/inlabtoxicitysearch",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const searchText = req.body.searchText.trim();
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+00:00";
+    const endDate = date + "T23:59:59.000+00:00";
+    const result = await Labtoxicityschema.find({
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const results = result.filter( item => item.mrn.match(req.body.searchText))
+    console.log(results)
+
+    res.render("Inpatient/inpatientsearchtoxicity", { array: results, moment: moment });
+  })
+);
+
 // INPATIENT FIND DATE SEARCH
 router.post(
   "/inpatientfinddatesearch",
@@ -4055,12 +4194,34 @@ router.post(
     const startDate = date + "T00:00:00.000+03:00";
     const endDate = date + "T23:59:59.000+03:00";
     const result = await Inpatientschema.find({
-      requestype : "Oral" ,
+      oraliv : "Oral" ,
       createdAt: { $gte: startDate, $lte: endDate },
     });
     const find = result.filter( item => item.mrn.match(searchText))
 
-    res.render("Dispense/dispensesearch", { array: find, moment: moment });
+
+    res.render("Dispense/dispenseinsearch", { array: find, moment: moment });
+  })
+);
+
+// DISPENSE PYXIS SEARCH
+router.post(
+  "/dispensepyxissearch",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const searchText = req.body.searchText.trim();
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = date + "T00:00:00.000+03:00";
+    const endDate = date + "T23:59:59.000+03:00";
+    const result = await Inpatientschema.find({
+      oraliv : "Pyxis" ,
+      createdAt: { $gte: startDate, $lte: endDate },
+    });
+    const find = result.filter( item => item.mrn.match(searchText))
+
+
+    res.render("Dispense/dispensepyxissearch", { array: find, moment: moment });
   })
 );
 
@@ -7242,6 +7403,7 @@ router.put(
   requireAuth,
   asyncHandler(async (req, res) => {
     req.body.time2 = moment()
+    req.body.edit = "DONE"
     await Labtoxicityschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
         res.redirect("/labtoxixity");

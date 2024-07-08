@@ -78,7 +78,7 @@
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <form class="d-flex" role="search" action="/dispensesearch" method="post">
+              <form class="d-flex" role="search" action="/dispenseinsearch" method="post">
                 <input name="searchText" class="form-control me-2" type="search" placeholder="Search"
                   aria-label="Search" />
                 <button class="btn btn-outline-success" type="submit">
@@ -213,11 +213,15 @@
                                       <%= moment(item.commentime2).format('DD-MM-YYYY, h:mm a')%>
                                     <% } %>    
                                   </td>
+
+                            <!-- ATTACH -->
                             <td class="text-center">
                               <a href="../INupload/<%= item.attachfile%>"><i class="bi bi-envelope <%= item.attachfile === ""? "d-none" : "d-block" %>"></i></a>
                               <% if (item.attachfile) { %>
                                 <% } %>
                             </td>
+
+                            <!-- EDIT -->
                             <td class="text-center">
                             
                               <!-- <a href="/edit/"> -->
@@ -243,14 +247,14 @@
                                       aria-label="Close"></button>
                                   </div>
                                   <form action="/dispineditdoneview/<%= item._id%>?_method=PUT" method="post">
-                                  <div class="modal-body">
-                                    <p>Please Write Comment</p>
+                                  <div class="modal-body text-start">
+                                    <p class="mb-0">Please Write Comment</p>
                                     <label for="prepcomment" class="form-label"></label>
                                     <input class="form-control" type="text" name="prepcomment">
                                     <input hidden name="commentime2" type="text" class="form-control" id="commentime2" value="" />
                                   </div>
                                   <div class="modal-footer">
-                                    <button type="submit" class="btn btn-secondary"
+                                    <button type="button" class="btn btn-secondary"
                                       data-bs-dismiss="modal">Close</button>
                                     
                                       <button type="submit" class="btn btn-primary">ADD</button>

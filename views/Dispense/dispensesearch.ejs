@@ -113,7 +113,6 @@
                           <th class="text-center" scope="col">#</th>
                           <th class="text-center" scope="col">Patient Name</th>
                           <th class="text-center" scope="col">MRN</th>
-                          <th class="text-center" scope="col">Patient Floor</th>
                           <th class="text-center" scope="col">Request Type</th>
                           <th class="text-center" scope="col">Oral/IV</th>
                           <th class="text-center" scope="col">Round Comment</th>
@@ -137,9 +136,7 @@
                             <td class="text-center">
                               <%= item.mrn%>
                             </td>
-                            <td class="text-center">
-                              <%= item.ptfloor%>
-                            </td>
+                          
                             <td class="text-center">
                               <%= item.requestype%>
                             </td>
@@ -240,7 +237,7 @@
                         <!-- DELETE -->
                         <td class="text-center">
                           <button type="button" class="btn btn-primary border rounded-2 d-inline-flex p-1"
-                            data-bs-toggle="modal" data-bs-target="#exampleModal<%= item.id %>"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal5<%= item.id %>"
                             style="background-color: red">
                             <svg style="fill: aliceblue" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                               class="bi bi-trash" viewBox="0 0 16 16">
@@ -251,7 +248,7 @@
                             </svg>
                           </button>
                           <!-- Modal -->
-                          <div class="connectmodal modal fade" id="exampleModal<%= item.id %>" tabindex="-1"
+                          <div class="connectmodal modal fade" id="exampleModal5<%= item.id %>" tabindex="-1"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="glass modal-dialog">
                               <div class="modal-content">

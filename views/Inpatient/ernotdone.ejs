@@ -110,7 +110,7 @@
                       href="/or">OR</a></button>
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                     href="/ICC">ICC</a></button>
-                <button type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;"
+                <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                     href="/3rdO">3rd O</a></button>
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                     href="/3rdN">3rd N</a></button>
@@ -120,10 +120,10 @@
                     href="/5th">5th</a></button>
                 <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                     href="/BMT">BMT</a></button>
-                    <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
+                    <button type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;"
                       href="/ER">ER</a></button>
                     <button type="button" class="btn btn-outline-primary active"><a style="border: unset; color: unset;"
-                      href="/3rdonotdone">ACTIVE</a></button>
+                      href="/ernotdone">ACTIVE</a></button>
               </div>
               <div>
                 <button type="button" class="btn btn-outline-danger position-relative"><a style="border: unset; color: unset;"
@@ -149,7 +149,7 @@
               <%- include('../partials/AddNewPatient-Modal.ejs') %>
 
                 <!-- ADD LAB PATIENT MODAL -->
-                <%- include('../partials/AddLabPatient-Modal-Floor.ejs') %>
+            <%- include('../partials/AddLabPatient-Modal.ejs') %>
 
                   <!-- /*--------------------------------------------------------------
       # MAIN CONTENT
@@ -164,6 +164,7 @@
                           <p class="mb-0">No Data Avaliable</p>
                         </span>
                      </div>
+                   </div>
 
                       <% } %>
                         <% if (inpatientarray.length>= 1) { %>
@@ -210,8 +211,8 @@
                                     <strong dir="rtl"><%= item.roundcomment%></strong>
                                   </td>
                                   <td class="text-center">  
-                                    <%= moment(item.commentime).format('DD-MM-YYYY, h:mm a')%>
-                                  </td>
+                                <%= moment(item.commentime).format('DD-MM-YYYY, h:mm a')%>
+                              </td>
                                     <style>
                                   .bgred{
                                     color: red;
@@ -251,7 +252,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                           aria-label="Close"></button>
                                       </div>
-                                      <form action="/edit3rdonotdone/<%= item._id%>?_method=PUT" method="post">
+                                      <form action="/editbmt/<%= item._id%>?_method=PUT" method="post">
                                         <div class="modal-body text-start">
                                           
                                           <div class="mb-3">
@@ -323,7 +324,7 @@
                                   </div>
                                 </div>
                                   </td>
-                                  
+
                                   <!-- DELETE -->
                                   <td class="text-center">
                                     <button type="button" class="btn btn-primary border rounded-2 d-inline-flex p-1"
@@ -353,7 +354,7 @@
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                               data-bs-dismiss="modal">Close</button>
-                                            <form action="/delete3rdo/<%= item.id%>?_method=DELETE" method="post">
+                                            <form action="/delete6th/<%= item.id%>?_method=DELETE" method="post">
                                               <button type="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                           </div>
@@ -381,7 +382,7 @@
 
                                     <div class="connectmodal modal fade" id="exampleModal2<%= item._id%>" tabindex="-1"
                                       aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                      <form action="/attach3rdO/<%= item._id %>?_method=PUT " method="post" enctype="multipart/form-data"
+                                      <form action="/attachBMT/<%= item._id %>?_method=PUT " method="post" enctype="multipart/form-data"
                                         class="modal-dialog">
                                         <div class="glass modal-content">
                                           <div class="modal-header">
@@ -415,6 +416,7 @@
                           </table>
                           <% } %>
                   </div>
+
                     <!-- PAGINATION -->
                 <%- include('../partials/inpatientpagination.ejs') %>
           </div>
@@ -436,17 +438,17 @@
 
       <script src="/js/inpatient/inpatient3.js"></script>
 
-
       <script>
         add_patient_inpatient.addEventListener("submit", async (e) => {
           e.preventDefault();
           const res = await fetch("/add_patient_in", {
             method: "POST",
-            body: JSON.stringify({ patientname: patientname.value,  attachfile : attachfile.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value, }),
+            body: JSON.stringify({ patientname: patientname.value, attachfile : attachfile.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value,  }),
             headers: { "Content-Type": "application/json" },
           });
 
           const data = await res.json();
+
           if (data.nopatient) {
             nopatient.classList.remove("d-none");
             mrn.classList.add("redframe");
@@ -463,18 +465,18 @@
             document.getElementById('oraliv').classList.remove("redframe");
           }
           if (data.inpatient_add_patient) {
-            location.assign("/3rdonotdone" + window.location.search)
+            location.assign("/ernotdone" + window.location.search)
           }
 
         });
       </script>
 
-<script>
+      <script>
   add_lab_inpatient.addEventListener("submit", async (e) => {
     e.preventDefault();
     const res = await fetch("/add_lab_in", {
       method: "POST",
-      body: JSON.stringify({ labpatientname: labpatientname.value, mrnlab: mrnlab.value, labptfloor: labptfloor.value, labrequestype: labrequestype.value, medstartdate: medstartdate.value, medstarttime: medstarttime.value, samplewddate: samplewddate.value, samplewdtime: samplewdtime.value, levelrequestreason: levelrequestreason.value, labcomment : labcomment.value, phaname: phaname.value, }),
+      body: JSON.stringify({ labpatientname: labpatientname.value, mrnlab: mrnlab.value, labptfloor: labptfloor.value, labrequestype: labrequestype.value, medstartdate: medstartdate.value, medstarttime: medstarttime.value, samplewddate: samplewddate.value, samplewdtime: samplewdtime.value, levelrequestreason: levelrequestreason.value, labcomment : labcomment.value, phaname: phaname.value,}),
       headers: { "Content-Type": "application/json" },
     });
     const data = await res.json();
@@ -523,45 +525,44 @@
     }
 
     if (data.lab_add_patient) {
-      location.assign("/3rdonotdone" + window.location.search)
+      location.assign("/ernotdone" + window.location.search)
     }
   });
 
-</script>
+      </script>
 
-        <script>
-          addnewpatient.addEventListener("click", async (item) => {
-            item.preventDefault()
-            const res = await fetch("/addnewpatient", {
-              method: "POST",
-              body: JSON.stringify({ addpatientmrn: addpatientmrn.value, addpatientname: addpatientname.value, }),
-              headers: { "Content-Type": "application/json" },
-            })
-            const data = await res.json()
-            if (data.errors) {
-              data.errors.forEach(item => {
-                if (item.path = "addpatientname") {
-                  nopatientname.classList.remove("d-none");
-                  addpatientname.classList.add("redframe");
-                } else {
-                  nopatientname.classList.add("d-none");
-                  addpatientname.classList.remove("redframe");
-                }
-              });
-            }
-
-            if (data.patientexist) {
-              patientexist.classList.remove("d-none");
-              addpatientmrn.classList.add("redframe");
-            } else {
-              patientexist.classList.add("d-none");
-              addpatientmrn.classList.remove("redframe");
-            }
-            if (data.done) {
-              location.assign("/3rdonotdone" + window.location.search)
-            }
+      <script>
+        addnewpatient.addEventListener("click", async (item) => {
+          item.preventDefault()
+          const res = await fetch("/addnewpatient", {
+            method: "POST",
+            body: JSON.stringify({ addpatientmrn: addpatientmrn.value, addpatientname: addpatientname.value, }),
+            headers: { "Content-Type": "application/json" },
           })
-        </script>
+          const data = await res.json()
+          if (data.errors) {
+            data.errors.forEach(item => {
+              if (item.path = "addpatientname") {
+                nopatientname.classList.remove("d-none");
+                addpatientname.classList.add("redframe");
+              } else {
+                nopatientname.classList.add("d-none");
+                addpatientname.classList.remove("redframe");
+              }
+            });
+          }
+          if (data.patientexist) {
+            patientexist.classList.remove("d-none");
+            addpatientmrn.classList.add("redframe");
+          } else {
+            patientexist.classList.add("d-none");
+            addpatientmrn.classList.remove("redframe");
+          }
+          if (data.done) {
+            location.assign("/ernotdone" + window.location.search)
+          }
+        })
+      </script>
 </body>
 
 </html>
