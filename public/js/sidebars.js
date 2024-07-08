@@ -14997,6 +14997,23 @@ $(".pyxisrequisetion").on("click", function () {
 </div>`);
 });
   /*--------------------------------------------------------------
+# SCIENTIFIC PAPER
+--------------------------------------------------------------*/
+$(".Optimizing").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../papers/Optimizing.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+  /*--------------------------------------------------------------
 # CHANGE COLOR WHEN PRESS
 --------------------------------------------------------------*/
   // maintab

@@ -214,7 +214,36 @@
                     <label hidden for="patientname">Patient Name</label>
                     <input hidden class="form-control my-2" type="text" name="patientname" id="patientname">
 
-                    <label for="drugname">Drug Name</label>
+                    
+                      <label for="ptfloor" class="form-label">Patient Floor</label>
+                      <select id="ptfloor" name="ptfloor" class="form-select">
+                        <option disabled hidden selected></option>
+                        <option>2nd</option>
+                        <option>3rd O</option>
+                        <option>3rd N</option>
+                        <option>4th</option>
+                        <option>5th</option>
+                        <option>6th</option>
+                        <option>MCU</option>
+                        <option>SCU</option>
+                        <option>ER</option>
+                        <option>ICC</option>
+                        <option>OR</option>
+                        <option>SICU</option>
+                        <option>DayCare</option>
+                        <option>Dispense</option>
+                        <option>OutPatient</option>
+                        <option>ICU</option>
+                      </select>
+                  
+
+                    <div id="locationempty" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">You Must Enter This Field</p>
+                      </div>
+
+                    <label class="mt-2" for="drugname">Drug Name</label>
                     <input class="form-control my-2" type="text" name="drugname" id="drugname">
 
                     <div id="drugnamempty" class=" d-flex flex-row align-items-center my-2 d-none"
@@ -390,7 +419,7 @@
                                 <div class="modal-body">
                                   Please Write Comment
                                   <label for="labcomment" class="col-form-label">Level Request Reason</label>
-                                  <input dir="rtl" name="labcomment" type="text" class="form-control" id="labcomment" />
+                                  <input dir="rtl" name="labcomment" type="text" class="form-control" />
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -408,7 +437,7 @@
                           <button type="submit" class="d-inline-flex p-1 text-center"
                             style="outline-style: unset; border: none; background-color: transparent;">
                             <label hidden for="labcomment" class="form-label" style="display: none;"> </label>
-                            <input hidden type="text" class="form-control" value="RECEIVED" id="labcomment"
+                            <input hidden type="text" class="form-control" value="RECEIVED" 
                               style="display: none;" name="labcomment" placeholder="">
 
                             <svg style="fill: #298c43;" width="22" height="22" id="Layer_1" data-name="Layer 1"
@@ -480,9 +509,10 @@
             e.preventDefault();
             const res = await fetch("/add_lab_toxicity", {
               method: "POST",
-              body: JSON.stringify({ patientname: patientname.value, mrn: mrn.value, drugname: drugname.value, druglevel: druglevel.value, sender: sender.value, receiver: receiver.value, time: time.value, time2: time2.value, edit: edit.value, }),
+              body: JSON.stringify({ptfloor : ptfloor.value,  patientname: patientname.value, mrn: mrn.value, drugname: drugname.value, druglevel: druglevel.value, sender: sender.value, receiver: receiver.value, time: time.value, time2: time2.value, edit: edit.value, }),
               headers: { "Content-Type": "application/json" },
             });
+
             const data = await res.json();
             if (data.errors) {
               data.errors.forEach(item => {
@@ -509,9 +539,18 @@
                   druglevelempty.classList.add("d-none");
                   druglevel.classList.remove("redframe");
                 }
+
+                if (item.path == "ptfloor") {
+                  locationempty.classList.remove("d-none");
+                  ptfloor.classList.add("redframe");
+                } else {
+                  locationempty.classList.add("d-none");
+                  ptfloor.classList.remove("redframe");
+                }
               });
             }
-  
+
+        
             if (data.nopatient) {
               labnopatient.classList.remove("d-none");
               mrn.classList.add("redframe");

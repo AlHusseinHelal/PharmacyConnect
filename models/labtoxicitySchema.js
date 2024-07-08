@@ -6,6 +6,7 @@ const labtoxicity = new mongoose.Schema(
   {
     patientname: String,
     mrn: String,
+    ptfloor: String,
     drugname: String,
     druglevel: String,
     sender: String,

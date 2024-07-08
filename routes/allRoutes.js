@@ -2954,9 +2954,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email" });
-    // }
+    if (!email.includes("57357.org")) {
+      return res.json({ invalidemail: "Invalid Email" });
+    }
 
     const newUser = await User.create(req.body);
     const token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
@@ -4247,6 +4247,7 @@ router.post(
   [
     check("druglevel").notEmpty(),
     check("drugname").notEmpty(),
+    check("ptfloor").notEmpty(),
     check("mrn").isNumeric(),  
   ],
   checkIfUser,
@@ -4265,6 +4266,7 @@ router.post(
     if (patient) {
       req.body.patientname = patient.addpatientname;
     }
+
 
     if (!validationerrors.isEmpty()) {
       return res.json({ errors: validationerrors.errors });
