@@ -196,7 +196,12 @@
                               <%= item.sender%>
                             </td>
                             <td class="text-center">
-                              <%= item.requestype%>
+                              <style>
+                                .redcolor{
+                                  color: red;
+                                }
+                              </style>
+                              <strong class="<%= item.requestype === "Pyxis Refill" || item.requestype === "Nurse DisCharge Medication"? "redcolor" : "" %>"><%= item.requestype%></strong>
                             </td>
                             <td class="text-center">
                               <%= item.oraliv%>
