@@ -167,13 +167,13 @@
                           <th class="text-center" scope="col">Patient Name</th>
                           <th class="text-center" scope="col">MRN</th>
                           <th class="text-center" scope="col">Patient Floor</th>
+                          <th class="text-center" scope="col">Sender</th>
                           <th class="text-center" scope="col">Request Type</th>
                           <th class="text-center" scope="col">Oral/IV</th>
                           <th class="text-center" scope="col">Round Comment</th>
                           <th class="text-center" scope="col">Round Time</th>
                           <th class="text-center" scope="col">Comment</th>
-                          <th class="text-center" scope="col">Prep Time</th>
-                          
+                          <th class="text-center" scope="col">Pyxis Time</th>
                           <th class="text-center" scope="col">Edit</th>
                           <th class="text-center" scope="col">Done</th>
                         </tr>
@@ -192,6 +192,9 @@
                             </td>
                             <td class="text-center">
                               <%= item.ptfloor%>
+                            </td>
+                            <td class="text-center">
+                              <%= item.sender%>
                             </td>
                             <td class="text-center">
                               <%= item.requestype%>

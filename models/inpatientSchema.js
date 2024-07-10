@@ -8,6 +8,7 @@ const inpat2 = new mongoose.Schema(
     mrn: String,
     ptfloor: String,
     requestype: String,
+    sender: String,
     oraliv: String,
     roundcomment: String,
     prepcomment: String,

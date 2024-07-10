@@ -1841,9 +1841,9 @@
             console.log(array);
             const match = array.find( item => item.generic.match(select.toUpperCase()))
             const code = match.code
-            console.log(match.code)
-            document.querySelector("." + code).classList.add("back");
-            document.querySelector("." + code).parentElement.parentElement.classList.add("show");
+            const med = document.querySelector("." + code).classList.add("back");
+          
+            document.querySelector("." + code).parentElement.parentElement.classList.add("show")
             document.querySelector("." + code).parentElement.parentElement.parentElement.parentElement.parentElement.classList.add("show");
             document.querySelector("." + code).parentElement.parentElement.parentElement.firstElementChild.previousElementSibling;
             document.querySelector("." + code).parentElement.parentElement.parentElement.setAttribute("aria-expanded", "true");  

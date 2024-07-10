@@ -76,6 +76,8 @@
                               
                               <a data-tooltip="DIC" data-flow="top" class=" <%= item.role === "DIC"? "d-block"
                                 : "d-none" %>" href=""><i class="fa-solid fa-d"></i></a>
+                                <a data-tooltip="Nurse" data-flow="top" class=" <%= item.role === "Nurse"? "d-block"
+                                : "d-none" %>" href=""><i class="fa-solid fa-n"></i></a>
                               <a data-tooltip="Admin" data-flow="top" class=" <%= item.role === "Admin"? "d-block"
                                 : "d-none" %>" href=""><i class="fa-solid fa-screwdriver-wrench"
                                   style="color: #df0707;"></i></a>
@@ -131,11 +133,12 @@
                               </div>
                               <form action="/userole/<%= item._id %>?_method=PUT" method="post">
                                 <div class="modal-body">
-                                  <select class="input w-100" name="role">
+                                  <select class="form-control w-100" name="role">
                                     <option hidden disabled selected value="User">Choose...</option>
                                     <option value="User">User</option>
                                     <option value="DIC">DIC</option>
                                     <option value="Admin">Admin</option>
+                                    <option value="Nurse">Nurse</option>
                                   </select>
                                 </div>
                                 <div class="modal-footer">

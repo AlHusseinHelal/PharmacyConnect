@@ -459,7 +459,7 @@
           e.preventDefault();
           const res = await fetch("/add_patient_in", {
             method: "POST",
-            body: JSON.stringify({ edit : edit.value , commentime2 : commentime2.value, commentime : commentime.value, patientname: patientname.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, attachfile: attachfile.value, prepcomment: prepcomment.value, }),
+            body: JSON.stringify({ sender : sender.value, edit : edit.value , commentime2 : commentime2.value, commentime : commentime.value, patientname: patientname.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, attachfile: attachfile.value, prepcomment: prepcomment.value, }),
             headers: { "Content-Type": "application/json" },
           });
           const data = await res.json();

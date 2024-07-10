@@ -440,7 +440,7 @@
           e.preventDefault();
           const res = await fetch("/add_patient_in", {
             method: "POST",
-            body: JSON.stringify({ patientname: patientname.value,attachfile : attachfile.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value, }),
+            body: JSON.stringify({sender : sender.value, patientname: patientname.value,attachfile : attachfile.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value, }),
             headers: { "Content-Type": "application/json" },
           });
 
@@ -462,7 +462,7 @@
             document.getElementById('oraliv').classList.remove("redframe");
           }
           if (data.inpatient_add_patient) {
-            location.assign("/surgicalnotdoneview" + window.location.search)
+            location.assign("/surgicalnotdone" + window.location.search)
           }
 
         });
@@ -522,7 +522,7 @@
           }
 
           if (data.lab_add_patient) {
-            location.assign("/surgicalnotdoneview" + window.location.search)
+            location.assign("/surgicalnotdone" + window.location.search)
           }
         });
 
@@ -557,7 +557,7 @@
             addpatientmrn.classList.remove("redframe");
           }
           if (data.done) {
-            location.assign("/surgicalnotdoneview" + window.location.search)
+            location.assign("/surgicalnotdone" + window.location.search)
           }
         })
       </script>

@@ -2341,6 +2341,7 @@ router.get(
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
+      
     }).countDocuments();
     const limit = req.query.limit * 1 || 9;
     const page = req.query.page * 1 
@@ -2390,6 +2391,7 @@ router.get(
       oraliv: "Oral",
       requestype: "ExtraDose",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     const limit = req.query.limit * 1 || 9;
     const page = req.query.page * 1 || Math.ceil(num / limit);
@@ -2416,6 +2418,7 @@ router.get(
       oraliv: "Oral",
       requestype: "ExtraDose",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
@@ -2445,6 +2448,7 @@ router.get(
       oraliv: "Oral",
       requestype: "DisCharge Medication",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     const limit = req.query.limit * 1 || 9;
     const page = req.query.page * 1 || Math.ceil(num / limit);
@@ -2472,6 +2476,7 @@ router.get(
       oraliv: "Oral",
       requestype: "DisCharge Medication",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
@@ -2494,17 +2499,18 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
       oraliv: "Oral",
       prepcomment: "DONE",
+      createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     const limit = req.query.limit * 1 || 9;
     const page = req.query.page * 1 || Math.ceil(num / limit);
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
-    const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+03:00`;
-    const endDate = `${date}T23:59:59.000+03:00`;
     const outpatient = await Outpatient.find({
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -2525,6 +2531,7 @@ router.get(
     const results = await Inpatientschema.find({
       oraliv: "Oral",
       prepcomment: "DONE",
+      createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
@@ -2697,17 +2704,20 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+
     const num = await Inpatientschema.find({
       oraliv: "Pyxis",
       prepcomment: "DONE",
+      createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     const limit = req.query.limit * 1 || 9;
     const page = req.query.page * 1 
     const sk = (page - 1) * limit
     const skip = Math.abs(sk)
-    const date = moment().format("YYYY-MM-DD");
-    const startDate = `${date}T00:00:00.000+03:00`;
-    const endDate = `${date}T23:59:59.000+03:00`;
+    
     const outpatient = await Outpatient.find({
       oraliv: "Oral",
       prepcomment: { $not: { $regex: "DONE" } },
@@ -2726,6 +2736,7 @@ router.get(
     const results = await Inpatientschema.find({
       oraliv: "Pyxis",
       prepcomment: "DONE",
+      createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
@@ -2755,6 +2766,7 @@ router.get(
       oraliv: "Pyxis",
       requestype: { $in : [ /Refill/i , /Pyxis Refill/i] } ,
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     const limit = req.query.limit * 1 || 9;
     const page = req.query.page * 1 
@@ -2765,6 +2777,7 @@ router.get(
       oraliv: "Pyxis",
       requestype: { $in : [ /Refill/i , /Pyxis Refill/i] } ,
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
@@ -2812,6 +2825,7 @@ router.get(
       oraliv: "Pyxis",
       requestype: "Product Assign",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
     const limit = req.query.limit * 1 || 9;
     const page = req.query.page * 1 
@@ -2839,6 +2853,7 @@ router.get(
       oraliv: "Pyxis",
       requestype: "Product Assign",
       prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
     })
       .skip(skip)
       .limit(limit);
@@ -2954,9 +2969,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email" });
-    // }
+    if (!email.includes("57357.org")) {
+      return res.json({ invalidemail: "Invalid Email" });
+    }
 
     const newUser = await User.create(req.body);
     const token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
@@ -5530,6 +5545,7 @@ router.post(
       return res.json({ oraliv: "You Must Enter This Field" });
     }
 
+    req.body.commentime = moment()
     const nurseAddpatient = await Inpatientschema.create(req.body);
     res.json({ nurse_add_patient: nurseAddpatient });
   })
@@ -7409,6 +7425,23 @@ router.put(
     await Labtoxicityschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
         res.redirect("/labtoxixity");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// NURSE / EDIT
+router.put(
+  "/nurseedit/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect("/nurse");
       })
       .catch((err) => {
         console.log(err);

@@ -168,6 +168,7 @@
                           <th class="text-center" scope="col">Patient Name</th>
                           <th class="text-center" scope="col">MRN</th>
                           <th class="text-center" scope="col">Patient Floor</th>
+                          <th class="text-center" scope="col">Sender</th>
                           <th class="text-center" scope="col">Request Type</th>
                           <th class="text-center" scope="col">Oral/IV</th>
                           <th class="text-center" scope="col">Round Comment</th>
@@ -194,12 +195,15 @@
                             <%= item.ptfloor%>
                           </td>
                           <td class="text-center">
+                            <%= item.sender%>
+                          </td>
+                          <td class="text-center">
                             <style>
                               .redcolor{
                                 color: red;
                               }
                             </style>
-                            <strong class="<%= item.requestype === "Pyxis Refill"? "redcolor" : "" %>"><%= item.requestype%></strong>
+                            <strong class="<%= item.requestype === "Pyxis Refill" || item.requestype === "Nurse DisCharge Medication"? "redcolor" : "" %>"><%= item.requestype%></strong>
                           </td>
                           <td class="text-center">
                             <%= item.oraliv%>
@@ -230,7 +234,7 @@
                                   <%= moment(item.commentime).format('DD-MM-YYYY, h:mm a')%>
                                 </div>
                               </div>
-                          </td>
+                            </td>
                           
                           <td class="text-center">
                             <strong dir="rtl" ><%= item.prepcomment %></strong>
