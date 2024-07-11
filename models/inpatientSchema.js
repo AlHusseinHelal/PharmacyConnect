@@ -15,7 +15,7 @@ const inpat2 = new mongoose.Schema(
     attachfile: String,
     commentime : Date,
     commentime2 : Date,
-    edit : String
+    edit : String,
   },
   { timestamps: true }
 );

@@ -7,8 +7,8 @@ const sharp = require("sharp");
 const asyncHandler = require("express-async-handler");
 //MULTER
 const multer = require("multer");
-//MOMMENT TIMESTAMP
-const moment = require("moment");
+//URL
+const url = require('node:url');
 //ERROR HANDILING
 const ApiError = require("../utils/apierror");
 const User = require("../models/newRegSchema");
@@ -43,6 +43,7 @@ const checkIfUser = (req, res, next) => {
         const qa = await Qa.find()
         res.locals.user = currentUser;
         res.locals.qa = qa;
+        res.locals.myUrl = url.parse(req.url)
         next();
       }
     });

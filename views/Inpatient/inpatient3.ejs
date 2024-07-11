@@ -262,7 +262,7 @@
                                           
                                           <div class="mb-3">
                                             <label for="ptf" class="form-label">Patient Floor</label>
-                                            <select id="ptf" name="ptfloor" class="form-select">
+                                            <select name="ptfloor" class="form-select">
                                               <option hidden selected><%= item.ptfloor %></option>
                                               <option>2nd</option>
                                               <option>3rd O</option>
@@ -285,7 +285,7 @@
 
                                           <div class="mb-3">
                                             <label for="request" class="form-label">Request Type</label>
-                                            <select class="form-select" name="requestype" id="request">
+                                            <select class="form-select" name="requestype" >
                                               <option selected hidden><%= item.requestype %></option>
                                               <option>Chemotherapy</option>
                                               <option>Zofran</option>
@@ -302,7 +302,7 @@
 
                                           <div class="mb-3">
                                             <label for="oriv" class="form-label">Oral/IV</label>
-                                            <select required class="form-select" id="oriv" name="oraliv" >
+                                            <select required class="form-select" name="oraliv" >
                                               <option selected hidden><%= item.oraliv %></option>
                                               <option>Oral</option>
                                               <option>IV</option>
@@ -312,12 +312,12 @@
 
                                           <div>
                                             <label for="rcomment" class="form-label">Comment</label>
-                                            <input id="rcomment" dir="rtl" class="form-control" type="text" name="roundcomment" value="<%= item.roundcomment %>">
+                                            <input dir="rtl" class="form-control" type="text" name="roundcomment" value="<%= item.roundcomment %>">
                                           </div>
 
-                                          <input hidden name="commentime" type="text" class="form-control" id="commentime" value="" />
+                                          <input hidden name="commentime" type="text" class="form-control" value="" />
 
-                                          <input hidden name="edit" type="text" class="form-control" id="edit" value="edit" />
+                                          <input hidden name="edit" type="text" class="form-control" value="edit" />
                                         </div>
                                         <div class="modal-footer">
                                           <button type="button" class="btn btn-secondary"
@@ -608,6 +608,8 @@
           }
         })
       </script>
+
+
 
 
 

@@ -1,3 +1,4 @@
+
 <nav aria-label="Page navigation" style="position: absolute; top: 95%;
                   left: 50%;
                   transform: translate(-50%, -50%);">
@@ -10,92 +11,92 @@
     <li class="mynumber page-item <% if (num >=0) { %>
                          d-block <% } else { %>
                           d-none
-                        <% } %>"><a class="page-link" href="?page=1">1</a></li>
+                        <% } %> <%= myUrl.search === "?page=1"? "active" : "" %>"><a class="page-link" href="?page=1">1</a></li>
 
     <li class="mynumber page-item <% if (num > 9) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=2">2</a></li>
+                         <% } %> <%= myUrl.search === "?page=2"? "active" : "" %>"><a class="page-link" href="?page=2">2</a></li>
 
-    <li class="mynumber page-item mynumber page-item <% if (num > 18) { %>
+    <li class="mynumber page-item <% if (num > 18) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=3">3</a></li>
+                         <% } %> <%= myUrl.search === "?page=3"? "active" : "" %>"><a class="page-link" href="?page=3">3</a></li>
 
-    <li class="mynumber page-item mynumber page-item <% if (num > 27) { %>
+    <li class="mynumber page-item <% if (num > 27) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=4">4</a></li>
+                         <% } %> <%= myUrl.search === "?page=4"? "active" : "" %>"><a class="page-link" href="?page=4">4</a></li>
 
-    <li class="mynumber page-item mynumber page-item <% if (num > 36) { %>
+    <li class="mynumber page-item <% if (num > 36) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=5">5</a></li>
+                         <% } %> <%= myUrl.search === "?page=5"? "active" : "" %>"><a class="page-link" href="?page=5">5</a></li>
 
-    <li class="mynumber page-item mynumber page-item <% if (num > 45) { %>
+    <li class="mynumber page-item <% if (num > 45) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=6">6</a></li>
+                         <% } %> <%= myUrl.search === "?page=6"? "active" : "" %>"><a class="page-link" href="?page=6">6</a></li>
 
-    <li class="mynumber page-item mynumber page-item <% if (num > 54) { %>
+    <li class="mynumber page-item <% if (num > 54) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=7">7</a></li>
+                         <% } %> <%= myUrl.search === "?page=7"? "active" : "" %>"><a class="page-link" href="?page=7">7</a></li>
 
-    <li class="mynumber page-item mynumber page-item <% if (num > 63) { %>
+    <li class="mynumber page-item <% if (num > 63) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=8">8</a></li>
+                         <% } %> <%= myUrl.search === "?page=8"? "active" : "" %>"><a class="page-link" href="?page=8">8</a></li>
 
-    <li class="mynumber page-item mynumber page-item <% if (num > 72) { %>
+    <li class="mynumber page-item <% if (num > 72) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=9">9</a></li>
+                         <% } %> <%= myUrl.search === "?page=9"? "active" : "" %>"><a class="page-link" href="?page=9">9</a></li>
 
-    <li class="mynumber page-item mynumber page-item <% if (num > 81) { %>
+    <li class="mynumber page-item <% if (num > 81) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=10">10</a></li>
-    <li class="mynumber page-item mynumber page-item <% if (num > 90) { %>
+                         <% } %> <%= myUrl.search === "?page=10"? "active" : "" %>"><a class="page-link" href="?page=10">10</a></li>
+    <li class="mynumber page-item <% if (num > 90) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=11">11</a></li>
-   <li class="mynumber page-item mynumber page-item <% if (num > 99) { %>
+                         <% } %> <%= myUrl.search === "?page=11"? "active" : "" %>"><a class="page-link" href="?page=11">11</a></li>
+   <li class="mynumber page-item <% if (num > 99) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=12">12</a></li>
-    <li class="mynumber page-item mynumber page-item <% if (num > 108) { %>
+                         <% } %> <%= myUrl.search === "?page=12"? "active" : "" %>"><a class="page-link" href="?page=12">12</a></li>
+    <li class="mynumber page-item <% if (num > 108) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=13">13</a></li>
-    <li class="mynumber page-item mynumber page-item <% if (num > 117) { %>
+                         <% } %> <%= myUrl.search === "?page=13"? "active" : "" %>"><a class="page-link" href="?page=13">13</a></li>
+    <li class="mynumber page-item <% if (num > 117) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=14">14</a></li>
-                         <li class="mynumber page-item mynumber page-item <% if (num > 126) { %>
+                         <% } %> <%= myUrl.search === "?page=14"? "active" : "" %>"><a class="page-link" href="?page=14">14</a></li>
+    <li class="mynumber page-item <% if (num > 126) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=15">15</a></li>
-                         <li class="mynumber page-item mynumber page-item <% if (num > 135) { %>
+                         <% } %> <%= myUrl.search === "?page=15"? "active" : "" %>"><a class="page-link" href="?page=15">15</a></li>
+    <li class="mynumber page-item <% if (num > 135) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=16">16</a></li>
-                         <li class="mynumber page-item mynumber page-item <% if (num > 144) { %>
+                         <% } %> <%= myUrl.search === "?page=16"? "active" : "" %>"><a class="page-link" href="?page=16">16</a></li>
+    <li class="mynumber page-item <% if (num > 144) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=17">17</a></li>
-                         <li class="mynumber page-item mynumber page-item <% if (num > 153) { %>
+                         <% } %> <%= myUrl.search === "?page=17"? "active" : "" %>"><a class="page-link" href="?page=17">17</a></li>
+    <li class="mynumber page-item <% if (num > 153) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=18">18</a></li>
-                         <li class="mynumber page-item mynumber page-item <% if (num > 162) { %>
+                         <% } %> <%= myUrl.search === "?page=18"? "active" : "" %>"><a class="page-link" href="?page=18">18</a></li>
+    <li class="mynumber page-item <% if (num > 162) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=19">19</a></li>
-                         <li class="mynumber page-item mynumber page-item <% if (num > 171) { %>
+                         <% } %> <%= myUrl.search === "?page=19"? "active" : "" %>"><a class="page-link" href="?page=19">19</a></li>
+    <li class="mynumber page-item <% if (num > 171) { %>
                           d-block <% } else { %>
                            d-none
-                         <% } %>"><a class="page-link" href="?page=20">20</a></li>
+                         <% } %> <%= myUrl.search === "?page=20"? "active" : "" %>"><a class="page-link" href="?page=20">20</a></li>
 
 
     <li class="page-item">
@@ -105,3 +106,26 @@
     </li>
   </ul>
 </nav>
+
+<script>
+  const mynumber = document.querySelectorAll(".mynumber")
+  console.log(mynumber)
+  mynumber.forEach(item => {
+    item.addEventListener("click", (eo) => {
+      console.log("helloo");
+      eo.target.parentElement.getElementsByClassName('active').classList.remove('active');
+      console.log(eo.target.parentElement.getElementsByClassName('active').classList.remove('active'));
+      eo.target.classList.add('active');
+    })
+  });
+
+  // mynumber.forEach((item) => {
+  //   item.addEventListener("click", (e) => {
+  //     console.log("hellooo");
+  //   e.target.parentElement.getElementsByClassName('active').classList.remove('active');
+  //   console.log(e.target.parentElement.getElementsByClassName('active').classList.remove('active'));
+  //   e.target.classList.add('active');
+      
+  //   })
+  // })
+</script>

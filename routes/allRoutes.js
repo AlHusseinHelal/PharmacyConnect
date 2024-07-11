@@ -18,6 +18,11 @@ const { check, validationResult } = require("express-validator");
 const cloudinary = require("cloudinary").v2;
 //TO EXCELL FILE
 const xlsx = require("xlsx");
+//URL
+const url = require('node:url');
+
+
+
 
 // 'markdownString' would be the markdown field read from mongodb
 // const replacedWithSingleEscape = markdownString.replace(/\\n/g, "\n");
@@ -496,8 +501,12 @@ router.get(
     }).countDocuments();
     const limit = req.query.limit * 1 || 9;
     const page = req.query.page * 1 || Math.ceil(num / limit);
-    const sk = (page - 1) * limit
+    const pageNumber = (req.query.page === null) ? 1 : req.query.page
+    const sk = (pageNumber - 1) * limit
     const skip = Math.abs(sk)
+    
+    console.log(pageNumber)
+
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
     const { firstname } = user;
@@ -515,8 +524,13 @@ router.get(
       .skip(skip)
       .limit(limit);
 
+      const myUrl = `${req.url}?page=1`
+      // const path = myUrl.toString()
+      
+
     if (results) {
-      res.render("Inpatient/inpatient3",  {
+      res.render("Inpatient/inpatient3.ejs", {
+
         inpatientarray: results,
         moment: moment,
         page,
@@ -525,7 +539,7 @@ router.get(
         firstname,
         lastname,
         num,
-        toxicity
+        toxicity,pageNumber
       });
     }
   })
@@ -1664,6 +1678,8 @@ router.get(
     })
       .skip(skip)
       .limit(limit);
+      
+    
 
     if (results) {
       res.render("IvPrep/ivprepin", {
@@ -2969,9 +2985,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email" });
-    // }
+    if (!email.includes("57357.org")) {
+      return res.json({ invalidemail: "Invalid Email" });
+    }
 
     const newUser = await User.create(req.body);
     const token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
@@ -5613,7 +5629,7 @@ router.post(
 router.delete("/delete/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndDelete(req.params.id)
     .then((result) => {
-      res.redirect("/inpatient3");
+      res.redirect(req.get('referer'));
     })
     .catch((err) => {
       console.log(err);
@@ -5624,7 +5640,7 @@ router.delete("/delete/:id", checkIfUser, requireAuth, (req, res) => {
 router.delete("/deleteicu/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndDelete(req.params.id)
     .then((result) => {
-      res.redirect("/icu");
+      res.redirect(req.get('referer'));
     })
     .catch((err) => {
       console.log(err);
@@ -5635,7 +5651,7 @@ router.delete("/deleteicu/:id", checkIfUser, requireAuth, (req, res) => {
 router.delete("/deleteicc/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndDelete(req.params.id)
     .then((result) => {
-      res.redirect("/icc");
+      res.redirect(req.get('referer'));
     })
     .catch((err) => {
       console.log(err);
@@ -5646,7 +5662,7 @@ router.delete("/deleteicc/:id", checkIfUser, requireAuth, (req, res) => {
 router.delete("/delete6th/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndDelete(req.params.id)
     .then((result) => {
-      res.redirect("/6th");
+      res.redirect(req.get('referer'));
     })
     .catch((err) => {
       console.log(err);
@@ -5657,7 +5673,7 @@ router.delete("/delete6th/:id", checkIfUser, requireAuth, (req, res) => {
 router.delete("/delete5th/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndDelete(req.params.id)
     .then((result) => {
-      res.redirect("/5th");
+      res.redirect(req.get('referer'));
     })
     .catch((err) => {
       console.log(err);
@@ -5668,7 +5684,7 @@ router.delete("/delete5th/:id", checkIfUser, requireAuth, (req, res) => {
 router.delete("/delete4th/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndDelete(req.params.id)
     .then((result) => {
-      res.redirect("/4th");
+      res.redirect(req.get('referer'));
     })
     .catch((err) => {
       console.log(err);
@@ -5679,7 +5695,7 @@ router.delete("/delete4th/:id", checkIfUser, requireAuth, (req, res) => {
 router.delete("/delete3rdo/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndDelete(req.params.id)
     .then((result) => {
-      res.redirect("/3rdo");
+      res.redirect(req.get('referer'));
     })
     .catch((err) => {
       console.log(err);
@@ -5690,7 +5706,7 @@ router.delete("/delete3rdo/:id", checkIfUser, requireAuth, (req, res) => {
 router.delete("/delete3rdn/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndDelete(req.params.id)
     .then((result) => {
-      res.redirect("/3rdn");
+      res.redirect(req.get('referer'));
     })
     .catch((err) => {
       console.log(err);
@@ -5701,7 +5717,7 @@ router.delete("/delete3rdn/:id", checkIfUser, requireAuth, (req, res) => {
 router.delete("/deleteout/:id", checkIfUser, requireAuth, (req, res) => {
   Outpatient.findByIdAndDelete(req.params.id)
     .then((result) => {
-      res.redirect("/outpatient3");
+      res.redirect(req.get('referer'));
     })
     .catch((err) => {
       console.log(err);
@@ -5712,7 +5728,7 @@ router.delete("/deleteout/:id", checkIfUser, requireAuth, (req, res) => {
 router.delete("/deletedis/:id", checkIfUser, requireAuth, (req, res) => {
   Dispenseschema.findByIdAndDelete(req.params.id)
     .then((result) => {
-      res.redirect("/dispense3");
+      res.redirect(req.get('referer'));
     })
     .catch((err) => {
       console.log(err);
@@ -5731,7 +5747,7 @@ router.delete(
       { $pull: { todolist: { _id: req.params.id } } }
     );
     if (deltodolist) {
-      res.redirect("/todolist");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -5748,7 +5764,7 @@ router.delete(
       { $pull: { watchsender: { _id: req.params.id } } }
     );
     if (deltodolist) {
-      res.redirect("/watch");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -5765,7 +5781,7 @@ router.delete(
       { $pull: { watchreceiver: { _id: req.params.id } } }
     );
     if (deltodolist) {
-      res.redirect("/receiver");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -5782,7 +5798,7 @@ router.delete(
       { $pull: { dicsender: { _id: req.params.id } } }
     );
     if (deldic) {
-      res.redirect("/dicsender");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -5795,7 +5811,7 @@ router.delete(
   asyncHandler(async (req, res) => {
     const deldic = await User.findByIdAndDelete({ _id: req.params.id });
     if (deldic) {
-      res.redirect("/admin");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -5808,7 +5824,7 @@ router.delete(
   asyncHandler(async (req, res) => {
     const deldic = await PyxisTrade.findByIdAndDelete({ _id: req.params.id });
     if (deldic) {
-      res.redirect("/pyxismed");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -5817,7 +5833,7 @@ router.delete(
 router.delete("/deletedisp/:id", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
 const result = await  Dispenseschema.findByIdAndDelete(req.params.id)
   if (result) {
-    res.redirect("/dispense3")
+    res.redirect(req.get('referer'));
   }
 }) );
 
@@ -5825,7 +5841,7 @@ const result = await  Dispenseschema.findByIdAndDelete(req.params.id)
 router.delete("/deletenurse/:id", checkIfUser, requireAuth, (req, res) => {
   Inpatientschema.findByIdAndDelete(req.params.id)
     .then((result) => {
-      res.redirect("/nurse");
+      res.redirect(req.get('referer'));
     })
     .catch((err) => {
       console.log(err);
@@ -5845,7 +5861,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/inpatient3");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -5862,7 +5878,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/3rdN");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -5879,7 +5895,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/3rdnnotdone");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -5896,7 +5912,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/3rdO");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -5913,7 +5929,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/3rdonotdone");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -5930,7 +5946,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/4th");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -5947,7 +5963,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/4thnotdone");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -5964,7 +5980,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/5th");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -5981,7 +5997,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/5thnotdone");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -5998,7 +6014,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/BMT");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6015,7 +6031,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/bmtnotdone");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6032,7 +6048,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/ICC");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6049,7 +6065,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/iccnotdone");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6066,7 +6082,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/ICU");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6083,7 +6099,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/icunotdone");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6100,7 +6116,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/or");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6117,7 +6133,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/ornotdone");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6134,7 +6150,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/surgical");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6151,7 +6167,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/surgicalnotdone");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6166,13 +6182,10 @@ router.put(
   requireAuth,
   asyncHandler(async (req, res) => {
     req.body.commentime2 = moment()
-    await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
-      .then(() => {
-        res.redirect("/prepin");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const result = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+    if (result) {
+      res.redirect(req.get('referer'));
+    }
   })
 );
 
@@ -6181,7 +6194,7 @@ router.put("/doneed/:id", checkIfUser, requireAuth, asyncHandler(async (req, res
 req.body.commentime2 = moment()
   const results = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
   if(results)  {
-    res.redirect("/ed");
+    res.redirect(req.get('referer')); 
   }
 }) );
 
@@ -6190,7 +6203,7 @@ router.put("/donebmt/:id", checkIfUser, requireAuth, asyncHandler(async (req, re
   req.body.commentime2 = moment()
     const results = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
     if(results)  {
-      res.redirect("/bmtview");
+      res.redirect(req.get('referer'));
     }
   }) );
 
@@ -6203,7 +6216,7 @@ router.put(
     req.body.commentime2 = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/prepin");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6220,7 +6233,7 @@ router.put(
     req.body.commentime2 = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/prepin");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6233,7 +6246,7 @@ router.put("/inedited/:id", checkIfUser, requireAuth, asyncHandler( async (req, 
   req.body.commentime2 = moment()
   const result = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
   if(result)  {
-    res.redirect("/ed");
+    res.redirect(req.get('referer'));
   }
   
 }) );
@@ -6243,7 +6256,7 @@ router.put("/ineditedbmt/:id", checkIfUser, requireAuth, asyncHandler( async (re
   req.body.commentime2 = moment()
   const result = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
   if(result)  {
-    res.redirect("/bmtview");
+    res.redirect(req.get('referer'));
   }
   
 }) );
@@ -6257,7 +6270,7 @@ router.put(
     req.body.commentime2 = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/doneview");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6273,7 +6286,7 @@ router.put(
   asyncHandler(async (req, res) => {
     const results = await Outpatient.findByIdAndUpdate(req.params.id, req.body);
     if (results) {
-      res.redirect("/prepout");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -6286,7 +6299,7 @@ router.put(
   asyncHandler(async (req, res) => {
     await Outpatient.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/doneviewout");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6302,7 +6315,7 @@ router.put(
   asyncHandler(async (req, res) => {
     const results = await Outpatient.findByIdAndUpdate(req.params.id, req.body);
     if (results) {
-      res.redirect("/prepout");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -6311,7 +6324,7 @@ router.put(
 router.put("/outedited/:id", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
 const results = await  Outpatient.findByIdAndUpdate(req.params.id, req.body)
     if (results) {
-      res.redirect("/edout"); 
+      res.redirect(req.get('referer'));
     }
 }) );
 
@@ -6319,7 +6332,7 @@ const results = await  Outpatient.findByIdAndUpdate(req.params.id, req.body)
 router.put("/doneedout/:id", checkIfUser, requireAuth, asyncHandler(async (req, res) => {
   const results = await Outpatient.findByIdAndUpdate(req.params.id, req.body)
   if(results)  {
-    res.redirect("/edout");
+    res.redirect(req.get('referer'));
   }
 }) );
 
@@ -6332,7 +6345,7 @@ router.put(
     req.body.commentime2 = moment()
     await Dispenseschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/prepdis");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6349,7 +6362,7 @@ router.put(
     req.body.commentime2 = moment()
     await Dispenseschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/ivprepdispensedoneview");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6366,7 +6379,7 @@ router.put(
     req.body.commentime2 = moment()
     await Dispenseschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/prepdis");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6382,7 +6395,7 @@ router.put(
   asyncHandler(async (req, res) => {
     const results = await Dispenseschema.findByIdAndUpdate(req.params.id, req.body);
     if (results) {
-      res.redirect("/dispenseprepsearch");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -6396,7 +6409,7 @@ router.put(
     req.body.commentime = moment()
     await Dispenseschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/dispense3");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6416,7 +6429,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/dispin");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -6426,7 +6439,7 @@ router.put("/dispinedited/:id", checkIfUser, requireAuth, asyncHandler( async (r
   req.body.commentime2 = moment() 
   const result = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
   if (result) {
-    res.redirect("/edindispense")
+    res.redirect(req.get('referer'));
   }
 }) );
 
@@ -6435,7 +6448,7 @@ router.put("/dispineditdischarge/:id", checkIfUser, requireAuth, asyncHandler( a
   req.body.commentime2 = moment()
   const result = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
   if (result) {
-    res.redirect("/dischargeindispense")
+    res.redirect(req.get('referer'));
   }
 }) );
 
@@ -6448,26 +6461,18 @@ router.put(
     req.body.commentime2 = moment()
     const results = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
     if (results) {
-      res.redirect("/dispensedoneviewin")
+      res.redirect(req.get('referer'));
     }
   })
 );
 
 // Dispense OUTPATIENT / EDIT
-router.put("/dispoutedit/:id", checkIfUser, requireAuth, (req, res) => {
-  Outpatient.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      Outpatient.find({ oraliv: "Oral" }).then((result) => {
-        res.render("Dispense/dispense3out", {
-          dispensearray: result,
-          moment: moment,
-        });
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.put("/dispoutedit/:id", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  const result = await Outpatient.findByIdAndUpdate(req.params.id, req.body)
+  if (result) {
+    res.redirect(req.get('referer'));
+  }
+}) );
 
 // DISPENSE INPATIENT / DONE
 router.put(
@@ -6481,7 +6486,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/dispin");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -6491,45 +6496,25 @@ router.put("/donedisined/:id", checkIfUser, requireAuth, asyncHandler( async (re
   req.body.commentime2 = moment()
   const result = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
   if (result) {
-    res.redirect("/edindispense")
+    res.redirect(req.get('referer'));
   }
 }) );
 
 // DISPENSE INPATIENT DISCHARGE / DONE
-router.put("/donedisindischarge/:id", checkIfUser, requireAuth, (req, res) => {
-  Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      Inpatientschema.find({
-        oraliv: "Oral",
-        requestype: "DisCharge Medication",
-        prepcomment: "",
-      }).then((result) => {
-        res.render("Dispense/dischargeindispense", {
-          dispensearray: result,
-          moment: moment,
-        });
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.put("/donedisindischarge/:id", checkIfUser, requireAuth, asyncHandler(async(req, res) => {
+  const result = await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
+  if (result) {
+    res.redirect(req.get('referer'));
+  }
+}) );
 
 // DISPENSE OUTPATIENT / DONE
-router.put("/donedisout/:id", checkIfUser, requireAuth, (req, res) => {
-  Outpatient.findByIdAndUpdate(req.params.id, req.body)
-    .then(() => {
-      Outpatient.find({ oraliv: "Oral" }).then((result) => {
-        res.render("Dispense/dispense3out", {
-          dispensearray: result,
-          moment: moment,
-        });
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
+router.put("/donedisout/:id", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  const result = await Outpatient.findByIdAndUpdate(req.params.id, req.body)
+  if (result) {
+    res.redirect(req.get('referer'));
+  }
+}) );
 
 // Dispense PYXIS / EDIT
 router.put(
@@ -6543,7 +6528,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/pyxisview");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -6560,7 +6545,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/pyxisrefill");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -6577,7 +6562,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/pyxisproductassgin");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -6594,7 +6579,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/pyxisdoneview");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -6611,7 +6596,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/pyxisview");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -6627,7 +6612,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/pyxisrefill");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -6644,7 +6629,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/pyxisproductassgin");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -6660,7 +6645,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/pyxisdoneview");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -6671,13 +6656,10 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    await Labschema.findByIdAndUpdate(req.params.id, req.body)
-      .then(() => {
-        res.redirect("/Lab");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const result =   await Labschema.findByIdAndUpdate(req.params.id, req.body)
+  if (result) {
+    res.redirect(req.get('referer'));
+  }
   })
 );
 
@@ -6690,7 +6672,7 @@ router.put(
     req.body.time = moment()
     await Labtoxicityschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/labtoxicityview");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6706,7 +6688,7 @@ router.put(
   asyncHandler(async (req, res) => {
     await Labschema.findByIdAndUpdate(req.params.id, {active : false})
       .then(() => {
-        res.redirect("/lab");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6722,7 +6704,7 @@ router.put(
   asyncHandler(async (req, res) => {
     await Labschema.findByIdAndUpdate(req.params.id, {labcomment : req.body.labcomment})
       .then(() => {
-        res.redirect("/labreceivedview");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -6743,7 +6725,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/inpatient3");
+      res.redirect(req.get('referer'));
     }
   }
 );
@@ -6761,7 +6743,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/ICU");
+      res.redirect(req.get('referer'));
     }
   }
 );
@@ -6779,7 +6761,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/ICC");
+      res.redirect(req.get('referer'));
     }
   }
 );
@@ -6797,7 +6779,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/BMT");
+      res.redirect(req.get('referer'));
     }
   }
 );
@@ -6815,7 +6797,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/5th");
+      res.redirect(req.get('referer'));
     }
   }
 );
@@ -6833,7 +6815,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/4th");
+      res.redirect(req.get('referer'));
     }
   }
 );
@@ -6851,7 +6833,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/3rdO");
+      res.redirect(req.get('referer'));
     }
   }
 );
@@ -6869,7 +6851,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/3rdN");
+      res.redirect(req.get('referer'));
     }
   }
 );
@@ -6884,7 +6866,7 @@ router.put(
   async (req, res) => {
     const results = await Outpatient.findByIdAndUpdate(req.params.id, req.body);
     if (results) {
-      res.redirect("/outpatient3");
+      res.redirect(req.get('referer'));
     }
   }
 );
@@ -6902,7 +6884,7 @@ router.put(
       req.body
     );
     if (results) {
-      res.redirect("/dispense3");
+      res.redirect(req.get('referer'));
     }
   }
 );
@@ -7027,7 +7009,7 @@ router.put(
     );
 
     if (results) {
-      res.redirect("/todolist");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -7084,7 +7066,7 @@ router.put(
     );
 
     if (results) {
-      res.redirect("/watch");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -7120,7 +7102,7 @@ router.put(
     );
 
     if (results) {
-      res.redirect("/receiver");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -7312,7 +7294,7 @@ router.put(
     );
 
     if (results) {
-      res.redirect("/admin");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -7329,7 +7311,7 @@ router.put(
     );
 
     if (results) {
-      res.redirect("/pyxismed");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -7343,7 +7325,7 @@ router.put(
     const results = await PyxisTrade.findByIdAndUpdate(req.params.id, req.body);
 
     if (results) {
-      res.redirect("/pyxismed");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -7359,7 +7341,7 @@ router.put(
     });
 
     if (scoreUpdate) {
-      res.redirect("/admin");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -7375,7 +7357,7 @@ router.put(
     });
 
     if (lockUser) {
-      res.redirect("/admin");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -7391,7 +7373,7 @@ router.put(
     });
 
     if (unlockUser) {
-      res.redirect("/admin");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -7409,7 +7391,7 @@ router.put(
     );
 
     if (results) {
-    res.redirect("/dic")
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -7424,7 +7406,7 @@ router.put(
     req.body.edit = "DONE"
     await Labtoxicityschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/labtoxixity");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
@@ -7441,7 +7423,7 @@ router.put(
     req.body.commentime = moment()
     await Inpatientschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
-        res.redirect("/nurse");
+        res.redirect(req.get('referer'));
       })
       .catch((err) => {
         console.log(err);
