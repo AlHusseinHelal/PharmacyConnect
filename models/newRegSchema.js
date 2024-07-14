@@ -633,7 +633,7 @@ user.post("init", (doc) => {
     doc.profileimage !== "/img/Avatar/Untitled-1-53.png" &&
     doc.profileimage !== "/img/Avatar/Untitled-1-60.png"
   ) {
-    const profileimageUrl = `http://localhost:7777/ProfileImage/${doc.profileimage}`;
+    const profileimageUrl = `http://localhost:7777/uploads/ProfileImage/${doc.profileimage}`;
     doc.profileimage = profileimageUrl;
   }
 });
