@@ -635,6 +635,7 @@ user.post("init", (doc) => {
   ) {
     const profileimageUrl = `http://localhost:7777/ProfileImage/${doc.profileimage}`;
     doc.profileimage = profileimageUrl;
+  
   }
 });
 

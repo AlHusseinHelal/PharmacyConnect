@@ -3189,9 +3189,9 @@ router.post(
 // CHANGE IMAGE POST REQUEST
 router.post(
   "/updateavatar",
-  // uploadSingleImage("updateprofile"),
-upload.single("updateprofile"),
-  // profileimage,
+  uploadSingleImage("updateprofile"),
+// upload.single("updateprofile"),
+  profileimage,
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
@@ -3199,7 +3199,8 @@ upload.single("updateprofile"),
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
-      { profileimage: req.file.filename }
+      // { profileimage: req.file.filename }
+      { profileimage: req.body.updateprofile }
     );
     if (results) {
       res.redirect(req.get('referer'));
