@@ -7,6 +7,7 @@ const sharp = require("sharp");
 const asyncHandler = require("express-async-handler");
 //MULTER
 const multer = require("multer");
+
 //URL
 const url = require('node:url');
 //ERROR HANDILING
@@ -67,7 +68,19 @@ const globalError = (err, req, res, next) => {
 //MULTER UPLOAD IMAGE
 const uploadSingleImage = (fileName) => {
   //MULTER MEMORYSTORAGE
-  const multerStorage = multer.memoryStorage();
+  // const multerStorage = multer.memoryStorage();
+
+  //MULTER DISKSTORAGE
+const multerStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/ProfileImage");
+  },
+  filename: function (req, file, cb) {
+    const ext = file.mimetype.split("/")[1];
+    const filename = `user-${uuidv4()}-${Date.now()}.${ext} `;
+    cb(null, filename);
+  },
+})
 
   //UPLOAD IMAGE ONLY
   const multerFilter = function (req, file, cb) {

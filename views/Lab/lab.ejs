@@ -199,11 +199,17 @@
                     <label for="mrn">MRN</label>
                     <input class="form-control my-2" type="text" name="mrn" id="mrn">
 
-                      <div id="mrnempty" class=" d-flex flex-row align-items-center my-2 d-none"
+                      <div id="mrnnotnumber" class=" d-flex flex-row align-items-center my-2 d-none"
                         style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
                         <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
                         <p class="my-1 ms-1">Please Enter Avalid MRN</p>
                       </div>
+
+                      <div id="mrnlabempty" class=" d-flex flex-row align-items-center my-2 d-none"
+                      style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+                      <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                      <p class="my-1 ms-1">You Must Enter This Field</p>
+                    </div>
 
                       <div id="labnopatient" class=" d-flex flex-row align-items-center my-2 d-none"
                         style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
@@ -516,14 +522,7 @@
             const data = await res.json();
             if (data.errors) {
               data.errors.forEach(item => {
-                if (item.path == "mrn") {
-                  mrnempty.classList.remove("d-none");
-                  mrn.classList.add("redframe");
-                } else {
-                  mrnempty.classList.add("d-none");
-                  mrn.classList.remove("redframe");
-                }
-
+                
                 if (item.path == "drugname") {
                   drugnamempty.classList.remove("d-none");
                   drugname.classList.add("redframe");
@@ -550,7 +549,22 @@
               });
             }
 
-        
+            if (data.mrnlabempty) {
+              mrnlabempty.classList.remove("d-none");
+              mrn.classList.add("redframe");
+            } else {
+              mrnlabempty.classList.add("d-none");
+              mrn.classList.remove("redframe");
+            }
+
+            if (data.mrnnotnumber) {
+              mrnnotnumber.classList.remove("d-none");
+              mrn.classList.add("redframe");
+            } else {
+              mrnnotnumber.classList.add("d-none");
+              mrn.classList.remove("redframe");
+            }
+
             if (data.nopatient) {
               labnopatient.classList.remove("d-none");
               mrn.classList.add("redframe");

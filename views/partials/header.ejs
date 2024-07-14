@@ -1,3 +1,112 @@
+<style>
+  h1 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+  font-size: 30px;
+}
+
+.carousel-inner {
+  height: 250px;
+  width: 250px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid gray;
+}
+
+.img {
+  height: 250px;
+  width: 250px;
+}
+
+input {
+  display: none;
+}
+
+.btn1,
+.btn2,
+.btn3,
+.btn4,
+.btn5,
+.btn6,
+.btn7,
+.btn8,
+.btn9,
+.btn10,
+.btn11,
+.btn12,
+.btn13,
+.btn14,
+.btn15,
+.btn16,
+.btn17,
+.btn18,
+.btn19,
+.btn20,
+.btn21,
+.btn22,
+.btn23,
+.btn24,
+.btn25,
+.btn26,
+.btn27,
+.btn28,
+.btn29,
+.btn30,
+.btn31,
+.btn32,
+.btn33,
+.btn34,
+.btn35,
+.btn36,
+.btn37,
+.btn38,
+.btn39,
+.btn40,
+.btn41,
+.btn42,
+.btn43,
+.btn44,
+.btn45,
+.btn46,
+.btn47,
+.btn48,
+.btn49,
+.btn50,
+.btn51,
+.btn52,
+.btn53 {
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  background: black;
+  color: wheat;
+  line-height: 30px;
+  font-family: sans-serif;
+  font-size: 15px;
+  cursor: pointer;
+  /* display: none; */
+  transition: all 1s;
+  opacity: 0;
+
+}
+
+
+.carousel-control-next {
+  right: -25px;
+}
+
+.carousel-control-prev {
+  left: -25px;
+}
+</style>
 <header id="header">
   <div class="container d-flex align-items-center justify-content-around">
     <div class="container d-flex align-items-center justify-content-around">
@@ -117,14 +226,20 @@
         <a href="" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
           data-bs-toggle="dropdown" aria-expanded="false">
           <img src="<%= user.profileimage? user.profileimage :
-        "/img/Avatar/Untitled-0-05.png" %>" alt="" width="32" height="32" class="rounded-circle me-2" />
+        "/img/Avatar/Untitled-0-60.png" %>" alt="" width="32" height="32" class="rounded-circle me-2" />
           <strong>
             <%= user.firstname %>
           </strong>
         </a>
         <ul class="dropdown-menu text-small shadow">
           <li>
-            <a data-bs-toggle="modal" data-bs-target="#exampleModa2" class="dropdown-item" href="/signout">Profile
+            <a data-bs-toggle="modal" data-bs-target="#exampleModa4" class="dropdown-item" href="">Change Avatar</a>
+          </li>
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li>
+            <a data-bs-toggle="modal" data-bs-target="#exampleModa2" class="dropdown-item" href="">Profile
               Image</a>
           </li>
           <li>
@@ -144,6 +259,573 @@
           <li><a class="dropdown-item" href="/signout">Sign out</a></li>
         </ul>
       </div>
+      <!-- Modal Change Avatar -->
+      
+        <div class="connectmodal modal fade" id="exampleModa4" tabindex="-1" aria-labelledby="exampleModalLabel">
+          <div class="glass modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Avatar
+                </h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+
+              <div class="d-flex flex-column align-items-center my-2" style="height: 250px;">
+                
+            
+                
+                <div id="carouselExample" class="carousel slide text-center mt-5" style="width: 150px; height: 150px">
+                  <div class="carousel-inner">
+            
+                    <form  action="/avatar1" method="post" enctype="multipart/form-data">
+                      <div class="carousel-item active" style="position: relative">
+                        <input name="inputprofile" id="in1" type="file"  />
+                        <img src="/img/Avatar/Untitled-1-1.png" class="d-block img" alt="..." />
+                        <label class="mt-3" for="in1"><button type="submit" class="btn1 btn btn-outline-primary">
+                            Select
+                          </button></label>
+                      </div>
+                  </form>
+            
+                  <form  action="/avatar2" method="post" enctype="multipart/form-data">
+                    <div class="carousel-item">
+                      <input name="inputprofile" id="in2" type="file" />
+                      <img src="/img/Avatar/Untitled-1-2.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in2"><button class="btn2 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar3" method="post" enctype="multipart/form-data">
+                    <div  class="carousel-item">
+                      <input id="in3" name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-3.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in3"><button class="btn3 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar4" method="post" enctype="multipart/form-data">
+                    <div  class="carousel-item">
+                      <input id="in4" name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-4.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in4"><button class="btn4 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar5" method="post" enctype="multipart/form-data">
+                    <div  class="carousel-item">
+                      <input id="in5" name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-5.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in5"><button class="btn5 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar6" method="post" enctype="multipart/form-data">
+                    <div id="in6" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-6.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in6"><button class="btn6 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar7" method="post" enctype="multipart/form-data">
+                    <div id="in7" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-7.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in7"><button class="btn7 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar8" method="post" enctype="multipart/form-data">
+                    <div id="in8" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-8.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in8"><button class="btn8 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar9" method="post" enctype="multipart/form-data">
+                    <div id="in9" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-9.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in9"><button class="btn9 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar10" method="post" enctype="multipart/form-data">
+                    <div id="in10" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-10.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in10"><button class="btn10 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar11" method="post" enctype="multipart/form-data">
+                    <div id="in11" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-11.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in11"><button class="btn11 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar12" method="post" enctype="multipart/form-data">
+                    <div id="in12" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-12.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in12"><button class="btn12 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar13" method="post" enctype="multipart/form-data">
+                    <div id="in13" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-13.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in13"><button class="btn13 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar14" method="post" enctype="multipart/form-data">
+                    <div id="in14" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-14.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in14"><button class="btn14 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar15" method="post" enctype="multipart/form-data">
+                    <div id="in15" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-15.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in15"><button class="btn15 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar16" method="post" enctype="multipart/form-data">
+                    <div id="in16" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-16.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in16"><button class="btn16 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar17" method="post" enctype="multipart/form-data">
+                    <div id="in17" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-17.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in17"><button class="btn17 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar18" method="post" enctype="multipart/form-data">
+                    <div id="in18" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-18.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in18"><button class="btn18 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar19" method="post" enctype="multipart/form-data">
+                    <div id="in19" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-19.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in19"><button class="btn19 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar20" method="post" enctype="multipart/form-data">
+                    <div id="in20" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-20.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in20"><button class="btn20 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar21" method="post" enctype="multipart/form-data">
+                    <div id="in21" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-21.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in21"><button class="btn21 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar22" method="post" enctype="multipart/form-data">
+                    <div id="in22" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-22.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in22"><button class="btn22 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar23" method="post" enctype="multipart/form-data">
+                    <div id="in23" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-23.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in23"><button class="btn23 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar24" method="post" enctype="multipart/form-data">
+                    <div id="in24" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-24.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in24"><button class="btn24 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar25" method="post" enctype="multipart/form-data">
+                    <div id="in25" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-25.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in25"><button class="btn25 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar26" method="post" enctype="multipart/form-data">
+                    <div id="in26" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-26.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in26"><button class="btn26 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar27" method="post" enctype="multipart/form-data">
+                    <div id="in27" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-27.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in27"><button class="btn27 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+              
+                  <form  action="/avatar28" method="post" enctype="multipart/form-data">
+                    <div id="in28" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-28.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in28"><button class="btn28 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar29" method="post" enctype="multipart/form-data">
+                    <div id="in29" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-29.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in29"><button class="btn29 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar30" method="post" enctype="multipart/form-data">
+                    <div id="in30" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-30.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in30"><button class="btn30 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar31" method="post" enctype="multipart/form-data">
+                    <div id="in31" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-31.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in31"><button class="btn31 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar32" method="post" enctype="multipart/form-data">
+                    <div id="in32" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-32.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in32"><button class="btn32 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar33" method="post" enctype="multipart/form-data">
+                    <div id="in33" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-33.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in33"><button class="btn33 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar34" method="post" enctype="multipart/form-data">
+                    <div id="in34" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-34.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in34"><button class="btn34 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar35" method="post" enctype="multipart/form-data">
+                    <div id="in35" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-35.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in35"><button class="btn35 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar36" method="post" enctype="multipart/form-data">
+                    <div id="in36" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-36.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in36"><button class="btn36 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar37" method="post" enctype="multipart/form-data">
+                    <div id="in37" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-37.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in37"><button class="btn37 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar38" method="post" enctype="multipart/form-data">
+                    <div id="in38" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-38.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in38"><button class="btn38 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar39" method="post" enctype="multipart/form-data">
+                    <div id="in39" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-39.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in39"><button class="btn39 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar40" method="post" enctype="multipart/form-data">
+                    <div id="in40" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-40.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in40"><button class="btn40 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar41" method="post" enctype="multipart/form-data">
+                    <div id="in41" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-41.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in41"><button class="btn41 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar42" method="post" enctype="multipart/form-data">
+                    <div id="in42" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-42.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in42"><button class="btn42 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar43" method="post" enctype="multipart/form-data">
+                    <div id="in43" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-43.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in43"><button class="btn43 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar44" method="post" enctype="multipart/form-data">
+                    <div id="in44" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-44.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in44"><button class="btn44 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar45" method="post" enctype="multipart/form-data">
+                    <div id="in45" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-45.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in45"><button class="btn45 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar46" method="post" enctype="multipart/form-data">
+                    <div id="in46" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-46.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in46"><button class="btn46 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar47" method="post" enctype="multipart/form-data">
+                    <div id="in47" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-47.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in47"><button class="btn47 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar48" method="post" enctype="multipart/form-data">
+                    <div id="in48" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-48.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in48"><button class="btn48 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar49" method="post" enctype="multipart/form-data">
+                    <div id="in49" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-49.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in49"><button class="btn49 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar50" method="post" enctype="multipart/form-data">
+                    <div id="in50" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-50.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in50"><button class="btn50 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar51" method="post" enctype="multipart/form-data">
+                    <div id="in51" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-51.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in51"><button class="btn51 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar52" method="post" enctype="multipart/form-data">
+                    <div id="in52" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-52.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in52"><button class="btn52 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  <form  action="/avatar53" method="post" enctype="multipart/form-data">
+                    <div id="in53" class="carousel-item">
+                      <input name="inputprofile" type="file" />
+                      <img src="/img/Avatar/Untitled-1-53.png" class="d-block img" alt="..." />
+                      <label class="mt-3" type="submit" for="in53"><button class="btn53 btn btn-outline-primary">
+                          Select
+                        </button></label>
+                    </div>
+                  </form>
+            
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
+            
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      
       <!-- Modal Change Profile Image -->
       <form action="/updateavatar" method="post" enctype="multipart/form-data">
         <div class="connectmodal modal fade" id="exampleModa2" tabindex="-1" aria-labelledby="exampleModalLabel">
@@ -225,6 +907,8 @@
       </div>
 
     </div>
+
+
     <script>
       const headerattach = document.querySelector("#headerattach");
       const headerimgsrc = document.querySelector("#headerimgsrc");
@@ -270,6 +954,178 @@
           location.assign("/")
         }
       })
+    </script>
+
+
+<!-- AVATAR -->
+    <script>
+      const btn1 = document.querySelector(".btn1")
+const btn2 = document.querySelector(".btn2")
+const btn3 = document.querySelector(".btn3")
+const btn4 = document.querySelector(".btn4")
+const btn5 = document.querySelector(".btn5")
+const btn6 = document.querySelector(".btn6")
+const btn7 = document.querySelector(".btn7")
+const btn8 = document.querySelector(".btn8")
+const btn9 = document.querySelector(".btn9")
+const btn10 = document.querySelector(".btn10")
+const btn11 = document.querySelector(".btn11")
+const btn12 = document.querySelector(".btn12")
+const btn13 = document.querySelector(".btn13")
+const btn14 = document.querySelector(".btn14")
+const btn15 = document.querySelector(".btn15")
+const btn16 = document.querySelector(".btn16")
+const btn17 = document.querySelector(".btn17")
+const btn18 = document.querySelector(".btn18")
+const btn19 = document.querySelector(".btn19")
+const btn20 = document.querySelector(".btn20")
+const btn21 = document.querySelector(".btn21")
+const btn22 = document.querySelector(".btn22")
+const btn23 = document.querySelector(".btn23")
+const btn24 = document.querySelector(".btn24")
+const btn25 = document.querySelector(".btn25")
+const btn26 = document.querySelector(".btn26")
+const btn27 = document.querySelector(".btn27")
+const btn28 = document.querySelector(".btn28")
+const btn29 = document.querySelector(".btn29")
+const btn30 = document.querySelector(".btn30")
+const btn31 = document.querySelector(".btn31")
+const btn32 = document.querySelector(".btn32")
+const btn33 = document.querySelector(".btn33")
+const btn34 = document.querySelector(".btn34")
+const btn35 = document.querySelector(".btn35")
+const btn36 = document.querySelector(".btn36")
+const btn37 = document.querySelector(".btn37")
+const btn38 = document.querySelector(".btn38")
+const btn39 = document.querySelector(".btn39")
+const btn40 = document.querySelector(".btn40")
+const btn41 = document.querySelector(".btn41")
+const btn42 = document.querySelector(".btn42")
+const btn43 = document.querySelector(".btn43")
+const btn44 = document.querySelector(".btn44")
+const btn45 = document.querySelector(".btn45")
+const btn46 = document.querySelector(".btn46")
+const btn47 = document.querySelector(".btn47")
+const btn48 = document.querySelector(".btn48")
+const btn49 = document.querySelector(".btn49")
+const btn50 = document.querySelector(".btn50")
+const btn51 = document.querySelector(".btn51")
+const btn52 = document.querySelector(".btn52")
+const btn53 = document.querySelector(".btn53")
+const carouselExample = document.getElementById("carouselExample")
+
+
+carouselExample.addEventListener('mouseenter', () => {
+  
+  btn1.style.opacity = 1
+  btn2.style.opacity = 1
+  btn3.style.opacity = 1
+  btn4.style.opacity = 1
+  btn5.style.opacity = 1
+  btn6.style.opacity = 1
+  btn7.style.opacity = 1
+  btn8.style.opacity = 1
+  btn9.style.opacity = 1
+  btn10.style.opacity = 1
+  btn11.style.opacity = 1
+  btn12.style.opacity = 1
+  btn13.style.opacity = 1
+  btn14.style.opacity = 1
+  btn15.style.opacity = 1
+  btn16.style.opacity = 1
+  btn17.style.opacity = 1
+  btn18.style.opacity = 1
+  btn19.style.opacity = 1
+  btn20.style.opacity = 1
+  btn21.style.opacity = 1
+  btn22.style.opacity = 1
+  btn23.style.opacity = 1
+  btn24.style.opacity = 1
+  btn25.style.opacity = 1
+  btn26.style.opacity = 1
+  btn27.style.opacity = 1
+  btn28.style.opacity = 1
+  btn29.style.opacity = 1
+  btn30.style.opacity = 1
+  btn31.style.opacity = 1
+  btn32.style.opacity = 1
+  btn33.style.opacity = 1
+  btn34.style.opacity = 1
+  btn35.style.opacity = 1
+  btn36.style.opacity = 1
+  btn37.style.opacity = 1
+  btn38.style.opacity = 1
+  btn39.style.opacity = 1
+  btn40.style.opacity = 1
+  btn41.style.opacity = 1
+  btn42.style.opacity = 1
+  btn43.style.opacity = 1
+  btn44.style.opacity = 1
+  btn45.style.opacity = 1
+  btn46.style.opacity = 1
+  btn47.style.opacity = 1
+  btn48.style.opacity = 1
+  btn49.style.opacity = 1
+  btn50.style.opacity = 1
+  btn51.style.opacity = 1
+  btn52.style.opacity = 1
+  btn53.style.opacity = 1
+});
+carouselExample.addEventListener('mouseleave', () => {
+  btn3.style.opacity = 0
+  btn2.style.opacity = 0
+  btn1.style.opacity = 0
+  btn4.style.opacity = 0
+  btn5.style.opacity = 0
+  btn6.style.opacity = 0
+  btn7.style.opacity = 0
+  btn8.style.opacity = 0
+  btn9.style.opacity = 0
+  btn10.style.opacity = 0
+  btn11.style.opacity = 0
+  btn12.style.opacity = 0
+  btn13.style.opacity = 0
+  btn14.style.opacity = 0
+  btn15.style.opacity = 0
+  btn16.style.opacity = 0
+  btn17.style.opacity = 0
+  btn18.style.opacity = 0
+  btn19.style.opacity = 0
+  btn20.style.opacity = 0
+  btn21.style.opacity = 0
+  btn22.style.opacity = 0
+  btn23.style.opacity = 0
+  btn24.style.opacity = 0
+  btn25.style.opacity = 0
+  btn26.style.opacity = 0
+  btn27.style.opacity = 0
+  btn28.style.opacity = 0
+  btn29.style.opacity = 0
+  btn30.style.opacity = 0
+  btn31.style.opacity = 0
+  btn32.style.opacity = 0
+  btn33.style.opacity = 0
+  btn34.style.opacity = 0
+  btn35.style.opacity = 0
+  btn36.style.opacity = 0
+  btn37.style.opacity = 0
+  btn38.style.opacity = 0
+  btn39.style.opacity = 0
+  btn40.style.opacity = 0
+  btn41.style.opacity = 0
+  btn42.style.opacity = 0
+  btn43.style.opacity = 0
+  btn44.style.opacity = 0
+  btn45.style.opacity = 0
+  btn46.style.opacity = 0
+  btn47.style.opacity = 0
+  btn48.style.opacity = 0
+  btn49.style.opacity = 0
+  btn50.style.opacity = 0
+  btn51.style.opacity = 0
+  btn52.style.opacity = 0
+  btn53.style.opacity = 0
+});
     </script>
 
 

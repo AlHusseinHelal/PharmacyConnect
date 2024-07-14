@@ -10,6 +10,8 @@ const asyncHandler = require("express-async-handler");
 const slugify = require("slugify");
 //MOMMENT TIMESTAMP
 const moment = require("moment");
+//ERROR HANDILING
+const ApiError = require("../utils/apierror");
 //JWT TOKEN
 const jwt = require("jsonwebtoken");
 //VALIDATION RULE
@@ -20,28 +22,35 @@ const cloudinary = require("cloudinary").v2;
 const xlsx = require("xlsx");
 //URL
 const url = require('node:url');
-
-
-
-
-// 'markdownString' would be the markdown field read from mongodb
-// const replacedWithSingleEscape = markdownString.replace(/\\n/g, "\n");
-
-// parser(replacedWithSingleEscape);
-//ERROR HANDILING
-const ApiError = require("../utils/apierror");
-
+//UNIQUE ID
+const { v4: uuidv4 } = require("uuid");
+//MULTER
+const multer = require("multer");
 //MULTER DISKSTORAGE
-// const multerStorage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, "uploads/");
-//   },
-//   filename: (req, file, cb) => {
-//     const ext = file.mimetype.split("/")[1];
-//     const filename = `user-${uuidv4()}-${Date.now()}.${ext} `;
-//     cb(null, filename);
-//   },
-// });
+const multerStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/ProfileImage");
+  },
+  filename: function (req, file, cb) {
+    const ext = file.mimetype.split("/")[1];
+    const filename = `user-${uuidv4()}-${Date.now()}.jpeg`;
+    cb(null, filename);
+  },
+})
+//MULTER IMAGE ONLY
+const multerFilter = function (req, file, cb) {
+  if (file.mimetype.startsWith("image")) {
+    cb(null, true);
+  } else {
+    cb(
+      new ApiError("Invalid image type! Only JPEG or PNG is supported."),
+      false
+    );
+  }
+};
+
+const upload = multer({ storage: multerStorage, fileFilter : multerFilter})
+
 
 //SCHEMA
 const Inpatientschema = require("../models/inpatientSchema");
@@ -505,8 +514,6 @@ router.get(
     const sk = (pageNumber - 1) * limit
     const skip = Math.abs(sk)
     
-    console.log(pageNumber)
-
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const user = await User.findOne({ _id: decoded.id });
     const { firstname } = user;
@@ -3182,18 +3189,20 @@ router.post(
 // CHANGE IMAGE POST REQUEST
 router.post(
   "/updateavatar",
-  uploadSingleImage("updateprofile"),
-  profileimage,
+  // uploadSingleImage("updateprofile"),
+upload.single("updateprofile"),
+  // profileimage,
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    console.log(req.file);
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
-      { profileimage: req.body.updateprofile }
+      { profileimage: req.file.filename }
     );
     if (results) {
-      res.redirect("/interface");
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -3292,13 +3301,13 @@ router.post(
   })
 );
 
-// CHOOSE IMAGE POST REQUEST
+// AVATAR SELECTION
 router.post(
-  "/avatarselection",
+  "/avatarselection1",
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-01.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-1.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.findByIdAndUpdate(
       { _id: decoded.id },
@@ -3314,7 +3323,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-02.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-2.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3330,7 +3339,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-03.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-3.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3346,7 +3355,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-04.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-4.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3362,7 +3371,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-06.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-5.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3378,7 +3387,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-07.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-6.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3394,7 +3403,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-08.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-7.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3410,7 +3419,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-09.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-8.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3422,11 +3431,11 @@ router.post(
   })
 );
 router.post(
-  "/avatarselection09",
+  "/avatarselection9",
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-10.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-9.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3442,7 +3451,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-11.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-10.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3458,7 +3467,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-12.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-11.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3474,7 +3483,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-13.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-12.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3490,7 +3499,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-14.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-13.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3506,7 +3515,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-15.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-14.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3522,7 +3531,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-16.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-15.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3538,7 +3547,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-17.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-16.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3554,7 +3563,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-18.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-17.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3570,7 +3579,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-19.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-18.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3586,7 +3595,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-20.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-19.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3602,7 +3611,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-21.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-20.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3618,7 +3627,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-22.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-21.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3634,7 +3643,7 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    req.body.inputprofile = "/img/Avatar/Untitled-1-23.png";
+    req.body.inputprofile = "/img/Avatar/Untitled-1-22.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
       { _id: decoded.id },
@@ -3650,6 +3659,22 @@ router.post(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-23.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection24",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
     req.body.inputprofile = "/img/Avatar/Untitled-1-24.png";
     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
     const results = await User.updateOne(
@@ -3658,6 +3683,1321 @@ router.post(
     );
     if (results) {
       res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection25",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-25.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection26",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-26.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection27",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-27.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection28",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-28.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection29",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-29.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection30",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-30.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection31",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-31.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection32",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-32.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection33",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-33.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection34",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-34.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection35",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-35.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection36",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-36.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection37",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-37.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection38",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-38.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection39",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-39.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection40",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-40.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection41",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-41.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection42",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-42.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection43",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-43.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection44",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-44.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection45",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-45.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection46",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-46.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection47",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-47.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection48",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-48.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection49",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-49.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection50",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-50.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection51",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-51.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection52",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-52.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+router.post(
+  "/avatarselection53",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-53.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect("/login");
+    }
+  })
+);
+
+
+// UPDATE AVATAR
+router.post(
+  "/avatar1",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-1.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.findByIdAndUpdate(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar2",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-2.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar3",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-3.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar4",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-4.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar5",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-5.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar6",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-6.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar7",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-7.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar8",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-8.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar9",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-9.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar10",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-10.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar11",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-11.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar12",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-12.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar13",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-13.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar14",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-14.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar15",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-15.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar16",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-16.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar17",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-17.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar18",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-18.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar19",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-19.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar20",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-20.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar21",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-21.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar22",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-22.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar23",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-23.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar24",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-24.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar25",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-25.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+)
+;router.post(
+  "/avatar26",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-26.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar27",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-27.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar28",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-28.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar29",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-29.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar30",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-30.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar31",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-31.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar32",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-32.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar33",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-33.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar34",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-34.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar35",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-35.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar36",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-36.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar37",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-37.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar38",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-38.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar39",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-39.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar40",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-40.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar41",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-41.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar42",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-42.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar43",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-43.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar44",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-44.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar45",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-45.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar46",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-46.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar47",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-47.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar48",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-48.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar49",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-49.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar50",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-50.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar51",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-51.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar52",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-52.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+router.post(
+  "/avatar53",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.inputprofile = "/img/Avatar/Untitled-1-53.png";
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const results = await User.updateOne(
+      { _id: decoded.id },
+      { profileimage: req.body.inputprofile }
+    );
+    if (results) {
+      res.redirect(req.get('referer'));
     }
   })
 );
@@ -3683,41 +5023,45 @@ router.post(
 // INPATIENT ADD PATIENT
 router.post(
   "/add_patient_in",
-  [check("mrn").isNumeric(), check("requestype").notEmpty()],
+  [
+    check("oraliv").notEmpty(),
+    check("requestype").notEmpty(),
+    check("ptfloor").notEmpty(),
+  ],
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const error = validationResult(req);
-    if (!error.isEmpty()) {
-      return res.json({ errors: error.errors });
-    }
-    const patient = await Newpatient.findOne({ addpatientmrn: req.body.mrn });
-    const patientname = patient.addpatientname
 
+    const mrn = req.body.mrn
+  
+    if (mrn === "") {
+      return res.json({ mrninempty: "You Must Enter This Field" });
+    }
+    
+    if (mrn.match(/[a-zA-z]/)){
+      return res.json({ mrnnotnumber: "Please Enter A Valid MRN" });
+    }
+    
+    const patient = await Newpatient.findOne({ addpatientmrn: req.body.mrn });
     if (patient == null) {
       return res.json({ nopatient: "This Patient Not Found" });
     }
-
+    
+    
     if (patient) {
       req.body.patientname = patient.addpatientname;
     }
 
-    if (req.body.ptfloor === "Choose...") {
-      return res.json({ noptfloor: "You Must Enter This Field" });
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
     }
 
-    if (req.body.requestype === "Choose....") {
-      return res.json({ norequestype: "You Must Enter This Field" });
-    }
-
-    if (req.body.oraliv === "Choose....") {
-      return res.json({ oraliv: "You Must Enter This Field" });
-    }
     req.body.commentime = moment()
     req.body.commentime2 = moment()
 
     const inpatientAddpatient = await Inpatientschema.create(req.body);
-    res.json({ inpatient_add_patient: inpatientAddpatient, patientname });
+    res.json({ inpatient_add_patient: inpatientAddpatient });
   })
 );
 
@@ -3986,14 +5330,25 @@ router.post(
 // OUTPATIENT ADD PATIENT
 router.post(
   "/add_patient_out",
-  [check("mrn").isNumeric(), check("requestype").notEmpty()],
+  [
+    check("oraliv").notEmpty(),
+    check("requestype").notEmpty(),
+    check("ptfloor").notEmpty(),
+  ],
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const error = validationResult(req);
-    if (!error.isEmpty()) {
-      return res.json({ errors: error.errors });
+
+    const mrn = req.body.mrn
+  
+    if (mrn === "") {
+      return res.json({ mrnoutempty: "You Must Enter This Field" });
     }
+    
+    if (mrn.match(/[a-zA-z]/)){
+      return res.json({ mrnnotnumber: "Please Enter A Valid MRN" });
+    }
+  
     const patient = await Newpatient.findOne({ addpatientmrn: req.body.mrn });
 
     if (patient == null) {
@@ -4004,17 +5359,14 @@ router.post(
       req.body.patientname = patient.addpatientname;
     }
 
-    if (req.body.ptfloor === "Choose...") {
-      return res.json({ noptfloor: "You Must Enter This Field" });
+
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
     }
 
-    if (req.body.requestype === "Choose....") {
-      return res.json({ norequestype: "You Must Enter This Field" });
-    }
-
-    if (req.body.oraliv === "Choose....") {
-      return res.json({ oraliv: "You Must Enter This Field" });
-    }
+    req.body.commentime = moment()
+    req.body.commentime2 = moment()
 
     const outpatientAddpatient = await Outpatient.create(req.body);
     res.json({ outpatient_add_patient: outpatientAddpatient });
@@ -4279,12 +5631,19 @@ router.post(
     check("druglevel").notEmpty(),
     check("drugname").notEmpty(),
     check("ptfloor").notEmpty(),
-    check("mrn").isNumeric(),  
   ],
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const validationerrors = validationResult(req);
+    const mrn = req.body.mrn
+  
+    if (mrn === "") {
+      return res.json({ mrnlabempty: "You Must Enter This Field" });
+    }
+    
+    if (mrn.match(/[a-zA-z]/)){
+      return res.json({ mrnnotnumber: "Please Enter A Valid MRN" });
+    }
 
     const patient = await Newpatient.findOne({
       addpatientmrn: req.body.mrn,
@@ -4298,7 +5657,7 @@ router.post(
       req.body.patientname = patient.addpatientname;
     }
 
-
+    const validationerrors = validationResult(req);
     if (!validationerrors.isEmpty()) {
       return res.json({ errors: validationerrors.errors });
     }
@@ -6175,6 +7534,23 @@ router.put(
   })
 );
 
+// PUTPATIENT / EDIT
+router.put(
+  "/editout/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.commentime = moment()
+    await Outpatient.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect(req.get('referer'));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
 // IVPREP INPATIENT / DONE
 router.put(
   "/done/:id",
@@ -6284,26 +7660,11 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    req.body.commentime2 = moment()
     const results = await Outpatient.findByIdAndUpdate(req.params.id, req.body);
     if (results) {
       res.redirect(req.get('referer'));
     }
-  })
-);
-
-// IVPREP OUTPATIENT DONE VIEW / EDIT
-router.put(
-  "/outeditdoneview/:id",
-  checkIfUser,
-  requireAuth,
-  asyncHandler(async (req, res) => {
-    await Outpatient.findByIdAndUpdate(req.params.id, req.body)
-      .then(() => {
-        res.redirect(req.get('referer'));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   })
 );
 
@@ -6313,6 +7674,7 @@ router.put(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
+    req.body.commentime2 = moment()
     const results = await Outpatient.findByIdAndUpdate(req.params.id, req.body);
     if (results) {
       res.redirect(req.get('referer'));
@@ -6320,21 +7682,6 @@ router.put(
   })
 );
 
-// IVPREP OUTPATIENT EXTRADOSE / EDIT
-router.put("/outedited/:id", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
-const results = await  Outpatient.findByIdAndUpdate(req.params.id, req.body)
-    if (results) {
-      res.redirect(req.get('referer'));
-    }
-}) );
-
-// IVPREP OUTPATIENT EXTRADOSE / DONE
-router.put("/doneedout/:id", checkIfUser, requireAuth, asyncHandler(async (req, res) => {
-  const results = await Outpatient.findByIdAndUpdate(req.params.id, req.body)
-  if(results)  {
-    res.redirect(req.get('referer'));
-  }
-}) );
 
 // IVPREP DISPENSE / EDIT
 router.put(

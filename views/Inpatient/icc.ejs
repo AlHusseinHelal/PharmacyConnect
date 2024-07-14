@@ -218,8 +218,25 @@
                                     color: red;
                                   }
                                 </style>
+                                <style>
+                                  @keyframes customAni {
+                                      0%,
+                                      50%,
+                                      100% {
+                                      opacity: 1;
+                                      }
+                                    
+                                      25%,
+                                      75% {
+                                      opacity: 0;
+                                      }
+                                    }
+                                    .amimate{
+                                      animation:customAni 2s ease 0s infinite normal none; ;
+                                    }
+                                </style>
                                 <td class="text-center">
-                                  <strong dir="rtl" class="<%= item.prepcomment !== "DONE"? "bgred" : "" %>" ><i><%= item.prepcomment %></i></strong>
+                                  <strong dir="rtl" class="<%= item.prepcomment !== "DONE"? "bgred" : "" %>" ><i class="<%= item.prepcomment !== "DONE" && item.commentime2 > item.commentime? "amimate" : "" %>"><%= item.prepcomment %></i></strong>
                                 </td>
                                 <td class="text-center">
                                 <% if (item.prepcomment !=="" ) { %>
@@ -451,6 +468,27 @@
 
           const data = await res.json();
 
+          if (data.errors) {
+            data.errors.forEach(item => {
+            
+              if (item.path == "requestype") {
+                norequestype.classList.remove("d-none");
+                requestype.classList.add("redframe");
+              } else {
+                norequestype.classList.add("d-none");
+                requestype.classList.remove("redframe");
+              }
+
+              if (item.path == "oraliv") {
+                ivoralnot.classList.remove("d-none");
+                oraliv.classList.add("redframe");
+              } else {
+                ivoralnot.classList.add("d-none");
+                oraliv.classList.remove("redframe");
+              }
+            })
+          };
+
           if (data.nopatient) {
             nopatient.classList.remove("d-none");
             mrn.classList.add("redframe");
@@ -459,13 +497,21 @@
             mrn.classList.remove("redframe");
           }
 
-          if (data.oraliv) {
-            document.getElementById('iv_oralnot').classList.remove("d-none");
-            document.getElementById('oraliv').classList.add("redframe");
+          if (data.mrnnotnumber) {
+                mrnnotnumber.classList.remove("d-none");
+                mrn.classList.add("redframe");
+              } else {
+                mrnnotnumber.classList.add("d-none");
+                mrn.classList.remove("redframe");
+              }
+
+          if (data.mrninempty) {
+            mrninempty.classList.remove("d-none");
+            mrn.classList.add("redframe");
           } else {
-            document.getElementById('iv_oralnot').classList.add("d-none");
-            document.getElementById('oraliv').classList.remove("redframe");
-          }
+            mrninempty.classList.add("d-none");
+            mrn.classList.remove("redframe");
+          }  
           if (data.inpatient_add_patient) {
             location.assign("/icc" + window.location.search)
           }

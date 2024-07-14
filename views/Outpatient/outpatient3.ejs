@@ -141,6 +141,7 @@
                         <th class="text-center" scope="col">Round Time</th>
                         <th class="text-center" scope="col">Comment</th>
                         <th class="text-center" scope="col">Prep Time</th>
+                        <th class="text-center" scope="col">ُEdit</th>
                         <th class="text-center" scope="col">Delete</th>
                         <th class="text-center" scope="col">Attach</th>
                       </tr>
@@ -169,22 +170,126 @@
                           <td class="text-center">
                             <strong dir="rtl"><%= item.roundcomment%></strong>
                           </td>
-                          <td class="text-center">
-                            <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
+                          <td class="text-center">  
+                            <%= moment(item.commentime).format('DD-MM-YYYY, h:mm a')%>
                           </td>
                           <style>
                             .bgred{
                               color: red;
                             }
                           </style>
+                          <style>
+                            @keyframes customAni {
+                                0%,
+                                50%,
+                                100% {
+                                opacity: 1;
+                                }
+                              
+                                25%,
+                                75% {
+                                opacity: 0;
+                                }
+                              }
+                              .amimate{
+                                
+                                animation:customAni 2s ease 0s infinite normal none; ;
+                              }
+                          </style>
                           <td class="text-center">
-                            <strong dir="rtl" class="<%= item.prepcomment !== "DONE"? "bgred" : "" %>" ><i><%= item.prepcomment %></i></strong>
+                            <strong dir="rtl" class="<%= item.prepcomment !== "DONE"? "bgred" : "" %>" ><i class="<%= item.prepcomment !== "DONE" && item.commentime2 > item.commentime? "amimate" : "" %>"><%= item.prepcomment %></i></strong>
                           </td>
                           <td class="text-center">
                             <% if (item.prepcomment !=="" ) { %>
-                              <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
+                              <%= moment(item.commentime2).format('DD-MM-YYYY, h:mm a')%>
                                 <% } %>
                           </td>
+
+                            <!-- edit -->
+                            <td class="text-center">
+
+                              <!-- <a href="/edit/"> -->
+                              <button type="button" style="background-color: rgb(0, 42, 255);"
+                                class="border rounded-2 d-inline-flex p-1 " data-bs-toggle="modal"
+                                data-bs-target="#exampleModal2<%= item._id%>">
+                                <svg style="fill: aliceblue;" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                  fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                  <path
+                                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+                                </svg>
+                              </button>
+
+
+                              <!-- MODAL -->
+                              <div class="connectmodal modal fade" id="exampleModal2<%= item._id%>" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="glass modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">EDITING</h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                    </div>
+                                    <form action="/editout/<%= item._id%>?_method=PUT" method="post">
+                                      <div class="modal-body text-start">
+                                        
+                                        <div class="mb-3">
+                                          <label for="ptf" class="form-label">Patient Floor</label>
+                                          <select name="ptfloor" class="form-select">
+                                            <option hidden selected><%= item.ptfloor %></option>
+                                            <option>DayCare</option>
+                                            <option>OutPatient Clinic</option>
+                                          </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                          <label for="request" class="form-label">Request Type</label>
+                                          <select class="form-select" name="requestype" >
+                                            <option selected hidden><%= item.requestype %></option>
+                                            <option>Chemotherapy</option>
+                                            <option>Zofran</option>
+                                            <option>Hydration</option>
+                                            <option>TPN</option>
+                                            <option>Modification</option>
+                                            <option>ExtraDose</option>
+                                            <option style="color: blue;">DisCharge Medication</option>
+                                            <option style="color: red;">Refill</option>
+                                            <option style="color: red;">Product Assign</option>
+                                
+                                          </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                          <label for="oriv" class="form-label">Oral/IV</label>
+                                          <select required class="form-select" name="oraliv" >
+                                            <option selected hidden><%= item.oraliv %></option>
+                                            <option>Oral</option>
+                                            <option>IV</option>
+                                            <option>Pyxis</option>
+                                          </select>
+                                        </div>
+
+                                        <div>
+                                          <label for="rcomment" class="form-label">Comment</label>
+                                          <input dir="rtl" class="form-control" type="text" name="roundcomment" value="<%= item.roundcomment %>">
+                                        </div>
+
+                                        <input hidden name="commentime" type="text" class="form-control" value="" />
+
+                                        <input hidden name="edit" type="text" class="form-control" value="edit" />
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                          data-bs-dismiss="modal">Close</button>
+
+                                        <button type="submit" class="btn btn-primary">ADD</button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+
+                          <!-- DELETE -->
                           <td class="text-center">
 
                             <button type="button" class="btn btn-primary border rounded-2 d-inline-flex p-1"
@@ -228,6 +333,7 @@
 
                           </td>
 
+                          <!-- ATTACH -->
                           <td class="text-center">
 
 
@@ -312,47 +418,56 @@
             });
             const data = await res.json();
             if (data.errors) {
-              data.errors.forEach(item => {
-                if (item.path == "mrn") {
-                  mrnnotnumber.classList.remove("d-none");
-                  mrn.classList.add("redframe");
-                } else {
-                  mrnnotnumber.classList.add("d-none");
-                  mrn.classList.remove("redframe");
-                }
-              })
-            };
-            if (data.nopatient) {
-              nopatient.classList.remove("d-none");
-              mrn.classList.add("redframe");
-            } else {
-              nopatient.classList.add("d-none");
-              mrn.classList.remove("redframe");
-            }
-  
-            if (data.norequestype) {
-              norequestype.classList.remove("d-none");
-              requestype.classList.add("redframe");
-            } else {
-              norequestype.classList.add("d-none");
-              requestype.classList.remove("redframe");
-            }
-  
-            if (data.noptfloor) {
-              noptfloor.classList.remove("d-none");
-              ptfloor.classList.add("redframe");
-            } else {
-              noptfloor.classList.add("d-none");
-              ptfloor.classList.remove("redframe");
-            }
-  
-            if (data.oraliv) {
-              document.getElementById('iv_oralnot').classList.remove("d-none");
-              document.getElementById('oraliv').classList.add("redframe");
-            } else {
-              document.getElementById('iv_oralnot').classList.add("d-none");
-              document.getElementById('oraliv').classList.remove("redframe");
-            }
+            data.errors.forEach(item => {
+              if (item.path == "ptfloor") {
+                noptfloor.classList.remove("d-none");
+                ptfloor.classList.add("redframe");
+              } else {
+                noptfloor.classList.add("d-none");
+                ptfloor.classList.remove("redframe");
+              }
+
+              if (item.path == "requestype") {
+                norequestype.classList.remove("d-none");
+                requestype.classList.add("redframe");
+              } else {
+                norequestype.classList.add("d-none");
+                requestype.classList.remove("redframe");
+              }
+
+              if (item.path == "oraliv") {
+                ivoralnot.classList.remove("d-none");
+                oraliv.classList.add("redframe");
+              } else {
+                ivoralnot.classList.add("d-none");
+                oraliv.classList.remove("redframe");
+              }
+            })
+          };
+
+          if (data.nopatient) {
+            nopatient.classList.remove("d-none");
+            mrn.classList.add("redframe");
+          } else {
+            nopatient.classList.add("d-none");
+            mrn.classList.remove("redframe");
+          }
+
+          if (data.mrnnotnumber) {
+                mrnnotnumber.classList.remove("d-none");
+                mrn.classList.add("redframe");
+              } else {
+                mrnnotnumber.classList.add("d-none");
+                mrn.classList.remove("redframe");
+              }
+
+          if (data.mrnoutempty) {
+            mrnoutempty.classList.remove("d-none");
+            mrn.classList.add("redframe");
+          } else {
+            mrnoutempty.classList.add("d-none");
+            mrn.classList.remove("redframe");
+          }  
   
   
             if (data.outpatient_add_patient) {

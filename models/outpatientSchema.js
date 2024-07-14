@@ -9,10 +9,14 @@ const outpatient = new mongoose.Schema(
     mrn: String,
     ptfloor: String,
     requestype: String,
+    sender: String,
     oraliv: String,
     roundcomment: String,
     prepcomment: String,
     attachfile: String,
+    commentime : Date,
+    commentime2 : Date,
+    edit : String,
   },
   { timestamps: true }
 );

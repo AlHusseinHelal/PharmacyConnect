@@ -160,8 +160,25 @@
                                 color: red;
                               }
                             </style>
+                            <style>
+                              @keyframes customAni {
+                                  0%,
+                                  50%,
+                                  100% {
+                                  opacity: 1;
+                                  }
+                                
+                                  25%,
+                                  75% {
+                                  opacity: 0;
+                                  }
+                                }
+                                .amimate{
+                                  animation:customAni 2s ease 0s infinite normal none; ;
+                                }
+                            </style>
                             <td class="text-center">
-                              <strong dir="rtl" class="<%= item.prepcomment !== "DONE"? "bgred" : "" %>" ><i><%= item.prepcomment %></i></strong>
+                              <strong dir="rtl" class="<%= item.prepcomment !== "DONE"? "bgred" : "" %>" ><i class="<%= item.prepcomment !== "DONE" && item.commentime2 > item.commentime? "amimate" : "" %>"><%= item.prepcomment %></i></strong>
                             </td>
                             <td class="text-center">
                                 <% if (item.prepcomment !=="" ) { %>

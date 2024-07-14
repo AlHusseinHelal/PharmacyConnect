@@ -198,19 +198,40 @@
                               <strong dir="rtl"><%= item.roundcomment%></strong>
                             </td>
                             <td class="text-center">
-                              <%= moment(item.createdAt).format('DD-MM-YYYY, h:mm a')%>
-                            </td>
+                              <style>
+                                @keyframes customAni {
+                                    0%,
+                                    50%,
+                                    100% {
+                                    opacity: 1;
+                                    }
+                                  
+                                    25%,
+                                    75% {
+                                    opacity: 0;
+                                    }
+                                  }
+                              </style>
+                                <div class="d-flex align-items-center justify-content-center">
+                                  <div>
+                                    <i class="fa-solid fa-user-pen fa-lg me-2 <%= item.edit !== "edit" || item.commentime2 > item.commentime? "d-none" : "d-block" %>" style="color: #cb0b0b; animation: customAni 2s ease 0s infinite normal none;"></i>
+                                  </div>
+                                  <div>
+                                    <%= moment(item.commentime).format('DD-MM-YYYY, h:mm a')%>
+                                  </div>
+                                </div>
+                              </td>
                             <style>
                               .bgred{
                                 color: red;
                               }
                             </style>
                             <td class="text-center">
-                              <strong dir="rtl" class="<%= item.prepcomment !== "DONE"? "bgred" : "" %>" ><i><%= item.prepcomment %></i></strong>
+                              <strong dir="rtl"><%= item.prepcomment%></strong>
                             </td>
                             <td class="text-center">
                               <% if (item.prepcomment !=="" ) { %>
-                                <%= moment(item.updatedAt).format('DD-MM-YYYY, h:mm a')%>
+                                <%= moment(item.commentime2).format('DD-MM-YYYY, h:mm a')%>
                                   <% } %>
                             </td>
 
@@ -220,56 +241,83 @@
                                 <% } %>
                             </td>
 
-                            <td class="text-center">
-                            
-                              <!-- <a href="/edit/"> -->
-                              <button type="button" style="background-color: rgb(0, 42, 255);"
-                                class="border rounded-2 d-inline-flex p-1 " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal<%= item._id%>">
-                                <svg style="fill: aliceblue;" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                  fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                  <path
-                                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
-                                </svg>
-                              </button>
+                              <!-- EDIT -->
+                          <td class="text-center">
 
-                            
-                               <!-- MODAL -->
-                              <div class=" connectmodal modal fade" id="exampleModal<%= item._id%>" tabindex="-1"
+                            <!-- <a href="/edit/"> -->
+                            <button type="button" style="background-color: rgb(0, 42, 255);"
+                              class="border rounded-2 d-inline-flex p-1 " data-bs-toggle="modal"
+                              data-bs-target="#exampleModal<%= item._id%>">
+                              <svg style="fill: aliceblue;" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                <path
+                                  d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+                              </svg>
+                            </button>
+
+
+                            <!-- MODAL -->
+                            <div class="connectmodal modal fade" id="exampleModal<%= item._id%>" tabindex="-1"
                               aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="glass modal-dialog">
-                                <div class="modal-content">
+                              <div class="modal-dialog">
+                                <div class="glass modal-content">
                                   <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">EDITING</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                       aria-label="Close"></button>
                                   </div>
-                                  <form action="/outedited/<%= item._id%>?_method=PUT" method="post">
-                                  <div class="modal-body">
-                                    Please Write Comment
-                                    <label for="prepcomment" class="form-label"></label>
-                                    <input dir="rtl" class="form-control" type="text" name="prepcomment">
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                      data-bs-dismiss="modal">Close</button>
-                                    
+                                  <form action="/outedit/<%= item._id%>?_method=PUT" method="post">
+                                    <div class="modal-body text-start">
+                                      
+                                      <div>
+                                        <label for="prepcomment" class="form-label">Comment</label>
+                                        <input dir="rtl" class="form-control" type="text" name="prepcomment">
+                                      </div>
+
+                                      <div class="my-3">
+                                        <label for="request" class="form-label">Request Type</label>
+                                        <select class="form-select" name="requestype" id="request">
+                                          <option selected hidden disabled><%= item.requestype %></option>
+                                          <option>Chemotherapy</option>
+                                          <option>Zofran</option>
+                                          <option>Hydration</option>
+                                          <option>TPN</option>
+                                          <option>Modification</option>
+                                          <option>ExtraDose</option>
+                                          <option style="color: blue;">DisCharge Medication</option>
+                                          <option style="color: red;">Refill</option>
+                                          <option style="color: red;">Product Assign</option>
+                                        </select>
+                                      </div>
+
+                                      <input hidden name="commentime2" type="text" class="form-control" id="commentime2" value="" />
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+
                                       <button type="submit" class="btn btn-primary">ADD</button>
-                                    </form>
-                                  </div>
+                                  </form>
                                 </div>
                               </div>
-                            </td>
+                            </div>
 
+
+
+                            <!-- </a> -->
+                          </td>
+
+                            <!-- DONE -->
                             <td class="text-center">
-                              <form action="/doneedout/<%= item._id %>?_method=PUT" method="post">
+                              <form action="/doneout/<%= item._id %>?_method=PUT" method="post">
                                 <button type="submit" class="d-inline-flex p-1 text-center"
                                   style="outline-style: unset; border: none; background-color: transparent;">
                                   <label hidden for="prepcomment" class="form-label" style="display: none;">Prep
                                     Comment</label>
                                   <input hidden type="text" class="form-control" value="DONE" id="prepcomment"
                                     style="display: none;" name="prepcomment" placeholder="">
-
+                                    <input hidden name="commentime2" type="text" class="form-control" id="commentime2" value="" />
+  
                                   <svg style="fill: #298c43;" width="22" height="22" id="Layer_1" data-name="Layer 1"
                                     viewBox="0 0 25 27">
                                     <path class="cls-1"

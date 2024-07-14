@@ -13,19 +13,32 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
       <form id="add_patient_inpatient">
 
         <div class="mb-3">
-          <label hidden for="patientname" class="col-form-label">Patient Name</label>
-          <input hidden name="patientname" type="text" class="form-control" id="patientname" />
-        </div>
-
-        <div class="mb-3">
           <label for="mrn" class="col-form-label">MRN</label>
           <input name="mrn" type="text" class="form-control" id="mrn" />
         </div>
 
+        <div id="mrninempty" class=" d-flex flex-row align-items-center my-2 d-none"
+        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+        <p class="my-1 ms-1">You Must Enter This Field</p>
+        </div>
+
+        <div id="mrnnotnumber" class=" d-flex flex-row align-items-center my-2 d-none"
+        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+        <p class="my-1 ms-1">Please Enter A Valid MRN</p>
+        </div>
+
+      
         <div id="nopatient" class=" d-flex flex-row align-items-center my-2 d-none"
-          style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
-          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
-          <p class="my-1 ms-1">This Patient Not Found</p>
+        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+        <p class="my-1 ms-1">This Patient Not Found</p>
+        </div>
+
+        <div class="mb-3">
+          <label hidden for="patientname" class="col-form-label">Patient Name</label>
+          <input hidden name="patientname" type="text" class="form-control" id="patientname" />
         </div>
 
         <div class="mb-3">
@@ -40,7 +53,7 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="mb-3">
           <label for="requestype" class="form-label">Request Type</label>
           <select class="form-select" name="requestype" id="requestype">
-            <option selected hidden disabled>Choose....</option>
+            <option selected hidden disabled></option>
             <option>Chemotherapy</option>
             <option>Zofran</option>
             <option>Hydration</option>
@@ -53,17 +66,23 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
           </select>
         </div>
 
+        <div id="norequestype" class=" d-flex flex-row align-items-center my-2 d-none"
+          style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+          <p class="my-1 ms-1">You Must Enter This Field</p>
+        </div>
+
         <div class="mb-3">
           <label for="oraliv" class="form-label">Oral/IV</label>
-          <select required class="form-select" id="oraliv" name="oraliv">
-            <option selected hidden disabled>Choose....</option>
+          <select class="form-select" id="oraliv" name="oraliv">
+            <option selected hidden disabled></option>
             <option>Oral</option>
             <option>IV</option>
             <option>Pyxis</option>
           </select>
         </div>
 
-        <div id="iv_oralnot" class=" d-flex flex-row align-items-center my-2 d-none"
+        <div id="ivoralnot" class=" d-flex flex-row align-items-center my-2 d-none"
           style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
           <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
           <p class="my-1 ms-1">You Must Enter This Field</p>

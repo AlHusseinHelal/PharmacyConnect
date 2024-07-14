@@ -579,14 +579,14 @@ user.post("save", (doc) => {
 
 user.post("init", (doc) => {
   if (
-    doc.profileimage !== "/img/Avatar/Untitled-1-01.png" &&
-    doc.profileimage !== "/img/Avatar/Untitled-1-02.png" &&
-    doc.profileimage !== "/img/Avatar/Untitled-1-03.png" &&
-    doc.profileimage !== "/img/Avatar/Untitled-1-04.png" &&
-    doc.profileimage !== "/img/Avatar/Untitled-1-06.png" &&
-    doc.profileimage !== "/img/Avatar/Untitled-1-07.png" &&
-    doc.profileimage !== "/img/Avatar/Untitled-1-08.png" &&
-    doc.profileimage !== "/img/Avatar/Untitled-1-09.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-1.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-2.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-3.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-4.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-6.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-7.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-8.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-9.png" &&
     doc.profileimage !== "/img/Avatar/Untitled-1-10.png" &&
     doc.profileimage !== "/img/Avatar/Untitled-1-11.png" &&
     doc.profileimage !== "/img/Avatar/Untitled-1-12.png" &&
@@ -601,7 +601,37 @@ user.post("init", (doc) => {
     doc.profileimage !== "/img/Avatar/Untitled-1-21.png" &&
     doc.profileimage !== "/img/Avatar/Untitled-1-22.png" &&
     doc.profileimage !== "/img/Avatar/Untitled-1-23.png" &&
-    doc.profileimage !== "/img/Avatar/Untitled-1-24.png"
+    doc.profileimage !== "/img/Avatar/Untitled-1-24.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-25.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-26.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-27.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-28.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-29.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-30.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-31.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-32.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-33.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-34.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-35.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-36.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-37.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-38.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-39.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-40.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-41.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-42.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-43.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-44.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-45.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-46.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-47.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-48.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-49.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-50.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-51.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-52.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-53.png" &&
+    doc.profileimage !== "/img/Avatar/Untitled-1-60.png"
   ) {
     const profileimageUrl = `${process.env.BASE_URL}/ProfileImage/${doc.profileimage}`;
     doc.profileimage = profileimageUrl;
