@@ -103,8 +103,10 @@
                   href="/clinich">Clinic Hematology</a></button>
               <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
                   href="/clinics">Clinic Solid</a></button>
-              <button type="button" class="btn btn-outline-danger"><a style="border: unset; color: unset;"
+              <button type="button" class="btn btn-outline-danger active"><a style="border: unset; color: unset;"
                   href="/supportive">Supportive</a></button>
+              <button type="button" class="btn btn-outline-primary"><a style="border: unset; color: unset;"
+                href="/supportivenotdone">ACTIVE</a></button>
             </div>
             <%- include('../partials/Modal-icon.ejs') %>
           </div>
@@ -113,7 +115,7 @@
           <%- include('../partials/DateSearch-Modal-Outpatient.ejs') %>
 
             <!-- ADD PATIENT MODAL -->
-            <%- include('../partials/AddPatientOut-Modal.ejs') %>
+            <%- include('../partials/AddPatientOut-supportive.ejs') %>
 
               <!-- ADD NEW PATIENT MODAL -->
               <%- include('../partials/AddNewPatient-Modal.ejs') %>
@@ -421,7 +423,7 @@
         <script>
           add_patient_outpatient.addEventListener("submit", async (e) => {
             e.preventDefault();
-            const res = await fetch("/add_patient_out", {
+            const res = await fetch("/add_patient_out_supportive", {
               method: "POST",
               body: JSON.stringify({ patientname: patientname.value, attachfile : attachfile.value, mrn: mrn.value, ptfloor: ptfloor.value, requestype: requestype.value, oraliv: oraliv.value, roundcomment: roundcomment.value, prepcomment: prepcomment.value, }),
               headers: { "Content-Type": "application/json" },
@@ -481,7 +483,7 @@
   
   
             if (data.outpatient_add_patient) {
-              location.assign("/outpatient3")
+              location.assign("/supportive")
             }
           });
         </script>
@@ -541,7 +543,7 @@
           }
 
           if (data.lab_add_patient) {
-            location.assign("/outpatient3")
+            location.assign("/supportive")
           }
 
 
@@ -577,7 +579,7 @@
             addpatientmrn.classList.remove("redframe");
           }
           if (data.done) {
-            location.assign("/outpatient3")
+            location.assign("/supportive")
           }
         })
       </script>

@@ -40,17 +40,16 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
 
         <div class="mb-3">
           <label hidden for="patientname" class="col-form-label">Patient Name</label>
-          <input hidden name="patientname" type="text" class="form-control" id="patientname" value="" />
+          <input hidden name="patientname" type="text" class="form-control" id="patientname" />
         </div>
 
+      
         <div class="mb-3">
-          <label for="ptfloor" class="form-label">Patient Floor</label>
-          <select id="ptfloor" name="ptfloor" class="form-select">
-            <option disabled hidden selected></option>
-            <option>DayCare</option>
-            <option>Clinic Hematology</option>
-            <option>Clinic Solid</option>
-            <option>Supportive</option>
+          <label for="ptfloor" class="form-label" hidden>Patient Floor</label>
+          <select id="ptfloor" name="ptfloor" class="form-select" hidden>
+            <option disabled hidden selected>
+              <%= floor %>
+            </option>
           </select>
         </div>
 
@@ -83,12 +82,9 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
         </div>
 
         <div class="mb-3">
-          <label for="oraliv" class="form-label">Oral/IV</label>
-          <select class="form-select" id="oraliv" name="oraliv">
-            <option selected hidden disabled></option>
-            <option>Oral</option>
-            <option>IV</option>
-            <option>Pyxis</option>
+          <label for="oraliv" class="form-label" hidden>Oral/IV</label>
+          <select hidden class="form-select" id="oraliv" name="oraliv">
+            <option selected hidden disabled><%= oral %></option>
           </select>
         </div>
 

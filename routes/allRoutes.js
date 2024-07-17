@@ -1636,6 +1636,344 @@ router.get(
   })
 );
 
+// OUTPATIENT DAYCARE
+router.get(
+  "/daycare",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Outpatient.find({
+      ptfloor: "DayCare",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    const results = await Outpatient.find({
+      ptfloor: "DayCare",
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+
+    if (results) {
+      res.render("Outpatient/outpatientdaycare", {
+        outpatientarray: results,
+        moment: moment,
+        floor: "DayCare", oral : "Oral",
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
+// OUTPATIENT DAYCARE NOT DONE
+router.get(
+  "/daycarenotdone",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Outpatient.find({
+      ptfloor: "DayCare", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    
+    const results = await Outpatient.find({
+      ptfloor: "DayCare", prepcomment: { $not: { $regex: "DONE" } },
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+
+    if (results) {
+      res.render("Outpatient/outpatientdaycarenotdone.ejs", {
+        outpatientarray: results,
+        moment: moment,
+        floor: "DayCare", oral : "Oral",
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
+// OUTPATIENT CLINIC HEMATOLOGY
+router.get(
+  "/clinich",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Outpatient.find({
+      ptfloor: "Clinic Hematology",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    const results = await Outpatient.find({
+      ptfloor: "Clinic Hematology",
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+
+    if (results) {
+      res.render("Outpatient/outpatientclinich", {
+        outpatientarray: results,
+        moment: moment,
+        floor: "Clinic Hematology", iv : "IV",
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
+// OUTPATIENT CLINIC HEMATOLOGY NOT DONE
+router.get(
+  "/clinichnotdone",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Outpatient.find({
+      prepcomment: { $not: { $regex: "DONE" } },
+      ptfloor: "Clinic Hematology",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    const results = await Outpatient.find({
+      prepcomment: { $not: { $regex: "DONE" } },
+      ptfloor: "Clinic Hematology",
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+
+    if (results) {
+      res.render("Outpatient/outpatientclinichnotdone", {
+        outpatientarray: results,
+        moment: moment,
+        floor: "Clinic Hematology", iv : "IV",
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
+// OUTPATIENT CLINIC SOLID
+router.get(
+  "/clinics",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Outpatient.find({
+      ptfloor: "Clinic Solid",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    const results = await Outpatient.find({
+      ptfloor: "Clinic Solid",
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+
+    
+    if (results) {
+      res.render("Outpatient/outpatientclinics.ejs", {
+        outpatientarray: results,
+        moment: moment,
+        floor: "Clinic Solid", iv : "IV",
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
+// OUTPATIENT CLINIC SOLID NOT DONE
+router.get(
+  "/clinicsnotdone",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Outpatient.find({
+      prepcomment: { $not: { $regex: "DONE" } },
+      ptfloor: "Clinic Solid",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    const results = await Outpatient.find({
+      prepcomment: { $not: { $regex: "DONE" } },
+      ptfloor: "Clinic Solid",
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+
+    if (results) {
+      res.render("Outpatient/outpatientclinicsnotdone", {
+        outpatientarray: results,
+        moment: moment,
+        floor: "Clinic Hematology", iv : "IV",
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
+// OUTPATIENT SUPPORTIVE
+router.get(
+  "/supportive",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Outpatient.find({
+      ptfloor: "Supportive",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    const results = await Outpatient.find({
+      ptfloor: "Supportive",
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+
+
+    if (results) {
+      res.render("Outpatient/outpatientsupportive", {
+        outpatientarray: results,
+        moment: moment,
+        floor: "Supportive", 
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
+// OUTPATIENT SUPPORTIVE NOT DONE
+router.get(
+  "/supportivenotdone",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Outpatient.find({
+      prepcomment: { $not: { $regex: "DONE" } },
+      ptfloor: "Supportive",
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments();
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 || Math.ceil(num / limit);
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+    const results = await Outpatient.find({
+      prepcomment: { $not: { $regex: "DONE" } },
+      ptfloor: "Supportive",
+      createdAt: { $gte: startDate, $lte: endDate },
+    })
+      .skip(skip)
+      .limit(limit);
+
+
+    if (results) {
+      res.render("Outpatient/outpatientsupportivenotdone", {
+        outpatientarray: results,
+        moment: moment,
+        floor: "Supportive", 
+        firstname,
+        lastname,
+        num,
+      });
+    }
+  })
+);
+
 //IVPREP
 router.get(
   "/ivprep",
@@ -1759,7 +2097,7 @@ router.get(
 
 //IVPREP INPATIENT BMT
 router.get(
-  "/bmtview",
+  "/tpnview",
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
@@ -1768,7 +2106,7 @@ router.get(
     const endDate = `${date}T23:59:59.000+03:00`;
     const num = await Inpatientschema.find({
       oraliv: "IV",
-      requestype: "BMT",
+      requestype: "TPN",
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     }).countDocuments();
@@ -1791,13 +2129,13 @@ router.get(
     const inpatient = await Inpatientschema.find({
       oraliv: "IV",
       prepcomment: { $not: { $regex: "DONE" } },
-      ptfloor: { $not: { $regex: "BMT" } },
+      requestype: { $not: { $regex: "TPN" } },
       createdAt: { $gte: startDate, $lte: endDate },
     });
   
     const results = await Inpatientschema.find({
       oraliv: "IV",
-      ptfloor: "BMT",
+      requestype: "TPN",
       prepcomment: { $not: { $regex: "DONE" } },
       createdAt: { $gte: startDate, $lte: endDate },
     })
@@ -2992,9 +3330,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email" });
-    // }
+    if (!email.includes("57357.org")) {
+      return res.json({ invalidemail: "Invalid Email" });
+    }
 
     const newUser = await User.create(req.body);
     const token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
@@ -5335,6 +5673,182 @@ router.post(
     check("oraliv").notEmpty(),
     check("requestype").notEmpty(),
     check("ptfloor").notEmpty(),
+  ],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+
+    const mrn = req.body.mrn
+  
+    if (mrn === "") {
+      return res.json({ mrnoutempty: "You Must Enter This Field" });
+    }
+    
+    if (mrn.match(/[a-zA-z]/)){
+      return res.json({ mrnnotnumber: "Please Enter A Valid MRN" });
+    }
+  
+    const patient = await Newpatient.findOne({ addpatientmrn: req.body.mrn });
+
+    if (patient == null) {
+      return res.json({ nopatient: "This Patient Not Found" });
+    }
+
+    if (patient) {
+      req.body.patientname = patient.addpatientname;
+    }
+
+
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+
+    req.body.commentime = moment()
+    req.body.commentime2 = moment()
+
+    const outpatientAddpatient = await Outpatient.create(req.body);
+    res.json({ outpatient_add_patient: outpatientAddpatient , patient : patient.addpatientname });
+  })
+);
+
+// OUTPATIENT DAYCARE ADD PATIENT
+router.post(
+  "/add_patient_out_daycare",
+  [
+    check("requestype").notEmpty(),
+  ],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+
+    const mrn = req.body.mrn
+  
+    if (mrn === "") {
+      return res.json({ mrnoutempty: "You Must Enter This Field" });
+    }
+    
+    if (mrn.match(/[a-zA-z]/)){
+      return res.json({ mrnnotnumber: "Please Enter A Valid MRN" });
+    }
+  
+    const patient = await Newpatient.findOne({ addpatientmrn: req.body.mrn });
+
+    if (patient == null) {
+      return res.json({ nopatient: "This Patient Not Found" });
+    }
+
+    if (patient) {
+      req.body.patientname = patient.addpatientname;
+    }
+
+
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+
+    req.body.commentime = moment()
+    req.body.commentime2 = moment()
+
+    const outpatientAddpatient = await Outpatient.create(req.body);
+    res.json({ outpatient_add_patient: outpatientAddpatient });
+  })
+);
+
+// OUTPATIENT CLINIC HEMATOLOGY ADD PATIENT
+router.post(
+  "/add_patient_out_clinich",
+  [
+    check("requestype").notEmpty(),
+  ],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+
+    const mrn = req.body.mrn
+  
+    if (mrn === "") {
+      return res.json({ mrnoutempty: "You Must Enter This Field" });
+    }
+    
+    if (mrn.match(/[a-zA-z]/)){
+      return res.json({ mrnnotnumber: "Please Enter A Valid MRN" });
+    }
+  
+    const patient = await Newpatient.findOne({ addpatientmrn: req.body.mrn });
+
+    if (patient == null) {
+      return res.json({ nopatient: "This Patient Not Found" });
+    }
+
+    if (patient) {
+      req.body.patientname = patient.addpatientname;
+    }
+
+
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+
+    req.body.commentime = moment()
+    req.body.commentime2 = moment()
+
+    const outpatientAddpatient = await Outpatient.create(req.body);
+    res.json({ outpatient_add_patient: outpatientAddpatient });
+  })
+);
+
+// OUTPATIENT CLINIC SOLID ADD PATIENT
+router.post(
+  "/add_patient_out_clinics",
+  [
+    check("requestype").notEmpty(),
+  ],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+
+    const mrn = req.body.mrn
+  
+    if (mrn === "") {
+      return res.json({ mrnoutempty: "You Must Enter This Field" });
+    }
+    
+    if (mrn.match(/[a-zA-z]/)){
+      return res.json({ mrnnotnumber: "Please Enter A Valid MRN" });
+    }
+  
+    const patient = await Newpatient.findOne({ addpatientmrn: req.body.mrn });
+
+    if (patient == null) {
+      return res.json({ nopatient: "This Patient Not Found" });
+    }
+
+    if (patient) {
+      req.body.patientname = patient.addpatientname;
+    }
+
+
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+
+    req.body.commentime = moment()
+    req.body.commentime2 = moment()
+
+    const outpatientAddpatient = await Outpatient.create(req.body);
+    res.json({ outpatient_add_patient: outpatientAddpatient });
+  })
+);
+
+// OUTPATIENT DAYCARE ADD PATIENT
+router.post(
+  "/add_patient_out_supportive",
+  [
+    check("requestype").notEmpty(),
   ],
   checkIfUser,
   requireAuth,
@@ -8733,10 +9247,7 @@ router.put(
   requireAuth,
   asyncHandler(async (req, res) => {
   
-    const results = await Qa.findOneAndUpdate(
-      { _id: req.params.id},
-      {answer: req.body.answerupdate}
-    );
+    const results = await Qa.findByIdAndUpdate(req.params.id , req.body);
 
     if (results) {
       res.redirect(req.get('referer'));
