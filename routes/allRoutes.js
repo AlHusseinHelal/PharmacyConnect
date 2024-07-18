@@ -3342,9 +3342,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email" });
-    // }
+    if (!email.includes("57357.org")) {
+      return res.json({ invalidemail: "Invalid Email" });
+    }
 
     const newUser = await User.create(req.body);
     const token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
@@ -5728,6 +5728,7 @@ router.post(
 router.post(
   "/add_patient_out_daycare",
   [
+    check("oraliv").notEmpty(),
     check("requestype").notEmpty(),
   ],
   checkIfUser,
@@ -5772,6 +5773,7 @@ router.post(
 router.post(
   "/add_patient_out_clinich",
   [
+    check("oraliv").notEmpty(),
     check("requestype").notEmpty(),
   ],
   checkIfUser,
@@ -5816,6 +5818,7 @@ router.post(
 router.post(
   "/add_patient_out_clinics",
   [
+    check("oraliv").notEmpty(),
     check("requestype").notEmpty(),
   ],
   checkIfUser,
@@ -5856,10 +5859,11 @@ router.post(
   })
 );
 
-// OUTPATIENT DAYCARE ADD PATIENT
+// OUTPATIENT SUPPORTIVE ADD PATIENT
 router.post(
   "/add_patient_out_supportive",
   [
+    check("oraliv").notEmpty(),
     check("requestype").notEmpty(),
   ],
   checkIfUser,
@@ -6649,7 +6653,7 @@ router.post(
     const results = await Shortage.find();
     const array = results.filter(
       (item) =>
-        item.categoryname.toLowerCase().match(searchtext.toLowerCase()) );
+        item.CATEGORYNAME.toLowerCase().match(searchtext.toLowerCase()) );
     if (array) {
       res.render("Store/shortagesearch.ejs", { array });
     }
