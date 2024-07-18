@@ -66,6 +66,7 @@ const Medicationclass = require("../models/medicationClass");
 const Perpatient = require("../models/perpatientSchema");
 const Pyxis = require("../models/pyxisSchema");
 const Rowa = require("../models/rowaSchema");
+const Shortage = require("../models/shortageSchema");
 const PyxisTrade = require("../models/pyxistradeSchema");
 const Score = require("../models/score");
 const Qa = require("../models/q&a");
@@ -492,6 +493,17 @@ router.get(
   asyncHandler(async (req, res) => {
     const array = await Rowa.find();
     res.render("Store/rowa.ejs", { array: array });
+  })
+);
+
+//SHORTAGE STORE
+router.get(
+  "/shortage",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const array = await Shortage.find();
+    res.render("Store/shortage.ejs", { array: array });
   })
 );
 
@@ -3330,9 +3342,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email" });
-    // }
+    if (!email.includes("57357.org")) {
+      return res.json({ invalidemail: "Invalid Email" });
+    }
 
     const newUser = await User.create(req.body);
     const token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
@@ -6623,6 +6635,23 @@ router.post(
     );
     if (array) {
       res.render("Store/rowasearch.ejs", { array });
+    }
+  })
+);
+
+// SHORTAGE SEARCH
+router.post(
+  "/shortagesearch",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const searchtext = req.body.searchText
+    const results = await Shortage.find();
+    const array = results.filter(
+      (item) =>
+        item.categoryname.toLowerCase().match(searchtext.toLowerCase()) );
+    if (array) {
+      res.render("Store/shortagesearch.ejs", { array });
     }
   })
 );

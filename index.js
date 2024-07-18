@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
 console.log('helloo-client')
 });
 
-mongoose.connect(process.env.MDB).then(() => {
+mongoose.connect("mongodb://localhost:27017/all-Data").then(() => {
   server.listen(port, () => {
     console.log(`Listening on port ${port}`);
   });
