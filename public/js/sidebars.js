@@ -45,282 +45,9 @@ $(document).ready(function () {
   });
 
   /*--------------------------------------------------------------
-# ARROW CONTROL
---------------------------------------------------------------*/
-  // data-toggle="tooltip" data-placement="top" title="Tooltip on top"
-  // if (localStorage.getItem("sidebarlarge") === "yes") {
-  //   $("#sidelist").css("transition", "all 2s");
-  //   $("#sidelist").css("width", "250px");
-  //   $("#arrowmove1").removeClass("dnone");
-  //   $("#arrowmove2").addClass("dnone");
-  //   $("#oncotips").css("transition", "all 2s");
-  //   $("#oncotips").css("height", "20vh");
-  //   $("#connectlogo").css("transition", "all 2s");
-  //   $("#connectlogo").css("height", "20vh");
-  //   $("#btn1").css("visibility", "visible");
-  //   $("#btn2").css("visibility", "visible");
-  //   $("#btn3").css("visibility", "visible");
-  //   $("#btn8").css("visibility", "visible");
-  //   $("#btn9").css("visibility", "visible");
-  //   $(".Layer").css("transition", "all 2s");
-  //   $(".Layer").css("width", "25px");
-  //   $(".Layer").css("margin-left", "0px");
-  //   $(".btnsubheadfont").css("margin-left", "20px");
-  //   $(".group").css("transition", "all 2s");
-  //   $(".group").css("margin-left", "16px");
-  //   $(".group").css("font-size", "14px");
-  //   $("#container").css("transition", "all 2s");
-  //   $("#container").css("width", "82vw");
-  // } else {
-  //   $("#sidelist").css("transition", "all 2s");
-  //   $("#sidelist").css("width", "8rem");
-  //   $("#arrowmove1").addClass("dnone");
-  //   $("#arrowmove2").removeClass("dnone");
-  //   $("#oncotips").css("transition", "all 2s");
-  //   $("#oncotips").css("height", "5vh");
-  //   $("#connectlogo").css("transition", "all 2s");
-  //   $("#connectlogo").css("height", "5vh");
-  //   $("#btn1").css("visibility", "hidden");
-  //   $("#btn2").css("visibility", "hidden");
-  //   $("#btn3").css("visibility", "hidden");
-  //   $("#btn8").css("visibility", "hidden");
-  //   $("#btn9").css("visibility", "hidden");
-  //   $(".Layer").css("transition", "all 2s");
-  //   $(".Layer").css("width", "2em");
-  //   $(".Layer").css("margin-left", "20px");
-  //   $(".btnsubheadfont").css("margin-left", "0px");
-  //   $(".group").css("transition", "all 2s");
-  //   $(".group").css("margin-left", "0px");
-  //   $(".group").css("font-size", "11px");
-  //   $("#container").css("transition", "all 2s");
-  //   $("#container").css("width", "100vw");
-  // }
-  // $("#arrowmove1").on("click", function () {
-  //   localStorage.setItem("sidebarlarge", "no");
-  //   $("#sidelist").css("transition", "all 2s");
-  //   $("#sidelist").css("width", "8rem");
-  //   $("#arrowmove1").addClass("dnone");
-  //   $("#arrowmove2").removeClass("dnone");
-  //   $("#oncotips").css("transition", "all 2s");
-  //   $("#oncotips").css("height", "5vh");
-  //   $("#connectlogo").css("transition", "all 2s");
-  //   $("#connectlogo").css("height", "5vh");
-  //   $("#btn1").css("visibility", "hidden");
-  //   $("#btn2").css("visibility", "hidden");
-  //   $("#btn3").css("visibility", "hidden");
-  //   $("#btn8").css("visibility", "hidden");
-  //   $("#btn9").css("visibility", "hidden");
-  //   $(".Layer").css("transition", "all 2s");
-  //   $(".Layer").css("width", "2em");
-  //   $(".Layer").css("margin-left", "20px");
-  //   $(".btnsubheadfont").css("margin-left", "0px");
-  //   $(".group").css("transition", "all 2s");
-  //   $(".group").css("margin-left", "0px");
-  //   $(".group").css("font-size", "11px");
-  //   $("#container").css("transition", "all 2s");
-  //   $("#container").css("width", "100vw");
-  // });
-  // $("#arrowmove2").on("click", function () {
-  //   if (localStorage.getItem("sidebarlarge") === "no") {
-  //     localStorage.setItem("sidebarlarge", "yes");
-  //   }
-  //   $("#sidelist").css("transition", "all 2s");
-  //   $("#sidelist").css("width", "250px");
-  //   $("#arrowmove1").removeClass("dnone");
-  //   $("#arrowmove2").addClass("dnone");
-  //   $("#oncotips").css("transition", "all 2s");
-  //   $("#oncotips").css("height", "20vh");
-  //   $("#connectlogo").css("transition", "all 2s");
-  //   $("#connectlogo").css("height", "20vh");
-  //   $("#btn1").css("visibility", "visible");
-  //   $("#btn2").css("visibility", "visible");
-  //   $("#btn3").css("visibility", "visible");
-  //   $("#btn8").css("visibility", "visible");
-  //   $("#btn9").css("visibility", "visible");
-  //   $(".Layer").css("transition", "all 2s");
-  //   $(".Layer").css("width", "25px");
-  //   $(".Layer").css("margin-left", "0px");
-  //   $(".btnsubheadfont").css("margin-left", "20px");
-  //   $(".group").css("transition", "all 2s");
-  //   $(".group").css("margin-left", "16px");
-  //   $(".group").css("font-size", "14px");
-  //   $("#container").css("transition", "all 2s");
-  //   $("#container").css("width", "82vw");
-  // });
-
-  /*--------------------------------------------------------------
 # ADD PRESENTATION
 --------------------------------------------------------------*/
-// $(".medication").each(function () {
-//   $(this).on('click', () => {
-//     console.log("hellooo");
-//     $('#row').replaceWith(`
-//     <div class="col col-12">
-//     <div class="one mt-5">
-//         <h1 class="flex-shrink-0"><%= item.generic %> <br>
-//             <p style="color:red;margin-bottom:0"><%= item.trade %><sup>®</sup> </p>
-//             <span class="mt-1">Medication Monograph</span>
-//         </h1>
-//     </div>
-//     <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
 
-//         <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-//             <div class="accordion-item <%=  item.class === ""? "d-none" : "d-block" %>">
-//                 <h2 class="accordion-header">
-//                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-//                         data-bs-target="#collapOne" aria-expanded="true" aria-controls="collapOne">
-//                         <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-//                         Pharmacological Class
-//                     </button>
-//                 </h2>
-//                 <div id="collapOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-//                     <div class="accordion-body">
-//                       <%=  item.classname %>
-//                     </div>
-//                 </div>
-//             </div>
-
-//             <div class="accordion-item <%=  item.mechanism === ""? "d-none" : "d-block" %>">
-//                 <h2 class="accordion-header">
-//                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-//                         data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-//                         <img src="../svg/MOP.svg" alt="" height="30px" class="me-2">
-//                         Mechanism Of Action
-//                     </button>
-//                 </h2>
-//                 <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-//                     <div class="accordion-body">
-//                       <%=  item.mechanism %>
-//                     </div>
-//                 </div>
-//             </div>
-
-//             <div class="accordion-item <%=  item.dosageform === ""? "d-none" : "d-block" %>">
-//                 <h2 class="accordion-header">
-//                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-//                         data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-//                         <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-//                         Dosage form
-//                     </button>
-//                 </h2>
-//                 <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-//                     <div class="accordion-body">
-//                       <%=  item.dosageform %>
-//                     </div>
-//                 </div>
-//             </div>
-
-//             <div class="accordion-item <%=  item.dose === ""? "d-none" : "d-block" %>">
-//                 <h2 class="accordion-header">
-//                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-//                         data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-//                         <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-//                         Dose
-//                     </button>
-//                 </h2>
-//                 <div id="collapseFour" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-//                     <div class="accordion-body">
-//                       <%=  item.dose %>
-//                     </div>
-//                 </div>
-//             </div>
-
-//             <div class="accordion-item <%=  item.adminstration === ""? "d-none" : "d-block" %>">
-//                 <h2 class="accordion-header">
-//                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-//                         data-bs-target="#collapsefive" aria-expanded="true" aria-controls="collapsefive">
-//                         <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-//                         Administration
-//                     </button>
-//                 </h2>
-//                 <div id="collapsefive" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-//                     <div class="accordion-body">
-//                       <%=  item.adminstration %>
-//                     </div>
-//                 </div>
-//             </div>
-
-//             <div class="accordion-item <%=  item.ptinformation === ""? "d-none" : "d-block" %>">
-//                 <h2 class="accordion-header">
-//                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-//                         data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
-//                         <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-//                         Patient Information
-//                     </button>
-//                 </h2>
-//                 <div id="collapseSix" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-//                     <div class="accordion-body">
-//                       <%=  item.ptinformation %>
-//                     </div>
-//                 </div>
-//             </div>
-
-//             <div class="accordion-item <%=  item.sideeffect === ""? "d-none" : "d-block" %>">
-//                 <h2 class="accordion-header">
-//                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-//                         data-bs-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
-//                         <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-//                         Side Effects
-//                     </button>
-//                 </h2>
-//                 <div id="collapseSeven" class=" accordion-collapse collapse" data-bs-parent="#accordionExample">
-//                     <div class="accordion-body">
-//                       <%=  item.sideeffect %>
-//                     </div>
-//                 </div>
-//             </div>
-
-//             <div class="accordion-item <%=  item.monitor === ""? "d-none" : "d-block" %>">
-//               <h2 class="accordion-header">
-//                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-//                       data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
-//                       <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-//                       Monitor Parameters
-//                   </button>
-//               </h2>
-//               <div id="collapseEight" class=" accordion-collapse collapse" data-bs-parent="#accordionExample">
-//                   <div class="accordion-body">
-//                     <%=  item.monitor %>
-//                   </div>
-//               </div>
-//           </div>
-
-//           <div class="accordion-item <%=  item.interaction === ""? "d-none" : "d-block" %>">
-//             <h2 class="accordion-header">
-//                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-//                     data-bs-target="#collapseNine" aria-expanded="true" aria-controls="collapseNine">
-//                     <img src="../svg/interaction.svg" alt="" height="30px" class="me-2">
-//                     Interaction
-//                 </button>
-//             </h2>
-//             <div id="collapseNine" class=" accordion-collapse collapse" data-bs-parent="#accordionExample">
-//                 <div class="accordion-body">
-//                   <%=  item.interaction %>
-//                 </div>
-//             </div>
-//         </div>
-
-//         <div class="accordion-item <%=  item.specialprecaution === ""? "d-none" : "d-block" %>">
-//           <h2 class="accordion-header">
-//               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-//                   data-bs-target="#collapseTen" aria-expanded="true" aria-controls="collapseTen">
-//                   <img src="../svg/alert.svg" alt="" height="30px" class="me-2">
-//                   Special Precautions/Comments
-//               </button>
-//           </h2>
-//           <div id="collapseTen" class=" accordion-collapse collapse" data-bs-parent="#accordionExample">
-//               <div class="accordion-body">
-//                 <%=  item.specialprecaution %>
-//               </div>
-//           </div>
-//       </div>
-//         </div>
-//     </div>
-// </div>
-//       `)
-//   })
-// })
   $(".Asthma").on("click", function () {
     $("#container")
       .replaceWith(`<div id="container" class="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
@@ -470,12792 +197,8 @@ $(document).ready(function () {
 </div>`);
   });
 
-  /*--------------------------------------------------------------
-# ADD MEDICATION ANTIBIOTICS
---------------------------------------------------------------*/
-  $(".AmoxicillinClavulanic").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Amoxicillin + Clavulanic Acid <br>
-                    <p style="color:red;margin-bottom:0">Augmentin. <br> Clavimox. <sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
 
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
 
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Antibiotic/ Penicillin.
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● ● 15mg/kg/dose (Q8) for all
-                                    concentrations Except 1g
-                                    (Q12). <br>
-                                    <strong>● Max dose: 50mg/kg/day</strong>
-
-                                </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 Tab: 625mg (1
-                                tab: 500 mg
-                                amoxicillin). <br>
-                                ● 1 Tab: 1 gram (1
-                                tab: 825 mg
-                                amoxicillin). <br>
-                                ● 1 Suspension:
-                                312 mg/5ml (5 ml:
-                                250 amoxicillin). 
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Taken after meals. <br>
-                                    ● Kept in refrigerator. <br>
-                                    ● Kept for 10 days only after
-                                    reconstitution.
-                                    
-
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Antibiotic-Associated (NonClostridioides Difficile) Diarrhea. <br>
-                                ● Clostridioides Difficile Infection. <br>
-                                ● Drug-Induced Liver Injury. <br>
-                                ● Hypersensitivity (Immediate and
-                                Delayed). <br>
-                                ● Gastrointestinal: Diarrhea.
-                                
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● With prolonged therapy, monitor
-                                renal, hepatic, and hematologic function. <br>
-                                ● Monitor for signs of hypersensitivity,
-                                including anaphylaxis.
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-  $(".Amoxicillin").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Amoxicillin <br>
-                    <p style="color:red;margin-bottom:0">Biomox <br> E-Mox <sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Antibiotic/ Penicillin.
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● Prophylaxis in BMT
-                                    patients or cases of
-                                    splenectomy: 20mg/kg/day
-                                    (Q24). <br>
-                                    ● Standard-dose regimen:
-                                    Oral: 40 to 45 mg/kg/day in
-                                    divided doses every 8 hours;
-                                    maximum dose: 500 mg/dose.
-                                </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 Tab: 500 mg. <br>
-                                ● Suspension:
-                                250mg/5ml <br>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Give this drug with or without
-                                    food. <br>
-                                    ● Give with food if it causes an
-                                    upset stomach. It may be mixed
-                                    with small amount of formula,
-                                    milk, cold drink, or juice;
-                                    administer dose immediately after
-                                    mixing. <br>
-                                    ● Shake suspension well before use.
-
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Antibiotic-Associated (Non-Clostridioides Difficile) Diarrhea. <br>
-                                ● Clostridioides Difficile Diarrhea. <br>
-                                ● Hypersensitivity And Immunologic
-                                Reactions (Immediate and Delayed).
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● With prolonged therapy, monitor
-                                renal, hepatic, and hematologic function. <br>
-                                ● Observe for change in bowel
-                                frequency. <br>
-                                ● Monitor for signs and symptoms of
-                                hypersensitivity, including anaphylaxis.
-                                
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-  $(".Azithromycin").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Azithromycin. <br>
-                    <p style="color:red;margin-bottom:0">Azithromycin, Azrolid <sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Antibiotic, Macrolide
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● General dosing, susceptible
-                                    infection: Infants, Children,
-                                    and Adolescents: <br>
-                                    Oral: 5 to 12 mg/kg/dose;
-                                    typically administered as 10-
-                                    12 mg/kg/dose on day 1
-                                   <u>Q24</u> (usual maximum dose: 500
-                                    mg/dose) followed by 5 to 6
-                                    mg/kg once daily (usual
-                                    maximum dose: 250
-                                    mg/dose) for remainder of
-                                    treatment duration. </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 Cap: 250 mg. <br>
-                                ● Syrup:
-                                200mg/5ml
-                                
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● May administer without regard
-                                    to food; do not administer with
-                                    antacids that contain aluminum or
-                                    magnesium. <br>
-                                    ● Oral suspension, multiple doses:
-                                    Shake well before use.
-                                    
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Altered Cardiac Conduction. <br>
-                                ● Clostridioides Difficile Infection. <br>
-                                ● Drug-Induced Liver Injury. <br>
-                                ● Hypersensitivity Reactions
-                                (Immediate/Delayed). <br>
-                                ● Ototoxicity.
-                                
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● LFTs. <br>
-                                ● Symptoms of hepatitis (malaise,
-                                nausea, vomiting, abdominal colic,
-                                fever). <br>
-                                ● CBC with differential. <br>
-                                ● Audiogram with prolonged use. <br>
-                                ● ECG for QTc prolongation.
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-  $(".Cefadroxil").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0"> Cefadroxil. <br>
-                      <p style="color:red;margin-bottom:0">Duricef. <sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antibiotic, Cephalosporin (First Generation).
-  
-  
-  
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 30 mg/kg/day divided
-                                      every 12 hours. <br> <strong>Max: 2,000
-                                          mg/day.</strong>
-                                  </p>
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Syrup:
-                                  250mg/5ml. <br>
-                                  ● Syrup:
-                                  500mg/5ml.
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Must be taken with food to
-                                      decrease risk of nausea.
-                                  </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  ● Gastrointestinal: Diarrhea.
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● CBC, renal function tests (with
-                                  prolonged use). <br>
-                                  ● Stool frequency. <br>
-                                  ● Hypersensitivity (including
-                                  anaphylaxis).
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-  
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Cefdinir").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0"> Cefdinir. <br>
-                      <p style="color:red;margin-bottom:0">Cefathird. <sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antibiotic, Cephalosporin (Third Generation).
-  
-  
-  
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 7mg/kg/dose Q12. <br>
-                                      <strong>Maximum daily dose: 600
-                                          mg/day.</strong>
-                                  </p>
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Suspension: 125mg/5 ml.
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Twice daily doses should be given
-                                      every 12 hours. <br>
-                                      ● May be administered with or
-                                      without food. <br>
-                                      ● Manufacturer recommends
-                                      administering at least 2 hours
-                                      before or after antacids or iron
-                                      supplements. <br>
-                                      ● Shake suspension well before use
-                                  </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  ● Antibiotic-Associated (Non-Clostridioides Difficile) Diarrhea. <br>
-                                  ● Clostridioides Difficile Diarrhea. <br>
-                                  ● Hypersensitivity Reactions (Immediate
-                                  and Delayed).
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Monitor renal function. <br>
-                                  ● Observe for signs and symptoms of
-                                  anaphylaxis during first dose.
-                                  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-  
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Cefpodoxime").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0"> Cefpodoxime. <br>
-                      <p style="color:red;margin-bottom:0">Cepodem 40mg/5ml.<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antibiotic.
-  
-  
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● &lt; 12 years: 10mg/kg/day
-                                      Q12.
-                                     <strong>Max: 200 mg/dose.</strong> 
-                                      ● >12 years: 100-400 mg Q12.
-                                      
-                                  </p>
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ●Syrup: 40mg/5ml (60ml).
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Must be taken with food.
-                                  </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-  
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Ciprofloxacin").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Ciprofloxacin <br>
-                      <p style="color:red;margin-bottom:0">Servoflox 250mg<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antibiotic, Fluoroquinolone
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 10-20 mg/kg/dose (Q12) <br>
-                                      ●<strong> Max dose: 750 mg Q12 = 1500mg/day</strong> </p>
-  
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● 1 Tab: 250 mg
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● May administer with food to minimize GI upset. <br>
-                                      ● Avoid concomitant administration with dairy products
-                                      (eg, milk, yogurt) or calcium- fortified juices alone. <br>
-                                      ● Administer ≥2 hours before or 6 hours after antacids or other
-                                      products containing calcium, iron, or zin.
-                                  </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Aortic aneurysm/aortic dissection. <br>
-                                  ● Arthropathy/arthralgia <br>
-                                  ● CNS effects/neuroexcitation <br>
-                                  ● Clostridioides difficile infection <br>
-                                  ● Glucose regulation/ dysglycemia <br>
-                                  ● Hepatotoxicity <br>
-                                  ● Hypersensitivity reactions (immediate and delayed) <br>
-                                  ● Myasthenia gravis <br>
-                                  ● Peripheral neuropathy <br>
-                                  ● Phototoxicity/photoallergy <br>
-                                  ● QT prolongation <br>
-                                  ● Tendinopathy/tendon rupture <br>
-                                  ● Neuromuscular & skeletal: Musculoskeletal signs and symptoms <br>
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● CBC <br>
-                                  ● Renal and hepatic function during prolonged therapy. <br>
-                                  ● Monitor for altered mental status; signs and symptoms of tendinopathy, joint pain, or
-                                  peripheral neuropathy. <br>
-                                  ● Signs and symptoms of disordered glucose regulation (especially in patients
-                                  with diabetes mellitus). <br>
-                                  ● Seizure activity (in patients with a history of seizures), stool output and consistency; and hypersensitivity reactions.
-  
-  
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Clindamycin").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Clindamycin<br>
-                      <p style="color:red;margin-bottom:0">Clindamycin 150mg, 300mg<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antibiotic
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 10-25mg/kg/day (Q6-Q8)
-                                      or higher doses of 30-40
-                                      mg/kg/day divided every 6-8
-                                      hours <br>
-                                      <strong>● Max dose: 1800 mg/day
-                                          i.e. :3 capsules 150 Q6 hours</strong>
-                                  </p>
-  
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● 1 Tab: 150 mg
-                                  ● 1 Tab: 300 mg
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● May be taken with or without
-                                      meals <br>
-                                      ● Note: may cause oesophageal
-                                      irritation. If capsule will open
-                                      (Capsule should be taken with a full
-                                      glass of water to avoid esophageal
-                                      irritation).
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Antibiotic-associated (non-Clostridioides
-                                  difficile) diarrhea. <br>
-                                  ● Clostridioides difficile infection. <br>
-                                  ● Hypersensitivity reactions (immediate
-                                  and delayed).
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Observe for changes in bowel 
-                                  frequency. <br>
-                                  ● During prolonged therapy, monitor 
-                                  CBC with differential and hepatic and 
-                                  renal function tests periodically.
-  
-  
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Dapsone").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Dapsone <br>
-                      <p style="color:red;margin-bottom:0">Dapsone 50mg<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antibiotic.
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● PCP Prophylaxis (primary
-                                      or secondary): Multiple
-                                      regimens (daily or weekly
-                                      dosing) and combinations
-                                      presented: <br>
-                                      ● Infants and Children: 2
-                                      mg/kg/dose once daily
-                                      (maximum daily dose: 100
-                                      mg/day) or 4 mg/kg/dose
-                                      once weekly (maximum
-                                      weekly dose: 200 mg/week). <br>
-                                      ● Adolescents: 100 mg/day in
-                                      1 or 2 divided doses as
-                                      monotherapy or 50 mg once
-                                      daily in combination with
-                                      weekly pyrimethamine and
-                                      leucovorin or 200 mg once
-                                      weekly in combination with
-                                      weekly pyrimethamine and
-                                      leucovorin; monotherapy
-                                      should not be used in
-                                      patients who are seropositive
-                                      for Toxoplasma gondii.
-                                  </p>
-  
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● 1 Tab: 50 mg
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● May administer with meals if GI
-                                      upset occurs.
-  
-  
-                                  </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Blood dyscrasias. <br>
-                                  ● Hepatic effects. <br>
-                                  ● Hypersensitivity reactions (delayed).
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● CBC with differential (weekly for the
-                                  first month, monthly for 6 months, then
-                                  semiannually), reticulocyte count, and
-                                  liver function tests. <br>
-                                  ● Check G-6-PD levels prior to initiation
-                                  of dapsone. <br>
-                                  ● Monitor for signs of jaundice,
-                                  hemolysis, or methemoglobinemia.
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Levofloxacin").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Levofloxacin <br>
-                      <p style="color:red;margin-bottom:0">Tavanic<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antibiotic/ Quinolone
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● Infants ≥6 months, 
-                                      Children, and Adolescents:
-                                      6 months - &lt;5 years: Oral, 
-                                      IV: 8-10 mg/kg/dose twice 
-                                      daily. <br>
-                                      ● ≥5 years: Oral, IV: 10 
-                                      mg/kg/dose once daily; 
-                                      maximum dose: 750 mg/day. <br>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 1 Tab: 500 mg <br>
-                                      ● Extemp: 50mg/ml </p>                             
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Maintain adequate hydration to 
-                                      prevent crystalluria or cylindruria.  <br>
-                                      ● Administer at least 2 hours 
-                                      before or 2 hours after antacids 
-                                      containing magnesium or 
-                                      aluminum, sucralfate, metal cations 
-                                      (eg, iron), multivitamin 
-                                      preparations with zinc, or 
-                                      didanosine chewable/ buffered 
-                                      tablets or the pediatric powder for 
-                                      solution. <br>
-                                      ● Tablets: May administer without 
-                                      regard to meals. <br>
-                                      ● Oral solution: Administer 1 hour 
-                                      before or 2 hours after meals. <br>
-                                      ● Missed dose: Administer as soon 
-                                      as possible if ≥8 hours until next 
-                                      scheduled dose; otherwise, wait 
-                                      until next scheduled dose. <br>
-                                      </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Aortic aneurysm/aortic dissection <br>
-                                  ● Arthropathy/arthralgia <br>
-                                  ● CNS effects/neuroexcitation <br>
-                                  ● Clostridioides difficile infection <br>
-                                  ● Glucose regulation/dysglycemia <br>
-                                  ● Hepatotoxicity <br>
-                                  ● Hypersensitivity reactions (immediate 
-                                  and delayed) <br>
-                                  ● Myasthenia gravis <br>
-                                  ● Peripheral neuropathy <br>
-                                  ● Phototoxicity/photoallergy <br>
-                                  ● QT prolongation <br>
-                                  ● Tendinopathy/tendon rupture <br>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Evaluation of organ system functions 
-                                  (renal, hepatic, and hematopoietic) is 
-                                  recommended periodically during 
-                                  therapy <br>
-                                  ● The possibility of crystalluria should 
-                                  be assessed, hydration status <br>
-                                  ● WBC and signs of infection <br>
-                                  ● Number and type of stools/day for 
-                                  diarrhea <br>
-                                  ● Signs and symptoms of tendonitis <br>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Linezolid").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Linezolid <br>
-                      <p style="color:red;margin-bottom:0">Averzolid<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antibiotic/ Oxazolidinone
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● Infants and Children &lt;12 
-                                      years: Oral, IV: 10 
-                                      mg/kg/dose Q8 hours, maximum dose: 600 
-                                      mg/dose. <br> 
-                                      ● Children ≥12 years and 
-                                      Adolescents: Oral, IV: 600 
-                                      mg Q12 hours. </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 1 Tab: 600 mg <br> 
-                                      ● Susp: 100mg/5ml
-                                  </p>                            
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Administer without regard to 
-                                      meals. <br>
-                                      ● Oral suspension: Invert gently tomix prior to administration, do not 
-                                      shake.                                  
-                                      </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Clostridioides difficile infection <br>
-                                  ● Lactic acidosis <br>
-                                  ● Myelosuppression <br>
-                                  ● Neuropathy, peripheral and optic <br>
-                                  ● Serotonin syndrome <br>
-                                  ● Gastrointestinal: Diarrhea <br>
-                                  ● Hematologic & Oncologic: Decreased 
-                                  white blood cell count <br>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Weekly CBC, particularly in the 
-                                  following patients: Patients at increased 
-                                  risk for bleeding, patients with 
-                                  preexisting myelosuppression, patients 
-                                  receiving concomitant medications that 
-                                  cause bone marrow suppression, 
-                                  patients receiving >2 weeks of therapy, 
-                                  patients with chronic infection who have 
-                                  received previous or concomitant 
-                                  antibiotic therapy; more frequent 
-                                  monitoring may be warranted in certain 
-                                  scenarios based on clinical judgment. <br>
-                                  ● Weekly liver function tests with 
-                                  extended use.  <br>
-                                  ● Sodium (routinely in patients at risk 
-                                  of hyponatremia [eg, patients receiving 
-                                  diuretics] and/or syndrome of 
-                                  inappropriate antidiuretic hormone 
-                                  secretion [SIADH]). <br>
-                                  ● Periodic serum bicarbonate with 
-                                  extended therapy. <br>
-                                  ● Consider monitoring lactate in 
-                                  patients with renal or hepatic 
-                                  dysfunction or who are receiving long-term therapy. <br>
-                                  ● Peripheral sensory and visual function 
-                                  with extended therapy (eg, ≥3 months) 
-                                  or in patients with new-onset 
-                                  neuropathic or visual symptoms, 
-                                  regardless of therapy length (any 
-                                  symptoms of visual change or 
-                                  impairment warrant immediate 
-                                  ophthalmic evaluation). <br>
-                                  ● Monitor for signs and symptoms of 
-                                  lactic acidosis (eg, recurrent nausea and 
-                                  vomiting, unexplained acidosis, low 
-                                  bicarbonate levels) and signs and 
-                                  symptoms of hyponatremia. <br>
-                                  ● Monitor for signs and symptoms of 
-                                  serotonin syndrome or neuroleptic 
-                                  malignant syndrome-like reaction 
-                                  (especially in patients on concomitant 
-                                  serotonergic agents). <br>
-                                  ● Monitor for diarrhea. <br>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Sulfamethoxazole").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Sulfamethoxazole + Trimethoprim <br>
-                      <p style="color:red;margin-bottom:0">Septrin<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antibiotic, Sulfonamide Derivative
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● Prophylaxis: 
-                                      2.5mg/kg/dose Q12 3
-                                      days/week <br>
-                                      ● Treatment: 5 mg/kg/dose 
-                                      Q6  <br>
-                                      ● Max dose: 160mg/dose <br>                            
-                                      </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 1 Tab: 160 mg <br>
-                                      ● Suspension:
-                                      40mg/5ml <br></p>                            
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● For Prophylaxis keep at least 2 
-                                      days gap between it and 
-                                      Chemotherapy (Methotrexate) <br>
-                                      ● Administer without regard to 
-                                      meals. <br>
-                                      ● Shake suspension well before use. <br>
-                                      ● Patient should maintain adequate 
-                                      fluid intake during use. <br>                       
-                                      </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Clostridioides difficile infection <br>
-                                  ● Drug-induced liver injury <br>
-                                  ● Hematologic effects <br>
-                                  ● Hyperkalemia <br>
-                                  ● Hypoglycemia <br>
-                                  ● Hyponatremia <br>
-                                  ● Hypersensitivity reactions (delayed) <br>
-                                  ● Hypersensitivity reactions (immediate) <br>
-                                  ● Kernicterus <br>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● CBC, renal function, sodium, 
-                                  potassium, glucose <br>
-                                  ● Observe for change in bowel 
-                                  frequency. <br>
-                                  ● Liver function (with longer-term use) <br>
-                                  ● Urinalysis (if clinical presentation 
-                                  indicates need). <br>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION ANTIFUNGAL
---------------------------------------------------------------*/
-  $(".Bifonazole").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Bifonazole. <br>
-                    <p style="color:red;margin-bottom:0">Bifonazole Cream.<sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Anti-Fungal.
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● ● Apply once daily before
-                                    bed from 2 to 4 weeks
-                                    </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Cream.
-                                
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Apply at Night.
-                                    
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                
-                                
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-  $(".Fluconazole").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Fluconazole <br>
-                      <p style="color:red;margin-bottom:0">Diflucan 50mg <sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Anti-Fungal Agent.
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>For other indications refer to 
-                                      medication's monograph. <br>
-                                      ● Prophylaxis in Infants, 
-                                      Children, and Adolescents:
-                                      6-12 mg/kg/dose Q24; 
-                                      Max: 400 mg/dose. <br>
-                                      ● Treatment in Infants & 
-                                      Children: <br>
-                                      6-12 mg/kg/dose Q24 for 7-14 
-                                      days; Max: 400 mg/dose. <br>
-                                      ● Adolescents: <br>
-                                      6 mg/kg/dose Q24 for 7-14 
-                                      days; usual adult dose: 100-
-                                      200 mg/dose.
-                                      </p>
-  
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● 1 Cap: 50 mg.
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p> May be administered without 
-                                      regard to meals.
-                                  </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Cardiovascular: Prolonged QT interval 
-                                  on ECG, which may lead to TdP or 
-                                  polymorphic ventricular arrhythmias and 
-                                  rarely hypersensitivity coronary 
-                                  syndrome. <br>
-                                  ● Dermatologic reactions: Maculopapular 
-                                  skin rash, fixed drug eruption, alopecia
-                                  and symmetrical drug-related 
-                                  intertriginous and flexural exanthema 
-                                  (SDRIFE). Rare reports of severe 
-                                  cutaneous adverse reactions (SCARs) 
-                                  include SJS, toxic epidermal necrolysis 
-                                  (TEN), drug reaction with eosinophilia 
-                                  and systemic symptoms (DRESS), and 
-                                  acute generalized exanthematous 
-                                  pustulosis (AGEP). Other cutaneous 
-                                  reactions include Sweet’s syndrome. <br>
-                                  ● Hepatotoxicity. <br>
-                                  ● Nervous system: Headache
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                              ● Periodic liver function (AST, ALT, 
-                                  alkaline phosphatase), renal function 
-                                  tests, serum potassium, CBC with 
-                                  differential and platelet count; 
-                                  conjugated bilirubin in neonates.
-  
-                              </div>
-                          </div>
-                      </div>
-  
-        
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Itraconazole").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Itraconazole <br>
-                      <p style="color:red;margin-bottom:0">Itracon <sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Anti-Fungal
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 5 mg/kg/dose Q12 <br>
-                                      ● Max: 100 mg/dose
-                                      (400 mg/day) <br>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 1 Cap: 100 mg </p>                             
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● To be taken with full meals
-                                      </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Cardiovascular Effects: New or 
-                                  worsening hypertension, new or 
-                                  worsening HF, prolonged QT interval on 
-                                  ECG, and torsades de pointes <br>
-                                  ● Hepatotoxicity <br>
-                                  ● Hypersensitivity effects (Immediate and 
-                                  Delayed) <br>
-                                  ● Hypokalemia/Pseudoaldosteronism <br>
-                                  ● Peripheral Neuropathy <br>
-                                  ● Gastrointestinal: Nausea <br>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Liver function in patients with 
-                                  preexisting hepatic dysfunction, and in 
-                                  all patients being treated for longer than 
-                                  1 month <br>
-                                  ● Renal function <br>
-                                  ● Serum potassium <br>
-                                  ● CBC <br>
-                                  ● Monitor for peripheral neuropathy, 
-                                  prodromal signs of hepatitis, and signs 
-                                  and symptoms of heart failure. Serum 
-                                  concentration monitoring is routinely 
-                                  recommended, except for use for tinea 
-                                  capitis. <br>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Posaconazole").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Posaconazole <br>
-                      <p style="color:red;margin-bottom:0">Noxafil<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Anti-Fungal
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 6 mg/kg/dose Q6 in
-                                      patients > 12 years with 
-                                      confirmed mucormycosis 
-                                      and follow up with TDM 
-                                      levels <br>
-                                      ● Max dose: 200 mg Q6   <br>                                  
-                                      </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● Suspension:
-                                      40mg/5ml <br>
-                                  </p>                            
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Must be taken with fatty meal. <br>
-                                      ● Shake well before use. <br>
-                                      ● Administer with provided 
-                                      measured dosing spoon during or 
-                                      within 20 minutes following a full 
-                                      meal; patients who are unable to 
-                                      eat a full meal may take each dose 
-                                      with an oral liquid nutritional 
-                                      supplement or acidic carbonated 
-                                      beverage (eg, ginger ale). <br>
-                                      ● Consider an alternative 
-                                      antifungal in patients unable to eat 
-                                      a full meal or tolerate a liquid 
-                                      nutritional supplement or acidic 
-                                      carbonated beverage.      <br>         
-                                      </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Cardiovascular: Hypertension, 
-                                  hypotension, lower extremity edema, 
-                                  peripheral edema, tachycardia. <br>
-                                  ● Dermatologic: Pruritus, skin rash <br>
-                                  ● Endocrine & Metabolic: Dehydration, 
-                                  hyperglycemia, hypokalemia, 
-                                  hypomagnesemia, weight loss <br>
-                                  ● Gastrointestinal: Abdominal pain, 
-                                  anorexia, constipation, decreased appetite, 
-                                  diarrhea, nausea, oral candidiasis, 
-                                  stomatitis, upper abdominal pain, 
-                                  vomiting <br>
-                                  ● Hematologic & Oncologic: Anemia, 
-                                  febrile neutropenia, neutropenia, petechia, 
-                                  thrombocytopenia <br>
-                                  ● Hepatic: Increased serum alanine 
-                                  aminotransferase, increased serum 
-                                  alkaline phosphatase, increased serum 
-                                  aspartate aminotransferase <br>
-                                  ● Infection: Herpes simplex infection <br>
-                                  ● Nervous System: Chills, dizziness, 
-                                  fatigue, headache, insomnia, pain, rigors <br>
-                                  ● Neuromuscular & Skeletal: Arthralgia, 
-                                  asthenia, musculoskeletal pain <br>
-                                  ● Respiratory: Cough, dyspnea, epistaxis, 
-                                  pharyngitis, pneumonia <br>
-                                  ● Miscellaneous: Fever, inflammation <br>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● History of potential hereditary 
-                                  fructose intolerance symptoms (prior to 
-                                  initiation of delayed-release oral 
-                                  suspension) <br>
-                                  ● Hepatic function tests and bilirubin 
-                                  (prior to initiation and periodically 
-                                  during therapy) <br>
-                                  ● Serum electrolytes (eg, calcium, 
-                                  potassium, magnesium) <br>
-                                  ● Blood pressure <br>
-                                  ● Serum concentrations <br>
-                                  ● ECG (in patients with risk factors for 
-                                  QT prolongation) <br>
-                                  ● Oral intake (for oral therapy) <br>
-                                  ● Breakthrough fungal infections <br>
-                                  ● Signs and symptoms of 
-                                  pseudohyperaldosteronism (edema, 
-                                  blood pressure, and urine 
-                                  protein/albumin) as clinically 
-                                  appropriate. <br>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Terbinafine").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Terbinafine <br>
-                      <p style="color:red;margin-bottom:0">Lamifen<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Anti-Fungal
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● Tinea Capitis: <br> 
-                                    &lt;25 kg: 125 mg Q24 for 6
-                                      weeks <br> 
-                                      25-35 kg: 187.5 mg Q24 for 6
-                                      weeks <br> 
-                                      >35 kg: 250 mg Q24 for 6
-                                      weeks <br> </p>
-                                      ● Onychomycosis: <br> 
-                                      10-20 kg: 62.5 mg Q24 for 6
-                                      weeks (fingernails) or 12 
-                                      weeks (toenails) <br> 
-                                      20-40 kg: 125 mg Q24 for 6
-                                      weeks (fingernails) or 12 
-                                      weeks (toenails) <br> 
-                                      >40 kg: 250 mg Q24 for 6
-                                      weeks (fingernails) or 12 
-                                      weeks (toenails)  <br>                                                            
-                                      </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 1 tab: 125 mg <br>   
-                                      ● 1 tab: 250 mg <br></p>                            
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Administered without regards to 
-                                      meals <br>             
-                                      </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Hepatotoxicity <br>   
-                                  ● Hypersensitivity Reactions (Delayed) <br>   
-                                  ● Taste & Smell Disturbances <br>   
-                                  ● Thrombotic Microangiopathy <br>   
-                                  ● Nervous System: Headache <br>   
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● AST/ALT prior to initiation, repeat if 
-                                  used >6 weeks; some experts have 
-                                  suggested that repeat testing at 6 weeks 
-                                  is unnecessary <br>   
-                                  ● CBC (if used >6 weeks in 
-                                  immunocompromised patients) <br>   
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Voriconazole").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Voriconazole <br>
-                      <p style="color:red;margin-bottom:0">VFEND<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Anti-Fungal
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● &lt;12 years: 9 mg/kg/dose
-                                      Q12, Max dose: 350 mg/dose <br>
-                                      <p>● ≥12 years - ≤14 years: 
-                                          Note: In this age group, body 
-                                          weight is more important 
-                                          than age in predicting 
-                                          pharmacokinetics:   <br>
-                                          &lt;50 kg: 9 mg/kg/dose Q12; 
-                                          Max: 350 mg/dose <br>
-                                          ≥50 kg: 200 mg Q12  <br></p>
-                                      <p>● Adolescents ≥15 years: <br>
-                                        &lt;40 kg: 100 mg Q12 <br>
-                                      ≥40 kg: 200 mg Q12  <br></p>
-                                      ● Dose adjustment per TDM  <br>                                                           
-                                      </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 1 Tab: 50mg <br>
-                                      ● 1 Tab: 200mg <br></p>                            
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Contraindicated with Motilium 
-                                      & Vincristine. <br>
-                                      ● Avoid sunlight <br>
-                                      ● Must be taken 1 hour before 
-                                      meals          <br>                                       
-                                      </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Acute Kidney Injury <br>
-                                  ● Cardiovascular: Prolonged QT interval 
-                                  on ECG, which may lead to TdP or 
-                                  polymorphic ventricular arrhythmias and 
-                                  hypertension <br>
-                                  ● Dermatologic Reactions: Skin 
-                                  photosensitivity, including erythematous 
-                                  rashes in sun-exposed areas, bullous 
-                                  phototoxicity, and pseudoporphyria in all 
-                                  ages; Photosensitivity may persist for 
-                                  several months after discontinuation of 
-                                  voriconazole. Rare cases of skin 
-                                  malignancy (malignant melanoma, 
-                                  squamous cell carcinoma [SCC]), 
-                                  cutaneous SCC in situ. Severe cutaneous 
-                                  adverse reactions (SCARs), including 
-                                  toxic epidermal necrolysis and drug 
-                                  reaction with eosinophilia and systemic 
-                                  symptoms (DRESS), have been reported. 
-                                  Alopecia has also been reported. <br>
-                                  ● Hepatotoxicity <br>
-                                  ● Ocular and Neurological effects: 
-                                  Voriconazole may cause visual 
-                                  disturbance, including blurred vision, 
-                                  optic neuritis, vision color changes, 
-                                  episcleritis, and scleritis. Visual 
-                                  disturbances may resolve within 24 hours 
-                                  to 2 weeks after discontinuation. 
-                                  Voriconazole may also cause audio or 
-                                  visual hallucination which may last up to 5
-                                  days and are reversible with 
-                                  discontinuation. Peripheral neuropathy 
-                                  (PN) has also been reported with 
-                                  numbness or tingling in the extremities, 
-                                  which may be rapidly debilitating and 
-                                  irreversible. Encephalopathy has also 
-                                  been reported. <br>
-                                  ● Skeletal effects: Periosteal disease may 
-                                  occur with voriconazole and is manifested 
-                                  as increased serum alkaline phosphatase, 
-                                  skeletal fluorosis, and conventional 
-                                  radiographs and nuclear scans showing 
-                                  periostitis. Periostitis is painful and 
-                                  reversible with discontinuation. Pain 
-                                  usually improves 2 weeks to 4 months 
-                                  after discontinuation, with lab values 
-                                  (alkaline phosphatase) and radiographic 
-                                  findings following this time course <br>
-                                  ● Endocrine & Metabolic: Hyperkalemia, 
-                                  hypokalemia <br>
-                                  ● Gastrointestinal: Abdominal pain, 
-                                  diarrhea, nausea, vomiting <br>
-                                  ● Hepatic: Increased serum alanine 
-                                  aminotransferase, increased serum 
-                                  alkaline phosphatase, increased serum 
-                                  aspartate aminotransferase <br>
-                                  ● Ophthalmic: Visual disturbance likely 
-                                  serum concentration dependent <br>
-                                  ● Renal: Renal insufficiency <br>
-                                  ● Respiratory: Epistaxis <br>
-                                  ● Miscellaneous: Fever   <br>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Hepatic function (transaminases and 
-                                  bilirubin) at initiation, weekly during 
-                                  the first month and monthly during 
-                                  course of treatment <br>
-                                  ● Serum electrolytes (particularly 
-                                  calcium, magnesium, and potassium) 
-                                  prior to initiation and during therapy <br>
-                                  ● Periodic renal function tests 
-                                  (particularly serum creatinine) <br>
-                                  ● Adrenal function (as clinically 
-                                  appropriate, during and after 
-                                  treatment) and signs/symptoms of 
-                                  adrenal insufficiency <br>
-                                  ● Visual acuity, visual field, and color 
-                                  perception if treatment course continues 
-                                  >28 days <br>
-                                  ● ECG (as clinically appropriate) <br>
-                                  ● Pancreatic function in patients at risk 
-                                  for acute pancreatitis <br>
-                                  ● Voriconazole trough concentrations <br>
-                                  ● Phototoxic reactions (higher incidence 
-                                  in pediatric patients) <br>
-                                  ● Total body skin examination yearly or 
-                                  more frequently if lesions occur <br>
-                                  ● Signs/symptoms of fluorosis or 
-                                  periostitis (eg, skeletal pain, radiologic 
-                                  findings). <br>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Hepatotoxicity <br>   
-                                  ● Hypersensitivity Reactions (Delayed) <br>   
-                                  ● Taste & Smell Disturbances <br>   
-                                  ● Thrombotic Microangiopathy <br>   
-                                  ● Nervous System: Headache <br>   
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● AST/ALT prior to initiation, repeat if 
-                                  used >6 weeks; some experts have 
-                                  suggested that repeat testing at 6 weeks 
-                                  is unnecessary <br>   
-                                  ● CBC (if used >6 weeks in 
-                                  immunocompromised patients) <br>   
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION CHEMOTHERAPY
---------------------------------------------------------------*/
-  $(".Ifosfamide").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-  <div class="row" >
-      <div class="col col-12">
-          <div class="one mt-3">
-              <h1 class="flex-shrink-0">Ifosfamide <br>
-                  <p style="color:red;margin-bottom:0">Holoxan<sup>®</sup></p>
-                  <span class="mt-1">Medication Monograph</span>
-              </h1>
-          </div>
-          <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-              <div class="accordion-item ">
-                  <h2 class="accordion-header">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                          data-bs-target="#collapsezero" aria-expanded="true" aria-controls="collapsezero">
-                          <img src="../svg/mop.svg" alt="" height="30px" class="me-2">
-                          MECHANISM OF ACTION
-                      </button>
-                  </h2>
-                  <div id="collapsezero" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                          Ifosfamide causes cross-linking of strands of DNA by binding with nucleic acids and other
-                          intracellular structures, resulting in cell death; inhibits protein synthesis and DNA
-                          synthesis
-                      </div>
-                  </div>
-              </div>
-
-              <div class="accordion-item ">
-                  <h2 class="accordion-header">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                          data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                          DOSE
-                      </button>
-                  </h2>
-                  <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                          <ul>
-                              <li>
-                                  <strong><u>Hodgkin Lymphoma:</u></strong>
-                                  <p><strong>IV:</strong> 1.8 mg/kg/dose for Children ≥2 years and Adolescents,
-                                      <strong>Maximum Dose: 180 mg/dose</strong>.
-                                  </p>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="accordion-item ">
-                  <h2 class="accordion-header">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                          data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                          <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                          ADMINISTRATION
-                      </button>
-                  </h2>
-                  <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                          <ul>
-                              <li>
-                                  <p> <strong>IV:</strong>
-                                      Ifosfamide is associated with a moderate emetic potential; antiemetics are
-                                      recommended to prevent nausea and vomiting.
-                                      <br>
-                                      Administer IV over at least 30 minutes (infusion times may vary by protocol;
-                                      refer to specific protocol for infusion duration). To prevent bladder toxicity,
-                                      ifosfamide should be given with mesna and hydration.
-                                  </p>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="accordion-item">
-                  <h2 class="accordion-header">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                          data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                          <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                          TOXICITIES & MANAGEMENT
-                      </button>
-                  </h2>
-                  <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                          <ul>
-                              <li><strong>GI Toxicity:</strong> Acute pancreatitis, other serious and fatal GI
-                                  complications (including hemorrhage, obstruction, perforation, erosion, ulcer,
-                                  enterocolitis, neutropenic colitis, and ileus) have been reported. The risk for GI
-                                  complications may be increased in patients with lymphoma with preexisting GI
-                                  involvement.</li>
-                              <ul><strong>Management:</strong> Prompt diagnostic evaluation and management should be
-                                  performed if new or worsening GI symptoms (including severe abdominal pain) occur.
-                              </ul>
-                              <li><strong>Hyperglycemia:</strong> Hyperglycemia, including new-onset hyperglycemia,
-                                  exacerbation of pre-existing diabetes mellitus, and ketoacidosis have been reported,
-                                  including grade 3 and 4 events. Hyperglycemia occurred more frequently in patients
-                                  with increased body mass or diabetes.</li>
-                              <ul><strong>Management:</strong> As normal hyperglycemia but monitoring is enough.</ul>
-                              <li><strong>Hepatotoxicity:</strong> Serious hepatotoxicity has occurred; cases were
-                                  consistent with hepatocellular injury, with elevations of transaminases and/or
-                                  bilirubin.</li>
-                              <ul><strong>Management:</strong> Delay, dose adjustments or discontinuation of the drug.
-                              </ul>
-                              <li><strong>Infusion Reactions/Anaphylaxis:</strong> Infusion reactions, including
-                                  anaphylaxis have been reported.</li>
-                              <ul><strong>Management:</strong> Paracetamol, an Antihistamine and a Corticosteroid as
-                                  pre-medication.</ul>
-                              <li><strong>Peripheral Neuropathy:</strong> Peripheral neuropathy is common and is
-                                  generally cumulative; grades 1 to 4 neuropathy have been reported. Neuropathy is
-                                  usually sensory, although motor neuropathy has also been observed. Based on an
-                                  updated analysis, neuropathy completely resolved in a majority of patients receiving
-                                  brentuximab in combination with chemotherapy; although some patients experienced
-                                  either partial improvement or no improvement. Symptoms of neuropathy include
-                                  hypoesthesia, hyperesthesia, paresthesia, discomfort, burning sensation, neuropathic
-                                  pain, or weakness.</li>
-                              <ul><strong>Management:</strong> Delay, dose adjustments or discontinuation of the drug.
-                              </ul>
-                              <li><strong>Pulmonary Toxicity:</strong> Noninfectious pulmonary toxicity (eg,
-                                  pneumonitis, interstitial lung disease, acute respiratory distress syndrome), some
-                                  fatal.</li>
-                              <ul><strong>Management:</strong> Discontinuing the offending drug and administering
-                                  Corticosteroid therapy either orally or intravenously according to severity.</ul>
-                              <li><strong>Progressive Multifocal Leukoencephalopathy (PML):</strong> Cases of
-                                  progressive multifocal leukoencephalopathy (PML) and death due to JC virus infection
-                                  have been reported. Immunosuppression due to prior chemotherapy treatments or
-                                  underlying disease may also contribute to PML development. New-onset signs/symptoms
-                                  of CNS abnormalities include changes in mood, memory, cognition, motor
-                                  incoordination and/or weakness, speech and/or visual disturbances.</li>
-                              <ul><strong>Management:</strong> If PML is confirmed the drug must be permanently
-                                  discontinued.</ul>
-                              <li><strong>Tumor Lysis Syndrome:</strong> TLS may occur; risk of TLS is higher in
-                                  patients with a high tumor burden or with rapid tumor proliferation.</li>
-                              <ul><strong>Management:</strong> Administer prophylaxis (anti-hyperuricemic therapy,
-                                  aggressive hydration) in patients at high risk. Correct electrolyte abnormalities
-                                  and administer supportive care as indicated.</ul>
-                              <li><strong>Renal Impairment:</strong> Due to higher exposure of MMAE (the microtubule
-                                  disrupting agent component), the incidence of ≥ grade 3 adverse reactions may be
-                                  increased in patients with severe impairment.</li>
-                              <ul><strong>Management:</strong> Dosage Adjustment to 1.2 mg/kg administered as an
-                                  intravenous infusion over 30 minutes every 3 weeks with close monitoring.</ul>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="accordion-item">
-                  <h2 class="accordion-header">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                          data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                          <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                          DRUG INTERACTIONS
-                      </button>
-                  </h2>
-                  <div id="collapseFour" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                          <ul>
-                              <li><strong>Risk X:(Avoid Combination):</strong>
-                                  <br>Natalizumab.
-                              </li>
-                              <li><strong>Risk C:(Monitor Therapy):</strong>
-                                  <br>Amphotericin B
-                                  <br>Aprepitant
-                              
-                                  <br>Busulfan
-                              
-                                  <br>Fluconazole
-                              
-                                  <br>Imatinib
-                                  <br> Itraconazole <br> Phenytoin
-                                  <br>Verapamil
-                                  <br>Voriconazole
-                                  <br>Warfarin
-                              
-                              </li>
-                              </ul>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="accordion-item">
-                  <h2 class="accordion-header">
-                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                          data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-                          <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                          MONITORING PARAMETER
-                      </button>
-                  </h2>
-                  <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                      <div class="accordion-body">
-                          <ul>
-                              <li>CBC with
-                                  differential
-                                  (prior to and at
-                                  appropriated
-                                  intervals after
-                                  each cycle, and
-                                  as clinically
-                                  appropriate).
-                              </li>
-                              <li>Urine output.</li>
-                              <li>Urinalysis (for
-                                  erythrocytes
-                                  prior to each
-                                  dose). 
-                                  </li>
-                                  <li>Liver function,
-                                      and renal
-                                      function tests
-                                      (prior to and
-                                      during
-                                      treatment). 
-                                      </li>
-                                      <li>Monitor for signs/symptoms of neurotoxicity, pulmonary toxicity, urotoxicity/hemorrhagic cystitis, and secondary malignancies. </li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>`);
-  });
-
-  $(".Cyclophpsphamide").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">Cyclophosphamide <br>
-            <p style="color:red;margin-bottom:0">Endoxan 1 g<sup>®</sup></p>
-            <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-          <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapsezero" aria-expanded="true" aria-controls="collapsezero">
-                  <img src="/svg/Origin.svg" alt="" height="30px" class="me-2">
-                  Origin
-                </button>
-              </h2>
-              <div id="collapsezero" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  Alkylating Agent, Nitrogen Mustard.
-
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseone" aria-expanded="true" aria-controls="collapseone">
-                  <img src="/svg/MOP.svg" alt="" height="30px" class="me-2">
-                  MECHANISM OF ACTION
-                </button>
-              </h2>
-              <div id="collapseone" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  -Cyclophosphamide is a prodrug that must be metabolized to active metabolites in the liver. It
-                  Prevents cell division by cross-linking DNA strands and decreasing DNA
-                  synthesis. It is a cell cycle phase nonspecific agent. <br> -Cyclophosphamide also possesses
-                  potent
-                  immunosuppressive activity.
-
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
-                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                  DOSE
-                </button>
-              </h2>
-              <div id="collapsetwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li>
-                      <strong>Acute Lymphoblastic Leukemia</strong>
-                      <p><strong>Induction of Remission:</strong>(1000 mg/m2) + Mesna d22 <br>
-                        <strong>Contimuation High/Standard Risk:</strong> (300 mg/m2) I.V d1
-                    <li>
-                      <strong>Retinoblastoma</strong>
-                      <p><strong>Extra-Ocular Retinoblastoma:</strong><br>- Age < 36 months (65 mg/kg/day) IV over
-                          1 hour.<br>-Age ≥ 36 months (1950 mg/m2/day) IV over 1 hour.</p>
-                    </li>
-                    <li>
-                      <strong>Neuroblastoma</strong>
-                      <p><strong>High-Risk Neuroblastoma:</strong> <br>-Days 1,2 </p>
-                    </li>
-                    </p>
-                    </li>
-                    <li> <strong>Soft Tissue Sarcoma</strong>
-                      <p>-</p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapsethree" aria-expanded="true" aria-controls="collapsethree">
-                  <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                  ADMINISTRATION
-                </button>
-              </h2>
-              <div id="collapsethree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <p>Antiemetics may be recommended to prevent nausea and vomiting; doses ≥1,200 mg/m2 IV are
-                    associated with a high emetic potential and doses of 1,000 mg/m2 IV are associated with a
-                    moderate emetic risk</p>
-                  <ul>
-                    <li>
-                      <strong>Oral</strong> <br>
-                      <p> Capsules and tablets should be swallowed whole. Tablets are not scored and should not be
-                        cut, crushed, or chewed. Capsules should not be opened, crushed, or chewed. Wear gloves
-                        when handling capsules/tablets and container; avoid exposure to broken capsules. If
-                        exposure to capsule contents or crushed/cut tablets, wash hands immediately and
-                        thoroughly. Morning administration may be preferred to ensure adequate hydration
-                        throughout the day; do not administer tablets/capsules at bedtime.</p>
-                    </li>
-                    <li><strong>I.V</strong></li><br>
-                    <P>-IV push: May administer reconstituted solution without further dilution (20 mg/mL); rate
-                      may vary based on protocols (refer to specific protocols). <br>
-
-                      -IV infusion (intermittent or continuous): Infusion rate may vary based on protocol (refer
-                      to specific protocol for infusion rate); usually over 15 to 60 minutes; larger doses (>1,800
-                      mg/m2) have been infused over 1 to 6 hours by some centers and protocols. <br>
-
-                      -Bladder toxicity: To minimize bladder toxicity, increase normal fluid intake during and for
-                      1 to 2 days after cyclophosphamide dose. Most adult patients will require a fluid intake of
-                      at least 2 L/day and in pediatric patients twice maintenance (3 L/m2/day). <br>High-dose
-                      regimens and depending upon the protocol some standard (low) cyclophosphamide doses should
-                      be accompanied by vigorous hydration with mesna therapy (refer to specific protocols and
-                      Mesna monograph for additional information). Morning administration may be preferred to
-                      ensure adequate hydration throughout the day.</P>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapsefive" aria-expanded="true" aria-controls="collapsefive">
-                  <img src="/svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                  DRUG INTERACTIONS
-                </button>
-              </h2>
-              <div id="collapsefive" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li><strong>Risk X:(Avoid Combination):</strong>
-                      <br>Natalizumab.
-                    </li>
-                    <li><strong>Risk C:(Monitor Therapy):</strong>
-                      <br>Amphotericin B.
-                      <br>Allopurinol.
-
-                      <br>Amidarone.
-
-                      <br>Aprepitant
-
-                      <br>Bupivacaine
-                      <br> Carbamazepine <br> Fluconazole
-                      <br>Hydrochlorothiazide.
-
-                      <br>Itraconazole
-
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">
-                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                  MONITORING PARAMETER
-                </button>
-              </h2>
-              <div id="collapsesix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li>CBC with
-                      differential
-                      and platelets
-                    </li>
-                    <li>BUN</li>
-                    <li>Serum electrolytes,Serum creatinine, Urinalysis.
-                    </li>
-                    <li>Assess risk for
-                      opportunistic
-                      infections (eg,
-                      Pneumocystis
-                      jirovecii pneumonia,
-                      herpes virus
-                      infection).
-
-                    </li>
-                    <li>Monitor for
-                      signs/symptoms of
-                      hemorrhagic cystitis
-                      or other
-                      urinary/renal toxicity. </li>
-                    <li>Pulmonary toxicity
-                      (if suspect
-                      pneumonitis,
-                      consider pulmonary
-                      function testing to
-                      assess the severity
-                      of pneumonitis).
-                    </li>
-                    <li>Cardiac t
-                      oxicity
-                      (particularly in
-                      patients with cardiac
-                      risk factors or
-                      preexisting cardiac
-                      disease).
-                    </li>
-                    <li>Hepatic toxicity
-                      (including hepatic
-                      sinusoidal
-                      obstruction syndrome).</li>
-                    <li>Secondary
-                      malignancies. </li>
-                    <li>Wound healing
-                      impairment. </li>
-                    <li>Monitor adherence
-                      (for oral dosing).</li>
-                    <li>Evaluate pregnancy
-                      status prior to use in
-                      patients who can
-                      become pregnant. </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>`);
-  });
-
-  $(".Basiliximab").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">Basiliximab <br>
-            <p style="color:red;margin-bottom:0">Simulect 20mg<sup>®</sup></p>
-            <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-          <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapsezero" aria-expanded="true" aria-controls="collapsezero">
-                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                  ORIGIN
-                </button>
-              </h2>
-              <div id="collapsezero" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  Targeted Therapy, Large Molecules, Monoclonal Antibodies, Interleukin-2 Inhibitors
-
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseone" aria-expanded="true" aria-controls="collapseone">
-                  <img src="../svg/MOP.svg" alt="" height="30px" class="me-2">
-                  MECHANISM OF ACTION
-                </button>
-              </h2>
-              <div id="collapseone" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  Basiliximab is a chimeric (murine/human) immunosuppressant monoclonal antibody which blocks the
-                  alpha-chain of the IL-2 receptor complex; this receptor is expressed on activated T lymphocytes
-                  and is a critical pathway for activating cell-mediated allograft rejection.
-
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
-                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                  DOSE
-                </button>
-              </h2>
-              <div id="collapsetwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li>
-                      Induction therapy for the prophylaxis of acute organ rejection in patients receiving renal
-                      transplant in combination with an immunosuppressive regimen (cyclosporine and
-                      corticosteroids) (FDA approved in pediatric patients and adults); Basiliximab has also been
-                      used for prophylaxis of acute organ rejection in liver, heart, and lung transplant.
-                    </li>
-                    <li>
-                      <strong>Patient weight <35kg:< /strong> 10 mg per dose
-                    </li>
-                    <li>
-                      <strong>Patient weight ≥35 kg:</strong> 20 mg per dose
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapsethree" aria-expanded="true" aria-controls="collapsethree">
-                  <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                  ADMINISTRATION
-                </button>
-              </h2>
-              <div id="collapsethree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li><strong>IV: </strong></li>
-                    <p>For IV administration only through central or peripheral access. Administer only after
-                      confirmation that patient will receive graft and immunosuppression. Reconstituted
-                      basiliximab solution may be administered undiluted as a bolus injection or further diluted
-                      and infused over 20 to 30 minutes. Bolus injection is associated with nausea, vomiting, and
-                      local pain at the injection site. </p>
-                  </ul>
-                  <ul>
-                    <li><strong>When to administer:</strong></li>
-                    <p>
-                    <ul><strong>Initial dose:</strong> IV: Administered before or up to 6 hours after
-                      transplantation</ul>
-                    <ul><strong>Second dose:</strong> IV: mg administered 4 days after transplantation</ul>
-                    </p>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapsefour" aria-expanded="true" aria-controls="collapsefour">
-                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                  TOXICITIES & MANAGEMENT
-                </button>
-              </h2>
-              <div id="collapsefour" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li><strong>Anaphylactoid/Hypersensitivity Reactions: </strong> Severe hypersensitivity
-                      reactions, occurring within 24 hours, have been reported. Reactions, including anaphylaxis,
-                      have occurred both with the initial exposure and/or following re-exposure after several
-                      months; use caution during re-exposure to a subsequent course of therapy in a patient who
-                      has previously received Basiliximab. Patients in whom concomitant immunosuppression was
-                      prematurely discontinued due to abandoned transplantation or early graft loss are at
-                      increased risk for developing a severe hypersensitivity reaction upon re-exposure. </li>
-                    <ul><strong>Management:</strong> Discontinue permanently if a severe reaction occurs.
-                      Medications for the treatment of hypersensitivity reactions should be available for
-                      immediate use.</ul>
-                    <li><strong>Diabetes: </strong> In renal transplant recipients receiving Basiliximab plus
-                      prednisone, cyclosporine, and mycophenolate, new-onset diabetes, glucose intolerance, and
-                      impaired fasting glucose were observed at rates significantly higher than observed in
-                      patients receiving prednisone, cyclosporine, and mycophenolate without Basiliximab.</li>
-                    <li><strong>Human Antimurine Antibodies (HAMA): </strong> Treatment may result in the
-                      development of HAMA.</li>
-                    <li><strong>Lymphoproliferative Disorders: </strong> The incidence of lymphoproliferative
-                      disorders may be increased by immunosuppressive therapy.</li>
-                    <li><strong>Opportunistic Infections: </strong> The incidence of opportunistic infections may
-                      be increased by immunosuppressive therapy.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapsefive" aria-expanded="true" aria-controls="collapsefive">
-                  <img src="../svg/interaction.svg" alt="" height="30px" class="me-2">
-                  DRUG INTERACTIONS
-                </button>
-              </h2>
-              <div id="collapsefive" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li><strong>Tofacitinib (Risk X: Avoid Combination):</strong>
-                      Immunosuppressants (Therapeutic Immunosuppressant Agents) may enhance the immunosuppressive
-                      effect of Tofacitinib.
-                      <ul><strong>Management: </strong> Coadministration of tofacitinib with potent
-                        immunosuppressants is not recommended. Use with non-biologic disease-modifying
-                        antirheumatic drugs (DMARDs) was permitted in psoriatic arthritis clinical trials.</ul>
-                    </li>
-                    <li><strong>Vaccines (Live) (Risk X: Avoid Combination):</strong>
-                      Anti-CD20 B-Cell Depleting Therapies may enhance the adverse/toxic effect of Vaccines
-                      (Live). Specifically, the risk of vaccine-associated infection may be increased. Anti-CD20
-                      B-Cell Depleting Therapies may diminish the therapeutic effect of Vaccines (Live).
-                    </li>
-                    <li><strong>Denosumab (Risk D: Consider Therapy Modification):</strong>
-                      Immunosuppressants may enhance the immunosuppressive effect of Denosumab.
-                      <ul><strong>Management: </strong> Consider the risk of serious infections versus the
-                        potential benefits of coadministration of denosumab and immunosuppressants. If combined,
-                        monitor for signs/symptoms of serious infections.</ul>
-                    </li>
-                    <li><strong>Vaccines (Non-Live/Inactivated/Non-Replicating) (Risk D: Consider Therapy
-                        Modification):</strong>
-                      Anti-CD20 B-Cell Depleting Therapies may diminish the therapeutic effect of Vaccines
-                      (Non-Live/Inactivated/Non-Replicating).
-                      <ul><strong>Management: </strong> Give non-live/inactivated/non-replicating vaccines at
-                        least 2 weeks prior to initiation or 6 months after anti-CD20 B-cell depleting therapies.
-                        If vaccinated prior to B cell recovery, consider assessing immune response to vaccination.
-                      </ul>
-                    </li>
-                    <li><strong>Antidiabetic Agents (Risk C: Monitor Therapy) :</strong>
-                      Hyperglycemia-Associated Agents may diminish the therapeutic effect of Antidiabetic Agents.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">
-                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                  MONITORING PARAMETER
-                </button>
-              </h2>
-              <div id="collapsesix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li>CBC with differential, vital signs, immunologic monitoring of T cells, renal function,
-                      serum glucose, signs or symptoms of hypersensitivity (more common with subsequent doses),
-                      infection.
-                    </li>
-                    <li>Patients previously administered Basiliximab should only be re-exposed to a subsequent
-                      course of therapy with extreme caution due to increased risk of hypersensitivity reactions.
-                      Hold second or subsequent dose(s) if severe hypersensitivity reactions or graft failure
-                      occurs.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>`);
-  });
-
-  $(".Rituximab").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">Rituximab <br> <p style="color:red;margin-bottom:0">Rixathon 100 mg/10 ml <sup>®</sup></p>
-          <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                Origin
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li>
-                  <p>Targeted Therapy, Large Molecules, Monoclonal Antibodies, Anti-CD20
-                  </p>
-                </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-  
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <img src="../svg/MOP.svg" alt="" height="30px" class="me-2">
-                MECHANISM OF ACTION
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li>
-                  <p>Rituximab is a monoclonal antibody directed against the CD20 antigen on the surface of B-lymphocytes. CD20 regulates cell cycle initiation; and, possibly, functions as a calcium channel. Rituximab binds to the antigen on the cell surface, activating complement-dependent B-cell cytotoxicity; and to human Fc receptors, mediating cell killing through an antibody-dependent cellular toxicity.
-                  </p>
-                </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-  
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                DOSE
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>
-                    <strong><u>Mature B-Cell Lymphoma/Leukemia:</u></strong>
-                    <p><strong>IV:</strong> 375 mg/m2</p>
-                  </li>
-                  <li>
-                    <strong><u>Ataxia Patients: Group A R-COPAD 1 and 2 (Day 0), Group B (IR) and Group C Induction R-COPADM3 1 and 2 (Day 0), Consolidation CYM1 and 2 (Day 0)</u></strong>
-                  </li>
-                  <li>
-                    <strong><u>Group B Induction R-COPADM3 1 and 2 (Days -2 and 0), Consolidation CYM1 and 2 (Day 0)</u></strong>
-                  </li>
-                  <li>
-                    <strong><u>Group C Induction R-COPADM8 1 and 2 (Days -2 and 0), Consolidation CYVE1 and 2 (Day 0)</u></strong>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-  
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapsefour" aria-expanded="true" aria-controls="collapsefour">
-                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                TOXICITIES & MANAGEMENT
-              </button>
-            </h2>
-            <div id="collapsefour" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li><strong>Infusion-Related Reactions:</strong> Rituximab administration can result in serious, including fatal, infusion-related reactions. Reactions may include angioedema, bronchospasm, cough, hypotension, hypoxia, throat irritation, urticaria, and in more severe cases, ARDS, pulmonary infiltrates, acute myocardial infarction, ventricular fibrillation, and cardiogenic shock. Deaths within 24 hours of rituximab infusion have occurred. Approximately 80% of fatal infusion-related reactions occurred in association with the first infusion. Monitor patients closely. Discontinue rituximab infusion for severe reactions and provide medical treatment for grade 3 or 4 infusion-related reactions.</li>
-                   <ul><strong>Management:</strong> Priming IV lines with the drug. Standardized premedication, including acetaminophen, diphenhydramine and dexamethasone should be considered for all patients receiving first-dose rituximab infusions to reduce hypersensitivity.</ul>
-                   <li><strong>Hepatitis B Virus Reactivation:</strong> HBV reactivation can occur in patients treated with rituximab products, in some cases resulting in fulminant hepatitis, hepatic failure, and death.</li>
-                   <ul><strong>Management:</strong> Screen all patients for HBV infection before treatment initiation, and monitor patients during and after treatment with rituximab. Discontinue rituximab and concomitant medications in the event of HBV reactivation.</ul>
-                   <li><strong>Progressive Multifocal Leukoencephalopathy (PML):</strong> PML due to JC virus infection has been reported with rituximab and may be fatal. Cases were reported in patients with hematologic malignancies receiving rituximab either with combination chemotherapy or with HSCT. Clinical findings included confusion/disorientation, motor weakness/hemiparesis, altered vision/speech, and poor motor coordination with symptoms progressing over weeks to months.</li>
-                   <ul><strong>Management:</strong> If PML is confirmed the drug must be permanently discontinued.</ul>   
-                   <li><strong>Bowel Obstruction/Perforation:</strong> Abdominal pain, bowel obstruction, and perforation have been reported, with an average onset of symptoms of ~6 days.</li>
-                   <ul><strong>Management:</strong> Evaluate abdominal pain or repeated vomiting.</ul>
-                   <li><strong>Tumor Lysis Syndrome:</strong> TLS leading to acute renal failure requiring dialysis may occur within 12 to 24 hours following the first dose when used as a single agent in the treatment of NHL. Hyperkalemia, hypocalcemia, hyperuricemia, and/or hyperphosphatemia may occur.</li>
-                   <ul><strong>Management:</strong> Administer prophylaxis (anti-hyperuricemic therapy, aggressive hydration) in patients at high risk (high numbers of circulating malignant cells ≥25,000/mm3 or high tumor burden). Correct electrolyte abnormalities and administer supportive care as indicated.</ul>
-                   <li><strong>Hypogammaglobulinemia and Infection:</strong> Serious, including fatal, bacterial, fungal, and new or reactivated viral infections can occur during and following the completion of rituximab-based therapy. Infections have been reported in some patients with prolonged hypogammaglobulinemia.</li>
-                   <ul><strong>Management:</strong> IgG replacement, which may be given IV or SC.</ul>
-                </ul>
-              </div>
-            </div>
-          </div>
-  
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapsefive" aria-expanded="true" aria-controls="collapsefive">
-                <img src="../svg/interaction.svg" alt="" height="30px" class="me-2">
-                DRUG INTERACTIONS
-              </button>
-            </h2>
-            <div id="collapsefive" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li><strong>Vaccines (Live) (Risk X: Avoid Combination):</strong>
-                  Anti-CD20 B-Cell Depleting Therapies may enhance the adverse/toxic effect of Vaccines (Live). Specifically, the risk of vaccine-associated infection may be increased. Anti-CD20 B-Cell Depleting Therapies may diminish the therapeutic effect of Vaccines (Live).
-                </li>  
-                <li><strong>Vaccines (Non-Live/Inactivated/Non-Replicating) (Risk D: Consider Therapy Modification):</strong>
-                  Anti-CD20 B-Cell Depleting Therapies may diminish the therapeutic effect of Vaccines (Non-Live/Inactivated/Non-Replicating).
-                  <ul><strong>Management:</strong> Give non-live/inactivated/non-replicating vaccines at least 2 weeks prior to initiation or 6 months after anti-CD20 B-cell depleting therapies. If vaccinated prior to B cell recovery, consider assessing immune response to vaccination.</ul>
-                </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-  
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapsesix" aria-expanded="true" aria-controls="collapsesix">
-                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                MONITORING PARAMETER
-              </button>
-            </h2>
-            <div id="collapsesix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>Signs/symptoms of hypersensitivity reactions (during and for 15 minutes after administration).
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-  
-          </div>
-        </div>
-      </div>
-    </div>`);
-  });
-
-  $(".Mercaptopurine").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-          
-      <div class="row" >
-        
-        <div class="col col-12" >
-          
-          <div class="one mt-5">
-            <h1 class="flex-shrink-0">6-Mercaptopurine <br>
-              <p style="color:red;margin-bottom:0">Puri-nethol 50mg<sup>®</sup> </p>
-              <span class="mt-1">Medication Monograph</span>
-            </h1>
-          </div>
-
-
-          <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-            
-
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                  Pharmacological Class
-                </button>
-              </h2>
-              <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  Antineoplastic Agent
-
-
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                  <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                  Dose
-                </button>
-              </h2>
-              <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <p><u>Refer to the Protocol"
-                      Review pt's diagnosis and
-                      risk protocol</u></p>
-
-                  ● Induction: 60mg/m²
-                  ● SR after 21st week:
-                  75mg/m²
-                  ● Interim /Consolidation:
-                  50mg/m²
-                  ● SR week (1-21): 50mg/m²
-                  ● For ALCL: 225 mg /m²
-
-
-
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                  Dosage form
-                </button>
-              </h2>
-              <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  ● 1 Tab: 50 mg <br>
-                  ● Extemp: 5 mg/ml
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                  Patient Information
-                </button>
-              </h2>
-              <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-
-                  <p>● Provide at night to prevent
-                    relapse preferably on an empty
-                    stomach 2 hours after dinner.
-                    ● Avoid milk and milk products
-                    before & after by 2 hours.
-                    ● Administer at the same time(s)
-                    each day.</p>
-
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                  Side Effects
-                </button>
-              </h2>
-              <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  ● Dermatologic: Skin rash
-                  ● GIT: Anorexia, diarrhea, nausea,
-                  vomiting
-                  ● Hematologic & Oncologic: Bone
-                  marrow depression (dose-related: >20%,
-                  including anemia, neutropenia,
-                  lymphocytopenia, and thrombocytopenia)
-                  ● Nervous System: Malaise
-
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                  Monitoring Parameters
-                </button>
-              </h2>
-              <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  ● CBC with differential <br>
-                  ● Bone marrow exam <br>
-                  ● LFTs <br>
-                  ● Renal function and urinalysis <br>
-                  ● Consider TPMT genotyping to <br>
-                  identify TPMT defect (if severe toxicity
-                  occurs).
-
-
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapse13" aria-expanded="true" aria-controls="collapse13">
-                  <img src="../svg/alert.svg" alt="" height="30px" class="me-2">
-                  Special Precautions/Comments
-                </button>
-              </h2>
-              <div id="collapse13" class="accordion-collapse collapse "  data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li> 3.5 tabs/W: 0.5 tab daily</li>
-                    <li> 4 tabs/W: 0.5 tab daily
-                      except Wed 1 tab</li>
-                    <li>4.5 tabs/W: 0.5 tab
-                      daily except Sun &
-                      Wed 1 tab
-                    </li>
-                    <li> 5 tabs/W: 0.5 tab daily except
-                      Sun, Tues, Thurs 1 tab</li>
-                    <li>5.5 tabs/W: 1 tab daily except Sun,
-                      Tues, Thurs 0.5 tab</li>
-                    <li> 6 tabs/W: 1 tab
-                      daily except Sun &
-                      Wed 0.5 tab</li>
-                    <li> 6.5 tabs/W: 1 tab
-                      daily except Wed 0.5
-                      tab</li>
-                    <li>7 tabs/W: 1 tab daily</li>
-                    <li>7.5 tabs/W: 1 tab daily
-                      except Wed 1.5 tab</li>
-                    <li>8 tabs/W: 1 tab daily
-                      except Sun & Wed 1.5
-                      tab</li>
-                    <li> 8.5 tabs/W: 1 tab daily except
-                      Sun, Tues, Thurs 1.5 tab</li>
-                    <li>9 tabs/W: 1.5 tab daily except Sun,
-                      Tues, Thurs 1 tab
-                    </li>
-                    <li>9.5 tabs/W: 1.5
-                      tab daily except
-                      Sun & Wed 1 tab
-                    </li>
-                    <li> 10 tabs/W: 1.5 tab
-                      daily except Wed 1 tab
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>`);
-  });
-  $(".Dasatinib").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Dasatinib <br>
-                      <p style="color:red;margin-bottom:0">Dasatinib Synthon 50mg<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antineoplastic Agent 
-                                  (Tyrosine Kinase Inhibitor).
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>●<u>ALL Ph +ve:</u> 40 mg/m2
-                                      Q12hr (80 mg/m2 once daily 
-                                      can still be considered for
-                                      dose rounding causes)
-                                      Max: 140 mg/day. <br>
-                                      For other indications refer to 
-                                      medication's monograph.
-                                      </p>
-  
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● 1 Tab: 50 mg
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Administer either in the morning 
-                                      or the evening (for once-daily 
-                                      dosing); dasatinib has also been 
-                                      administered twice daily.  <br>
-                                      ● Swallow whole; do not break, cut, 
-                                      crush, or chew tablets. <br>
-                                      ● Administer with or without 
-                                      meals. <br>
-                                      ● Administer with a meal if GI 
-                                      upset occurs
-                                      
-                                  </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Cardiovascular: Peripheral edema. <br>
-                                  ● Dermatologic: Pruritus, skin rash. <br>
-                                  ● Endocrine & metabolic: Fluid retention, 
-                                  hypocalcemia, hypokalemia, 
-                                  hypophosphatemia. <br>
-                                  ● Gastrointestinal: Abdominal pain, 
-                                  diarrhea, nausea, vomiting. <br>
-                                  ● Hematologic & Oncologic: Anemia, 
-                                  febrile neutropenia, hemorrhage, 
-                                  neutropenia, thrombocytopenia. <br>
-                                  ● Hypersensitivity: Facial edema. <br>
-                                  ● Infection: Infection. <br>
-                                  ● Local: Localized edema. <br>
-                                  ● Nervous system: Fatigue, headache, pain. <br>
-                                  ● Neuromuscular & Skeletal: Arthralgia, 
-                                  limb pain, musculoskeletal pain, myalgia. <br>
-                                  ● Respiratory: Dyspnea, pleural effusion. <br>
-                                  ● Miscellaneous: Fever.
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● CBC with differential:
-                                  -ALL, newly diagnosed: Baseline, prior 
-                                  to initiation of each block of 
-                                  chemotherapy, and then as clinically 
-                                  indicated and every 2 days until 
-                                  recovery during consolidation blocks of 
-                                  chemotherapy. <br>
-                                  -ALL accelerated or blast phase CML: 
-                                  Weekly for 2 months, then monthly or as 
-                                  clinically necessary. <br>
-                                  ● Bone marrow biopsy <br>
-                                  ● Liver function tests, electrolytes 
-                                  including calcium, phosphorus, 
-                                  magnesium; monitor for fluid retention; 
-                                  monitor for signs/symptoms of cardiac 
-                                  dysfunction; ECG monitoring if at risk 
-                                  for QTc prolongation; chest x-ray is 
-                                  recommended for symptoms suggestive 
-                                  of pleural effusion (eg, cough, dyspnea); 
-                                  signs/symptoms of TLS and 
-                                  dermatologic reactions. Monitor bone 
-                                  growth/development in pediatric 
-                                  patients. Monitor blood pressure 
-                                  routinely. Monitor adherence. <br>
-                                  ● Thyroid function testing 
-                                  recommendations: <br>
-                                  -Preexisting levothyroxine therapy: 
-                                  Obtain baseline TSH levels, then 
-                                  monitor every 4 weeks until levels and 
-                                  levothyroxine dose are stable, then 
-                                  monitor every 2 months. <br>
-                                  -Without preexisting thyroid hormone 
-                                  replacement: TSH at baseline, then 
-                                  monthly for 4 months, then every 2 to 3 
-                                  months.
-                                  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-    
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Etoposide").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Etoposide<br>
-                      <p style="color:red;margin-bottom:0"><sup>Etoposide Ebewe 50mg®
-                          </sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antineoplastic Agent.
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p> ● Palliative Case: 50mg/m2 Q24
-  
-  
-  
-                                  </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● 1 Cap: 50 mg <br>
-                                  (since oral capsules
-                                  are not available,
-                                  it's prepared now
-                                  from vials)
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Antiemetics may be
-                                      recommended to prevent nausea
-                                      and vomiting. <br>
-                                      ● When Etoposide is prepared as
-                                      liquid medication, put it in an apple
-                                      juice in the bottom of the glass
-                                      (because it's volatile) and
-                                      administered immediately.
-  
-  
-                                  </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Dermatologic: Alopecia. <br>
-                                  ● Gastrointestinal: Nausea and vomiting,
-                                  anorexia, diarrhea. <br>
-                                  ● Hematologic & Oncologic: Leukopenia,
-                                  thrombocytopenia, anemia.
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● CBC with differential and platelet
-                                  count, hemoglobin, vital signs (blood
-                                  pressure) during infusion, albumin,
-                                  bilirubin, liver and renal function tests.
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Hydroxyurea").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Hydroxyurea <br>
-                      <p style="color:red;margin-bottom:0">Hydrea 500mg. <sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antineoplastic Agent.
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p><u> Only in Sickle cell anemia in
-                                          med's monograph in
-                                          pediatrics
-                                          ● Infants ≥6 months,
-                                          Children, and Adolescents:
-                                          Limited data available in
-                                          infants and children < 2 years: </u> <br>
-                                              Initial: Oral: 20 mg/kg/dose
-                                              once daily; monitor blood
-                                              count every 2 weeks; may
-                                              increase by 5 mg/kg/day
-                                              every 8 weeks or sooner if
-                                              painful crisis occurs;
-                                               <strong>maximum daily dose: 35
-                                                  mg/kg/day;</strong> continue therapy
-                                              until mild myelosuppression
-                                              (ANC 2,000 to 4,000/mm3) is
-                                              achieved (as long as
-                                              myelosuppression
-                                              acceptable) <br>
-                                              ● An initial starting dose of
-                                              15 mg/kg/dose once daily has
-                                              also been studied
-                                  </p>
-  
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● 1 Cap: 500mg <br>
-  ● Extemp: 
-  100mg/ml
-  
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Note: Impervious gloves should 
-                                      be worn when handling bottles 
-                                      containing hydroxyurea or when 
-                                      handling/administering intact 
-                                      capsules/tablets. <br>
-                                      ● Wash hands with soap and water 
-                                      before and after contact with 
-                                      hydroxyurea. <br> 
-                                      ● Avoid exposure to crushed 
-                                      capsules/tablets or open capsules. If 
-                                      skin contact occurs, immediately 
-                                      wash the affected area thoroughly 
-                                      with soap and water. <br>
-                                      ● If eye(s) contact occurs, the 
-                                      affected area should be flushed 
-                                      thoroughly with water or isotonic 
-                                      eyewash designated for that 
-                                      purpose for at least 15 minutes. <br>
-                                      ● If powder from the capsules or 
-                                      tablets is spilled, immediately wipe 
-                                      it up with a damp disposable towel 
-                                      and discard (along with the empty 
-                                      capsules) in a closed container, such 
-                                      as a plastic bag. The spill areas 
-                                      should then be cleaned using a 
-                                      detergent solution followed by clean 
-                                      water.</p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Bone marrow suppression. <br>
-  ● Cutaneous vasculitic toxicities. <br>
-  ● Second primary malignancies. <br>
-  ● Dermatologic: Eczema. <br>
-  ● Hematologic & Oncologic: Macrocytosis.
-  (MCV >97), neutropenia. <br>
-  ● Infection: Bacterial infection. <br>
-  ● Nervous system: Headache.
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● General: CBC with differential, LFTs 
-                                  and renal function should be checked at 
-                                  baseline and then periodically 
-                                  throughout therapy; serum uric acid; 
-                                  pregnancy status prior to therapy 
-                                  initiation in women of reproductive 
-                                  potential; monitor for cutaneous 
-                                  toxicities; signs and symptoms of 
-                                  pancreatitis. <br>
-                                  ● Sickle cell anemia: Monitor 
-                                  hemoglobin F levels (every 3 to 4 
-                                  months). During dose escalation, 
-                                  monitor for toxicity every 2 weeks 
-                                  (neutrophils, platelets, hemoglobin, 
-                                  reticulocytes) or at least every 4 weeks 
-                                  when adjusting the dose (CBC with 
-                                  WBC differential, reticulocytes). Once 
-                                  on a stable dose, may monitor CBC with 
-                                  differential, reticulocyte count, and 
-                                  platelets every 2 to 3 months. Monitor 
-                                  RBC, mean corpuscular volume (MCV)
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Imatinib").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Imatinib <br>
-                      <p style="color:red;margin-bottom:0">Glivec <sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antineoplastic Agent (Tyrosine Kinase Inhibitor)
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● CML, Ph+; chronic phase, 
-                                      newly diagnosed:
-                                      Children and Adolescents: 
-                                      Oral: 260-360 mg/m2
-                                      /day 
-                                      administered once daily or in 
-                                      2 divided doses; Max: 600 
-                                      mg/day. </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 1 Cap: 100mg <br>
-                                  <p>● 1 Cap: 400mg </p><br>                                
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Antiemetics may be 
-                                      recommended to prevent nausea 
-                                      and vomiting; imatinib doses >260 
-                                      mg/m2
-                                      /day are associated with a 
-                                      moderate emetic potential                                
-                                      <br>
-                                      ● Administer with a meal and a 
-                                      large glass of water. Do not crush 
-                                      tablets; avoid skin or mucous 
-                                      membrane contact with crushed 
-                                      tablets; if contact occurs, wash 
-                                      thoroughly. <br>
-                                      ● Tablets may be dispersed in 
-                                      water or apple juice (using ~50 mL 
-                                      for 100 mg tablet, ~200 mL for 400 
-                                      mg tablet); stir until tablet dissolves 
-                                      and administer immediately. <br>
-                                      </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Cardiovascular: Chest pain, edema, 
-                                  peripheral edema <br>
-                                  ● Dermatologic: Alopecia, dermatitis, 
-                                  diaphoresis, exfoliation of skin, night 
-                                  sweats, pruritus, skin rash <br>
-                                  ● Endocrine & Metabolic: Fluid retention, 
-                                  hypoalbuminemia, hypokalemia, 
-                                  increased lactate dehydrogenase, weight 
-                                  gain <br>
-                                  ● Gastrointestinal: Abdominal distension, 
-                                  abdominal pain, anorexia, constipation, 
-                                  diarrhea, dysgeusia, dyspepsia, flatulence, 
-                                  heartburn, nausea, upper abdominal pain, 
-                                  vomiting <br>
-                                  ● Hematologic & Oncologic: Anemia, 
-                                  granulocytopenia, hemorrhage, 
-                                  hypoproteinemia, leukopenia, 
-                                  neutropenia, thrombocytopenia <br>
-                                  ● Hepatic: Hepatotoxicity, increased 
-                                  serum alanine aminotransferase, 
-                                  increased serum alkaline phosphatase, 
-                                  increased serum aspartate 
-                                  aminotransferase, increased serum 
-                                  bilirubin <br>
-                                  ● Hypersensitivity: Facial edema <br>
-                                  ● Infection: Infection, influenza <br>
-                                  ● Nervous System: Anxiety, asthenia, 
-                                  chills, depression, dizziness, fatigue, 
-                                  headache, insomnia, lethargy, malaise, 
-                                  pain, paresthesia, rigors <br>
-                                  ● Neuromuscular & Skeletal: Arthralgia, 
-                                  back pain, limb pain, muscle cramps, 
-                                  muscle spasm, musculoskeletal pain, 
-                                  myalgia, ostealgia <br>
-                                  ● Ophthalmic: Blurred vision, eyelid 
-                                  edema, increased lacrimation, periorbital 
-                                  edema <br>
-                                  ● Renal: Increased serum creatinine, 
-                                  nephrotoxicity (including genitourinary) <br>
-                                  ● Respiratory: Cough, dyspnea, 
-                                  nasopharyngitis, pharyngitis, 
-                                  pharyngolaryngeal pain, pneumonia, 
-                                  sinusitis, upper respiratory tract infection <br>
-                                  ● Miscellaneous: Fever <br>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● CBC (weekly for first month, biweekly 
-                                  for second month, then periodically 
-                                  thereafter), liver function tests (at 
-                                  baseline and monthly or as clinically 
-                                  indicated; more frequently [at least 
-                                  weekly] in patients with moderate to 
-                                  severe hepatic impairment), renal 
-                                  function, serum electrolytes (including 
-                                  calcium, phosphorus, potassium, and 
-                                  sodium levels) <br>
-                                  ● Bone marrow cytogenetics (in CML; 
-                                  at 6, 12, and 18 months) <br>
-                                  ● Pregnancy test (prior to treatment in 
-                                  females of reproductive potential) <br>
-                                  ● Fatigue, weight, and edema/fluid 
-                                  status; in pediatric patients, also 
-                                  monitor serum glucose, albumin, and 
-                                  growth parameters (height, weight, 
-                                  BMI). <br>
-                                  ● Gastric surgery (eg, bypass, major 
-                                  gastrectomy, or resection) patients: 
-                                  Monitor imatinib trough concentrations <br>
-                                  ● Thyroid function testing:
-                                  <p>-Preexisting levothyroxine therapy: 
-                                      Obtain baseline TSH levels, then 
-                                      monitor every 4 weeks until levels and 
-                                      levothyroxine dose are stable, then 
-                                      monitor every 2 months</p>
-                                  <p>-Without preexisting thyroid hormone 
-                                  replacement: TSH at baseline, then 
-                                  every 4 weeks for 4 months, then every 2 
-                                  to 3 months</p>
-                                  ● Monitor for signs/symptoms of CHF 
-                                  in patients at risk for cardiac failure or 
-                                  patients with preexisting cardiac 
-                                  disease; some suggest a baseline 
-                                  evaluation of left ventricular ejection 
-                                  fraction prior to initiation of imatinib 
-                                  therapy in all patients with known 
-                                  underlying heart disease or in elderly 
-                                  patients. <br>
-                                  ● Monitor for signs/symptoms of 
-                                  gastrointestinal irritation or perforation 
-                                  and dermatologic toxicities. <br>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Isotretinoin").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Isotretinoin <br>
-                      <p style="color:red;margin-bottom:0">Netlook<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antineoplastic Agent
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● In MB: 80mg/m²/dose 
-                                      (Q12) for 13 days 
-                                      "Refer to protocol"                                    
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 1 Cap: 10 mg </p>
-                                  <p>● 1 Cap: 20 mg </p><br>                                
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Administer with a meal <br>
-                                      
-                                      ● Hazardous agent </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Bone and Growth effects: Data are 
-                                  conflicting, but decreased bone mineral 
-                                  density, osteopenia, osteoporosis, bone 
-                                  fracture, and delayed healing of bone 
-                                  fractures have been reported. Premature 
-                                  epiphyseal closure has been reported. <br>
-                                  ● Cutaneous/hypersensitivity reactions: 
-                                  Cutaneous adverse reactions associated 
-                                  with isotretinoin range from 
-                                  mucocutaneous effects such as cheilitis, 
-                                  xeroderma, dry eye syndrome, 
-                                  conjunctivitis, blepharitis, and episcleritis 
-                                  to cases of erythema nodosum, pityriasis 
-                                  rosea-like eruptions, pyogenic granuloma, 
-                                  acne fulminans, skin photosensitivity, and 
-                                  pyoderma gangrenosum. Hypersensitivity 
-                                  reactions have also been reported, 
-                                  including immediate (anaphylaxis, 
-                                  angioedema) and delayed reactions 
-                                  (Stevens-Johnson syndrome [SJS], toxic 
-                                  epidermal necrolysis, erythema 
-                                  multiforme-like drug eruption, acute 
-                                  generalized exanthematous pustulosis 
-                                  [AGEP], allergic vasculitis, allergic 
-                                  myocardial infarction). Inflammatory 
-                                  sacroiliitis has also been described with 
-                                  isotretinoin, in association with a HLA-B27 negative antigen. <br>
-                                  ● Hepatic effects: Clinical hepatitis and 
-                                  mild to moderate increased liver enzymes 
-                                  have been reported in ~15% of patients 
-                                  receiving isotretinoin. Reversibility back 
-                                  to baseline has been demonstrated within 
-                                  4 weeks of discontinuation. <br>
-                                  ● Hypertriglyceridemia and pancreatitis <br>
-                                  ● Musculoskeletal effects: Common and 
-                                  potentially fatal musculoskeletal 
-                                  symptoms (arthralgia, myalgia, 
-                                  rhabdomyolysis); generally, symptoms 
-                                  were mild to moderate but occasionally 
-                                  required discontinuation of therapy. 
-                                  Children may experience a higher 
-                                  frequency of myalgia, arthralgia, and 
-                                  back pain. Myalgia symptom resolution 
-                                  occurred with dose reduction, cessation of 
-                                  therapy, or treatment with a non-steroidal 
-                                  anti-inflammatory medication. <br>
-                                  ● Ocular effects: Visual disturbance, night 
-                                  blindness, dry eye syndrome, eye 
-                                  irritation, and conjunctivitis. Cessation in 
-                                  therapy may reverse ocular effects; 
-                                  however, permanent damage may occur. <br>
-                                  ● Pseudotumor cerebri <br>
-                                  ● Psychiatric effects: Depression, 
-                                  psychosis, mood disturbance, and rarely, 
-                                  suicidal ideation, suicidal tendencies, 
-                                  death by suicide, aggressive behavior, 
-                                  and/or violent behavior. Symptoms often 
-                                  resolve with therapy discontinuation. <br>
-                                  ● Endocrine & Metabolic: Decreased HDL 
-                                  cholesterol, increased serum triglycerides <br>
-                                  ● Hepatic: Increased liver enzymes <br>
-                                  ● Neuromuscular & Skeletal: Arthralgia, 
-                                  back pain <br>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● CBC with differential and platelet 
-                                  count, baseline sedimentation rate, 
-                                  glucose, CPK; signs of depression, mood 
-                                  alteration, psychosis, aggression, severe 
-                                  skin reactions <br>
-                                  ● Pregnancy test (for all female patients 
-                                  of childbearing potential): Two negative 
-                                  tests with a sensitivity of at least 25 
-                                  mIU/mL prior to beginning therapy (the 
-                                  second performed at least 19 days after 
-                                  the first test and performed during the 
-                                  first 5 days of the menstrual period 
-                                  immediately preceding the start of 
-                                  therapy); monthly tests to rule out 
-                                  pregnancy prior to refilling prescription <br>
-                                  ● Lipids: Prior to treatment and at 
-                                  weekly or biweekly intervals until 
-                                  response to treatment is established. Test 
-                                  should not be performed &lt;36 hours after 
-                                  consumption of ethanol. <br>
-                                  ● Liver function tests: Prior to 
-                                  treatment and at weekly or biweekly 
-                                  intervals until response to treatment is 
-                                  established. <br>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Procarbazine").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Procarbazine <br>
-                      <p style="color:red;margin-bottom:0">Natulan<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antineoplastic Agent
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● NHL, CNS Tumors: 
-                                      60mg/m2 D8 to D21                                
-                                      </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 1 Cap: 50 mg <br></p>                            
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Procarbazine is associated with a 
-                                      high emetic potential; antiemetics 
-                                      are recommended to prevent 
-                                      nausea and vomiting. <br>
-                                      ● Avoid tyramine-containing 
-                                      foods/beverages!!      <br>                               
-                                      </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● CNS: Apprehension, ataxia, chills, 
-                                  coma, confusion, depression, dizziness, 
-                                  drowsiness, falling, fatigue, hallucination, 
-                                  headache, hyporeflexia, insomnia, 
-                                  lethargy, nervousness, neuropathy, 
-                                  nightmares, pain, paresthesia, seizure, 
-                                  slurred speech, unsteadiness <br>
-                                  ● Gastrointestinal: Nausea and vomiting 
-                                  (increasing the dose in a stepwise fashion 
-                                  over several days may minimize), 
-                                  abdominal pain, anorexia, constipation, 
-                                  diarrhea, dysphagia, hematemesis, 
-                                  melena, stomatitis, xerostomia <br>
-                                  ● Infection: Herpes virus infection, 
-                                  increased susceptibility to infection <br>
-                                  ● Neuromuscular & Skeletal: Arthralgia, 
-                                  foot-drop, myalgia, tremor, weakness <br>
-                                  ● Renal: Polyuria <br>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● CBC with differential, platelet and 
-                                  reticulocyte count (at least every 3 to 4 
-                                  days) <br>
-                                  ● Urinalysis (weekly), liver function test 
-                                  (prior to therapy and weekly), renal 
-                                  function test (prior to therapy and 
-                                  weekly), alkaline phosphatase (weekly). <br>
-                                  ● Monitor for infections, CNS toxicity, 
-                                  and gastrointestinal toxicities <br>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Temozolomide").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Temozolomide <br>
-                      <p style="color:red;margin-bottom:0">Chemtheraz<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antineoplastic Agent
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 100 mg/m2 PO one hour 
-                                      before Irinotecan D1-D5                          
-                                      </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 1 Cap: 100 mg  <br>
-                                      ● Extemp: 10mg/ml <br></p>                            
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Temozolomide is associated with 
-                                      a moderate or high emetic 
-                                      potential; antiemetics are 
-                                      recommended to prevent nausea 
-                                      and vomiting. <br>
-                                      ● Swallow capsules whole with a 
-                                      full glass of water; do not open or 
-                                      chew. <br>
-                                      ● Administer consistently with 
-                                      respect to food (either consistently 
-                                      fasting or non-fasting). <br>
-                                      ● Administer on an empty stomach 
-                                      and/or at bedtime to reduce nausea 
-                                      and vomiting. <br>
-                                      ● Do not repeat dose if vomiting 
-                                      occurs after dose is administered; 
-                                      wait until the next scheduled dose.  <br>
-                                      ● If capsules are accidently opened 
-                                      or damaged, avoid inhalation or 
-                                      contact with skin or mucous 
-                                      membranes.          <br>             
-                                      </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Cardiovascular: Peripheral edema <br>
-                                  ● Dermatologic: Alopecia, skin rash <br>
-                                  ● Gastrointestinal: Anorexia, constipation, 
-                                  diarrhea, nausea, vomiting <br>
-                                  ● Hematologic & Oncologic: Decreased 
-                                  neutrophils, leukopenia, lymphocytopenia, 
-                                  thrombocytopenia <br>
-                                  ● Infection: Viral infection <br>
-                                  ● Nervous System: Asthenia, ataxia, 
-                                  dizziness, fatigue, headache, hemiparesis, 
-                                  seizure <br>
-                                  ● Miscellaneous: Fever <br>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Refer to pediatric-specific protocols. <br>
-                                  ● CBC with differential and platelets 
-                                  (prior to each cycle; at or within 48 
-                                  hours of day 22 and weekly until ANC 
-                                  >1,500/mm3 and platelets >100,000/mm3. <br>
-                                  ● Monitor liver function tests at 
-                                  baseline, halfway through the first cycle, 
-                                  prior to each subsequent cycle, and at ~2 
-                                  to 4 weeks after the last dose. <br>
-                                  ● Monitor for signs/symptoms of 
-                                  pneumocystis pneumonia. <br>
-                                  ● Monitor adherence. <br>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".ATRA").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">All Trans Retinoic Acid (ATRA) <br>
-                      <p style="color:red;margin-bottom:0">Tretinoin<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antineoplastic Agent
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 25 mg/m2
-                                      /day, PO divided 
-                                      BID, [Days 1-14] <br>                                                            
-                                      </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 1 Cap: 10 mg </p>                            
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Administered with meal <br>
-                                      ● Hazardous agent       <br>   
-                                      </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Cardiovascular: Cardiac arrhythmia, 
-                                  chest discomfort, edema, flushing, 
-                                  hypertension, hypotension, peripheral 
-                                  edema, phlebitis <br>
-                                  ● Dermatologic: Alopecia, diaphoresis, 
-                                  pruritus, skin changes, skin rash, 
-                                  xeroderma <br>
-                                  ● Endocrine & Metabolic: 
-                                  Hypercholesterolemia, 
-                                  hypertriglyceridemia, weight gain, weight 
-                                  loss <br>
-                                  ● Gastrointestinal: Abdominal distention, 
-                                  abdominal pain, anorexia, constipation, 
-                                  diarrhea, dry mucous membranes, 
-                                  dyspepsia, gastrointestinal hemorrhage, 
-                                  nausea, stomatitis, vomiting <br>
-                                  ● Hematologic & Oncologic: 
-                                  Differentiation syndrome, disseminated 
-                                  intravascular coagulation, hemorrhage, 
-                                  leukocytosis <br>
-                                  ● Hepatic: Increased liver enzymes <br>
-                                  ● Infection: Infection <br>
-                                  ● Nervous System: Anxiety, confusion, 
-                                  depression, dizziness, headache, insomnia, 
-                                  malaise, pain, paresthesia, shivering <br>
-                                  ● Neuromuscular & Skeletal: Myalgia, 
-                                  ostealgia <br>
-                                  ● Ophthalmic: Eye disease, visual 
-                                  disturbance <br>
-                                  ● Otic: Otalgia (including a feeling of ear 
-                                  fullness) <br>
-                                  ● Renal: Renal insufficiency <br>
-                                  ● Respiratory: Dyspnea, pleural effusion, 
-                                  pneumonia, rales, respiratory 
-                                  insufficiency, upper respiratory system 
-                                  symptoms, wheezing <br>
-                                  ● Miscellaneous: Fever   <br>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Bone marrow cytology to confirm 
-                                  t(15;17) translocation or the presence of 
-                                  the PML/RARα fusion protein (do not 
-                                  withhold treatment initiation for results) <br>
-                                  ● Monitor CBC with differential, 
-                                  coagulation profile, liver function test 
-                                  results, and triglyceride and cholesterol 
-                                  levels frequently <br>
-                                  ● Monitor closely for signs of acute 
-                                  promyelocytic leukemia differentiation 
-                                  syndrome (eg, monitor volume status, 
-                                  pulmonary status, temperature, 
-                                  respiration). <br>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  /*--------------------------------------------------------------
-# ADD MEDICATION CARDIOLOGY
---------------------------------------------------------------*/
-  $(".Captopril").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">Captopril 25mg <br> <p style="color:red;margin-bottom:0">CAPOTEN<sup>®</sup></p>
-          <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                DOSE
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>
-                    <strong><u>Heart Failure:</u></strong>
-                    <p>Children and Adolescents: Oral: 0.3-6 mg/kg/day divided every 8-12 hours, <strong>maximum daily dose: 150 mg/day</strong>.</p>
-                  </li>
-                  <li>
-                    <strong><u>Hypertension:</u></strong>
-                    <p><strong>Infants:</strong> Oral: Initial: 0.15-0.3 mg/kg/dose; titrate dose upward to <strong>maximum of 6 mg/kg/day</strong> in 1-4 divided doses; usual required dose: 2.5-6 mg/kg/day.</p>
-                    <p><strong>Children and Adolescents:</strong> Oral: Initial: 0.3-0.5 mg/kg/dose every 8 hours; may titrate as needed up to <strong>maximum daily dose: 6 mg/kg/day</strong> in 3 divided doses, maximum daily dose: 450 mg/day.</p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                ADMINISTRATION
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <p>Oral: Administer on an empty stomach 1 hour before meals or 2 hours after meals;
-                  If crushing tablet and dissolving in water, allow adequate time for complete dissolution >10 minutes.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                SIDE EFFECT
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li><strong>Cardiovascular:</strong>
-                  Hypotension.</li>
-                <li><strong>Endocrine metabolic:</strong>
-                  Hyperkalemia (11%)</li>
-                <li><strong>Renal:</strong> Polyuria, renal insufficiency</li>
-                <li><strong>Dermatologic:</strong>
-                  Rash.</li>
-                <li><strong>Gastrointestinal:</strong> Disorder of taste.</li>
-                <li><strong>Respiratory:</strong> Dry productive Cough (0.5% to 2%)</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                MONITORING PARAMETER
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>Blood pressure</li>
-                  <li>Electrolytes</li>
-                  <li>Renal Function (Sr. creatinine, BUN)</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".Furosemide").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">Furosemide 40mg <br> Lasix<sup>®</sup>
-          <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                DOSE
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li><strong>Heart Failure & Hypertension:</strong>
-                  <p><strong>Infants and Children:</strong> Oral: 2 mg/kg once daily; if ineffective, may increase in increments of 1 to 2 mg/kg/dose every 6 to 8 hours, <strong>not to exceed 6 mg/kg/dose (acute use) and 6 mg/kg/day (chronic use) (600 mg/day)</strong>.</p>
-                  <p><strong>IM, IV:</strong> 0.5 to 2 mg/kg/dose every 6 to 12 hours.</p>
-                  <p><strong>Continuous IV infusion:</strong>  0.05 mg/kg/hour; titrate dosage to clinical effect.</p>
-                </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                ADMINISTRATION
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <p><strong>Oral:</strong> May administer with food or milk to decrease GI distress.</p>
-                <p><strong>Parenteral: IV:</strong>  May be administered undiluted direct IV at a maximum rate of 0.5 to 1 mg/kg/minute (not to exceed 4 mg/minute); may also be diluted and infused over 10 to 15 minutes (following maximum rate as above)</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                SIDE EFFECT
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li><strong>Cardiovascular:</strong>
-                  Orthostatic hypotension</li>
-                <li><strong>Endocrine metabolic:</strong> Hyperuricemia (40%), Hypomagnesemia, hypokalemia, hyperglycemia</li>
-                <li><strong>Otic:</strong> Deafness</li>
-                <li><strong>Renal:</strong> Acute kidney injury, nephrolethiasis</li>
-                <li><strong>Gastrointestinal:</strong> Loss of appetite.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                MONITORING PARAMETER
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>Blood pressure</li>
-                  <li>Electrolytes</li>
-                  <li>Fluid Balance</li>
-                  <li>Hearing</li>
-                  <li>Renal Function (Sr. creatinine, BUN)</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".Spironolactone").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">Spironolactone 25mg  <p style="color: red; margin-bottom: 0;">Aldactone<sup>®</sup></p>
-          <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                DOSE
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <p><strong><u>Heart Failure& Hypertension:</u></strong></p>
-                <p><strong>Children:</strong> 1-3.3 mg/kg/day or in divided doses every 12-24 hours; <strong>not to exceed 100 mg/day</strong>. </p>
-                <p><strong>Adults (heart failure):</strong> 12.5-25 mg/day once. Maximum target dose 50 mg/day in one or two divided doses.</p>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                ADMINISTRATION
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <p>Oral: Administer with food.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                SIDE EFFECT
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li><strong>Endocrine metabolic:</strong> hyperkalemia, hyperglycemia, hyperuricemia, hypocalcemia, hypomagnesemia, hyponatremia, hypovolemia</li>
-                <li><strong>Renal:</strong> Renal failure syndrome, renal insufficiency</li>
-                <li><strong>Gynecomastia</strong></li>
-                <li><strong>Gastrointestinal</strong> Diarrhea, Nausea and vomiting</li>
-                <li><strong>Neurologic:</strong> Somnolence</li>
-                <li><strong>Reproductive:</strong> Disorder of menstruation, Erectile dysfunction</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                MONITORING PARAMETER
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>Blood pressure</li>
-                  <li>Electrolytes</li>
-                  <li>Fluid Balance</li>
-                  <li>Gynecomastia</li>
-                  <li>Renal Function (Sr. creatinine, BUN)</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".Lasilactone").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">(Furosemide 20mg +
-            Spironolactone 50mg)  <p style="color: red; margin-bottom: 0;">Lasilactone<sup>®</sup></p>
-          <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                DOSE
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <p><strong>Heart Failure:</strong></p>
-                <p>Oral: 1-3.3 mg/kg/day in divided doses once or twice daily. <strong>Maximum daily dose: 3-3.3 mg/kg/day or 100 mg/day of spironolactone</strong>.</p>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                ADMINISTRATION
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <p>Oral: Administer with food</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                SIDE EFFECT
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li><strong>Endocrine metabolic:</strong> Hyperuricemia (40%), Hypomagnesemia, Gynecomastia.</li>
-                <li><strong>Renal:</strong> Spasm of bladder, Acute kidney injury, nephrolethiasis</li>
-                <li><strong>Gastrointestinal:</strong>Loss of appetite, Diarrhea, Nausea and vomiting.</li>
-                <li><strong>Otic:</strong>  Deafness</li>
-                <li><strong>Neurologic:</strong> Somnolence</li>
-                <li><strong>Reproductive:</strong> Disorder of menstruation, Erectile dysfunction</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                MONITORING PARAMETER
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>Blood pressure</li>
-                  <li>Electrolytes</li>
-                  <li>Fluid Balance</li>
-                  <li>Gynecomastia</li>
-                  <li>Hearing</li>
-                  <li>Renal Function (Sr. creatinine, BUN)</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".Carvid").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">Carvedilol 6.25mg  <p style="color: red; margin-bottom: 0;">Carvid<sup>®</sup></p>
-          <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                DOSE
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li><strong>Heart Failure:</strong>
-                  <ul>
-                    <li><strong>Infants, Children, and Adolescents ≤ 17 years:</strong>
-                      <p>Initial: (0.04 to 0.075) mg/kg/dose twice daily.</p>
-                      <p>Maintenance: 0.3-0.75 mg/kg/dose twice daily.</p>
-                      <p><strong>Maximum daily dose: 1 mg/kg/day, up to 50 mg/day.</strong></p>
-                    </li>
-                    <li><strong>Adults:</strong>
-                      <p>Immediate release tablets: Oral: Initial: 3.125 mg twice daily for 2 weeks; if tolerated, may increase to 6.25 mg twice daily.</p>
-                      <p><strong>Maximum recommended dose:</strong>
-                        <85 kg: 25 mg twice daily
-                        >85 kg: 50 mg twice daily</p>
-                    </li>
-                  </ul>
-                </li>
-                <li><strong>Hypertension:</strong>
-                  <ul>
-                    <li><strong>Adults:</strong>
-                      <p>Oral: Initial: 6.25 mg twice daily; if tolerated, dose should be maintained for 1-2 weeks, then increased to 12.5 mg twice daily.
-                        <strong>Maximum daily dose: 50 mg/day</strong>.</p>
-                    </li>
-                  </ul>
-                </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                ADMINISTRATION
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <p>Administer with food to decrease the risk of orthostatic hypotension.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                SIDE EFFECT
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li><strong>Cardiovascular:</strong>Bradyarrhythmia (3% to 10%), Hypotension (1.8% to 20.2%), Peripheral edema (1% to 7%)</li>
-                <li><strong>Hepatic:</strong>increased liver enzymes</li>
-                <li><strong>Renal:</strong>renal insufficiency (>1% to ≤3%)</li>
-                <li><strong>Endocrine metabolic:</strong>Abnormal weight gain (10% to 12% ), Hyperglycemia (5% to 12% )</li>
-                <li><strong>Gastrointestinal:</strong>Diarrhea (2% to 12% )</li>
-                <li><strong>Neurologic:</strong>Dizziness (6% to 33% )</li>
-                <li><strong>Reproductive:</strong>Erectile dysfunction (13.5% )</li>
-                <li><strong>Other:</strong>Fatigue (24%)</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                MONITORING PARAMETER
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>Blood pressure</li>
-                  <li>Heart rate</li>
-                  <li>Liver function</li>
-                  <li>Renal Function (Sr. creatinine, BUN)</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".Coradarone").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">Amiodarone 200mg  <p style="color: red; margin-bottom: 0;">Coradarone<sup>®</sup></p>
-          <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                DOSE
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                
-                  <ul>
-                    <li><strong>TACHYArrhythmia:</strong>
-                      <p>For infants, Children, and Adolescents:</p>
-                      <ul>
-                        <li>Oral: Loading dose: <strong>10 to 15 mg/kg/day</strong> in 1 to 2 divided doses/day for 4 to 14 days or until adequate control of arrhythmia or prominent adverse effects occur</li>
-                        <li>dosage should then be reduced to <strong>5 mg/kg/day</strong> given once daily for several weeks;</li>
-                        <li>If arrhythmia does not recur, reduce to lowest effective dosage possible; usual daily minimal dose: <strong>2.5 mg/kg/day</strong>.</li>
-                        <li>Maintenance doses may be given for 5 of 7 days/week.</li>
-                      </ul>
-                    </li>
-                  </ul>
-                
-                
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                ADMINISTRATION
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <p><strong>Oral:</strong> Administer at same time in relation to meals.</p>
-                <p><strong>In adults:</strong>  may administer in divided doses with meals if GI upset occurs or if taking large daily dose.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                SIDE EFFECT
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li><strong>Cardiovascular:</strong>Brady arrhythmia, Hypotension (Oral, less than 1%; IV, 15.6%)</li>
-                <li><strong>Respiratory:</strong>Pulmonary toxicity (oral: 17%; intravenous: <1%)</li>
-                <li><strong>Endocrine metabolic:</strong>Thyroid dysfunction</li>
-                <li><strong>Hepatic:</strong>Increased liver enzymes (4% to 9%)</li>
-                <li><strong>Ophthalmic:</strong>Visual disturbance (4% to 9%)</li>
-                <li><strong>Gastrointestinal:</strong>Constipation (4% to 9%), Loss of appetite (4% to 9%), Nausea (10% to 33%), Vomiting (10% to 33%)</li>
-                <li><strong>Neurologic:</strong>Abnormal gait (4% to 9%), Coordination problem (4% to 9%), Dizziness (4% to 9%), Involuntary movement (4% to 9%)</li>
-                <li><strong>Dermatologic:</strong>Photodermatitis (2% -24%), Photosensitivity (3%-10%)</li>
-                <li><strong>Other:</strong>
-                  Malaise and fatigue (4% to 9%)</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                MONITORING PARAMETER
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>Heart rate and rhythm</li>
-                  <li>Blood pressure</li>
-                  <li>ECG</li>
-                  <li>Chest x-ray</li>
-                  <li>Pulmonary function</li>
-                  <li>Thyroid function, Weight gain or loss</li>
-                  <li>Serum electrolytes (potassium and magnesium)</li>
-                  <li>Liver enzymes</li>
-                  <li>Ophthalmologic exams including fundoscopy and slit-lamp examinations</li>
-                  <li>Monitor infusion site.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".Propranolol").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">Propranolol 10mg  <p style="color: red; margin-bottom: 0;">Inderal<sup>®</sup></p>
-          <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                DOSE
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li><strong>Arrhythmia:</strong>
-                <p><strong>For Infants, Children, and Adolescents:</strong> Oral: Initial: 0.5 to 1 mg/kg/day in divided doses every 6 to 8 hours; titrate dosage upward every 3 to 5 days; usual daily dose: 2 to 4 mg/kg/day; higher doses may be needed;
-                  <strong>Maximum daily dose:</strong> 16 mg/kg/day or 60 mg/day.</p></li>
-                <li><strong>Hypertension:</strong>
-                <p><strong>Children and Adolescents 1 to 17 years:</strong> Oral: Initial: 1 to 2 mg/kg/day divided in 2 to 3 doses/day; titrate dose to effect.
-                  <strong>Maximum dose:</strong> 4 mg/kg/day up to 640 mg/day.</p></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                ADMINISTRATION
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <p>Oral:
-                  Take on an empty stomach.</p>
-                
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                SIDE EFFECT
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li><strong>Cardiovascular:</strong>bradycardia, cardiac failure, exacerbation of angina pectoris (with drug withdrawal), hypotension</li>
-                <li><strong>Gastrointestinal:</strong>Diarrhea.</li>
-                <li><strong>Respiratory:</strong>Bronchospasm</li>
-                <li><strong>Other:</strong>Fatigue</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                MONITORING PARAMETER
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>Heart rate</li>
-                  <li>Blood pressure</li>
-                  
-                </ul>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".Atenolol").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">Atenolol 100mg  <p style="color: red; margin-bottom: 0;">Tenormin<sup>®</sup></p>
-          <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                DOSE
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li><strong>Hypertension:</strong>
-                <p>Infants, Children, and Adolescents: Oral: Usual range: 0.5 to 1 mg/kg/day either once daily or in divided doses every 12 hours, maximum daily dose: 2 mg/kg/day not to exceed 100 mg/day</p></li>
-                <li><strong>Supraventricular tachycardia:</strong>
-                <p>Usual range: 0.3 to 1 mg/kg/day either once daily or in divided doses every 12 hours. maximum daily dose: 2 mg/kg/day not to exceed 100 mg/day</p></li>
-                <li><strong>Marfan Syndrome:</strong>
-                <p>Initial: 0.5 mg/kg/day, titrate up to 4 mg/kg/day, maximum daily dose: 250 mg/day</p></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                ADMINISTRATION
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <p>Oral:
-                  May be administered without regard to food.</p>
-                
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                SIDE EFFECT
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li><strong>Cardiovascular:</strong>Bradyarrhythmia (3% to 18%), Cold extremities (12%), Hypotension (4% to 25%)</li>
-                <li><strong>Respiratory:</strong>Bronchospasm</li>
-                <li><strong>Neurologic:</strong>Dizziness (13%)</li>
-                <li><strong>Psychiatric:</strong>Depression (up to 12%)</li>
-                <li><strong>Other:</strong>Fatigue (up to 26% )</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                MONITORING PARAMETER
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>Heart rate</li>
-                  <li>Blood pressure</li>
-                  <li>ECG</li>
-                  <li>Fluid Balance</li>
-                  <li>Respiratory rate</li>
-                  
-                  
-                </ul>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".Apresoline").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">Hydralazine chloride tablet 25mg  IV: 20mg/ml<p style="color: red; margin-bottom: 0;">Apresoline<sup>®</sup></p>
-          <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                DOSE
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li><strong>Heart Failure:</strong>
-                <p><strong>Oral:</strong> Infants, Children, and Adolescents: 0.75 to 3 mg/kg/day divided every 6 to 12 hours;
-                  <strong>Maximum daily dose:</strong> 7 mg/kg/day or 200 mg/day whichever is less.</p>
-                <p><strong>IV: Infants:</strong> 0.1 to 0.5 mg/kg/dose every 6 to 8 hours; maximum dose: 2 mg/kg/dose.</p>
-                <p><strong>Children and Adolescents:</strong> 0.15 to 0.2 mg/kg/dose every 4 to 6 hours; <strong>Maximum dose: 20 mg/dose</strong>.</p>
-              </li>
-                <li><strong>Hypertension:</strong>
-                <p><strong>Chronic:</strong>Chronic: Children and Adolescents: Oral: Initial: 0.75 mg/kg/day in 2 to 4 divided doses, maximum initial dose: 10 mg/dose; may increase gradually over 3 to 4 weeks up to a maximum of 7.5 mg/kg/day in 2 to 4 divided doses not to exceed 200 mg/day.</p>
-                <p><strong>Hypertensive emergency/urgency:</strong> Infants, Children, and Adolescents: IM, IV: Initial: 0.1 to 0.2 mg/kg/dose every 4 to 6 hours; increase as required to suggested usual range: 0.2 to 0.6 mg/kg/dose every 4 to 6 hours as needed; maximum dose: 20 mg/dose; Manufacturer labeling suggests a dose range of 1.7 to 3.5 mg/kg/day divided in 4 to 6 doses.</p>
-              </li>
-                
-                
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                ADMINISTRATION
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <p>Oral: Administer with food.</p>
-                
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                SIDE EFFECT
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li><strong>Cardiovascular:</strong> Angina pectoris, Edema, Palpitations, tachycardia.</li>
-                <li><strong>Gastrointestinal:</strong>
-                  Diarrhea, Loss of appetite, Nausea, Vomiting.</li>
-                <li><strong>Hematologic & oncologic:</strong> Agranulocytosis, decreased hemoglobin, decreased red blood cells, eosinophilia, leukopenia, lymphadenopathy, purpuric disease, splenomegaly</li>
-                <li><strong>Neurologic:</strong>
-                  Headache.</li>
-                
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                MONITORING PARAMETER
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>Blood pressure (monitor closely with IV use), standing and sitting/supine</li>
-                  <li>Heart rate</li>
-                  <li>ANA titer (if needed)</li>                    
-                </ul>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".Nifedipine").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">Nifedipine<p style="color: red; margin-bottom: 0;">Epilate Retard 20mg<sup>®</sup></p>
-          <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                DOSE
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-              <li>
-                <strong>Hypertension:</strong>
-                <ul>
-                  <li><strong><u>Hypertensive urgency:</u></strong>
-                  <p>Children and Adolescents: <strong>Immediate release:
-                    0.04 to 0.25 mg/kg/dose; maximum single dose: 10 mg/dose</strong>; may repeat if needed every 4 to 6 hours;
-                    <strong>Maximum daily dose: 1 to 2 mg/kg/day</strong></p></li>
-                  <li><strong><u>Hypertension (chronic treatment):</u></strong>
-                  <p>Children and Adolescents (able to swallow whole tablet): <strong>Extended release:</strong>
-                    Oral: Initial: <strong>0.25 to 0.5 mg/kg/day</strong> once daily or divided in 2 doses every 12 hours
-                    <strong>Maximum daily dose: 3 mg/kg/day up to 120 mg/day</strong></p></li>
-                  
-                </ul>
-              </li>
-                
-                
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                ADMINISTRATION
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <p>Oral: Administer with or without food. Liquid-filled capsule may be punctured and drug solution administered orally. When Nifedipine is administered sublingually, only a small amount is absorbed sublingually. </p>
-                <p>Extended release: Tablets should be swallowed whole; do not crush, break, chew, or divide.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                SIDE EFFECT
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li><strong>Cardiovascular:</strong> Hypotension (up to 5%), Palpitations (up to 7%), Peripheral edema (7% to 29%), cardiac failure (2%)</li>
-                <li><strong>Dermatologic:</strong> Flushing (4% to 25%)</li>
-                <li><strong>Gastrointestinal:</strong> Nausea (up to 10%)</li>
-                <li><strong>Neurologic:</strong>  Dizziness (4% to 10%), Headache (19% to 23%)</li>
-                  <li><strong>Psychiatric:</strong> Feeling nervous</li>
-                  <li><strong>Respiratory:</strong> 
-                    Cough, Dyspnea.</li>
-                
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                MONITORING PARAMETER
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>Blood pressure, heatr rate</li>
-                  <li>Signs and symptoms of CHF</li>
-                  <li>Peripheral edema</li>                    
-                </ul>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".Minipress").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">Prazocin HCL 1 & 2 mg<p style="color: red; margin-bottom: 0;">Minipress<sup>®</sup>
-            </p>
-            <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                DOSE
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  
-                      <li><strong>Hypertension:</strong>
-                      <p><strong>Children and Adolescents:</strong> Limited data available:
-                        Oral: Initial: 0.05-0.1 mg/kg/day in divided doses every 8 hours; may titrate up to 0.5 mg/kg/day in divided doses 3 times daily
-                        <strong>Maximum daily dose: 20 mg/day</strong>.</p></li>
-
-              
-
-
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                ADMINISTRATION
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <p>Oral:
-                  Administer without regard to meals at the same time each day.</p>
-                
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                SIDE EFFECT
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li><strong>Cardiovascular:</strong> Orthostatic hypotension (1% to 4%), Palpitations (5.3%)</li>
-                  
-                  <li><strong>Gastrointestinal:</strong> Nausea (4.9%)</li>
-                  <li><strong>Neurologic:</strong> Asthenia (6.5%), Dizziness (10.3%), Headache (7.8%), Lethargy (6.9%), Somnolence (7.6% )</li>
-                  
-
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                MONITORING PARAMETER
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-              <p>Blood pressure (standing and sitting or supine)</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".Doxazosin").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">Doxazosin 2mg<p style="color: red; margin-bottom: 0;">Cardura<sup>®</sup>
-            </p>
-            <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                DOSE
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li><strong>Hypertension:</strong>
-                    <p><strong>Children and Adolescents:</strong>
-                      Oral: Immediate release: Initial: 1 mg/day; maximum daily dose: 4 mg/day
-                      Adult :
-                      Initial: 1 mg once daily; titrate as needed based on patient response up to a dose of 16 mg once
-                      daily
-                      <strong>maximum: 16 mg/day</strong>.
-                    </p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                ADMINISTRATION
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <p>Immediate release:
-                  Administer without regard to meals at the same time each day.</p>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                SIDE EFFECT
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li><strong>Cardiovascular:</strong> edema</li>
-
-                  <li><strong>Gastrointestinal:</strong> Abdominal pain, dyspepsia, nausea, xerostomia</li>
-                  <li><strong>Central nervous system:</strong> dizziness, fatigue, vertigo</li>
-
-
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                MONITORING PARAMETER
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>Standing and sitting/supine blood pressure, especially 2 to 6 hours after the initial dose, then prior to doses</li>
-                  <li>Urinary symptoms if used for dysfunctional voiding or BPH treatment</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".Capozide").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">Captopril 50mg
-            +
-            HCT 25mg<p style="color: red; margin-bottom: 0;">Capozide<sup>®</sup>
-            </p>
-            <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                DOSE
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li><strong>Hypertension:</strong>
-                    <p><strong>Adults:</strong>
-                      The usual maintenance dose is <strong>50 mg/25 mg</strong> (1 tablet) once a day, in the morning.</p>
-                    <p><strong>A maximum daily dose of 50 mg captopril /25 mg hydrochlorothiazide</strong> should not be exceeded. If satisfactory reduction of blood pressure has not been achieved, additional antihypertensive medication may be added.</p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                ADMINISTRATION
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <p>Oral:
-                  Administer on an empty stomach, May administer with food or milk or without food, administer early in day to avoid nocturia..</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                SIDE EFFECT
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li><strong>Cardiovascular:</strong> Hypotension.</li>
-                  <li><strong>Gastrointestinal:</strong> Disorder of taste.</li>
-                  <li><strong>Renal:</strong> Polyuria, renal failure, renal insufficiency</li>
-                  <li><strong>Endocrine metabolic:</strong> Hyperkalemia (11%)</li>
-                  <li><strong>Dermatologic:</strong>Rash, Photo-toxicity</li>
-                  <li><strong>Respiratory:</strong> Cough (0.5% to 2%)</li>
-                  <li><strong>Neurologic:</strong>  Vertigo</li>
-
-
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                MONITORING PARAMETER
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>Blood pressure</li>
-                  <li>BUN</li>
-                  <li>Serum creatinine</li>
-                  <li>Electrolytes</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".Valsartan").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">Valsartan 40, 80, 160 mg<p style="color: red; margin-bottom: 0;">Tareg<sup>®</sup>
-            </p>
-            <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                DOSE
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li><strong>Heart failure (with reduced EF):</strong>
-                  <p>Adults
-                    Initial: 20 to 40 mg twice daily
-                    Target dose: 160 mg twice daily</p></li>
-                  <li><strong>Hypertension:</strong>
-                    <p><strong>Children and Adolescents ≤16 years:</strong>
-                      Initial: 1 mg/kg once daily; maximum initial daily dose: 40 mg/day; may titrate to effect up to a maximum dose of 4 mg/kg/dose once daily or maximum daily dose: 160 mg/day.</p>
-                    <p>Adolescents ≥17 years:
-                      Initial: 80 mg or 160 mg once daily (in patients who are not volume depleted); dose may be increased to achieve desired effect;</p>
-                    <p><strong>maximum daily dose:</strong> 320 mg/day; in adults, usual dosage range: 80 to 320 mg once daily.</p>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                ADMINISTRATION
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <p>May be administered without regard to food.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                SIDE EFFECT
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li><strong>Cardiovascular:</strong>
-                    Hypotension (5.5% to 6.9%)</li>
-                  <li><strong>Endocrine & metabolic:</strong> Hyperkalemia (2%)</li>
-                  <li><strong>Renal:</strong>
-                    Serum blood urea nitrogen raised (heart failure, 16.6%), Serum creatinine raised (hypertension, 0.8%; heart failure, 3.9%; post-myocardial infarction.</li>
-                  <li><strong>Neurologic:</strong>
-                    Dizziness (2% to 17%), Headache (> 1%)</li>
-                  <li><strong>Respiratory:</strong> Cough</li>
-
-
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                MONITORING PARAMETER
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>Baseline and periodic BP</li>
-                  <li>Electrolytes</li>
-                  <li>Renal function</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".Sotalol").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">Sotalol 40 & 80 mg<p style="color: red; margin-bottom: 0;">Betacor<sup>®</sup>
-            </p>
-            <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                DOSE
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li><strong><u>Arrhythmia:</u></strong>
-                  <p>Children and adolescents: Initial: 30 mg/m2/dose given every 8 hours; increase dosage gradually if needed; allow at least 36 hours between dosage increments. May increase gradually to a maximum of 60 mg/m2/dose given every 8 hours; not to exceed adult doses (usual <strong>maximum adult daily dose: 320 mg/day</strong>)</p></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                ADMINISTRATION
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <p>Administer without regard to meals.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                SIDE EFFECT
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li><strong>Cardiovascular:</strong> Bradycardia (dose related; 8% to 13%), chest pain (8%), palpitations (8%)</li>
-                <li><strong>Nervous system:</strong> Dizziness (13% to 16%), fatigue (dose related; 19% to 26%), headache (12%)</li>
-                <li><strong>Neuromuscular & skeletal:</strong> Asthenia (5% to 11%)</li>
-                <li><strong>Respiratory:</strong> Dyspnea (dose related; 9% to 18%)</li>
-
-
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                MONITORING PARAMETER
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-              <p>Serum creatinine (creatinine clearance), Heart rate, blood pressure, magnesium, potassium,ECG (eg, QTc interval, PR interval) During initiation and titration period, monitor QTc interval 2 to 4 hours after each dose. If QTc interval is ≥500 msec, reduce dose, prolong the dosing interval, or discontinue sotalol. If the QTc interval is &lt;500 msec after 3 days (after fifth or sixth dose if patient receiving once-daily dosing), patient may be discharged on current regimen. Monitor QTc interval periodically thereafter.</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".Ivabradine").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-      <div class="col col-12">
-        <div class="one mt-3">
-          <h1 class="flex-shrink-0">Ivabradine 5 mg<p style="color: red; margin-bottom: 0;">Procrolan<sup>®</sup>
-            </p>
-            <span class="mt-1">Medication Monograph</span>
-          </h1>
-        </div>
-        <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                DOSE
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                  <li>Heart failure, dilated cardiomyopathy:
-                    <p><strong>&lt;40 kg:</strong> <u>Oral:</u> Initial: 0.05 mg/kg/dose twice daily; may increase dose every 2 weeks by 0.05 mg/kg/dose as tolerated to achieve a 20% reduction in heart rate without inducing bradycardia.</p>
-                    <p><strong>Maximum dose:</strong> Age-dependent:≥6 months to &lt;1 year: 0.2 mg/kg/dose twice daily.</p>
-                    <p><strong>≥1 year:</strong> 0.3 mg/kg/dose twice daily, not to exceed 7.5 mg/dose twice daily.</p>
-                    <p><strong>≥40 kg:</strong> Oral: Initial: 2.5 mg twice daily; may increase dose every 2 weeks by 2.5 mg as tolerated to achieve a 20% reduction in heart rate without inducing bradycardia; maximum dose: 7.5 mg/dose twice daily.</p>
-                    <p><strong>Adolescents ≥18 years:</strong> <u>Oral:</u> Initial: 5 mg twice daily or 2.5 mg twice daily in patients with a history of conduction defects or who may experience hemodynamic compromise due to bradycardia; after 2 weeks, adjust dose to achieve a resting heart rate between 50 and 60 beats per minute (bpm); adjust dose as needed based on resting heart rate and tolerability; maximum dose: 7.5 mg/dose twice daily.</p>
-                  </li>
-                </ul>
-                <p><strong>Dosage adjustment based on resting heart rate:</strong>
-                <ul>
-                  <li>If heart rate >60 bpm: Increase dose by 2.5 mg twice daily; maximum dose: 7.5 mg/dose twice daily.</li>
-                  <li>If heart rate 50 to 60 bpm: Maintain dose.</li>
-                  <li>If heart rate &lt;50 bpm or signs and symptoms of bradycardia: Decrease dose by 2.5 mg twice daily; if current dose is 2.5 mg twice daily, discontinue therapy.</li>
-                </ul></p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item ">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                ADMINISTRATION
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <p>Administer with food.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                SIDE EFFECT
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <ul>
-                <li><strong>Cardiovascular:</strong> Bradycardia (4% to 10%)
-                  hypertension (9%)
-                  atrial fibrillation (8%)</li>
-                <li><strong>Central Nervous system:</strong> Phosphene (3%)</li>
-                <li><strong>Neuromuscular & skeletal:</strong> Asthenia (5% to 11%)</li>
-                <li><strong>Respiratory:</strong> Dyspnea (dose related; 9% to 18%)</li>
-
-
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                MONITORING PARAMETER
-              </button>
-            </h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-              <ul>
-                <li>Heart rate (prior to initiation, prior to increasing dose, or after decreasing dose)</li>
-                <li>Monitor heart rate more closely if receiving other negative chronotropes (eg, amiodarone, beta-blockers, digoxin)</li>
-                <li>Blood pressure</li>
-                <li>Regularly monitor cardiac rhythm (assessing for atrial fibrillation)</li>
-              </ul>
-              <p><strong>Dosage adjustment for bradycardia:</strong><strong>&lt; 40 Kg Initial dose:</strong> Decrease dose to 0.02 mg/kg/dose twice daily.</p>
-              <p></p>
-              <p><strong>During titration:</strong>
-                Decrease dose to previous dose.</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".SacubitrilandValsartan").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-        <div class="col col-12">
-          <div class="one mt-3">
-            <h1 class="flex-shrink-0">Sacubitril and Valsartan
-              24 mg /26 mg<p style="color: red; margin-bottom: 0;">(Entresto) - NF<sup>®</sup>
-              </p>
-              <span class="mt-1">Medication Monograph</span>
-            </h1>
-          </div>
-          <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                  DOSE
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <h5><strong>NOTES:</strong></h5>
-                  <ol>
-                    <li>Dose presented as the combined mg dose of sacubitril and valsartan.</li>
-                    <li>Concomitant use of an angiotensin-converting enzyme (ACE) inhibitor is contraindicated; allow a 36-hour washout period when switching from or to an ACE inhibitor.</li>
-                  </ol>
-
-                  <ul>
-                    <li><strong><u>Patients previously taking a moderate to high dose ACE inhibitor (ie, ≥0.2 mg/kg/day or 10 mg/day of enalapril or equivalent) or angiotensin II receptor blocker (ARB):</u></strong>
-                    <ul>
-                      <li><strong>&lt;40 kg:</strong> Oral: Initial: 1.6 mg/kg/dose twice daily; titrate dose in 2 weeks to 2.3 mg/kg/dose twice daily, then 2 weeks later to 3.1 mg/kg/dose twice daily.</li>
-                      <li><strong>40 to &lt;50 kg:</strong> Oral: Initial: Sacubitril 24 mg/valsartan 26 mg twice daily; titrate dose in 2 weeks to sacubitril 49 mg / valsartan 51 mg twice daily, then 2 weeks later to sacubitril 72 mg/valsartan 78 mg (three 24/26 mg tablets) twice daily.</li>
-                      <li><strong>≥50 kg:</strong> Oral: Initial: Sacubitril 49 mg/valsartan 51 mg twice daily; titrate dose in 2 weeks to sacubitril 72 mg/valsartan 78 mg (three 24/26 mg tablets) twice daily, then 2 weeks later to sacubitril 97 mg/valsartan 103 mg twice daily.</li>
-                    </ul>
-                    </li>
-                    <li><strong><u>Patients not currently taking an ACE inhibitor or an ARB or previously taking low doses of an ACE inhibitor (ie, 0.1 mg/kg/day or 5 mg/day of enalapril or equivalent) or ARB:</u></strong>
-                    <ul>
-                      <li><strong>≤50 kg:</strong> Oral Suspension: Initial: 0.8 mg/kg/dose twice daily; titrate dose in 2 weeks to 1.6 mg/kg/dose twice daily, then 2 weeks later to 2.3 mg/kg/dose twice daily, then 2 weeks later to 3.1 mg/kg/dose twice daily.</li>
-                      <li>Tablets: Children and Adolescents weighing >50 kg: Oral: Initial: Sacubitril 24 mg/valsartan 26 mg twice daily; titrate dose in 2 weeks to sacubitril 49 mg/valsartan 51 mg twice daily, then 2 weeks later to sacubitril 72 mg/valsartan 78 mg (three 24/26 mg tablets) twice daily, then 2 weeks later to sacubitril 97 mg/valsartan 103 mg twice daily.</li>
-                    
-                    </ul>
-                    </li>
-                  </ul>
-                  
-                  <ul>
-                    
-                  </ul>
-                </div>
-              </div>
-            </div>
-  
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                  <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                  ADMINISTRATION
-                </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <p>Administer with or without food</p>
-                </div>
-              </div>
-            </div>
-  
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                  SIDE EFFECT
-                </button>
-              </h2>
-              <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                  <li><strong>Cardiovascular:</strong> Hypotension (18%) Orthostatic hypotension (2%)</li>
-                  <li><strong>Endocrine & metabolic:</strong>Hyperkalemia (12%)</li>
-                  <li><strong>Renal:</strong>Increased serum creatinine (16% to 17%) Acute kidney injury (≤5%)</li>
-                  <li><strong>Hematologic & oncologic:</strong> Decreased hematocrit (≤7%), decreased hemoglobin (≤7%)</li>
-                  <li><strong>Hypersensitivity:</strong> Angioedema</li>
-                  <li><strong>Nervous system:</strong> Dizziness (6%), falling (2%)</li>
-                  <li><strong>Respiratory:</strong>Cough (9%)</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-  
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                  MONITORING PARAMETER
-                </button>
-              </h2>
-              <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                <ul>
-                  <li>At baseline, within 1 to 2 weeks after initiation, and after dose changes, reassess BP (including postural BP changes), kidney function, and serum potassium (especially for patients taking concomitant potassium-sparing diuretics, potassium supplements, and/or potassium containing salts).</li>
-                  <li>Patients with systolic BP &lt;80 mm Hg, low serum sodium, diabetes mellitus, and impaired kidney function should be closely monitored.</li>
-                </ul>
-                
-                </div>
-              </div>
-            </div>
-  
-          </div>
-        </div>
-      </div>
-    </div>`);
-  });
-  $(".Dapagliflozin").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-        <div class="col col-12">
-          <div class="one mt-3">
-            <h1 class="flex-shrink-0">Dapagliflozin 10 mg<p style="color: red; margin-bottom: 0;">(Forxiga) -
-                NF<sup>®</sup>
-              </p>
-              <span class="mt-1">Medication Monograph</span>
-            </h1>
-          </div>
-          <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                  DOSE
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-
-                  <ul>
-                    <li><strong><u>Heart Failure:</u></strong>
-                      <p><strong>Note:</strong> Should be considered for use in combination with other
-                        evidence-based therapies as part of an optimal medical regimen for heart failure. Benefits
-                        were consistently demonstrated in patients with or without type 2 diabetes, regardless of
-                        ejection fraction</p>
-                      <p><strong>Adults: Oral: 10 mg once daily</strong></p>
-                    </li>
-                  </ul>
-
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                  <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                  ADMINISTRATION
-                </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <p>Administer in the morning with or without food</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                  SIDE EFFECT
-                </button>
-              </h2>
-              <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li><strong>Endocrine & metabolic:</strong>Dyslipidemia (3%), hypovolemia (1% to 3%),
-                      Ketoacidosis</li>
-                    <li><strong>Gastrointestinal:</strong>Nausea (3%) </li>
-                    <li><strong>Genitourinary:</strong> (2%), increased urine output (3% to 4%), urinary tract infection (6%);</li>
-                    <li><strong>Infection:</strong>Genitourinary fungal infection (3% to 8%)</li>
-                    <li><strong>Neuromuscular & skeletal:</strong>Back pain (4%), limb pain (2%)</li>
-                    <li><strong>Respiratory:</strong>Nasopharyngitis (7%)</li>
-                    <li><strong>Dermatologic:</strong>Severe dermatological reaction</li>
-                    <li><strong>Hypersensitivity:</strong>Anaphylaxis (severe), angioedema</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                  MONITORING PARAMETER
-                </button>
-              </h2>
-              <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li>Blood glucose; renal function (baseline and periodically during treatment); monitor for genital mycotic infections and urinary tract infection; monitor for signs/symptoms of necrotizing fasciitis (eg, fever and malaise along with genital or perianal pain, tenderness, erythema, swelling), hypersensitivity reactions; volume status (eg, weight, BP, hematocrit, electrolytes; baseline and periodically during treatment) and signs/symptoms of hypotension; if signs/symptoms of ketoacidosis (eg, nausea/vomiting, abdominal pain, malaise, shortness of breath), confirm diagnosis by direct measurement of blood ketones and arterial pH (measurement of serum bicarbonate or urinary ketones may not be adequate)</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>`);
-  });
-  $(".Sildenafil").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-        <div class="col col-12">
-          <div class="one mt-3">
-            <h1 class="flex-shrink-0">Sildenafil 100 mg<p style="color: red; margin-bottom: 0;">Virecta<sup>®</sup>
-              </p>
-              <span class="mt-1">Medication Monograph</span>
-            </h1>
-          </div>
-          <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                  DOSE
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-
-                  <ul>
-                    <li><strong><u>Pulmonary arterial hypertension:</u></strong>
-                      <p><strong>Infants:</strong>Initial: 0.25 mg/kg/dose every 6 hours or 0.5 mg/kg/dose every 8 hours; titrate as needed; maximum reported dose range: 1 to 2 mg/kg/dose every 6 to 8 hours.
-                        Note: May consider lower initial doses (eg, 0.25 mg/kg/dose every 8 hours) in critically ill patients receiving concomitant vasoactive agents, especially infants <4 months of age</p>
-                      <p><strong>Children and Adolescents &lt;18 years:</strong>≤20 kg: Oral: 10 mg three times daily.
-                        >20 to 45 kg: Oral: 20 mg three times daily.
-                        >45 kg: Oral: 20 mg three times daily; titrate as needed; maximum dose: 40 mg/dose.</p>
-                    </li>
-                  </ul>
-
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                  <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                  ADMINISTRATION
-                </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <p>Administer doses with or without food</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                  SIDE EFFECT
-                </button>
-              </h2>
-              <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li><strong>Cardiovascular:</strong>Flushing (9% to 19%), Angina pectoris (&lt;2%), edema (&lt;2%), heart failure (&lt;2%), hypotension (&lt;2%), palpitations (&lt;2%) </li>
-                    <li><strong>Gastrointestinal:</strong>Diarrhea (9 -12%), dyspepsia (3% to 17%), xerostomia (<2%)</li>
-                    <li><strong>Nervous system:</strong>Headache (16% to 49%)</li>
-                    <li><strong>Neuromuscular & skeletal:</strong>Back pain (3% to 13%), limb pain (7% to 15%), myalgia (2% -14%)</li>
-                    <li><strong>Ophthalmic:</strong>Visual disturbance (2% to 11%; including vision color changes, blurred vision, and photophobia)</li>
-                    <li><strong>Otic:</strong>Auditory impairment (&lt;2%), hearing loss (&lt;2%)</li>
-                    <li><strong>Respiratory:</strong>Epistaxis (2- 13%)</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                  MONITORING PARAMETER
-                </button>
-              </h2>
-              <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li>Monitor blood pressure and pulse when used concurrently with medications that lower blood pressure; monitor for pulmonary edema
-                      ECG</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>`);
-  });
-  $(".Amlodipine").on("click", function () {
-    $("#container")
-      .replaceWith(`  <div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-        <div class="col col-12">
-          <div class="one mt-3">
-            <h1 class="flex-shrink-0">Amlodipine 5 mg<p style="color: red; margin-bottom: 0;">Norvasc<sup>®</sup>
-              </p>
-              <span class="mt-1">Medication Monograph</span>
-            </h1>
-          </div>
-          <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                  DOSE
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-
-                  <ul>
-                    <li><strong><u>Hypertension:</u></strong>
-                      <p><strong>&lt;6 years:</strong> Limited data available: Initial: 0.1 mg/kg/dose once daily; titrate based on clinical response; maximum daily dose: 0.6 mg/kg/day or 5 mg/day.</p>
-                      <p><strong>&#8805;6 years</strong> and Adolescents:Initial: 2.5 mg once daily; titrate based on clinical response; maximum daily dose: 10 mg/day</p>
-                    </li>
-                  </ul>
-
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item ">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                  <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                  ADMINISTRATION
-                </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <p>Administer without regard to meals</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                  SIDE EFFECT
-                </button>
-              </h2>
-              <div id="collapseThree" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li><strong>Cardiovascular:</strong>Flushing &#8804;3%, dose related, , palpitations &#8804;5%, dose related</li>
-                    <li><strong>Gastrointestinal:</strong>Abdominal pain (2%), nausea (3%)</li>
-                    <li><strong>Nervous system:</strong>dizziness (doses ≥5 mg/day: 3%), fatigue (5%)</li>
-                    <li><strong>Neuromuscular & skeletal:</strong>Muscle cramps (≤2%)</li>
-                    <li><strong>Dermatologic:</strong>Pruritus (≤2%), skin rash (≤2%)</li>
-                    <li><strong>Respiratory:</strong>Dyspnea (≤2%)</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div class="accordion-item">
-              <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                  MONITORING PARAMETER
-                </button>
-              </h2>
-              <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li>Heart rate</li>
-                      <li>Blood Pressure</li>
-                      <li>Peripheral edema</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION NEUROLOGY
---------------------------------------------------------------*/
-  $(".Acetazolamide").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;>
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Acetazolamide <br>
-                    <p style="color:red;margin-bottom:0">Cidamex 250mg<sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Metabolic Alkalosis, Diuretic
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● 5 mg/kg/dose Q8</p>
-
-                              
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 Tab: 250 mg <br>
-                                
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● May be administered with. <br>
-                                    ● May cause an alteration in taste,
-                                    especially carbonated beverages,
-                                    may be crushed and suspended in
-                                    cherry or chocolate syrup.
-                                    </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Dermatologic: Skin rash
-                                ● GIT: Anorexia, diarrhea, nausea,
-                                vomiting
-                                ● Hematologic & Oncologic: Bone
-                                marrow depression (dose-related: >20%,
-                                including anemia, neutropenia,
-                                lymphocytopenia, and thrombocytopenia)
-                                ● Nervous System: Malaise
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Aplastic anemia. <br>
-                                ● Growth retardation. <br>
-                                ● Hypersensitivity reactions (immediate
-                                and delayed). <br>
-                                ● Metabolic acidosis. <br>
-                                ● Paresthesia. <br>
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse13" aria-expanded="true" aria-controls="collapse13">
-                                <img src="../svg/alert.svg" alt="" height="30px" class="me-2">
-                                Special Precautions/Comments
-                            </button>
-                        </h2>
-                        <div id="collapse13 class=" accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                
-
-                        
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION ANTI-FLATULANCE
---------------------------------------------------------------*/
-  $(".Acicone").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;>
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Acicone-S (Magaldrate,
-                    Simethicone)  <br>
-                    <p style="color:red;margin-bottom:0">Acicone-S<sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Anti-Flatulence
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● Empirical Dose Q8</p>
-
-                              
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Syrup: Magaldrate 540 mg + Simethicone 40 mg/5ml <br>
-                                200 ml
-                                
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Administer on empty stomach 
-                                    </p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION ANTI-VIRAL
---------------------------------------------------------------*/
-  $(".Acyclovir").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;>
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Acyclovir <br>
-                    <p style="color:red;margin-bottom:0">Lovir, Acivirax 400mg<sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Antiviral
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p><u>Dose Differ Per Indication
-                                        Refer to medication's
-                                        monograph
-                                    </u></p> <br>
-                                <p>● Herpes Simplex: 10
-                                    mg/kg/dose Q8
-                                    ● Herpes Zoster: 500 mg/m²
-                                    Q8
-                                    Max dose: 800 mg Q8
-                                    ● Prophylaxis dose on ALLO
-                                    BMT 500 mg/m2 Q8, Max
-                                    dose: 400 mg</p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 Tab: 400 mg
-                                <br>
-                                ● Suspension:
-                                400mg/5ml<br>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● May be taken with or without
-                                    food. <br>
-                                    ● Maintain adequate hydration. <br>
-                                    ● Shake Well Before Use. <br>
-
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Acute Kidney Injury <br>
-                                ● Neurotoxicity <br>
-                                ● Thrombotic Microangiopathy <br>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Urine output, volume status, BUN,
-                                SCr, urinalysis. <br>
-                                ● Liver enzymes <br>
-                                ● CBC ;including neutrophil count at
-                                least twice weekly in neonates receiving
-                                60 mg/kg/day. <br>
-                                ● When using high doses, monitor for
-                                signs and symptoms of neurotoxicity
-                                (e.g., lethargy, confusion, hallucinations,
-                                tremors, myoclonus, seizures,
-                                extrapyramidal signs, changes in state of
-                                consciousness).
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                  
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-  $(".Oseltamivir").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Oseltamivir <br>
-                      <p style="color:red;margin-bottom:0">Tamiflu<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antiviral Agent; Neuraminidase Inhibitor
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● Infants ≤8 months: Oral: 3 
-                                      mg/kg/dose. <br>
-                                      ● Infants ≥9 months: Oral: 
-                                      3.5 mg/kg/dose. <br>
-                                      ● Children and Adolescents:
-                                      <p>≤15 kg: Oral: 30 mg </p>
-                                      <p>>15 to 23 kg: Oral: 45 mg </p>
-                                      <p>>23 to 40 kg: Oral: 60 mg</p>
-                                      <p>>40 kg: Oral: 75 mg</p>                                   
-                                      ● Prophylaxis dose: Q24 <br>                                    
-                                      ● Treatment dose: Q12 <br></p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 1 Cap: 30 mg  <br> 
-                                      ● 1 Cap: 75 mg <br> 
-                                      ● Extemp: 6 mg/ml <br> 
-                                  </p>                            
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● May administer with or without 
-                                      food; may decrease stomach upset 
-                                      if administered with food. <br> 
-                                      ● Oral suspension: Shake 
-                                      suspension well before use; 
-                                      measure dose in an appropriately 
-                                      sized calibrated oral syringe that 
-                                      provides accurate measurement of 
-                                      prescribed dose. <br>                        
-                                      </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Gastrointestinal: Vomiting <br> 
-                                  ● Nervous system: Headache <br> 
-                                  ● Neuropsychiatric Events: Confusion, 
-                                  delirium, hallucination, and/or self-injury <br> 
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Renal function, serum glucose in 
-                                  patients with diabetes mellitus; signs or 
-                                  symptoms of unusual behavior, 
-                                  including attempts at self-injury, 
-                                  confusion, and/or delirium <br> 
-                                  ● Critically ill patients: Repeat rRT-PCR or viral culture may help to 
-                                  determine ongoing viral replication. <br> 
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Ribavirin").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Ribavirin <br>
-                      <p style="color:red;margin-bottom:0">Virokan<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antiviral
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 7.5mg/kg/day Q12                               
-                                      </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 1 Cap: 200 mg <br>
-                                      ● 1 Tab: 400 mg <br></p>                            
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● To be taken after meals <br>                               
-                                      </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Dermatologic: Alopecia, dermatitis, 
-                                  dermatologic disorder, diaphoresis, 
-                                  pruritus, skin rash, xeroderma <br>
-                                  ● Endocrine & Metabolic: Growth 
-                                  retardation, hyperuricemia, weight loss <br>
-                                  ● Gastrointestinal: Abdominal pain, 
-                                  anorexia, decreased appetite, diarrhea, 
-                                  dyspepsia, gastrointestinal disease, nausea, 
-                                  upper abdominal pain, vomiting, 
-                                  xerostomia <br>
-                                  ● Hematologic & Oncologic: Anemia, 
-                                  hemolytic anemia, lymphocytopenia, 
-                                  neutropenia <br>
-                                  ● Hepatic: Hyperbilirubinemia <br>
-                                  ● Infection: Viral infection <br>
-                                  ● Nervous System: Anxiety, chills, 
-                                  depression, dizziness, emotional lability, 
-                                  fatigue, headache, insomnia, irritability, 
-                                  lack of concentration, nervousness, pain, 
-                                  right upper quadrant pain, rigors <br>
-                                  ● Neuromuscular & Skeletal: Arthralgia, 
-                                  asthenia, musculoskeletal pain, myalgia <br>
-                                  ● Respiratory: Cough, dyspnea, flu-like 
-                                  symptoms, pharyngitis, sinusitis, upper 
-                                  respiratory tract infection <br>
-                                  ● Miscellaneous: Fever <br>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Hepatitis C monoinfection, chronic: <br>
-                                  ● CBC with differential and platelets 
-                                  (baseline, weeks 2 and 4 of treatment, 
-                                  and as clinically indicated), LFTs, TSH 
-                                  (every 12 weeks), ECG (if preexisting 
-                                  cardiac abnormalities or disease 
-                                  [baseline and as indicated]), ophthalmic 
-                                  exam (baseline in all patients and also 
-                                  periodically during treatment for those 
-                                  with preexisting ophthalmologic 
-                                  disorders or if ocular symptoms occur 
-                                  during treatment), dental exam. In 
-                                  pediatric patients, monitor growth 
-                                  closely during and after treatment. <br>
-                                  ● Pregnancy screening (in woman of 
-                                  childbearing age) and pregnancy tests 
-                                  monthly during and for 6 months after 
-                                  treatment discontinuation. <br>
-                                  ● Baseline (within 12 weeks prior to 
-                                  starting antiviral therapy): CBC, INR, 
-                                  hepatic function panel (albumin, total 
-                                  and direct bilirubin, ALT, AST, and 
-                                  alkaline phosphatase), calculated GFR <br>
-                                  ● Baseline (at any time prior to starting 
-                                  antiviral therapy): HCV genotype and 
-                                  subtype, quantitative HCV viral load <br>
-                                  ● During therapy: CBC, serum 
-                                  creatinine, calculated GFR, hepatic 
-                                  function panel (after 4 weeks of therapy 
-                                  and as clinically indicated); quantitative 
-                                  HCV viral load testing (after 4 weeks of 
-                                  therapy and at 12 weeks after 
-                                  completion of therapy). If quantitative 
-                                  HCV viral load is detectable at 
-                                  treatment week 4, repeat testing is 
-                                  recommended after 2 additional weeks 
-                                  of treatment (treatment week 6). <br>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Valganciclovir").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Valganciclovir <br>
-                      <p style="color:red;margin-bottom:0">Valcyte<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antiviral Agent
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 7 * BSA * CrCl  <br>
-                                      ● Max dose: 900mg/day     <br>                                                       
-                                      </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 1 Tab: 450mg  <br>
-                                      ● Extemp: 60mg/ml <br></p>                            
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Valganciclovir should be 
-                                      administered with meals. <br>
-                                      ● Do not break or crush tablets. <br>             
-                                      </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Cardiovascular: Hypertension <br>
-                                  ● CNS: Headache, insomnia <br>
-                                  ● Gastrointestinal: Diarrhea, nausea, 
-                                  vomiting, abdominal pain <br>
-                                  ● Hematologic & Oncologic: Anemia, 
-                                  thrombocytopenia, neutropenia <br>
-                                  ● Immunologic: Graft rejection <br>
-                                  ● Neuromuscular & skeletal: Tremor <br>
-                                  ● Ophthalmic: Retinal detachment <br>
-                                  ● Renal: Increased serum creatinine <br>
-                                  ● Miscellaneous: Fever    <br>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● SCr at baseline and periodically 
-                                  during therapy <br>
-                                  ● CBC with differential, platelet count <br>
-                                  ● Monitor CBC and platelets more 
-                                  frequently during therapy in infants and 
-                                  in patients with renal impairment, those 
-                                  with previous drug-induced leukopenia, 
-                                  and those with neutrophil counts &lt;1,000 
-                                  cells/mm3 at treatment initiation. <br>
-                                  ● Pregnancy test prior to initiation in 
-                                  females of reproductive potential.  <br>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION ANTI_GOUT
---------------------------------------------------------------*/
-  $(".Allopurinol").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;>
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Allopurinol <br>
-                    <p style="color:red;margin-bottom:0">No-Uric 100/300mg<sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Antigout Agent / Xanthine Oxidase Inhibitor (Mainly Used In TLS)
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● <strong>Weight-directed dosing:</strong> 10
-                                    mg/kg/day divided every 8
-                                    hours; maximum daily dose:
-                                    800 mg/day. <br>
-                                    ● <strong> BSA-directed dosing:</strong> 50 to
-                                    100 mg/m2
-                                    /dose every 8
-                                    hours; maximum daily dose:
-                                    300 mg/m2
-                                    /day.</p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 Tab: 100 mg <br>
-                                ● 1 Tab: 300 mg <br>
-                                ● Extemp: 20
-                                mg/ml
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>Must be taken after meals. <br>
-                                    ● Maintain adequate hydration. <br>
-                                    ● Separate 2 hours from Epicogel. <br>
-
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Acute Gout Attacks. <br>
-                                ● Hypersensitivity Reactions (Delayed)
-                                and Hepatotoxicity.
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● CBC, serum uric acid levels every 2 to
-                                5 weeks during dose titration until
-                                desired level is achieved and every 6
-                                months thereafter. <br>
-                                ● LFTs (periodically in patients with
-                                preexisting hepatic disease), renal
-                                function (BUN, serum creatinine or
-                                creatinine clearance (periodically),
-                                prothrombin time [periodically in
-                                patients receiving warfarin]). <br>
-                                ● Consider HLA-B*5801 testing prior to
-                                initiation of therapy in patients at a
-                                higher risk for allopurinol
-                                hypersensitivity syndrome. <br>
-                                ● Monitor hydration status, for signs
-                                and symptoms of hypersensitivity,
-                                hepatotoxicity.
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION Anti-inflammatory & Antiedematous
---------------------------------------------------------------*/
-  $(".Alpha").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Alpha Amylase <br>
-                    <p style="color:red;margin-bottom:0">Megalase <sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Anti-inflammatory & Antiedematous
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                    ● &lt; 3 years: 5 ml Q8. <br>
-                                    ● &gt; 3 years: 10 ml Q8. <br>
-                                    ● Adults: 15 ml or 1 tab Q8. 
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Syrup: 200
-                                CEIPU/ml 100 ml <br>
-                                ● 1 Tab: 3000
-                                CEIPU
-                                
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Must be taken 1h before meal or 2 hours after meal.
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                               
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● CBC, serum uric acid levels every 2 to
-                                5 weeks during dose titration until
-                                desired level is achieved and every 6
-                                months thereafter. <br>
-                                ● LFTs (periodically in patients with
-                                preexisting hepatic disease), renal
-                                function (BUN, serum creatinine or
-                                creatinine clearance (periodically),
-                                prothrombin time [periodically in
-                                patients receiving warfarin]). <br>
-                                ● Consider HLA-B*5801 testing prior to
-                                initiation of therapy in patients at a
-                                higher risk for allopurinol
-                                hypersensitivity syndrome. <br>
-                                ● Monitor hydration status, for signs
-                                and symptoms of hypersensitivity,
-                                hepatotoxicity.
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION Anti-inflammatory & Antiedematous
---------------------------------------------------------------*/
-  $(".AluminumHydroxide").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Aluminum Hydroxide +
-                    Mg + Dimethicone <br>
-                    <p style="color:red;margin-bottom:0">Epicogel<sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Antacid/ Anti-Flatulent
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● Empirical dose Q8 - Q12.</p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Suspension: Each
-                                100 ml contains:
-                                Dried Aluminum
-                                Hydroxide Gel 8.1
-                                gm + Magnesium
-                                Hydroxide 2.0 gm
-                                + Dimethicone 2.5gm <br>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Must be taken 1-2 hour after
-                                    meal. <br>
-                                    ● Shake Well Before Use.
-
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Gastrointestinal: Constipation,
-                                decreased gastrointestinal motility, fecal
-                                impaction, hemorrhoids, stomach cramps,
-                                unpleasant taste (chalky).
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● GI complaints, stool frequency.
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION Antiemetic
---------------------------------------------------------------*/
-  $(".Aprepitant").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Aprepitant <br>
-                    <p style="color:red;margin-bottom:0">Emend <sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Antiemetic; Substance P/Neurokinin 1 Receptor Antagonist
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● Infants ≥6 months and
-                                    Children < 12 years weighing 6 to < 30 kg: Oral suspension: 3 mg/kg 1 hour prior to
-                                        chemotherapy on day 1, then 2 mg/kg/dose once daily on days 2 and 3. <br>
-                                        ● Children < 12 years weighing ≥30 kg, Children ≥12 years, and Adolescents:
-                                            Oral: Capsules, Oral suspension: 125 mg 1 hour prior to chemotherapy on day
-                                            1, followed by 80 mg once daily on days 2 and 3. </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Extemp:
-                                20mg/ml. <br>
-                                ● Capsule package
-                                includes: 1 cap
-                                125mg and 2 caps
-                                80mg. <br> <u>(for 3 days
-                                    regimen).</u>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Administer with or without food. <br>
-                                    ● First dose should be given 1 hour
-                                    prior to chemotherapy; subsequent
-                                    doses should be given 1 hour prior
-                                    to chemotherapy or in the morning
-                                    (if no chemotherapy is
-                                    administered on days 2 and 3). <br>
-                                    ● Swallow capsules whole. <br>
-                                    ● Oral suspension: Dose should be
-                                    prepared by a health care provider
-                                    and dispensed to patient or
-                                    caregiver in an oral dispenser.
-                                    Administer by placing the
-                                    dispenser in the patient's mouth
-                                    along the inner cheek and slowly
-                                    dispensing the medicine.
-
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Hematologic & Oncologic: Neutropenia. <br>
-                                ● Nervous System: Fatigue.
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● In patients receiving concurrent
-                                warfarin, monitor INR/PT for 2 weeks
-                                (particularly at 7 to 10 days) following
-                                aprepitant administration. <br>
-                                ● Monitor patients with severe hepatic
-                                impairment for adverse reactions. <br>
-                                ● Monitor for signs/symptoms of
-                                hypersensitivity reaction.
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-  $(".Ondansetron").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Ondansetron <br>
-                      <p style="color:red;margin-bottom:0">Zofran<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Antiemetic
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 0.15 mg/kg/dose (Q8) <br> 
-                                      ● 0.45 mg/kg/day (Q24) <br> 
-                                      ● Maximum 16 mg/day </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 1 Tab: 8mg
-                                  </p>                            
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Oral (all dosage forms): May 
-                                      administer without regard to meals. 
-                                      Administer 30 minutes prior to 
-                                      chemotherapy, 1 to 2 hours prior to 
-                                      radiotherapy, and 1 hour prior to 
-                                      induction of anesthesia. <br> 
-                                      ● Orally disintegrating tablet: Do 
-                                      not remove from blister until 
-                                      needed. Peel backing off the blister; 
-                                      do not push tablet through foil 
-                                      backing. Using dry hands, place 
-                                      tablet on tongue and allow to 
-                                      dissolve; swallow with saliva (no 
-                                      need to administer with liquids).   <br>                               
-                                      </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Constipation <br> 
-                                  ● Nervous system: Fatigue, headache, 
-                                  malaise <br> 
-                                  ● Hypersensitivity (immediate) <br> 
-                                  ● QT prolongation <br> 
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● ECG if applicable (eg, high-risk or 
-                                  elderly patients, concurrent use of other 
-                                  medications known to prolong QT 
-                                  interval, electrolyte abnormalities 
-                                  [hypokalemia or hypomagnesemia], 
-                                  heart failure, bradyarrhythmias, and 
-                                  cumulative high-dose anthracycline 
-                                  therapy). <br> 
-                                  ● Serum potassium and magnesium 
-                                  levels. Monitor for signs/symptoms of 
-                                  serotonin syndrome and hypersensitivity <br> 
-                                  ● Monitor for decreased bowel activity 
-                                  (particularly in patients at risk for 
-                                  bowel obstruction). <br> 
-                                  ● Monitor for signs/symptoms of 
-                                  myocardial ischemia. <br> 
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION Immunosuppressant
---------------------------------------------------------------*/
-  $(".Azathioprine").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Azathioprine <br>
-                    <p style="color:red;margin-bottom:0">Azathioprine Mylan 50mg <sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Immunosuppressant.
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● In BMT: 2mg/kg/day Q24. <br>
-                                    ● Autoimmune diseases:
-                                    
-                                </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 tab: 50 mg<br>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Administering tablets after meals
-                                    or in divided doses may decrease
-                                    adverse GI events. <br>
-                                    ● Hazardous agent.
-                                    
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-  $(".Cyclosporine").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Cyclosporine<br>
-                      <p style="color:red;margin-bottom:0">Cyclosporine. <sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Immunosuppressant.
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● In BMT: 1mg/kg/day Q12
-                                      every 2-8 days.
-                                      </p>
-  
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● 1 cap: 25 mg. <br>
-                                  ● 1cap: 50 mg. <br>
-                                  ● Syrup: 1mg/mg.
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  ● Must be separated from 
-                                  Fluconazole by <u>2h</u>. <br>
-                                  ● Never ever stand oral solution in 
-                                  fridge. <br>
-                                  ● May take oral solution with apple
-                                  or orange juice.
-                                  
-  
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION SMR
---------------------------------------------------------------*/
-  $(".Baclofen").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Baclofen. <br>
-                    <p style="color:red;margin-bottom:0">Mylobac <sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Skeletal Muscle Relaxant.
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● &lt; 2 years: Usual dose: 10- 20 mg/day in divided doses Q8; begin at low end of range
-                                        and titrate dose to patient response; titration intervals of every 7 days have
-                                        been used in pediatric patients ≥2 years. Max: 40 mg/day. <br>
-                                        ● 2-7 years: Initial: 2.5 mg
-                                        Q8; titrate dose by 5 mg
-                                        increments at weekly
-                                        intervals to patient response;
-                                        usual dose: 20 to 40 mg/day.
-                                        Max: 60 mg/day. <br>
-                                        ● ≥8 years: Initial: 5 mg Q8;
-                                        titrate dose to patient
-                                        response every 3 to 7 days to
-                                        usual dose of 30 to 40
-                                        mg/day; some patients ≥12
-                                        years may require every-6-
-                                        hour dosing; Max: 80
-                                        mg/day</p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 Tab: 10 mg. <br>
-                                ● 1 Tab: 25 mg
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● To be taken with food or milk.
-
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● CNS effects: Confusion, dizziness,
-                                drowsiness, sedation, asthenia, nausea,
-                                and vomiting. <br>
-                                ● Withdrawal effects: Abrupt withdrawal
-                                of oral baclofen has been associated with
-                                altered mental status, exaggerated
-                                rebound spasticity, hallucination, high
-                                fever, hypertension, hyperthermia, muscle
-                                rigidity, tachycardia, and seizure. Other
-                                symptoms include agitation, confusion,
-                                delusions, insomnia, and paranoid
-                                ideation. Neonatal withdrawal has also
-                                been reported in neonates whose mothers
-                                were treated with oral baclofen
-                                throughout pregnancy. <br>
-                                ● Nervous system: Headache and
-                                hypotonia.
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Monitor for signs and symptoms of
-                                baclofen withdrawal (eg, altered mental
-                                status, exaggerated rebound spasticity,
-                                hallucinations, high fever, hypertension,
-                                hyperthermia, muscle rigidity,
-                                tachycardia, seizure, agitation,
-                                confusion, delusions, insomnia, paranoid
-                                ideation). <br>
-                                ● Consider EEG in patients with
-                                epilepsy if clinically indicated (decreased
-                                seizure threshold has been reported). <br>
-                                ● Monitor closely for signs and
-                                symptoms of overdose (eg, drowsiness,
-                                dizziness, somnolence, hypothermia,
-                                respiratory depression, seizures, rostral
-                                progression of hypotonia, loss of
-                                consciousness progressing to coma),
-                                which may appear suddenly or
-                                insidiously, especially during the initial
-                                screening and dose-titration phase of
-                                treatment, and during reintroduction of
-                                therapy after a period of interruption.
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION Mucolytic
---------------------------------------------------------------*/
-  $(".Bromhexine").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Bromhexine HCl. <br>
-                    <p style="color:red;margin-bottom:0">Bisolvon 4mg/5ml. <sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Mucolytic.
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● 3-6 years: 5 ml Q8. <br>
-                                    ● 6-14 years and patients
-                                    weighing under 50 kg: 10 ml
-                                    Q8. <br>
-                                    ● >14 years: 10-20 ml Q8.  </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Syrup: 4mg/5ml (115 ml).
-                                
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Take with or without food.
-                                    
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                              
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION Expectorant
---------------------------------------------------------------*/
-  $(".Bronchophane").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Bronchophane
-                    (Guaifenesin, Ephedrine
-                    HCl, Diphenhydramine
-                    HCl & Dextromethorphan
-                    HBr). <br>
-                    <p style="color:red;margin-bottom:0">Bronchophane. <sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Expectorant.
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● >6 years: 5-10 ml Q6-8. <br>
-                                    ● ≥12 years: 10-20 ml Q6-8. </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Syrup: 50, 7.5, 5, 6.25mg/5ml 120 ml. 
-                                
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                
-                                
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                               
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION Corticosteroid
---------------------------------------------------------------*/
-  $(".Budesonide").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Budesonide. <br>
-                    <p style="color:red;margin-bottom:0">Budexan <br> Pulmicort
-                        <sup>®</sup>
-                    </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Nasal Corticosteroid.
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● 0.25 mg Q12 or 0.5 mg
-                                    Q24. <br>
-                                    <strong>Max: 1 mg/day. </strong>
-                                </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 amp: 0.5 mg/ml
-                                ● 1 amp: 0.5 mg/2ml
-                                ● 1 amp: 1 mg/ 2ml
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Add the required number of
-                                    drops to 1-2 ml of NS solution.
-
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Otic: Otitis media. <br>
-                                ● Respiratory: Respiratory infection,
-                                rhinitis. <br>
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Monitor growth in pediatric patients. <br>
-                                ● Inhalation: Check mucous membranes
-                                for signs of fungal infection. <br>
-                                ● Asthma: FEV1, peak flow, and/or
-                                other pulmonary function tests. <br>
-                                ● Long-term use: Regular eye
-                                examinations and IOP, blood pressure,
-                                glucose, signs and symptoms of
-                                hypercorticism, or adrenal suppression.
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-  $(".Cosyntropin").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Cosyntropin<br>
-                    <p style="color:red;margin-bottom:0">Cosyntropin for Injection <sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Adrenal Corticosteroids.
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● 3-6 years:
-                                    Initial: 0.25-0.5 mg/day
-                                    Maintenance: 0.25-0.5 mg 
-                                    every 2-8 days <br>
-                                    ● 7-15 years:
-                                    Initial: 0.25-1 mg/day
-                                    Maintenance: 0.25-1mg
-                                    every 2-8 days
-                                    </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 amp: 0.25mg/vial
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Shake ampoule until uniform 
-                                    appearance.
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-  $(".Dexamethasone").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Dexamethasone <br>
-                    <p style="color:red;margin-bottom:0">Deltasone 0.75mg <br> Methabiogen 8mg<sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Corticosteroids.
-
-                            </div>
-                        </div>
-                    </div>
-
-                  
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 Tab: 0.75 mg <br>
-                                ● 1 Tab: 8 mg <br>
-                                ● Syrup:
-                                10mg/100ml
-                                120 ml.
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Separate from Calcium and One-alpha. <br>
-                                    ● Give after meals. <br>
-                                    ● Don't give alcoholic beverages.
-
-
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-  $(".Fluticasone").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Fluticasone <br>
-                      <p style="color:red;margin-bottom:0">Flexonase spray 50mcg/dose<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Nasal Corticosteroid.
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● > 4 years: 1 spray (50 
-                                      mcg/spray) 50 mcg per 
-                                      nostril Q24 <br>
-                                      ● >12 years: 2 sprays
-                                      (50mcg/spray) 100 mcg per
-                                      nostril Q24
-                                      </p>
-  
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Spray: 125 mcg
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Administer at regular intervals. <br>
-                                      ● Shake bottle gently before using. <br>
-                                      ● Keeping bottle upright and close 
-                                      off the other nostril then breathe in
-                                      through nose while inhaling then 
-                                      press pump to release spray.
-                                      
-                                  </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Hydrocortisone").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Hydrocortisone. <br>
-                      <p style="color:red;margin-bottom:0">Micort 10mg.<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Corticosteroid
-                                  Anti-Inflammatory.
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 2.5-10mg/kg/day
-                                      Q6, Q8.
-                                     
-                                      </p>
-  
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● 1 Tab: 10 mg.
-                                  
-  
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                <p>● Must be taken with food or milk 
-                                  to decrease GIT upset. </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-  
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  /*--------------------------------------------------------------
-# ADD MEDICATION Anti-Tussive
---------------------------------------------------------------*/
-  $(".Butamirate").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Butamirate. <br>
-                    <p style="color:red;margin-bottom:0">Sinecode<sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Anti-Tussive Agent.
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● Empirical dose Q8. </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                
-                                ● Syrup:7.5mg/5ml (200ml).
-                                
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                               
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                
-                                
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION Anti-Hyperprolactinemia
---------------------------------------------------------------*/
-  $(".Cabergoline").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Cabergoline. <br>
-                    <p style="color:red;margin-bottom:0">Nostifix 0.5mg <sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Anti-Hyperprolactinemia.
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● Initial: 0.25 mg Twice
-                                    or 0.5 mg Once Per week. <br>
-                                    ● Therapeutic dose:1 mg
-                                    /week </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 tab: 0.5 mg.
-                                
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Must be taken with meals. <br>
-                                    ● Hazardous agent.
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                               
-                                
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION Antidote
---------------------------------------------------------------*/
-  $(".Calcitonin").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Calcitonin. <br>
-                    <p style="color:red;margin-bottom:0"> Miacalcic<sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Antidote in Hypercalcemia.
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● 4 unit/kg/dose up to 8 unit/kg/dose Q12
-                                    </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 amp: 100 I.U./ml
-● Nasal Spray: 200 I.U.
-                                
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Use multiple injection sites if dose
-                                    volume is >2 mL.
-                                    
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                
-                                
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION Electrolyte Supplement
---------------------------------------------------------------*/
-  $(".CalciumCitrate").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0"> Calcium Citrate
-                    + Magnesium Citrate <br>
-                    <p style="color:red;margin-bottom:0">Cal-mag <sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Electrolyte Supplement
-
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● According to Calcium &
-                                    Magnesium Level,
-                                    1 cap Q8, Q12, Q24. </p>
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 cap: 665mg Ca+ 540mg Mg.
-                                
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Must be taken with food.
-                                    
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                               
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Serum calcium (ionized calcium
-                                preferred if available), phosphate,
-                                magnesium.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-
-  $(".Calcium").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0"> Calcium <br>
-                    <p style="color:red;margin-bottom:0">Calcium Carbonate Tab. <br> Decal Syrup. <sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Electrolyte Supplement
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● Patients &lt; 20 kg: 1 Sachet Q24. <br>
-                                        ● Patients 20-40 kg: 1 tablet
-                                        Q24 (only dose with
-                                        corticosteroid). <br>
-                                        ● Patients >40 kg: 1 tablet
-                                        Q8, Q12.
-                                </p>
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Calcium
-                                Carbonate tab:
-                                500mg. <br>
-                                ● Decal syrup:
-                                contains Ca +
-                                one alpha
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Must separate 2h from dose of
-                                    corticosteroids. <br>
-                                    ● Administer with food. <br>
-                                    ● Tablet may be crushed and the
-                                    contents mixed with food or drink.
-
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Serum calcium (ionized calcium
-                                preferred if available), phosphate,
-                                magnesium.
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION Antihistamine
---------------------------------------------------------------*/
-  $(".Cetirizine").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0"> Cetirizine. <br>
-                    <p style="color:red;margin-bottom:0">Zyrtic.<sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Antihistamine.
-
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● Empirical dose Q24.
-                                </p>
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 Tab: 10 mg. <br>
-                                ● Syrup:
-                                10mg/100ml.
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● May be taken at bed time.
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● CNS depression, including sedated state,
-                                drowsiness, and fatigue. There are rare
-                                reports of psychosis and delusion. In
-                                overdose in children, sedation is more
-                                likely to occur than with other secondgeneration antihistamines. <br>
-                                ● Nervous system: Drowsiness, Headache.
-                                
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                ● Relief of symptoms, sedation, and
-                                anticholinergic effects.
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION Vasopressin Hormone
---------------------------------------------------------------*/
-  $(".Desmopressin").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Desmopressin <br>
-                    <p style="color:red;margin-bottom:0">Omegapress 0.1& 0.2mg<sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Vasopressin Hormone.
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● Diabetes Insipidus:
-                                    ≥ 4 years: Initial 50 mcg
-                                    Q12 to 100-1200
-                                    mcg /day (Optimal daily dose 
-                                    range: 100 to 800 mcg/day in 
-                                    2 to 3 divided doses). <br>
-                                    ● Nocturnal Enuresis:
-                                    ≥ 6 years: 200 mcg Q24
-                                    before bed time,  <strong>Max dose:
-                                        600 mcg/day</strong>.
-                                    
-                                </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 Tab: 0.1 mg
-                                & 0.2 mg. <br>
-                                ● Nasal Spray:
-                                10 mcg/puff.
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Fluids intake should be limited 
-                                    1hr before administration until the 
-                                    next morning, or at least 8 hours 
-                                    after administration.
-
-
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Endocrine & Metabolic: Hyponatremia. <br>
-                                ● Gastrointestinal: Xerostomia.
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● For all uses, fluid intake, urine 
-                                volume, and signs and symptoms of 
-                                hyponatremia should be closely 
-                                monitored especially in high risk patient 
-                                subgroups (eg, young children, elderly, 
-                                patients with heart failure). <br>
-                                ● Diabetes Insipidus: Urine specific 
-                                gravity, plasma and urine osmolality, 
-                                serum electrolytes. <br>
-                                ● Nocturnal enuresis: Serum electrolytes 
-                                if used for >7 days.
-
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-
-  /*--------------------------------------------------------------
-# ADD MEDICATION Analgesic / NSAID
---------------------------------------------------------------*/
-  $(".Diclofenac").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Diclofenac Sodium <br>
-                    <p style="color:red;margin-bottom:0">Epifenac 25mg<sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Analgesic / NSAID.
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● Pain, acute (mild to
-                                    moderate): <br>
-                                    Children ≥12 years and
-                                    Adolescents: Immediate-release: Oral: 25 mg 4 times
-                                    daily. <br>
-                                    ● 1 mg/kg/day Q8
-                                    <strong>● Max: 300 mg/day.</strong>
-
-                                </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 Tab: 25 mg. <br>
-                                ● Syrup: 2mg/1ml
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/Patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● <u>Immediate release:</u> Administer
-                                    with milk or food to decrease GI
-                                    upset. <br>
-                                    ● Take with full glass of water to
-                                    enhance absorption.
-
-
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Cardiovascular: Edema. <br>
-                                ● Gastrointestinal: Nausea.
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● CBC, liver enzymes (periodically
-                                during chronic therapy starting 4 to 8
-                                weeks after initiation). <br>
-                                ● Monitor urine output, BUN, serum creatinine in patients receiving diuretics.
-
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>`);
-  });
-  $(".Ibuprofen").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Ibuprofen <br>
-                      <p style="color:red;margin-bottom:0">Brufen <sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Analgesic / NSAID
-  
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● Analgesic:
-                                      Weight-directed dosing: Infants, Children, and 
-                                      Adolescents: Limited data available in infants &lt;6 months: Oral: 4 to 10 
-                                      mg/kg/dose every 6 to 8 hours; maximum dose: 600 mg/dose; maximum daily dose: 2,400 mg/day </p>
-                                  <p>● Antipyretic: 
-                                      Weight-directed dosing: 
-                                      Infants, Children, and 
-                                      Adolescents: Limited data 
-                                      available in infants &lt;6 
-                                      months: Oral: 4 to 10 
-                                      mg/kg/dose every 6 to 8 
-                                      hours; maximum dose: 600 
-                                      mg/dose; maximum daily 
-                                      dose: 2,400 mg/day </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 1 Tab: 200mg</p>
-                                  <p>● Suspension: 100mg/5ml </p><br>                                
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Administer with food or milk to 
-                                      decrease GI upset.                                   
-                                      <br>
-                                      ● Oral suspension: Shake 
-                                      suspension well before use. 
-                                      Administer with an accurate 
-                                      measuring device (calibrated oral 
-                                      syringe or measuring cup); do not 
-                                      use a household teaspoon or 
-                                      tablespoon to measure dose 
-                                      (overdosage may occur).
-                                      </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Cardiovascular effects <br>
-                                  ● Gastrointestinal events <br>
-                                  ● Hematologic effects <br>
-                                  ● Hepatic effects <br>
-                                  ● Hypersensitivity reactions (immediate and delayed) <br>
-                                  ● Kidney effects <br>
-                                  ● Pulmonary hypertension <br>
-                                  ● Hematologic & Oncologic: Decreased hemoglobin <br>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● CBC, chemistry profile, renal function 
-                                  (urine output, serum BUN and 
-                                  creatinine) especially if on concurrent 
-                                  diuretics or history of decreased renal 
-                                  function; periodic LFTs; observe for 
-                                  bleeding, bruising (especially in patients 
-                                  with coagulation disorders or who are 
-                                  receiving anticoagulants) and occult 
-                                  blood loss <br>
-                                  ● Monitor for anemia with long-term 
-                                  therapy; evaluate GI effects (abdominal 
-                                  pain, bleeding, dyspepsia); periodic 
-                                  ophthalmic exams with long-term 
-                                  therapy (eg, juvenile idiopathic 
-                                  arthritis), signs of infection (ibuprofen 
-                                  lysine); signs of immediate or delayed 
-                                  hypersensitivity reactions. <br>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Ketoprofen").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Ketoprofen <br>
-                      <p style="color:red;margin-bottom:0">Ketofan<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Analgesic
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 50 mg Q6 <br>
-                                      ● Max: 300 mg/day <br></p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 1 Cap: 50 mg</p><br>                                
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Must be taken with food to decrease GIT upset                                  
-                                      </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Gastrointestinal: Dyspepsia <br>
-                                  ● Hepatic: Abnormal hepatic function tests <br>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● CBC (periodically during long-term therapy or if develop signs/symptoms of anemia) <br>
-                                  ● Chemistry profile (periodically during long-term therapy) <br>
-                                  ● Weight gain or edema in patients with predisposing conditions, such as heart failure <br>
-                                  ● Signs of bleeding (occult or gross blood loss) <br>
-                                  ● Periodic liver function tests <br>
-                                  ● Renal function (urine output, serum BUN, creatinine) <br>
-                                  ● Blood pressure <br>
-                                  ● Periodic ophthalmic exams in patients receiving prolonged therapy <br>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-  $(".Paracetamol").on("click", function () {
-    $("#container")
-      .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      <div class="row">
-          <div class="col col-12">
-              <div class="one mt-5">
-                  <h1 class="flex-shrink-0">Paracetamol <br>
-                      <p style="color:red;margin-bottom:0">Panadol<sup>®</sup> </p>
-                      <span class="mt-1">Medication Monograph</span>
-                  </h1>
-              </div>
-              <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                  <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                  <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                  Pharmacological Class
-                              </button>
-                          </h2>
-                          <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  Analgesic
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dose
-                              </button>
-                          </h2>
-                          <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 10-15mg/kg/dose Q4, Q6, 
-                                      Q8 do not exceed 5 doses in 
-                                      24 hours <br>
-                                      ● Maximum daily dose: 75 
-                                      mg/kg/day not to exceed 
-                                      4,000 mg/day. <br>
-                                      ● In patients with hepatic 
-                                      impairment, use with 
-                                      caution. Limited, low-dose 
-                                      therapy is usually well-tolerated in hepatic 
-                                      disease/cirrhosis; however, 
-                                      cases of hepatotoxicity at 
-                                      daily acetaminophen dosages 
-                                      &lt;4,000 mg/day have been 
-                                      reported. Avoid chronic use 
-                                      in hepatic impairment. <br>
-                                      </p>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                  <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                  Dosage form
-                              </button>
-                          </h2>
-                          <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  <p>● 1 Tab: 500 mg  <br>
-                                      ● Suspension:
-                                      125mg/5ml or
-                                      250mg/5ml <br>
-                                  </p>                            
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item ">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                  <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                  Patient Information
-                              </button>
-                          </h2>
-                          <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-  
-                                  <p>● Administer with food to decrease 
-                                      GI upset <br>
-                                      ● Shake drops and suspension well 
-                                      before use <br>
-                                      ● Do not crush or chew extended-release products <br>                 
-                                      </p>
-  
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                  <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                  Side Effects
-                              </button>
-                          </h2>
-                          <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Hepatotoxicity <br>
-                                  ● Dermatologic: Erythema of skin, skin 
-                                  blister, skin rash <br>
-                                  ● Otic: Hearing loss <br>
-                              </div>
-                          </div>
-                      </div>
-  
-                      <div class="accordion-item">
-                          <h2 class="accordion-header">
-                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                  data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                  <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                  Monitoring Parameters
-                              </button>
-                          </h2>
-                          <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                              <div class="accordion-body">
-                                  ● Liver enzymes in patients with 
-                                  prolonged use or in populations with 
-                                  reduced hepatic function (eg, neonates). <br>
-                                  ● Monitor serum concentrations when 
-                                  acute overdose is suspected or with long-term use in patients with hepatic 
-                                  disease. <br>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>`);
-  });
-
-    /*--------------------------------------------------------------
-# ADD MEDICATION Anti-Diarrheal
---------------------------------------------------------------*/
-$(".Diphenoxylate").on("click", function () {
-  $("#container")
-    .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Diphenoxylate & Atropine <br>
-                    <p style="color:red;margin-bottom:0">Lomotil<sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Anti-Diarrheal Agent.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● &lt; 8 years: 3 ml Q6 <br> ●> 8 years: 5 ml Q6
-
-                                </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                
-                                ● Syrup: 
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>`);
-});
-
-    /*--------------------------------------------------------------
-# ADD MEDICATION Gastrointestinal
---------------------------------------------------------------*/
-$(".Domperidone").on("click", function () {
-  $("#container")
-    .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Domperidone <br>
-                    <p style="color:red;margin-bottom:0"><sup>Domperidone 10mg® <br> Gastromotil 1mg/ml® 
-                    </sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Dopamine Antagonist;
-                                Gastrointestinal Agent,
-                                Prokinetic.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p> ● 1 mg/kg/day (Q8) <br>
-                                    ● <strong> Maximum 1 tablet Q8
-                                        (30mg/day)</strong>
-
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                ● 1 Tab: 10mg <br>
-                                ● Suspension:
-                                1mg/ml <br>
-                                200 ml
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Must be taken 1h before meals
-
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Dose-related QT prolongation and
-                                sudden cardiac death observed initially
-                                with intravenous doses but also reported
-                                with oral administration
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Renal function; ECG (baseline and 
-                                then periodically during therapy)
-                                
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-});
-
-    /*--------------------------------------------------------------
-# ADD MEDICATION Anti-Coagulant
---------------------------------------------------------------*/
-$(".Enoxaparin").on("click", function () {
-  $("#container")
-    .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Enoxaparin<br>
-                    <p style="color:red;margin-bottom:0"><sup>Clexan 20/0.2ml, 40mg/0.4ml, 60mg/0.6ml, 80mg/0.8ml® 
-                    </sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Anti-Coagulant.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p> ● Prophylaxis: 1 mg/kg Q24
-                                    ● Treatment: 1 mg/kg Q12
-                                    
-
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                ● 1 Syringe: 20 IU
-                                ● 1 Syringe: 40 IU
-                                ● 1 Syringe: 60 IU
-                                ● 1 Syringe: 80 IU
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Not if allergic to pork products. <br>
-                                    ● Alternating injection site.
-
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>`);
-});
-
-    /*--------------------------------------------------------------
-# ADD MEDICATION Hemostatic Agent
---------------------------------------------------------------*/
-$(".Ethamsylate").on("click", function () {
-  $("#container")
-    .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Ethamsylate <br>
-                    <p style="color:red;margin-bottom:0">Haemostatine 250mg<sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Hemostatic Agent.
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● 250-500 mg Q6</p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 Tab: 250 mg <br>
-                               
-● 1 Tab: 500 mg
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-});
-
-    /*--------------------------------------------------------------
-# ADD MEDICATION Anti-Spasmodic
---------------------------------------------------------------*/
-$(".Flavoxate").on("click", function () {
-  $("#container")
-    .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Flavoxate <br>
-                    <p style="color:red;margin-bottom:0">Nephroflam 200mg<sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Anti-Spasmodic Agent.
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● 100-200mg Q8 then reduce</p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 Tab: 200 mg 
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-});
-
-    /*--------------------------------------------------------------
-# ADD MEDICATION Anthelmintic
---------------------------------------------------------------*/
-$(".Flubendazole").on("click", function () {
-  $("#container")
-    .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Flubendazole <br>
-                    <p style="color:red;margin-bottom:0">Fluvermal <sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Anthelmintic Agent.
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● >5 years: 5 ml Q12 <br>
-                                    ● >10 years: 10 ml Q12 <u>then 
-                                        repeat after 2 weeks for 3 
-                                        days with the same dose</u>
-                                    </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Susp: 20mg/1ml
-                                30 ml 
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● Must be taken with food
-                                </p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>`);
-});
-
-    /*--------------------------------------------------------------
-# ADD MEDICATION Water Soluble Vitamin
---------------------------------------------------------------*/
-$(".FolicAcid").on("click", function () {
-  $("#container")
-    .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Folic Acid <br>
-                    <p style="color:red;margin-bottom:0">Folicap 0.5mg <sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Water Soluble Vitamin.
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● 1 Tab Q24
-                                    </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 Cap: 0.5 mg.
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-});
-
-    /*--------------------------------------------------------------
-# ADD MEDICATION Anti-Convulsant
---------------------------------------------------------------*/
-$(".Gapabentin").on("click", function () {
-  $("#container")
-    .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Gapabentin <br>
-                    <p style="color:red;margin-bottom:0">Gaptin, Conventin, Epicopentin, Lepticure. <sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Anti-Convulsant Agent.
-                                
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● &lt; 12 years: 50mg/kg/day 
-                                    Q8 <br>
-                                    ● > 12 years: 70mg/kg/day 
-                                    Q8                                    
-                                    </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 Cap: 100 mg <br>
-                                ● 1 Cap: 400 mg
-                                
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                              <p>● May administer without regards
-                                to meals</p>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-});
-
-    /*--------------------------------------------------------------
-# ADD MEDICATION Dietary Supplement
---------------------------------------------------------------*/
-$(".Ginkgo").on("click", function () {
-  $("#container")
-    .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Ginkgo Flavone Glycoside
-                    Extract <br>
-                    <p style="color:red;margin-bottom:0">Ginkgo <sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Infution.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Dietary Supplement.
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● 1 Cap Q8.
-                                   
-                                    </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 Cap: 40 mg <br>
-                                ● Syrup: 40mg/1ml
-                                
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                              <p>● Must be taken in the morning to 
-                                avoid insomnia.</p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-});
-
-    /*--------------------------------------------------------------
-# ADD MEDICATION Osteoarthritis
---------------------------------------------------------------*/
-$(".Glucosamine").on("click", function () {
-  $("#container")
-    .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Glucosamine. <br>
-                    <p style="color:red;margin-bottom:0">Glucosamine<sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Used in Osteoarthritis.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● 1.5 gm/day Q8 
-                                   
-                                    </p>
-
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● 1 Cap: 500mg.
-                                
-
-
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-    </div>`);
-});
-
-    /*--------------------------------------------------------------
-# ADD MEDICATION Mast Cell Stabilizer
---------------------------------------------------------------*/
-$(".Ketotifen").on("click", function () {
-  $("#container")
-    .replaceWith(`<div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row">
-        <div class="col col-12">
-            <div class="one mt-5">
-                <h1 class="flex-shrink-0">Ketotifen <br>
-                    <p style="color:red;margin-bottom:0">Allerban<sup>®</sup> </p>
-                    <span class="mt-1">Medication Monograph</span>
-                </h1>
-            </div>
-            <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                <div class="accordion mt-5 mb-5 flex-shrink-0" id="accordionExample">
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseseven" aria-expanded="true" aria-controls="collapseseven">
-                                <img src="../svg/Origin.svg" alt="" height="30px" class="me-2">
-                                Pharmacological Class
-                            </button>
-                        </h2>
-                        <div id="collapseseven" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                Mast Cell Stabilizer
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dose
-                            </button>
-                        </h2>
-                        <div id="collapse8" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● Empirical Dose Q24 </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                                <img src="../svg/Dose.svg" alt="" height="30px" class="me-2">
-                                Dosage form
-                            </button>
-                        </h2>
-                        <div id="collapse9" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>● Syrup: 1mg/5ml</p>                                
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item ">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                                <img src="../svg/patientinformation.svg" alt="" height="30px" class="me-2">
-                                Patient Information
-                            </button>
-                        </h2>
-                        <div id="collapse10" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-
-                                <p>● To be taken at bed time <br>                            
-                                    </p>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                                <img src="../svg/sideeffect.svg" alt="" height="30px" class="me-2">
-                                Side Effects
-                            </button>
-                        </h2>
-                        <div id="collapse11" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                -
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                                <img src="../svg/Monitor.svg" alt="" height="30px" class="me-2">
-                                Monitoring Parameters
-                            </button>
-                        </h2>
-                        <div id="collapse12" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                ● Manufacturer labeling recommends
-                                monitoring of platelet counts in patients
-                                receiving oral antidiabetic agents. <br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>`);
-});
   /*--------------------------------------------------------------
 # ADD DIC COMMUNICATION
 --------------------------------------------------------------*/
@@ -14996,6 +1939,7 @@ $(".pyxisrequisetion").on("click", function () {
   </div>
 </div>`);
 });
+
   /*--------------------------------------------------------------
 # SCIENTIFIC PAPER
 --------------------------------------------------------------*/
@@ -15013,6 +1957,584 @@ $(".Optimizing").on("click", function () {
   </div>
 </div>`);
 });
+
+  /*--------------------------------------------------------------
+# POLICY ORIENTATION
+--------------------------------------------------------------*/
+$(".MISKDowntime").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/DPP-PSSD-001-MISK  Downtime.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".INTERNALAUDITPOLICY").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/DPP-PSSD-002-INTERNAL AUDIT POLICY.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".VerificationReviewingofPrescriptionOrders").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/DPP-PSSD-003-Verification & Reviewing of Prescription Orders.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".Patienteducation").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/DPP-PSSD-004-Patient education.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".DispensingOutpatient").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/DPP-PSSD-005-Dispensing Outpatient take-home prescription vai automate.._.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".NarcoticsManagement").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-003-Narcotics Management.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".PharmacySecuritySafetyRequirement").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-004-Pharmacy Security & Safety Requirement.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".DrugInformationCenter").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-005-Drug Information Center.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".HighAlertMedicationandLASAMedication").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-006-High Alert Medication and LASA Medication.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".Medstation").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-009-Med station (Pyxis).pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".ManagementofConcentratedElectrolytes").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-010-Management of Concentrated Electrolytes.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".NutritionSupport").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-012-Nutrition Support.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".Medicationsreturnspolicy").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-013-Medications returns policy.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".PharmaceuticalSamplesD").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-014-Pharmaceutical Samples D.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".AdverseDrugReactionReporting").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-015-Adverse Drug Reaction Reporting.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".MedicationErrorReportingandFollowup").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-016-Medication Error Reporting and Follow-up.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".FloorStock").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-017-Floor Stock.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".DayCareprescriptionprocessing").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-018-Day Care prescription processing.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".InpatientMedicationPrescriptionDispensing").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-019-Inpatient Medication Prescription Dispensing.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".MedicationAdministration").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-020-Medication Administration.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".Safemedicationprescribing").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-021-Safe medication prescribing.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".InpatientExtraDoseDispense").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-022-Inpatient Extra Dose Dispense.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".DoseBanding").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-023-Dose Banding.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".MedicationReconciliation").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-024-Medication Reconciliation.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".PRNPolicy").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-026-PRN Policy.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".Admixtureworkflow").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-027-I.V. Admixture workflow and I.V. Order Processing.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".BeyondUseDating").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-029-Beyond-Use Dating and Labeling of I.V admixture.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".BarcodingandRepackaging").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-030-Barcoding and Repackaging Oral Solids and Liquids in Single Unit and Unit Dose Packages.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".Radioactivematerials").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-031-Radioactive materials.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".EmergencyDrugs").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-032-Emergency Drugs and the Pharmacy’s Emergency Responsibili.._.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".ROWAdowntime").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-033-ROWA down time.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".MedicationStoragePolicy").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-SC-004-Medication Storage Policy.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".MedicationandsuppliesRecall").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-SC-007-Medication and supplies Recall.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".FormularyManagement").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../Policy/IPP-SC-009-Formulary Management.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+  /*--------------------------------------------------------------
+# MANUAL ORIENTATION
+--------------------------------------------------------------*/
+$(".ExtemporaneousFormulation").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../manual&program/Manual-PSSD-001- Extemporaneous Formulation.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".AntimicrobialStewardshipProgram").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../manual&program/PROG-PSSD-001-Antimicrobial Stewardship Program.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".MedicationManagement").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../manual&program/PROG-PSSD-002-Medication Management and Use Program.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+$(".ivmanual").on("click", function () {
+  $("#container").replaceWith(`  <div>
+  
+  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
+
+    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
+      <div class="col col-12 text-center">
+        <object class="my-2 rounded-2" data="../manual&program/IV manual2.pdf" type="application/pdf"
+          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
+      </div>
+    </div>
+  </div>
+</div>`);
+});
+
+
   /*--------------------------------------------------------------
 # CHANGE COLOR WHEN PRESS
 --------------------------------------------------------------*/
@@ -15105,29 +2627,22 @@ $(".Optimizing").on("click", function () {
   });
 }); // END OF jQuary
 
-// localStorage.setItem("arrowmove", "yes")
 
-// arrowmove1.addEventListener("click", function() {
-//   if (localStorage.getItem("arrowmove") === "yes") {
-//     localStorage.setItem("arrowmove","no")
-//   } else {
-//     arrowmove2.addEventListener("click", function() {
-//       if (localStorage.getItem("arrowmove") === "no") {
-//         localStorage.setItem("arrowmove","yes")
-//       }
-//     })
-//   }
-// })
 
-// OPEN AND CLOSE LIST
+// // OPEN AND CLOSE LIST
 const subtab = document.querySelectorAll(".btnsubheadfont");
 
+
+
 //PRESENTATION
-btn1.addEventListener("click", (params) => {
+botn1.addEventListener("click", (params) => {
+  console.log("helloooo");
   infographcollapse.classList.remove("show");
   medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -15172,11 +2687,13 @@ btn1.addEventListener("click", (params) => {
 });
 
 //INFOGRAPH
-btn2.addEventListener("click", (params) => {
+botn2.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -15221,11 +2738,13 @@ btn2.addEventListener("click", (params) => {
 });
 
 //MEDICATION
-btn3.addEventListener("click", (params) => {
+botn3.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -15270,11 +2789,13 @@ btn3.addEventListener("click", (params) => {
 });
 
 //DIC
-btn4.addEventListener("click", (params) => {
+botn4.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   medicationcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -15319,10 +2840,12 @@ btn4.addEventListener("click", (params) => {
 });
 
 //WORKFLOW
-btn5.addEventListener("click", (params) => {
+botn5.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   medicationcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
@@ -15368,10 +2891,12 @@ btn5.addEventListener("click", (params) => {
 });
 
 //SCIENTIFIC
-btn6.addEventListener("click", (params) => {
+botn6.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   medicationcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
@@ -15416,12 +2941,114 @@ btn6.addEventListener("click", (params) => {
   Digestivecollapse.classList.remove("show");
 });
 
+//POLICY
+botn7.addEventListener("click", (params) => {
+  presentationcollapse.classList.remove("show");
+  infographcollapse.classList.remove("show");
+  medicationcollapse.classList.remove("show");
+  DICcollapse.classList.remove("show");
+  workflowcollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
+  anticancercollapse.classList.remove("show");
+  antibioticcollapse.classList.remove("show");
+  AntiCoagulantcollapse.classList.remove("show");
+  AntiConvulsantcollapse.classList.remove("show");
+  AntiDiarrhealccollapse.classList.remove("show");
+  Antiemeticcecollapse.classList.remove("show");
+  AntiFlatulencecollapse.classList.remove("show");
+  antifungalcollapse.classList.remove("show");
+  Antigoutcecollapse.classList.remove("show");
+  Hyperprolactinemiacollapse.classList.remove("show");
+  Antiinflamcecollapse.classList.remove("show");
+  AntiSpasmodiccollapse.classList.remove("show");
+  AntiTussivecollapse.classList.remove("show");
+  Antiviralcecollapse.classList.remove("show");
+  Analgesiccollapse.classList.remove("show");
+  Antacidcecollapse.classList.remove("show");
+  Anthelminticcollapse.classList.remove("show");
+  Antihistaminecollapse.classList.remove("show");
+  Antidotecollapse.classList.remove("show");
+  Cardiologycollapse.classList.remove("show");
+  Corticosteroidcollapse.classList.remove("show");
+  DietarySupplementcollapse.classList.remove("show");
+  Electrolytecollapse.classList.remove("show");
+  Expectorantcollapse.classList.remove("show");
+  Gastrointestinalcollapse.classList.remove("show");
+  Hemostaticcollapse.classList.remove("show");
+  Immunosuppressantcecollapse.classList.remove("show");
+  MSTcollapse.classList.remove("show");
+  Mucolyticcollapse.classList.remove("show");
+  Neurologycollapse.classList.remove("show");
+  Osteoarthritiscollapse.classList.remove("show");
+  smrcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  WaterSolubleVitamincollapse.classList.remove("show");
+  Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
+});
+
+//MANUAL
+botn8.addEventListener("click", (params) => {
+  presentationcollapse.classList.remove("show");
+  infographcollapse.classList.remove("show");
+  medicationcollapse.classList.remove("show");
+  DICcollapse.classList.remove("show");
+  workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  anticancercollapse.classList.remove("show");
+  antibioticcollapse.classList.remove("show");
+  AntiCoagulantcollapse.classList.remove("show");
+  AntiConvulsantcollapse.classList.remove("show");
+  AntiDiarrhealccollapse.classList.remove("show");
+  Antiemeticcecollapse.classList.remove("show");
+  AntiFlatulencecollapse.classList.remove("show");
+  antifungalcollapse.classList.remove("show");
+  Antigoutcecollapse.classList.remove("show");
+  Hyperprolactinemiacollapse.classList.remove("show");
+  Antiinflamcecollapse.classList.remove("show");
+  AntiSpasmodiccollapse.classList.remove("show");
+  AntiTussivecollapse.classList.remove("show");
+  Antiviralcecollapse.classList.remove("show");
+  Analgesiccollapse.classList.remove("show");
+  Antacidcecollapse.classList.remove("show");
+  Anthelminticcollapse.classList.remove("show");
+  Antihistaminecollapse.classList.remove("show");
+  Antidotecollapse.classList.remove("show");
+  Cardiologycollapse.classList.remove("show");
+  Corticosteroidcollapse.classList.remove("show");
+  DietarySupplementcollapse.classList.remove("show");
+  Electrolytecollapse.classList.remove("show");
+  Expectorantcollapse.classList.remove("show");
+  Gastrointestinalcollapse.classList.remove("show");
+  Hemostaticcollapse.classList.remove("show");
+  Immunosuppressantcecollapse.classList.remove("show");
+  MSTcollapse.classList.remove("show");
+  Mucolyticcollapse.classList.remove("show");
+  Neurologycollapse.classList.remove("show");
+  Osteoarthritiscollapse.classList.remove("show");
+  smrcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  WaterSolubleVitamincollapse.classList.remove("show");
+  Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
+});
+
 //ANTICANCER
-btn11.addEventListener("click", (params) => {
+botn11.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -15466,11 +3093,13 @@ btn11.addEventListener("click", (params) => {
 });
 
 //ANTIBIOTIC
-btn12.addEventListener("click", (params) => {
+botn12.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
@@ -15515,11 +3144,13 @@ btn12.addEventListener("click", (params) => {
 });
 
 //ANTICOAGULANT
-btn13.addEventListener("click", (params) => {
+botn13.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
@@ -15564,12 +3195,14 @@ btn13.addEventListener("click", (params) => {
 });
 
 //ANTI-CONVALSANT
-btn14.addEventListener("click", (params) => {
+botn14.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -15613,12 +3246,14 @@ btn14.addEventListener("click", (params) => {
 });
 
 //ANTI_DIARRHEAL
-btn15.addEventListener("click", (params) => {
+botn15.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -15662,12 +3297,14 @@ btn15.addEventListener("click", (params) => {
 });
 
 //MEDICATION Antiemetic
-btn16.addEventListener("click", (params) => {
+botn16.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -15711,11 +3348,13 @@ btn16.addEventListener("click", (params) => {
 });
 
 //MEDICATION ANTI_FLATULANCE
-btn17.addEventListener("click", (params) => {
+botn17.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
@@ -15760,11 +3399,13 @@ btn17.addEventListener("click", (params) => {
 });
 
 //MEDICATION ANTI_FUNGAL
-btn18.addEventListener("click", (params) => {
+botn18.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
@@ -15809,12 +3450,14 @@ btn18.addEventListener("click", (params) => {
 });
 
 //MEDICATION ANTI_GOUT
-btn19.addEventListener("click", (params) => {
+botn19.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -15858,12 +3501,14 @@ btn19.addEventListener("click", (params) => {
 });
 
 //MEDICATION HYPERLACTINEMIA
-btn20.addEventListener("click", (params) => {
+botn20.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -15907,13 +3552,15 @@ btn20.addEventListener("click", (params) => {
 });
 
 //MEDICATION ANTIINFLAM
-btn21.addEventListener("click", (params) => {
+botn21.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
   AntiCoagulantcollapse.classList.remove("show");
@@ -15956,12 +3603,14 @@ btn21.addEventListener("click", (params) => {
 });
 
 //MEDICATION SPASMODIC
-btn22.addEventListener("click", (params) => {
+botn22.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16005,13 +3654,15 @@ btn22.addEventListener("click", (params) => {
 });
 
 //MEDICATION TUSSIVE
-btn23.addEventListener("click", (params) => {
+botn23.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
   AntiCoagulantcollapse.classList.remove("show");
@@ -16054,12 +3705,14 @@ btn23.addEventListener("click", (params) => {
 });
 
 //MEDICATION ANTI-VIRAL
-btn24.addEventListener("click", (params) => {
+botn24.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16103,12 +3756,14 @@ btn24.addEventListener("click", (params) => {
 });
 
 //MEDICATION ANALGESIC
-btn25.addEventListener("click", (params) => {
+botn25.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16152,12 +3807,14 @@ btn25.addEventListener("click", (params) => {
 });
 
 //MEDICATION ANTACID
-btn26.addEventListener("click", (params) => {
+botn26.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16201,12 +3858,14 @@ btn26.addEventListener("click", (params) => {
 });
 
 //MEDICATION ANTHELIMENTIC
-btn27.addEventListener("click", (params) => {
+botn27.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16250,12 +3909,14 @@ btn27.addEventListener("click", (params) => {
 });
 
 //MEDICATION ANTI_HISTAMINE
-btn28.addEventListener("click", (params) => {
+botn28.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16299,12 +3960,14 @@ btn28.addEventListener("click", (params) => {
 });
 
 //MEDICATION ANTI_DOTE
-btn29.addEventListener("click", (params) => {
+botn29.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16348,12 +4011,14 @@ btn29.addEventListener("click", (params) => {
 });
 
 //MEDICATION CARDIOLOGY
-btn30.addEventListener("click", (params) => {
+botn30.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16397,12 +4062,14 @@ btn30.addEventListener("click", (params) => {
 });
 
 //MEDICATION CORTICOSTEROIDS
-btn31.addEventListener("click", (params) => {
+botn31.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16446,12 +4113,14 @@ btn31.addEventListener("click", (params) => {
 });
 
 //MEDICATION DIEATORY
-btn32.addEventListener("click", (params) => {
+botn32.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16496,12 +4165,14 @@ btn32.addEventListener("click", (params) => {
 
 
 //MEDICATION ELECTROLYTE
-btn33.addEventListener("click", (params) => {
+botn33.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16546,12 +4217,14 @@ btn33.addEventListener("click", (params) => {
 
 
 //MEDICATION EXPECTORENT
-btn34.addEventListener("click", (params) => {
+botn34.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16596,12 +4269,14 @@ btn34.addEventListener("click", (params) => {
 
 
 //MEDICATION GASTROINTISTINAL
-btn35.addEventListener("click", (params) => {
+botn35.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16645,12 +4320,14 @@ btn35.addEventListener("click", (params) => {
 });
 
 //MEDICATION HEMOSTATIC
-btn36.addEventListener("click", (params) => {
+botn36.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16695,12 +4372,14 @@ btn36.addEventListener("click", (params) => {
 
 
 //MEDICATION IMMUNOSUPPRESENT
-btn37.addEventListener("click", (params) => {
+botn37.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16744,12 +4423,14 @@ btn37.addEventListener("click", (params) => {
 });
 
 //MEDICATION MAST CELL ST
-btn38.addEventListener("click", (params) => {
+botn38.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16793,12 +4474,14 @@ btn38.addEventListener("click", (params) => {
 });
 
 //MEDICATION MUCOLYTIC
-btn39.addEventListener("click", (params) => {
+botn39.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16843,12 +4526,14 @@ btn39.addEventListener("click", (params) => {
 
 
 //MEDICATION NUROLOGY
-btn40.addEventListener("click", (params) => {
+botn40.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16893,12 +4578,14 @@ btn40.addEventListener("click", (params) => {
 
 
 //MEDICATION OSTEOAR
-btn41.addEventListener("click", (params) => {
+botn41.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16943,12 +4630,14 @@ btn41.addEventListener("click", (params) => {
 
 
 //MEDICATION SMR
-btn42.addEventListener("click", (params) => {
+botn42.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -16993,7 +4682,7 @@ btn42.addEventListener("click", (params) => {
 
 
 // //MEDICATION VASOPRESSIN
-// btn43.addEventListener("click", (params) => {
+// botn43.addEventListener("click", (params) => {
 //   presentationcollapse.classList.remove("show");
 //   infographcollapse.classList.remove("show");
 //   // medicationcollapse.classList.remove("show");
@@ -17043,12 +4732,14 @@ btn42.addEventListener("click", (params) => {
 
 
 //MEDICATION WATER SOL
-btn44.addEventListener("click", (params) => {
+botn44.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -17093,12 +4784,14 @@ btn44.addEventListener("click", (params) => {
 
 
 //MEDICATION MAO INHIB
-btn45.addEventListener("click", (params) => {
+botn45.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -17142,12 +4835,14 @@ btn45.addEventListener("click", (params) => {
 });
 
 //MEDICATION Antitraumatic
-btn46.addEventListener("click", (params) => {
+botn46.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -17191,12 +4886,14 @@ btn46.addEventListener("click", (params) => {
 });
 
 //MEDICATION Bronchodilator
-btn47.addEventListener("click", (params) => {
+botn47.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -17240,12 +4937,14 @@ btn47.addEventListener("click", (params) => {
 });
 
 //MEDICATION Contraceptive
-btn48.addEventListener("click", (params) => {
+botn48.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -17289,12 +4988,14 @@ btn48.addEventListener("click", (params) => {
 });
 
 //MEDICATION Decongestant
-btn49.addEventListener("click", (params) => {
+botn49.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -17338,12 +5039,14 @@ btn49.addEventListener("click", (params) => {
 });
 
 //MEDICATION Digestive
-btn50.addEventListener("click", (params) => {
+botn50.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -17387,12 +5090,14 @@ btn50.addEventListener("click", (params) => {
 });
 
 //MEDICATION Hormone
-btn51.addEventListener("click", (params) => {
+botn51.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -17442,12 +5147,14 @@ btn51.addEventListener("click", (params) => {
 });
 
 //MEDICATION Laxative
-btn52.addEventListener("click", (params) => {
+botn52.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -17497,12 +5204,14 @@ btn52.addEventListener("click", (params) => {
 });
 
 //MEDICATION AntiAsthmatic
-btn53.addEventListener("click", (params) => {
+botn53.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -17552,12 +5261,14 @@ btn53.addEventListener("click", (params) => {
 });
 
 //MEDICATION Diuretic
-btn54.addEventListener("click", (params) => {
+botn54.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -17607,12 +5318,14 @@ btn54.addEventListener("click", (params) => {
 });
 
 //MEDICATION AntiHyperphosphatemia
-btn55.addEventListener("click", (params) => {
+botn55.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -17663,12 +5376,14 @@ btn55.addEventListener("click", (params) => {
 });
 
 //MEDICATION PPI
-btn56.addEventListener("click", (params) => {
+botn56.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -17717,12 +5432,14 @@ btn56.addEventListener("click", (params) => {
 });
 
 //MEDICATION Weakopioid
-btn57.addEventListener("click", (params) => {
+botn57.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -17774,23 +5491,4 @@ btn57.addEventListener("click", (params) => {
 
 
 
-
-
-
-
-
-// medication.forEach(item => {
-//   item.addEventListener("click", () => {
-  
-//     console.log("hellooo");
-//     const row = document.getElementById("row")
-//     if (row.classList.contains("Cataflam")) {
-//       row.classList.remove("d-none")
-//     } 
-  
-  
-    
-
-//   })
-// });
 

@@ -891,43 +891,44 @@
           <div class="section-title">
             <h2>Services</h2>
             <p>
-              Magnam dolores commodi suscipit. Necessitatibus eius consequatur
-              ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
-              quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-              Quia fugiat sit in iste officiis commodi quidem hic quas.
+              PharmacyConnect is a software-based platform designed to serve pharmacists. It aims to enhance communication among healthcare professionals, ensuring better coordination and patient care. By providing tools for efficient information sharing and collaboration, PharmacyConnect helps pharmacists make informed decisions, streamline medication management, and ultimately improve patient outcomes.
             </p>
           </div>
 
           <div class="row">
+            <!-- ONCOTIPS -->
             <div class="col-xl-3 col-md-6 d-flex align-items-stretch <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in" data-aos-delay="100">
               <div class="icon-box">
+                <a href="/oncotips">
                 <div class="icon">
                   <img src="/svg/OncoTips.svg" height="140px" alt="" />
                 </div>
                 <h4><a href="/oncotips">OncoTips</a></h4>
-                <p>
-                  Voluptatum deleniti atque corrupti quos dolores et quas
-                  molestias excepturi
-                </p>
+              </a>
+                  <p>
+                    Medication Monograph, Presentation, Infograph, Policy & Procedures, Manuals, Workflow and Scientific Papers
+                  </p>
               </div>
             </div>
 
+            <!-- CONNECT -->
             <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in"
               data-aos-delay="200">
               <div class="icon-box">
+                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <div class="icon">
                   <img src="/svg/ConnectLogo.svg" height="140px" alt="" />
                 </div>
                 <h4>
                   <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">Connect</a>
                 </h4>
+              </a>
                 <p>
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse
-                  cillum dolore
+                  View Inpatient, Outpatient, Dispense, Iv-Prep, Pyxis, Lab And Lab Toxixity
                 </p>
               </div>
             </div>
-            <!-- MODAL -->
+            <!-- CONNECT MODAL -->
             <div class="connectmodal modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false"
               tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="glass modal-dialog">
@@ -980,27 +981,32 @@
               </div>
             </div>
 
+            <!-- WORKFLOW -->
             <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
               data-aos-delay="300">
               <div class="icon-box">
+                <a href="/index2">
                 <div class="icon">
                   <img src="/svg/WorkFlow.svg" height="140px" alt="" />
                 </div>
                 <h4><a href="/index2">WorkFlow</a></h4>
+              </a>
                 <p>
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                  qui officia
+                  Orintation About Pharmacy Departament And Visual Presentation For WorkFlow
                 </p>
               </div>
             </div>
 
-            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
+            <!-- DASHBOARD -->
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
               data-aos-delay="100">
               <div class="icon-box">
+                <a href="">
                 <div class="icon">
-                  <img src="/svg/statistics-01-01-01.svg" height="130px" alt="" />
+                  <img src="/svg/statistics-01-01-01.svg" height="140px" alt="" />
                 </div>
-                <h4><a href="/oncotips">Statistics</a></h4>
+                <h4><a href="">DashBoard</a></h4>
+              </a>
                 <p>
                   Voluptatum deleniti atque corrupti quos dolores et quas
                   molestias excepturi
@@ -1008,24 +1014,24 @@
               </div>
             </div>
 
-          
-
+            <!-- STORE -->
             <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
               data-aos-delay="100">
               <div class="icon-box">
+                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModalTwo">
                 <div class="icon">
                   <img src="/svg/store-01.svg" height="140px" alt="" />
                 </div>
                 <h4>
                   <a href="" data-bs-toggle="modal" data-bs-target="#exampleModalTwo">Store</a>
                 </h4>
+              </a>
                 <p>
-                  Voluptatum deleniti atque corrupti quos dolores et quas
-                  molestias excepturi
+                  Pyxis-76, Main Pharmacy Store-528, Rowa-79, PerPatient and Medication Shortage
                 </p>
               </div>
             </div>
-            <!-- Modal -->
+            <!-- STORE Modal -->
             <div class="connectmodal modal fade" id="exampleModalTwo" data-bs-backdrop="static" data-bs-keyboard="false"
               tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
@@ -1055,23 +1061,25 @@
               </div>
             </div>
 
+            <!-- WATCH -->
             <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
               data-aos-delay="100">
               <div class="icon-box">
+                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModalthree">
                 <div class="icon">
                   <img src="/svg/watch.svg" height="140px" alt="" />
                 </div>
                 <h4>
                   <a href="" data-bs-toggle="modal" data-bs-target="#exampleModalthree">Watch</a>
                 </h4>
+              </a>
                 <p>
-                  Voluptatum deleniti atque corrupti quos dolores et quas
-                  molestias excepturi
+                  Send Message To Night Shift Pharmacist And Receive Message From Round Pharmacist
                 </p>
               </div>
             </div>
-              <!-- Modal -->
-              <div class="connectmodal modal fade" id="exampleModalthree" data-bs-backdrop="static"
+            <!-- WATCH Modal -->
+            <div class="connectmodal modal fade" id="exampleModalthree" data-bs-backdrop="static"
               data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="glass modal-content">
@@ -1107,112 +1115,122 @@
               </div>
             </div>
 
+            <!-- TODOLIST -->
             <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
               data-aos-delay="100">
               <div class="icon-box">
+                <a href="/todolist" target="_blank">
                 <div class="icon">
                   <img src="/svg/todolist.svg" height="140px" alt="" />
                 </div>
                 <h4>
                   <a href="/todolist" target="_blank">ToDo List</a>
                 </h4>
+              </a>
                 <p>
-                  Voluptatum deleniti atque corrupti quos dolores et quas
-                  molestias excepturi
+                  Write Round Comment That You Need To Do Later
                 </p>
               </div>
             </div>
 
+            <!-- DIC -->
             <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
               data-aos-delay="100">
               <div class="icon-box">
+                <a href="" data-bs-toggle="modal" data-bs-target="#exampleModalfour">
                 <div class="icon">
                   <img src="/img/dic-11.png" height="140px" alt="" />
                 </div>
                 <h4>
                   <a href=""  data-bs-toggle="modal" data-bs-target="#exampleModalfour">DIC</a>
                 </h4>
+              </a>
                 <p>
-                  Voluptatum deleniti atque corrupti quos dolores et quas
-                  molestias excepturi
+                  Send Question To Drug Information Center And Have Your Answer Or Search Question Bank
                 </p>
               </div>
             </div>
-  
-              <!-- Modal -->
-              <div class="connectmodal modal fade" id="exampleModalfour" data-bs-backdrop="static"
-                data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="glass modal-content">
-                    <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">
-                        DIC Select
-                      </h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <!-- DIC Modal -->
+            <div class="connectmodal modal fade" id="exampleModalfour" data-bs-backdrop="static"
+            data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="glass modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    DIC Select
+                  </h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Please Select
+                  <div class="d-flex justify-content-around">
+                    <div class="d-flex flex-column justify-content-center align-items-center <%= user.role === "DIC"? "d-none" : "d-block" %>">
+                      <img src="/svg/sender2-11.svg" width="80%" alt="">
+                      <a class="fs-5" href="/dicsender" target="_blank">Sender</a></li>
                     </div>
-                    <div class="modal-body">
-                      Please Select
-                      <div class="d-flex justify-content-around">
-                        <div class="d-flex flex-column justify-content-center align-items-center <%= user.role === "DIC"? "d-none" : "d-block" %>">
-                          <img src="/svg/sender2-11.svg" width="80%" alt="">
-                          <a class="fs-5" href="/dicsender" target="_blank">Sender</a></li>
-                        </div>
-                        <div class="d-flex flex-column justify-content-center align-items-center <%= user.role === "DIC"? "d-block" : "d-none" %>">
-                          <img src="/svg/receiver2-12.svg" width="80%" alt="">
-                          <a class="fs-5" href="/dic" target="_blank">Receiver</a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                        Close
-                      </button>
+                    <div class="d-flex flex-column justify-content-center align-items-center <%= user.role === "DIC"? "d-block" : "d-none" %>">
+                      <img src="/svg/receiver2-12.svg" width="80%" alt="">
+                      <a class="fs-5" href="/dic" target="_blank">Receiver</a>
                     </div>
                   </div>
                 </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                    Close
+                  </button>
+                </div>
               </div>
+            </div>
+            </div>
 
-              <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
-                data-aos-delay="100">
-                <div class="icon-box">
-                  <div class="icon">
-                    <img src="/img/exam-01.png" height="140px" alt="" />
-                  </div>
-                  <h4>
-                    <a href="/exam">Exam</a>
-                  </h4>
-                  <p>
-                    Voluptatum deleniti atque corrupti quos dolores et quas
-                    molestias excepturi
-                  </p>
+            <!-- EXAM -->
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
+              data-aos-delay="100">
+              <div class="icon-box">
+                <a href="/exam">
+                <div class="icon">
+                  <img src="/img/exam-01.png" height="140px" alt="" />
                 </div>
+                <h4>
+                  <a href="/exam">Exam</a>
+                </h4>
+              </a>
+                <p>
+                  Your Exam Is Here Don't Be Affraid You Are Good
+                </p>
               </div>
+            </div>
     
+            <!-- PYXIS TRADE -->
               <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
               data-aos-delay="100">
               <div class="icon-box">
+                <a href="/pyxismed">
                 <div class="icon">
                   <img src="/svg/pyxismed-14.svg" height="140px" alt="" />
                 </div>
                 <h4>
                   <a href="/pyxismed">Pyxis Trade</a>
                 </h4>
+              </a>
                 <p>
-                  Voluptatum deleniti atque corrupti quos dolores et quas
-                  molestias excepturi
+                  If You Have The Generic Name Here You Can Search For Trade Name In Pyxis Store
                 </p>
               </div>
             </div>
 
+            <!-- EBS -->
             <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
               data-aos-delay="100">
               <div class="icon-box">
+                <a href="https://ebs.hospital57357.com/OA_HTML/AppsLocalLogin.jsp" target="_blank">
                 <div class="icon">
                   <img src="/img/ebs-12.png" height="140px" alt="" />
                 </div>
                 <h4>
                   <a href="https://ebs.hospital57357.com/OA_HTML/AppsLocalLogin.jsp" target="_blank">EBS</a>
                 </h4>
+              </a>
                 <p>
                   Voluptatum deleniti atque corrupti quos dolores et quas
                   molestias excepturi
@@ -1220,15 +1238,18 @@
               </div>
             </div>
 
+            <!-- CERNER -->
             <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3" data-aos="zoom-in"
               data-aos-delay="100">
               <div class="icon-box">
+                <a href="https://misk.hospital57357.com/Citrix/XenApp/auth/login.aspx" target="_blank">
                 <div class="icon">
                   <img src="/img/logo-cerner-400x495.jpg" height="140px" alt="" />
                 </div>
                 <h4>
                   <a href="https://misk.hospital57357.com/Citrix/XenApp/auth/login.aspx" target="_blank">Cerner</a>
                 </h4>
+              </a>
                 <p>
                   Voluptatum deleniti atque corrupti quos dolores et quas
                   molestias excepturi
@@ -1236,15 +1257,18 @@
               </div>
             </div>
 
+            <!-- QMS -->
             <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
               data-aos-delay="100">
               <div class="icon-box">
+                <a href="https://phadispca.hospital57357.com/" target="_blank">
                 <div class="icon">
                   <img src="/svg/qms-01.svg" height="140px" alt="" />
                 </div>
                 <h4>
                   <a href="https://phadispca.hospital57357.com/" target="_blank">QMS</a>
                 </h4>
+              </a>
                 <p>
                   Voluptatum deleniti atque corrupti quos dolores et quas
                   molestias excepturi
@@ -1252,15 +1276,18 @@
               </div>
             </div>
 
+            <!-- PYXIS HQ -->
             <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
               data-aos-delay="100">
               <div class="icon-box">
+                <a href="https://hq-pyxisappsrv.hospital57357.com" target="_blank">
                 <div class="icon">
                   <img src="/img/Pyxis.jpg" height="140px" alt="" />
                 </div>
                 <h4>
                   <a href="https://hq-pyxisappsrv.hospital57357.com" target="_blank">Pyxis HQ</a>
                 </h4>
+              </a>
                 <p>
                   Voluptatum deleniti atque corrupti quos dolores et quas
                   molestias excepturi
@@ -1268,15 +1295,18 @@
               </div>
             </div>
 
+            <!-- PROTOCOLS -->
             <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
               data-aos-delay="100">
               <div class="icon-box">
+                <a href="https://research.57357.org/" target="_blank">
                 <div class="icon">
                   <img src="/svg/protocols-19.svg" height="140px" alt="" />
                 </div>
                 <h4>
                   <a href="https://research.57357.org/" target="_blank">Protocols</a>
                 </h4>
+              </a>
                 <p>
                   Voluptatum deleniti atque corrupti quos dolores et quas
                   molestias excepturi
@@ -1284,15 +1314,18 @@
               </div>
             </div>
 
+            <!-- LEXICOMP -->
             <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-3 <%= user.role === "Nurse"? "d-none" : "d-block" %>" data-aos="zoom-in"
               data-aos-delay="100">
               <div class="icon-box">
+                <a href="http://online.lexi.com/" target="_blank">
                 <div class="icon">
                   <img src="/img/lexicomp-20.png" height="140px" alt="" />
                 </div>
                 <h4>
                   <a href="http://online.lexi.com/" target="_blank">Lexi-Comp</a>
                 </h4>
+              </a>
                 <p>
                   Voluptatum deleniti atque corrupti quos dolores et quas
                   molestias excepturi
