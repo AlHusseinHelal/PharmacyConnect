@@ -7,6 +7,7 @@ const shortage = new mongoose.Schema(
     OrgName: String,
     ONHANDQTY: String,
     STOCKMONTHS: String,
+    tradeselect : String,
   },
   { timestamps: true }
 );

@@ -36,19 +36,142 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
 
       
 
+      
+
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-        Close
-      </button>
-      <form id="addnewpatient">
-        <button type="submit" class="btn btn-primary">
-          ADD
-        </button>
-      </form>
+    <div class="modal-footer d-flex flex-column">
+      <div class="w-100 d-flex justify-content-between">
+
+        <button id="updatebutton" type="" class="btn btn-primary">
+           Update Patient
+          </button>
+        
+          <div class="d-flex">
+              <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">
+                Close
+              </button>
+
+              <form id="addnewpatient">
+                <button type="submit" class="btn btn-primary ms-2">
+                  ADD
+                </button>
+              </form>
+          </div>
+
+        
+
+      </div>
+
+      <div id="patientupdate" class="w-100 d-none">
+        <div class="mb-3">
+          <label for="addpatientmrn2" class="col-form-label">MRN</label>
+          <input name="addpatientmrn" type="text" class="form-control" id="addpatientmrn2" />
+        </div>
+
+        <div id="mrnupdateempty" class=" d-flex flex-row align-items-center my-2 d-none"
+        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+        <p class="my-1 ms-1">You Must Enter This Field</p>
+        </div>
+
+        <div id="mrnupdatenumber" class=" d-flex flex-row align-items-center my-2 d-none"
+        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+        <p class="my-1 ms-1">You Must Enter A Valid MRN</p>
+        </div>
+
+        <div id="noupdatepatient" class=" d-flex flex-row align-items-center my-2 d-none"
+        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+        <p class="my-1 ms-1">This Patient Not Found Please Add Patient</p>
+        </div>
+
+        
+        <div class="mb-3">
+          <label for="addpatientname2" class="col-form-label">Patient Name</label>
+          <input dir="rtl" name="addpatientname" type="text" class="form-control" id="addpatientname2" />
+        </div>
+
+        <div id="noupdatepatientname" class=" d-flex flex-row align-items-center my-2 d-none"
+        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
+        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+        <p class="my-1 ms-1">You Must Enter This Field</p>
+        </div>
+
+        <form id="updatepatient" class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary ms-2">
+            UPDATE
+          </button>
+        </form>
+
+
+      </div>
 
 
     </div>
   </div>
 </div>
 </div>
+
+<script>
+updatebutton.addEventListener('click', (eo) => {
+  eo.preventDefault()
+  patientupdate.classList.remove('d-none');
+});
+  
+</script>
+
+<!-- UPDATE PATIENT -->
+<script>
+  updatepatient.addEventListener("click", async (item) => {
+    item.preventDefault()
+    const res = await fetch("/updatepatient", {
+      method: "POST",
+      body: JSON.stringify({ addpatientname2: addpatientname2.value, addpatientmrn2: addpatientmrn2.value, }),
+      headers: { "Content-Type": "application/json" },
+    })
+    const data = await res.json()
+  
+
+    if (data.mrnupdateempty) {
+      mrnupdateempty.classList.remove("d-none");
+      addpatientmrn2.classList.add("redframe");
+    } else {
+      mrnupdateempty.classList.add("d-none");
+      addpatientmrn2.classList.remove("redframe");
+    }
+
+    if (data.mrnupdatenumber) {
+      mrnupdatenumber.classList.remove("d-none");
+      addpatientmrn2.classList.add("redframe");
+    } else {
+      mrnupdatenumber.classList.add("d-none");
+      addpatientmrn2.classList.remove("redframe");
+    }
+
+    if (data.noupdatepatient) {
+      noupdatepatient.classList.remove("d-none");
+      addpatientmrn2.classList.add("redframe");
+    } else {
+      noupdatepatient.classList.add("d-none");
+      addpatientmrn2.classList.remove("redframe");
+    }
+
+    if (data.errors) {
+      data.errors.forEach(item => {
+        if (item.path = "addpatientname2") {
+          noupdatepatientname.classList.remove("d-none");
+          addpatientname2.classList.add("redframe");
+        } else {
+          noupdatepatientname.classList.add("d-none");
+          addpatientname2.classList.remove("redframe");
+        }
+      });
+    }
+
+
+    if (data.done) {
+      location.reload()
+    }
+  })
+</script>

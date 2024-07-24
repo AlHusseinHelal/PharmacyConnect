@@ -572,7 +572,7 @@ user.pre("save", function (next) {
 
 user.post("save", (doc) => {
   if (doc.profileimage) {
-    const profileimageUrl = `${process.env.BASE_URL}/ProfileImage/${doc.profileimage}`;
+    const profileimageUrl = `http://localhost:7777/ProfileImage/${doc.profileimage}`;
     doc.profileimage = profileimageUrl;
   }
 });

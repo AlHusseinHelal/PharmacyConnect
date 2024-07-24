@@ -1168,7 +1168,7 @@
                       <img src="/svg/sender2-11.svg" width="80%" alt="">
                       <a class="fs-5" href="/dicsender" target="_blank">Sender</a></li>
                     </div>
-                    <div class="d-flex flex-column justify-content-center align-items-center <%= user.role === "DIC"? "d-block" : "d-none" %>">
+                    <div class="d-flex flex-column justify-content-center align-items-center <%= user.role === "DIC" || user.role === "Admin"? "d-block" : "d-none" %>">
                       <img src="/svg/receiver2-12.svg" width="80%" alt="">
                       <a class="fs-5" href="/dic" target="_blank">Receiver</a>
                     </div>

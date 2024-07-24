@@ -502,7 +502,7 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const array = await Shortage.find();
+    const array = await Shortage.find().sort({ CATEGORYNAME: "asc" });
     res.render("Store/shortage.ejs", { array: array });
   })
 );
@@ -3342,9 +3342,6 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email" });
-    // }
 
     const newUser = await User.create(req.body);
     const token = jwt.sign({ id: newUser._id }, process.env.JWTSECRET_KEY);
@@ -5438,6 +5435,43 @@ router.post(
       await Newpatient.create(req.body);
       res.json({ done: "Patient Added" });
     }
+  })
+);
+
+// UPDATE PATIENT
+router.post(
+  "/updatepatient",
+  [check("addpatientname2").notEmpty()],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+
+    const mrn = req.body.addpatientmrn2
+  
+    if (mrn === "") {
+      return res.json({ mrnupdateempty: "You Must Enter This Field" });
+    }
+    
+    if (mrn.match(/[a-zA-z]/)){
+      return res.json({ mrnupdatenumber: "Please Enter A Valid MRN" });
+    }
+    
+    const patient = await Newpatient.findOne({ addpatientmrn: req.body.addpatientmrn2 });
+    if (patient == null) {
+      return res.json({ noupdatepatient: "This Patient Not Found" });
+    }
+
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+    
+    
+    if (patient) {
+      await Newpatient.findOneAndUpdate({ addpatientmrn: req.body.addpatientmrn2 }, {addpatientname : req.body.addpatientname2});
+      res.json({ done: "Patient Added" });
+    }
+
   })
 );
 
@@ -9218,6 +9252,40 @@ router.put(
   requireAuth,
   asyncHandler(async (req, res) => {
     const results = await PyxisTrade.findByIdAndUpdate(req.params.id, req.body);
+
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+
+// TRADE CHOOSE SHORTAGE
+router.put(
+  "/tradeselectshortage/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const results = await Shortage.findByIdAndUpdate(
+      { _id: req.params.id },
+      { tradeselect: req.body.tradeselect }
+    );
+
+    if (results) {
+      res.redirect(req.get('referer'));
+    }
+  })
+);
+
+// TRADE UNCHOOSE SHORTAGE
+router.put(
+  "/traderemoveshortage/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const results = await Shortage.findByIdAndUpdate(
+      { _id: req.params.id },
+      { tradeselect: req.body.tradeselect }
+    );
 
     if (results) {
       res.redirect(req.get('referer'));

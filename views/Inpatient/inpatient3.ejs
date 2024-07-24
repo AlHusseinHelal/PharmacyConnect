@@ -155,7 +155,7 @@
                   <!-- /*--------------------------------------------------------------
       # MAIN CONTENT
       --------------------------------------------------------------*/ -->
-
+                
                   <div id="maincontent" class="d-flex justify-content-center align-items-center">
                     <% if (inpatientarray.length===0) { %>
 
@@ -438,12 +438,19 @@
                           <% }) %>
                       </table>
                       <% } %>
+                
+                  
 
 
+
+                      <div>
+                        <%- include('../partials/inpatientpagination.ejs') %>
+                          </div>
         </div>
         <!-- PAGINATION -->
-        <%- include('../partials/inpatientpagination.ejs') %>
-          </div>
+
+
+        
 
 
 
