@@ -5,6 +5,9 @@ const asyncHandler = require("express-async-handler");
 const jwt = require("jsonwebtoken");
 const Medication = require("../models/medication");
 const User = require("../models/newRegSchema");
+const Presenstation = require("../models/presenstation");
+const Communication = require("../models/communication");
+const Policy = require("../models/policy");
 
 //SIGNOUT
 exports.signOut = (req, res) => {
@@ -40,6 +43,15 @@ exports.interface =  asyncHandler(async (req, res) => {
 //ONCOTIPS
 exports.OncoTips = asyncHandler(async (req, res) => {
   const med = await Medication.find();
+  const presenstation = await Presenstation.find().sort({
+    title: "asc",
+  })
+  const communication = await Communication.find().sort({
+    dictitle: "asc",
+  })
+  const policy = await Policy.find().sort({
+    policytitle: "asc",
+  })
   
   const AntiCancer = await Medication.find({ classname: "Anti-Cancer" }).sort({
     generic: "asc",
@@ -262,6 +274,9 @@ exports.OncoTips = asyncHandler(async (req, res) => {
       AntiHyperphosphatemia,
       PPI,
       Weakopioid,
+      presenstation,
+      communication,
+      policy
     });
   }
 });

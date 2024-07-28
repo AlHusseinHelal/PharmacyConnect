@@ -830,7 +830,7 @@
               </div>
               <div class="d-flex modal-body align-items-center justify-content-around ">
                 <label class="btn btn-primary" for="headerattach">Choose File...</label>
-                <input id="headerattach" type="file" name="updateprofile" id="" style="display: none" />
+                <input id="headerattach" type="file" name="updateprofile"  style="display: none" />
                 <img style="border-radius: 50%;" id="headerimgsrc" src="<%= user.profileimage %>" width="150px" alt="" />
               </div>
               <div class="modal-footer">
@@ -1164,7 +1164,7 @@
                 <div class="modal-body">
                   Please Select
                   <div class="d-flex justify-content-around">
-                    <div class="d-flex flex-column justify-content-center align-items-center <%= user.role === "DIC"? "d-none" : "d-block" %>">
+                    <div class="d-flex flex-column justify-content-center align-items-center">
                       <img src="/svg/sender2-11.svg" width="80%" alt="">
                       <a class="fs-5" href="/dicsender" target="_blank">Sender</a></li>
                     </div>

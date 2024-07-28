@@ -10,8 +10,6 @@ const asyncHandler = require("express-async-handler");
 const slugify = require("slugify");
 //MOMMENT TIMESTAMP
 const moment = require("moment");
-//ERROR HANDILING
-const ApiError = require("../utils/apierror");
 //JWT TOKEN
 const jwt = require("jsonwebtoken");
 //VALIDATION RULE
@@ -26,30 +24,81 @@ const url = require('node:url');
 const { v4: uuidv4 } = require("uuid");
 //MULTER
 const multer = require("multer");
+//ERROR HANDILING
+const ApiError = require("../utils/apierror");
 //MULTER DISKSTORAGE
 const multerStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/ProfileImage");
+    cb(null, "uploads/Presentation");
   },
   filename: function (req, file, cb) {
     const ext = file.mimetype.split("/")[1];
-    const filename = `user-${uuidv4()}-${Date.now()}.jpeg`;
+    const filename = `user-${uuidv4()}-${Date.now()}.${ext}`;
     cb(null, filename);
   },
 })
 //MULTER IMAGE ONLY
 const multerFilter = function (req, file, cb) {
-  if (file.mimetype.startsWith("image")) {
+  if (file.mimetype.startsWith("application")) {
     cb(null, true);
   } else {
     cb(
-      new ApiError("Invalid image type! Only JPEG or PNG is supported."),
+      new ApiError("Invalid image type! Only PDF is supported."),
       false
     );
   }
 };
-
 const upload = multer({ storage: multerStorage, fileFilter : multerFilter})
+
+
+//MULTER DISKSTORAGE FOR DIC COMMUNICATION
+const multerStorageDic = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/Dicomunication");
+  },
+  filename: function (req, file, cb) {
+    const ext = file.mimetype.split("/")[1];
+    const filename = `user-${uuidv4()}-${Date.now()}.${ext}`;
+    cb(null, filename);
+  },
+})
+//MULTER IMAGE ONLY
+const multerFilterDic = function (req, file, cb) {
+  if (file.mimetype.startsWith("application")) {
+    cb(null, true);
+  } else {
+    cb(
+      new ApiError("Invalid image type! Only PDF is supported."),
+      false
+    );
+  }
+};
+const uploadic = multer({ storage: multerStorageDic, fileFilter : multerFilterDic})
+
+//MULTER DISKSTORAGE FOR POLICY
+const multerStoragePolicy = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/Policy");
+  },
+  filename: function (req, file, cb) {
+    const ext = file.mimetype.split("/")[1];
+    const filename = `user-${uuidv4()}-${Date.now()}.${ext}`;
+    cb(null, filename);
+  },
+})
+//MULTER IMAGE ONLY
+const multerFilterPolicy = function (req, file, cb) {
+  if (file.mimetype.startsWith("application")) {
+    cb(null, true);
+  } else {
+    cb(
+      new ApiError("Invalid image type! Only PDF is supported."),
+      false
+    );
+  }
+};
+const uploadpolicy = multer({ storage: multerStoragePolicy, fileFilter : multerFilterPolicy})
+
 
 
 //SCHEMA
@@ -70,11 +119,16 @@ const Shortage = require("../models/shortageSchema");
 const PyxisTrade = require("../models/pyxistradeSchema");
 const Score = require("../models/score");
 const Qa = require("../models/q&a");
+const Communication = require("../models/communication");
 const Labtoxicityschema = require("../models/labtoxicitySchema");
+const Presenstation = require("../models/presenstation");
+const Policy = require("../models/policy");
+
 //MIDDLEWARE
 const { requireAuth } = require("../middleware/middleware");
 const { checkIfUser } = require("../middleware/middleware");
 const { uploadSingleImage } = require("../middleware/middleware");
+const { uploadSinglePdf } = require("../middleware/middleware");
 const { imageresizeforinpatient } = require("../middleware/middleware");
 const { imageresizeforoutpatient } = require("../middleware/middleware");
 const { imageresizefordispense } = require("../middleware/middleware");
@@ -107,11 +161,11 @@ const sendEmail = require(`../utils/sendEmail`);
 //   api_secret: process.env.CLOUDINARY_API_SECRET,
 // });
 
-cloudinary.config({
-  cloud_name: "dw2lzbgmt",
-  api_key: "594878572393349",
-  api_secret: "KZVTWvN1LcrpVm-COLVX-3VgHzU",
-});
+// cloudinary.config({
+//   cloud_name: "dw2lzbgmt",
+//   api_key: "594878572393349",
+//   api_secret: "KZVTWvN1LcrpVm-COLVX-3VgHzU",
+// });
 
 // ---------------------------------
 //GET REQUEST
@@ -3342,9 +3396,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email"})
-    // }
+    if (!email.includes("@57357.org")) {
+      return res.json({ invalidemail: "Invalid Email"})
+    }
 
 
     const newUser = await User.create(req.body);
@@ -7566,6 +7620,157 @@ router.post(
   })
 );
 
+// ADD PRESENTATION
+router.post(
+  "/addpresentation",
+  upload.single("prepath"),
+  [
+    check("prepath").notEmpty()
+  ],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+  
+    if (req.body.title === "") {
+      return res.json({ notitle: "You Must Enter This Field" });
+    }
+
+    const code = req.body.precode
+  
+    if (code === "") {
+      return res.json({ codeempty: "You Must Enter This Field" });
+    }
+    
+    if (!code.includes("Pre")){
+      return res.json({ nopre: "Please Enter A Code Start With Pre" });
+    }
+    
+    const findcode = await Presenstation.findOne({ precode: req.body.precode });
+    if (findcode) {
+      return res.json({ codeexist: "This Code Is Already Exists" });
+    }
+
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+
+    console.log(req.body.prepath);
+    req.body.prepath = req.file.filename;
+    
+    if (!findcode) {
+       const done = await Presenstation.create(req.body)
+       res.json({ done : done})
+    }
+
+  })
+);
+
+// ADD DIC COMUNICATION
+router.post(
+  "/communication",
+  uploadic.single("dicpath"),
+  [
+    check("dicpath").notEmpty()
+  ],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+
+    if (req.body.dictitle === "") {
+      return res.json({ notitle: "You Must Enter This Field" });
+    }
+
+    const code = req.body.diccode
+  
+    if (code === "") {
+      return res.json({ codeempty: "You Must Enter This Field" });
+    }
+    
+    if (!code.includes("Dic")){
+      return res.json({ nodic: "Please Enter A Code Start With Dic" });
+    }
+    
+    const findcode = await Communication.findOne({ diccode: req.body.diccode });
+    if (findcode) {
+      return res.json({ codeexist: "This Code Is Already Exists" });
+    }
+    
+
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+
+    console.log(req.body.dicpath);
+    req.body.dicpath = req.file.filename;
+    
+    if (!findcode) {
+       const done = await Communication.create(req.body)
+       res.json({ done : done})
+    }
+
+  })
+);
+
+// ADD POLICY
+router.post(
+  "/addpolicy",
+  uploadpolicy.single("policypath"),
+  [
+    check("policypath").notEmpty()
+  ],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+
+    if (req.body.policytitle === "") {
+      return res.json({ notitle: "You Must Enter This Field" });
+    }
+
+    const code = req.body.policycode
+  
+    if (code === "") {
+      return res.json({ codeempty: "You Must Enter This Field" });
+    }
+    
+    if (!code.includes("Policy")){
+      return res.json({ nopolicy: "Please Enter A Code Start With Dic" });
+    }
+    
+    const findcode = await Policy.findOne({ diccode: req.body.policycode });
+    if (findcode) {
+      return res.json({ codeexist: "This Code Is Already Exists" });
+    }
+    
+
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+
+    console.log(req.body.policypath);
+    req.body.policypath = req.file.filename;
+    
+    if (!findcode) {
+       const done = await Policy.create(req.body)
+       res.json({ done : done})
+    }
+
+  })
+);
+
+// ADD PRESENTATION
+// router.post(
+//   "/addpresentation",
+//   upload.single("prepath"),
+//   checkIfUser,
+//   requireAuth,
+//   asyncHandler(async (req, res) => {
+//     console.log(req.file);
+//   })
+// );
+
 // ---------------------------------
 //DELETE REQUEST
 // ----------------------------------
@@ -7792,6 +7997,36 @@ router.delete("/deletenurse/:id", checkIfUser, requireAuth, (req, res) => {
       console.log(err);
     });
 });
+
+//DELETE PRESENTATION
+router.delete("/deletepresentation", checkIfUser, requireAuth, 
+  asyncHandler( async (req, res) => {
+    const find = await Presenstation.findOneAndDelete({title :req.body.title})
+    console.log(find)
+    if (find) {
+    res.redirect(req.get('referer'));  
+    }
+  }) );
+
+  //DELETE DIC COMMUNICATION
+router.delete("/deletecommunication", checkIfUser, requireAuth, 
+  asyncHandler( async (req, res) => {
+    const find = await Communication.findOneAndDelete({dictitle :req.body.dictitle})
+    console.log(find)
+    if (find) {
+    res.redirect(req.get('referer'));  
+    }
+  }) );
+
+  //DELETE POLICY
+router.delete("/deletepolicy", checkIfUser, requireAuth, 
+  asyncHandler( async (req, res) => {
+    const find = await Policy.findOneAndDelete({policytitle :req.body.policytitle})
+    console.log(find)
+    if (find) {
+    res.redirect(req.get('referer'));  
+    }
+  }) );
 
 // ---------------------------------
 //PUT REQUEST

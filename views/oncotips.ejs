@@ -99,8 +99,19 @@
 
               </div>
               <div class="collapse " id="presentationcollapse">
+                
                 <ul id="ul" class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li><a class="d-inline-flex text-decoration-none rounded btnsubheadfont Asthma">Asthma BPS
+                  
+                  <% presenstation.forEach(item => { %>
+                    <li>
+                      <a class="d-flex text-decoration-none rounded btnsubheadfont presenstation" style="width: 90%; text-wrap: wrap" >
+                        <p hidden class="precode"><%= item.precode %></p>
+                        <%= item.title %>
+                      </a>
+                    </li>
+                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+                  <% }) %>
+                  <!-- <li><a class="d-inline-flex text-decoration-none rounded btnsubheadfont Asthma">Asthma BPS
                       Pharmacotherapy</a></li>
                   <li><a href="#"
                       class="d-inline-flex text-decoration-none rounded btnsubheadfont Dinutuximab ">Dinutuximab</a>
@@ -121,7 +132,7 @@
                   <li><a href="#" class="d-inline-flex text-decoration-none rounded btnsubheadfont COPD">COPD In BPS
                       Pharmacotherapy</a></li>
                   <li><a href="#" class="d-inline-flex text-decoration-none rounded btnsubheadfont Tyrosine">Tyrosine
-                      Kinase Inhibitor</a></li>
+                      Kinase Inhibitor</a></li> -->
                 </ul>
               </div>
             </li>
@@ -1183,16 +1194,28 @@
               <div class="collapse" id="DICcollapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 
+                  <% communication.forEach(item => { %>
+                    <li>
+                      <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont dicomunication" style="width: 90%; text-wrap: wrap">
+                        <p hidden class="diccode"><%= item.diccode %></p>
+                        <%= item.dictitle %>
+                      </a>
+                    </li>
+                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+                  <% }) %>
+
                   <li>
                     <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont NonChemoTherapy">Non-ChemoTherapy
                       IV</a>
+                      <li class="ms-3 border-top notlist" style="list-style: none;"></li>
                   </li>
 
                   <li>
                     <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont ChemoTherapy">ChemoTherapy
                       IV</a>
+                      <li class="ms-3 border-top notlist" style="list-style: none;"></li>
                   </li>
-                  <li>
+                  <!-- <li>
                     <a
                       class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont Sorafenib-Guidelines">Sorafenib-Guidelines</a>
                   </li>
@@ -1215,7 +1238,7 @@
                   <li>
                     <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont Neuro-Oncology">Neuro-Oncology
                       Guidlines</a>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
 
@@ -1603,7 +1626,19 @@
                 <div class="collapse" id="policycollapse">
                   <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
   
-                    <li>
+                    <% policy.forEach(item => { %>
+                      <li>
+                        <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont policy" style="width: 90%; text-wrap: wrap">
+                          <p hidden class="policycode"><%= item.policycode %></p>
+                          <%= item.policytitle %>
+                        </a>
+                      </li>
+                      <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+                    <% }) %>
+
+
+
+                    <!-- <li>
                       <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont MISKDowntime">MISK Downtime</a>
                     </li>
                     <li class="ms-3 border-top notlist" style="list-style: none;"></li>
@@ -1803,7 +1838,7 @@
                     <li>
                       <a
                         class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont FormularyManagement">Formulary Management</a>
-                    </li>
+                    </li> -->
                     
 
                     
@@ -2000,7 +2035,7 @@
         <div class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
         
           <% med.forEach(item=> { %>
-            <div class="row d-none <%= item.code%>">
+            <div class="row d-none medselect <%= item.code%>">
               <div class="col col-12">
                 <div class="one mt-5">
                   <h1 class="flex-shrink-0">
@@ -2218,6 +2253,34 @@
               </div>
             </div>
             <% }) %>
+
+            <% presenstation.forEach(item => { %>
+              <div class="row d-flex d-none preselect <%= item.precode%>" style=" justify-content: center; align-items: center; ">
+                <div class="col col-12 text-center">
+                  <object class="my-3 rounded-3" data="../Presentation/<%= item.prepath %>" type="application/pdf"
+                  style="height: 100vh; width: 1200px;"></object>   
+                </div>
+                </div>
+            <% }) %>
+
+            <% communication.forEach(item => { %>
+              <div class="row d-flex d-none dicselect <%= item.diccode%>" style=" justify-content: center; align-items: center; ">
+                <div class="col col-12 text-center">
+                  <object class="my-3 rounded-3" data="../Dicomunication/<%= item.dicpath %>" type="application/pdf"
+                  style="height: 100vh; width: 1200px;"></object>   
+                </div>
+                </div>
+            <% }) %>
+
+            <% policy.forEach(item => { %>
+              <div class="row d-flex d-none policyselect <%= item.policycode%>" style=" justify-content: center; align-items: center; ">
+                <div class="col col-12 text-center">
+                  <object class="my-3 rounded-3" data="../Policy/<%= item.policypath %>" type="application/pdf"
+                  style="height: 100vh; width: 1200px;"></object>   
+                </div>
+                </div>
+            <% }) %>
+            
 
         </div>
 

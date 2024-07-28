@@ -160,6 +160,7 @@
 
 
 
+              <!-- ADD EXAM -->
               <div class="accordion-item">
                 <button class="but" id="accordion-button-3" aria-expanded="false"><span
                     class="accordion-title">Exam</span><span class="icon" aria-hidden="true"></span></button>
@@ -195,7 +196,10 @@
                                 </span>
                               </div>
                               <% }) %>
-                                <button class="btn btn-primary" type="submit">Select</button>
+                                
+                                  <button class="btn btn-primary" type="submit">Select</button>
+                                  
+                                
                           </form>
                         </div>
                       </div>
@@ -291,8 +295,17 @@
                   </div>
 
 
-                  <div class=" d-flex justify-content-end" style="width: 98%;">
-                    <button class="btn btn-primary" id="submitChoose">Submit</button>
+                  <div class=" d-flex justify-content-between align-items-center" style="width: 98%;">
+                    <div>
+                      <button class="btn btn-primary" id="submitChoose">Submit</button>
+                    </div>
+                    <div>
+                      <div class="d-flex">
+                        <button id="review" class="btn btn-primary me-2">Review</button>
+                        <button id="results" class="btn btn-success">Results</button>
+                        <!-- <button id="search" class="btn btn-danger ms-2">Search</button> -->
+                      </div>
+                    </div>
                   </div>
 
 
@@ -312,11 +325,248 @@
                 </div>
               </div>
 
-              <div class="d-flex mt-2">
-                <button id="review" class="btn btn-primary me-2">Review</button>
-                <button id="results" class="btn btn-success">Results</button>
-                <!-- <button id="search" class="btn btn-danger ms-2">Search</button> -->
+              <!-- ADD PRESENTATION -->
+              <div class="accordion-item">
+                <button class="but" id="accordion-button-3" aria-expanded="false"><span
+                    class="accordion-title">Add Presentation</span><span class="icon" aria-hidden="true"></span></button>
+                <div class="accordion-content">
+                  <!-- <form action="/addpresentation" method="post" enctype="multipart/form-data"> -->
+                  <div class="d-flex flex-column ms-1 mt-2 ">
+                    <div>
+                    
+                      <span class="my-2"
+                        style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Presentation Title</span>
+                    </div>
+                    <div class="my-2">
+                      
+                        <form action="/deletepresentation?_method=DELETE" method="post">
+                          <div class="d-flex" style="width: 98%;">
+                          <input  type="text" class="form-control" name="title" id="title">
+                          <button  type="submit" class="btn btn-danger ms-1">Delete</button>
+                          </div>
+                        </form>
+                      
+                      
+
+                      <div id="notitle" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">You Must Enter This Field</p>
+                      </div>
+                    </div>
+                      <div class="my-2">
+                        <span class="my-2"
+                        style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Code</span>
+                        <input style="width: 98%;" type="text" class="form-control mb-2" name="precode" id="precode" placeholder="Please Enter Code Start With Pre">
+
+                        <div id="codeempty" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">You Must Enter This Field</p>
+                        </div>
+
+                        <div id="nopre" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">Please Enter A Code Start With Pre</p>
+                        </div>
+
+                        <div id="codeexist" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">This Code Is Already Exists</p>
+                        </div>
+
+                      </div>
+                      <div class="d-flex flex-column">
+                        <div>
+                          <span class="my-2"
+                          style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Location</span>
+                        </div>
+                        <div class="d-flex mb-2 ">
+                          <input  style="width: 98%;" type="file" accept=".pdf" class="form-control mb-2" name="prepath" id="prepath">
+                        </div>
+
+                        <div id="urlempty" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">You Must Enter This Field</p>
+                        </div>
+
+                      </div>
+
+                      <form id="presentationsubmit" enctype="multipart/form-data">
+                        <div class="d-flex justify-content-end" style="width: 98%;">
+                          <button  type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                  </div>
+
+
+                </div>
               </div>
+
+              <!-- ADD DIC COMMUNICATION -->
+              <div class="accordion-item">
+                <button class="but" id="accordion-button-3" aria-expanded="false"><span
+                    class="accordion-title">Add DIC Communication</span><span class="icon" aria-hidden="true"></span></button>
+                <div class="accordion-content">
+                  <!-- <form action="/addpresentation" method="post" enctype="multipart/form-data"> -->
+                  <div class="d-flex flex-column ms-1 mt-2 ">
+                    <div>
+                    
+                      <span class="my-2"
+                        style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Dic Title</span>
+                    </div>
+                    <div class="my-2">
+
+                      <form action="/deletecommunication?_method=DELETE" method="post">
+                        <div class="d-flex" style="width: 98%;">
+                        <input  type="text" class="form-control" name="dictitle" id="dictitle">
+                        <button  type="submit" class="btn btn-danger ms-1">Delete</button>
+                        </div>
+                      </form>
+                      
+
+                      <div id="nodictitle" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">You Must Enter This Field</p>
+                      </div>
+                    </div>
+                      <div class="my-2">
+                        <span class="my-2"
+                        style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Code</span>
+                        <input style="width: 98%;" type="text" class="form-control mb-2" name="diccode" id="diccode" placeholder="Please Enter Code Start With Dic">
+
+                        <div id="diccodeempty" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">You Must Enter This Field</p>
+                        </div>
+
+                        <div id="nodic" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">Please Enter A Code Start With Dic</p>
+                        </div>
+
+                        <div id="diccodeexist" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">This Code Is Already Exists</p>
+                        </div>
+
+                      </div>
+                      <div class="d-flex flex-column">
+                        <div>
+                          <span class="my-2"
+                          style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Location</span>
+                        </div>
+                        <div class="d-flex mb-2 ">
+                          <input  style="width: 98%;" type="file" accept=".pdf" class="form-control mb-2" name="dicpath" id="dicpath">
+                        </div>
+
+                        <div id="dicurlempty" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">You Must Enter This Field</p>
+                        </div>
+
+                      </div>
+
+                      <form id="dicsubmit" enctype="multipart/form-data">
+                        <div class="d-flex justify-content-end" style="width: 98%;">
+                          <button  type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                  </div>
+
+
+                </div>
+              </div>
+
+              <!-- ADD POLICY AND PROCEDURES -->
+              <div class="accordion-item">
+                <button class="but" id="accordion-button-3" aria-expanded="false"><span
+                    class="accordion-title">Add Policy & Procedures</span><span class="icon" aria-hidden="true"></span></button>
+                <div class="accordion-content">
+                  <!-- <form action="/addpresentation" method="post" enctype="multipart/form-data"> -->
+                  <div class="d-flex flex-column ms-1 mt-2 ">
+                    <div>
+                    
+                      <span class="my-2"
+                        style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Policy Title</span>
+                    </div>
+                    <div class="my-2">
+
+                      <form action="/deletepolicy?_method=DELETE" method="post">
+                        <div class="d-flex" style="width: 98%;">
+                        <input  type="text" class="form-control" name="policytitle" id="policytitle">
+                        <button  type="submit" class="btn btn-danger ms-1">Delete</button>
+                        </div>
+                      </form>
+                    
+
+                      <div id="nopolicytitle" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">You Must Enter This Field</p>
+                      </div>
+                    </div>
+                      <div class="my-2">
+                        <span class="my-2"
+                        style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Code</span>
+                        <input style="width: 98%;" type="text" class="form-control  mb-2" name="policycode" id="policycode" placeholder="Please Enter Code Start With Policy">
+
+                        <div id="policycodeempty" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">You Must Enter This Field</p>
+                        </div>
+
+                        <div id="nopolicy" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">Please Enter A Code Start With Policy</p>
+                        </div>
+
+                        <div id="policycodeexist" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">This Code Is Already Exists</p>
+                        </div>
+
+                      </div>
+                      <div class="d-flex flex-column">
+                        <div>
+                          <span class="my-2"
+                          style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Location</span>
+                        </div>
+                        <div class="d-flex mb-2 ">
+                          <input  style="width: 98%;" type="file" accept=".pdf" class="form-control mb-2" name="policypath" id="policypath">
+                        </div>
+
+                        <div id="policyurlempty" class=" d-flex flex-row align-items-center my-2 d-none"
+                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                        <p class="my-1 ms-1">You Must Enter This Field</p>
+                        </div>
+
+                      </div>
+
+                      <form id="policysubmit" enctype="multipart/form-data">
+                      <div class="d-flex justify-content-end" style="width: 98%;">
+                        <button  type="submit" class="btn btn-danger">Submit</button>
+                      </div>
+                    </form>
+                  </div>
+
+
+                </div>
+              </div>
+
+              
             </div>
           </div>
 
@@ -2150,7 +2400,7 @@
 
 
       <!-- SUBMITCHOOSE -->
-      <script>
+        <script>
         submitChoose.addEventListener("click", (eo) => {
           eo.preventDefault()
           let c = selectChoose.value
@@ -2258,9 +2508,9 @@
 
         })
 
-      </script>
+        </script>
 
-      <script>
+        <script>
         const review = document.getElementById("review")
         review.addEventListener("click", (eo) => {
           const res = document.getElementById("res")
@@ -2280,15 +2530,234 @@
           rsearch.classList.add("d-none")
         })
 
-        search.addEventListener("click", (eo) => {
-          const exam = document.getElementById("exam")
-          const res = document.getElementById("res")
-          const rsearch = document.getElementById("rsearch")
-          rsearch.classList.toggle("d-none")
-          exam.classList.add("d-none")
-          res.classList.add("d-none")
-        })
+        // search.addEventListener("click", (eo) => {
+        //   const exam = document.getElementById("exam")
+        //   const res = document.getElementById("res")
+        //   const rsearch = document.getElementById("rsearch")
+        //   rsearch.classList.toggle("d-none")
+        //   exam.classList.add("d-none")
+        //   res.classList.add("d-none")
+        // })
+        </script>
+
+      <!-- ADD PRESENTATION -->
+        <script>
+
+            presentationsubmit.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const formData = new FormData();
+            formData.append("prepath", prepath.files[0]);
+            formData.append("title", title.value);
+            formData.append("precode", precode.value);
+            formData.append("prepath", prepath.value);
+            
+            const res = await fetch("/addpresentation", {
+              method: "POST",
+              body: formData,
+              // headers: { "Content-Type": "application/json" },
+              // headers : { "Content-Type": "application/pdf" },
+            });
+            
+            const data = await res.json();
+          
+            if (data.notitle) {
+                  notitle.classList.remove("d-none");
+                  title.classList.add("redframe");
+                } else {
+                  notitle.classList.add("d-none");
+                  title.classList.remove("redframe");
+                }
+  
+            if (data.codeempty) {
+              codeempty.classList.remove("d-none");
+              precode.classList.add("redframe");
+            } else {
+              codeempty.classList.add("d-none");
+              precode.classList.remove("redframe");
+            }
+  
+            if (data.nopre) {
+              nopre.classList.remove("d-none");
+              precode.classList.add("redframe");
+            } else {
+              nopre.classList.add("d-none");
+              precode.classList.remove("redframe");
+            }
+  
+            if (data.codeexist) {
+              codeexist.classList.remove("d-none");
+              precode.classList.add("redframe");
+            } else {
+              codeexist.classList.add("d-none");
+              precode.classList.remove("redframe");
+            }   
+            
+            if (data.errors) {
+            data.errors.forEach(item => {
+              if (item.path == "prepath") {
+                urlempty.classList.remove("d-none");
+                prepath.classList.add("redframe");
+              } else {
+                urlempty.classList.add("d-none");
+                prepath.classList.remove("redframe");
+              }
+
+            })
+          };
+  
+            if (data.done) {
+              location.reload()
+            }
+          });
+        </script>
+
+      <!-- ADD DIC COMUNICATION -->
+        <script>
+
+          dicsubmit.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const formData = new FormData();
+          formData.append("dicpath", dicpath.files[0]);
+          formData.append("dictitle", dictitle.value);
+          formData.append("diccode", diccode.value);
+          formData.append("dicpath", dicpath.value);
+          
+          const res = await fetch("/communication", {
+            method: "POST",
+            body: formData,
+            // body: JSON.stringify({ dicpath : dicpath.value, dictitle : dictitle.value , diccode : diccode.value }),
+            // headers: { "Content-Type": "application/json" },
+            // headers: { "Content-Type": "application/json" },
+            // headers : { "Content-Type": "application/pdf" },
+          });
+          
+          const data = await res.json();
+        
+          if (data.notitle) {
+                nodictitle.classList.remove("d-none");
+                dictitle.classList.add("redframe");
+              } else {
+                nodictitle.classList.add("d-none");
+                dictitle.classList.remove("redframe");
+              }
+
+          if (data.codeempty) {
+            diccodeempty.classList.remove("d-none");
+            diccode.classList.add("redframe");
+          } else {
+            diccodeempty.classList.add("d-none");
+            diccode.classList.remove("redframe");
+          }
+
+          if (data.nodic) {
+            nodic.classList.remove("d-none");
+            diccode.classList.add("redframe");
+          } else {
+            nodic.classList.add("d-none");
+            diccode.classList.remove("redframe");
+          }
+
+          if (data.codeexist) {
+            diccodeexist.classList.remove("d-none");
+            diccode.classList.add("redframe");
+          } else {
+            diccodeexist.classList.add("d-none");
+            diccode.classList.remove("redframe");
+          }   
+          
+          if (data.errors) {
+          data.errors.forEach(item => {
+            if (item.path == "dicpath") {
+              dicurlempty.classList.remove("d-none");
+              dicpath.classList.add("redframe");
+            } else {
+              dicurlempty.classList.add("d-none");
+              dicpath.classList.remove("redframe");
+            }
+
+          })
+        };
+
+          if (data.done) {
+            location.assign("/admin")
+          }
+        });
+        </script>
+
+      <!-- ADD POLICY -->
+        <script>
+
+          policysubmit.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const formData = new FormData();
+          formData.append("policypath", policypath.files[0]);
+          formData.append("policytitle", policytitle.value);
+          formData.append("policycode", policycode.value);
+          formData.append("policypath", policypath.value);
+          
+          const res = await fetch("/addpolicy", {
+            method: "POST",
+            body: formData,
+            // body: JSON.stringify({ dicpath : dicpath.value, dictitle : dictitle.value , diccode : diccode.value }),
+            // headers: { "Content-Type": "application/json" },
+            // headers: { "Content-Type": "application/json" },
+            // headers : { "Content-Type": "application/pdf" },
+          });
+          
+          const data = await res.json();
+        
+          if (data.notitle) {
+                nopolicytitle.classList.remove("d-none");
+                policytitle.classList.add("redframe");
+              } else {
+                nopolicytitle.classList.add("d-none");
+                policytitle.classList.remove("redframe");
+              }
+
+          if (data.codeempty) {
+            policycodeempty.classList.remove("d-none");
+            policycode.classList.add("redframe");
+          } else {
+            policycodeempty.classList.add("d-none");
+            policycode.classList.remove("redframe");
+          }
+
+          if (data.nodic) {
+            nopolicy.classList.remove("d-none");
+            policycode.classList.add("redframe");
+          } else {
+            nopolicy.classList.add("d-none");
+            policycode.classList.remove("redframe");
+          }
+
+          if (data.codeexist) {
+            policycodeexist.classList.remove("d-none");
+            policycode.classList.add("redframe");
+          } else {
+            policycodeexist.classList.add("d-none");
+            policycode.classList.remove("redframe");
+          }   
+          
+          if (data.errors) {
+          data.errors.forEach(item => {
+            if (item.path == "policypath") {
+              policyurlempty.classList.remove("d-none");
+              policypath.classList.add("redframe");
+            } else {
+              policyurlempty.classList.add("d-none");
+              policypath.classList.remove("redframe");
+            }
+
+          })
+        };
+
+          if (data.done) {
+            location.assign("/admin")
+          }
+        });
       </script>
+
+        
 
 
 

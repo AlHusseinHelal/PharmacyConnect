@@ -71,7 +71,7 @@ const uploadSingleImage = (fileName) => {
   const multerStorage = multer.memoryStorage();
 
   //MULTER DISKSTORAGE
-// const multerStorage = multer.diskStorage({
+// const multerDiskStorage = multer.diskStorage({
 //   destination: function (req, file, cb) {
 //     cb(null, "uploads/ProfileImage");
 //   },
@@ -95,7 +95,43 @@ const uploadSingleImage = (fileName) => {
   };
   const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
   return upload.single(fileName);
+  
 };
+
+//MULTER UPLOAD PDF
+const uploadSinglePdf = (fileName) => {
+  //MULTER MEMORYSTORAGE
+  // const multerStorage = multer.memoryStorage();
+
+    //MULTER DISKSTORAGE
+const multerDiskStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/Presentation");
+  },
+  filename: function (req, file, cb) {
+    const ext = file.mimetype.split("/")[1];
+    const filename = `user-${uuidv4()}-${Date.now()}.${ext} `;
+    cb(null, filename);
+  },
+})
+
+  //UPLOAD PDF ONLY
+  const multerFilterpdf = function (req, file, cb) {
+    if (file.mimetype.startsWith("pdf")) {
+      cb(null, true);
+    } else {
+      cb(
+        new ApiError("Invalid image type! Only PDF is supported."),
+        false
+      );
+    }
+  };
+  const uploadpdf = multer({ storage: multerDiskStorage, fileFilter: multerFilterpdf });
+  return uploadpdf.single(fileName);
+  
+};
+  
+
 
 //RESIZE IMAGE FOR ATTACH INPATIENT
 const imageresizeforinpatient = asyncHandler(async (req, res, next) => {
@@ -155,5 +191,6 @@ module.exports = {
   imageresizeforoutpatient,
   profileimage,
   uploadSingleImage,
-  imageresizefordispense
+  imageresizefordispense,
+  uploadSinglePdf
 };

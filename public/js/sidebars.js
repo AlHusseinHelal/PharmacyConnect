@@ -1,5 +1,13 @@
 const medication = document.querySelectorAll(".medication")
-const row = document.querySelectorAll(".row")
+const presenstation = document.querySelectorAll(".presenstation")
+const dicomunication = document.querySelectorAll(".dicomunication")
+const policy = document.querySelectorAll(".policy")
+const row = document.querySelectorAll(".medselect")
+const pre = document.querySelectorAll(".preselect")
+const dic = document.querySelectorAll(".dicselect")
+const policyselect = document.querySelectorAll(".policyselect")
+
+// SHOW MEDICATION
 medication.forEach(item => {
   item.addEventListener('click', (eo) => {
     const Name = eo.target
@@ -7,6 +15,88 @@ medication.forEach(item => {
     const getName = code.textContent ;
     const getsecName = document.getElementsByClassName(getName)[1]
     const hide = row.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidepresentation = pre.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidedic = dic.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidepolicy = policyselect.forEach(el => {
+      el.classList.add('d-none')
+    });
+    getsecName.classList.toggle('d-none')
+  }
+  )
+});
+
+
+// SHOW PRESENTATION
+presenstation.forEach(item => {
+  item.addEventListener('click', (eo) => {
+    const Name = eo.target
+    const code = item.querySelector(".precode")
+    const getName = code.textContent ;
+    const getsecName = document.querySelector("." + getName)
+    const hide = pre.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidemedication = row.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidedic = dic.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidepolicy = policyselect.forEach(el => {
+      el.classList.add('d-none')
+    });
+    getsecName.classList.toggle('d-none')
+  }
+  )
+});
+
+// SHOW DIC COMMUNICATION
+dicomunication.forEach(item => {
+  item.addEventListener('click', (eo) => {
+    const Name = eo.target
+    const code = item.querySelector(".diccode")
+    const getName = code.textContent ;
+    const getsecName = document.querySelector("." + getName)
+    const hide = pre.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidemedication = row.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidedic = dic.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidepolicy = policyselect.forEach(el => {
+      el.classList.add('d-none')
+    });
+    getsecName.classList.toggle('d-none')
+  }
+  )
+});
+
+// SHOW POLICY
+policy.forEach(item => {
+  item.addEventListener('click', (eo) => {
+    const Name = eo.target
+    const code = item.querySelector(".policycode")
+    const getName = code.textContent ;
+    const getsecName = document.querySelector("." + getName)
+    const hide = pre.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidemedication = row.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidedic = dic.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidepolicy = policyselect.forEach(el => {
       el.classList.add('d-none')
     });
     getsecName.classList.toggle('d-none')
