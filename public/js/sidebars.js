@@ -2,10 +2,12 @@ const medication = document.querySelectorAll(".medication")
 const presenstation = document.querySelectorAll(".presenstation")
 const dicomunication = document.querySelectorAll(".dicomunication")
 const policy = document.querySelectorAll(".policy")
+const rare = document.querySelectorAll(".rareprotocol")
 const row = document.querySelectorAll(".medselect")
 const pre = document.querySelectorAll(".preselect")
 const dic = document.querySelectorAll(".dicselect")
 const policyselect = document.querySelectorAll(".policyselect")
+const rareselect = document.querySelectorAll(".rareselect")
 
 // SHOW MEDICATION
 medication.forEach(item => {
@@ -24,6 +26,9 @@ medication.forEach(item => {
       el.classList.add('d-none')
     });
     const hidepolicy = policyselect.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hiderare = rareselect.forEach(el => {
       el.classList.add('d-none')
     });
     getsecName.classList.toggle('d-none')
@@ -51,6 +56,9 @@ presenstation.forEach(item => {
     const hidepolicy = policyselect.forEach(el => {
       el.classList.add('d-none')
     });
+    const hiderare = rareselect.forEach(el => {
+      el.classList.add('d-none')
+    });
     getsecName.classList.toggle('d-none')
   }
   )
@@ -75,6 +83,9 @@ dicomunication.forEach(item => {
     const hidepolicy = policyselect.forEach(el => {
       el.classList.add('d-none')
     });
+    const hiderare = rareselect.forEach(el => {
+      el.classList.add('d-none')
+    });
     getsecName.classList.toggle('d-none')
   }
   )
@@ -97,6 +108,36 @@ policy.forEach(item => {
       el.classList.add('d-none')
     });
     const hidepolicy = policyselect.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hiderare = rareselect.forEach(el => {
+      el.classList.add('d-none')
+    });
+    getsecName.classList.toggle('d-none')
+  }
+  )
+});
+
+// SHOW RARE PROTOCOLS
+rare.forEach(item => {
+  item.addEventListener('click', (eo) => {
+    const Name = eo.target
+    const code = item.querySelector(".rarecode")
+    const getName = code.textContent ;
+    const getsecName = document.querySelector("." + getName)
+    const hide = pre.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidemedication = row.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidedic = dic.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidepolicy = policyselect.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hiderare = rareselect.forEach(el => {
       el.classList.add('d-none')
     });
     getsecName.classList.toggle('d-none')
@@ -132,133 +173,6 @@ $(document).ready(function () {
   $("#gear").on("click", function () {
     $("#sun").toggleClass("appear50");
     $("#moon").toggleClass("appear100");
-  });
-
-  /*--------------------------------------------------------------
-# ADD PRESENTATION
---------------------------------------------------------------*/
-
-  $(".Asthma").on("click", function () {
-    $("#container")
-      .replaceWith(`<div id="container" class="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <img src="../Presentation/Asthma BPS Pharmacotherapy.png" alt="" style="height: fit-content; width: 1200px;">    
-      </div>
-      </div>
-    </div>`);
-  });
-  $(".Dinutuximab").on("click", function () {
-    $("#container")
-      .replaceWith(`<div id="container" class="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <img src="../Presentation/Dinutuximab-01.png" alt="" style="height: fit-content; width: 1200px;">  
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".adrenocortical").on("click", function () {
-    $("#container")
-      .replaceWith(`<div id="container" class="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <img src="../Presentation/adrenocortical carcinoma-01.png" alt="" style="height: fit-content; width: 1200px;">    
-      </div>  
-    </div>
-</div>`);
-  });
-  $(".Targeted").on("click", function () {
-    $("#container")
-      .replaceWith(`  <div id="container" class="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <img src="../Presentation/Targeted Therapy - Large Molecules-01.png" alt="" style="height: fit-content; width: 1200px;">  
-      </div>      
-    </div>
-</div>
-`);
-  });
-  $(".Vasopressors").on("click", function () {
-    $("#container")
-      .replaceWith(`<div id="container" class="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-3 rounded-3" data="../Presentation/VasopressorsandINOTROPES.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px;"></object>
-      </div>
-    </div>
-  </div>
-`);
-  });
-  $(".HL").on("click", function () {
-    $("#container").replaceWith(`  <div >
-    <div id="container" class="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-      
-        <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-          <div class="col col-12 text-center">
-            <object class="my-3 rounded-3" data="../Presentation/HL 1 FINAL.pdf" type="application/pdf" style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-          </div>      
-        </div>
-    </div>
-  </div>
-`);
-  });
-  $(".SHOCK").on("click", function () {
-    $("#container").replaceWith(`<div id="container" class="container"
-    style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-3 rounded-3" data="../presentation/SHOCK.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>
-`);
-  });
-  $(".Fluid").on("click", function () {
-    $("#container").replaceWith(`<div id="container" class="container"
-    style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-3 rounded-3" data="../presentation/Fluid & Electrolytes.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>
-`);
-  });
-  $(".COPD").on("click", function () {
-    $("#container").replaceWith(`<div id="container" class="container"
-    style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-3 rounded-3" data="../presentation/COPD_in_BPS_pharmacotherapy.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>
-`);
-  });
-  $(".Tyrosine").on("click", function () {
-    $("#container").replaceWith(`<div id="container" class="container"
-    style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-3 rounded-3" data="../presentation/Tyrosine.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>
-`);
   });
 
   /*--------------------------------------------------------------
@@ -1930,88 +1844,7 @@ $(document).ready(function () {
     </table>
   </div>`);
   });
-  $(".Sorafenib-Guidelines").on("click", function () {
-    $("#container").replaceWith(`<div>
-    
-    <div id="container" class="container"
-    style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
 
-      <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-        <div class="col col-12 text-center">
-          <object class="my-2 rounded-2" data="../pdf/Sorafenib-Guidelines.pdf" type="application/pdf"
-            style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".FN-Guidelines").on("click", function () {
-    $("#container").replaceWith(`  <div>
-    
-    <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-      <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-        <div class="col col-12 text-center">
-          <object class="my-2 rounded-2" data="../pdf/FN-Guidelines.pdf" type="application/pdf"
-            style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".DasatinibGuidelines").on("click", function () {
-    $("#container").replaceWith(`<div>
-
-    <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-      <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-        <div class="col col-12 text-center">
-          <object class="my-2 rounded-2" data="../pdf/Dasatinib-Administration-Guidelines.pdf" type="application/pdf"
-            style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-        </div>
-      </div>
-    </div>
-  </div>`);
-  });
-  $(".Algorithm").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../pdf/Algorithm for Child Status Epilepticus emergency.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-  });
-  $(".Psycho-Oncolgy").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../pdf/Psycho-Oncolgy Guidlines.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-  });
-  $(".Neuro-Oncology").on("click", function () {
-    $("#container")
-      .replaceWith(`<div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../pdf/Neuro-Oncology Guidlines.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-  });
   /*--------------------------------------------------------------
 # WORKFLOW ORIENTATION
 --------------------------------------------------------------*/
@@ -2029,601 +1862,6 @@ $(".pyxisrequisetion").on("click", function () {
   </div>
 </div>`);
 });
-
-  /*--------------------------------------------------------------
-# SCIENTIFIC PAPER
---------------------------------------------------------------*/
-$(".Optimizing").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../papers/Optimizing.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-  /*--------------------------------------------------------------
-# POLICY ORIENTATION
---------------------------------------------------------------*/
-$(".MISKDowntime").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/DPP-PSSD-001-MISK  Downtime.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".INTERNALAUDITPOLICY").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/DPP-PSSD-002-INTERNAL AUDIT POLICY.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".VerificationReviewingofPrescriptionOrders").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/DPP-PSSD-003-Verification & Reviewing of Prescription Orders.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".Patienteducation").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/DPP-PSSD-004-Patient education.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".DispensingOutpatient").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/DPP-PSSD-005-Dispensing Outpatient take-home prescription vai automate.._.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".NarcoticsManagement").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-003-Narcotics Management.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".PharmacySecuritySafetyRequirement").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-004-Pharmacy Security & Safety Requirement.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".DrugInformationCenter").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-005-Drug Information Center.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".HighAlertMedicationandLASAMedication").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-006-High Alert Medication and LASA Medication.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".Medstation").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-009-Med station (Pyxis).pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".ManagementofConcentratedElectrolytes").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-010-Management of Concentrated Electrolytes.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".NutritionSupport").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-012-Nutrition Support.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".Medicationsreturnspolicy").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-013-Medications returns policy.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".PharmaceuticalSamplesD").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-014-Pharmaceutical Samples D.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".AdverseDrugReactionReporting").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-015-Adverse Drug Reaction Reporting.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".MedicationErrorReportingandFollowup").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-016-Medication Error Reporting and Follow-up.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".FloorStock").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-017-Floor Stock.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".DayCareprescriptionprocessing").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-018-Day Care prescription processing.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".InpatientMedicationPrescriptionDispensing").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-019-Inpatient Medication Prescription Dispensing.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".MedicationAdministration").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-020-Medication Administration.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".Safemedicationprescribing").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-021-Safe medication prescribing.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".InpatientExtraDoseDispense").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-022-Inpatient Extra Dose Dispense.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".DoseBanding").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-023-Dose Banding.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".MedicationReconciliation").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-024-Medication Reconciliation.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".PRNPolicy").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-026-PRN Policy.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".Admixtureworkflow").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-027-I.V. Admixture workflow and I.V. Order Processing.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".BeyondUseDating").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-029-Beyond-Use Dating and Labeling of I.V admixture.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".BarcodingandRepackaging").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-030-Barcoding and Repackaging Oral Solids and Liquids in Single Unit and Unit Dose Packages.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".Radioactivematerials").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-031-Radioactive materials.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".EmergencyDrugs").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-032-Emergency Drugs and the Pharmacy’s Emergency Responsibili.._.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".ROWAdowntime").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-PSSD-033-ROWA down time.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".MedicationStoragePolicy").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-SC-004-Medication Storage Policy.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".MedicationandsuppliesRecall").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-SC-007-Medication and supplies Recall.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".FormularyManagement").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../Policy/IPP-SC-009-Formulary Management.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-  /*--------------------------------------------------------------
-# MANUAL ORIENTATION
---------------------------------------------------------------*/
-$(".ExtemporaneousFormulation").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../manual&program/Manual-PSSD-001- Extemporaneous Formulation.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".AntimicrobialStewardshipProgram").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../manual&program/PROG-PSSD-001-Antimicrobial Stewardship Program.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".MedicationManagement").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../manual&program/PROG-PSSD-002-Medication Management and Use Program.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
-$(".ivmanual").on("click", function () {
-  $("#container").replaceWith(`  <div>
-  
-  <div  class="container" id="container" style="position: fixed; top: 80px; right:0; width: 82vw; height: 82vh;">
-
-    <div class="row d-flex" style=" justify-content: center; align-items: center; ">
-      <div class="col col-12 text-center">
-        <object class="my-2 rounded-2" data="../manual&program/IV manual2.pdf" type="application/pdf"
-          style="height: 100vh; width: 1200px; overflow:hidden;"></object>
-      </div>
-    </div>
-  </div>
-</div>`);
-});
-
 
   /*--------------------------------------------------------------
 # CHANGE COLOR WHEN PRESS
@@ -2730,6 +1968,7 @@ botn1.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -2782,6 +2021,7 @@ botn2.addEventListener("click", (params) => {
   medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
@@ -2833,6 +2073,7 @@ botn3.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
@@ -2884,6 +2125,7 @@ botn4.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   medicationcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
@@ -2935,6 +2177,7 @@ botn5.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   medicationcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
@@ -2986,6 +2229,7 @@ botn6.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   medicationcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
@@ -3038,6 +2282,7 @@ botn7.addEventListener("click", (params) => {
   medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
   anticancercollapse.classList.remove("show");
   antibioticcollapse.classList.remove("show");
@@ -3083,6 +2328,57 @@ botn7.addEventListener("click", (params) => {
 
 //MANUAL
 botn8.addEventListener("click", (params) => {
+  presentationcollapse.classList.remove("show");
+  infographcollapse.classList.remove("show");
+  medicationcollapse.classList.remove("show");
+  DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
+  workflowcollapse.classList.remove("show");
+  policycollapse.classList.remove("show");
+  anticancercollapse.classList.remove("show");
+  antibioticcollapse.classList.remove("show");
+  AntiCoagulantcollapse.classList.remove("show");
+  AntiConvulsantcollapse.classList.remove("show");
+  AntiDiarrhealccollapse.classList.remove("show");
+  Antiemeticcecollapse.classList.remove("show");
+  AntiFlatulencecollapse.classList.remove("show");
+  antifungalcollapse.classList.remove("show");
+  Antigoutcecollapse.classList.remove("show");
+  Hyperprolactinemiacollapse.classList.remove("show");
+  Antiinflamcecollapse.classList.remove("show");
+  AntiSpasmodiccollapse.classList.remove("show");
+  AntiTussivecollapse.classList.remove("show");
+  Antiviralcecollapse.classList.remove("show");
+  Analgesiccollapse.classList.remove("show");
+  Antacidcecollapse.classList.remove("show");
+  Anthelminticcollapse.classList.remove("show");
+  Antihistaminecollapse.classList.remove("show");
+  Antidotecollapse.classList.remove("show");
+  Cardiologycollapse.classList.remove("show");
+  Corticosteroidcollapse.classList.remove("show");
+  DietarySupplementcollapse.classList.remove("show");
+  Electrolytecollapse.classList.remove("show");
+  Expectorantcollapse.classList.remove("show");
+  Gastrointestinalcollapse.classList.remove("show");
+  Hemostaticcollapse.classList.remove("show");
+  Immunosuppressantcecollapse.classList.remove("show");
+  MSTcollapse.classList.remove("show");
+  Mucolyticcollapse.classList.remove("show");
+  Neurologycollapse.classList.remove("show");
+  Osteoarthritiscollapse.classList.remove("show");
+  smrcollapse.classList.remove("show");
+  Hormonecollapse.classList.remove("show");
+  WaterSolubleVitamincollapse.classList.remove("show");
+  Maocollapse.classList.remove("show");
+  Antitraumaticcollapse.classList.remove("show");
+  Bronchodilatorcollapse.classList.remove("show");
+  Contraceptivecollapse.classList.remove("show");
+  Decongestantcollapse.classList.remove("show");
+  Digestivecollapse.classList.remove("show");
+});
+
+//RARE PROTOCOLS
+botn9.addEventListener("click", (params) => {
   presentationcollapse.classList.remove("show");
   infographcollapse.classList.remove("show");
   medicationcollapse.classList.remove("show");
@@ -3137,6 +2433,7 @@ botn11.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
@@ -3188,6 +2485,7 @@ botn12.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
@@ -3239,6 +2537,7 @@ botn13.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
@@ -3290,6 +2589,7 @@ botn14.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -3341,6 +2641,7 @@ botn15.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -3392,6 +2693,7 @@ botn16.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -3443,6 +2745,7 @@ botn17.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
@@ -3494,6 +2797,7 @@ botn18.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
@@ -3545,6 +2849,7 @@ botn19.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -3596,6 +2901,7 @@ botn20.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -3647,6 +2953,7 @@ botn21.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   policycollapse.classList.remove("show");
@@ -3698,6 +3005,7 @@ botn22.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -3750,6 +3058,7 @@ botn23.addEventListener("click", (params) => {
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   papercollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -3800,6 +3109,7 @@ botn24.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -3851,6 +3161,7 @@ botn25.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -3902,6 +3213,7 @@ botn26.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -3953,6 +3265,7 @@ botn27.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -4004,6 +3317,7 @@ botn28.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -4055,6 +3369,7 @@ botn29.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -4106,6 +3421,7 @@ botn30.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -4157,6 +3473,7 @@ botn31.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -4208,6 +3525,7 @@ botn32.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -4260,6 +3578,7 @@ botn33.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -4312,6 +3631,7 @@ botn34.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -4365,6 +3685,7 @@ botn35.addEventListener("click", (params) => {
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
@@ -4415,6 +3736,7 @@ botn36.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -4467,6 +3789,7 @@ botn37.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -4518,6 +3841,7 @@ botn38.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -4569,6 +3893,7 @@ botn39.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -4621,6 +3946,7 @@ botn40.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -4673,6 +3999,7 @@ botn41.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -4726,6 +4053,7 @@ botn42.addEventListener("click", (params) => {
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
@@ -4828,6 +4156,7 @@ botn44.addEventListener("click", (params) => {
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");
@@ -4879,6 +4208,7 @@ botn45.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -4930,6 +4260,7 @@ botn46.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -4981,6 +4312,7 @@ botn47.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -5032,6 +4364,7 @@ botn48.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -5083,6 +4416,7 @@ botn49.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -5134,6 +4468,7 @@ botn50.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -5185,6 +4520,7 @@ botn51.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -5242,6 +4578,7 @@ botn52.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -5299,6 +4636,7 @@ botn53.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -5356,6 +4694,7 @@ botn54.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -5413,6 +4752,7 @@ botn55.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -5471,6 +4811,7 @@ botn56.addEventListener("click", (params) => {
   infographcollapse.classList.remove("show");
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
@@ -5528,6 +4869,7 @@ botn57.addEventListener("click", (params) => {
   // medicationcollapse.classList.remove("show");
   DICcollapse.classList.remove("show");
   workflowcollapse.classList.remove("show");
+  Rarecollapse.classList.remove("show");
   policycollapse.classList.remove("show");
   manualcollapse.classList.remove("show");
   papercollapse.classList.remove("show");

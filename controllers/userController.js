@@ -8,6 +8,7 @@ const User = require("../models/newRegSchema");
 const Presenstation = require("../models/presenstation");
 const Communication = require("../models/communication");
 const Policy = require("../models/policy");
+const Rareprotocols = require("../models/rareprotocols");
 
 //SIGNOUT
 exports.signOut = (req, res) => {
@@ -51,6 +52,9 @@ exports.OncoTips = asyncHandler(async (req, res) => {
   })
   const policy = await Policy.find().sort({
     policytitle: "asc",
+  })
+  const rareprotocols = await Rareprotocols.find().sort({
+    raretitle: "asc",
   })
   
   const AntiCancer = await Medication.find({ classname: "Anti-Cancer" }).sort({
@@ -276,7 +280,8 @@ exports.OncoTips = asyncHandler(async (req, res) => {
       Weakopioid,
       presenstation,
       communication,
-      policy
+      policy,
+      rareprotocols
     });
   }
 });

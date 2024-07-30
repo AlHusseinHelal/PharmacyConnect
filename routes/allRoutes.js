@@ -99,6 +99,30 @@ const multerFilterPolicy = function (req, file, cb) {
 };
 const uploadpolicy = multer({ storage: multerStoragePolicy, fileFilter : multerFilterPolicy})
 
+//MULTER DISKSTORAGE FOR RARE PROTOCOLS
+const multerStorageRare = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/Rare");
+  },
+  filename: function (req, file, cb) {
+    const ext = file.mimetype.split("/")[1];
+    const filename = `user-${uuidv4()}-${Date.now()}.${ext}`;
+    cb(null, filename);
+  },
+})
+//MULTER IMAGE ONLY
+const multerFilterRare = function (req, file, cb) {
+  if (file.mimetype.startsWith("application")) {
+    cb(null, true);
+  } else {
+    cb(
+      new ApiError("Invalid image type! Only PDF is supported."),
+      false
+    );
+  }
+};
+const uploadrare = multer({ storage: multerStorageRare, fileFilter : multerFilterRare})
+
 
 
 //SCHEMA
@@ -123,6 +147,7 @@ const Communication = require("../models/communication");
 const Labtoxicityschema = require("../models/labtoxicitySchema");
 const Presenstation = require("../models/presenstation");
 const Policy = require("../models/policy");
+const Rareprotocols = require("../models/rareprotocols");
 
 //MIDDLEWARE
 const { requireAuth } = require("../middleware/middleware");
@@ -523,7 +548,7 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const array = await Perpatient.find();
+    const array = await Perpatient.find().sort({ItemDescription : "asc"});
     res.render("Store/perpatient.ejs", { array: array });
   })
 );
@@ -3396,9 +3421,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("@57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email"})
-    // }
+    if (!email.includes("@57357.org")) {
+      return res.json({ invalidemail: "Invalid Email"})
+    }
 
 
     const newUser = await User.create(req.body);
@@ -7760,6 +7785,52 @@ router.post(
   })
 );
 
+// ADD RARE PROTOCOLS
+router.post(
+  "/addrareprotocols",
+  uploadrare.single("rarepath"),
+  [
+    check("rarepath").notEmpty()
+  ],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+
+    if (req.body.raretitle === "") {
+      return res.json({ notitle: "You Must Enter This Field" });
+    }
+
+    const code = req.body.rarecode
+  
+    if (code === "") {
+      return res.json({ codeempty: "You Must Enter This Field" });
+    }
+    
+    if (!code.includes("Rare")){
+      return res.json({ norare: "Please Enter A Code Start With Rare" });
+    }
+    
+    const findcode = await Rareprotocols.findOne({ rarecode: req.body.rarecode });
+    if (findcode) {
+      return res.json({ codeexist: "This Code Is Already Exists" });
+    }
+    
+
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+
+    console.log(req.body.rarepath);
+    req.body.rarepath = req.file.filename;
+    
+    if (!findcode) {
+       const done = await Rareprotocols.create(req.body)
+       res.json({ done : done})
+    }
+
+  })
+);
 // ADD PRESENTATION
 // router.post(
 //   "/addpresentation",
@@ -8002,7 +8073,6 @@ router.delete("/deletenurse/:id", checkIfUser, requireAuth, (req, res) => {
 router.delete("/deletepresentation", checkIfUser, requireAuth, 
   asyncHandler( async (req, res) => {
     const find = await Presenstation.findOneAndDelete({title :req.body.title})
-    console.log(find)
     if (find) {
     res.redirect(req.get('referer'));  
     }
@@ -8012,7 +8082,6 @@ router.delete("/deletepresentation", checkIfUser, requireAuth,
 router.delete("/deletecommunication", checkIfUser, requireAuth, 
   asyncHandler( async (req, res) => {
     const find = await Communication.findOneAndDelete({dictitle :req.body.dictitle})
-    console.log(find)
     if (find) {
     res.redirect(req.get('referer'));  
     }
@@ -8022,7 +8091,15 @@ router.delete("/deletecommunication", checkIfUser, requireAuth,
 router.delete("/deletepolicy", checkIfUser, requireAuth, 
   asyncHandler( async (req, res) => {
     const find = await Policy.findOneAndDelete({policytitle :req.body.policytitle})
-    console.log(find)
+    if (find) {
+    res.redirect(req.get('referer'));  
+    }
+  }) );
+
+    //DELETE PROTOCOLS
+router.delete("/deleteprotocols", checkIfUser, requireAuth, 
+  asyncHandler( async (req, res) => {
+    const find = await Rareprotocols.findOneAndDelete({raretitle :req.body.raretitle})
     if (find) {
     res.redirect(req.get('referer'));  
     }
