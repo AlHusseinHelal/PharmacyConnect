@@ -9,6 +9,7 @@ const Presenstation = require("../models/presenstation");
 const Communication = require("../models/communication");
 const Policy = require("../models/policy");
 const Rareprotocols = require("../models/rareprotocols");
+const Workflow = require("../models/workflow");
 
 //SIGNOUT
 exports.signOut = (req, res) => {
@@ -54,6 +55,9 @@ exports.OncoTips = asyncHandler(async (req, res) => {
     policytitle: "asc",
   })
   const rareprotocols = await Rareprotocols.find().sort({
+    raretitle: "asc",
+  })
+  const workflow = await Workflow.find().sort({
     raretitle: "asc",
   })
   
@@ -281,7 +285,8 @@ exports.OncoTips = asyncHandler(async (req, res) => {
       presenstation,
       communication,
       policy,
-      rareprotocols
+      rareprotocols,
+      workflow
     });
   }
 });

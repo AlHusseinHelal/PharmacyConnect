@@ -1533,7 +1533,17 @@
               <div class="collapse" id="workflowcollapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 
-                  <li>
+                  <% workflow.forEach(item => { %>
+                    <li>
+                      <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont wfprotocol" style="width: 90%; text-wrap: wrap">
+                        <p hidden class="wfcode"><%= item.wfcode %></p>
+                        <%= item.wftitle %>
+                      </a>
+                    </li>
+                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+                  <% }) %>
+
+                  <!-- <li>
                     <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont pyxisrequisetion">Pyxis
                       Requisition</a>
                   </li>
@@ -1541,7 +1551,7 @@
                   <li>
                     <a
                       class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont ChemoTherapy">Cerner</a>
-                  </li>
+                  </li> -->
 
                 </ul>
               </div>
@@ -2340,6 +2350,15 @@
               <div class="row d-flex d-none rareselect <%= item.rarecode%>" style=" justify-content: center; align-items: center; ">
                 <div class="col col-12 text-center">
                   <object class="my-3 rounded-3" data="../Rare/<%= item.rarepath %>" type="application/pdf"
+                  style="height: 100vh; width: 1200px;"></object>   
+                </div>
+                </div>
+            <% }) %>
+
+            <% workflow.forEach(item => { %>
+              <div class="row d-flex d-none wfselect <%= item.wfcode%>" style=" justify-content: center; align-items: center; ">
+                <div class="col col-12 text-center">
+                  <object class="my-3 rounded-3" data="../WorkFlow/<%= item.wfpath %>" type="application/pdf"
                   style="height: 100vh; width: 1200px;"></object>   
                 </div>
                 </div>

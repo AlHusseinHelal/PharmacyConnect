@@ -3,11 +3,15 @@ const presenstation = document.querySelectorAll(".presenstation")
 const dicomunication = document.querySelectorAll(".dicomunication")
 const policy = document.querySelectorAll(".policy")
 const rare = document.querySelectorAll(".rareprotocol")
+const wf = document.querySelectorAll(".wfprotocol")
+
+
 const row = document.querySelectorAll(".medselect")
 const pre = document.querySelectorAll(".preselect")
 const dic = document.querySelectorAll(".dicselect")
 const policyselect = document.querySelectorAll(".policyselect")
 const rareselect = document.querySelectorAll(".rareselect")
+const wfselect = document.querySelectorAll(".wfselect")
 
 // SHOW MEDICATION
 medication.forEach(item => {
@@ -29,6 +33,9 @@ medication.forEach(item => {
       el.classList.add('d-none')
     });
     const hiderare = rareselect.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidewf = wfselect.forEach(el => {
       el.classList.add('d-none')
     });
     getsecName.classList.toggle('d-none')
@@ -59,6 +66,9 @@ presenstation.forEach(item => {
     const hiderare = rareselect.forEach(el => {
       el.classList.add('d-none')
     });
+    const hidewf = wfselect.forEach(el => {
+      el.classList.add('d-none')
+    });
     getsecName.classList.toggle('d-none')
   }
   )
@@ -84,6 +94,9 @@ dicomunication.forEach(item => {
       el.classList.add('d-none')
     });
     const hiderare = rareselect.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidewf = wfselect.forEach(el => {
       el.classList.add('d-none')
     });
     getsecName.classList.toggle('d-none')
@@ -113,6 +126,9 @@ policy.forEach(item => {
     const hiderare = rareselect.forEach(el => {
       el.classList.add('d-none')
     });
+    const hidewf = wfselect.forEach(el => {
+      el.classList.add('d-none')
+    });
     getsecName.classList.toggle('d-none')
   }
   )
@@ -138,6 +154,39 @@ rare.forEach(item => {
       el.classList.add('d-none')
     });
     const hiderare = rareselect.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidewf = wfselect.forEach(el => {
+      el.classList.add('d-none')
+    });
+    getsecName.classList.toggle('d-none')
+  }
+  )
+});
+
+// SHOW WORKFLOW
+  wf.forEach(item => {
+  item.addEventListener('click', (eo) => {
+    const Name = eo.target
+    const code = item.querySelector(".wfcode")
+    const getName = code.textContent ;
+    const getsecName = document.querySelector("." + getName)
+    const hide = pre.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidemedication = row.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidedic = dic.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidepolicy = policyselect.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hiderare = rareselect.forEach(el => {
+      el.classList.add('d-none')
+    });
+    const hidewf = wfselect.forEach(el => {
       el.classList.add('d-none')
     });
     getsecName.classList.toggle('d-none')

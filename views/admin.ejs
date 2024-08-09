@@ -646,6 +646,86 @@
                   </div>
                 </div>
 
+                <!-- ADD WORKFLOW -->
+                <div class="accordion-item">
+                  <button class="but" id="accordion-button-3" aria-expanded="false"><span
+                      class="accordion-title">Add WorkFlow</span><span class="icon" aria-hidden="true"></span></button>
+                  <div class="accordion-content">
+                    <!-- <form action="/addpresentation" method="post" enctype="multipart/form-data"> -->
+                    <div class="d-flex flex-column ms-1 mt-2 ">
+                      <div>
+                      
+                        <span class="my-2"
+                          style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">WorkFlow Title</span>
+                      </div>
+                      <div class="my-2">
+  
+                        <form action="/deleteworkflow?_method=DELETE" method="post">
+                          <div class="d-flex" style="width: 98%;">
+                          <input  type="text" class="form-control" name="wftitle" id="wftitle">
+                          <button  type="submit" class="btn btn-danger ms-1">Delete</button>
+                          </div>
+                        </form>
+                      
+  
+                        <div id="nowftitle" class=" d-flex flex-row align-items-center my-2 d-none"
+                          style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                          <p class="my-1 ms-1">You Must Enter This Field</p>
+                        </div>
+                      </div>
+                        <div class="my-2">
+                          <span class="my-2"
+                          style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Code</span>
+                          <input style="width: 98%;" type="text" class="form-control  mb-2" name="wfcode" id="wfcode" placeholder="Please Enter Code Start With WF">
+  
+                          <div id="wfcodeempty" class=" d-flex flex-row align-items-center my-2 d-none"
+                          style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                          <p class="my-1 ms-1">You Must Enter This Field</p>
+                          </div>
+  
+                          <div id="nowf" class=" d-flex flex-row align-items-center my-2 d-none"
+                          style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                          <p class="my-1 ms-1">Please Enter A Code Start With WF</p>
+                          </div>
+  
+                          <div id="wfcodeexist" class=" d-flex flex-row align-items-center my-2 d-none"
+                          style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                          <p class="my-1 ms-1">This Code Is Already Exists</p>
+                          </div>
+  
+                        </div>
+                        <div class="d-flex flex-column">
+                          <div>
+                            <span class="my-2"
+                            style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Location</span>
+                          </div>
+                          <div class="d-flex mb-2 ">
+                            <input  style="width: 98%;" type="file" accept=".pdf" class="form-control mb-2" name="wfpath" id="wfpath">
+                          </div>
+  
+                          <div id="wfurlempty" class=" d-flex flex-row align-items-center my-2 d-none"
+                          style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                          <p class="my-1 ms-1">You Must Enter This Field</p>
+                          </div>
+  
+                        </div>
+  
+                        <form id="wfsubmit" enctype="multipart/form-data">
+                        <div class="d-flex justify-content-end" style="width: 98%;">
+                          <button  type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                      </form>
+                    </div>
+  
+  
+                  </div>
+                </div>
+
               
             </div>
           </div>
@@ -2909,6 +2989,79 @@
           }
         });
       </script>
+
+      <!-- ADD WORK FLOW -->
+      <script>
+
+        wfsubmit.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("wfpath", wfpath.files[0]);
+        formData.append("wftitle", wftitle.value);
+        formData.append("wfcode", wfcode.value);
+        formData.append("wfpath", wfpath.value);
+        
+        const res = await fetch("/addworkflow", {
+          method: "POST",
+          body: formData,
+          // body: JSON.stringify({ dicpath : dicpath.value, dictitle : dictitle.value , diccode : diccode.value }),
+          // headers: { "Content-Type": "application/json" },
+          // headers: { "Content-Type": "application/json" },
+          // headers : { "Content-Type": "application/pdf" },
+        });
+        
+        const data = await res.json();
+      
+        if (data.notitle) {
+              nowftitle.classList.remove("d-none");
+              wftitle.classList.add("redframe");
+            } else {
+              nowftitle.classList.add("d-none");
+              wftitle.classList.remove("redframe");
+            }
+
+        if (data.codeempty) {
+          wfcodeempty.classList.remove("d-none");
+          wfcode.classList.add("redframe");
+        } else {
+          wfcodeempty.classList.add("d-none");
+          wfcode.classList.remove("redframe");
+        }
+
+        if (data.norare) {
+          nowf.classList.remove("d-none");
+          wfcode.classList.add("redframe");
+        } else {
+          nowf.classList.add("d-none");
+          wfcode.classList.remove("redframe");
+        }
+
+        if (data.codeexist) {
+          wfcodeexist.classList.remove("d-none");
+          wfcode.classList.add("redframe");
+        } else {
+          wfcodeexist.classList.add("d-none");
+          wfcode.classList.remove("redframe");
+        }   
+        
+        if (data.errors) {
+        data.errors.forEach(item => {
+          if (item.path == "wfpath") {
+            wfurlempty.classList.remove("d-none");
+            wfpath.classList.add("redframe");
+          } else {
+            wfurlempty.classList.add("d-none");
+            wfpath.classList.remove("redframe");
+          }
+
+        })
+      };
+
+        if (data.done) {
+          location.assign("/admin")
+        }
+      });
+    </script>
 
         
 

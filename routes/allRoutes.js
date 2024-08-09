@@ -24,6 +24,10 @@ const url = require('node:url');
 const { v4: uuidv4 } = require("uuid");
 //MULTER
 const multer = require("multer");
+//FS
+const fs = require("fs");
+//PATH
+const path = require('path');
 //ERROR HANDILING
 const ApiError = require("../utils/apierror");
 //MULTER DISKSTORAGE
@@ -123,6 +127,30 @@ const multerFilterRare = function (req, file, cb) {
 };
 const uploadrare = multer({ storage: multerStorageRare, fileFilter : multerFilterRare})
 
+//MULTER DISKSTORAGE FOR WORKFLOW
+const multerStorageWF = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/WorkFlow");
+  },
+  filename: function (req, file, cb) {
+    const ext = file.mimetype.split("/")[1];
+    const filename = `user-${uuidv4()}-${Date.now()}.${ext}`;
+    cb(null, filename);
+  },
+})
+//MULTER IMAGE ONLY
+const multerFilterWF = function (req, file, cb) {
+  if (file.mimetype.startsWith("application")) {
+    cb(null, true);
+  } else {
+    cb(
+      new ApiError("Invalid image type! Only PDF is supported."),
+      false
+    );
+  }
+};
+const uploadWF = multer({ storage: multerStorageWF, fileFilter : multerFilterWF})
+
 
 
 //SCHEMA
@@ -148,6 +176,7 @@ const Labtoxicityschema = require("../models/labtoxicitySchema");
 const Presenstation = require("../models/presenstation");
 const Policy = require("../models/policy");
 const Rareprotocols = require("../models/rareprotocols");
+const Workflow = require("../models/workflow");
 
 //MIDDLEWARE
 const { requireAuth } = require("../middleware/middleware");
@@ -177,8 +206,8 @@ router.use(express.static("public"));
 require("dotenv").config();
 //SEND EMAIL
 const sendEmail = require(`../utils/sendEmail`);
-// const app = express();
-// app.use(express.static(path.join(__dirname, "")));
+// // const app = express();
+// router.use(express.static(path.join(__dirname, "")));
 
 // cloudinary.config({
 //   cloud_name: process.env.CLOUDINARY_ClOUD_NAME,
@@ -513,7 +542,11 @@ router.get(
       //ADD WORKSHEET TO WORKBOOK
       xlsx.utils.book_append_sheet(workbook, worksheet, "Users");
       //DOWNLOAD EXCEL FILE
-      xlsx.writeFile(workbook, "C:\\PharmacyConnect\\Users.xlsx");
+      // xlsx.writeFile(workbook, "C:\\PharmacyConnect\\Users.xlsx");  
+      const filePath = 'uploads/DicExtract/Users.xlsx';
+      xlsx.writeFile(workbook, filePath);
+      // res.sendFile('Users.xlsx', { root: path.join(__dirname, '../public') });
+      res.sendFile('Users.xlsx', { root: ('uploads/DicExtract') });
       res.redirect("/dic");
       res.send(new ApiError(201, "success", response));
     } else {
@@ -7831,6 +7864,52 @@ router.post(
 
   })
 );
+
+// ADD WORKFLOW
+router.post(
+  "/addworkflow",
+  uploadWF.single("wfpath"),
+  [
+    check("wfpath").notEmpty()
+  ],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+
+    if (req.body.wftitle === "") {
+      return res.json({ notitle: "You Must Enter This Field" });
+    }
+
+    const code = req.body.wfcode
+  
+    if (code === "") {
+      return res.json({ codeempty: "You Must Enter This Field" });
+    }
+    
+    if (!code.includes("WF")){
+      return res.json({ norare: "Please Enter A Code Start With WF" });
+    }
+    
+    const findcode = await Workflow.findOne({ wfcode: req.body.wfcode });
+    if (findcode) {
+      return res.json({ codeexist: "This Code Is Already Exists" });
+    }
+    
+
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+
+    req.body.wfpath = req.file.filename;
+    
+    if (!findcode) {
+       const done = await Workflow.create(req.body)
+       res.json({ done : done})
+    }
+
+  })
+);
 // ADD PRESENTATION
 // router.post(
 //   "/addpresentation",
@@ -8082,6 +8161,16 @@ router.delete("/deletepresentation", checkIfUser, requireAuth,
 router.delete("/deletecommunication", checkIfUser, requireAuth, 
   asyncHandler( async (req, res) => {
     const find = await Communication.findOneAndDelete({dictitle :req.body.dictitle})
+    const directoryPath = "uploads/Dicomunication/"
+    const fileName = find.dicpath
+    
+    fs.unlink(directoryPath + fileName, (err) => {
+    if (err) {
+        throw err;
+      }
+
+  console.log("Delete File successfully.");
+});
     if (find) {
     res.redirect(req.get('referer'));  
     }
@@ -8091,6 +8180,16 @@ router.delete("/deletecommunication", checkIfUser, requireAuth,
 router.delete("/deletepolicy", checkIfUser, requireAuth, 
   asyncHandler( async (req, res) => {
     const find = await Policy.findOneAndDelete({policytitle :req.body.policytitle})
+    const directoryPath = "uploads/Policy/"
+    const fileName = find.policypath
+    
+    fs.unlink(directoryPath + fileName, (err) => {
+    if (err) {
+        throw err;
+      }
+
+  console.log("Delete File successfully.");
+});
     if (find) {
     res.redirect(req.get('referer'));  
     }
@@ -8100,6 +8199,37 @@ router.delete("/deletepolicy", checkIfUser, requireAuth,
 router.delete("/deleteprotocols", checkIfUser, requireAuth, 
   asyncHandler( async (req, res) => {
     const find = await Rareprotocols.findOneAndDelete({raretitle :req.body.raretitle})
+    const directoryPath = "uploads/Rare/"
+    const fileName = find.rarepath
+    
+    fs.unlink(directoryPath + fileName, (err) => {
+    if (err) {
+        throw err;
+      }
+
+  console.log("Delete File successfully.");
+});
+    if (find) {
+    res.redirect(req.get('referer'));  
+    }
+  }) );
+
+      //DELETE WORKFLOW
+router.delete("/deleteworkflow", checkIfUser, requireAuth, 
+  asyncHandler( async (req, res) => {
+    const find = await Workflow.findOneAndDelete({wftitle :req.body.wftitle})
+    console.log(find.wfpath)
+
+    const directoryPath = "uploads/WorkFlow/"
+    const fileName = find.wfpath
+    
+    fs.unlink(directoryPath + fileName, (err) => {
+    if (err) {
+        throw err;
+      }
+
+  console.log("Delete File successfully.");
+});
     if (find) {
     res.redirect(req.get('referer'));  
     }
