@@ -6,28 +6,20 @@ const bcrypt = require("bcrypt");
 const router = express.Router();
 //ERROR HANDILING TRY_CATCH OR THEN_CATCH
 const asyncHandler = require("express-async-handler");
-//SLUGIFY
-const slugify = require("slugify");
 //MOMMENT TIMESTAMP
 const moment = require("moment");
 //JWT TOKEN
 const jwt = require("jsonwebtoken");
 //VALIDATION RULE
 const { check, validationResult } = require("express-validator");
-//Cloudinary
-const cloudinary = require("cloudinary").v2;
 //TO EXCELL FILE
 const xlsx = require("xlsx");
-//URL
-const url = require('node:url');
 //UNIQUE ID
 const { v4: uuidv4 } = require("uuid");
 //MULTER
 const multer = require("multer");
 //FS
 const fs = require("fs");
-//PATH
-const path = require('path');
 //ERROR HANDILING
 const ApiError = require("../utils/apierror");
 //MULTER DISKSTORAGE
@@ -542,15 +534,9 @@ router.get(
       //ADD WORKSHEET TO WORKBOOK
       xlsx.utils.book_append_sheet(workbook, worksheet, "Users");
       //DOWNLOAD EXCEL FILE
-      // xlsx.writeFile(workbook, "C:\\PharmacyConnect\\Users.xlsx");  
       const filePath = 'uploads/DicExtract/Users.xlsx';
       xlsx.writeFile(workbook, filePath);
-      // res.sendFile('Users.xlsx', { root: path.join(__dirname, '../public') });
-      res.sendFile('Users.xlsx', { root: ('uploads/DicExtract') });
-      res.redirect("/dic");
-      res.send(new ApiError(201, "success", response));
-    } else {
-      res.send(new ApiError(404, "No Data Avaliable"));
+      res.download('uploads/DicExtract/Users.xlsx', 'Users.xlsx', err => {console.log(err)})
     }
   })
 );
@@ -1685,11 +1671,9 @@ router.get(
       //ADD WORKSHEET TO WORKBOOK
       xlsx.utils.book_append_sheet(workbook, worksheet, "Inpatient");
       //DOWNLOAD EXCEL FILE
-      xlsx.writeFile(workbook, "C:\\PharmacyConnect\\Inpatient.xlsx");
-      res.redirect("/inpatient3");
-      res.send(new ApiError(201, "success", response));
-    } else {
-      res.send(new ApiError(404, "No Data Avaliable"));
+      const filePath = 'uploads/InExtract/Inpatient.xlsx';
+      xlsx.writeFile(workbook, filePath);
+      res.download('uploads/InExtract/Inpatient.xlsx', 'Inpatient.xlsx', err => {console.log(err)})
     }
   })
 );
@@ -1713,10 +1697,9 @@ router.get(
       //ADD WORKSHEET TO WORKBOOK
       xlsx.utils.book_append_sheet(workbook, worksheet, "Outpatient");
       //DOWNLOAD EXCEL FILE
-      xlsx.writeFile(workbook, "C:\\PharmacyConnect\\Outpatient.xlsx");
-      res.redirect("/outpatient3");
-    } else {
-      res.send(new ApiError(404, "No Data Avaliable"));
+      const filePath = 'uploads/OutExtract/Outpatient.xlsx';
+      xlsx.writeFile(workbook, filePath);
+      res.download('uploads/OutExtract/Outpatient.xlsx', 'Outpatient.xlsx', err => {console.log(err)})
     }
   })
 );
@@ -2679,10 +2662,9 @@ router.get(
       //ADD WORKSHEET TO WORKBOOK
       xlsx.utils.book_append_sheet(workbook, worksheet, "Lab");
       //DOWNLOAD EXCEL FILE
-      xlsx.writeFile(workbook, "C:\\PharmacyConnect\\Lab.xlsx");
-      res.redirect("/lab");
-    } else {
-      res.send(new ApiError(404, "No Data Avaliable"));
+    const filePath = 'uploads/LabExtract/Lab.xlsx';
+    xlsx.writeFile(workbook, filePath);
+    res.download('uploads/LabExtract/Lab.xlsx', 'Lab.xlsx', err => {console.log(err)})
     }
   })
 );
@@ -3108,10 +3090,9 @@ router.get(
       //ADD WORKSHEET TO WORKBOOK
       xlsx.utils.book_append_sheet(workbook, worksheet, "Dispense");
       //DOWNLOAD EXCEL FILE
-      xlsx.writeFile(workbook, "C:\\PharmacyConnect\\Dispense.xlsx");
-      res.redirect("/dispense3");
-    } else {
-      res.send(new ApiError(404, "No Data Avaliable"));
+      const filePath = 'uploads/DispExtract/Dispense.xlsx';
+      xlsx.writeFile(workbook, filePath);
+      res.download('uploads/DispExtract/Dispense.xlsx', 'Dispense.xlsx', err => {console.log(err)})
     }
   })
 );
@@ -3454,9 +3435,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("@57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email"})
-    // }
+    if (!email.includes("@57357.org")) {
+      return res.json({ invalidemail: "Invalid Email"})
+    }
 
 
     const newUser = await User.create(req.body);
