@@ -149,6 +149,9 @@
               <!-- ADD NEW PATIENT MODAL -->
               <%- include('../partials/AddNewPatient-Modal.ejs') %>
 
+              <!-- ADD STAT MODAL -->
+              <%- include('../partials/AddStat-Modal.ejs') %>
+
                 <!-- ADD LAB PATIENT MODAL -->
                 <%- include('../partials/AddLabPatient-Modal.ejs') %>
 
@@ -545,6 +548,59 @@
         });
       </script>
 
+      <!-- ADD STAT INPATIENT -->
+      <script>
+        add_stat_inpatient.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const res = await fetch("/add_stat_in", {
+            method: "POST",
+            body: JSON.stringify({ sender : senderstat.value, edit : editstat.value , commentime2 : commentime2stat.value, commentime : commentimestat.value, patientname: patientstatname.value, mrn: mrnstat.value, ptfloor: ptstatfloor.value, requestype: requestypestat.value, oraliv: oralivstat.value,  attachfile: attachfilestat.value, prepcomment: prepcommentstat.value, }),
+            headers: { "Content-Type": "application/json" },
+          });
+          const data = await res.json();
+          if (data.errors) {
+            data.errors.forEach(item => {
+              if (item.path == "ptfloor") {
+                noptstatfloor.classList.remove("d-none");
+                ptstatfloor.classList.add("redframe");
+              } else {
+                noptstatfloor.classList.add("d-none");
+                ptstatfloor.classList.remove("redframe");
+              }
+
+            })
+          };
+
+          if (data.nopatient) {
+            nostatpatient.classList.remove("d-none");
+            mrnstat.classList.add("redframe");
+          } else {
+            nostatpatient.classList.add("d-none");
+            mrnstat.classList.remove("redframe");
+          }
+
+          if (data.mrnnotnumber) {
+                mrnstatnotnumber.classList.remove("d-none");
+                mrnstat.classList.add("redframe");
+              } else {
+                mrnstatnotnumber.classList.add("d-none");
+                mrnstat.classList.remove("redframe");
+              }
+
+          if (data.mrninempty) {
+            mrnstatempty.classList.remove("d-none");
+            mrnstat.classList.add("redframe");
+          } else {
+            mrnstatempty.classList.add("d-none");
+            mrnstat.classList.remove("redframe");
+          }    
+
+          if (data.inpatient_add_patient) {
+            location.assign("/inpatient3" + window.location.search)
+          }
+        });
+      </script>
+
       <!-- add_lab_inpatient -->
       <script>
         add_lab_inpatient.addEventListener("submit", async (e) => {
@@ -640,6 +696,10 @@
           }
         })
       </script>
+
+      <!-- SOCKET>IO -->
+      <script src="./socket.io/socket.io.js"></script>
+      <script type="module" src="/js/socket.js"></script>
 
 
 

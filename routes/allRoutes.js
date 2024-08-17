@@ -641,10 +641,6 @@ router.get(
       .skip(skip)
       .limit(limit);
 
-      const myUrl = `${req.url}?page=1`
-      // const path = myUrl.toString()
-      
-
     if (results) {
       res.render("Inpatient/inpatient3.ejs", {
 
@@ -5471,6 +5467,49 @@ router.post(
   [
     check("oraliv").notEmpty(),
     check("requestype").notEmpty(),
+    check("ptfloor").notEmpty(),
+  ],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+
+    const mrn = req.body.mrn
+  
+    if (mrn === "") {
+      return res.json({ mrninempty: "You Must Enter This Field" });
+    }
+    
+    if (mrn.match(/[a-zA-z]/)){
+      return res.json({ mrnnotnumber: "Please Enter A Valid MRN" });
+    }
+    
+    const patient = await Newpatient.findOne({ addpatientmrn: req.body.mrn });
+    if (patient == null) {
+      return res.json({ nopatient: "This Patient Not Found" });
+    }
+    
+    
+    if (patient) {
+      req.body.patientname = patient.addpatientname;
+    }
+
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+
+    req.body.commentime = moment()
+    req.body.commentime2 = moment()
+
+    const inpatientAddpatient = await Inpatientschema.create(req.body);
+    res.json({ inpatient_add_patient: inpatientAddpatient });
+  })
+);
+
+// INPATIENT ADD PATIENT
+router.post(
+  "/add_stat_in",
+  [
     check("ptfloor").notEmpty(),
   ],
   checkIfUser,
