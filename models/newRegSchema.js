@@ -230,6 +230,7 @@ const user = new mongoose.Schema(
 
     examchoose: {
       examname: String,
+      examtime: String,
       questionchoose1: String,
       answer1questionchoose1: String,
       answer2questionchoose1: String,

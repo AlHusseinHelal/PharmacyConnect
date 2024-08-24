@@ -10,7 +10,7 @@ const score = new mongoose.Schema( {
         score: String,
         examname: String,
         questionnumber: String,
-        createdAt: Date,
+        examtime: String,
         answerc1 : String,
         answerc2 : String,
         answerc3 : String,
@@ -51,10 +51,7 @@ const score = new mongoose.Schema( {
         answertf8 : String,
         answertf9 : String,
         answertf10 : String,
-      },
-    
-  
-    
+      },  
   { timestamps: true }
 );
 

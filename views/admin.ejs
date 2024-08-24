@@ -278,6 +278,7 @@
                     <span class=""
                       style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">True/False</span>
                   </div>
+
                   <div class="w-100 d-flex my-2 justify-content-center">
                     <select name="" class="form-control" type="text" id="selectTrue" style="width: 98%;">
                       <option hidden disabled selected value="">Question#</option>
@@ -292,6 +293,16 @@
                       <option value="9">9</option>
                       <option value="10">10</option>
                     </select>
+                  </div>
+
+                  <div class="d-flex align-items-center ms-1 mt-2 ">
+                    <i class="fa-regular fa-clock me-2" style="color: #74C0FC;"></i>
+                    <span class=""
+                      style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Select Time / Minutes</span>
+                  </div>
+
+                  <div class="w-100 d-flex my-2 justify-content-center">
+                    <input class="form-control" type="text" id="selectTime" style="width: 98%;">
                   </div>
 
 
@@ -314,6 +325,7 @@
 
                   <form action="/examform" method="post" class="d-flex flex-column align-items-center">
                     <div id="chooseForm" class="d-flex flex-column align-items-center w-100">
+                    
 
                     </div>
                     <input id="questionnumber" hidden type="text" value="" name="questionnumber">
@@ -2501,7 +2513,7 @@
                             <%= item.examname %>
                           </td>
                           <td style="text-transform: uppercase;">
-                            <%= moment(item.createdAt).format('DD-MM-YY HH:MM A') %>
+                            <%= moment(item.createdAt).format('DD-MM-YY hh:mm a') %>
                           </td>
                           <td> <span style="color: blue;">
                               <%= item.score %>
@@ -2561,8 +2573,14 @@
 
       <!-- SUBMITCHOOSE -->
         <script>
-        submitChoose.addEventListener("click", (eo) => {
+        submitChoose.addEventListener("click",  (eo) => {
           eo.preventDefault()
+          const submitTime = document.querySelector("#submitTime")
+          const selectTime = document.querySelector("#selectTime")
+          const timevalue = selectTime.value
+          console.log(timevalue)
+
+          // submitTime.value = timevalue
           let c = selectChoose.value
           let a = selectAssy.value
           let b = selectComplete.value
@@ -2575,6 +2593,11 @@
                      <div class="form-floating my-2" style="width: 98%;">
                         <input id="examname" name="examname" class="form-control" type="text" placeholder="Exam-Name" >
                         <label for="examname">Exam-Name</label>
+                      </div>`
+
+          chooseForm.innerHTML += `
+                     <div hidden class="form-floating my-2" style="width: 98%;">
+                        <input id="submitTime" name="examtime" class="form-control" type="text" value="${timevalue}">
                       </div>`
 
           for (let i = 0; i < c; i++) {
@@ -2603,6 +2626,8 @@
             selectTrue.setAttribute("disabled", "")
 
           }
+
+
           for (let i = 0; i < a; i++) {
 
             chooseForm.innerHTML += `<div class="form-floating my-2" style="width: 98%;">

@@ -198,48 +198,8 @@ router.use(express.static("public"));
 require("dotenv").config();
 //SEND EMAIL
 const sendEmail = require(`../utils/sendEmail`);
-// // const app = express();
-// router.use(express.static(path.join(__dirname, "")));
 
-// cloudinary.config({
-//   cloud_name: process.env.CLOUDINARY_ClOUD_NAME,
-//   api_key: process.env.CLOUDINARY_API_KEY,
-//   api_secret: process.env.CLOUDINARY_API_SECRET,
-// });
 
-// cloudinary.config({
-//   cloud_name: "dw2lzbgmt",
-//   api_key: "594878572393349",
-//   api_secret: "KZVTWvN1LcrpVm-COLVX-3VgHzU",
-// });
-
-// ---------------------------------
-//GET REQUEST
-// ----------------------------------
-
-//ADMIN
-// router.get(
-//   "/admin",
-//   checkIfUser,
-//   requireAuth,
-//   asyncHandler(async (req, res) => {
-//     const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
-//     const user = await User.findById({ _id: decoded.id });
-//     const exam = user.examchoose
-//     const {results} = user
-//     const custmer = await User.find().sort({ firstname : "asc"});
-//     const ldsearch = user.ldsearch
-//     const searchcode = ldsearch.searchText
-//     const searchtext = ldsearch.searchText
-//     console.log(searchtext)
-
-//     const find = user.results.filter( item => item.code.match(searchcode) || item.examname.match(searchtext))
-
-//     if (custmer) {
-//       res.render("admin.ejs", { array: custmer, exam, results, moment : moment , find });
-//     }
-//   })
-// );
 router.get(
   "/admin",
   checkIfUser,
@@ -5462,6 +5422,7 @@ router.post(
 // });
 
 // INPATIENT ADD PATIENT
+
 router.post(
   "/add_patient_in",
   [
@@ -5503,8 +5464,10 @@ router.post(
 
     const inpatientAddpatient = await Inpatientschema.create(req.body);
     res.json({ inpatient_add_patient: inpatientAddpatient });
-  })
-);
+    
+})
+)
+;
 
 // INPATIENT ADD PATIENT
 router.post(
@@ -6732,6 +6695,8 @@ router.post(
       await User.findOneAndUpdate({ code: item }, { examchoose: req.body });
     });
 
+    console.log(req.body);
+
     if (results) {
       res.redirect("/admin");
     }
@@ -7512,7 +7477,7 @@ router.post(
       score: score,
       code: user.code,
       examname: selectedObject.examname,
-      createdAt: Date(),
+      examtime: moment(),
       questionnumber: selectedObject.questionnumber,
       answerc1: req.body.answerc1,
       answerc2: req.body.answerc2,
@@ -8253,6 +8218,18 @@ router.delete("/deleteworkflow", checkIfUser, requireAuth,
     if (find) {
     res.redirect(req.get('referer'));  
     }
+  }) );
+
+  //DELETE EXAM
+router.delete("/deleteexam", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+  const results = await User.findByIdAndUpdate({_id : decoded.id},{ examchoose: {} })
+  console.log(results)
+  if (results) {
+    res.redirect(req.get('referer'));  
+    }
+
+
   }) );
 
 // ---------------------------------
