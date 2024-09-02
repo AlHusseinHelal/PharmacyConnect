@@ -142,12 +142,18 @@ exports.OncoTips = asyncHandler(async (req, res) => {
   const Immunosuppressant = await Medication.find({
     classname: "Immunosuppressant",
   }).sort({ generic: "asc" });
+
   const Mucolytic = await Medication.find({ classname: "Mucolytic" }).sort({
     generic: "asc",
   });
   const MastCellStabilizer = await Medication.find({
     classname: "Mast Cell Stabilizer",
   }).sort({ generic: "asc" });
+
+  const MonoClonal = await Medication.find({
+    classname: "MonoClonal antibodies",
+  }).sort({ generic: "asc" });
+
   const Neurology = await Medication.find({ classname: "Neurology" }).sort({
     generic: "asc",
   });
@@ -286,7 +292,8 @@ exports.OncoTips = asyncHandler(async (req, res) => {
       communication,
       policy,
       rareprotocols,
-      workflow
+      workflow,
+      MonoClonal
     });
   }
 });

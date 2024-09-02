@@ -185,6 +185,25 @@
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 
 
+                  <!-- MEDICATION AntiAsthmatic-->
+                  <li>
+                        <a id="botn53" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                          data-bs-toggle="collapse" data-bs-target="#AntiAsthmaticcollapse" aria-expanded="false">Anti-Asthmatic</a>
+                        <div class="collapse" id="AntiAsthmaticcollapse">
+                          <ul class="list-group group" style="list-style: none; text-align: center;">
+    
+                            <% AntiAsthmatic.forEach(item=> { %>
+                              <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
+                                <p hidden class="code"><%= item.code%></p>
+                            <p hidden class="generic"><%= item.generic%></p>
+                                <%= item.generic%>
+                              </li>
+                              <% }) %>
+    
+                          </ul>
+                        </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
                   <!-- MEDICATION Anti-Cancer -->
                   <li>
                     <a id="botn11" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
@@ -212,7 +231,7 @@
                   <li>
                     <a id="botn12" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
                       data-bs-toggle="collapse" data-bs-target="#antibioticcollapse"
-                      aria-expanded="false">AntiBiotics</a>
+                      aria-expanded="false">Anti-Biotics</a>
                     <div class="collapse" id="antibioticcollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
@@ -340,7 +359,7 @@
                   <li>
                     <a id="botn18" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
                       data-bs-toggle="collapse" data-bs-target="#antifungalcollapse"
-                      aria-expanded="false">AntiFungal</a>
+                      aria-expanded="false">Anti-Fungal</a>
                     <div class="collapse" id="antifungalcollapse">
                       <ul class="ms-3 list-group group" style="list-style: none; text-align: center;">
 
@@ -574,6 +593,26 @@
                   </li>
                   <li class="ms-3 border-top notlist" style="list-style: none;"></li>
 
+                  <!-- MEDICATION AntiHyperphosphatemia-->
+                  <li>
+                        <a id="botn55" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                          data-bs-toggle="collapse" data-bs-target="#AntiHyperphosphatemiacollapse" aria-expanded="false">Anti-Hyperphosphatemia</a>
+                        <div class="collapse" id="AntiHyperphosphatemiacollapse">
+                          <ul class="list-group group" style="list-style: none; text-align: center;">
+    
+                            <% AntiHyperphosphatemia.forEach(item=> { %>
+                              <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
+                                <p hidden class="code"><%= item.code%></p>
+                            <p hidden class="generic"><%= item.generic%></p>
+                                <%= item.generic%>
+                              </li>
+                              <% }) %>
+    
+                          </ul>
+                        </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
                   <!-- MEDICATION Antidote-->
                   <li>
                     <a id="botn29" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
@@ -590,6 +629,46 @@
                           <% }) %>
 
                           
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Antitraumatic-->
+                  <li>
+                    <a id="botn46" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Antitraumaticcollapse" aria-expanded="false">Anti-Traumatic</a>
+                    <div class="collapse" id="Antitraumaticcollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% Antitraumatic.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
+                            <p hidden class="code"><%= item.code%></p>
+                            <p hidden class="generic"><%= item.generic%></p>
+                            <%= item.generic%>
+                          </li>
+                          <% }) %>
+
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Bronchodilator-->
+                  <li>
+                    <a id="botn47" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Bronchodilatorcollapse" aria-expanded="false">Bronchodilator</a>
+                    <div class="collapse" id="Bronchodilatorcollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% Bronchodilator.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
+                            <p hidden class="code"><%= item.code%></p>
+                            <p hidden class="generic"><%= item.generic%></p>
+                            <%= item.generic%>
+                          </li>
+                          <% }) %>
+
                       </ul>
                     </div>
                   </li>
@@ -616,15 +695,34 @@
                   </li>
                   <li class="ms-3 border-top notlist" style="list-style: none;"></li>
 
-                  <!-- MEDICATION Nasal Corticosteroid -->
+                  <!-- MEDICATION Contraceptive-->
                   <li>
-                    <a id="botn31" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
-                      data-bs-toggle="collapse" data-bs-target="#Corticosteroidcollapse"
-                      aria-expanded="false">Corticosteroid</a>
-                    <div class="collapse" id="Corticosteroidcollapse">
+                      <a id="botn48" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                        data-bs-toggle="collapse" data-bs-target="#Contraceptivecollapse" aria-expanded="false">Contraceptive</a>
+                      <div class="collapse" id="Contraceptivecollapse">
+                        <ul class="list-group group" style="list-style: none; text-align: center;">
+  
+                          <% Contraceptive.forEach(item=> { %>
+                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
+                              <p hidden class="code"><%= item.code%></p>
+                            <p hidden class="generic"><%= item.generic%></p>
+                              <%= item.generic%>
+                            </li>
+                            <% }) %>
+  
+                        </ul>
+                      </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Decongestant-->
+                  <li>
+                    <a id="botn49" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Decongestantcollapse" aria-expanded="false">Decongestant</a>
+                    <div class="collapse" id="Decongestantcollapse">
                       <ul class="list-group group" style="list-style: none; text-align: center;">
 
-                        <% Corticosteroid.forEach(item=> { %>
+                        <% Decongestant.forEach(item=> { %>
                           <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
                             <p hidden class="code"><%= item.code%></p>
                             <p hidden class="generic"><%= item.generic%></p>
@@ -632,13 +730,53 @@
                           </li>
                           <% }) %>
 
-                    
                       </ul>
                     </div>
                   </li>
                   <li class="ms-3 border-top notlist" style="list-style: none;"></li>
 
-                  <!-- MEDICATION Dietary Supplement-->
+                  <!-- MEDICATION Digestive-->
+                  <li>
+                      <a id="botn50" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                        data-bs-toggle="collapse" data-bs-target="#Digestivecollapse" aria-expanded="false">Digestive</a>
+                      <div class="collapse" id="Digestivecollapse">
+                        <ul class="list-group group" style="list-style: none; text-align: center;">
+  
+                          <% Digestive.forEach(item=> { %>
+                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
+                              <p hidden class="code"><%= item.code%></p>
+                            <p hidden class="generic"><%= item.generic%></p>
+                              <%= item.generic%>
+                            </li>
+                            <% }) %>
+  
+                        </ul>
+                      </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+
+                  <!-- MEDICATION Diuretic-->
+                  <li>
+                      <a id="botn54" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                        data-bs-toggle="collapse" data-bs-target="#Diureticcollapse" aria-expanded="false">Diuretic</a>
+                      <div class="collapse" id="Diureticcollapse">
+                        <ul class="list-group group" style="list-style: none; text-align: center;">
+  
+                          <% Diuretic.forEach(item=> { %>
+                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
+                              <p hidden class="code"><%= item.code%></p>
+                            <p hidden class="generic"><%= item.generic%></p>
+                              <%= item.generic%>
+                            </li>
+                            <% }) %>
+  
+                        </ul>
+                      </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                 <!-- MEDICATION Dietary Supplement-->
                   <li>
                     <a id="botn32" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
                       data-bs-toggle="collapse" data-bs-target="#DietarySupplementcollapse"
@@ -706,23 +844,23 @@
 
                   <!-- MEDICATION Gastrointestinal-->
                   <li>
-                    <a id="botn35" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
-                      data-bs-toggle="collapse" data-bs-target="#Gastrointestinalcollapse"
-                      aria-expanded="false">Gastrointestinal</a>
-                    <div class="collapse" id="Gastrointestinalcollapse">
-                      <ul class="list-group group" style="list-style: none; text-align: center;">
-
-                        <% Gastrointestinal.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
-                            <p hidden class="code"><%= item.code%></p>
-                            <p hidden class="generic"><%= item.generic%></p>
-                            <%= item.generic%>
-                          </li>
-                          <% }) %>
-
-                    
-                      </ul>
-                    </div>
+                      <a id="botn35" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                        data-bs-toggle="collapse" data-bs-target="#Gastrointestinalcollapse"
+                        aria-expanded="false">Gastrointestinal</a>
+                      <div class="collapse" id="Gastrointestinalcollapse">
+                        <ul class="list-group group" style="list-style: none; text-align: center;">
+  
+                          <% Gastrointestinal.forEach(item=> { %>
+                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
+                              <p hidden class="code"><%= item.code%></p>
+                              <p hidden class="generic"><%= item.generic%></p>
+                              <%= item.generic%>
+                            </li>
+                            <% }) %>
+  
+                      
+                        </ul>
+                      </div>
                   </li>
                   <li class="ms-3 border-top notlist" style="list-style: none;"></li>
 
@@ -748,6 +886,26 @@
                   </li>
                   <li class="ms-3 border-top notlist" style="list-style: none;"></li>
 
+                  <!-- MEDICATION Hormone-->
+                  <li>
+                        <a id="botn51" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                          data-bs-toggle="collapse" data-bs-target="#Hormonecollapse" aria-expanded="false">Hormone</a>
+                        <div class="collapse" id="Hormonecollapse">
+                          <ul class="list-group group" style="list-style: none; text-align: center;">
+    
+                            <% Hormone.forEach(item=> { %>
+                              <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
+                                <p hidden class="code"><%= item.code%></p>
+                            <p hidden class="generic"><%= item.generic%></p>
+                                <%= item.generic%>
+                              </li>
+                              <% }) %>
+    
+                          </ul>
+                        </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
                   <!-- MEDICATION Immunosuppressant -->
                   <li>
                     <a id="botn37" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
@@ -769,6 +927,27 @@
                     </div>
                   </li>
                   <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Laxative-->
+                  <li>
+                      <a id="botn52" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                        data-bs-toggle="collapse" data-bs-target="#Laxativecollapse" aria-expanded="false">Laxative</a>
+                      <div class="collapse" id="Laxativecollapse">
+                        <ul class="list-group group" style="list-style: none; text-align: center;">
+  
+                          <% Laxative.forEach(item=> { %>
+                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
+                              <p hidden class="code"><%= item.code%></p>
+                            <p hidden class="generic"><%= item.generic%></p>
+                              <%= item.generic%>
+                            </li>
+                            <% }) %>
+  
+                        </ul>
+                      </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
 
                   <!-- MEDICATION Mast Cell Stabilizer-->
                   <li>
@@ -813,6 +992,46 @@
                   </li>
                   <li class="ms-3 border-top notlist" style="list-style: none;"></li>
 
+                  <!-- MEDICATION Mao inhibitor-->
+                  <li>
+                    <a id="botn45" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Maocollapse" aria-expanded="false">Mao
+                      inhibitor</a>
+                    <div class="collapse" id="Maocollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% Maoinhibitor.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
+                            <p hidden class="code"><%= item.code%></p>
+                            <%= item.generic%>
+                          </li>
+                          <% }) %>
+
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION MonoClonal Antibodies-->
+                  <li>
+                        <a id="botn58" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                          data-bs-toggle="collapse" data-bs-target="#monoclonalcollapse" aria-expanded="false">MonoClonal Antibodies</a>
+                        <div class="collapse" id="monoclonalcollapse">
+                          <ul class="list-group group" style="list-style: none; text-align: center;">
+    
+                            <% MonoClonal.forEach(item=> { %>
+                              <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
+                                <p hidden class="code"><%= item.code%></p>
+                                <p hidden class="generic"><%= item.generic%></p>
+                                <%= item.generic%>
+                              </li>
+                              <% }) %>
+    
+                          </ul>
+                        </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>  
+
                   <!-- MEDICATION NEUROLOGY -->
                   <li>
                     <a id="botn40" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
@@ -829,6 +1048,28 @@
                           <% }) %>
 
                             
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+
+                  <!-- MEDICATION Nasal Corticosteroid -->
+                  <li>
+                    <a id="botn31" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
+                      data-bs-toggle="collapse" data-bs-target="#Corticosteroidcollapse"
+                      aria-expanded="false">Corticosteroid</a>
+                    <div class="collapse" id="Corticosteroidcollapse">
+                      <ul class="list-group group" style="list-style: none; text-align: center;">
+
+                        <% Corticosteroid.forEach(item=> { %>
+                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
+                            <p hidden class="code"><%= item.code%></p>
+                            <p hidden class="generic"><%= item.generic%></p>
+                            <%= item.generic%>
+                          </li>
+                          <% }) %>
+
+                    
                       </ul>
                     </div>
                   </li>
@@ -901,225 +1142,22 @@
                   </li>
                   <li class="ms-3 border-top notlist" style="list-style: none;"></li>
 
-                  <!-- MEDICATION Mao inhibitor-->
-                  <li>
-                    <a id="botn45" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
-                      data-bs-toggle="collapse" data-bs-target="#Maocollapse" aria-expanded="false">Mao
-                      inhibitor</a>
-                    <div class="collapse" id="Maocollapse">
-                      <ul class="list-group group" style="list-style: none; text-align: center;">
 
-                        <% Maoinhibitor.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
-                            <p hidden class="code"><%= item.code%></p>
-                            <%= item.generic%>
-                          </li>
-                          <% }) %>
 
-                      </ul>
-                    </div>
-                  </li>
-                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
 
-                  <!-- MEDICATION Antitraumatic-->
-                  <li>
-                    <a id="botn46" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
-                      data-bs-toggle="collapse" data-bs-target="#Antitraumaticcollapse" aria-expanded="false">Anti-Traumatic</a>
-                    <div class="collapse" id="Antitraumaticcollapse">
-                      <ul class="list-group group" style="list-style: none; text-align: center;">
 
-                        <% Antitraumatic.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
-                            <p hidden class="code"><%= item.code%></p>
-                            <p hidden class="generic"><%= item.generic%></p>
-                            <%= item.generic%>
-                          </li>
-                          <% }) %>
 
-                      </ul>
-                    </div>
-                  </li>
-                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
 
-                  <!-- MEDICATION Bronchodilator-->
-                  <li>
-                    <a id="botn47" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
-                      data-bs-toggle="collapse" data-bs-target="#Bronchodilatorcollapse" aria-expanded="false">Bronchodilator</a>
-                    <div class="collapse" id="Bronchodilatorcollapse">
-                      <ul class="list-group group" style="list-style: none; text-align: center;">
 
-                        <% Bronchodilator.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
-                            <p hidden class="code"><%= item.code%></p>
-                            <p hidden class="generic"><%= item.generic%></p>
-                            <%= item.generic%>
-                          </li>
-                          <% }) %>
 
-                      </ul>
-                    </div>
-                  </li>
-                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
 
-                    <!-- MEDICATION Contraceptive-->
-                    <li>
-                      <a id="botn48" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
-                        data-bs-toggle="collapse" data-bs-target="#Contraceptivecollapse" aria-expanded="false">Contraceptive</a>
-                      <div class="collapse" id="Contraceptivecollapse">
-                        <ul class="list-group group" style="list-style: none; text-align: center;">
-  
-                          <% Contraceptive.forEach(item=> { %>
-                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
-                              <p hidden class="code"><%= item.code%></p>
-                            <p hidden class="generic"><%= item.generic%></p>
-                              <%= item.generic%>
-                            </li>
-                            <% }) %>
-  
-                        </ul>
-                      </div>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
 
-                      <!-- MEDICATION Decongestant-->
-                  <li>
-                    <a id="botn49" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
-                      data-bs-toggle="collapse" data-bs-target="#Decongestantcollapse" aria-expanded="false">Decongestant</a>
-                    <div class="collapse" id="Decongestantcollapse">
-                      <ul class="list-group group" style="list-style: none; text-align: center;">
 
-                        <% Decongestant.forEach(item=> { %>
-                          <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
-                            <p hidden class="code"><%= item.code%></p>
-                            <p hidden class="generic"><%= item.generic%></p>
-                            <%= item.generic%>
-                          </li>
-                          <% }) %>
 
-                      </ul>
-                    </div>
-                  </li>
-                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
 
-                    <!-- MEDICATION Digestive-->
-                    <li>
-                      <a id="botn50" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
-                        data-bs-toggle="collapse" data-bs-target="#Digestivecollapse" aria-expanded="false">Digestive</a>
-                      <div class="collapse" id="Digestivecollapse">
-                        <ul class="list-group group" style="list-style: none; text-align: center;">
-  
-                          <% Digestive.forEach(item=> { %>
-                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
-                              <p hidden class="code"><%= item.code%></p>
-                            <p hidden class="generic"><%= item.generic%></p>
-                              <%= item.generic%>
-                            </li>
-                            <% }) %>
-  
-                        </ul>
-                      </div>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
 
-                      <!-- MEDICATION Hormone-->
-                      <li>
-                        <a id="botn51" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
-                          data-bs-toggle="collapse" data-bs-target="#Hormonecollapse" aria-expanded="false">Hormone</a>
-                        <div class="collapse" id="Hormonecollapse">
-                          <ul class="list-group group" style="list-style: none; text-align: center;">
-    
-                            <% Hormone.forEach(item=> { %>
-                              <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
-                                <p hidden class="code"><%= item.code%></p>
-                            <p hidden class="generic"><%= item.generic%></p>
-                                <%= item.generic%>
-                              </li>
-                              <% }) %>
-    
-                          </ul>
-                        </div>
-                      </li>
-                      <li class="ms-3 border-top notlist" style="list-style: none;"></li>
 
-                        <!-- MEDICATION Laxative-->
-                    <li>
-                      <a id="botn52" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
-                        data-bs-toggle="collapse" data-bs-target="#Laxativecollapse" aria-expanded="false">Laxative</a>
-                      <div class="collapse" id="Laxativecollapse">
-                        <ul class="list-group group" style="list-style: none; text-align: center;">
-  
-                          <% Laxative.forEach(item=> { %>
-                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
-                              <p hidden class="code"><%= item.code%></p>
-                            <p hidden class="generic"><%= item.generic%></p>
-                              <%= item.generic%>
-                            </li>
-                            <% }) %>
-  
-                        </ul>
-                      </div>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
 
-                      <!-- MEDICATION AntiAsthmatic-->
-                      <li>
-                        <a id="botn53" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
-                          data-bs-toggle="collapse" data-bs-target="#AntiAsthmaticcollapse" aria-expanded="false">Anti-Asthmatic</a>
-                        <div class="collapse" id="AntiAsthmaticcollapse">
-                          <ul class="list-group group" style="list-style: none; text-align: center;">
-    
-                            <% AntiAsthmatic.forEach(item=> { %>
-                              <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
-                                <p hidden class="code"><%= item.code%></p>
-                            <p hidden class="generic"><%= item.generic%></p>
-                                <%= item.generic%>
-                              </li>
-                              <% }) %>
-    
-                          </ul>
-                        </div>
-                      </li>
-                      <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                        <!-- MEDICATION Diuretic-->
-                    <li>
-                      <a id="botn54" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
-                        data-bs-toggle="collapse" data-bs-target="#Diureticcollapse" aria-expanded="false">Diuretic</a>
-                      <div class="collapse" id="Diureticcollapse">
-                        <ul class="list-group group" style="list-style: none; text-align: center;">
-  
-                          <% Diuretic.forEach(item=> { %>
-                            <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
-                              <p hidden class="code"><%= item.code%></p>
-                            <p hidden class="generic"><%= item.generic%></p>
-                              <%= item.generic%>
-                            </li>
-                            <% }) %>
-  
-                        </ul>
-                      </div>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                      <!-- MEDICATION AntiHyperphosphatemia-->
-                      <li>
-                        <a id="botn55" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
-                          data-bs-toggle="collapse" data-bs-target="#AntiHyperphosphatemiacollapse" aria-expanded="false">Anti-Hyperphosphatemia</a>
-                        <div class="collapse" id="AntiHyperphosphatemiacollapse">
-                          <ul class="list-group group" style="list-style: none; text-align: center;">
-    
-                            <% AntiHyperphosphatemia.forEach(item=> { %>
-                              <li class="mb-1 list-group-item list-group-item-action medication <%= item.code%> <%= item.generic%>">
-                                <p hidden class="code"><%= item.code%></p>
-                            <p hidden class="generic"><%= item.generic%></p>
-                                <%= item.generic%>
-                              </li>
-                              <% }) %>
-    
-                          </ul>
-                        </div>
-                      </li>
-                      <li class="ms-3 border-top notlist" style="list-style: none;"></li>
 
                         <!-- MEDICATION PPI-->
                     <li>
@@ -1160,6 +1198,8 @@
                         </div>
                       </li>
                       <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+                    
+
 
 
 
@@ -1700,210 +1740,6 @@
                       </li>
                       <li class="ms-3 border-top notlist" style="list-style: none;"></li>
                     <% }) %>
-
-
-
-                    <!-- <li>
-                      <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont MISKDowntime">MISK Downtime</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-  
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont INTERNALAUDITPOLICY">INTERNAL AUDIT POLICY</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont VerificationReviewingofPrescriptionOrders">Verification & Reviewing of Prescription Orders</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont Patienteducation">Patient education</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont DispensingOutpatient">Dispensing Outpatient take-home prescription vai automation</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont NarcoticsManagement">Narcotics Management</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont PharmacySecuritySafetyRequirement">Pharmacy Security & Safety Requirement</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont DrugInformationCenter">Drug Information Center</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont HighAlertMedicationandLASAMedication">High Alert Medication and LASA Medication</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont Medstation">Med station (Pyxis)</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont ManagementofConcentratedElectrolytes">Management of Concentrated Electrolytes</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont NutritionSupport">Nutrition Support</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont Medicationsreturnspolicy">Medications returns policy</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont PharmaceuticalSamplesD">Pharmaceutical Samples D</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont AdverseDrugReactionReporting">Adverse Drug Reaction Reporting</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont MedicationErrorReportingandFollowup">Medication Error Reporting and Follow-up</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-  
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont FloorStock">Floor Stock</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont DayCareprescriptionprocessing">Day Care prescription processing</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont InpatientMedicationPrescriptionDispensing">Inpatient Medication Prescription Dispensing</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont MedicationAdministration">Medication Administration</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont Safemedicationprescribing">Safe medication prescribing</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont InpatientExtraDoseDispense">Inpatient Extra Dose Dispense</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont DoseBanding">Dose Banding</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont MedicationReconciliation">Medication Reconciliation</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont PRNPolicy">PRN Policy</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont Admixtureworkflow">I.V. Admixture workflow and I.V. Order Processing</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont BeyondUseDating">Beyond-Use Dating and Labeling of I.V admixture</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont BarcodingandRepackaging">Barcoding and Repackaging Oral Solids and Liquids in Single Unit and Unit Dose Packages</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont Radioactivematerials">Radioactive materials</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont EmergencyDrugs">Emergency Drugs and the Pharmacy’s Emergency Responsibili.._</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont ROWAdowntime">ROWA down time</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont MedicationStoragePolicy">Medication Storage Policy</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont MedicationandsuppliesRecall">Medication and supplies Recall</a>
-                    </li>
-                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                    <li>
-                      <a
-                        class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont FormularyManagement">Formulary Management</a>
-                    </li> -->
                     
 
                     

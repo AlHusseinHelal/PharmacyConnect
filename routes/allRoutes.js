@@ -3391,9 +3391,9 @@ router.post(
       return res.json({ passwordnotmatch: "Password Not Match" });
     }
 
-    // if (!email.includes("@57357.org")) {
-    //   return res.json({ invalidemail: "Invalid Email"})
-    // }
+    if (!email.includes("@57357.org")) {
+      return res.json({ invalidemail: "Invalid Email"})
+    }
 
 
     const newUser = await User.create(req.body);
@@ -3428,6 +3428,8 @@ router.post(
     res.status(201).json({ user: newUser });
   })
 );
+
+
 
 // ACTIVATION
 // router.post(
@@ -6824,106 +6826,214 @@ router.post(
     const user = await User.findOne({ _id: decoded.id });
     const selectedObject = user.examchoose;
     const examname = selectedObject.examname;
-    const search = req.body.answerassy1;
-    const search2 = req.body.answerassy2;
-    const search3 = req.body.answerassy3;
-    const search4 = req.body.answerassy4;
-    const search5 = req.body.answerassy5;
-    const search6 = req.body.answerassy6;
-    const search7 = req.body.answerassy7;
-    const search8 = req.body.answerassy8;
-    const search9 = req.body.answerassy9;
-    const search10 = req.body.answerassy10;
-    const search11 = req.body.answerchoose1;
-    const search12 = req.body.answerchoose2;
-    const search13 = req.body.answerchoose3;
-    const search14 = req.body.answerchoose4;
-    const search15 = req.body.answerchoose5;
-    const search16 = req.body.answerchoose6;
-    const search17 = req.body.answerchoose7;
-    const search18 = req.body.answerchoose8;
-    const search19 = req.body.answerchoose9;
-    const search20 = req.body.answerchoose10;
+
+    const searchassy1 = req.body.answerassy1.toLowerCase();
+    const searchassy2 = req.body.answerassy2.toLowerCase();
+    const searchassy3 = req.body.answerassy3.toLowerCase();
+    const searchassy4 = req.body.answerassy4.toLowerCase();
+    const searchassy5 = req.body.answerassy5.toLowerCase();
+    const searchassy6 = req.body.answerassy6.toLowerCase();
+    const searchassy7 = req.body.answerassy7.toLowerCase();
+    const searchassy8 = req.body.answerassy8.toLowerCase();
+    const searchassy9 = req.body.answerassy9.toLowerCase();
+    const searchassy10 = req.body.answerassy10.toLowerCase();
+    const searchassy11 = req.body.answerassy11.toLowerCase();
+    const searchassy12 = req.body.answerassy12.toLowerCase();
+    const searchassy13 = req.body.answerassy13.toLowerCase();
+    const searchassy14 = req.body.answerassy14.toLowerCase();
+    const searchassy15 = req.body.answerassy15.toLowerCase();
+    const searchassy16 = req.body.answerassy16.toLowerCase();
+    const searchassy17 = req.body.answerassy17.toLowerCase();
+    const searchassy18 = req.body.answerassy18.toLowerCase();
+    const searchassy19 = req.body.answerassy19.toLowerCase();
+    const searchassy20 = req.body.answerassy20.toLowerCase();
+
+
+
     const resultassy1 =
-      search.includes(selectedObject.key1forquestion1) &&
-      search.includes(selectedObject.key2forquestion1) &&
-      search.includes(selectedObject.key3forquestion1) &&
-      search.includes(selectedObject.key4forquestion1);
+      searchassy1.includes(selectedObject.key1forquestion1) &&
+      searchassy1.includes(selectedObject.key2forquestion1) &&
+      searchassy1.includes(selectedObject.key3forquestion1) &&
+      searchassy1.includes(selectedObject.key4forquestion1);
     const resultassy2 =
-      search2.includes(selectedObject.key1forquestion2) &&
-      search2.includes(selectedObject.key2forquestion2) &&
-      search2.includes(selectedObject.key3forquestion2) &&
-      search2.includes(selectedObject.key4forquestion2);
+      searchassy2.includes(selectedObject.key1forquestion2) &&
+      searchassy2.includes(selectedObject.key2forquestion2) &&
+      searchassy2.includes(selectedObject.key3forquestion2) &&
+      searchassy2.includes(selectedObject.key4forquestion2);
     const resultassy3 =
-      search3.includes(selectedObject.key1forquestion3) &&
-      search3.includes(selectedObject.key2forquestion3) &&
-      search3.includes(selectedObject.key3forquestion3) &&
-      search3.includes(selectedObject.key4forquestion3);
+      searchassy3.includes(selectedObject.key1forquestion3) &&
+      searchassy3.includes(selectedObject.key2forquestion3) &&
+      searchassy3.includes(selectedObject.key3forquestion3) &&
+      searchassy3.includes(selectedObject.key4forquestion3);
     const resultassy4 =
-      search4.includes(selectedObject.key1forquestion4) &&
-      search4.includes(selectedObject.key2forquestion4) &&
-      search4.includes(selectedObject.key3forquestion4) &&
-      search4.includes(selectedObject.key4forquestion4);
+      searchassy4.includes(selectedObject.key1forquestion4) &&
+      searchassy4.includes(selectedObject.key2forquestion4) &&
+      searchassy4.includes(selectedObject.key3forquestion4) &&
+      searchassy4.includes(selectedObject.key4forquestion4);
     const resultassy5 =
-      search5.includes(selectedObject.key1forquestion5) &&
-      search5.includes(selectedObject.key2forquestion5) &&
-      search5.includes(selectedObject.key3forquestion5) &&
-      search5.includes(selectedObject.key4forquestion5);
+      searchassy5.includes(selectedObject.key1forquestion5) &&
+      searchassy5.includes(selectedObject.key2forquestion5) &&
+      searchassy5.includes(selectedObject.key3forquestion5) &&
+      searchassy5.includes(selectedObject.key4forquestion5);
     const resultassy6 =
-      search6.includes(selectedObject.key1forquestion6) &&
-      search6.includes(selectedObject.key2forquestion6) &&
-      search6.includes(selectedObject.key3forquestion6) &&
-      search6.includes(selectedObject.key4forquestion6);
+      searchassy6.includes(selectedObject.key1forquestion6) &&
+      searchassy6.includes(selectedObject.key2forquestion6) &&
+      searchassy6.includes(selectedObject.key3forquestion6) &&
+      searchassy6.includes(selectedObject.key4forquestion6);
     const resultassy7 =
-      search7.includes(selectedObject.key1forquestion7) &&
-      search7.includes(selectedObject.key2forquestion7) &&
-      search7.includes(selectedObject.key3forquestion7) &&
-      search7.includes(selectedObject.key4forquestion7);
+      searchassy7.includes(selectedObject.key1forquestion7) &&
+      searchassy7.includes(selectedObject.key2forquestion7) &&
+      searchassy7.includes(selectedObject.key3forquestion7) &&
+      searchassy7.includes(selectedObject.key4forquestion7);
     const resultassy8 =
-      search8.includes(selectedObject.key1forquestion8) &&
-      search8.includes(selectedObject.key2forquestion8) &&
-      search8.includes(selectedObject.key3forquestion8) &&
-      search8.includes(selectedObject.key4forquestion8);
+      searchassy8.includes(selectedObject.key1forquestion8) &&
+      searchassy8.includes(selectedObject.key2forquestion8) &&
+      searchassy8.includes(selectedObject.key3forquestion8) &&
+      searchassy8.includes(selectedObject.key4forquestion8);
     const resultassy9 =
-      search9.includes(selectedObject.key1forquestion9) &&
-      search9.includes(selectedObject.key2forquestion9) &&
-      search9.includes(selectedObject.key3forquestion9) &&
-      search9.includes(selectedObject.key4forquestion9);
+      searchassy9.includes(selectedObject.key1forquestion9) &&
+      searchassy9.includes(selectedObject.key2forquestion9) &&
+      searchassy9.includes(selectedObject.key3forquestion9) &&
+      searchassy9.includes(selectedObject.key4forquestion9);
     const resultassy10 =
-      search10.includes(selectedObject.key1forquestion10) &&
-      search10.includes(selectedObject.key2forquestion10) &&
-      search10.includes(selectedObject.key3forquestion10) &&
-      search10.includes(selectedObject.key4forquestion10);
-    const resultchoose1 = search11.includes(
+      searchassy10.includes(selectedObject.key1forquestion10) &&
+      searchassy10.includes(selectedObject.key2forquestion10) &&
+      searchassy10.includes(selectedObject.key3forquestion10) &&
+      searchassy10.includes(selectedObject.key4forquestion10);
+    const resultassy11 =
+      searchassy11.includes(selectedObject.key1forquestion11) &&
+      searchassy11.includes(selectedObject.key2forquestion11) &&
+      searchassy11.includes(selectedObject.key3forquestion11) &&
+      searchassy11.includes(selectedObject.key4forquestion11); 
+    const resultassy12 =
+      searchassy12.includes(selectedObject.key1forquestion12) &&
+      searchassy12.includes(selectedObject.key2forquestion12) &&
+      searchassy12.includes(selectedObject.key3forquestion12) &&
+      searchassy12.includes(selectedObject.key4forquestion12); 
+    const resultassy13 =
+      searchassy13.includes(selectedObject.key1forquestion13) &&
+      searchassy13.includes(selectedObject.key2forquestion13) &&
+      searchassy13.includes(selectedObject.key3forquestion13) &&
+      searchassy13.includes(selectedObject.key4forquestion13);
+    const resultassy14 =
+      searchassy14.includes(selectedObject.key1forquestion14) &&
+      searchassy14.includes(selectedObject.key2forquestion14) &&
+      searchassy14.includes(selectedObject.key3forquestion14) &&
+      searchassy14.includes(selectedObject.key4forquestion14);
+    const resultassy15 =
+      searchassy15.includes(selectedObject.key1forquestion15) &&
+      searchassy15.includes(selectedObject.key2forquestion15) &&
+      searchassy15.includes(selectedObject.key3forquestion15) &&
+      searchassy15.includes(selectedObject.key4forquestion15);
+    const resultassy16 =
+      searchassy16.includes(selectedObject.key1forquestion16) &&
+      searchassy16.includes(selectedObject.key2forquestion16) &&
+      searchassy16.includes(selectedObject.key3forquestion16) &&
+      searchassy16.includes(selectedObject.key4forquestion16);
+    const resultassy17 =
+      searchassy17.includes(selectedObject.key1forquestion17) &&
+      searchassy17.includes(selectedObject.key2forquestion17) &&
+      searchassy17.includes(selectedObject.key3forquestion17) &&
+      searchassy17.includes(selectedObject.key4forquestion17);
+    const resultassy18 =
+      searchassy18.includes(selectedObject.key1forquestion18) &&
+      searchassy18.includes(selectedObject.key2forquestion18) &&
+      searchassy18.includes(selectedObject.key3forquestion18) &&
+      searchassy18.includes(selectedObject.key4forquestion18);
+    const resultassy19 =
+      searchassy19.includes(selectedObject.key1forquestion19) &&
+      searchassy19.includes(selectedObject.key2forquestion19) &&
+      searchassy19.includes(selectedObject.key3forquestion19) &&
+      searchassy19.includes(selectedObject.key4forquestion19);
+    const resultassy20 =
+      searchassy20.includes(selectedObject.key1forquestion20) &&
+      searchassy20.includes(selectedObject.key2forquestion20) &&
+      searchassy20.includes(selectedObject.key3forquestion20) &&
+      searchassy20.includes(selectedObject.key4forquestion20); 
+      
+      
+      const searchcomplete1 = req.body.answercomplete1.toLowerCase();
+      const searchcomplete2 = req.body.answercomplete2.toLowerCase();
+      const searchcomplete3 = req.body.answercomplete3.toLowerCase();
+      const searchcomplete4 = req.body.answercomplete4.toLowerCase();
+      const searchcomplete5 = req.body.answercomplete5.toLowerCase();
+      const searchcomplete6 = req.body.answercomplete6.toLowerCase();
+      const searchcomplete7 = req.body.answercomplete7.toLowerCase();
+      const searchcomplete8 = req.body.answercomplete8.toLowerCase();
+      const searchcomplete9 = req.body.answercomplete9.toLowerCase();
+      const searchcomplete10 = req.body.answercomplete10.toLowerCase();
+      const searchcomplete11 = req.body.answercomplete11.toLowerCase();
+      const searchcomplete12 = req.body.answercomplete12.toLowerCase();
+      const searchcomplete13 = req.body.answercomplete13.toLowerCase();
+      const searchcomplete14 = req.body.answercomplete14.toLowerCase();
+      const searchcomplete15 = req.body.answercomplete15.toLowerCase();
+      const searchcomplete16 = req.body.answercomplete16.toLowerCase();
+      const searchcomplete17 = req.body.answercomplete17.toLowerCase();
+      const searchcomplete18 = req.body.answercomplete18.toLowerCase();
+      const searchcomplete19 = req.body.answercomplete19.toLowerCase();
+      const searchcomplete20 = req.body.answercomplete20.toLowerCase();
+
+    const resultcomplete1 = searchcomplete1.includes(
       selectedObject.key1forquestioncomplete1
     );
-    const resultchoose2 = search12.includes(
+    const resultcomplete2 = searchcomplete2.includes(
       selectedObject.key1forquestioncomplete2
     );
-    const resultchoose3 = search13.includes(
+    const resultcomplete3 = searchcomplete3.includes(
       selectedObject.key1forquestioncomplete3
     );
-    const resultchoose4 = search14.includes(
+    const resultcomplete4 = searchcomplete4.includes(
       selectedObject.key1forquestioncomplete4
     );
-    const resultchoose5 = search15.includes(
+    const resultcomplete5 = searchcomplete5.includes(
       selectedObject.key1forquestioncomplete5
     );
-    const resultchoose6 = search16.includes(
+    const resultcomplete6 = searchcomplete6.includes(
       selectedObject.key1forquestioncomplete6
     );
-    const resultchoose7 = search17.includes(
+    const resultcomplete7 = searchcomplete7.includes(
       selectedObject.key1forquestioncomplete7
     );
-    const resultchoose8 = search18.includes(
+    const resultcomplete8 = searchcomplete8.includes(
       selectedObject.key1forquestioncomplete8
     );
-    const resultchoose9 = search19.includes(
+    const resultcomplete9 = searchcomplete9.includes(
       selectedObject.key1forquestioncomplete9
     );
-    const resultchoose10 = search20.includes(
+    const resultcomplete10 = searchcomplete10.includes(
       selectedObject.key1forquestioncomplete10
     );
+    const resultcomplete11 = searchcomplete11.includes(
+      selectedObject.key1forquestioncomplete11
+    );
+    const resultcomplete12 = searchcomplete12.includes(
+      selectedObject.key1forquestioncomplete12
+    );
+    const resultcomplete13 = searchcomplete13.includes(
+      selectedObject.key1forquestioncomplete13
+    );
+    const resultcomplete14 = searchcomplete14.includes(
+      selectedObject.key1forquestioncomplete14
+    );
+    const resultcomplete15 = searchcomplete15.includes(
+      selectedObject.key1forquestioncomplete15
+    );
+    const resultcomplete16 = searchcomplete16.includes(
+      selectedObject.key1forquestioncomplete16
+    );
+    const resultcomplete17 = searchcomplete17.includes(
+      selectedObject.key1forquestioncomplete17
+    );
+    const resultcomplete18 = searchcomplete18.includes(
+      selectedObject.key1forquestioncomplete18
+    );
+    const resultcomplete19 = searchcomplete19.includes(
+      selectedObject.key1forquestioncomplete19
+    );
+    const resultcomplete20 = searchcomplete20.includes(
+      selectedObject.key1forquestioncomplete20
+    );
+
     req.body.resultassy1 = resultassy1;
     req.body.resultassy2 = resultassy2;
     req.body.resultassy3 = resultassy3;
@@ -6934,22 +7044,44 @@ router.post(
     req.body.resultassy8 = resultassy8;
     req.body.resultassy9 = resultassy9;
     req.body.resultassy10 = resultassy10;
-    req.body.resultchoose1 = resultchoose1;
-    req.body.resultchoose2 = resultchoose2;
-    req.body.resultchoose3 = resultchoose3;
-    req.body.resultchoose4 = resultchoose4;
-    req.body.resultchoose5 = resultchoose5;
-    req.body.resultchoose6 = resultchoose6;
-    req.body.resultchoose7 = resultchoose7;
-    req.body.resultchoose8 = resultchoose8;
-    req.body.resultchoose9 = resultchoose9;
-    req.body.resultchoose10 = resultchoose10;
+    req.body.resultassy11 = resultassy11;
+    req.body.resultassy12 = resultassy12;
+    req.body.resultassy13 = resultassy13;
+    req.body.resultassy14 = resultassy14;
+    req.body.resultassy15 = resultassy15;
+    req.body.resultassy16 = resultassy16;
+    req.body.resultassy17 = resultassy17;
+    req.body.resultassy18 = resultassy18;
+    req.body.resultassy19 = resultassy19;
+    req.body.resultassy20 = resultassy20;
+
+    req.body.resultcomplete1 = resultcomplete1;
+    req.body.resultcomplete2 = resultcomplete2;
+    req.body.resultcomplete3 = resultcomplete3;
+    req.body.resultcomplete4 = resultcomplete4;
+    req.body.resultcomplete5 = resultcomplete5;
+    req.body.resultcomplete6 = resultcomplete6;
+    req.body.resultcomplete7 = resultcomplete7;
+    req.body.resultcomplete8 = resultcomplete8;
+    req.body.resultcomplete9 = resultcomplete9;
+    req.body.resultcomplete10 = resultcomplete10;
+    req.body.resultcomplete11 = resultcomplete11;
+    req.body.resultcomplete12 = resultcomplete12;
+    req.body.resultcomplete13 = resultcomplete13;
+    req.body.resultcomplete14 = resultcomplete14;
+    req.body.resultcomplete15 = resultcomplete15;
+    req.body.resultcomplete16 = resultcomplete16;
+    req.body.resultcomplete17 = resultcomplete17;
+    req.body.resultcomplete18 = resultcomplete18;
+    req.body.resultcomplete19 = resultcomplete19;
+    req.body.resultcomplete20 = resultcomplete20;
+
     const newObject = Object.assign(selectedObject, req.body);
     await User.findByIdAndUpdate(decoded.id, {
       $set: { examchoose: newObject },
     });
 
-    function answ1() {
+    function answchoose1() {
       if (
         req.body.answerc1 === selectedObject.correctanswerquestion1 &&
         req.body.answerc1 !== undefined
@@ -6964,7 +7096,7 @@ router.post(
       }
     }
 
-    function answ2() {
+    function answchoose2() {
       if (
         req.body.answerc2 === selectedObject.correctanswerquestion2 &&
         req.body.answerc2 !== undefined
@@ -6979,7 +7111,7 @@ router.post(
       }
     }
 
-    function answ3() {
+    function answchoose3() {
       if (
         req.body.answerc3 === selectedObject.correctanswerquestion3 &&
         req.body.answerc3 !== undefined
@@ -6994,7 +7126,7 @@ router.post(
       }
     }
 
-    function answ4() {
+    function answchoose4() {
       if (
         req.body.answerc4 === selectedObject.correctanswerquestion4 &&
         req.body.answerc4 !== undefined
@@ -7009,7 +7141,7 @@ router.post(
       }
     }
 
-    function answ5() {
+    function answchoose5() {
       if (
         req.body.answerc5 === selectedObject.correctanswerquestion5 &&
         req.body.answerc5 !== undefined
@@ -7024,7 +7156,7 @@ router.post(
       }
     }
 
-    function answ6() {
+    function answchoose6() {
       if (
         req.body.answerc6 === selectedObject.correctanswerquestion6 &&
         req.body.answerc6 !== undefined
@@ -7039,7 +7171,7 @@ router.post(
       }
     }
 
-    function answ7() {
+    function answchoose7() {
       if (
         req.body.answerc7 === selectedObject.correctanswerquestion7 &&
         req.body.answerc7 !== undefined
@@ -7054,7 +7186,7 @@ router.post(
       }
     }
 
-    function answ8() {
+    function answchoose8() {
       if (
         req.body.answerc8 === selectedObject.correctanswerquestion8 &&
         req.body.answerc8 !== undefined
@@ -7069,7 +7201,7 @@ router.post(
       }
     }
 
-    function answ9() {
+    function answchoose9() {
       if (
         req.body.answerc9 === selectedObject.correctanswerquestion9 &&
         req.body.answerc9 !== undefined
@@ -7084,7 +7216,7 @@ router.post(
       }
     }
 
-    function answ10() {
+    function answchoose10() {
       if (
         req.body.answerc10 === selectedObject.correctanswerquestion10 &&
         req.body.answerc10 !== undefined
@@ -7099,7 +7231,157 @@ router.post(
       }
     }
 
-    function answ11() {
+    function answchoose11() {
+      if (
+        req.body.answerc11 === selectedObject.correctanswerquestion11 &&
+        req.body.answerc11 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answerc11 !== selectedObject.correctanswerquestion11) {
+        return 0;
+      }
+      if (req.body.answerc11 === undefined) {
+        return 0;
+      }
+    }
+
+    function answchoose12() {
+      if (
+        req.body.answerc12 === selectedObject.correctanswerquestion12 &&
+        req.body.answerc12 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answerc12 !== selectedObject.correctanswerquestion12) {
+        return 0;
+      }
+      if (req.body.answerc12 === undefined) {
+        return 0;
+      }
+    }
+
+    function answchoose13() {
+      if (
+        req.body.answerc13 === selectedObject.correctanswerquestion13 &&
+        req.body.answerc13 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answerc13 !== selectedObject.correctanswerquestion13) {
+        return 0;
+      }
+      if (req.body.answerc13 === undefined) {
+        return 0;
+      }
+    }
+
+    function answchoose14() {
+      if (
+        req.body.answerc14 === selectedObject.correctanswerquestion14 &&
+        req.body.answerc14 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answerc14 !== selectedObject.correctanswerquestion14) {
+        return 0;
+      }
+      if (req.body.answerc14 === undefined) {
+        return 0;
+      }
+    }
+
+    function answchoose15() {
+      if (
+        req.body.answerc15 === selectedObject.correctanswerquestion15 &&
+        req.body.answerc15 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answerc15 !== selectedObject.correctanswerquestion15) {
+        return 0;
+      }
+      if (req.body.answerc15 === undefined) {
+        return 0;
+      }
+    }
+
+    function answchoose16() {
+      if (
+        req.body.answerc16 === selectedObject.correctanswerquestion16 &&
+        req.body.answerc16 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answerc16 !== selectedObject.correctanswerquestion16) {
+        return 0;
+      }
+      if (req.body.answerc16 === undefined) {
+        return 0;
+      }
+    }
+
+    function answchoose17() {
+      if (
+        req.body.answerc17 === selectedObject.correctanswerquestion17 &&
+        req.body.answerc17 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answerc17 !== selectedObject.correctanswerquestion17) {
+        return 0;
+      }
+      if (req.body.answerc17 === undefined) {
+        return 0;
+      }
+    }
+
+    function answchoose18() {
+      if (
+        req.body.answerc18 === selectedObject.correctanswerquestion18 &&
+        req.body.answerc18 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answerc18 !== selectedObject.correctanswerquestion18) {
+        return 0;
+      }
+      if (req.body.answerc18 === undefined) {
+        return 0;
+      }
+    }
+
+    function answchoose19() {
+      if (
+        req.body.answerc19 === selectedObject.correctanswerquestion19 &&
+        req.body.answerc19 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answerc19 !== selectedObject.correctanswerquestion19) {
+        return 0;
+      }
+      if (req.body.answerc19 === undefined) {
+        return 0;
+      }
+    }
+
+    function answchoose20() {
+      if (
+        req.body.answerc20 === selectedObject.correctanswerquestion20 &&
+        req.body.answerc20 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answerc20 !== selectedObject.correctanswerquestion20) {
+        return 0;
+      }
+      if (req.body.answerc20 === undefined) {
+        return 0;
+      }
+    }
+
+    function answassy1() {
       if (resultassy1 === true) {
         return 1;
       }
@@ -7108,7 +7390,7 @@ router.post(
       }
     }
 
-    function answ12() {
+    function answassy2() {
       if (resultassy2 === true) {
         return 1;
       }
@@ -7117,7 +7399,7 @@ router.post(
       }
     }
 
-    function answ13() {
+    function answassy3() {
       if (resultassy3 === true) {
         return 1;
       }
@@ -7126,7 +7408,7 @@ router.post(
       }
     }
 
-    function answ14() {
+    function answassy4() {
       if (resultassy4 === true) {
         return 1;
       }
@@ -7135,7 +7417,7 @@ router.post(
       }
     }
 
-    function answ15() {
+    function answassy5() {
       if (resultassy5 === true) {
         return 1;
       }
@@ -7144,7 +7426,7 @@ router.post(
       }
     }
 
-    function answ16() {
+    function answassy6() {
       if (resultassy6 === true) {
         return 1;
       }
@@ -7153,7 +7435,7 @@ router.post(
       }
     }
 
-    function answ17() {
+    function answassy7() {
       if (resultassy7 === true) {
         return 1;
       }
@@ -7162,7 +7444,7 @@ router.post(
       }
     }
 
-    function answ18() {
+    function answassy8() {
       if (resultassy8 === true) {
         return 1;
       }
@@ -7171,7 +7453,7 @@ router.post(
       }
     }
 
-    function answ19() {
+    function answassy9() {
       if (resultassy9 === true) {
         return 1;
       }
@@ -7180,7 +7462,7 @@ router.post(
       }
     }
 
-    function answ20() {
+    function answassy10() {
       if (resultassy10 === true) {
         return 1;
       }
@@ -7189,97 +7471,277 @@ router.post(
       }
     }
 
-    function answ21() {
-      if (resultchoose1 === true) {
+    function answassy11() {
+      if (resultassy11 === true) {
         return 1;
       }
-      if (resultchoose1 === false) {
+      if (resultassy11 === false) {
         return 0;
       }
     }
 
-    function answ22() {
-      if (resultchoose2 === true) {
+    function answassy12() {
+      if (resultassy12 === true) {
         return 1;
       }
-      if (resultchoose2 === false) {
+      if (resultassy12 === false) {
         return 0;
       }
     }
 
-    function answ23() {
-      if (resultchoose3 === true) {
+    function answassy13() {
+      if (resultassy13 === true) {
         return 1;
       }
-      if (resultchoose3 === false) {
+      if (resultassy13 === false) {
         return 0;
       }
     }
 
-    function answ24() {
-      if (resultchoose4 === true) {
+    function answassy14() {
+      if (resultassy14 === true) {
         return 1;
       }
-      if (resultchoose4 === false) {
+      if (resultassy14 === false) {
         return 0;
       }
     }
 
-    function answ25() {
-      if (resultchoose5 === true) {
+    function answassy15() {
+      if (resultassy15 === true) {
         return 1;
       }
-      if (resultchoose5 === false) {
+      if (resultassy15 === false) {
         return 0;
       }
     }
 
-    function answ26() {
-      if (resultchoose6 === true) {
+    function answassy16() {
+      if (resultassy16 === true) {
         return 1;
       }
-      if (resultchoose6 === false) {
+      if (resultassy16 === false) {
         return 0;
       }
     }
 
-    function answ27() {
-      if (resultchoose7 === true) {
+    function answassy17() {
+      if (resultassy17 === true) {
         return 1;
       }
-      if (resultchoose7 === false) {
+      if (resultassy17 === false) {
         return 0;
       }
     }
 
-    function answ28() {
-      if (resultchoose8 === true) {
+    function answassy18() {
+      if (resultassy18 === true) {
         return 1;
       }
-      if (resultchoose8 === false) {
+      if (resultassy18 === false) {
         return 0;
       }
     }
 
-    function answ29() {
-      if (resultchoose9 === true) {
+    function answassy19() {
+      if (resultassy19 === true) {
         return 1;
       }
-      if (resultchoose9 === false) {
+      if (resultassy19 === false) {
         return 0;
       }
     }
 
-    function answ30() {
-      if (resultchoose10 === true) {
+    function answassy20() {
+      if (resultassy20 === true) {
         return 1;
       }
-      if (resultchoose10 === false) {
+      if (resultassy20 === false) {
         return 0;
       }
     }
 
-    function answ31() {
+    function answcomplete1() {
+      if (resultcomplete1 === true) {
+        return 1;
+      }
+      if (resultcomplete1 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete2() {
+      if (resultcomplete2 === true) {
+        return 1;
+      }
+      if (resultcomplete2 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete3() {
+      if (resultcomplete3 === true) {
+        return 1;
+      }
+      if (resultcomplete3 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete4() {
+      if (resultcomplete4 === true) {
+        return 1;
+      }
+      if (resultcomplete4 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete5() {
+      if (resultcomplete5 === true) {
+        return 1;
+      }
+      if (resultcomplete5 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete6() {
+      if (resultcomplete6 === true) {
+        return 1;
+      }
+      if (resultcomplete6 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete7() {
+      if (resultcomplete7 === true) {
+        return 1;
+      }
+      if (resultcomplete7 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete8() {
+      if (resultcomplete8 === true) {
+        return 1;
+      }
+      if (resultcomplete8 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete9() {
+      if (resultcomplete9 === true) {
+        return 1;
+      }
+      if (resultcomplete9 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete10() {
+      if (resultcomplete10 === true) {
+        return 1;
+      }
+      if (resultcomplete10 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete11() {
+      if (resultcomplete11 === true) {
+        return 1;
+      }
+      if (resultcomplete11 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete12() {
+      if (resultcomplete12 === true) {
+        return 1;
+      }
+      if (resultcomplete12 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete13() {
+      if (resultcomplete13 === true) {
+        return 1;
+      }
+      if (resultcomplete13 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete14() {
+      if (resultcomplete14 === true) {
+        return 1;
+      }
+      if (resultcomplete14 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete15() {
+      if (resultcomplete15 === true) {
+        return 1;
+      }
+      if (resultcomplete15 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete16() {
+      if (resultcomplete16 === true) {
+        return 1;
+      }
+      if (resultcomplete16 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete17() {
+      if (resultcomplete17 === true) {
+        return 1;
+      }
+      if (resultcomplete17 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete18() {
+      if (resultcomplete18 === true) {
+        return 1;
+      }
+      if (resultcomplete18 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete19() {
+      if (resultcomplete19 === true) {
+        return 1;
+      }
+      if (resultcomplete19 === false) {
+        return 0;
+      }
+    }
+
+    function answcomplete20() {
+      if (resultcomplete20 === true) {
+        return 1;
+      }
+      if (resultcomplete20 === false) {
+        return 0;
+      }
+    }
+
+    function answtf1() {
       if (
         req.body.answertf1 === selectedObject.correctanswertruefalse1 &&
         req.body.answertf1 !== undefined
@@ -7294,7 +7756,7 @@ router.post(
       }
     }
 
-    function answ32() {
+    function answtf2() {
       if (
         req.body.answertf2 === selectedObject.correctanswertruefalse2 &&
         req.body.answertf2 !== undefined
@@ -7309,7 +7771,7 @@ router.post(
       }
     }
 
-    function answ33() {
+    function answtf3() {
       if (
         req.body.answertf3 === selectedObject.correctanswertruefalse3 &&
         req.body.answertf3 !== undefined
@@ -7324,7 +7786,7 @@ router.post(
       }
     }
 
-    function answ34() {
+    function answtf4() {
       if (
         req.body.answertf4 === selectedObject.correctanswertruefalse4 &&
         req.body.answertf4 !== undefined
@@ -7339,7 +7801,7 @@ router.post(
       }
     }
 
-    function answ35() {
+    function answtf5() {
       if (
         req.body.answertf5 === selectedObject.correctanswertruefalse5 &&
         req.body.answertf5 !== undefined
@@ -7354,7 +7816,7 @@ router.post(
       }
     }
 
-    function answ36() {
+    function answtf6() {
       if (
         req.body.answertf6 === selectedObject.correctanswertruefalse6 &&
         req.body.answertf6 !== undefined
@@ -7369,7 +7831,7 @@ router.post(
       }
     }
 
-    function answ37() {
+    function answtf7() {
       if (
         req.body.answertf7 === selectedObject.correctanswertruefalse7 &&
         req.body.answertf7 !== undefined
@@ -7384,7 +7846,7 @@ router.post(
       }
     }
 
-    function answ38() {
+    function answtf8() {
       if (
         req.body.answertf8 === selectedObject.correctanswertruefalse8 &&
         req.body.answertf8 !== undefined
@@ -7399,7 +7861,7 @@ router.post(
       }
     }
 
-    function answ39() {
+    function answtf9() {
       if (
         req.body.answertf9 === selectedObject.correctanswertruefalse9 &&
         req.body.answertf9 !== undefined
@@ -7414,7 +7876,7 @@ router.post(
       }
     }
 
-    function answ40() {
+    function answtf10() {
       if (
         req.body.answertf10 === selectedObject.correctanswertruefalse10 &&
         req.body.answertf10 !== undefined
@@ -7429,47 +7891,237 @@ router.post(
       }
     }
 
+    function answtf11() {
+      if (
+        req.body.answertf11 === selectedObject.correctanswertruefalse11 &&
+        req.body.answertf11 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answertf11 !== selectedObject.correctanswertruefalse11) {
+        return 0;
+      }
+      if (req.body.answertf11 === undefined) {
+        return 0;
+      }
+    }
+
+    function answtf12() {
+      if (
+        req.body.answertf12 === selectedObject.correctanswertruefalse12 &&
+        req.body.answertf12 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answertf12 !== selectedObject.correctanswertruefalse12) {
+        return 0;
+      }
+      if (req.body.answertf12 === undefined) {
+        return 0;
+      }
+    }
+
+    function answtf13() {
+      if (
+        req.body.answertf13 === selectedObject.correctanswertruefalse13 &&
+        req.body.answertf13 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answertf13 !== selectedObject.correctanswertruefalse13) {
+        return 0;
+      }
+      if (req.body.answertf13 === undefined) {
+        return 0;
+      }
+    }
+
+    function answtf14() {
+      if (
+        req.body.answertf14 === selectedObject.correctanswertruefalse14 &&
+        req.body.answertf14 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answertf14 !== selectedObject.correctanswertruefalse14) {
+        return 0;
+      }
+      if (req.body.answertf14 === undefined) {
+        return 0;
+      }
+    }
+
+    function answtf15() {
+      if (
+        req.body.answertf15 === selectedObject.correctanswertruefalse15 &&
+        req.body.answertf15 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answertf15 !== selectedObject.correctanswertruefalse15) {
+        return 0;
+      }
+      if (req.body.answertf15 === undefined) {
+        return 0;
+      }
+    }
+
+    function answtf16() {
+      if (
+        req.body.answertf16 === selectedObject.correctanswertruefalse16 &&
+        req.body.answertf16 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answertf16 !== selectedObject.correctanswertruefalse16) {
+        return 0;
+      }
+      if (req.body.answertf16 === undefined) {
+        return 0;
+      }
+    }
+
+    function answtf17() {
+      if (
+        req.body.answertf17 === selectedObject.correctanswertruefalse17 &&
+        req.body.answertf17 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answertf17 !== selectedObject.correctanswertruefalse17) {
+        return 0;
+      }
+      if (req.body.answertf17 === undefined) {
+        return 0;
+      }
+    }
+
+    function answtf18() {
+      if (
+        req.body.answertf18 === selectedObject.correctanswertruefalse18 &&
+        req.body.answertf18 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answertf18 !== selectedObject.correctanswertruefalse18) {
+        return 0;
+      }
+      if (req.body.answertf18 === undefined) {
+        return 0;
+      }
+    }
+
+    function answtf19() {
+      if (
+        req.body.answertf19 === selectedObject.correctanswertruefalse19 &&
+        req.body.answertf19 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answertf19 !== selectedObject.correctanswertruefalse19) {
+        return 0;
+      }
+      if (req.body.answertf19 === undefined) {
+        return 0;
+      }
+    }
+
+    function answtf20() {
+      if (
+        req.body.answertf20 === selectedObject.correctanswertruefalse20 &&
+        req.body.answertf20 !== undefined
+      ) {
+        return 1;
+      }
+      if (req.body.answertf20 !== selectedObject.correctanswertruefalse20) {
+        return 0;
+      }
+      if (req.body.answertf20 === undefined) {
+        return 0;
+      }
+    }
+
     const score =
-      answ1() +
-      answ2() +
-      answ3() +
-      answ4() +
-      answ5() +
-      answ6() +
-      answ7() +
-      answ8() +
-      answ9() +
-      answ10() +
-      answ11() +
-      answ12() +
-      answ13() +
-      answ14() +
-      answ15() +
-      answ16() +
-      answ17() +
-      answ18() +
-      answ19() +
-      answ20() +
-      answ21() +
-      answ22() +
-      answ23() +
-      answ24() +
-      answ25() +
-      answ26() +
-      answ27() +
-      answ28() +
-      answ29() +
-      answ30() +
-      answ31() +
-      answ32() +
-      answ33() +
-      answ34() +
-      answ35() +
-      answ36() +
-      answ37() +
-      answ38() +
-      answ39() +
-      answ40();
+    answchoose1() +
+    answchoose2() +
+    answchoose3() +
+    answchoose4() +
+    answchoose5() +
+    answchoose6() +
+    answchoose7() +
+    answchoose8() +
+    answchoose9() +
+    answchoose10() +
+    answchoose11() +
+    answchoose12() +
+    answchoose13() +
+    answchoose14() +
+    answchoose15() +
+    answchoose16() +
+    answchoose17() +
+    answchoose18() +
+    answchoose19() +
+    answchoose20() +
+    answassy1() +
+    answassy2() +
+    answassy3() +
+    answassy4() +
+    answassy5() +
+    answassy6() +
+    answassy7() +
+    answassy8() +
+    answassy9() +
+    answassy10() +
+    answassy11() +
+    answassy12() +
+    answassy13() +
+    answassy14() +
+    answassy15() +
+    answassy16() +
+    answassy17() +
+    answassy18() +
+    answassy19() +
+    answassy20() +
+    answcomplete1() +
+    answcomplete2() +
+    answcomplete3() +
+    answcomplete4() +
+    answcomplete5() +
+    answcomplete6() +
+    answcomplete7() +
+    answcomplete8() +
+    answcomplete9() +
+    answcomplete10() +
+    answcomplete11() +
+    answcomplete12() +
+    answcomplete13() +
+    answcomplete14() +
+    answcomplete15() +
+    answcomplete16() +
+    answcomplete17() +
+    answcomplete18() +
+    answcomplete19() +
+    answcomplete20() +
+    answtf1() +
+    answtf2() +
+    answtf3() +
+    answtf4() +
+    answtf5() +
+    answtf6() +
+    answtf7() +
+    answtf8() +
+    answtf9() +
+    answtf10() +
+    answtf11() +
+    answtf12() +
+    answtf13() +
+    answtf14() +
+    answtf15() +
+    answtf16() +
+    answtf17() +
+    answtf18() +
+    answtf19() +
+    answtf20() 
 
     const group = {
       firstname: user.firstname,
@@ -7479,6 +8131,28 @@ router.post(
       examname: selectedObject.examname,
       examtime: moment(),
       questionnumber: selectedObject.questionnumber,
+
+      questionchoose1 : selectedObject.questionchoose1,
+      questionchoose2 : selectedObject.questionchoose2,
+      questionchoose3 : selectedObject.questionchoose3,
+      questionchoose4 : selectedObject.questionchoose4,
+      questionchoose5 : selectedObject.questionchoose5,
+      questionchoose6 : selectedObject.questionchoose6,
+      questionchoose7 : selectedObject.questionchoose7,
+      questionchoose8 : selectedObject.questionchoose8,
+      questionchoose9 : selectedObject.questionchoose9,
+      questionchoose10 : selectedObject.questionchoose10,
+      questionchoose11 : selectedObject.questionchoose11,
+      questionchoose12 : selectedObject.questionchoose12,
+      questionchoose13 : selectedObject.questionchoose13,
+      questionchoose14 : selectedObject.questionchoose14,
+      questionchoose15 : selectedObject.questionchoose15,
+      questionchoose16 : selectedObject.questionchoose16,
+      questionchoose17 : selectedObject.questionchoose17,
+      questionchoose18 : selectedObject.questionchoose18,
+      questionchoose19 : selectedObject.questionchoose19,
+      questionchoose20 : selectedObject.questionchoose20,
+
       answerc1: req.body.answerc1,
       answerc2: req.body.answerc2,
       answerc3: req.body.answerc3,
@@ -7489,6 +8163,59 @@ router.post(
       answerc8: req.body.answerc8,
       answerc9: req.body.answerc9,
       answerc10: req.body.answerc10,
+      answerc11: req.body.answerc11,
+      answerc12: req.body.answerc12,
+      answerc13: req.body.answerc13,
+      answerc14: req.body.answerc14,
+      answerc15: req.body.answerc15,
+      answerc16: req.body.answerc16,
+      answerc17: req.body.answerc17,
+      answerc18: req.body.answerc18,
+      answerc19: req.body.answerc19,
+      answerc20: req.body.answerc20,
+
+      resultchoose1 : answchoose1(),
+      resultchoose2 : answchoose2(),
+      resultchoose3 : answchoose3(),
+      resultchoose4 : answchoose4(),
+      resultchoose5 : answchoose5(),
+      resultchoose6 : answchoose6(),
+      resultchoose7 : answchoose7(),
+      resultchoose8 : answchoose8(),
+      resultchoose9 : answchoose9(),
+      resultchoose10 : answchoose10(),
+      resultchoose11: answchoose11(),
+      resultchoose12: answchoose12(),
+      resultchoose13: answchoose13(),
+      resultchoose14: answchoose14(),
+      resultchoose15: answchoose15(),
+      resultchoose16: answchoose16(),
+      resultchoose17: answchoose17(),
+      resultchoose18: answchoose18(),
+      resultchoose19: answchoose19(),
+      resultchoose20: answchoose20(),
+
+      questionassy1 : selectedObject.questionassy1,
+      questionassy2 : selectedObject.questionassy2,
+      questionassy3 : selectedObject.questionassy3,
+      questionassy4 : selectedObject.questionassy4,
+      questionassy5 : selectedObject.questionassy5,
+      questionassy6 : selectedObject.questionassy6,
+      questionassy7 : selectedObject.questionassy7,
+      questionassy8 : selectedObject.questionassy8,
+      questionassy9 : selectedObject.questionassy9,
+      questionassy10 : selectedObject.questionassy10,
+      questionassy11 : selectedObject.questionassy11,
+      questionassy12 : selectedObject.questionassy12,
+      questionassy13 : selectedObject.questionassy13,
+      questionassy14 : selectedObject.questionassy14,
+      questionassy15 : selectedObject.questionassy15,
+      questionassy16 : selectedObject.questionassy16,
+      questionassy17 : selectedObject.questionassy17,
+      questionassy18 : selectedObject.questionassy18,
+      questionassy19 : selectedObject.questionassy19,
+      questionassy20 : selectedObject.questionassy20,
+
       answerassy1: req.body.answerassy1,
       answerassy2: req.body.answerassy2,
       answerassy3: req.body.answerassy3,
@@ -7499,16 +8226,122 @@ router.post(
       answerassy8: req.body.answerassy8,
       answerassy9: req.body.answerassy9,
       answerassy10: req.body.answerassy10,
-      answerchoose1: req.body.answerchoose1,
-      answerchoose2: req.body.answerchoose2,
-      answerchoose3: req.body.answerchoose3,
-      answerchoose4: req.body.answerchoose4,
-      answerchoose5: req.body.answerchoose5,
-      answerchoose6: req.body.answerchoose6,
-      answerchoose7: req.body.answerchoose7,
-      answerchoose8: req.body.answerchoose8,
-      answerchoose9: req.body.answerchoose9,
-      answerchoose10: req.body.answerchoose10,
+      answerassy11: req.body.answerassy11,
+      answerassy12: req.body.answerassy12,
+      answerassy13: req.body.answerassy13,
+      answerassy14: req.body.answerassy14,
+      answerassy15: req.body.answerassy15,
+      answerassy16: req.body.answerassy16,
+      answerassy17: req.body.answerassy17,
+      answerassy18: req.body.answerassy18,
+      answerassy19: req.body.answerassy19,
+      answerassy20: req.body.answerassy20,
+
+      resultassy1 : answassy1(),
+      resultassy2 : answassy2(),
+      resultassy3 : answassy3(),
+      resultassy4 : answassy4(),
+      resultassy5 : answassy5(),
+      resultassy6 : answassy6(),
+      resultassy7 : answassy7(),
+      resultassy8 : answassy8(),
+      resultassy9 : answassy9(),
+      resultassy10 : answassy10(),
+      resultassy11: answassy11(),
+      resultassy12: answassy12(),
+      resultassy13: answassy13(),
+      resultassy14: answassy14(),
+      resultassy15: answassy15(),
+      resultassy16: answassy16(),
+      resultassy17: answassy17(),
+      resultassy18: answassy18(),
+      resultassy19: answassy19(),
+      resultassy20: answassy20(),
+
+      questioncomplete1 : selectedObject.questioncomplete1,
+      questioncomplete2 : selectedObject.questioncomplete2,
+      questioncomplete3 : selectedObject.questioncomplete3,
+      questioncomplete4 : selectedObject.questioncomplete4,
+      questioncomplete5 : selectedObject.questioncomplete5,
+      questioncomplete6 : selectedObject.questioncomplete6,
+      questioncomplete7 : selectedObject.questioncomplete7,
+      questioncomplete8 : selectedObject.questioncomplete8,
+      questioncomplete9 : selectedObject.questioncomplete9,
+      questioncomplete10 : selectedObject.questioncomplete10,
+      questioncomplete11 : selectedObject.questioncomplete11,
+      questioncomplete12 : selectedObject.questioncomplete12,
+      questioncomplete13 : selectedObject.questioncomplete13,
+      questioncomplete14 : selectedObject.questioncomplete14,
+      questioncomplete15 : selectedObject.questioncomplete15,
+      questioncomplete16 : selectedObject.questioncomplete16,
+      questioncomplete17 : selectedObject.questioncomplete17,
+      questioncomplete18 : selectedObject.questioncomplete18,
+      questioncomplete19 : selectedObject.questioncomplete19,
+      questioncomplete20 : selectedObject.questioncomplete20,
+
+      answercomplete1: req.body.answercomplete1,
+      answercomplete2: req.body.answercomplete2,
+      answercomplete3: req.body.answercomplete3,
+      answercomplete4: req.body.answercomplete4,
+      answercomplete5: req.body.answercomplete5,
+      answercomplete6: req.body.answercomplete6,
+      answercomplete7: req.body.answercomplete7,
+      answercomplete8: req.body.answercomplete8,
+      answercomplete9: req.body.answercomplete9,
+      answercomplete10: req.body.answercomplete10,
+      answercomplete11: req.body.answercomplete11,
+      answercomplete12: req.body.answercomplete12,
+      answercomplete13: req.body.answercomplete13,
+      answercomplete14: req.body.answercomplete14,
+      answercomplete15: req.body.answercomplete15,
+      answercomplete16: req.body.answercomplete16,
+      answercomplete17: req.body.answercomplete17,
+      answercomplete18: req.body.answercomplete18,
+      answercomplete19: req.body.answercomplete19,
+      answercomplete20: req.body.answercomplete20,
+
+      resultcomplete1 : answcomplete1(),
+      resultcomplete2 : answcomplete2(),
+      resultcomplete3 : answcomplete3(),
+      resultcomplete4 : answcomplete4(),
+      resultcomplete5 : answcomplete5(),
+      resultcomplete6 : answcomplete6(),
+      resultcomplete7 : answcomplete7(),
+      resultcomplete8 : answcomplete8(),
+      resultcomplete9 : answcomplete9(),
+      resultcomplete10 : answcomplete10(),
+      resultcomplete11: answcomplete11(),
+      resultcomplete12: answcomplete12(),
+      resultcomplete13: answcomplete13(),
+      resultcomplete14: answcomplete14(),
+      resultcomplete15: answcomplete15(),
+      resultcomplete16: answcomplete16(),
+      resultcomplete17: answcomplete17(),
+      resultcomplete18: answcomplete18(),
+      resultcomplete19: answcomplete19(),
+      resultcomplete20: answcomplete20(),
+
+      questiontf1 : selectedObject.questiontruefalse1,
+      questiontf2 : selectedObject.questiontruefalse2,
+      questiontf3 : selectedObject.questiontruefalse3,
+      questiontf4 : selectedObject.questiontruefalse4,
+      questiontf5 : selectedObject.questiontruefalse5,
+      questiontf6 : selectedObject.questiontruefalse6,
+      questiontf7 : selectedObject.questiontruefalse7,
+      questiontf8 : selectedObject.questiontruefalse8,
+      questiontf9 : selectedObject.questiontruefalse9,
+      questiontf10 : selectedObject.questiontruefalse10,
+      questiontf11 : selectedObject.questiontruefalse11,
+      questiontf12 : selectedObject.questiontruefalse12,
+      questiontf13 : selectedObject.questiontruefalse13,
+      questiontf14 : selectedObject.questiontruefalse14,
+      questiontf15 : selectedObject.questiontruefalse15,
+      questiontf16 : selectedObject.questiontruefalse16,
+      questiontf17 : selectedObject.questiontruefalse17,
+      questiontf18 : selectedObject.questiontruefalse18,
+      questiontf19 : selectedObject.questiontruefalse19,
+      questiontf20 : selectedObject.questiontruefalse20,
+
       answertf1: req.body.answertf1,
       answertf2: req.body.answertf2,
       answertf3: req.body.answertf3,
@@ -7519,6 +8352,37 @@ router.post(
       answertf8: req.body.answertf8,
       answertf9: req.body.answertf9,
       answertf10: req.body.answertf10,
+      answertf11: req.body.answertf11,
+      answertf12: req.body.answertf12,
+      answertf13: req.body.answertf13,
+      answertf14: req.body.answertf14,
+      answertf15: req.body.answertf15,
+      answertf16: req.body.answertf16,
+      answertf17: req.body.answertf17,
+      answertf18: req.body.answertf18,
+      answertf19: req.body.answertf19,
+      answertf20: req.body.answertf20,
+
+      resulttruefalse1 : answtf1(),
+      resulttruefalse2 : answtf2(),
+      resulttruefalse3 : answtf3(),
+      resulttruefalse4 : answtf4(),
+      resulttruefalse5 : answtf5(),
+      resulttruefalse6 : answtf6(),
+      resulttruefalse7 : answtf7(),
+      resulttruefalse8 : answtf8(),
+      resulttruefalse9 : answtf9(),
+      resulttruefalse10 : answtf10(),
+      resulttruefalse11: answtf11(),
+      resulttruefalse12: answtf12(),
+      resulttruefalse13: answtf13(),
+      resulttruefalse14: answtf14(),
+      resulttruefalse15: answtf15(),
+      resulttruefalse16: answtf16(),
+      resulttruefalse17: answtf17(),
+      resulttruefalse18: answtf18(),
+      resulttruefalse19: answtf19(),
+      resulttruefalse20: answtf20(),
     };
     // const results =
     // await User.updateOne( {role : "Admin"},
@@ -8180,8 +9044,8 @@ router.delete("/deletepolicy", checkIfUser, requireAuth,
     }
   }) );
 
-    //DELETE PROTOCOLS
-router.delete("/deleteprotocols", checkIfUser, requireAuth, 
+  //DELETE PROTOCOLS
+  router.delete("/deleteprotocols", checkIfUser, requireAuth, 
   asyncHandler( async (req, res) => {
     const find = await Rareprotocols.findOneAndDelete({raretitle :req.body.raretitle})
     const directoryPath = "uploads/Rare/"
@@ -8193,14 +9057,15 @@ router.delete("/deleteprotocols", checkIfUser, requireAuth,
       }
 
   console.log("Delete File successfully.");
-});
+    });
     if (find) {
     res.redirect(req.get('referer'));  
     }
-  }) );
+    })
+  );
 
-      //DELETE WORKFLOW
-router.delete("/deleteworkflow", checkIfUser, requireAuth, 
+  //DELETE WORKFLOW
+  router.delete("/deleteworkflow", checkIfUser, requireAuth, 
   asyncHandler( async (req, res) => {
     const find = await Workflow.findOneAndDelete({wftitle :req.body.wftitle})
     console.log(find.wfpath)
@@ -8218,18 +9083,26 @@ router.delete("/deleteworkflow", checkIfUser, requireAuth,
     if (find) {
     res.redirect(req.get('referer'));  
     }
-  }) );
+  })
+ );
 
   //DELETE EXAM
-router.delete("/deleteexam", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  router.delete("/deleteexam", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
   const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
   const results = await User.findByIdAndUpdate({_id : decoded.id},{ examchoose: {} })
   console.log(results)
   if (results) {
     res.redirect(req.get('referer'));  
     }
+  }) 
+  );
 
-
+    //DELETE EXAM RECORD
+  router.delete("/deletescore/:id", checkIfUser, requireAuth, asyncHandler( async (req, res) => {
+  const results = await Score.findByIdAndDelete(req.params.id)
+  if (results) {
+    res.redirect(req.get('referer'));  
+    }
   }) );
 
 // ---------------------------------
