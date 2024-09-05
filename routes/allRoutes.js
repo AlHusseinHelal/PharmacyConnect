@@ -538,7 +538,7 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const array = await Pyxis.find();
+    const array = await Pyxis.find().sort({ItemDescription : "asc"});
     res.render("Store/pyxis.ejs", { array: array });
   })
 );
@@ -549,7 +549,7 @@ router.get(
   checkIfUser,
   requireAuth,
   asyncHandler(async (req, res) => {
-    const array = await Rowa.find();
+    const array = await Rowa.find().sort({ItemDescription : "asc"});
     res.render("Store/rowa.ejs", { array: array });
   })
 );
@@ -3364,7 +3364,7 @@ router.post(
     check(
       "password",
       "Password must be at least 8 characters with 1 upper case letter and 1 number"
-    ).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/),
+    ).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/)
   ],
   asyncHandler(async (req, res, next) => {
     const usercode = await User.findOne({ code: req.body.code });

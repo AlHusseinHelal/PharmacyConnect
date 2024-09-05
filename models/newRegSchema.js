@@ -997,12 +997,6 @@ user.pre("save", function (next) {
   next();
 });
 
-user.pre("save", function (next) {
-    this.examchoose.key1forquestion1 =
-    this.examchoose.key1forquestion1.toLowerCase() 
-
-  next();
-});
 
 // user.pre("save", function (next) {
 //   this.lastname =

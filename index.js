@@ -20,7 +20,7 @@ const Inpatientschema = require("./models/inpatientSchema");
 const PORT = process.env.PORT || 7777;
 
 // MongoDB connection
-mongoose.connect("mongodb://localhost:27017/all-Data");
+mongoose.connect(process.env.MDB);
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
 });
