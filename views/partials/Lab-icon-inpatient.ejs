@@ -1,0 +1,17 @@
+<div class="lab-icon">
+  <button type="button" class="btn btn-outline-danger position-relative"><a style="border: unset; color: unset;"
+    href="/labtoxixity">
+    <span class="<%= toxicity.length === 0? "d-none" : "d-block" %> position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+      <%= toxicity.length %>
+        <span class="visually-hidden">unread messages</span>
+    </span>
+    <span>Lab Toxicity</span></a></button>
+
+    <button type="button" class="btn btn-outline-danger position-relative"><a style="border: unset; color: unset;"
+      href="/labPGx">
+      <span class="<%= PGx.length === 0? "d-none" : "d-block" %> position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+        <%= PGx.length %>
+          <span class="visually-hidden">unread messages</span>
+      </span>
+      <span>Lab PGx</span></a></button>
+</div>

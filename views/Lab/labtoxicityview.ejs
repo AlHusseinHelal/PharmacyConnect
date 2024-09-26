@@ -102,11 +102,13 @@
                   href="/labreceivedview">RECIEVED</a></button>
               <button type="button" class="btn btn-outline-dark active"><a style="border: unset; color: unset;"
                 href="/labtoxicityview">Toxicity</a></button>
+                <button type="button" class="btn btn-outline-dark"><a style="border: unset; color: unset;"
+                  href="/labPGxview">PGx</a></button>
             </div>
 
             <!-- GEAR ICON -->
             <div id="icon_div" class="disappearicon d-flex align-items-center justify-content-between p-1"
-              style="width:10vw;  border-radius: 5px; background-color:rgb(218, 226, 225);">
+              style="width:210px;  border-radius: 5px; background-color:rgb(218, 226, 225);">
 
               <!-- GEAR -->
               <i id="gear2" class="fa-solid fa-gear fa-2xl me-2" style="color: #407de6;"></i>
@@ -125,6 +127,14 @@
               <a data-tooltip="Toxicity" data-flow="top" href=""
                 class="p-1" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                 <i class="fa-solid fa-biohazard fa-2xl" style="color: #f40b0b;"></i>
+              </a>
+
+                <!-- PharmacoGenitics -->
+                <a data-tooltip="PGx" data-flow="top" href="" 
+                class="p-1" data-bs-toggle="modal" data-bs-target="#exampleModal4">
+                <div style=" border-radius: 5px; background-color:darkgrey;">
+                  <img src="/img/PGx-01-27.png" width="30" alt="">
+                </div>
               </a>
 
               <!-- ADD NEW PATIENT -->
@@ -320,7 +330,7 @@
                     <th class="text-center" scope="col">Drug Level</th>
                     <th class="text-center" scope="col">Sender</th>
                     <th class="text-center" scope="col">Time</th>
-                    <th class="text-center" scope="col">Reciver</th>
+                    <th class="text-center" scope="col">Receiver</th>
                     <th class="text-center" scope="col">Time</th>
                     <th class="text-center" scope="col">Edit</th>
                   </tr>

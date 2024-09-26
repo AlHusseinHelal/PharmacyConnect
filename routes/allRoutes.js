@@ -169,6 +169,7 @@ const Presenstation = require("../models/presenstation");
 const Policy = require("../models/policy");
 const Rareprotocols = require("../models/rareprotocols");
 const Workflow = require("../models/workflow");
+const LabPGxschema = require("../models/labPGxSchema");
 
 //MIDDLEWARE
 const { requireAuth } = require("../middleware/middleware");
@@ -593,6 +594,11 @@ router.get(
       createdAt: { $gte: startDate, $lte: endDate },
       edit : { $not: { $in: [ /DONE/i ] }},
     })
+
+    const PGx = await LabPGxschema.find({
+      createdAt: { $gte: startDate, $lte: endDate },
+      edit : { $not: { $in: [ /DONE/i ] }},
+    })
     
     const results = await Inpatientschema.find({
       requestype : { $not: { $in: [ /Pyxis Refill/i, /Nurse DisCharge Medication/i ] }},
@@ -612,7 +618,7 @@ router.get(
         firstname,
         lastname,
         num,
-        toxicity,pageNumber
+        toxicity,pageNumber,PGx
       });
     }
   })
@@ -652,6 +658,11 @@ router.get(
         createdAt: { $gte: startDate, $lte: endDate },
         edit : { $not: { $in: [ /DONE/i ] }},
       })
+
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
     
     if (results) {
       res.render("Inpatient/icu", {
@@ -660,7 +671,7 @@ router.get(
         floor: "ICU",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity,PGx
       });
     }
   })
@@ -702,6 +713,11 @@ router.get(
         edit : { $not: { $in: [ /DONE/i ] }},
       })
 
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
+
     if (results) {
       res.render("Inpatient/icunotdoneview", {
         inpatientarray: results,
@@ -709,7 +725,7 @@ router.get(
         floor: "ICU",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity,PGx
       });
     }
   })
@@ -749,6 +765,11 @@ router.get(
         createdAt: { $gte: startDate, $lte: endDate },
         edit : { $not: { $in: [ /DONE/i ] }},
       })
+
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
     
     if (results) {
       res.render("Inpatient/surgical", {
@@ -757,7 +778,7 @@ router.get(
         floor: "SICU",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity,PGx
       });
     }
   })
@@ -798,6 +819,11 @@ router.get(
         createdAt: { $gte: startDate, $lte: endDate },
         edit : { $not: { $in: [ /DONE/i ] }},
       })
+
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
   
     if (results) {
       res.render("Inpatient/surgicalnotdoneview", {
@@ -806,7 +832,7 @@ router.get(
         floor: "SICU",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity,PGx
       });
     }
   })
@@ -846,6 +872,11 @@ router.get(
         createdAt: { $gte: startDate, $lte: endDate },
         edit : { $not: { $in: [ /DONE/i ] }},
       })
+
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
     
     if (results) {
       res.render("Inpatient/or", {
@@ -854,7 +885,7 @@ router.get(
         floor: "OR",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity,PGx
       });
     }
   })
@@ -895,6 +926,11 @@ router.get(
         createdAt: { $gte: startDate, $lte: endDate },
         edit : { $not: { $in: [ /DONE/i ] }},
       })
+
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
   
     if (results) {
       res.render("Inpatient/ornotdoneview", {
@@ -903,7 +939,7 @@ router.get(
         floor: "OR",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity,PGx
       });
     }
   })
@@ -945,6 +981,11 @@ router.get(
         edit : { $not: { $in: [ /DONE/i ] }},
       })
 
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
+
     if (results) {
       res.render("Inpatient/icc", {
         inpatientarray: results,
@@ -952,7 +993,7 @@ router.get(
         floor: "ICC",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity,PGx
       });
     }
   })
@@ -995,6 +1036,11 @@ router.get(
         edit : { $not: { $in: [ /DONE/i ] }},
       })
 
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
+
     if (results) {
       res.render("Inpatient/iccnotdone", {
         inpatientarray: results,
@@ -1002,7 +1048,7 @@ router.get(
         floor: "ICC",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity,PGx
       });
     }
   })
@@ -1045,6 +1091,11 @@ router.get(
         createdAt: { $gte: startDate, $lte: endDate },
         edit : { $not: { $in: [ /DONE/i ] }},
       })
+
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
     
     if (results) {
       res.render("Inpatient/3rdo", {
@@ -1053,7 +1104,7 @@ router.get(
         floor: "3rd O",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity,PGx
       });
     }
   })
@@ -1095,6 +1146,11 @@ router.get(
         createdAt: { $gte: startDate, $lte: endDate },
         edit : { $not: { $in: [ /DONE/i ] }},
       })
+
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
     
     if (results) {
       res.render("Inpatient/3rdonotdone", {
@@ -1103,7 +1159,7 @@ router.get(
         floor: "3rd O",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity,PGx
       });
     }
   })
@@ -1145,6 +1201,11 @@ router.get(
         createdAt: { $gte: startDate, $lte: endDate },
         edit : { $not: { $in: [ /DONE/i ] }},
       })
+
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
     
     if (results) {
       res.render("Inpatient/3rdn", {
@@ -1153,7 +1214,7 @@ router.get(
         floor: "3rd N",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity,PGx
       });
     }
   })
@@ -1195,6 +1256,11 @@ router.get(
         createdAt: { $gte: startDate, $lte: endDate },
         edit : { $not: { $in: [ /DONE/i ] }},
       })
+
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
     
     if (results) {
       res.render("Inpatient/3rdnnotdone", {
@@ -1203,7 +1269,7 @@ router.get(
         floor: "3rd N",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity,PGx
       });
     }
   })
@@ -1245,6 +1311,11 @@ router.get(
         createdAt: { $gte: startDate, $lte: endDate },
         edit : { $not: { $in: [ /DONE/i ] }},
       })
+
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
   
     if (results) {
       res.render("Inpatient/4th", {
@@ -1253,7 +1324,7 @@ router.get(
         floor: "4th",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity,PGx
       });
     }
   })
@@ -1295,6 +1366,11 @@ router.get(
         createdAt: { $gte: startDate, $lte: endDate },
         edit : { $not: { $in: [ /DONE/i ] }},
       })
+
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
   
     if (results) {
       res.render("Inpatient/4thnotdone", {
@@ -1303,7 +1379,7 @@ router.get(
         floor: "4th",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity,PGx
       });
     }
   })
@@ -1345,6 +1421,11 @@ router.get(
         createdAt: { $gte: startDate, $lte: endDate },
         edit : { $not: { $in: [ /DONE/i ] }},
       })
+
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
   
     if (results) {
       res.render("Inpatient/5th", {
@@ -1353,7 +1434,7 @@ router.get(
         floor: "5th",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity,PGx
       });
     }
   })
@@ -1396,6 +1477,11 @@ router.get(
         edit : { $not: { $in: [ /DONE/i ] }},
       })
 
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
+
     if (results) {
       res.render("Inpatient/5thnotdone", {
         inpatientarray: results,
@@ -1403,7 +1489,7 @@ router.get(
         floor: "5th",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity,PGx
       });
     }
   })
@@ -1445,6 +1531,11 @@ router.get(
         createdAt: { $gte: startDate, $lte: endDate },
         edit : { $not: { $in: [ /DONE/i ] }},
       })
+
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
     
     if (results) {
       res.render("Inpatient/bmt", {
@@ -1453,7 +1544,7 @@ router.get(
         floor: "BMT",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity, PGx
       });
     }
   })
@@ -1495,6 +1586,11 @@ router.get(
         createdAt: { $gte: startDate, $lte: endDate },
         edit : { $not: { $in: [ /DONE/i ] }},
       })
+
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
   
     if (results) {
       res.render("Inpatient/bmtnotdone", {
@@ -1503,7 +1599,7 @@ router.get(
         floor: "BMT",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity, PGx
       });
     }
   })
@@ -1545,6 +1641,11 @@ router.get(
         createdAt: { $gte: startDate, $lte: endDate },
         edit : { $not: { $in: [ /DONE/i ] }},
       })
+
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
     
     if (results) {
       res.render("Inpatient/er", {
@@ -1553,7 +1654,7 @@ router.get(
         floor: "ER",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity, PGx
       });
     }
   })
@@ -1595,6 +1696,11 @@ router.get(
         createdAt: { $gte: startDate, $lte: endDate },
         edit : { $not: { $in: [ /DONE/i ] }},
       })
+
+      const PGx = await LabPGxschema.find({
+        createdAt: { $gte: startDate, $lte: endDate },
+        edit : { $not: { $in: [ /DONE/i ] }},
+      })
   
     if (results) {
       res.render("Inpatient/ernotdone", {
@@ -1603,7 +1709,7 @@ router.get(
         floor: "ER",
         firstname,
         lastname,
-        num,toxicity
+        num,toxicity, PGx
       });
     }
   })
@@ -2659,6 +2765,40 @@ router.get(
   })
 );
 
+//PHARMACY LAB PGx VIEW
+router.get(
+  "/labPGxview",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await LabPGxschema.find({  
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments()
+
+    const limit = req.query.limit * 1 || 9;
+    const page = req.query.page * 1 
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
+    const result = await LabPGxschema.find({  
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).skip(skip).limit(limit)
+      
+  
+    if (result) {
+      res.render("Lab/labPGxview.ejs", {
+        labarray: result,
+        moment: moment,
+        num,
+        page,
+      });
+    }
+  })
+);
+
 //INPATIENT LAB TOXICITY
 router.get(
   "/labtoxixity",
@@ -2687,13 +2827,62 @@ router.get(
     const { lastname } = user;
   
     // .sort((a,b) => b.createdAt - a.createdAt).skip(skip).limit(limit);
+    const PGx = await LabPGxschema.find({
+      createdAt: { $gte: startDate, $lte: endDate },
+      edit : { $not: { $in: [ /DONE/i ] }},
+    })
       
     if (result) {
       res.render("Lab/labtoxicity.ejs", {
         labarray: result,
         moment: moment,
         num,
-        page,firstname,lastname
+        page,firstname,lastname,PGx
+      });
+    }
+  })
+);
+
+//INPATIENT LAB PGx
+router.get(
+  "/labPGx",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const date = moment().format("YYYY-MM-DD");
+    const startDate = `${date}T00:00:00.000+03:00`;
+    const endDate = `${date}T23:59:59.000+03:00`;
+    const num = await Labtoxicityschema.find({
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).countDocuments()
+
+    const limit = req.query.limit * 1 || 6;
+    const page = req.query.page * 1 
+    const sk = (page - 1) * limit
+    const skip = Math.abs(sk)
+    
+    const result = await LabPGxschema.find({
+      createdAt: { $gte: startDate, $lte: endDate },
+    }).skip(skip).limit(limit)
+    
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne({ _id: decoded.id });
+    const { firstname } = user;
+    const { lastname } = user;
+  
+    // .sort((a,b) => b.createdAt - a.createdAt).skip(skip).limit(limit);
+
+    const PGx = await LabPGxschema.find({
+      createdAt: { $gte: startDate, $lte: endDate },
+      edit : { $not: { $in: [ /DONE/i ] }},
+    })
+      
+    if (result) {
+      res.render("Lab/labPGx.ejs", {
+        labarray: result,
+        moment: moment,
+        num,
+        page,firstname,lastname,PGx
       });
     }
   })
@@ -6342,6 +6531,59 @@ router.post(
   })
 );
 
+// LAB PGx
+router.post(
+  "/add_lab_pgx",
+  [
+    check("drugrecomendation").notEmpty(),
+    check("drugPhenoType").notEmpty(),
+    check("druggene").notEmpty(),
+    check("pgxptfloor").notEmpty(),
+  ],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const mrn = req.body.mrn
+  
+    if (mrn === "") {
+      return res.json({ pgxmrnlabempty: "You Must Enter This Field" });
+    }
+    
+    if (mrn.match(/[a-zA-z]/)){
+      return res.json({ pgxmrnnotnumber: "Please Enter A Valid MRN" });
+    }
+
+    const patient = await Newpatient.findOne({
+      addpatientmrn: req.body.mrn,
+    });
+
+    if (patient == null) {
+      return res.json({ pgxlabnopatient: "This Patient Not Found" });
+    }
+
+    if (patient) {
+      req.body.patientname = patient.addpatientname;
+    }
+
+    const validationerrors = validationResult(req);
+    if (!validationerrors.isEmpty()) {
+      return res.json({ errors: validationerrors.errors });
+    }
+
+    req.body.time = moment()
+    req.body.time2 = moment()
+    const decoded = jwt.verify(req.cookies.jwt, process.env.JWTSECRET_KEY);
+    const user = await User.findOne( {_id : decoded.id})
+    req.body.sender = `${user.firstname}.${user.lastname}`
+    
+    
+    
+
+    const labpgx = await LabPGxschema.create(req.body);
+    res.json({ lab_add_pgx: labpgx });
+  })
+);
+
 // LAB SEARCH DATE
 router.post(
   "/findDatelab",
@@ -9925,6 +10167,23 @@ router.put(
   })
 );
 
+// LAB PGX VIEW EDIT
+router.put(
+  "/labPGxviewedit/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.time = moment()
+    await LabPGxschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect(req.get('referer'));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
 // LAB HIDE
 router.put(
   "/labdel/:id",
@@ -10681,6 +10940,24 @@ router.put(
     req.body.time2 = moment()
     req.body.edit = "DONE"
     await Labtoxicityschema.findByIdAndUpdate(req.params.id, req.body)
+      .then(() => {
+        res.redirect(req.get('referer'));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+);
+
+// LAB PGx / DONE
+router.put(
+  "/donelabPGx/:id",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    req.body.time2 = moment()
+    req.body.edit = "DONE"
+    await LabPGxschema.findByIdAndUpdate(req.params.id, req.body)
       .then(() => {
         res.redirect(req.get('referer'));
       })

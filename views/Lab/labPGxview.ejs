@@ -96,13 +96,13 @@
           <!-- EDIT ICON -->
           <div class="d-flex align-items-center mx-2 mb-1 justify-content-between">
             <div class="btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
-              <button type="button" class="btn btn-outline-dark active"><a style="border: unset; color: unset;"
+              <button type="button" class="btn btn-outline-dark "><a style="border: unset; color: unset;"
                   href="/lab">LAB</a></button>
               <button type="button" class="btn btn-outline-dark"><a style="border: unset; color: unset;"
                   href="/labreceivedview">RECIEVED</a></button>
-              <button type="button" class="btn btn-outline-dark"><a style="border: unset; color: unset;"
+              <button type="button" class="btn btn-outline-dark "><a style="border: unset; color: unset;"
                 href="/labtoxicityview">Toxicity</a></button>
-                <button type="button" class="btn btn-outline-dark"><a style="border: unset; color: unset;"
+                <button type="button" class="btn btn-outline-dark active"><a style="border: unset; color: unset;"
                   href="/labPGxview">PGx</a></button>
             </div>
 
@@ -124,7 +124,7 @@
               </a>
 
               <!-- TOXICITY ADDITION -->
-              <a data-tooltip="Toxicity" data-flow="top" href="" 
+              <a data-tooltip="Toxicity" data-flow="top" href=""
                 class="p-1" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                 <i class="fa-solid fa-biohazard fa-2xl" style="color: #f40b0b;"></i>
               </a>
@@ -135,8 +135,6 @@
                 <div style=" border-radius: 5px; background-color:darkgrey;">
                   <img src="/img/PGx-01-27.png" width="30" alt="">
                 </div>
-                
-                <!-- <i class="fa-solid fa-biohazard fa-2xl" style="color: #f40b0b;"></i> -->
               </a>
 
               <!-- ADD NEW PATIENT -->
@@ -211,17 +209,11 @@
                     <label for="mrn">MRN</label>
                     <input class="form-control my-2" type="text" name="mrn" id="mrn">
 
-                      <div id="mrnnotnumber" class=" d-flex flex-row align-items-center my-2 d-none"
+                      <div id="mrnempty" class=" d-flex flex-row align-items-center my-2 d-none"
                         style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
                         <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
                         <p class="my-1 ms-1">Please Enter Avalid MRN</p>
                       </div>
-
-                      <div id="mrnlabempty" class=" d-flex flex-row align-items-center my-2 d-none"
-                      style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
-                      <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
-                      <p class="my-1 ms-1">You Must Enter This Field</p>
-                    </div>
 
                       <div id="labnopatient" class=" d-flex flex-row align-items-center my-2 d-none"
                         style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
@@ -232,8 +224,7 @@
                     <label hidden for="patientname">Patient Name</label>
                     <input hidden class="form-control my-2" type="text" name="patientname" id="patientname">
 
-                    
-                      <label for="ptfloor" class="form-label">Patient Floor</label>
+                    <label for="ptfloor" class="form-label">Patient Floor</label>
                       <select id="ptfloor" name="ptfloor" class="form-select">
                         <option disabled hidden selected></option>
                         <option>2nd</option>
@@ -253,15 +244,14 @@
                         <option>OutPatient</option>
                         <option>ICU</option>
                       </select>
-                  
 
-                    <div id="locationempty" class=" d-flex flex-row align-items-center my-2 d-none"
+                      <div id="locationempty" class=" d-flex flex-row align-items-center my-2 d-none"
                         style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
                         <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
                         <p class="my-1 ms-1">You Must Enter This Field</p>
                       </div>
 
-                    <label class="mt-2" for="drugname">Drug Name</label>
+                    <label for="drugname">Drug Name</label>
                     <input class="form-control my-2" type="text" name="drugname" id="drugname">
 
                     <div id="drugnamempty" class=" d-flex flex-row align-items-center my-2 d-none"
@@ -310,136 +300,6 @@
             </div>
           </div>
 
-            <!-- ADD PGx MODAL -->
-            <div class="connectmodal modal fade" id="exampleModal4" data-bs-backdrop="static" tabindex="-1"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="glass modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">
-                    Critical PGx Report
-                  </h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                
-                  <div class="modal-body">
-                    <!-- MRN -->
-                    <label for="pgxmrn">MRN</label>
-                    <input class="form-control my-2" type="text" name="mrn" id="pgxmrn">
-
-                    <div id="pgxmrnnotnumber" class=" d-flex flex-row align-items-center my-2 d-none"
-                      style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
-                      <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
-                      <p class="my-1 ms-1">Please Enter Avalid MRN</p>
-                    </div>
-
-                    <div id="pgxmrnlabempty" class=" d-flex flex-row align-items-center my-2 d-none"
-                      style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
-                      <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
-                      <p class="my-1 ms-1">You Must Enter This Field</p>
-                    </div>
-
-                    <div id="pgxlabnopatient" class=" d-flex flex-row align-items-center my-2 d-none"
-                      style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
-                      <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
-                      <p class="my-1 ms-1">This Patient Not Found</p>
-                    </div>
-
-                    <!-- PATIENT NAME -->
-                    <label hidden for="pgxpatientname">Patient Name</label>
-                    <input hidden class="form-control my-2" type="text" name="patientname" id="pgxpatientname">
-
-                    
-                    <!-- PATIENT FLOOR -->
-                      <label for="ptpgxfloor" class="form-label">Patient Floor</label>
-                      <select id="ptpgxfloor" name="pgxptfloor" class="form-select">
-                        <option disabled hidden selected></option>
-                        <option>2nd</option>
-                        <option>3rd O</option>
-                        <option>3rd N</option>
-                        <option>4th</option>
-                        <option>5th</option>
-                        <option>6th</option>
-                        <option>MCU</option>
-                        <option>SCU</option>
-                        <option>ER</option>
-                        <option>ICC</option>
-                        <option>OR</option>
-                        <option>SICU</option>
-                        <option>DayCare</option>
-                        <option>Dispense</option>
-                        <option>OutPatient</option>
-                        <option>ICU</option>
-                      </select>
-                  
-
-                    <div id="pgxlocationempty" class=" d-flex flex-row align-items-center my-2 d-none"
-                        style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
-                        <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
-                        <p class="my-1 ms-1">You Must Enter This Field</p>
-                      </div>
-
-                      <!-- DRUG GENE -->
-                    <label class="mt-2" for="pgxdruggene">Drug Gene</label>
-                    <input class="form-control my-2" type="text" name="druggene" id="pgxdruggene">
-
-                    <div id="pgxdruggenempty" class=" d-flex flex-row align-items-center my-2 d-none"
-                      style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
-                      <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
-                      <p class="my-1 ms-1">You Must Enter This Field</p>
-                    </div>
-
-                    <!-- PhenoType -->
-                    <label for="pgxdrugPhenoType">PhenoType</label>
-                    <input class="form-control my-2" type="text" name="drugPhenoType" id="pgxdrugPhenoType">
-
-                    <div id="pgxdrugPhenoTypeempty" class=" d-flex flex-row align-items-center my-2 d-none"
-                      style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
-                      <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
-                      <p class="my-1 ms-1">You Must Enter This Field</p>
-                    </div>
-
-                    <!-- DRUG RECOMENDATION -->
-                    <label for="pgxdrugrecom">Drug Recommendation</label>
-                    <textarea class="form-control my-2" type="text" name="drugrecomendation" id="pgxdrugrecom"></textarea>
-
-                    <div id="pgxdrugrecempty" class=" d-flex flex-row align-items-center my-2 d-none"
-                      style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px;">
-                      <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
-                      <p class="my-1 ms-1">You Must Enter This Field</p>
-                    </div>
-
-                    <label hidden for="sender">Sender</label>
-                    <input hidden class="form-control my-2" type="text" name="sender" id="pgxsender">
-
-                    <label hidden for="time">Time</label>
-                    <input hidden class="form-control my-2" type="text" name="time" id="pgxtime">
-
-                    <label hidden for="receiver">Reciever</label>
-                    <input hidden class="form-control my-2" type="text" name="receiver" id="pgxreceiver">
-                    
-                    <label hidden for="time2">Time2</label>
-                    <input hidden class="form-control my-2" type="text" name="time2" id="pgxtime2">
-
-                    <label hidden for="edit">Edit</label>
-                    <input hidden class="form-control my-2" type="text" name="edit" id="pgxedit">
-                  </div>
-
-                  <div class="modal-footer">
-                    
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                      Close
-                    </button>
-                    <form id="add_lab_pgx">
-                    <button type="submit" class="btn btn-primary">ADD
-                    </button>
-                  </form>
-                  </div>
-              
-              </div>
-            </div>
-          </div>
-
           <!-- ADD NEW PATIENT MODAL -->
           <%- include('../partials/AddNewPatient-Modal.ejs') %>
 
@@ -465,18 +325,15 @@
                     <th class="text-center" scope="col">#</th>
                     <th class="text-center" scope="col">Patient Name</th>
                     <th class="text-center" scope="col">MRN</th>
-                    <th class="text-center" scope="col">Rec. Time</th>
-                    <th class="text-center" scope="col">Patient Floor</th>
-                    <th class="text-center" scope="col">Request Type</th>
-                    <th class="text-center" scope="col">PHA Name</th>
-                    <th class="text-center" scope="col">Med. Start Date</th>
-                    <th class="text-center" scope="col">Med. Start Time</th>
-                    <th class="text-center" scope="col">Sample WD Date</th>
-                    <th class="text-center" scope="col">Sample WD Time</th>
-                    <th class="text-center" scope="col">Reason</th>
-                    <th class="text-center" scope="col">Lab Comment</th>
+                    <th class="text-center" scope="col">Location</th>
+                    <th class="text-center" scope="col">Drug Gene</th>
+                    <th class="text-center" scope="col">Drug PhenoType</th>
+                    <th class="text-center" scope="col">Drug Recommendation</th>
+                    <th class="text-center" scope="col">Sender</th>
+                    <th class="text-center" scope="col">Time</th>
+                    <th class="text-center" scope="col">Receiver</th>
+                    <th class="text-center" scope="col">Time</th>
                     <th class="text-center" scope="col">Edit</th>
-                    <th class="text-center" scope="col">Done</th>
                   </tr>
                 </thead>
                 <% labarray.forEach((item,index)=> { %>
@@ -487,55 +344,45 @@
                       </td>
 
                       <td class="text-center">
-                        <%= item.labpatientname %>
+                        <%= item.patientname %>
                       </td>
 
                       <td class="text-center">
-                        <%= item.mrnlab%>
+                        <%= item.mrn%>
                       </td>
 
                       <td class="text-center">
-                        <%= moment(item.createdAt).format('DD-MM, h:mm a')%>
+                        <%= item.pgxptfloor%>
                       </td>
 
                       <td class="text-center">
-                        <%= item.labptfloor%>
+                        <%= item.druggene%>
                       </td>
 
                       <td class="text-center">
-                        <%= item.labrequestype%>
+                        <%= item.drugPhenoType%>
                       </td>
 
                       <td class="text-center">
-                        <%= item.phaname%>
+                        <%= item.drugrecomendation%>
                       </td>
 
                       <td class="text-center">
-                        <%= item.medstartdate%>
+                        <%= item.sender%>
                       </td>
 
                       <td class="text-center">
-                        <%= item.medstarttime%>
+                        <%= moment(item.time).format('DD-MM, h:mm a')%>
                       </td>
 
                       <td class="text-center">
-                        <%= item.samplewddate%>
+                        <%= item.receiver%>
                       </td>
 
                       <td class="text-center">
-                        <%= item.samplewdtime%>
-                      </td>
-
-                      <td class="text-center">
-                        <span dir="rtl">
-                          <%= item.levelrequestreason%>
-                        </span>
-                      </td>
-
-                      <td class="text-center">
-                        <span dir="rtl">
-                          <%= item.labcomment%>
-                        </span>
+                        <% if (item.receiver !=="" ) { %>
+                          <%= moment(item.time2).format('DD-MM-YYYY, h:mm a')%>
+                            <% } %>
                       </td>
 
 
@@ -563,11 +410,19 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                   aria-label="Close"></button>
                               </div>
-                              <form action="/labedit/<%= item._id%>?_method=PUT" method="post">
-                                <div class="modal-body">
-                                  Please Write Comment
-                                  <label for="labcomment" class="col-form-label">Level Request Reason</label>
-                                  <input dir="rtl" name="labcomment" type="text" class="form-control" />
+                              <form action="/labPGxviewedit/<%= item._id%>?_method=PUT" method="post">
+                                <div class="modal-body text-start">
+                                  
+                                  <label for="druggene">Drug Gene</label>
+                                  <input class="form-control my-2" type="text" name="druggene" value="<%= item.druggene %>" >
+
+                                  <label for="drugPhenoType">Drug PhenoType</label>
+                                  <input class="form-control my-2" type="text" name="drugPhenoType" value="<%= item.drugPhenoType %>">
+
+                                  <label for="drugrecomendation">Documentation</label>
+                                  <input class="form-control my-2" type="text" name="drugrecomendation" value="<%= item.drugrecomendation %>">
+
+                                  <input hidden class="form-control my-2" type="text" name="time">
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -578,27 +433,6 @@
                           </div>
                         </div>
                       </td>
-
-
-                      <td class="text-center">
-                        <form action="/donelab/<%= item._id %>?_method=PUT" method="post">
-                          <button type="submit" class="d-inline-flex p-1 text-center"
-                            style="outline-style: unset; border: none; background-color: transparent;">
-                            <label hidden for="labcomment" class="form-label" style="display: none;"> </label>
-                            <input hidden type="text" class="form-control" value="RECEIVED" 
-                              style="display: none;" name="labcomment" placeholder="">
-
-                            <svg style="fill: #298c43;" width="22" height="22" id="Layer_1" data-name="Layer 1"
-                              viewBox="0 0 25 27">
-                              <path class="cls-1"
-                                d="m19.13,11.97c-.14.17-.28.35-.41.52v8.39c0,.72-.58,1.3-1.3,1.3H4.46c-.72,0-1.3-.58-1.3-1.3V7.93c0-.72.58-1.3,1.3-1.3h12.22c.49-.58.94-1.12,1.42-1.65l.41-.46.23-.26c-.42-.15-.87-.23-1.33-.23H4.46c-2.16,0-3.91,1.75-3.91,3.91v12.95c0,2.16,1.75,3.91,3.91,3.91h12.95c2.16,0,3.91-1.75,3.91-3.91v-11.56c-.68.79-1.39,1.65-2.19,2.65Z" />
-                              <path class="cls-1"
-                                d="m24.26,2.86c-.38-.63-1.2-.84-1.83-.47-.36.21-.69.45-1.01.7-.16.12-.31.26-.46.39-.15.13-.3.27-.44.41-.3.28-.56.58-.83.87l-.41.44-.4.45c-.53.6-1.05,1.21-1.56,1.82l-.76.93-.74.94c-.97,1.26-1.92,2.54-2.83,3.84-.46.65-.9,1.31-1.35,1.96-.16.25-.32.49-.49.74-.35-.29-.66-.61-.94-.97-.57-.72-1.02-1.6-1.39-2.55v-.02c-.26-.63-.96-.97-1.62-.76-.69.22-1.07.95-.85,1.64.18.57.39,1.15.66,1.72.26.57.58,1.13.96,1.66.38.53.82,1.03,1.31,1.47.48.44,1.01.82,1.55,1.15.65.4,1.52.22,1.95-.42l.03-.04c.43-.64.88-1.27,1.33-1.9.45-.63.9-1.26,1.36-1.88.92-1.24,1.85-2.47,2.81-3.68.96-1.2,1.94-2.39,2.96-3.53l.38-.43.39-.42c.26-.28.52-.56.77-.84.25-.28.5-.58.73-.88.24-.3.47-.6.67-.94l.03-.05c.25-.41.27-.94,0-1.37Z" />
-                            </svg>
-                          </button>
-                        </form>
-                      </td>
-
 
                     </tr>
 
@@ -611,7 +445,7 @@
         </div>
 
         <!-- PAGINATION -->
-        <%- include('../partials/labpagination.ejs') %>
+        <%- include('../partials/inpatientpagination.ejs') %>
           </div>
       </main>
       <!-- LINK TO jQuary -->
@@ -657,14 +491,20 @@
             e.preventDefault();
             const res = await fetch("/add_lab_toxicity", {
               method: "POST",
-              body: JSON.stringify({ptfloor : ptfloor.value,  patientname: patientname.value, mrn: mrn.value, drugname: drugname.value, druglevel: druglevel.value, sender: sender.value, receiver: receiver.value, time: time.value, time2: time2.value, edit: edit.value, }),
+              body: JSON.stringify({ptfloor : ptfloor.value, patientname: patientname.value, mrn: mrn.value, drugname: drugname.value, druglevel: druglevel.value, sender: sender.value, receiver: receiver.value, time: time.value, time2: time2.value, edit: edit.value, }),
               headers: { "Content-Type": "application/json" },
             });
-
             const data = await res.json();
             if (data.errors) {
               data.errors.forEach(item => {
-                
+                if (item.path == "mrn") {
+                  mrnempty.classList.remove("d-none");
+                  mrn.classList.add("redframe");
+                } else {
+                  mrnempty.classList.add("d-none");
+                  mrn.classList.remove("redframe");
+                }
+
                 if (item.path == "drugname") {
                   drugnamempty.classList.remove("d-none");
                   drugname.classList.add("redframe");
@@ -690,23 +530,7 @@
                 }
               });
             }
-
-            if (data.mrnlabempty) {
-              mrnlabempty.classList.remove("d-none");
-              mrn.classList.add("redframe");
-            } else {
-              mrnlabempty.classList.add("d-none");
-              mrn.classList.remove("redframe");
-            }
-
-            if (data.mrnnotnumber) {
-              mrnnotnumber.classList.remove("d-none");
-              mrn.classList.add("redframe");
-            } else {
-              mrnnotnumber.classList.add("d-none");
-              mrn.classList.remove("redframe");
-            }
-
+  
             if (data.nopatient) {
               labnopatient.classList.remove("d-none");
               mrn.classList.add("redframe");
@@ -717,88 +541,7 @@
   
   
             if (data.lab_add_toxicity) {
-              location.assign("/lab" + window.location.search)
-            }
-  
-  
-          });
-        </script>
-
-        <!-- PGx -->
-        <script>
-          add_lab_pgx.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const res = await fetch("/add_lab_pgx", {
-              method: "POST",
-              body: JSON.stringify({pgxptfloor : ptpgxfloor.value,  patientname: pgxpatientname.value, mrn: pgxmrn.value, druggene: pgxdruggene.value, drugPhenoType: pgxdrugPhenoType.value, drugrecomendation : pgxdrugrecom.value, sender: pgxsender.value, receiver: pgxreceiver.value, time: pgxtime.value, time2: pgxtime2.value, edit: pgxedit.value, }),
-              headers: { "Content-Type": "application/json" },
-            });
-
-            const data = await res.json();
-            if (data.errors) {
-              data.errors.forEach(item => {
-                if (item.path == "drugrecomendation") {
-                  pgxdrugrecempty.classList.remove("d-none");
-                  pgxdrugrecom.classList.add("redframe");
-                } else {
-                  pgxdrugrecempty.classList.add("d-none");
-                  pgxdrugrecom.classList.remove("redframe");
-                }
-                
-                if (item.path == "druggene") {
-                  pgxdruggenempty.classList.remove("d-none");
-                  pgxdruggene.classList.add("redframe");
-                } else {
-                  pgxdruggenempty.classList.add("d-none");
-                  pgxdruggene.classList.remove("redframe");
-                }
-
-                if (item.path == "drugPhenoType") {
-                  pgxdrugPhenoTypeempty.classList.remove("d-none");
-                  pgxdrugPhenoType.classList.add("redframe");
-                } else {
-                  pgxdrugPhenoTypeempty.classList.add("d-none");
-                  pgxdrugPhenoType.classList.remove("redframe");
-                }
-
-                if (item.path == "pgxptfloor") {
-                  pgxlocationempty.classList.remove("d-none");
-                  ptpgxfloor.classList.add("redframe");
-                } else {
-                  pgxlocationempty.classList.add("d-none");
-                  ptpgxfloor.classList.remove("redframe");
-                }
-
-              });
-            }
-
-            if (data.pgxmrnlabempty) {
-              pgxmrnlabempty.classList.remove("d-none");
-              pgxmrn.classList.add("redframe");
-            } else {
-              pgxmrnlabempty.classList.add("d-none");
-              pgxmrn.classList.remove("redframe");
-            }
-
-            if (data.pgxmrnnotnumber) {
-              pgxmrnnotnumber.classList.remove("d-none");
-              pgxmrn.classList.add("redframe");
-            } else {
-              pgxmrnnotnumber.classList.add("d-none");
-              pgxmrn.classList.remove("redframe");
-            }
-
-            if (data.pgxlabnopatient) {
-              pgxlabnopatient.classList.remove("d-none");
-              pgxmrn.classList.add("redframe");
-            } else {
-              pgxlabnopatient.classList.add("d-none");
-              pgxmrn.classList.remove("redframe");
-            }
-  
-  
-            if (data.lab_add_pgx) {
-              location.assign("/lab" + window.location.search)
+              location.assign("/labtoxicityview" + window.location.search)
             }
   
   

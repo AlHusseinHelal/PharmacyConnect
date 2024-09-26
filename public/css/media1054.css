@@ -1,0 +1,23 @@
+#editicon{
+  display: flex;
+  flex-direction: column;
+}
+
+#editicon .floor-icon{
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+#editicon .lab-icon{
+  margin-bottom: 10px;
+}
+
+#gear2{
+  display: none;
+}
+
+.wrap{
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}

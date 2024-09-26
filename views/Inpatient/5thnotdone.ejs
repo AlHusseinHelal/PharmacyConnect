@@ -27,6 +27,8 @@
   <link rel="stylesheet" href="/css/style.css" />
   <!-- Custom styles for this template -->
   <link href="/css/inpatient/icu/icu.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/media1054.css" media="(max-width:1195px)">
+
 </head>
 
 <body>
@@ -98,8 +100,8 @@
       --------------------------------------------------------------*/ -->
 
 
-            <div class="d-flex align-items-center mx-2 mb-1 justify-content-between">
-              <div class="btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
+            <div id="editicon" class="d-flex align-items-center mx-2 mb-1 justify-content-between">
+              <div class="floor-icon btn-group d-inline-flex" role="group" aria-label="Basic outlined example">
                 <button type="button" class="btn btn-outline-danger "><a style="border: unset; color: unset;"
                   href="/inpatient3">INPATIENT</a></button>
                 <button type="button" class="btn btn-outline-danger "><a style="border: unset; color: unset;"
@@ -125,15 +127,8 @@
                     <button type="button" class="btn btn-outline-primary active"><a style="border: unset; color: unset;"
                       href="/5thnotdone">ACTIVE</a></button>
               </div>
-              <div>
-                <button type="button" class="btn btn-outline-danger position-relative"><a style="border: unset; color: unset;"
-                  href="/labtoxixity">
-                  <span class="<%= toxicity.length === 0? "d-none" : "d-block" %> position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-                    <%= toxicity.length %>
-                      <span class="visually-hidden">unread messages</span>
-                  </span>
-                  <span>Lab Toxicity</span></a></button>
-              </div>
+              <!-- LAB-ICON-INPATIENT -->
+            <%- include('../partials/Lab-icon-inpatient.ejs') %>
 
               <!-- MODAL ICON -->
               <%- include('../partials/Modal-icon.ejs') %>
