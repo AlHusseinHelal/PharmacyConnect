@@ -543,7 +543,7 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 
 .disappearicon{
   transition: all 1s;
-  transform: translateX(11vw);
+  transform: translateX(13vw);
 }
 
 .appearicon{

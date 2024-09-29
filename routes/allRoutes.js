@@ -159,6 +159,7 @@ const Medicationclass = require("../models/medicationClass");
 const Perpatient = require("../models/perpatientSchema");
 const Pyxis = require("../models/pyxisSchema");
 const Rowa = require("../models/rowaSchema");
+const MainStore = require("../models/mainstoreSchema");
 const Shortage = require("../models/shortageSchema");
 const PyxisTrade = require("../models/pyxistradeSchema");
 const Score = require("../models/score");
@@ -541,6 +542,17 @@ router.get(
   asyncHandler(async (req, res) => {
     const array = await Pyxis.find().sort({ItemDescription : "asc"});
     res.render("Store/pyxis.ejs", { array: array });
+  })
+);
+
+//MAIN STORE
+router.get(
+  "/mainstore",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const array = await MainStore.find().sort({ItemDescription : "asc"});
+    res.render("Store/mainstore.ejs", { array: array });
   })
 );
 
