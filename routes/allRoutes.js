@@ -143,6 +143,30 @@ const multerFilterWF = function (req, file, cb) {
 };
 const uploadWF = multer({ storage: multerStorageWF, fileFilter : multerFilterWF})
 
+//MULTER DISKSTORAGE FOR MANUAL
+const multerStorageManual = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/Manual");
+  },
+  filename: function (req, file, cb) {
+    const ext = file.mimetype.split("/")[1];
+    const filename = `user-${uuidv4()}-${Date.now()}.${ext}`;
+    cb(null, filename);
+  },
+})
+//MULTER IMAGE ONLY
+const multerFilterManual = function (req, file, cb) {
+  if (file.mimetype.startsWith("application")) {
+    cb(null, true);
+  } else {
+    cb(
+      new ApiError("Invalid image type! Only PDF is supported."),
+      false
+    );
+  }
+};
+const uploadManual = multer({ storage: multerStorageManual, fileFilter : multerFilterManual})
+
 
 
 //SCHEMA
@@ -171,6 +195,7 @@ const Policy = require("../models/policy");
 const Rareprotocols = require("../models/rareprotocols");
 const Workflow = require("../models/workflow");
 const LabPGxschema = require("../models/labPGxSchema");
+const Manual = require("../models/manual");
 
 //MIDDLEWARE
 const { requireAuth } = require("../middleware/middleware");
@@ -9013,6 +9038,52 @@ router.post(
 
   })
 );
+
+// ADD MANUAL
+router.post(
+  "/addmanual",
+  uploadManual.single("manualpath"),
+  [
+    check("manualpath").notEmpty()
+  ],
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+
+    if (req.body.manualtitle === "") {
+      return res.json({ notitle: "You Must Enter This Field" });
+    }
+
+    const code = req.body.manualcode
+  
+    if (code === "") {
+      return res.json({ codeempty: "You Must Enter This Field" });
+    }
+    
+    if (!code.includes("MAN")){
+      return res.json({ noman: "Please Enter A Code Start With MAN" });
+    }
+    
+    const findcode = await Manual.findOne({ manualcode: req.body.manualcode });
+    if (findcode) {
+      return res.json({ codeexist: "This Code Is Already Exists" });
+    }
+    
+
+    const error = validationResult(req);
+    if (!error.isEmpty()) {
+      return res.json({ errors: error.errors });
+    }
+
+    req.body.manualpath = req.file.filename;
+    
+    if (!findcode) {
+       const done = await Manual.create(req.body)
+       res.json({ done : done})
+    }
+
+  })
+);
 // ADD PRESENTATION
 // router.post(
 //   "/addpresentation",
@@ -9322,8 +9393,6 @@ router.delete("/deletepolicy", checkIfUser, requireAuth,
   router.delete("/deleteworkflow", checkIfUser, requireAuth, 
   asyncHandler( async (req, res) => {
     const find = await Workflow.findOneAndDelete({wftitle :req.body.wftitle})
-    console.log(find.wfpath)
-
     const directoryPath = "uploads/WorkFlow/"
     const fileName = find.wfpath
     
@@ -9339,6 +9408,26 @@ router.delete("/deletepolicy", checkIfUser, requireAuth,
     }
   })
  );
+
+   //DELETE MANUAL
+   router.delete("/deletemanual", checkIfUser, requireAuth, 
+    asyncHandler( async (req, res) => {
+      const find = await Manual.findOneAndDelete({manualtitle :req.body.manualtitle})
+      const directoryPath = "uploads/Manual/"
+      const fileName = find.manualpath
+      
+      fs.unlink(directoryPath + fileName, (err) => {
+      if (err) {
+          throw err;
+        }
+  
+    console.log("Delete File successfully.");
+  });
+      if (find) {
+      res.redirect(req.get('referer'));  
+      }
+    })
+   );
 
   //DELETE EXAM
   router.delete("/deleteexam", checkIfUser, requireAuth, asyncHandler( async (req, res) => {

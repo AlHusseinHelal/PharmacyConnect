@@ -111,28 +111,7 @@
                     </li>
                     <li class="ms-3 border-top notlist" style="list-style: none;"></li>
                   <% }) %>
-                  <!-- <li><a class="d-inline-flex text-decoration-none rounded btnsubheadfont Asthma">Asthma BPS
-                      Pharmacotherapy</a></li>
-                  <li><a href="#"
-                      class="d-inline-flex text-decoration-none rounded btnsubheadfont Dinutuximab ">Dinutuximab</a>
-                  </li>
-                  <li><a href="#"
-                      class="d-inline-flex text-decoration-none rounded btnsubheadfont adrenocortical">Adrenocortical</a>
-                  </li>
-                  <li><a href="#" class="d-inline-flex text-decoration-none rounded btnsubheadfont Targeted">Targeted
-                      Therapy</a></li>
-                  <li><a href="#"
-                      class="d-inline-flex text-decoration-none rounded btnsubheadfont Vasopressors">Vasopressors &
-                      INOTROPES</a></li>
-                  <li><a href="#" class="d-inline-flex text-decoration-none rounded btnsubheadfont HL">Pediatric Hodgkin
-                      Lymphoma & Euronet Protocol</a></li>
-                  <li><a href="#" class="d-inline-flex text-decoration-none rounded btnsubheadfont SHOCK">SHOCK</a></li>
-                  <li><a href="#" class="d-inline-flex text-decoration-none rounded btnsubheadfont Fluid">Fluid &
-                      Electrolytes</a></li>
-                  <li><a href="#" class="d-inline-flex text-decoration-none rounded btnsubheadfont COPD">COPD In BPS
-                      Pharmacotherapy</a></li>
-                  <li><a href="#" class="d-inline-flex text-decoration-none rounded btnsubheadfont Tyrosine">Tyrosine
-                      Kinase Inhibitor</a></li> -->
+            
                 </ul>
               </div>
             </li>
@@ -1143,22 +1122,6 @@
                   <li class="ms-3 border-top notlist" style="list-style: none;"></li>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         <!-- MEDICATION PPI-->
                     <li>
                       <a id="botn56" class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont"
@@ -1198,13 +1161,6 @@
                         </div>
                       </li>
                       <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-                    
-
-
-
-
-
-
                 </ul>
               </div>
             </li>
@@ -1863,33 +1819,25 @@
 
                 <a id="botn8"
                   class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed btnheadfont p-0"
-                  data-bs-toggle="collapse" data-bs-target="#manualcollapse" aria-expanded="false">Manuals&Programs</a>
+                  data-bs-toggle="collapse" data-bs-target="#manualcollapse" aria-expanded="false">Manuals</a>
 
               </div>
               <div class="collapse" id="manualcollapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-
-                  <li>
-                    <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont ExtemporaneousFormulation">Extemporaneous Formulation Manual</a>
-                  </li>
-                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                  <li>
-                    <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont AntimicrobialStewardshipProgram">Antimicrobial Stewardship Program</a>
-                  </li>
-                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                  <li>
-                    <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont MedicationManagement">Medication Management and Use Program</a>
-                  </li>
-                  <li class="ms-3 border-top notlist" style="list-style: none;"></li>
-
-                  <li>
-                    <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont ivmanual">IV Manual</a>
-                  </li>
+  
+                  <% manual.forEach(item => { %>
+                    <li>
+                      <a class=" d-inline-flex text-decoration-none rounded collapsed btnsubheadfont manual" style="width: 90%; text-wrap: wrap">
+                        <p hidden class="manualcode"><%= item.manualcode %></p>
+                        <%= item.manualtitle %>
+                      </a>
+                    </li>
+                    <li class="ms-3 border-top notlist" style="list-style: none;"></li>
+                  <% }) %>
                   
 
-          
+                  
+
                 </ul>
               </div>
 
@@ -2195,6 +2143,15 @@
               <div class="row d-flex d-none wfselect <%= item.wfcode%>" style=" justify-content: center; align-items: center; ">
                 <div class="col col-12 text-center">
                   <object class="my-3 rounded-3" data="../WorkFlow/<%= item.wfpath %>" type="application/pdf"
+                  style="height: 100vh; width: 1200px;"></object>   
+                </div>
+                </div>
+            <% }) %>
+
+            <% manual.forEach(item => { %>
+              <div class="row d-flex d-none manualselect <%= item.manualcode%>" style=" justify-content: center; align-items: center; ">
+                <div class="col col-12 text-center">
+                  <object class="my-3 rounded-3" data="../Manual/<%= item.manualpath %>" type="application/pdf"
                   style="height: 100vh; width: 1200px;"></object>   
                 </div>
                 </div>

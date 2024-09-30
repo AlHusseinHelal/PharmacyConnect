@@ -10,6 +10,7 @@ const Communication = require("../models/communication");
 const Policy = require("../models/policy");
 const Rareprotocols = require("../models/rareprotocols");
 const Workflow = require("../models/workflow");
+const Manual = require("../models/manual");
 
 //SIGNOUT
 exports.signOut = (req, res) => {
@@ -59,6 +60,10 @@ exports.OncoTips = asyncHandler(async (req, res) => {
   })
   const workflow = await Workflow.find().sort({
     raretitle: "asc",
+  })
+
+  const manual = await Manual.find().sort({
+    manualtitle: "asc",
   })
   
   const AntiCancer = await Medication.find({ classname: "Anti-Cancer" }).sort({
@@ -293,7 +298,8 @@ exports.OncoTips = asyncHandler(async (req, res) => {
       policy,
       rareprotocols,
       workflow,
-      MonoClonal
+      MonoClonal,
+      manual
     });
   }
 });

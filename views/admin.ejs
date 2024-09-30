@@ -807,6 +807,86 @@
                   </div>
                 </div>
 
+                <!-- ADD MANUAL -->
+                <div class="accordion-item">
+                  <button class="but" id="accordion-button-3" aria-expanded="false"><span
+                      class="accordion-title">Add Manual</span><span class="icon" aria-hidden="true"></span></button>
+                  <div class="accordion-content">
+                    <!-- <form action="/addpresentation" method="post" enctype="multipart/form-data"> -->
+                    <div class="d-flex flex-column ms-1 mt-2 ">
+                      <div>
+                      
+                        <span class="my-2"
+                          style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Manual Title</span>
+                      </div>
+                      <div class="my-2">
+  
+                        <form action="/deletemanual?_method=DELETE" method="post">
+                          <div class="d-flex" style="width: 98%;">
+                          <input  type="text" class="form-control" name="manualtitle" id="manualtitle">
+                          <button  type="submit" class="btn btn-danger ms-1">Delete</button>
+                          </div>
+                        </form>
+                      
+  
+                        <div id="nomanualtitle" class=" d-flex flex-row align-items-center my-2 d-none"
+                          style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                          <p class="my-1 ms-1">You Must Enter This Field</p>
+                        </div>
+                      </div>
+                        <div class="my-2">
+                          <span class="my-2"
+                          style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Code</span>
+                          <input style="width: 98%;" type="text" class="form-control  mb-2" name="manualcode" id="manualcode" placeholder="Please Enter Code Start With MAN">
+  
+                          <div id="manualcodeempty" class=" d-flex flex-row align-items-center my-2 d-none"
+                          style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                          <p class="my-1 ms-1">You Must Enter This Field</p>
+                          </div>
+  
+                          <div id="nomanual" class=" d-flex flex-row align-items-center my-2 d-none"
+                          style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                          <p class="my-1 ms-1">Please Enter A Code Start With MAN</p>
+                          </div>
+  
+                          <div id="manualcodeexist" class=" d-flex flex-row align-items-center my-2 d-none"
+                          style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                          <p class="my-1 ms-1">This Code Is Already Exists</p>
+                          </div>
+  
+                        </div>
+                        <div class="d-flex flex-column">
+                          <div>
+                            <span class="my-2"
+                            style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Location</span>
+                          </div>
+                          <div class="d-flex mb-2 ">
+                            <input  style="width: 98%;" type="file" accept=".pdf" class="form-control mb-2" name="manualpath" id="manualpath">
+                          </div>
+  
+                          <div id="manualurlempty" class=" d-flex flex-row align-items-center my-2 d-none"
+                          style="border: 1px solid #dee2e6; border-left: 3px solid red; border-radius: 5px; width: 98%;">
+                          <img class="ms-1" src="/svg/alertsign-02.svg" height="20vh" alt="">
+                          <p class="my-1 ms-1">You Must Enter This Field</p>
+                          </div>
+  
+                        </div>
+  
+                        <form id="manualsubmit" enctype="multipart/form-data">
+                        <div class="d-flex justify-content-end" style="width: 98%;">
+                          <button  type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                      </form>
+                    </div>
+  
+  
+                  </div>
+                </div>
+
               
             </div>
           </div>
@@ -4930,6 +5010,79 @@
         }
       });
       </script>
+
+        <!-- ADD MANUAL -->
+        <script>
+
+          manualsubmit.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const formData = new FormData();
+          formData.append("manualpath", manualpath.files[0]);
+          formData.append("manualtitle", manualtitle.value);
+          formData.append("manualcode", manualcode.value);
+          formData.append("manualpath", manualpath.value);
+          
+          const res = await fetch("/addmanual", {
+            method: "POST",
+            body: formData,
+            // body: JSON.stringify({ dicpath : dicpath.value, dictitle : dictitle.value , diccode : diccode.value }),
+            // headers: { "Content-Type": "application/json" },
+            // headers: { "Content-Type": "application/json" },
+            // headers : { "Content-Type": "application/pdf" },
+          });
+          
+          const data = await res.json();
+        
+          if (data.notitle) {
+                nomanualtitle.classList.remove("d-none");
+                manualtitle.classList.add("redframe");
+              } else {
+                nomanualtitle.classList.add("d-none");
+                manualtitle.classList.remove("redframe");
+              }
+  
+          if (data.codeempty) {
+            manualcodeempty.classList.remove("d-none");
+            manualcode.classList.add("redframe");
+          } else {
+            manualcodeempty.classList.add("d-none");
+            manualcode.classList.remove("redframe");
+          }
+  
+          if (data.noman) {
+            nomanual.classList.remove("d-none");
+            manualcode.classList.add("redframe");
+          } else {
+            nomanual.classList.add("d-none");
+            manualcode.classList.remove("redframe");
+          }
+  
+          if (data.codeexist) {
+            manualcodeexist.classList.remove("d-none");
+            manualcode.classList.add("redframe");
+          } else {
+            manualcodeexist.classList.add("d-none");
+            manualcode.classList.remove("redframe");
+          }   
+          
+          if (data.errors) {
+          data.errors.forEach(item => {
+            if (item.path == "manualpath") {
+              manualurlempty.classList.remove("d-none");
+              manualpath.classList.add("redframe");
+            } else {
+              manualurlempty.classList.add("d-none");
+              manualpath.classList.remove("redframe");
+            }
+  
+          })
+        };
+  
+          if (data.done) {
+            location.assign("/admin")
+          }
+        });
+        </script>
 
 
         
