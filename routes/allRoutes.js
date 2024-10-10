@@ -7095,6 +7095,24 @@ router.post(
   })
 );
 
+// MAINSTORE SEARCH
+router.post(
+  "/mainstoresearch",
+  checkIfUser,
+  requireAuth,
+  asyncHandler(async (req, res) => {
+    const searchtext = req.body.searchText
+    const results = await MainStore.find();
+    const array = results.filter(
+      (item) =>
+        item.ItemDescription.toLowerCase().match(searchtext.toLowerCase()) || item.ItemName.match(searchtext) 
+    );
+    if (array) {
+      res.render("Store/mainstoresearch.ejs", { array });
+    }
+  })
+);
+
 // EXAM ANSWER
 router.post(
   "/answer",
